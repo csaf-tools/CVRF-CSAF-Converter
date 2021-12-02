@@ -11,7 +11,7 @@ class DocumentHandler:
     """
     Main Handler of the conversion:
     1. Reads and Parses CVRF XML input
-    2. Recursivly iterates over each XML section 
+    2. Recursively iterates over each XML section
     3. For each XML section calling a dedicated mapper class (parse + create_json) 
     4. Collecting the output of each mapper class, which consists of the CSAF2.0 JSON equivalent
     5. Combining it to the final JSON and returning
@@ -28,6 +28,7 @@ class DocumentHandler:
                 self.publisher.parse(elem)
             elif tag == 'ToDo':
                 # ToDo: Going through it tag by tag for further parsing
+                pass
             else:
                 logging.warning(f'Invalid tag {tag}.')
 
@@ -54,8 +55,8 @@ class DocumentHandler:
         try:        
             pass
             # TODO: implement CVRF document validation
-        except Exception as e:
-            logging.error(f"Failed to validate input file, {e}.")
+        except Exception as exc:
+            logging.error(f"Failed to validate input file, {exc}.")
             valid = False
         return valid
 
@@ -101,11 +102,11 @@ class DocumentPublisherHandler:
         return js
 
 
-# Load Kommandozeilen args
+# Load CLI args
 parser = argparse.ArgumentParser(description='Converts CVRF XML input into CSAF 2.0 JSON output.')
 parser.add_argument('--publisher_name', dest='publisher_name', type=str, help="Name of the publisher.")
 parser.add_argument('--publisher_namespace', dest='publisher_namespace', type=str, help="Namespace of the publisher.")
-parser.add_argument('--input_file', dest='input_file', type=str, help="CVRF XML input file to parse", default='./sample.xml')
+parser.add_argument('--input_file', dest='input_file', type=str, help="CVRF XML input file to parse", default='./sample_input/sample.xml')
 
 args = {k: v for k, v in vars(parser.parse_args()).items() if v is not None}
 

@@ -1,13 +1,21 @@
 # CVRF-CSAF-Converter
 
 
-> CVRF CSAF converter: A CSAF producer which takes a CVRF document as input and converts it into a valid CSAF document.
+> CVRF CSAF converter: A CSAF producer which takes a CVRF document as input and converts it into a valid CSAF document. [OASIS](https://docs.oasis-open.org/csaf/csaf/v2.0/csd01/csaf-v2.0-csd01.html)
 
-## Project Status
+## Project
 
-This project between Deutsche Telekom Security GmbH and BSI aims to provide a PoC CVRF 1.2 to CSAF 2.0 converter. It will be implemented in Q1/2022.
+CVRF-CSAF-Converter is a project between Deutsche Telekom Security GmbH and the Federal Office for Information Security. It aims to provide a PoC CVRF 1.x to CSAF 2.0 converter. 
+
+Realization is taking place 100% Open Source. The final delivery will be in Q1/2022.
+
+## Project Team
+
+``` To Be Published ```
 
 ## Specifications
+
+We follow the official OASIS specifications in order to provide as much acceptance on the user base as possible.
 
 - [Specification CVRF 1.2](http://docs.oasis-open.org/csaf/csaf-cvrf/v1.2/cs01/csaf-cvrf-v1.2-cs01.html)
    - [xsd common](http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/common)
@@ -22,4 +30,5 @@ This project between Deutsche Telekom Security GmbH and BSI aims to provide a Po
 ## Tools around CSAF 2.0
 
 - [BSI Secvisogram CSAF 2.0 Web Editor](https://github.com/secvisogram/secvisogram)
-- 
+
+
