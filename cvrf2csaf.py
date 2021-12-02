@@ -4,6 +4,8 @@ import argparse
 import yaml
 import json
 
+from utils import str2bool, get_config_from_file, store_json
+
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 
 
@@ -30,7 +32,7 @@ class DocumentHandler:
                 # ToDo: Going through it tag by tag for further parsing
                 pass
             else:
-                logging.warning(f'Invalid tag {tag}.')
+                logging.warning(f'Not handled input tag {tag}. No parser available.')
 
     def _create_json(self):
         js = {'document': {}}
@@ -104,22 +106,31 @@ class DocumentPublisherHandler:
 
 # Load CLI args
 parser = argparse.ArgumentParser(description='Converts CVRF XML input into CSAF 2.0 JSON output.')
+parser.add_argument('--input_file', dest='input_file', type=str, help="CVRF XML input file to parse", default='./sample_input/sample.xml')
+parser.add_argument('--out_file', dest='out_file', type=str, help="CVRF JSON output file to write to.", default='./output/sample.json')
+parser.add_argument('--print', dest='print', type=str2bool, nargs='?',
+                        const=True, default=False,
+                        help="1 = Additionally prints JSON output on command line.")
+
 parser.add_argument('--publisher_name', dest='publisher_name', type=str, help="Name of the publisher.")
 parser.add_argument('--publisher_namespace', dest='publisher_namespace', type=str, help="Namespace of the publisher.")
-parser.add_argument('--input_file', dest='input_file', type=str, help="CVRF XML input file to parse", default='./sample_input/sample.xml')
 
 args = {k: v for k, v in vars(parser.parse_args()).items() if v is not None}
+if __name__ == '__main__':
 
-# Load config from file
-try:
-    f = open('./config.yaml', 'r')
-    config = yaml.safe_load(f)
-except Exception as e:
-    print(f"Reading config.yaml failed {e}.")
-    exit(1)
+    config = get_config_from_file()
+    config.update(args)
 
-config.update(args)
+    # DocumentHandler is iterating over each XML element within convert_file and return CSAF 2.0 JSON
+    h = DocumentHandler(config)
+    js = h.convert_file(path=config.get('input_file'))
 
-h = DocumentHandler(config)
-js = h.convert_file(path=config.get('input_file'))
-print(json.dumps(js, indent=1))
+    # Output / Store results
+    if config.get('print', False):
+        print(json.dumps(js, indent=1))
+
+    store_json(js=js, fpath=config.get('out_file'))
+
+
+
+
