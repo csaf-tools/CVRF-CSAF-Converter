@@ -6,6 +6,8 @@ import json
 
 from utils import str2bool, get_config_from_file, store_json
 
+from src.sections.document_tracking import DocumentTracking
+
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 
 
@@ -21,6 +23,7 @@ class DocumentHandler:
 
     def __init__(self, config):
         self.publisher = DocumentPublisherHandler(config['publisher_name'], config['publisher_namespace'])
+        self.document_tracking = DocumentTracking()
 
     def _parse(self, root):
         for elem in root.iterchildren():
@@ -28,6 +31,8 @@ class DocumentHandler:
             tag = etree.QName(elem).localname
             if tag == 'DocumentPublisher':
                 self.publisher.parse(elem)
+            elif tag == 'DocumentTracking':
+                self.document_tracking.parse(elem)
             elif tag == 'ToDo':
                 # ToDo: Going through it tag by tag for further parsing
                 pass
@@ -38,6 +43,8 @@ class DocumentHandler:
         js = {'document': {}}
         js_publisher = self.publisher.create_json()
         js['document']['publisher'] = js_publisher
+        js_tracking = self.document_tracking.create_json()
+        js['document']['document_tracking'] = js_tracking
         return js
 
     @staticmethod
@@ -75,7 +82,6 @@ class DocumentHandler:
 
 
 class DocumentPublisherHandler:
-
     def __init__(self, name, namespace):
         self.name = name
         self.namespace = namespace
