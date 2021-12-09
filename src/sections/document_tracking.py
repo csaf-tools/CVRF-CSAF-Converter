@@ -33,6 +33,8 @@ class DocumentTracking(SectionHandler):
         for revision in self.revision_history.revisions:
             json['revision_history'].append(revision.date.text)
 
+        return json
+
 
     class Status(LeafElement):
         min_occurs = 1

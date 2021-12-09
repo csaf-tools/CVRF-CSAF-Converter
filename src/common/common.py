@@ -1,6 +1,4 @@
-
 import typing
-
 
 class SectionHandler:
     def parse(self, root_element):
@@ -11,8 +9,7 @@ class SectionHandler:
                 class_attr.parse(child_element)
 
             if isinstance(class_attr, list):
-                list_type = class_attr[0]
-                class_attr = []
+                list_type = class_attr.pop()
                 for elem in root_element:
                     x = list_type()
                     x.parse(elem)
@@ -38,7 +35,7 @@ class LeafElement:
         if root_element is None:
             return
 
-        self.text = root_element.findtext('{*}' + f'{self.__class__.__name__}')
+        self.text = root_element.text
 
         # print('x')
         # TODO: occurence, type, extension validation
