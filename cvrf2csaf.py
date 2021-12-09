@@ -1,12 +1,16 @@
-from lxml import etree
 import logging
 import argparse
 import yaml
+import os
 import json
+
+from lxml import etree
+from lxml import objectify
 
 from utils import str2bool, get_config_from_file, store_json
 
-from src.sections.document_tracking import DocumentTracking
+from src.section_handlers.document_tracking import DocumentTracking
+from src.section_handlers.document_publisher import DocumentPublisher
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 
@@ -21,8 +25,11 @@ class DocumentHandler:
     5. Combining it to the final JSON and returning
     """
 
+    SCHEMA_FILE = 'schemata/cvrf/1.2/cvrf.xsd'
+    CATALOG_FILE = 'schemata/catalog_1_2.xml'
+
     def __init__(self, config):
-        self.publisher = DocumentPublisherHandler(config['publisher_name'], config['publisher_namespace'])
+        self.document_publisher = DocumentPublisher(config['publisher_name'], config['publisher_namespace'])
         self.document_tracking = DocumentTracking()
 
     def _parse(self, root):
@@ -30,33 +37,39 @@ class DocumentHandler:
             # get tag name without it's namespace, don't use elem.tag here
             tag = etree.QName(elem).localname
             if tag == 'DocumentPublisher':
-                self.publisher.parse(elem)
+                self.document_publisher.create_json(elem)
             elif tag == 'DocumentTracking':
-                self.document_tracking.parse(elem)
+                self.document_tracking.create_json(elem)
             elif tag == 'ToDo':
                 # ToDo: Going through it tag by tag for further parsing
                 pass
             else:
                 logging.warning(f'Not handled input tag {tag}. No parser available.')
 
-    def _create_json(self):
+    def _compose_final_json(self):
         js = {'document': {}}
-        js_publisher = self.publisher.create_json()
-        js['document']['publisher'] = js_publisher
-        js_tracking = self.document_tracking.create_json()
-        js['document']['document_tracking'] = js_tracking
+        js['document']['publisher'] = self.document_publisher.json
+        js['document']['tracking'] = self.document_tracking.json
         return js
 
-    @staticmethod
-    def _open_file(path):
+    @classmethod
+    def _open_file(cls, file_path):
         """Read CVRF XML from $path"""
-        root = None
-        try:
-            tree = etree.parse(path)
-            root = tree.getroot()
-        except Exception as e:
-            logging.error(f"Failed to open file {path}, {e}.")
-        return root
+        with open(cls.SCHEMA_FILE) as f:
+            os.environ.update(XML_CATALOG_FILES=cls.CATALOG_FILE)
+            schema = etree.XMLSchema(file=f)
+            # xmlschema.assertValid(cvrf_doc)
+
+        parser = objectify.makeparser(schema=schema)
+
+        with open(file_path, 'rb') as f:
+            xml_doc = f.read()
+            xml_doc = xml_doc.decode('utf-8').encode('ascii')
+
+        xml_objectified = objectify.fromstring(xml_doc, parser)
+
+        return xml_objectified
+
 
     def _validate_input_document(self, root):
         """Validate CVRF, where $root is the parsed CVRF XML"""
@@ -74,40 +87,14 @@ class DocumentHandler:
         root = DocumentHandler._open_file(path)
         if root is None:
             return None
+
         if not self._validate_input_document(root):
             logging.error(f"Input file is not valid cvrf document!.")
             return None
+
         self._parse(root)
-        return self._create_json()
 
-
-class DocumentPublisherHandler:
-    def __init__(self, name, namespace):
-        self.name = name
-        self.namespace = namespace
-
-    def parse(self, element):
-        self.Type = element.attrib.get('Type', None)
-        self.VendorID = element.attrib.get('VendorID', None)
-        self.ContactDetails = element.findtext('{*}ContactDetails')
-        self.IssuingAuthority = element.findtext('{*}IssuingAuthority')
-
-    def create_json(self):
-        js = {}
-
-        # mandatory values
-        js['name'] = self.name
-        js['namespace'] = self.namespace
-        js['category'] = self.Type
-
-        # ToDo: Complete structure
-
-        # optional values
-        if self.ContactDetails:
-            js['contact_details'] = self.ContactDetails
-        if self.IssuingAuthority:
-            js['issuing_authority'] = self.IssuingAuthority
-        return js
+        return self._compose_final_json()
 
 
 # Load CLI args
