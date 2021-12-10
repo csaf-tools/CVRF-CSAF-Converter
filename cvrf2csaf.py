@@ -106,8 +106,8 @@ class DocumentPublisherHandler:
 
 # Load CLI args
 parser = argparse.ArgumentParser(description='Converts CVRF XML input into CSAF 2.0 JSON output.')
-parser.add_argument('--input_file', dest='input_file', type=str, help="CVRF XML input file to parse", default='./sample_input/sample.xml')
-parser.add_argument('--out_file', dest='out_file', type=str, help="CVRF JSON output file to write to.", default='./output/sample.json')
+parser.add_argument('--input-file', dest='input_file', type=str, help="CVRF XML input file to parse", default='./sample_input/sample.xml')
+parser.add_argument('--out-file', dest='out_file', type=str, help="CVRF JSON output file to write to.", default='./output/sample.json')
 parser.add_argument('--print', dest='print', type=str2bool, nargs='?',
                         const=True, default=False,
                         help="1 = Additionally prints JSON output on command line.")
