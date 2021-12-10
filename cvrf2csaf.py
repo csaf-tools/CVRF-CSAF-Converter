@@ -55,43 +55,26 @@ class DocumentHandler:
         return js
 
     @classmethod
-    def _open_file(cls, file_path):
+    def _validate_and_open_file(cls, file_path):
         """Read CVRF XML from $path"""
         with open(cls.SCHEMA_FILE) as f:
             os.environ.update(XML_CATALOG_FILES=cls.CATALOG_FILE)
             schema = etree.XMLSchema(file=f)
-            # xmlschema.assertValid(cvrf_doc)
 
         parser = objectify.makeparser(schema=schema)
 
-        with open(file_path, 'rb') as f:
-            xml_doc = f.read()
-            xml_doc = xml_doc.decode('utf-8').encode('ascii')
-
-        xml_objectified = objectify.fromstring(xml_doc, parser)
+        try:
+            xml_objectified = objectify.parse(file_path, parser).getroot()
+        except etree.ParseError as e:
+            logging.critical(f"Document not valid: {e}.")
+            return None
 
         return xml_objectified
 
-
-    def _validate_input_document(self, root):
-        """Validate CVRF, where $root is the parsed CVRF XML"""
-        valid = True
-        try:        
-            pass
-            # TODO: implement CVRF document validation
-        except Exception as exc:
-            logging.error(f"Failed to validate input file, {exc}.")
-            valid = False
-        return valid
-
     def convert_file(self, path):
         """Wrapper to read/parse CVRF and parse it to CSAF JSON structure"""
-        root = DocumentHandler._open_file(path)
+        root = DocumentHandler._validate_and_open_file(path)
         if root is None:
-            return None
-
-        if not self._validate_input_document(root):
-            logging.error(f"Input file is not valid cvrf document!.")
             return None
 
         self._parse(root)
@@ -101,14 +84,16 @@ class DocumentHandler:
 
 # Load CLI args
 parser = argparse.ArgumentParser(description='Converts CVRF XML input into CSAF 2.0 JSON output.')
-parser.add_argument('--input_file', dest='input_file', type=str, help="CVRF XML input file to parse", default='./sample_input/sample.xml')
-parser.add_argument('--out_file', dest='out_file', type=str, help="CVRF JSON output file to write to.", default='./output/sample.json')
+parser.add_argument('--input-file', dest='input_file', type=str, help="CVRF XML input file to parse",
+                    default='./sample_input/sample.xml')
+parser.add_argument('--out-file', dest='out_file', type=str, help="CVRF JSON output file to write to.",
+                    default='./output/sample.json')
 parser.add_argument('--print', dest='print', type=str2bool, nargs='?',
-                        const=True, default=False,
-                        help="1 = Additionally prints JSON output on command line.")
+                    const=True, default=False,
+                    help="1 = Additionally prints JSON output on command line.")
 
-parser.add_argument('--publisher_name', dest='publisher_name', type=str, help="Name of the publisher.")
-parser.add_argument('--publisher_namespace', dest='publisher_namespace', type=str, help="Namespace of the publisher.")
+parser.add_argument('--publisher-name', dest='publisher_name', type=str, help="Name of the publisher.")
+parser.add_argument('--publisher-namespace', dest='publisher_namespace', type=str, help="Namespace of the publisher.")
 
 args = {k: v for k, v in vars(parser.parse_args()).items() if v is not None}
 if __name__ == '__main__':
@@ -125,7 +110,3 @@ if __name__ == '__main__':
         print(json.dumps(js, indent=1))
 
     store_json(js=js, fpath=config.get('out_file'))
-
-
-
-
