@@ -14,16 +14,11 @@ class DocumentTracking(SectionHandler):
         self.json['current_release_date'] = root_element.CurrentReleaseDate.text
         self.json['initial_release_date'] = root_element.InitialReleaseDate.text
         self.json['status'] = root_element.Status.text
+        # TODO Conformance Clause 5: CVRF CSAF converter
         self.json['version'] = root_element.Version.text
-        self.json['revision_history'] = []
 
-        for revision in root_element.RevisionHistory.Revision:
-            revision_attrs = {}
-            revision_attrs['date'] = revision.Date.text
-            revision_attrs['number'] = revision.Number.text
-            revision_attrs['summary'] = revision.Description.text
-
-            self.json['revision_history'].append(revision_attrs)
+        revison_hisotry = self._proces_revision_history(root_element.RevisionHistory.Revision)
+        self.json['revision_history'] = revison_hisotry
 
         # Generator is set by this Converter
         self.json['generator'] = {}
@@ -31,6 +26,21 @@ class DocumentTracking(SectionHandler):
         self.json['generator']['engine'] = {}
         self.json['generator']['engine']['name'] = self.cvrf2csaf_name
         self.json['generator']['engine']['version'] = self.cvrf2csaf_version
+
+
+    def _proces_revision_history(self, revisions):
+        # TODO Conformance Clause 5: CVRF CSAF converter
+        revision_history = []
+        for revision in revisions:
+            revision_attrs = {}
+            revision_attrs['date'] = revision.Date.text
+            revision_attrs['number'] = revision.Number.text
+            revision_attrs['summary'] = revision.Description.text
+
+            revision_history.append(revision_attrs)
+
+        return revision_history
+
 
 
     def _process_optional_elements(self, root_element):
