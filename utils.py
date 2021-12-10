@@ -1,6 +1,7 @@
 import argparse
 import yaml
 import os, logging, json
+from datetime import datetime, timezone
 from pathlib import Path
 
 def get_config_from_file():
@@ -49,3 +50,7 @@ def str2bool(v):
         return False
     else:
         raise argparse.ArgumentTypeError('Boolean value expected.')
+
+
+def get_utc_timestamp():
+    return datetime.now(timezone.utc).isoformat(timespec='milliseconds')

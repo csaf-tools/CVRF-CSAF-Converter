@@ -29,8 +29,10 @@ class DocumentHandler:
     CATALOG_FILE = 'schemata/catalog_1_2.xml'
 
     def __init__(self, config):
-        self.document_publisher = DocumentPublisher(config['publisher_name'], config['publisher_namespace'])
-        self.document_tracking = DocumentTracking()
+        self.document_publisher = DocumentPublisher(config['publisher_name'],
+                                                    config['publisher_namespace'])
+        self.document_tracking = DocumentTracking(config['cvrf2csaf_name'],
+                                                  config['cvrf2csaf_version'])
 
     def _parse(self, root):
         for elem in root.iterchildren():

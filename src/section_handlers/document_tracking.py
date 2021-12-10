@@ -1,8 +1,13 @@
 
 from src.common.common import SectionHandler
+from utils import get_utc_timestamp
 
 
 class DocumentTracking(SectionHandler):
+    def __init__(self, cvrf2csaf_name, cvrf2csaf_version):
+        super().__init__()
+        self.cvrf2csaf_name = cvrf2csaf_name
+        self.cvrf2csaf_version = cvrf2csaf_version
 
     def _process_mandatory_elements(self, root_element):
         self.json['id'] = root_element.Identification.ID.text
@@ -20,6 +25,14 @@ class DocumentTracking(SectionHandler):
 
             self.json['revision_history'].append(revision_attrs)
 
+        # Generator is set by this Converter
+        self.json['generator'] = {}
+        self.json['generator']['date'] = get_utc_timestamp()
+        self.json['generator']['engine'] = {}
+        self.json['generator']['engine']['name'] = self.cvrf2csaf_name
+        self.json['generator']['engine']['version'] = self.cvrf2csaf_version
+
+
     def _process_optional_elements(self, root_element):
         if hasattr(root_element.Identification, 'Alias'):
             aliases = []
@@ -27,15 +40,4 @@ class DocumentTracking(SectionHandler):
                 aliases.append(alias.text)
 
             self.json['aliases'] = aliases
-
-        if hasattr(root_element, 'Generator'):
-            # TODO: not sure how to proceed here, since in 1.2, Engine is optional, in 2.0, Engine is required
-            pass
-
-
-
-
-
-
-# ------------------- LEAF elements/attributes ------------------------
 
