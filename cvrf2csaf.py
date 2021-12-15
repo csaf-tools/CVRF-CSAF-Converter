@@ -106,15 +106,15 @@ class DocumentPublisherHandler:
 
 # Load CLI args
 parser = argparse.ArgumentParser(description='Converts CVRF XML input into CSAF 2.0 JSON output.')
-parser.add_argument('--input_file', dest='input_file', type=str, help="CVRF XML input file to parse",
+parser.add_argument('--input-file', dest='input_file', type=str, help="CVRF XML input file to parse",
                     default='./sample_input/sample.xml', metavar='PATH')
-parser.add_argument('--out_file', dest='out_file', type=str, help="CVRF JSON output file to write to.",
+parser.add_argument('--out-file', dest='out_file', type=str, help="CVRF JSON output file to write to.",
                     default='./output/sample.json', metavar='PATH')
 parser.add_argument('--print', dest='print', action='store_true', default=False,
                     help="Additionally prints JSON output on command line.")
 
-parser.add_argument('--publisher_name', dest='publisher_name', type=str, help="Name of the publisher.")
-parser.add_argument('--publisher_namespace', dest='publisher_namespace', type=str, help="Namespace of the publisher.")
+parser.add_argument('--publisher-name', dest='publisher_name', type=str, help="Name of the publisher.")
+parser.add_argument('--publisher-namespace', dest='publisher_namespace', type=str, help="Namespace of the publisher.")
 
 args = {k: v for k, v in vars(parser.parse_args()).items() if v is not None}
 if __name__ == '__main__':
