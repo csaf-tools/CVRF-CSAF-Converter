@@ -36,34 +36,38 @@ class DocumentTracking(SectionHandler):
     """
     @staticmethod
     def check_for_version_t(revision_history):
-        pattern = '^((0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-((?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\+([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?)$'
-        return all([re.match(pattern, revision['number']) for revision in revision_history])
+        pattern = (
+            r'^((0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)'
+            r'(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\+([0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?)$'
+        )
+        return all(re.match(pattern, revision['number']) for revision in revision_history)
 
     @staticmethod
     def _process_revision_history(root_element):
         # preprocess the data
         revision_history = []
         for revision in root_element.RevisionHistory.Revision:
-            revision_attrs = {}
-            revision_attrs['date'] = revision.Date.text
-            # keep original value in this variable for matching later
-            revision_attrs['number_cvrf'] = revision.Number.text
-            # this value might be overwritten later if some of the version number doesn't match semantic versioning
-            revision_attrs['number'] = revision.Number.text
-            revision_attrs['summary'] = revision.Description.text
-
-            revision_history.append(revision_attrs)
+            # number_cvrf: keep original value in this variable for matching later
+            # number: this value might be overwritten later if some version numbers doesn't match semantic versioning
+            revision_history.append(
+                {
+                    'date': revision.Date.text,
+                    'number_cvrf': revision.Number.text,
+                    'number': revision.Number.text,
+                    'summary': revision.Description.text,
+                }
+            )
 
         # handle corresponding part of Conformance Clause 5: CVRF CSAF converter
-        # that is: some of the version number in revision_history don't match semantic versioning
+        # that is: some version numbers in revision_history don't match semantic versioning
         if not DocumentTracking.check_for_version_t(revision_history):
-            logging.info('Some of the version number /document/tracking/revision_history does not match semantic versioning. Reindexing to integers.')
+            logging.info('Some version numbers in /document/tracking/revision_history does not match semantic versioning. Reindexing to integers.')
             # Sort revisions by version number
+            # TODO: Double check if validation of input document is enough or shall we handle potential exceptions here
             revision_history = sorted(revision_history, key=lambda x: list(map(int, x['number'].split('.'))))
-            i = 1
-            for revision in revision_history:
-                revision['number'] = i
-                i += 1
+
+            for renumber, revision in enumerate(revision_history, start=1):
+                revision['number'] = renumber  # Changing the type from str to int
 
         # match document version to corresponding one in revision history
         # TODO: maybe throw exception if more than one revision matches? Is it checked somewhere else? see: http://docs.oasis-open.org/csaf/csaf-cvrf/v1.2/cs01/csaf-cvrf-v1.2-cs01.html#_Toc493508877
