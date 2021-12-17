@@ -17,7 +17,7 @@ class DocumentTracking(SectionHandler):
         self.json['initial_release_date'] = root_element.InitialReleaseDate.text
         self.json['status'] = root_element.Status.text
 
-        revision_history, version = DocumentTracking._proces_revision_history(root_element)
+        revision_history, version = DocumentTracking._process_revision_history(root_element)
         self.json['revision_history'] = revision_history
         self.json['version'] = version
 
@@ -40,7 +40,7 @@ class DocumentTracking(SectionHandler):
         return all([re.match(pattern, revision['number']) for revision in revision_history])
 
     @staticmethod
-    def _proces_revision_history(root_element):
+    def _process_revision_history(root_element):
         # preprocess the data
         revision_history = []
         for revision in root_element.RevisionHistory.Revision:
@@ -48,7 +48,7 @@ class DocumentTracking(SectionHandler):
             revision_attrs['date'] = revision.Date.text
             # keep original value in this variable for matching later
             revision_attrs['number_cvrf'] = revision.Number.text
-            # this value might be overwritten later if it doesn't match semantic versioning
+            # this value might be overwritten later if some of the version number doesn't match semantic versioning
             revision_attrs['number'] = revision.Number.text
             revision_attrs['summary'] = revision.Description.text
 
@@ -58,6 +58,7 @@ class DocumentTracking(SectionHandler):
         # that is: some of the version number in revision_history don't match semantic versioning
         if not DocumentTracking.check_for_version_t(revision_history):
             logging.info('Some of the version number /document/tracking/revision_history does not match semantic versioning. Reindexing to integers.')
+            # Sort revisions by version number
             revision_history = sorted(revision_history, key=lambda x: list(map(int, x['number'].split('.'))))
             i = 1
             for revision in revision_history:
