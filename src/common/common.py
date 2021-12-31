@@ -20,9 +20,9 @@ class SectionHandler:
         try:
             self._process_mandatory_elements(root_element)
         except Exception as e:
-            logging.error(f'Something went wrong when processing mandatory elements for {root_element}. Reason: {e}')
+            logging.error(f'Something went wrong when processing mandatory elements for {root_element.tag}. Reason: {e}')
 
         try:
             self._process_optional_elements(root_element)
         except Exception as e:
-            logging.error(f'Something went wrong when processing optional elements for {root_element}. Reason: {e}')
+            logging.error(f'Something went wrong when processing optional elements for {root_element.tag}. Reason: {e}')
