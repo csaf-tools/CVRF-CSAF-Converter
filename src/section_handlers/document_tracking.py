@@ -82,7 +82,7 @@ class DocumentTracking(SectionHandler):
         # handle corresponding part of Conformance Clause 5: CVRF CSAF converter
         # that is: some version numbers in revision_history don't match semantic versioning
         if not self.check_for_version_t(revision_history):
-            logging.info('Some version numbers in /document/tracking/revision_history does not match semantic versioning. Reindexing to integers.')
+            logging.info('Some version numbers in /document/tracking/revision_history do not match semantic versioning. Reindexing to integers.')
 
             revision_history = sorted(revision_history, key=itemgetter('version_as_int_tuple'))
 
