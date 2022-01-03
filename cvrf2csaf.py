@@ -12,11 +12,11 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(level
 class DocumentHandler:
     """
     Main Handler of the conversion:
-    1. Reads and Parses CVRF XML input
-    2. Recursively iterates over each XML section
-    3. For each XML section calling a dedicated mapper class (parse + create_json) 
+    1. Reads/Parses/Validates CVRF XML input
+    2. Iterates over each first-level XML section
+    3. Each first-level XML section has its class and its methods are responsible for converting the content
     4. Collecting the output of each mapper class, which consists of the CSAF2.0 JSON equivalent
-    5. Combining it to the final JSON and returning
+    5. Combining it to the final JSON and writing the result to a file
     """
 
     def __init__(self, config):
