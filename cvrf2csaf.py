@@ -48,11 +48,11 @@ class DocumentHandler:
             else:
                 logging.warning(f'Not handled input tag {tag}. No parser available.')
 
-    def _compose_final_json(self):
-        js = {'document': {}}
-        js['document']['publisher'] = self.document_publisher.csaf
-        js['document']['tracking'] = self.document_tracking.csaf
-        return js
+    def _compose_final_csaf(self):
+        final_csaf = {'document': {}}
+        final_csaf['document']['publisher'] = self.document_publisher.csaf
+        final_csaf['document']['tracking'] = self.document_tracking.csaf
+        return final_csaf
 
     @classmethod
     def _validate_and_open_file(cls, file_path):
@@ -79,7 +79,7 @@ class DocumentHandler:
 
         self._parse(root)
 
-        return self._compose_final_json()
+        return self._compose_final_csaf()
 
 
 # Load CLI args
@@ -102,10 +102,10 @@ if __name__ == '__main__':
 
     # DocumentHandler is iterating over each XML element within convert_file and return CSAF 2.0 JSON
     h = DocumentHandler(config)
-    csaf_json = h.convert_file(path=config.get('input_file'))
+    final_csaf = h.convert_file(path=config.get('input_file'))
 
     # Output / Store results
     if config.get('print', False):
-        print(json.dumps(csaf_json, indent=1))
+        print(json.dumps(final_csaf, indent=1))
 
-    store_json(js=csaf_json, fpath=config.get('out_file'))
+    store_json(js=final_csaf, fpath=config.get('out_file'))
