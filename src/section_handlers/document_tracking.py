@@ -85,6 +85,9 @@ class DocumentTracking(SectionHandler):
                     'date': root_element.CurrentReleaseDate.text,
                     'number': root_element.Version.text,
                     'summary': "Added by CVRF-CSAF-Converter",
+                    # Extra vars
+                    'number_cvrf': root_element.Version.text,
+                    'version_as_int_tuple': self._as_int_tuple(root_element.Version.text),
                 }
             )
 
@@ -108,6 +111,16 @@ class DocumentTracking(SectionHandler):
                 }
             )
 
+        # Do we miss the current version in the revision history?
+        if not [rev for rev in revision_history if rev['number'] == root_element.Version.text]:
+            try:
+                self._add_current_revision_to_history(root_element, revision_history)
+                logging.warning(f'/document/tracking/version value was not found in /document/tracking/revision_history. Adding the current revision to the history')
+            except ValueError as e:
+                # TODO: What to do here? If the current version is not semver OR the difference between versions is > 0.1.0
+                logging.critical(f'/document/tracking/version value was not found in /document/tracking/revision_history. Converter doesn"t know how to proceed. Reason: {e}')
+                exit(1)
+
         # handle corresponding part of Conformance Clause 5: CVRF CSAF converter
         # that is: some version numbers in revision_history don't match semantic versioning
         if not self.check_for_version_t(revision_history):
@@ -118,28 +131,16 @@ class DocumentTracking(SectionHandler):
             for rev_number, revision in enumerate(revision_history, start=1):
                 revision['number'] = rev_number  # Changing the type from str to int
 
-        # match document version to corresponding one in revision history
-        version_matches = [rev for rev in revision_history if rev['number_cvrf'] == root_element.Version.text]
-        if not version_matches:
-            version = root_element.Version.text
-            try:
-                self._add_current_revision_to_history(root_element, revision_history)
-                logging.warning(f'/document/tracking/version value was not found in /document/tracking/revision_history. Adding the current revision to the history')
-            except ValueError as e:
-                # TODO: What to do here? If the current version is not semver OR the difference between versions is > 0.1.0
-                logging.critical(f'/document/tracking/version value was not found in /document/tracking/revision_history. Converter doesn"t know how to proceed. Reason: {e}')
-                exit(1)
-
-        elif len(version_matches) > 1:
-            logging.error(f'Found duplicate versions in /document/tracking/revision_history')
+            # after reindexing, match document version to corresponding one in revision history
+            version = next(rev for rev in revision_history if rev['number_cvrf'] == root_element.Version.text)['number']
         else:
-            version = version_matches[0]['number']
+            # Just copy over the version
+            version = root_element.Version.text
 
         # cleanup extra vars
         for revision in revision_history:
-            with suppress(KeyError): # If adding extra revision, it doesn't have the extra vars
-                revision.pop('number_cvrf')
-                revision.pop('version_as_int_tuple')
+            revision.pop('number_cvrf')
+            revision.pop('version_as_int_tuple')
 
         return revision_history, version
 
