@@ -15,21 +15,21 @@ class DocumentTracking(SectionHandler):
         self.cvrf2csaf_version = cvrf2csaf_version
 
     def _process_mandatory_elements(self, root_element):
-        self.json['id'] = root_element.Identification.ID.text
-        self.json['current_release_date'] = root_element.CurrentReleaseDate.text
-        self.json['initial_release_date'] = root_element.InitialReleaseDate.text
-        self.json['status'] = root_element.Status.text
+        self.csaf['id'] = root_element.Identification.ID.text
+        self.csaf['current_release_date'] = root_element.CurrentReleaseDate.text
+        self.csaf['initial_release_date'] = root_element.InitialReleaseDate.text
+        self.csaf['status'] = root_element.Status.text
 
         revision_history, version = self._process_revision_history(root_element)
-        self.json['revision_history'] = revision_history
-        self.json['version'] = version
+        self.csaf['revision_history'] = revision_history
+        self.csaf['version'] = version
 
         # Generator is set by this Converter
-        self.json['generator'] = {}
-        self.json['generator']['date'] = get_utc_timestamp()
-        self.json['generator']['engine'] = {}
-        self.json['generator']['engine']['name'] = self.cvrf2csaf_name
-        self.json['generator']['engine']['version'] = self.cvrf2csaf_version
+        self.csaf['generator'] = {}
+        self.csaf['generator']['date'] = get_utc_timestamp()
+        self.csaf['generator']['engine'] = {}
+        self.csaf['generator']['engine']['name'] = self.cvrf2csaf_name
+        self.csaf['generator']['engine']['version'] = self.cvrf2csaf_version
 
     def _process_optional_elements(self, root_element):
         if hasattr(root_element.Identification, 'Alias'):
@@ -37,7 +37,7 @@ class DocumentTracking(SectionHandler):
             for alias in root_element.Identification.Alias:
                 aliases.append(alias.text)
 
-            self.json['aliases'] = aliases
+            self.csaf['aliases'] = aliases
 
     @staticmethod
     def check_for_version_t(revision_history):

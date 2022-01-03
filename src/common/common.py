@@ -5,10 +5,13 @@ class SectionHandler:
     """
     A class encapsulating arbitrary XML element in the tree.
     After conversion, it holds the JSON structure of its whole subtree.
+
+    Attributes:
+        csaf     The CSAF interpretation of the data, to be converted to JSON in the final composition step
     """
 
     def __init__(self):
-        self.json = {}
+        self.csaf = {}
 
     def _process_mandatory_elements(self, root_element):
         raise NotImplementedError('Subclasses must implement.')
@@ -16,7 +19,7 @@ class SectionHandler:
     def _process_optional_elements(self, root_element):
         raise NotImplementedError('Subclasses must implement.')
 
-    def create_json(self, root_element):
+    def create_csaf(self, root_element):
         try:
             self._process_mandatory_elements(root_element)
         except Exception as e:

@@ -39,9 +39,9 @@ class DocumentHandler:
             # get tag name without it's namespace, don't use elem.tag here
             tag = etree.QName(elem).localname
             if tag == 'DocumentPublisher':
-                self.document_publisher.create_json(elem)
+                self.document_publisher.create_csaf(elem)
             elif tag == 'DocumentTracking':
-                self.document_tracking.create_json(elem)
+                self.document_tracking.create_csaf(elem)
             elif tag == 'ToDo':
                 # ToDo: Going through it tag by tag for further parsing
                 pass
@@ -50,8 +50,8 @@ class DocumentHandler:
 
     def _compose_final_json(self):
         js = {'document': {}}
-        js['document']['publisher'] = self.document_publisher.json
-        js['document']['tracking'] = self.document_tracking.json
+        js['document']['publisher'] = self.document_publisher.csaf
+        js['document']['tracking'] = self.document_tracking.csaf
         return js
 
     @classmethod
@@ -102,10 +102,10 @@ if __name__ == '__main__':
 
     # DocumentHandler is iterating over each XML element within convert_file and return CSAF 2.0 JSON
     h = DocumentHandler(config)
-    js = h.convert_file(path=config.get('input_file'))
+    csaf_json = h.convert_file(path=config.get('input_file'))
 
     # Output / Store results
     if config.get('print', False):
-        print(json.dumps(js, indent=1))
+        print(json.dumps(csaf_json, indent=1))
 
-    store_json(js=js, fpath=config.get('out_file'))
+    store_json(js=csaf_json, fpath=config.get('out_file'))
