@@ -49,7 +49,6 @@ class DocumentTracking(SectionHandler):
         section 9.1.5 Conformance Clause 5: CVRF CSAF converter
         """
 
-        # TODO: X.Y is not considered a valid semantic versioning here, shall we assume X.Y.0?
         pattern = (
             r'^((0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)'
             r'(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\+([0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?)$'
@@ -94,6 +93,21 @@ class DocumentTracking(SectionHandler):
         else:
             raise ValueError('Can not handle such version difference between The current and the history"s last version')
 
+
+    def _reindex_history_to_integers(self, root_element, revision_history):
+        logging.info('Some version numbers in /document/tracking/revision_history do not match semantic versioning. '
+                     'Reindexing to integers.')
+
+        revision_history_sorted = sorted(revision_history, key=itemgetter('version_as_int_tuple'))
+
+        for rev_number, revision in enumerate(revision_history_sorted, start=1):
+            revision['number'] = rev_number  # Changing the type from str to int
+
+        # after reindexing, match document version to corresponding one in revision history
+        version = next(rev for rev in revision_history_sorted if rev['number_cvrf'] == root_element.Version.text)['number']
+
+        return revision_history_sorted, version
+
     def _process_revision_history(self, root_element):
         # preprocess the data
         revision_history = []
@@ -124,15 +138,8 @@ class DocumentTracking(SectionHandler):
         # handle corresponding part of Conformance Clause 5: CVRF CSAF converter
         # that is: some version numbers in revision_history don't match semantic versioning
         if not self.check_for_version_t(revision_history):
-            logging.info('Some version numbers in /document/tracking/revision_history do not match semantic versioning. Reindexing to integers.')
-
-            revision_history = sorted(revision_history, key=itemgetter('version_as_int_tuple'))
-
-            for rev_number, revision in enumerate(revision_history, start=1):
-                revision['number'] = rev_number  # Changing the type from str to int
-
-            # after reindexing, match document version to corresponding one in revision history
-            version = next(rev for rev in revision_history if rev['number_cvrf'] == root_element.Version.text)['number']
+            # TODO: X.Y is not considered a valid semantic versioning, shall we assume X.Y.0 here?
+            revision_history, version = self._reindex_history_to_integers(root_element, revision_history)
         else:
             # Just copy over the version
             version = root_element.Version.text
