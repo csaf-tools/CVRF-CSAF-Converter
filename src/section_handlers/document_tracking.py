@@ -6,6 +6,7 @@ from typing import Tuple
 from src.common.common import SectionHandler
 from utils import get_utc_timestamp
 from operator import itemgetter
+from contextlib import suppress
 
 
 class DocumentTracking(SectionHandler):
@@ -48,6 +49,7 @@ class DocumentTracking(SectionHandler):
         section 9.1.5 Conformance Clause 5: CVRF CSAF converter
         """
 
+        # TODO: X.Y is not considered a valid semantic versioning here, shall we assume X.Y.0?
         pattern = (
             r'^((0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)'
             r'(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\+([0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?)$'
@@ -61,6 +63,33 @@ class DocumentTracking(SectionHandler):
             return tuple(int(part) for part in text.split('.'))
         except ValueError:
             return (sys.maxsize, )
+
+    def _add_current_revision_to_history(self, root_element, revision_history) -> None:
+        """
+        If the current version is missing in Revision history, and the Current revision is X.Y.Z, and the last item
+        in history is X.(Y-1).Z, add the current version to the history
+
+        Throws ValueError when didn't match these conditions
+        """
+        try:
+            current_minor_version = self._as_int_tuple(root_element.Version.text)[1]
+
+            latest_history_revision = revision_history[-1]['number']
+            latest_history_minor_version = self._as_int_tuple(latest_history_revision)[1]
+        except (IndexError, AttributeError):
+            raise ValueError('Missing minor version number in the current or latest history Version')
+
+        if current_minor_version - latest_history_minor_version == 1:
+            revision_history.append(
+                {
+                    'date': root_element.CurrentReleaseDate.text,
+                    'number': root_element.Version.text,
+                    'summary': "Added by CVRF-CSAF-Converter",
+                }
+            )
+
+        else:
+            raise ValueError('Can not handle such version difference between The current and the history"s last version')
 
     def _process_revision_history(self, root_element):
         # preprocess the data
@@ -90,13 +119,27 @@ class DocumentTracking(SectionHandler):
                 revision['number'] = rev_number  # Changing the type from str to int
 
         # match document version to corresponding one in revision history
-        # TODO: maybe throw exception if more than one revision matches? Is it checked somewhere else? see: http://docs.oasis-open.org/csaf/csaf-cvrf/v1.2/cs01/csaf-cvrf-v1.2-cs01.html#_Toc493508877
-        version = next(rev for rev in revision_history if rev['number_cvrf'] == root_element.Version.text)['number']
+        version_matches = [rev for rev in revision_history if rev['number_cvrf'] == root_element.Version.text]
+        if not version_matches:
+            version = root_element.Version.text
+            try:
+                self._add_current_revision_to_history(root_element, revision_history)
+                logging.warning(f'/document/tracking/version value was not found in /document/tracking/revision_history. Adding the current revision to the history')
+            except ValueError as e:
+                # TODO: What to do here? If the current version is not semver OR the difference between versions is > 0.1.0
+                logging.critical(f'/document/tracking/version value was not found in /document/tracking/revision_history. Converter doesn"t know how to proceed. Reason: {e}')
+                exit(1)
+
+        elif len(version_matches) > 1:
+            logging.error(f'Found duplicate versions in /document/tracking/revision_history')
+        else:
+            version = version_matches[0]['number']
 
         # cleanup extra vars
         for revision in revision_history:
-            revision.pop('number_cvrf')
-            revision.pop('version_as_int_tuple')
+            with suppress(KeyError): # If adding extra revision, it doesn't have the extra vars
+                revision.pop('number_cvrf')
+                revision.pop('version_as_int_tuple')
 
         return revision_history, version
 
