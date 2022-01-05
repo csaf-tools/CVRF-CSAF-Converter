@@ -32,3 +32,21 @@ We follow the official OASIS specifications in order to provide as much acceptan
 - [BSI Secvisogram CSAF 2.0 Web Editor](https://github.com/secvisogram/secvisogram)
 
 
+# Installation (with venv)
+``` TODO: for now only from source ```
+
+```shell script
+ROOT_DIR='/tmp'
+cd $ROOT_DIR
+git clone https://github.com/csaf-tools/CVRF-CSAF-Converter
+cd CVRF-CSAF-Converter
+python3 -m venv venv
+. venv/bin/activate
+pip install .
+```
+
+# Usage (as CLI tool)
+```shell script
+cvrf2csaf -h
+cvrf2csaf --input-file $ROOT_DIR/CVRF-CSAF-Converter/sample_input/sample.xml --output-file sample.json
+```
