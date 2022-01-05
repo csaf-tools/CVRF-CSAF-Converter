@@ -107,10 +107,10 @@ class DocumentPublisherHandler:
 def main():
     # Load CLI args
     parser = argparse.ArgumentParser(description='Converts CVRF XML input into CSAF 2.0 JSON output.')
-    parser.add_argument('--input-file', dest='input_file', type=str, help="CVRF XML input file to parse",
-                        default='./sample_input/sample.xml', metavar='PATH')
-    parser.add_argument('--out-file', dest='out_file', type=str, help="CVRF JSON output file to write to.",
-                        default='./output/sample.json', metavar='PATH')
+    parser.add_argument('--input-file', dest='input_file', type=str, required=True,
+                        help="CVRF XML input file to parse", metavar='PATH')
+    parser.add_argument('--output-file', dest='output_file', type=str, required=True,
+                        help="CVRF JSON output file to write to.", metavar='PATH')
     parser.add_argument('--print', dest='print', action='store_true', default=False,
                         help="Additionally prints JSON output on command line.")
 
@@ -131,7 +131,7 @@ def main():
     if config.get('print', False):
         print(json.dumps(js, indent=1))
 
-    store_json(js=js, fpath=config.get('out_file'))
+    store_json(js=js, fpath=config.get('output_file'))
 
 
 if __name__ == '__main__':
