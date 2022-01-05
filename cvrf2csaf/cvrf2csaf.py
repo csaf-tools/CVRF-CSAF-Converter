@@ -4,7 +4,7 @@ import argparse
 import yaml
 import json
 
-from utils import str2bool, get_config_from_file, store_json
+from .common.utils import str2bool, get_config_from_file, store_json
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 
@@ -104,20 +104,21 @@ class DocumentPublisherHandler:
         return js
 
 
-# Load CLI args
-parser = argparse.ArgumentParser(description='Converts CVRF XML input into CSAF 2.0 JSON output.')
-parser.add_argument('--input-file', dest='input_file', type=str, help="CVRF XML input file to parse",
-                    default='./sample_input/sample.xml', metavar='PATH')
-parser.add_argument('--out-file', dest='out_file', type=str, help="CVRF JSON output file to write to.",
-                    default='./output/sample.json', metavar='PATH')
-parser.add_argument('--print', dest='print', action='store_true', default=False,
-                    help="Additionally prints JSON output on command line.")
+def main():
+    # Load CLI args
+    parser = argparse.ArgumentParser(description='Converts CVRF XML input into CSAF 2.0 JSON output.')
+    parser.add_argument('--input-file', dest='input_file', type=str, help="CVRF XML input file to parse",
+                        default='./sample_input/sample.xml', metavar='PATH')
+    parser.add_argument('--out-file', dest='out_file', type=str, help="CVRF JSON output file to write to.",
+                        default='./output/sample.json', metavar='PATH')
+    parser.add_argument('--print', dest='print', action='store_true', default=False,
+                        help="Additionally prints JSON output on command line.")
 
-parser.add_argument('--publisher-name', dest='publisher_name', type=str, help="Name of the publisher.")
-parser.add_argument('--publisher-namespace', dest='publisher_namespace', type=str, help="Namespace of the publisher.")
+    parser.add_argument('--publisher-name', dest='publisher_name', type=str, help="Name of the publisher.")
+    parser.add_argument('--publisher-namespace', dest='publisher_namespace', type=str,
+                        help="Namespace of the publisher.")
 
-args = {k: v for k, v in vars(parser.parse_args()).items() if v is not None}
-if __name__ == '__main__':
+    args = {k: v for k, v in vars(parser.parse_args()).items() if v is not None}
 
     config = get_config_from_file()
     config.update(args)
@@ -133,5 +134,5 @@ if __name__ == '__main__':
     store_json(js=js, fpath=config.get('out_file'))
 
 
-
-
+if __name__ == '__main__':
+    main()
