@@ -1,5 +1,5 @@
 
-from src.common.common import SectionHandler
+from ..common.common import SectionHandler
 
 
 class DocumentPublisher(SectionHandler):

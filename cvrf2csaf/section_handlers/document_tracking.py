@@ -1,12 +1,10 @@
 import logging
 import re
 import sys
-
-from typing import Tuple
-from src.common.common import SectionHandler
-from utils import get_utc_timestamp
 from operator import itemgetter
-from contextlib import suppress
+from typing import Tuple
+from ..common.common import SectionHandler
+from ..common.utils import get_utc_timestamp
 
 
 class DocumentTracking(SectionHandler):

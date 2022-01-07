@@ -1,15 +1,14 @@
 import logging
 import argparse
-import yaml
 import os
 import json
 from lxml import etree
 from lxml import objectify
 
-from .common.utils import str2bool, get_config_from_file, store_json
+from .common.utils import get_config_from_file, store_json
 
-from src.section_handlers.document_tracking import DocumentTracking
-from src.section_handlers.document_publisher import DocumentPublisher
+from .section_handlers.document_tracking import DocumentTracking
+from .section_handlers.document_publisher import DocumentPublisher
 
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
