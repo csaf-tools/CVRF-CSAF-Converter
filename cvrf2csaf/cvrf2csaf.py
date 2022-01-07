@@ -65,7 +65,7 @@ class DocumentHandler:
         try:
             xml_objectified = objectify.parse(file_path, parser).getroot()
         except etree.ParseError as e:
-            logging.critical(f"Document not valid: {e}.")
+            logging.critical(f'Document not valid: {e}.')
             return None
 
         return xml_objectified

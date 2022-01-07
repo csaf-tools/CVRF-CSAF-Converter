@@ -45,17 +45,6 @@ def store_json(js, fpath):
         print(f"Writing output file {fpath} failed. {e}")
         exit(1)
 
-def str2bool(v):
-    """For argparse of boolean input, transmitted as string"""
-    if isinstance(v, bool):
-        return v
-    if v.lower() in ('yes', 'true', 't', 'y', '1'):
-        return True
-    elif v.lower() in ('no', 'false', 'f', 'n', '0'):
-        return False
-    else:
-        raise argparse.ArgumentTypeError('Boolean value expected.')
-
 
 def get_utc_timestamp():
     return datetime.now(timezone.utc).isoformat(timespec='milliseconds')
