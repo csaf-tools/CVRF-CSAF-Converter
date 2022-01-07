@@ -1,20 +1,25 @@
 import argparse
 import yaml
 import os, logging, json
-from datetime import datetime, timezone
+import pkg_resources
 from pathlib import Path
+from datetime import datetime, timezone
 
-def get_config_from_file():
-    """Loads configuration file. Parts of it can be overwritten by CLI arguments."""
+
+def get_config_from_file() -> dict:
+    """ Loads configuration file. Parts of it can be overwritten by CLI arguments. """
     config = dict()
     try:
-        f = open('./config.yaml', 'r')
-        config = yaml.safe_load(f)
+        # TODO: Workaround for now, config file placement is to be discussed
+        req = pkg_resources.Requirement.parse('cvrf2csaf')
+        path_to_conf = pkg_resources.resource_filename(req, 'cvrf2csaf/config/config.yaml')
+        with open(path_to_conf, 'r') as f:
+            config = yaml.safe_load(f)
+            return config
     except Exception as e:
-        print(f"Reading config.yaml failed {e}.")
+        logging.critical(f"Reading config.yaml failed: {e}.")
         exit(1)
-    finally:
-        return config
+
 
 def store_json(js, fpath):
 

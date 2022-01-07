@@ -3,14 +3,14 @@ import argparse
 import yaml
 import os
 import json
-
 from lxml import etree
 from lxml import objectify
 
-from utils import str2bool, get_config_from_file, store_json
+from .common.utils import str2bool, get_config_from_file, store_json
 
 from src.section_handlers.document_tracking import DocumentTracking
 from src.section_handlers.document_publisher import DocumentPublisher
+
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 
@@ -18,11 +18,11 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(level
 class DocumentHandler:
     """
     Main Handler of the conversion:
-    1. Reads and Parses CVRF XML input
-    2. Recursively iterates over each XML section
-    3. For each XML section calling a dedicated mapper class (parse + create_json) 
+    1. Reads/Parses/Validates CVRF XML input
+    2. Iterates over each first-level XML section
+    3. Each first-level XML section has its class and its methods are responsible for converting the content
     4. Collecting the output of each mapper class, which consists of the CSAF2.0 JSON equivalent
-    5. Combining it to the final JSON and returning
+    5. Combining it to the final JSON and writing the result to a file
     """
 
     SCHEMA_FILE = 'schemata/cvrf/1.2/cvrf.xsd'
@@ -82,20 +82,21 @@ class DocumentHandler:
         return self._compose_final_csaf()
 
 
-# Load CLI args
-parser = argparse.ArgumentParser(description='Converts CVRF XML input into CSAF 2.0 JSON output.')
-parser.add_argument('--input-file', dest='input_file', type=str, help="CVRF XML input file to parse",
-                    default='./sample_input/sample.xml', metavar='PATH')
-parser.add_argument('--out-file', dest='out_file', type=str, help="CVRF JSON output file to write to.",
-                    default='./output/sample.json', metavar='PATH')
-parser.add_argument('--print', dest='print', action='store_true', default=False,
-                    help="Additionally prints JSON output on command line.")
+def main():
+    # Load CLI args
+    parser = argparse.ArgumentParser(description='Converts CVRF XML input into CSAF 2.0 JSON output.')
+    parser.add_argument('--input-file', dest='input_file', type=str, required=True,
+                        help="CVRF XML input file to parse", metavar='PATH')
+    parser.add_argument('--output-file', dest='output_file', type=str, required=True,
+                        help="CVRF JSON output file to write to.", metavar='PATH')
+    parser.add_argument('--print', dest='print', action='store_true', default=False,
+                        help="Additionally prints JSON output on command line.")
 
-parser.add_argument('--publisher-name', dest='publisher_name', type=str, help="Name of the publisher.")
-parser.add_argument('--publisher-namespace', dest='publisher_namespace', type=str, help="Namespace of the publisher.")
+    parser.add_argument('--publisher-name', dest='publisher_name', type=str, help="Name of the publisher.")
+    parser.add_argument('--publisher-namespace', dest='publisher_namespace', type=str,
+                        help="Namespace of the publisher.")
 
-args = {k: v for k, v in vars(parser.parse_args()).items() if v is not None}
-if __name__ == '__main__':
+    args = {k: v for k, v in vars(parser.parse_args()).items() if v is not None}
 
     config = get_config_from_file()
     config.update(args)
@@ -108,4 +109,8 @@ if __name__ == '__main__':
     if config.get('print', False):
         print(json.dumps(final_csaf, indent=1))
 
-    store_json(js=final_csaf, fpath=config.get('out_file'))
+    store_json(js=final_csaf, fpath=config.get('output_file'))
+
+
+if __name__ == '__main__':
+    main()
