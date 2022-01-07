@@ -83,7 +83,7 @@ class DocumentTracking(SectionHandler):
                 {
                     'date': root_element.CurrentReleaseDate.text,
                     'number': root_element.Version.text,
-                    'summary': "Added by CVRF-CSAF-Converter",
+                    'summary': "Added by "+ self.cvrf2csaf_name + " as the value was missing in the original CVRF.",
                     # Extra vars
                     'number_cvrf': root_element.Version.text,
                     'version_as_int_tuple': self._as_int_tuple(root_element.Version.text),
