@@ -100,6 +100,10 @@ def main():
     config = get_config_from_file()
     config.update(args)
 
+    if not os.path.isfile(config.get('input_file')):
+        logging.critical(f'Input file not found, check the path: {config.get("input_file")}')
+        exit(1)
+
     # DocumentHandler is iterating over each XML element within convert_file and return CSAF 2.0 JSON
     h = DocumentHandler(config)
     final_csaf = h.convert_file(path=config.get('input_file'))
