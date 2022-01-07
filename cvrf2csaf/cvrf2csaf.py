@@ -5,7 +5,7 @@ import json
 from lxml import etree
 from lxml import objectify
 
-from .common.utils import get_config_from_file, store_json
+from .common.utils import get_config_from_file, store_json, critical_exit
 
 from .section_handlers.document_tracking import DocumentTracking
 from .section_handlers.document_publisher import DocumentPublisher
@@ -47,7 +47,7 @@ class DocumentHandler:
             else:
                 logging.warning(f'Not handled input tag {tag}. No parser available.')
 
-    def _compose_final_csaf(self):
+    def _compose_final_csaf(self) -> dict:
         final_csaf = {'document': {}}
         final_csaf['document']['publisher'] = self.document_publisher.csaf
         final_csaf['document']['tracking'] = self.document_tracking.csaf
@@ -64,17 +64,14 @@ class DocumentHandler:
 
         try:
             xml_objectified = objectify.parse(file_path, parser).getroot()
+            return xml_objectified
         except etree.ParseError as e:
-            logging.critical(f'Document not valid: {e}.')
-            return None
+            critical_exit(f'Input document not valid: {e}.')
 
-        return xml_objectified
 
-    def convert_file(self, path):
+    def convert_file(self, path) -> dict:
         """Wrapper to read/parse CVRF and parse it to CSAF JSON structure"""
         root = DocumentHandler._validate_and_open_file(path)
-        if root is None:
-            return None
 
         self._parse(root)
 
@@ -101,18 +98,17 @@ def main():
     config.update(args)
 
     if not os.path.isfile(config.get('input_file')):
-        logging.critical(f'Input file not found, check the path: {config.get("input_file")}')
-        exit(1)
+        critical_exit(f'Input file not found, check the path: {config.get("input_file")}')
 
     # DocumentHandler is iterating over each XML element within convert_file and return CSAF 2.0 JSON
     h = DocumentHandler(config)
     final_csaf = h.convert_file(path=config.get('input_file'))
 
     # Output / Store results
-    if config.get('print', False):
-        print(json.dumps(final_csaf, indent=1))
-
-    store_json(js=final_csaf, fpath=config.get('output_file'))
+    if final_csaf:
+        store_json(js=final_csaf, fpath=config.get('output_file'))
+        if config.get('print', False):
+            print(json.dumps(final_csaf, indent=1))
 
 
 if __name__ == '__main__':

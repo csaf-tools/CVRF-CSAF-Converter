@@ -4,7 +4,7 @@ import sys
 from operator import itemgetter
 from typing import Tuple
 from ..common.common import SectionHandler
-from ..common.utils import get_utc_timestamp
+from ..common.utils import get_utc_timestamp, critical_exit
 
 
 class DocumentTracking(SectionHandler):
@@ -127,11 +127,12 @@ class DocumentTracking(SectionHandler):
         if not [rev for rev in revision_history if rev['number'] == root_element.Version.text]:
             try:
                 self._add_current_revision_to_history(root_element, revision_history)
-                logging.warning(f'/document/tracking/version value was not found in /document/tracking/revision_history. Adding the current revision to the history')
+                logging.warning('/document/tracking/version value was not found in /document/tracking/revision_history. '
+                                'Adding the current revision to the history')
             except ValueError as e:
                 # TODO: What to do here? If the current version is not semver OR the difference between versions is > 0.1.0
-                logging.critical(f'/document/tracking/version value was not found in /document/tracking/revision_history. Converter doesn"t know how to proceed. Reason: {e}')
-                exit(1)
+                critical_exit('/document/tracking/version value was not found in /document/tracking/revision_history. '
+                              f'Converter doesn"t know how to proceed. Reason: {e}')
 
         # handle corresponding part of Conformance Clause 5: CVRF CSAF converter
         # that is: some version numbers in revision_history don't match semantic versioning
