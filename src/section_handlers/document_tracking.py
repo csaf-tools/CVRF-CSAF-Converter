@@ -101,7 +101,7 @@ class DocumentTracking(SectionHandler):
         revision_history_sorted = sorted(revision_history, key=itemgetter('version_as_int_tuple'))
 
         for rev_number, revision in enumerate(revision_history_sorted, start=1):
-            revision['number'] = rev_number  # Changing the type from str to int
+            revision['number'] = str(rev_number)
 
         # after reindexing, match document version to corresponding one in revision history
         version = next(rev for rev in revision_history_sorted if rev['number_cvrf'] == root_element.Version.text)['number']
