@@ -81,7 +81,7 @@ class DocumentTracking(SectionHandler):
                 {
                     'date': root_element.CurrentReleaseDate.text,
                     'number': root_element.Version.text,
-                    'summary': "Added by CVRF-CSAF-Converter",
+                    'summary': "Added by "+ self.cvrf2csaf_name + " as the value was missing in the original CVRF.",
                     # Extra vars
                     'number_cvrf': root_element.Version.text,
                     'version_as_int_tuple': self._as_int_tuple(root_element.Version.text),
@@ -99,7 +99,7 @@ class DocumentTracking(SectionHandler):
         revision_history_sorted = sorted(revision_history, key=itemgetter('version_as_int_tuple'))
 
         for rev_number, revision in enumerate(revision_history_sorted, start=1):
-            revision['number'] = rev_number  # Changing the type from str to int
+            revision['number'] = str(rev_number)
 
         # after reindexing, match document version to corresponding one in revision history
         version = next(rev for rev in revision_history_sorted if rev['number_cvrf'] == root_element.Version.text)['number']
