@@ -11,7 +11,7 @@ from .section_handlers.document_tracking import DocumentTracking
 from .section_handlers.document_publisher import DocumentPublisher
 
 
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(module)s - %(levelname)s - %(message)s')
 
 
 class DocumentHandler:
