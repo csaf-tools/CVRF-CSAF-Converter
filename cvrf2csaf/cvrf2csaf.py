@@ -31,7 +31,8 @@ class DocumentHandler:
         self.document_publisher = DocumentPublisher(config['publisher_name'],
                                                     config['publisher_namespace'])
         self.document_tracking = DocumentTracking(config['cvrf2csaf_name'],
-                                                  config['cvrf2csaf_version'])
+                                                  config['cvrf2csaf_version'],
+                                                  config['force_update_revision_history'])
 
     def _parse(self, root):
         for elem in root.iterchildren():
@@ -79,7 +80,7 @@ class DocumentHandler:
 
 
 def main():
-    # Load CLI args
+    # General args
     parser = argparse.ArgumentParser(description='Converts CVRF XML input into CSAF 2.0 JSON output.')
     parser.add_argument('--input-file', dest='input_file', type=str, required=True,
                         help="CVRF XML input file to parse", metavar='PATH')
@@ -88,14 +89,29 @@ def main():
     parser.add_argument('--print', dest='print', action='store_true', default=False,
                         help="Additionally prints JSON output on command line.")
 
+    # Document Publisher args
     parser.add_argument('--publisher-name', dest='publisher_name', type=str, help="Name of the publisher.")
     parser.add_argument('--publisher-namespace', dest='publisher_namespace', type=str,
                         help="Namespace of the publisher.")
 
+    # Document Tracking args
+    parser.add_argument('--force-update-revision-history', action='store_const', const='cmd-arg-entered',
+                        help="If the current version is not present in the revision history AND the difference "
+                             "between the current version and the most recent revision is more than one version, "
+                             "the current version is added to the revision history. Also warning is produced. By default, "
+                             "the current version is added only if the difference is one version.")
+
+
     args = {k: v for k, v in vars(parser.parse_args()).items() if v is not None}
 
     config = get_config_from_file()
+
+    # Update & rewrite config file values with the ones from command line arguments
     config.update(args)
+
+    # Boolean optional argument need special treatment
+    if config['force_update_revision_history'] == 'cmd-arg-entered':
+        config['force_update_revision_history'] = True
 
     if not os.path.isfile(config.get('input_file')):
         critical_exit(f'Input file not found, check the path: {config.get("input_file")}')
