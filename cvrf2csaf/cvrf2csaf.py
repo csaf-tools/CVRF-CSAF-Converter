@@ -1,12 +1,17 @@
-from lxml import etree
 import logging
 import argparse
-import yaml
+import os
 import json
+from lxml import etree
+from lxml import objectify
 
-from .common.utils import str2bool, get_config_from_file, store_json
+from .common.utils import get_config_from_file, store_json, critical_exit
 
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+from .section_handlers.document_tracking import DocumentTracking
+from .section_handlers.document_publisher import DocumentPublisher
+
+
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(module)s - %(levelname)s - %(message)s')
 
 
 class DocumentHandler:
@@ -19,93 +24,63 @@ class DocumentHandler:
     5. Combining it to the final JSON and writing the result to a file
     """
 
+    SCHEMA_FILE = 'schemata/cvrf/1.2/cvrf.xsd'
+    CATALOG_FILE = 'schemata/catalog_1_2.xml'
+
     def __init__(self, config):
-        self.publisher = DocumentPublisherHandler(config['publisher_name'], config['publisher_namespace'])
+        self.document_publisher = DocumentPublisher(config['publisher_name'],
+                                                    config['publisher_namespace'])
+        self.document_tracking = DocumentTracking(config['cvrf2csaf_name'],
+                                                  config['cvrf2csaf_version'],
+                                                  config['force_update_revision_history'])
 
     def _parse(self, root):
         for elem in root.iterchildren():
             # get tag name without it's namespace, don't use elem.tag here
             tag = etree.QName(elem).localname
             if tag == 'DocumentPublisher':
-                self.publisher.parse(elem)
+                self.document_publisher.create_csaf(elem)
+            elif tag == 'DocumentTracking':
+                self.document_tracking.create_csaf(elem)
             elif tag == 'ToDo':
                 # ToDo: Going through it tag by tag for further parsing
                 pass
             else:
                 logging.warning(f'Not handled input tag {tag}. No parser available.')
 
-    def _create_json(self):
-        js = {'document': {}}
-        js_publisher = self.publisher.create_json()
-        js['document']['publisher'] = js_publisher
-        return js
+    def _compose_final_csaf(self) -> dict:
+        final_csaf = {'document': {}}
+        final_csaf['document']['publisher'] = self.document_publisher.csaf
+        final_csaf['document']['tracking'] = self.document_tracking.csaf
+        return final_csaf
 
-    @staticmethod
-    def _open_file(path):
+    @classmethod
+    def _validate_and_open_file(cls, file_path):
         """Read CVRF XML from $path"""
-        root = None
+        with open(cls.SCHEMA_FILE) as f:
+            os.environ.update(XML_CATALOG_FILES=cls.CATALOG_FILE)
+            schema = etree.XMLSchema(file=f)
+
+        parser = objectify.makeparser(schema=schema)
+
         try:
-            tree = etree.parse(path)
-            root = tree.getroot()
-        except Exception as e:
-            logging.error(f"Failed to open file {path}, {e}.")
-        return root
+            xml_objectified = objectify.parse(file_path, parser).getroot()
+            return xml_objectified
+        except etree.ParseError as e:
+            critical_exit(f'Input document not valid: {e}.')
 
-    def _validate_input_document(self, root):
-        """Validate CVRF, where $root is the parsed CVRF XML"""
-        valid = True
-        try:        
-            pass
-            # TODO: implement CVRF document validation
-        except Exception as exc:
-            logging.error(f"Failed to validate input file, {exc}.")
-            valid = False
-        return valid
 
-    def convert_file(self, path):
+    def convert_file(self, path) -> dict:
         """Wrapper to read/parse CVRF and parse it to CSAF JSON structure"""
-        root = DocumentHandler._open_file(path)
-        if root is None:
-            return None
-        if not self._validate_input_document(root):
-            logging.error(f"Input file is not valid cvrf document!.")
-            return None
+        root = DocumentHandler._validate_and_open_file(path)
+
         self._parse(root)
-        return self._create_json()
 
-
-class DocumentPublisherHandler:
-
-    def __init__(self, name, namespace):
-        self.name = name
-        self.namespace = namespace
-
-    def parse(self, element):
-        self.Type = element.attrib.get('Type', None)
-        self.VendorID = element.attrib.get('VendorID', None)
-        self.ContactDetails = element.findtext('{*}ContactDetails')
-        self.IssuingAuthority = element.findtext('{*}IssuingAuthority')
-
-    def create_json(self):
-        js = {}
-
-        # mandatory values
-        js['name'] = self.name
-        js['namespace'] = self.namespace
-        js['category'] = self.Type
-
-        # ToDo: Complete structure
-
-        # optional values
-        if self.ContactDetails:
-            js['contact_details'] = self.ContactDetails
-        if self.IssuingAuthority:
-            js['issuing_authority'] = self.IssuingAuthority
-        return js
+        return self._compose_final_csaf()
 
 
 def main():
-    # Load CLI args
+    # General args
     parser = argparse.ArgumentParser(description='Converts CVRF XML input into CSAF 2.0 JSON output.')
     parser.add_argument('--input-file', dest='input_file', type=str, required=True,
                         help="CVRF XML input file to parse", metavar='PATH')
@@ -114,24 +89,42 @@ def main():
     parser.add_argument('--print', dest='print', action='store_true', default=False,
                         help="Additionally prints JSON output on command line.")
 
+    # Document Publisher args
     parser.add_argument('--publisher-name', dest='publisher_name', type=str, help="Name of the publisher.")
     parser.add_argument('--publisher-namespace', dest='publisher_namespace', type=str,
                         help="Namespace of the publisher.")
 
+    # Document Tracking args
+    parser.add_argument('--force-update-revision-history', action='store_const', const='cmd-arg-entered',
+                        help="If the current version is not present in the revision history AND the difference "
+                             "between the current version and the most recent revision is more than one version, "
+                             "the current version is added to the revision history. Also warning is produced. By default, "
+                             "the current version is added only if the difference is one version.")
+
+
     args = {k: v for k, v in vars(parser.parse_args()).items() if v is not None}
 
     config = get_config_from_file()
+
+    # Update & rewrite config file values with the ones from command line arguments
     config.update(args)
+
+    # Boolean optional argument need special treatment
+    if config['force_update_revision_history'] == 'cmd-arg-entered':
+        config['force_update_revision_history'] = True
+
+    if not os.path.isfile(config.get('input_file')):
+        critical_exit(f'Input file not found, check the path: {config.get("input_file")}')
 
     # DocumentHandler is iterating over each XML element within convert_file and return CSAF 2.0 JSON
     h = DocumentHandler(config)
-    js = h.convert_file(path=config.get('input_file'))
+    final_csaf = h.convert_file(path=config.get('input_file'))
 
     # Output / Store results
-    if config.get('print', False):
-        print(json.dumps(js, indent=1))
-
-    store_json(js=js, fpath=config.get('output_file'))
+    if final_csaf:
+        store_json(js=final_csaf, fpath=config.get('output_file'))
+        if config.get('print', False):
+            print(json.dumps(final_csaf, indent=1))
 
 
 if __name__ == '__main__':

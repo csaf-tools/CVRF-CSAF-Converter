@@ -1,8 +1,16 @@
 import argparse
 import yaml
 import os, logging, json
+import inspect
 import pkg_resources
 from pathlib import Path
+from datetime import datetime, timezone
+
+
+def critical_exit(msg, status_code=1):
+    """ A critical error encountered, converter is not able to proceed and exits with a status code (default 1) """
+    logging.critical(msg)
+    exit(status_code)
 
 
 def get_config_from_file() -> dict:
@@ -16,8 +24,7 @@ def get_config_from_file() -> dict:
             config = yaml.safe_load(f)
             return config
     except Exception as e:
-        logging.critical(f"Reading config.yaml failed: {e}.")
-        exit(1)
+        critical_exit(f"Reading config.yaml failed: {e}.")
 
 
 def store_json(js, fpath):
@@ -41,16 +48,8 @@ def store_json(js, fpath):
             json.dump(js, f, ensure_ascii=False, indent=4)
             logging.info(f"Successfully wrote {fpath}.")
     except Exception as e:
-        print(f"Writing output file {fpath} failed. {e}")
-        exit(1)
+        critical_exit(f"Writing output file {fpath} failed. {e}")
 
-def str2bool(v):
-    """For argparse of boolean input, transmitted as string"""
-    if isinstance(v, bool):
-        return v
-    if v.lower() in ('yes', 'true', 't', 'y', '1'):
-        return True
-    elif v.lower() in ('no', 'false', 'f', 'n', '0'):
-        return False
-    else:
-        raise argparse.ArgumentTypeError('Boolean value expected.')
+
+def get_utc_timestamp():
+    return datetime.now(timezone.utc).isoformat(timespec='milliseconds')
