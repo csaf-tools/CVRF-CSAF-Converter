@@ -19,7 +19,7 @@ class DocumentReferences(SectionHandler):
                     ref_csaf['url'] = ref.URL.text
                 references.append(ref_csaf)
 
-        self.csaf['references'] = references
+        self.csaf = references
 
     def _process_optional_elements(self, root_element):
         pass
