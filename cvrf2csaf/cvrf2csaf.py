@@ -9,6 +9,7 @@ from .common.utils import get_config_from_file, store_json, critical_exit
 
 from .section_handlers.document_tracking import DocumentTracking
 from .section_handlers.document_publisher import DocumentPublisher
+from .section_handlers.product_tree import ProductTree
 
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(module)s - %(levelname)s - %(message)s')
@@ -34,6 +35,9 @@ class DocumentHandler:
                                                   config['cvrf2csaf_version'],
                                                   config['force_update_revision_history'])
 
+        self.product_tree = ProductTree()
+
+
     def _parse(self, root):
         for elem in root.iterchildren():
             # get tag name without it's namespace, don't use elem.tag here
@@ -42,6 +46,8 @@ class DocumentHandler:
                 self.document_publisher.create_csaf(elem)
             elif tag == 'DocumentTracking':
                 self.document_tracking.create_csaf(elem)
+            elif tag == 'ProductTree':
+                self.product_tree.create_csaf(elem)
             elif tag == 'ToDo':
                 # ToDo: Going through it tag by tag for further parsing
                 pass
@@ -52,6 +58,7 @@ class DocumentHandler:
         final_csaf = {'document': {}}
         final_csaf['document']['publisher'] = self.document_publisher.csaf
         final_csaf['document']['tracking'] = self.document_tracking.csaf
+        final_csaf['document']['product_tree'] = self.product_tree.csaf
         return final_csaf
 
     @classmethod
