@@ -2,7 +2,7 @@ import logging
 from ..common.common import SectionHandler
 
 
-class ProductTree(SectionHandler):
+class DocumentLang(SectionHandler):
     def __init__(self):
         super().__init__()
 

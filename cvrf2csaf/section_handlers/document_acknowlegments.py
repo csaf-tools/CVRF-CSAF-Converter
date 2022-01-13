@@ -1,4 +1,4 @@
-
+import logging
 from ..common.common import SectionHandler
 
 
@@ -29,6 +29,14 @@ class Acknowledgments(SectionHandler):
                 urls.append(ack.Url.text)
 
         self.csaf['names'] = names
-        self.csaf['organization'] = organization
+
+        if len(organization)>=1:
+            # If more than one cvrf:Organization instance is given,
+            # the CVRF CSAF converter converts the first one into the organization.
+            # In addition the converter outputs a warning that information might be lost during conversion of document or vulnerability acknowledgment.
+            self.csaf['organization'] = organization[0]
+            if len(organization) > 1:
+                logging.warn(f'Due to CSAF 2.0 standard, only the first organization can be acknowledged. '
+                             f'{len(organization)-1} are not mentioned in the output.')
         self.csaf['summary'] = summary
         self.csaf['urls'] = urls
