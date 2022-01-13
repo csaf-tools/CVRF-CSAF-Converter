@@ -9,6 +9,9 @@ from .common.utils import get_config_from_file, store_json, critical_exit
 
 from .section_handlers.document_tracking import DocumentTracking
 from .section_handlers.document_publisher import DocumentPublisher
+from .section_handlers.document_references import DocumentReferences
+from .section_handlers.acknowlegments import Acknowledgments
+from .section_handlers.product_tree import ProductTree
 
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(module)s - %(levelname)s - %(message)s')
@@ -33,18 +36,38 @@ class DocumentHandler:
         self.document_tracking = DocumentTracking(config['cvrf2csaf_name'],
                                                   config['cvrf2csaf_version'],
                                                   config['force_update_revision_history'])
+        self.document_references = DocumentReferences()
+        self.acknowledgments = Acknowledgments()
+        self.product_tree = ProductTree()
 
     def _parse(self, root):
         for elem in root.iterchildren():
             # get tag name without it's namespace, don't use elem.tag here
             tag = etree.QName(elem).localname
             if tag == 'DocumentPublisher':
-                self.document_publisher.create_csaf(elem)
+                self.document_publisher.create_csaf(root_element=elem)
             elif tag == 'DocumentTracking':
-                self.document_tracking.create_csaf(elem)
-            elif tag == 'ToDo':
-                # ToDo: Going through it tag by tag for further parsing
-                pass
+                self.document_tracking.create_csaf(root_element=elem)
+            elif tag == 'Acknowledgments':
+                self.acknowledgments.create_csaf(root_element=elem)
+            elif tag == 'DocumentNotes':
+                logging.warning(f'Not handled input tag {tag}. No parser available.')
+            elif tag == 'ProductTree':
+                self.product_tree.create_csaf(root_element=elem)
+                logging.warning(f'Not implemented input tag {tag}. No parser available.')
+            elif tag == 'DocumentTitle':
+                logging.warning(f'Not handled input tag {tag}. No parser available.')
+            elif tag == 'DocumentType':
+                logging.warning(f'Not handled input tag {tag}. No parser available.')
+            elif tag == 'DocumentDistribution':
+                logging.warning(f'Not handled input tag {tag}. No parser available.')
+            elif tag == 'DocumentDistribution':
+                logging.warning(f'Not handled input tag {tag}. No parser available.')
+            elif tag == 'DocumentReferences':
+                self.document_references.create_csaf(root_element=elem)
+                logging.warning(f'Not implemented input tag {tag}. No parser available.')
+            elif tag in ['comment']:
+                logging.warning(f'Not handled input tag {tag}. No parser available.')
             else:
                 logging.warning(f'Not handled input tag {tag}. No parser available.')
 
@@ -52,6 +75,9 @@ class DocumentHandler:
         final_csaf = {'document': {}}
         final_csaf['document']['publisher'] = self.document_publisher.csaf
         final_csaf['document']['tracking'] = self.document_tracking.csaf
+        final_csaf['document']['references'] = self.document_references.csaf
+        final_csaf['document']['acknowledgments'] = self.acknowledgments.csaf
+        final_csaf['document']['product_tree'] = self.product_tree.csaf
         return final_csaf
 
     @classmethod
