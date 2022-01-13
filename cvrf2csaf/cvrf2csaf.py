@@ -61,8 +61,6 @@ class DocumentHandler:
                 logging.warning(f'Not handled input tag {tag}. No parser available.')
             elif tag == 'DocumentDistribution':
                 logging.warning(f'Not handled input tag {tag}. No parser available.')
-            elif tag == 'DocumentDistribution':
-                logging.warning(f'Not handled input tag {tag}. No parser available.')
             elif tag == 'DocumentReferences':
                 self.document_references.create_csaf(root_element=elem)
                 logging.warning(f'Not implemented input tag {tag}. No parser available.')
