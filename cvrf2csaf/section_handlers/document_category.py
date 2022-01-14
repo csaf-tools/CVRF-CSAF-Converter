@@ -7,7 +7,7 @@ class DocumentCategory(SectionHandler):
         super().__init__()
 
     def _process_mandatory_elements(self, root_element):
-        logging.warning(f'Not implemented input {self.__class__}. No parser written.')
+        self.csaf = root_element.text
 
     def _process_optional_elements(self, root_element):
         pass
