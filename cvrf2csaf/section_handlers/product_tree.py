@@ -78,10 +78,50 @@ class ProductTree(SectionHandler):
 
         self.csaf['product_groups'] = product_groups
 
-    def _handle_branches(self, root_element):
-        pass
+    def _handle_branches_recursive(self, root_element):
+        """ Recursive method for handling the branches, branch can have either list of another branches,
+        or a single FullProductName inside
+        """
+        if not hasattr(root_element, 'Branch') and not hasattr(root_element, 'FullProductName'):
+            return None
+
+        if hasattr(root_element, 'FullProductName'):
+            # root_element is the leaf branch
+
+            leaf_branch = {
+                'name': root_element.attrib['Name'],
+                'category': root_element.attrib['Type'],
+                'product': {
+                    'product_id': root_element.FullProductName.attrib['ProductID'],
+                    'name': root_element.FullProductName.text
+                }
+            }
+
+            if root_element.attrib.get('CPE'):
+                leaf_branch['product']['product_identification_helper'] = {'cpe': root_element.attrib['CPE']}
+
+            return leaf_branch
+
+        if hasattr(root_element, 'Branch'):
+            branches = []
+            for branch in root_element.Branch:
+                if hasattr(branch, 'FullProductName'):
+                    branches.append(self._handle_branches_recursive(branch))
+                else:
+                    branches.append({
+                        'name': branch.attrib['Name'],
+                        'category': branch.attrib['Type'],
+                        'branches': self._handle_branches_recursive(branch)
+                    })
+
+            return branches
+
 
     def _process_optional_elements(self, root_element):
         self._handle_full_product_names(root_element)
         self._handle_relationships(root_element)
         self._handle_product_groups(root_element)
+
+        branches = self._handle_branches_recursive(root_element)
+        if branches is not None:
+            self.csaf['branches'] = branches
