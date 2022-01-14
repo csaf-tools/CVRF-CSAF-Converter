@@ -5,6 +5,9 @@ from ..common.common import SectionHandler
 class ProductTree(SectionHandler):
     """ Responsible for converting the ProductTree section """
 
+    def __init__(self):
+        super().__init__()
+
     def _process_mandatory_elements(self, root_element):
         """ There are no mandatory elements in the ProductTree section """
         pass
@@ -67,7 +70,6 @@ class ProductTree(SectionHandler):
 
         self.csaf['relationships'] = relationships
 
-
     def _handle_product_groups(self, root_element):
         if not hasattr(root_element, 'ProductGroups'):
             return
@@ -92,6 +94,7 @@ class ProductTree(SectionHandler):
         or a single FullProductName inside
         """
         if not hasattr(root_element, 'Branch') and not hasattr(root_element, 'FullProductName'):
+            # The ProductTree section doesn't contain Branches at all
             return None
 
         if hasattr(root_element, 'FullProductName'):
@@ -124,6 +127,3 @@ class ProductTree(SectionHandler):
                     })
 
             return branches
-
-
-
