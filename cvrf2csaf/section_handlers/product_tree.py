@@ -9,6 +9,15 @@ class ProductTree(SectionHandler):
         """ There are no mandatory elements in the ProductTree section """
         pass
 
+    def _process_optional_elements(self, root_element):
+        self._handle_full_product_names(root_element)
+        self._handle_relationships(root_element)
+        self._handle_product_groups(root_element)
+
+        branches = self._handle_branches_recursive(root_element)
+        if branches is not None:
+            self.csaf['branches'] = branches
+
     def _handle_full_product_names(self, root_element):
         if not hasattr(root_element, 'FullProductName'):
             return
@@ -97,8 +106,8 @@ class ProductTree(SectionHandler):
                 }
             }
 
-            if root_element.attrib.get('CPE'):
-                leaf_branch['product']['product_identification_helper'] = {'cpe': root_element.attrib['CPE']}
+            if root_element.FullProductName.attrib.get('CPE'):
+                leaf_branch['product']['product_identification_helper'] = {'cpe': root_element.FullProductName.attrib['CPE']}
 
             return leaf_branch
 
@@ -117,11 +126,4 @@ class ProductTree(SectionHandler):
             return branches
 
 
-    def _process_optional_elements(self, root_element):
-        self._handle_full_product_names(root_element)
-        self._handle_relationships(root_element)
-        self._handle_product_groups(root_element)
 
-        branches = self._handle_branches_recursive(root_element)
-        if branches is not None:
-            self.csaf['branches'] = branches
