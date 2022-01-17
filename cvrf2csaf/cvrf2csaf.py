@@ -115,7 +115,8 @@ class DocumentHandler:
         final_csaf['product_tree'] = self.product_tree.csaf
         final_csaf['document']['tracking'] = self.document_tracking.csaf
         final_csaf['document']['references'] = self.document_references.csaf
-        final_csaf['document']['vulnerability'] = self.vulnerability.csaf
+        final_csaf['product_tree'] = self.product_tree.csaf
+        final_csaf['vulnerabilities'] = self.vulnerability.csaf
 
         return final_csaf
 
