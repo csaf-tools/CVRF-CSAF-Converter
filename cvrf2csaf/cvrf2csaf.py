@@ -7,8 +7,21 @@ from lxml import objectify
 
 from .common.utils import get_config_from_file, store_json, critical_exit
 
-from .section_handlers.document_tracking import DocumentTracking
+from .section_handlers.document_acknowlegments import Acknowledgments
+from .section_handlers.document_aggregate_severity import AggregateSeverity
+from .section_handlers.document_category import DocumentCategory
+from .section_handlers.document_csaf_version import DocumentCsafVersion
+from .section_handlers.document_distribution import DocumentDistribution
+from .section_handlers.document_lang import DocumentLang
+from .section_handlers.document_notes import DocumentNotes
 from .section_handlers.document_publisher import DocumentPublisher
+from .section_handlers.document_references import DocumentReferences
+from .section_handlers.document_source_lang import DocumentSourceLang
+from .section_handlers.document_title import DocumentTitle
+from .section_handlers.document_tracking import DocumentTracking
+
+from .section_handlers.product_tree import ProductTree
+from .section_handlers.vulnerability import Vulnerability
 
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(module)s - %(levelname)s - %(message)s')
@@ -28,30 +41,81 @@ class DocumentHandler:
     CATALOG_FILE = 'schemata/catalog_1_2.xml'
 
     def __init__(self, config):
+
+        self.document_acknowledgments = Acknowledgments()
+        self.document_aggregate_severity = AggregateSeverity()
+        self.document_category = DocumentCategory()
+        self.document_csaf_version = DocumentCsafVersion()
+        self.document_distribution = DocumentDistribution()
+        self.document_lang = DocumentLang()
+        self.document_notes = DocumentNotes()
         self.document_publisher = DocumentPublisher(config['publisher_name'],
                                                     config['publisher_namespace'])
+        self.document_references = DocumentReferences()
+        self.document_source_lang = DocumentSourceLang()
+        self.document_title = DocumentTitle()
         self.document_tracking = DocumentTracking(config['cvrf2csaf_name'],
                                                   config['cvrf2csaf_version'],
                                                   config['force_update_revision_history'])
+        self.product_tree = ProductTree()
+        self.vulnerability = Vulnerability()
+
 
     def _parse(self, root):
         for elem in root.iterchildren():
             # get tag name without it's namespace, don't use elem.tag here
             tag = etree.QName(elem).localname
-            if tag == 'DocumentPublisher':
-                self.document_publisher.create_csaf(elem)
+
+            # ToDo: Lang and SourceLang are missing here.
+
+            if tag == 'Acknowledgments':
+                self.document_acknowledgments.create_csaf(root_element=elem)
+            elif tag == 'AggregateSeverity':
+                self.document_aggregate_severity.create_csaf(root_element=elem)
+            elif tag == 'DocumentType':
+                # Map DocumentType --> /document/category/
+                self.document_category.create_csaf(root_element=elem)
+            elif tag == 'DocumentDistribution':
+                self.document_distribution.create_csaf(root_element=elem)
+            elif tag == 'DocumentNotes':
+                self.document_notes.create_csaf(root_element=elem)
+            elif tag == 'DocumentPublisher':
+                self.document_publisher.create_csaf(root_element=elem)
+            elif tag == 'DocumentReferences':
+                self.document_references.create_csaf(root_element=elem)
+            elif tag == 'DocumentTitle':
+                self.document_title.create_csaf(root_element=elem)
             elif tag == 'DocumentTracking':
-                self.document_tracking.create_csaf(elem)
-            elif tag == 'ToDo':
-                # ToDo: Going through it tag by tag for further parsing
-                pass
+                self.document_tracking.create_csaf(root_element=elem)
+            elif tag == 'ProductTree':
+                self.product_tree.create_csaf(root_element=elem)
+            elif tag == 'Vulnerability':
+                self.vulnerability.create_csaf(root_element=elem)
+            elif tag in ['comment']:
+                logging.warning(f'Ignoring invalid input tag {tag}.')
             else:
                 logging.warning(f'Not handled input tag {tag}. No parser available.')
 
     def _compose_final_csaf(self) -> dict:
+        # Merges first level leaves into final CSAF document.
+        # [mapping table](https://github.com/tschmidtb51/csaf/blob/csaf-2.0-what-is-new-table/notes/whats-new-csaf-v2.0-cn01.md#e4-mapped-elements)
+
         final_csaf = {'document': {}}
+        final_csaf['document']['acknowledgments'] = self.document_acknowledgments.csaf
+        final_csaf['document']['aggregate_severity'] = self.document_aggregate_severity.csaf
+        final_csaf['document']['category'] = self.document_category.csaf
+        final_csaf['document']['distribution'] = self.document_distribution.csaf
+        final_csaf['document']['lang'] = self.document_lang.csaf
+        final_csaf['document']['notes'] = self.document_notes.csaf
         final_csaf['document']['publisher'] = self.document_publisher.csaf
+        final_csaf['document']['source_lang'] = self.document_source_lang.csaf
+        final_csaf['document']['references'] = self.document_references.csaf
+        final_csaf['document']['title'] = self.document_title.csaf
         final_csaf['document']['tracking'] = self.document_tracking.csaf
+        final_csaf['document']['references'] = self.document_references.csaf
+        final_csaf['product_tree'] = self.product_tree.csaf
+        final_csaf['vulnerabilities'] = self.vulnerability.csaf
+
         return final_csaf
 
     @classmethod
