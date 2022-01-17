@@ -45,6 +45,8 @@ python3 -m venv venv
 pip install .
 ```
 
+Hint: If you would like to get the debugger running, try to install the code as follows: `pip install -e .`
+
 # Usage (as CLI tool)
 ```shell script
 cvrf2csaf -h
