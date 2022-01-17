@@ -20,7 +20,8 @@ class Acknowledgments(SectionHandler):
         summary = []
         urls = []
         for ack in root_element.Acknowledgment:
-            names.append(ack.Name.text)
+            if hasattr(ack, 'Name'):
+                names.append(ack.Name.text)
             if hasattr(ack, 'Organization'):
                 organization.append(ack.Organization.text)
             if hasattr(ack, 'Summary'):
