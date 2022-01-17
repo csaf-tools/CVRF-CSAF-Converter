@@ -4,7 +4,7 @@ from ..common.common import SectionHandler
 
 class ProductTree(SectionHandler):
     """ Responsible for converting the ProductTree section """
-
+    
     def __init__(self):
         super().__init__()
 
