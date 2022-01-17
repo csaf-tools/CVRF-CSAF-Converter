@@ -10,7 +10,6 @@ from .common.utils import get_config_from_file, store_json, critical_exit
 from .section_handlers.document_acknowlegments import Acknowledgments
 from .section_handlers.document_aggregate_severity import AggregateSeverity
 from .section_handlers.document_category import DocumentCategory
-from .section_handlers.comment import Comment
 from .section_handlers.document_csaf_version import DocumentCsafVersion
 from .section_handlers.document_distribution import DocumentDistribution
 from .section_handlers.document_lang import DocumentLang
@@ -45,7 +44,6 @@ class DocumentHandler:
 
         self.document_acknowledgments = Acknowledgments()
         self.document_aggregate_severity = AggregateSeverity()
-        self.comment = Comment()
         self.document_category = DocumentCategory()
         self.document_csaf_version = DocumentCsafVersion()
         self.document_distribution = DocumentDistribution()
@@ -94,7 +92,7 @@ class DocumentHandler:
             elif tag == 'Vulnerability':
                 self.vulnerability.create_csaf(root_element=elem)
             elif tag in ['comment']:
-                self.comment.create_csaf(root_element=elem)
+                logging.warning(f'Ignoring invalid input tag {tag}.')
             else:
                 logging.warning(f'Not handled input tag {tag}. No parser available.')
 
