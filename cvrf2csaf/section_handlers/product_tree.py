@@ -21,20 +21,25 @@ class ProductTree(SectionHandler):
         if branches is not None:
             self.csaf['branches'] = branches
 
+    @staticmethod
+    def _construct_full_product_name(fpn_elem) -> dict:
+        fpn = {
+            'product_id': fpn_elem.attrib['ProductID'],
+            'name': fpn_elem.text
+        }
+
+        if fpn_elem.attrib.get('CPE'):
+            fpn['product_identification_helper'] = {'cpe': fpn_elem.attrib['CPE']}
+
+        return fpn
+
     def _handle_full_product_names(self, root_element):
         if not hasattr(root_element, 'FullProductName'):
             return
 
         full_product_names = []
         for full_product_name in root_element.FullProductName:
-            fpn_to_add = {
-                'product_id': full_product_name.attrib['ProductID'],
-                'name': full_product_name.text,
-            }
-            if full_product_name.attrib.get('CPE'):
-                fpn_to_add['product_identification_helper'] = {'cpe': full_product_name.attrib['CPE']}
-
-            full_product_names.append(fpn_to_add)
+            full_product_names.append(self._construct_full_product_name(full_product_name))
 
         self.csaf['full_product_names'] = full_product_names
 
@@ -57,14 +62,8 @@ class ProductTree(SectionHandler):
                 'category': relationship.attrib['RelationType'],
                 'product_reference': relationship.attrib['ProductReference'],
                 'relates_to_product_reference': relationship.attrib['RelatesToProductReference'],
-                'full_product_name': {
-                    'product_id': first_prod_name.attrib['ProductID'],
-                    'name': first_prod_name.text,
-                }
+                'full_product_name': self._construct_full_product_name(first_prod_name)
             }
-
-            if first_prod_name.attrib.get('CPE'):
-                rel_to_add['full_product_name']['product_identification_helper'] = {'cpe': first_prod_name.attrib['CPE']}
 
             relationships.append(rel_to_add)
 
@@ -103,14 +102,8 @@ class ProductTree(SectionHandler):
             leaf_branch = {
                 'name': root_element.attrib['Name'],
                 'category': root_element.attrib['Type'],
-                'product': {
-                    'product_id': root_element.FullProductName.attrib['ProductID'],
-                    'name': root_element.FullProductName.text
-                }
+                'product': self._construct_full_product_name(root_element.FullProductName)
             }
-
-            if root_element.FullProductName.attrib.get('CPE'):
-                leaf_branch['product']['product_identification_helper'] = {'cpe': root_element.FullProductName.attrib['CPE']}
 
             return leaf_branch
 
