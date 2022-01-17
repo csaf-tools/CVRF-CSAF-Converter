@@ -28,8 +28,6 @@ class Acknowledgments(SectionHandler):
             if hasattr(ack, 'Url'):
                 urls.append(ack.Url.text)
 
-        self.csaf['names'] = names
-
         if len(organization)>=1:
             # If more than one cvrf:Organization instance is given,
             # the CVRF CSAF converter converts the first one into the organization.
@@ -38,5 +36,9 @@ class Acknowledgments(SectionHandler):
             if len(organization) > 1:
                 logging.warn(f'Due to CSAF 2.0 standard, only the first organization can be acknowledged. '
                              f'{len(organization)-1} are not mentioned in the output.')
-        self.csaf['summary'] = summary
-        self.csaf['urls'] = urls
+        if len(names) > 0:
+            self.csaf['names'] = names
+        if len(summary) > 0:
+            self.csaf['summary'] = summary
+        if len(urls) > 0:
+            self.csaf['urls'] = urls
