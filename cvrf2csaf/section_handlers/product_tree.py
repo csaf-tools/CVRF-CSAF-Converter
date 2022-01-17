@@ -38,8 +38,8 @@ class ProductTree(SectionHandler):
             return
 
         full_product_names = []
-        for full_product_name in root_element.FullProductName:
-            full_product_names.append(self._construct_full_product_name(full_product_name))
+        for fpn_elem in root_element.FullProductName:
+            full_product_names.append(self._construct_full_product_name(fpn_elem))
 
         self.csaf['full_product_names'] = full_product_names
 
@@ -48,20 +48,20 @@ class ProductTree(SectionHandler):
             return
 
         relationships = []
-        for relationship in root_element.Relationship:
-            first_prod_name = relationship.FullProductName[0]
+        for rel_elem in root_element.Relationship:
+            first_prod_name = rel_elem.FullProductName[0]
 
-            if len(relationship.FullProductName) > 1:
+            if len(rel_elem.FullProductName) > 1:
                 # To be compliant with 9.1.5 Conformance Clause 5: CVRF CSAF converter
                 # https://docs.oasis-open.org/csaf/csaf/v2.0/csaf-v2.0.html
-                logging.warning(f'Input line {relationship.sourceline}: Relationship contains more '
+                logging.warning(f'Input line {rel_elem.sourceline}: Relationship contains more '
                                 'FullProductNames. Taking only the first one, since CSAF expects '
                                 'only 1 value here')
 
             rel_to_add = {
-                'category': relationship.attrib['RelationType'],
-                'product_reference': relationship.attrib['ProductReference'],
-                'relates_to_product_reference': relationship.attrib['RelatesToProductReference'],
+                'category': rel_elem.attrib['RelationType'],
+                'product_reference': rel_elem.attrib['ProductReference'],
+                'relates_to_product_reference': rel_elem.attrib['RelatesToProductReference'],
                 'full_product_name': self._construct_full_product_name(first_prod_name)
             }
 
@@ -74,15 +74,15 @@ class ProductTree(SectionHandler):
             return
 
         product_groups = []
-        for product_group in root_element.ProductGroups.Group:
-            product_ids = [x.text for x in product_group.ProductID]
+        for pg_elem in root_element.ProductGroups.Group:
+            product_ids = [x.text for x in pg_elem.ProductID]
             pg_to_add = {
-                'group_id': product_group.attrib['GroupID'],
+                'group_id': pg_elem.attrib['GroupID'],
                 'product_ids': product_ids,
             }
 
-            if hasattr(product_group, 'Description'):
-                pg_to_add['summary'] = product_group.Description.text
+            if hasattr(pg_elem, 'Description'):
+                pg_to_add['summary'] = pg_elem.Description.text
 
             product_groups.append(pg_to_add)
 
@@ -109,14 +109,14 @@ class ProductTree(SectionHandler):
 
         if hasattr(root_element, 'Branch'):
             branches = []
-            for branch in root_element.Branch:
-                if hasattr(branch, 'FullProductName'):
-                    branches.append(self._handle_branches_recursive(branch))
+            for branch_elem in root_element.Branch:
+                if hasattr(branch_elem, 'FullProductName'):
+                    branches.append(self._handle_branches_recursive(branch_elem))
                 else:
                     branches.append({
-                        'name': branch.attrib['Name'],
-                        'category': branch.attrib['Type'],
-                        'branches': self._handle_branches_recursive(branch)
+                        'name': branch_elem.attrib['Name'],
+                        'category': branch_elem.attrib['Type'],
+                        'branches': self._handle_branches_recursive(branch_elem)
                     })
 
             return branches
