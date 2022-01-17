@@ -19,10 +19,8 @@ from .section_handlers.document_references import DocumentReferences
 from .section_handlers.document_source_lang import DocumentSourceLang
 from .section_handlers.document_title import DocumentTitle
 from .section_handlers.document_tracking import DocumentTracking
-
 from .section_handlers.product_tree import ProductTree
 from .section_handlers.vulnerability import Vulnerability
-
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(module)s - %(levelname)s - %(message)s')
 
@@ -61,6 +59,9 @@ class DocumentHandler:
         self.vulnerability = Vulnerability()
 
 
+        self.product_tree = ProductTree()
+
+
     def _parse(self, root):
         for elem in root.iterchildren():
             # get tag name without it's namespace, don't use elem.tag here
@@ -86,7 +87,9 @@ class DocumentHandler:
             elif tag == 'DocumentTitle':
                 self.document_title.create_csaf(root_element=elem)
             elif tag == 'DocumentTracking':
-                self.document_tracking.create_csaf(root_element=elem)
+                self.document_tracking.create_csaf(elem)
+            elif tag == 'ProductTree':
+                self.product_tree.create_csaf(elem)
             elif tag == 'ProductTree':
                 self.product_tree.create_csaf(root_element=elem)
             elif tag == 'Vulnerability':
@@ -115,7 +118,6 @@ class DocumentHandler:
         final_csaf['document']['references'] = self.document_references.csaf
         final_csaf['product_tree'] = self.product_tree.csaf
         final_csaf['vulnerabilities'] = self.vulnerability.csaf
-
         return final_csaf
 
     @classmethod
