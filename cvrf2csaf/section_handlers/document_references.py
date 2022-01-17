@@ -1,4 +1,4 @@
-
+import logging
 from ..common.common import SectionHandler
 
 
@@ -13,8 +13,13 @@ class DocumentReferences(SectionHandler):
             for ref in root_element.Reference:
                 ref_csaf = dict()
                 if 'Type' not in ref.attrib or len(ref.attrib['Type']) < 2:
-                    ref_csaf['category'] = 'external'
-                ref_csaf['category'] = str(ref.attrib['Type'])
+                    ref_csaf['category'] = 'external' # default behaviour
+                else:
+                    ref_csaf['category'] = str(ref.attrib['Type'])
+
+                if ref_csaf['category'] not in ['external', 'self']:
+                    logging.warn(f'DocumentReferences->category {ref_csaf["category"]} must be external or self!')
+
                 if hasattr(ref, 'Description'):
                     ref_csaf['summary'] = ref.Description.text
                 if hasattr(ref, 'URL'):
