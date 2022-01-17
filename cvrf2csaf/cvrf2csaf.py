@@ -59,9 +59,6 @@ class DocumentHandler:
         self.vulnerability = Vulnerability()
 
 
-        self.product_tree = ProductTree()
-
-
     def _parse(self, root):
         for elem in root.iterchildren():
             # get tag name without it's namespace, don't use elem.tag here
@@ -88,8 +85,6 @@ class DocumentHandler:
                 self.document_title.create_csaf(root_element=elem)
             elif tag == 'DocumentTracking':
                 self.document_tracking.create_csaf(elem)
-            elif tag == 'ProductTree':
-                self.product_tree.create_csaf(elem)
             elif tag == 'ProductTree':
                 self.product_tree.create_csaf(root_element=elem)
             elif tag == 'Vulnerability':
