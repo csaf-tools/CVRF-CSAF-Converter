@@ -1,6 +1,5 @@
 import logging
 from ..common.common import SectionHandler
-from ..common.utils import etree_to_dict
 
 
 class DocumentNotes(SectionHandler):
