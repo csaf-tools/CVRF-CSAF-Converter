@@ -3,8 +3,8 @@ from ..common.common import SectionHandler
 
 
 class DocumentNotes(SectionHandler):
-    def __init__(self):
-        super().__init__()
+    def __init__(self, config):
+        super().__init__(config=config)
 
         self.enum_categories = {
             'description',
@@ -28,8 +28,13 @@ class DocumentNotes(SectionHandler):
             )
 
             if new_note['category'].lower() not in self.enum_categories:
-                logging.warn(f'Invalid document notes category '
-                             f'{new_note["category"]}. Should be one of {sorted(self.enum_categories)}!')
+                log_msg = f'Invalid document notes category ' \
+                          f'{new_note["category"]}. ' \
+                          f'Should be one of: {",".join(str(x) for x in sorted(self.enum_categories))}!'
+                if self.config.get('force', False):
+                    logging.warn(log_msg)
+                else:
+                    logging.error(log_msg)
 
             # optional
             if elem_note.get('Audience'):

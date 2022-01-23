@@ -46,7 +46,7 @@ class DocumentHandler:
         self.document_csaf_version = DocumentCsafVersion()
         self.document_distribution = DocumentDistribution()
         self.document_lang = DocumentLang()
-        self.document_notes = DocumentNotes()
+        self.document_notes = DocumentNotes(config=config)
         self.document_publisher = DocumentPublisher(config['publisher_name'],
                                                     config['publisher_namespace'])
         self.document_references = DocumentReferences()
@@ -149,6 +149,12 @@ def main():
                         help="CVRF JSON output file to write to.", metavar='PATH')
     parser.add_argument('--print', dest='print', action='store_true', default=False,
                         help="Additionally prints JSON output on command line.")
+    parser.add_argument('--force', action='store_const', const='forced-conversion',
+                        help="If used, the converter produces output that is invalid "
+                             "(use case: convert to JSON, fix the errors manual, e.g. in Secvisogram.")
+
+
+
 
     # Document Publisher args
     parser.add_argument('--publisher-name', dest='publisher_name', type=str, help="Name of the publisher.")
@@ -169,6 +175,10 @@ def main():
 
     # Update & rewrite config file values with the ones from command line arguments
     config.update(args)
+
+    # Boolean optional argument need special treatment
+    if config['force'] == 'forced-conversion':
+        config['force'] = True
 
     # Boolean optional argument need special treatment
     if config['force_update_revision_history'] == 'cmd-arg-entered':
