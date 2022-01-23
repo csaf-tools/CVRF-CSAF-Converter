@@ -52,7 +52,8 @@ class DocumentHandler:
         self.document_references = DocumentReferences()
         self.document_source_lang = DocumentSourceLang()
         self.document_title = DocumentTitle()
-        self.document_tracking = DocumentTracking(config['cvrf2csaf_name'],
+        self.document_tracking = DocumentTracking(config,
+                                                  config['cvrf2csaf_name'],
                                                   config['cvrf2csaf_version'],
                                                   config['force_update_revision_history'])
         self.product_tree = ProductTree()

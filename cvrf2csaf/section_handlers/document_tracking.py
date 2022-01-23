@@ -8,8 +8,8 @@ from ..common.utils import get_utc_timestamp
 
 
 class DocumentTracking(SectionHandler):
-    def __init__(self, cvrf2csaf_name, cvrf2csaf_version, force_update_revision_history):
-        super().__init__()
+    def __init__(self, config, cvrf2csaf_name, cvrf2csaf_version, force_update_revision_history):
+        super().__init__(config)
         self.cvrf2csaf_name = cvrf2csaf_name
         self.cvrf2csaf_version = cvrf2csaf_version
         self.force_update_revision_history = force_update_revision_history
@@ -74,7 +74,11 @@ class DocumentTracking(SectionHandler):
         latest_history_revision = self._as_int_tuple(revision_history[-1]['number'])
 
         if len(current_version) != len(latest_history_revision):
-            self._critical_exit('Mixed formats for the current version and the last revision from history.')
+            log_msg = 'Mixed formats for the current version and the last revision from history.'
+            if self.config.get('force', False):
+                logging.warn(log_msg)
+            else:
+                self._critical_exit(log_msg)
 
         if current_version[-1] - latest_history_revision[-1] > 1:
             if self.force_update_revision_history is True:

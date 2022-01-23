@@ -11,8 +11,9 @@ class SectionHandler:
         csaf     The CSAF interpretation of the data, to be converted to JSON in the final composition step
     """
 
-    def __init__(self):
+    def __init__(self, config=None):
         self.csaf = {}
+        self.config = config
 
     def _process_mandatory_elements(self, root_element):
         raise NotImplementedError('Subclasses must implement.')
