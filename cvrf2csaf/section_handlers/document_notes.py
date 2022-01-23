@@ -6,7 +6,7 @@ class DocumentNotes(SectionHandler):
     def __init__(self):
         super().__init__()
 
-        self.enum_categories = [
+        self.enum_categories = {
             'description',
             'details',
             'faq',
@@ -14,7 +14,7 @@ class DocumentNotes(SectionHandler):
             'legal_disclaimer',
             'other',
             'summary'
-        ]
+        }
 
     def _process_mandatory_and_optional(self, root_element):
         notes = []
@@ -29,7 +29,7 @@ class DocumentNotes(SectionHandler):
 
             if new_note['category'].lower() not in self.enum_categories:
                 logging.warn(f'Invalid document notes category '
-                             f'{new_note["category"]}. Should be one of {self.enum_categories}!')
+                             f'{new_note["category"]}. Should be one of {sorted(self.enum_categories)}!')
 
             # optional
             if elem_note.get('Audience'):
