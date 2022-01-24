@@ -44,7 +44,7 @@ class DocumentNotes(SectionHandler):
 
             notes.append(new_note)
 
-        if len(notes) > 0:
+        if notes and len(notes) > 0:
             self.csaf['notes'] = notes
 
     def _process_mandatory_elements(self, root_element):

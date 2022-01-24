@@ -22,9 +22,10 @@ def get_config_from_file() -> dict:
         path_to_conf = pkg_resources.resource_filename(req, 'cvrf2csaf/config/config.yaml')
         with open(path_to_conf, 'r') as f:
             config = yaml.safe_load(f)
-            return config
     except Exception as e:
         critical_exit(f"Reading config.yaml failed: {e}.")
+    finally:
+        return config
 
 
 def store_json(js, fpath):
