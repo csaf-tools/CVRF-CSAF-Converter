@@ -27,7 +27,7 @@ class DocumentNotes(SectionHandler):
                 category=elem_note.get('Type').lower().replace(' ', '_'),
             )
 
-            if new_note['category'].lower() not in self.enum_categories:
+            if new_note['category'] not in self.enum_categories:
                 log_msg = f'Invalid document notes category ' \
                           f'{new_note["category"]}. ' \
                           f'Should be one of: {",".join(str(x) for x in sorted(self.enum_categories))}!'

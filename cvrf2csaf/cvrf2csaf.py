@@ -37,9 +37,6 @@ class DocumentHandler:
 
     SCHEMA_FILE = 'schemata/cvrf/1.2/cvrf.xsd'
     CATALOG_FILE = 'schemata/catalog_1_2.xml'
-    BASE_DIR = '/Users/g/PycharmProjects/CVRF-CSAF-Converter'
-    SCHEMA_FILE = os.path.join(BASE_DIR, SCHEMA_FILE)
-    CATALOG_FILE = os.path.join(BASE_DIR, CATALOG_FILE)
 
     def __init__(self, config):
 
