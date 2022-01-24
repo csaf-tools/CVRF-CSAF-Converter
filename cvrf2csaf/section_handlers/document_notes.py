@@ -1,6 +1,6 @@
 import logging
 from ..common.common import SectionHandler
-from .utils import critical_exit
+from ..common.utils import critical_exit
 
 class DocumentNotes(SectionHandler):
     def __init__(self, config):
