@@ -149,7 +149,7 @@ def main():
                         help="CVRF JSON output file to write to.", metavar='PATH')
     parser.add_argument('--print', dest='print', action='store_true', default=False,
                         help="Additionally prints JSON output on command line.")
-    parser.add_argument('--force', action='store_const', const='forced-conversion',
+    parser.add_argument('--force', action='store_true', dest='force',
                         help="If used, the converter produces output that is invalid "
                              "(use case: convert to JSON, fix the errors manual, e.g. in Secvisogram.")
 
@@ -175,10 +175,6 @@ def main():
 
     # Update & rewrite config file values with the ones from command line arguments
     config.update(args)
-
-    # Boolean optional argument need special treatment
-    if config['force'] == 'forced-conversion':
-        config['force'] = True
 
     # Boolean optional argument need special treatment
     if config['force_update_revision_history'] == 'cmd-arg-entered':
