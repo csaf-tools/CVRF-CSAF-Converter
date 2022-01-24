@@ -24,7 +24,7 @@ class DocumentNotes(SectionHandler):
             # mandatory
             new_note = dict(
                 text=elem_note.text,
-                category=elem_note.get('Type'),
+                category=elem_note.get('Type').lower().replace(' ', '_'),
             )
 
             if new_note['category'].lower() not in self.enum_categories:
