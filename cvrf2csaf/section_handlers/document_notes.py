@@ -1,6 +1,6 @@
 import logging
 from ..common.common import SectionHandler
-
+from .utils import critical_exit
 
 class DocumentNotes(SectionHandler):
     def __init__(self, config):
@@ -32,9 +32,9 @@ class DocumentNotes(SectionHandler):
                           f'{new_note["category"]}. ' \
                           f'Should be one of: {",".join(str(x) for x in sorted(self.enum_categories))}!'
                 if self.config.get('force', False):
-                    logging.warn(log_msg)
-                else:
                     logging.error(log_msg)
+                else:
+                    critical_exit(log_msg)
 
             # optional
             if elem_note.get('Audience'):
