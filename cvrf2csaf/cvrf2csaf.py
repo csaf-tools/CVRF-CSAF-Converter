@@ -20,7 +20,7 @@ from .section_handlers.document_source_lang import DocumentSourceLang
 from .section_handlers.document_title import DocumentTitle
 from .section_handlers.document_tracking import DocumentTracking
 from .section_handlers.product_tree import ProductTree
-from .section_handlers.vulnerability import Vulnerability
+from .section_handlers.vulnerability import Vulnerabilities
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(module)s - %(levelname)s - %(message)s')
 
@@ -56,41 +56,31 @@ class DocumentHandler:
                                                   config['cvrf2csaf_version'],
                                                   config['force_update_revision_history'])
         self.product_tree = ProductTree()
-        self.vulnerability = Vulnerability()
+        self.vulnerabilities = Vulnerabilities()
 
+        # ToDo: Lang and SourceLang are missing here.
+        self.sections_handlers = {
+            'Acknowledgements': self.document_acknowledgments,
+            'AggregateSeverity': self.document_aggregate_severity,
+            'DocumentType': self.document_category,
+            'DocumentDistribution': self.document_distribution,
+            'DocumentNotes': self.document_notes,
+            'DocumentPublisher': self.document_publisher,
+            'DocumentReferences': self.document_references,
+            'DocumentTitle': self.document_title,
+            'DocumentTracking': self.document_tracking,
+            'ProductTree': self.product_tree,
+            'Vulnerability': self.vulnerabilities,
+        }
 
     def _parse(self, root):
         for elem in root.iterchildren():
             # get tag name without it's namespace, don't use elem.tag here
             tag = etree.QName(elem).localname
+            tag_handler = self.sections_handlers.get(tag)
 
-            # ToDo: Lang and SourceLang are missing here.
-
-            if tag == 'Acknowledgments':
-                self.document_acknowledgments.create_csaf(root_element=elem)
-            elif tag == 'AggregateSeverity':
-                self.document_aggregate_severity.create_csaf(root_element=elem)
-            elif tag == 'DocumentType':
-                # Map DocumentType --> /document/category/
-                self.document_category.create_csaf(root_element=elem)
-            elif tag == 'DocumentDistribution':
-                self.document_distribution.create_csaf(root_element=elem)
-            elif tag == 'DocumentNotes':
-                self.document_notes.create_csaf(root_element=elem)
-            elif tag == 'DocumentPublisher':
-                self.document_publisher.create_csaf(root_element=elem)
-            elif tag == 'DocumentReferences':
-                self.document_references.create_csaf(root_element=elem)
-            elif tag == 'DocumentTitle':
-                self.document_title.create_csaf(root_element=elem)
-            elif tag == 'DocumentTracking':
-                self.document_tracking.create_csaf(elem)
-            elif tag == 'ProductTree':
-                self.product_tree.create_csaf(root_element=elem)
-            elif tag == 'Vulnerability':
-                self.vulnerability.create_csaf(root_element=elem)
-            elif tag in ['comment']:
-                logging.warning(f'Ignoring invalid input tag {tag}.')
+            if tag_handler:
+                tag_handler.create_csaf(root_element=elem)
             else:
                 logging.warning(f'Not handled input tag {tag}. No parser available.')
 
@@ -112,7 +102,7 @@ class DocumentHandler:
         final_csaf['document']['tracking'] = self.document_tracking.csaf
         final_csaf['document']['references'] = self.document_references.csaf
         final_csaf['product_tree'] = self.product_tree.csaf
-        final_csaf['vulnerabilities'] = self.vulnerability.csaf
+        final_csaf['vulnerabilities'] = self.vulnerabilities.csaf
         return final_csaf
 
     @classmethod
@@ -129,7 +119,6 @@ class DocumentHandler:
             return xml_objectified
         except etree.ParseError as e:
             critical_exit(f'Input document not valid: {e}.')
-
 
     def convert_file(self, path) -> dict:
         """Wrapper to read/parse CVRF and parse it to CSAF JSON structure"""
@@ -161,7 +150,6 @@ def main():
                              "between the current version and the most recent revision is more than one version, "
                              "the current version is added to the revision history. Also warning is produced. By default, "
                              "the current version is added only if the difference is one version.")
-
 
     args = {k: v for k, v in vars(parser.parse_args()).items() if v is not None}
 
