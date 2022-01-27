@@ -31,10 +31,7 @@ class DocumentNotes(SectionHandler):
                 log_msg = f'Invalid document notes category ' \
                           f'{new_note["category"]}. ' \
                           f'Should be one of: {",".join(str(x) for x in sorted(self.enum_categories))}!'
-                if self.config.get('force', False):
-                    logging.error(log_msg)
-                else:
-                    critical_exit(log_msg)
+                logging.error(log_msg)  # Todo: handle force parameter here
 
             # optional
             if elem_note.get('Audience'):
