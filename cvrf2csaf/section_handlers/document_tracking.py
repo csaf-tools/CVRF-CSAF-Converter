@@ -75,10 +75,7 @@ class DocumentTracking(SectionHandler):
 
         if len(current_version) != len(latest_history_revision):
             log_msg = 'Mixed formats for the current version and the last revision from history.'
-            if self.config.get('force', False):
-                logging.warn(log_msg)
-            else:
-                self._critical_exit(log_msg)
+            logging.error(log_msg)  # Todo: handle force parameter here
 
         if current_version[-1] - latest_history_revision[-1] > 1:
             if self.force_update_revision_history is True:
