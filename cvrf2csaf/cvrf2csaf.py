@@ -20,7 +20,7 @@ from .section_handlers.document_source_lang import DocumentSourceLang
 from .section_handlers.document_title import DocumentTitle
 from .section_handlers.document_tracking import DocumentTracking
 from .section_handlers.product_tree import ProductTree
-from .section_handlers.vulnerability import Vulnerabilities
+from .section_handlers.vulnerability import Vulnerability
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(module)s - %(levelname)s - %(message)s')
 
@@ -57,7 +57,7 @@ class DocumentHandler:
                                                   config['cvrf2csaf_version'],
                                                   config['force_update_revision_history'])
         self.product_tree = ProductTree()
-        self.vulnerabilities = Vulnerabilities()
+        self.vulnerability = Vulnerability()
 
         # ToDo: Lang and SourceLang are missing here.
         self.sections_handlers = {
@@ -71,7 +71,7 @@ class DocumentHandler:
             'DocumentTitle': self.document_title,
             'DocumentTracking': self.document_tracking,
             'ProductTree': self.product_tree,
-            'Vulnerability': self.vulnerabilities,
+            'Vulnerability': self.vulnerability,
         }
 
     def _parse(self, root):
@@ -103,7 +103,7 @@ class DocumentHandler:
         final_csaf['document']['tracking'] = self.document_tracking.csaf
         final_csaf['document']['references'] = self.document_references.csaf
         final_csaf['product_tree'] = self.product_tree.csaf
-        final_csaf['vulnerabilities'] = self.vulnerabilities.csaf
+        final_csaf['vulnerabilities'] = self.vulnerability.csaf
         return final_csaf
 
     @classmethod
