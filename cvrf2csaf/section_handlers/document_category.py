@@ -10,4 +10,5 @@ class DocumentCategory(SectionHandler):
         self.csaf = root_element.text
 
     def _process_optional_elements(self, root_element):
+        # Not used
         pass

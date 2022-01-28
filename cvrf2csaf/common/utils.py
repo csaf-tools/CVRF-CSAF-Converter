@@ -13,6 +13,23 @@ def critical_exit(msg, status_code=1):
     exit(status_code)
 
 
+def handle_boolean_config_values(key, val):
+    try:
+        if isinstance(val, bool):
+            return val
+        if val.strip().lower() in {'true', 'yes', '1', 'y'}:
+            return True
+        if val.strip().lower() in {'false', 'no', '0', 'n'}:
+            return False
+
+        critical_exit(f"Reading config.yaml failed. "
+                      f"Invalid value for config key {key}: {val}. {e}.")
+
+    except Exception as e:
+        critical_exit(f"Reading config.yaml failed. "
+                      f"Invalid value for config key {key}: {val} {e}.")
+
+
 def get_config_from_file() -> dict:
     """ Loads configuration file. Parts of it can be overwritten by CLI arguments. """
     config = dict()
@@ -22,9 +39,15 @@ def get_config_from_file() -> dict:
         path_to_conf = pkg_resources.resource_filename(req, 'cvrf2csaf/config/config.yaml')
         with open(path_to_conf, 'r') as f:
             config = yaml.safe_load(f)
-            return config
+
+        for key in ['force', 'force_update_revision_history']:
+            if key in config.keys():
+                config[key] = handle_boolean_config_values(key=key, val=config[key])
+
     except Exception as e:
         critical_exit(f"Reading config.yaml failed: {e}.")
+    finally:
+        return config
 
 
 def store_json(js, fpath):
