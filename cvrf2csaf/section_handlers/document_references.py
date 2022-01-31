@@ -19,9 +19,6 @@ class DocumentReferences(SectionHandler):
             else:  # TODO: is this really needed here? `category` fields is not mandatory in CSAF
                 ref_csaf['category'] = 'external'  # default behaviour
 
-            if ref_csaf['category'] not in ['external', 'self']:
-                logging.warning(f'DocumentReferences->category {ref_csaf["category"]} must be external or self!')
-
             references.append(ref_csaf)
 
         self.csaf = references
