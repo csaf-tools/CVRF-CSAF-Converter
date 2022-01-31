@@ -4,6 +4,7 @@ import os
 import json
 from lxml import etree
 from lxml import objectify
+from jsonschema import validate, ValidationError
 
 from .common.utils import get_config_from_file, store_json, critical_exit
 
@@ -37,6 +38,7 @@ class DocumentHandler:
 
     SCHEMA_FILE = 'schemata/cvrf/1.2/cvrf.xsd'
     CATALOG_FILE = 'schemata/catalog_1_2.xml'
+    CSAF_SCHEMA_FILE = 'schemata/csaf/2.0/csaf_json_schema.json'
 
     def __init__(self, config):
 
@@ -130,6 +132,27 @@ class DocumentHandler:
         return self._compose_final_csaf()
 
 
+    def validate_output_against_schema(self, output_file) -> bool:
+        """
+        Validates the CSAF output against the CSAF JSON schema
+        return: True if valid, False if invalid
+        """
+        with open(self.CSAF_SCHEMA_FILE) as f:
+            csaf_schema_content = json.loads(f.read())
+
+        with open(output_file) as f:
+            output_file_content = json.loads(f.read())
+
+        try:
+            validate(output_file_content, csaf_schema_content)
+        except ValidationError as e:
+            logging.error(f'CSAF schema validation: {e.message}')
+            return False
+        else:
+            logging.info('CSAF schema validation OK')
+            return True
+
+
 def main():
     # General args
     parser = argparse.ArgumentParser(description='Converts CVRF XML input into CSAF 2.0 JSON output.')
@@ -174,6 +197,10 @@ def main():
     # DocumentHandler is iterating over each XML element within convert_file and return CSAF 2.0 JSON
     h = DocumentHandler(config)
     final_csaf = h.convert_file(path=config.get('input_file'))
+
+    if not h.validate_output_against_schema(config.get('output_file')):
+        # TODO: If --force given, the output should not be written when CSAF not valid according to schema
+        pass
 
     # Output / Store results
     if final_csaf:
