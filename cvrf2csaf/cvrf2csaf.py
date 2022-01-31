@@ -59,39 +59,29 @@ class DocumentHandler:
         self.product_tree = ProductTree()
         self.vulnerability = Vulnerability()
 
+        # ToDo: Lang and SourceLang are missing here.
+        self.sections_handlers = {
+            'Acknowledgements': self.document_acknowledgments,
+            'AggregateSeverity': self.document_aggregate_severity,
+            'DocumentType': self.document_category,
+            'DocumentDistribution': self.document_distribution,
+            'DocumentNotes': self.document_notes,
+            'DocumentPublisher': self.document_publisher,
+            'DocumentReferences': self.document_references,
+            'DocumentTitle': self.document_title,
+            'DocumentTracking': self.document_tracking,
+            'ProductTree': self.product_tree,
+            'Vulnerability': self.vulnerability,
+        }
 
     def _parse(self, root):
         for elem in root.iterchildren():
             # get tag name without it's namespace, don't use elem.tag here
             tag = etree.QName(elem).localname
+            tag_handler = self.sections_handlers.get(tag)
 
-            # ToDo: Lang and SourceLang are missing here.
-
-            if tag == 'Acknowledgments':
-                self.document_acknowledgments.create_csaf(root_element=elem)
-            elif tag == 'AggregateSeverity':
-                self.document_aggregate_severity.create_csaf(root_element=elem)
-            elif tag == 'DocumentType':
-                # Map DocumentType --> /document/category/
-                self.document_category.create_csaf(root_element=elem)
-            elif tag == 'DocumentDistribution':
-                self.document_distribution.create_csaf(root_element=elem)
-            elif tag == 'DocumentNotes':
-                self.document_notes.create_csaf(root_element=elem)
-            elif tag == 'DocumentPublisher':
-                self.document_publisher.create_csaf(root_element=elem)
-            elif tag == 'DocumentReferences':
-                self.document_references.create_csaf(root_element=elem)
-            elif tag == 'DocumentTitle':
-                self.document_title.create_csaf(root_element=elem)
-            elif tag == 'DocumentTracking':
-                self.document_tracking.create_csaf(elem)
-            elif tag == 'ProductTree':
-                self.product_tree.create_csaf(root_element=elem)
-            elif tag == 'Vulnerability':
-                self.vulnerability.create_csaf(root_element=elem)
-            elif tag in ['comment']:
-                logging.warning(f'Ignoring invalid input tag {tag}.')
+            if tag_handler:
+                tag_handler.create_csaf(root_element=elem)
             else:
                 logging.warning(f'Not handled input tag {tag}. No parser available.')
 
@@ -131,7 +121,6 @@ class DocumentHandler:
         except etree.ParseError as e:
             critical_exit(f'Input document not valid: {e}.')
 
-
     def convert_file(self, path) -> dict:
         """Wrapper to read/parse CVRF and parse it to CSAF JSON structure"""
         root = DocumentHandler._validate_and_open_file(path)
@@ -167,7 +156,6 @@ def main():
                              "between the current version and the most recent revision is more than one version, "
                              "the current version is added to the revision history. Also warning is produced. By default, "
                              "the current version is added only if the difference is one version.")
-
 
     args = {k: v for k, v in vars(parser.parse_args()).items() if v is not None}
 
