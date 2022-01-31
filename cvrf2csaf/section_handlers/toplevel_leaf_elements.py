@@ -18,11 +18,13 @@ class ToplevelLeafElements(SectionHandler):
 
     def _process_optional_elements(self, root_element):
         if hasattr(root_element, 'DocumentDistribution'):
-            self.csaf['distribution'] = {}
-            self.csaf['distribution']['text'] = root_element.DocumentDistribution.text
+            self.csaf['distribution'] = {
+                'text': root_element.DocumentDistribution.text
+            }
 
         if hasattr(root_element, 'AggregateSeverity'):
-            self.csaf['aggregate_severity'] = {}
-            self.csaf['aggregate_severity']['text'] = root_element.AggregateSeverity.text
+            self.csaf['aggregate_severity'] = {
+                'text': root_element.AggregateSeverity.text
+            }
             if root_element.AggregateSeverity.attrib.get('Namespace'):
                 self.csaf['aggregate_severity']['namespace'] = root_element.AggregateSeverity.attrib['Namespace']
