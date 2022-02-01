@@ -3,10 +3,10 @@ from ..common.common import SectionHandler
 
 
 class DocumentPublisher(SectionHandler):
-    def __init__(self, name, namespace):
+    def __init__(self, config):
         super().__init__()
-        self.name = name
-        self.namespace = namespace
+        self.name = config['publisher_name']
+        self.namespace = config['publisher_namespace']
 
     def _process_mandatory_elements(self, root_element):
         self.csaf['name'] = self.name

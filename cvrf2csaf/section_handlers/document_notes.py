@@ -3,8 +3,8 @@ from ..common.common import SectionHandler
 from ..common.utils import critical_exit
 
 class DocumentNotes(SectionHandler):
-    def __init__(self, config):
-        super().__init__(config=config)
+    def __init__(self):
+        super().__init__()
 
         self.enum_categories = {
             'description',

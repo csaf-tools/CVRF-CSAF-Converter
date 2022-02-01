@@ -46,18 +46,14 @@ class DocumentHandler:
         self.document_csaf_version = DocumentCsafVersion()
         self.document_distribution = DocumentDistribution()
         self.document_lang = DocumentLang()
-        self.document_notes = DocumentNotes(config=config)
-        self.document_publisher = DocumentPublisher(config['publisher_name'],
-                                                    config['publisher_namespace'])
-        self.document_references = DocumentReferences()
+        self.document_notes = DocumentNotes()
+        self.document_publisher = DocumentPublisher(config=config)
+        self.document_references = DocumentReferences(config=config)
         self.document_source_lang = DocumentSourceLang()
         self.document_title = DocumentTitle()
-        self.document_tracking = DocumentTracking(config,
-                                                  config['cvrf2csaf_name'],
-                                                  config['cvrf2csaf_version'],
-                                                  config['force_update_revision_history'])
+        self.document_tracking = DocumentTracking(config=config)
         self.product_tree = ProductTree()
-        self.vulnerability = Vulnerability()
+        self.vulnerability = Vulnerability(config=config)
 
         # ToDo: Lang and SourceLang are missing here.
         self.sections_handlers = {

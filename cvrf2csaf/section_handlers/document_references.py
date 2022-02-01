@@ -3,8 +3,9 @@ from ..common.common import SectionHandler
 
 
 class DocumentReferences(SectionHandler):
-    def __init__(self):
+    def __init__(self, config):
         super().__init__()
+        self.force_default_category = config['force_default_reference_category']
 
     def _process_mandatory_elements(self, root_element):
 
@@ -16,8 +17,10 @@ class DocumentReferences(SectionHandler):
 
             if reference.attrib.get('Type'):
                 ref_csaf['category'] = reference.attrib['Type'].lower()
-            else:  # TODO: is this really needed here? `category` fields is not mandatory in CSAF
-                ref_csaf['category'] = 'external'  # default behaviour
+            elif self.force_default_category:
+                ref_csaf['category'] = 'external'
+                logging.info('Type attribute not present in reference element, using default value external. '
+                             'This can be switched off by controlled by force_default_reference_category option.')
 
             references.append(ref_csaf)
 
