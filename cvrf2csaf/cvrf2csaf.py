@@ -7,17 +7,11 @@ from lxml import objectify
 
 from .common.utils import get_config_from_file, store_json, critical_exit
 
+from .section_handlers.document_leaf_elements import DocumentLeafElements
 from .section_handlers.document_acknowlegments import Acknowledgments
-from .section_handlers.document_aggregate_severity import AggregateSeverity
-from .section_handlers.document_category import DocumentCategory
-from .section_handlers.document_csaf_version import DocumentCsafVersion
-from .section_handlers.document_distribution import DocumentDistribution
-from .section_handlers.document_lang import DocumentLang
 from .section_handlers.document_notes import DocumentNotes
 from .section_handlers.document_publisher import DocumentPublisher
 from .section_handlers.document_references import DocumentReferences
-from .section_handlers.document_source_lang import DocumentSourceLang
-from .section_handlers.document_title import DocumentTitle
 from .section_handlers.document_tracking import DocumentTracking
 from .section_handlers.product_tree import ProductTree
 from .section_handlers.vulnerability import Vulnerability
@@ -39,38 +33,30 @@ class DocumentHandler:
     CATALOG_FILE = 'schemata/catalog_1_2.xml'
 
     def __init__(self, config):
-
+        self.document_leaf_elements = DocumentLeafElements(config)
         self.document_acknowledgments = Acknowledgments()
-        self.document_aggregate_severity = AggregateSeverity()
-        self.document_category = DocumentCategory()
-        self.document_csaf_version = DocumentCsafVersion()
-        self.document_distribution = DocumentDistribution()
-        self.document_lang = DocumentLang()
         self.document_notes = DocumentNotes()
         self.document_publisher = DocumentPublisher(config=config)
         self.document_references = DocumentReferences(config=config)
-        self.document_source_lang = DocumentSourceLang()
-        self.document_title = DocumentTitle()
         self.document_tracking = DocumentTracking(config=config)
         self.product_tree = ProductTree()
         self.vulnerability = Vulnerability(config=config)
 
-        # ToDo: Lang and SourceLang are missing here.
         self.sections_handlers = {
             'Acknowledgements': self.document_acknowledgments,
-            'AggregateSeverity': self.document_aggregate_severity,
-            'DocumentType': self.document_category,
-            'DocumentDistribution': self.document_distribution,
             'DocumentNotes': self.document_notes,
             'DocumentPublisher': self.document_publisher,
             'DocumentReferences': self.document_references,
-            'DocumentTitle': self.document_title,
             'DocumentTracking': self.document_tracking,
             'ProductTree': self.product_tree,
             'Vulnerability': self.vulnerability,
         }
 
     def _parse(self, root):
+        # Document leaf elements are handled on the root itself
+        self.document_leaf_elements.create_csaf(root)
+
+        # For children of the root element with a deeper structure, dedicated section handlers are used
         for elem in root.iterchildren():
             # get tag name without it's namespace, don't use elem.tag here
             tag = etree.QName(elem).localname
@@ -78,24 +64,17 @@ class DocumentHandler:
 
             if tag_handler:
                 tag_handler.create_csaf(root_element=elem)
-            else:
-                logging.warning(f'Not handled input tag {tag}. No parser available.')
+
 
     def _compose_final_csaf(self) -> dict:
         # Merges first level leaves into final CSAF document.
         # [mapping table](https://github.com/tschmidtb51/csaf/blob/csaf-2.0-what-is-new-table/notes/whats-new-csaf-v2.0-cn01.md#e4-mapped-elements)
 
         final_csaf = {'document': {}}
+        final_csaf['document'] = self.document_leaf_elements.csaf
         final_csaf['document']['acknowledgments'] = self.document_acknowledgments.csaf
-        final_csaf['document']['aggregate_severity'] = self.document_aggregate_severity.csaf
-        final_csaf['document']['category'] = self.document_category.csaf
-        final_csaf['document']['distribution'] = self.document_distribution.csaf
-        final_csaf['document']['lang'] = self.document_lang.csaf
         final_csaf['document']['notes'] = self.document_notes.csaf
         final_csaf['document']['publisher'] = self.document_publisher.csaf
-        final_csaf['document']['source_lang'] = self.document_source_lang.csaf
-        final_csaf['document']['references'] = self.document_references.csaf
-        final_csaf['document']['title'] = self.document_title.csaf
         final_csaf['document']['tracking'] = self.document_tracking.csaf
         final_csaf['document']['references'] = self.document_references.csaf
         final_csaf['product_tree'] = self.product_tree.csaf
