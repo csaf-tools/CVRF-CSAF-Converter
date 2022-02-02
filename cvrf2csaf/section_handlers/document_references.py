@@ -19,8 +19,8 @@ class DocumentReferences(SectionHandler):
                 ref_csaf['category'] = reference.attrib['Type'].lower()
             elif self.force_default_category:
                 ref_csaf['category'] = 'external'
-                logging.info('Type attribute not present in reference element, using default value external. '
-                             'This can be switched off by controlled by force_default_reference_category option.')
+                logging.info('"Type" attribute not present in "Reference" element, using default value "external". '
+                             'This can be controlled by "force_default_reference_category" option.')
 
             references.append(ref_csaf)
 
