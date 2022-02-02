@@ -5,7 +5,7 @@ from ..common.common import SectionHandler
 class DocumentReferences(SectionHandler):
     def __init__(self, config):
         super().__init__()
-        self.force_default_category = config['force_default_reference_category']
+        self.force_default_category = config.get('force_default_reference_category')
 
     def _process_mandatory_elements(self, root_element):
 

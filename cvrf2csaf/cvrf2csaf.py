@@ -33,7 +33,7 @@ class DocumentHandler:
     CATALOG_FILE = 'schemata/catalog_1_2.xml'
 
     def __init__(self, config):
-        self.document_leaf_elements = DocumentLeafElements(config)
+        self.document_leaf_elements = DocumentLeafElements(config=config)
         self.document_acknowledgments = Acknowledgments()
         self.document_notes = DocumentNotes()
         self.document_publisher = DocumentPublisher(config=config)

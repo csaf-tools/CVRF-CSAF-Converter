@@ -10,9 +10,9 @@ from ..common.utils import get_utc_timestamp
 class DocumentTracking(SectionHandler):
     def __init__(self, config):
         super().__init__()
-        self.cvrf2csaf_name = config['cvrf2csaf_name']
-        self.cvrf2csaf_version = config['cvrf2csaf_version']
-        self.force_update_revision_history = config['force_update_revision_history']
+        self.cvrf2csaf_name = config.get('cvrf2csaf_name')
+        self.cvrf2csaf_version = config.get('cvrf2csaf_version')
+        self.force_update_revision_history = config.get('force_update_revision_history')
 
     def _process_mandatory_elements(self, root_element):
         self.csaf['id'] = root_element.Identification.ID.text

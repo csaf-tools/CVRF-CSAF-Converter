@@ -5,8 +5,8 @@ from ..common.common import SectionHandler
 class DocumentPublisher(SectionHandler):
     def __init__(self, config):
         super().__init__()
-        self.name = config['publisher_name']
-        self.namespace = config['publisher_namespace']
+        self.name = config.get('publisher_name')
+        self.namespace = config.get('publisher_namespace')
 
     def _process_mandatory_elements(self, root_element):
         self.csaf['name'] = self.name

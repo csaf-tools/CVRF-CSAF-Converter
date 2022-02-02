@@ -8,11 +8,12 @@ class DocumentLeafElements(SectionHandler):
     handling CSAF path: /document
     """
     def __init__(self, config):
-        super().__init__(config)
+        super().__init__()
+        self.csaf_version = config.get('csaf_version')
 
     def _process_mandatory_elements(self, root_element):
         # This element is new in CSAF, not present in CVRF
-        self.csaf['csaf_version'] = self.config.get('csaf_version')
+        self.csaf['csaf_version'] = self.csaf_version
 
         self.csaf['category'] = root_element.DocumentType.text
         self.csaf['title'] = root_element.DocumentTitle.text
