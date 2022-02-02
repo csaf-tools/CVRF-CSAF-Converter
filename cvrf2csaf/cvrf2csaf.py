@@ -7,7 +7,7 @@ from lxml import objectify
 
 from .common.utils import get_config_from_file, store_json, critical_exit
 
-from .section_handlers.toplevel_leaf_elements import ToplevelLeafElements
+from .section_handlers.document_leaf_elements import DocumentLeafElements
 from .section_handlers.document_acknowlegments import Acknowledgments
 from .section_handlers.document_notes import DocumentNotes
 from .section_handlers.document_publisher import DocumentPublisher
@@ -33,7 +33,7 @@ class DocumentHandler:
     CATALOG_FILE = 'schemata/catalog_1_2.xml'
 
     def __init__(self, config):
-        self.toplevel_leaf_elements = ToplevelLeafElements(config)
+        self.document_leaf_elements = DocumentLeafElements(config)
         self.document_acknowledgments = Acknowledgments()
         self.document_notes = DocumentNotes(config=config)
         self.document_publisher = DocumentPublisher(config['publisher_name'],
@@ -57,8 +57,8 @@ class DocumentHandler:
         }
 
     def _parse(self, root):
-        # Toplevel elements are handled on the root itself
-        self.toplevel_leaf_elements.create_csaf(root)
+        # Document leaf elements are handled on the root itself
+        self.document_leaf_elements.create_csaf(root)
 
         # For children of the root element with a deeper structure, dedicated section handlers are used
         for elem in root.iterchildren():
@@ -68,15 +68,14 @@ class DocumentHandler:
 
             if tag_handler:
                 tag_handler.create_csaf(root_element=elem)
-            else:
-                logging.warning(f'Not handled input tag {tag}. No parser available.')
+
 
     def _compose_final_csaf(self) -> dict:
         # Merges first level leaves into final CSAF document.
         # [mapping table](https://github.com/tschmidtb51/csaf/blob/csaf-2.0-what-is-new-table/notes/whats-new-csaf-v2.0-cn01.md#e4-mapped-elements)
 
         final_csaf = {'document': {}}
-        final_csaf['document'] = self.toplevel_leaf_elements.csaf
+        final_csaf['document'] = self.document_leaf_elements.csaf
         final_csaf['document']['acknowledgments'] = self.document_acknowledgments.csaf
         final_csaf['document']['notes'] = self.document_notes.csaf
         final_csaf['document']['publisher'] = self.document_publisher.csaf

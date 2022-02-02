@@ -2,9 +2,10 @@ import logging
 from ..common.common import SectionHandler
 
 
-class ToplevelLeafElements(SectionHandler):
+class DocumentLeafElements(SectionHandler):
     """
-    A handler for the toplevel (leaf) elements of the document which do not have any children elements
+    A handler for the document leaf elements which do not have any further children elements
+    handling CSAF path: /document
     """
     def __init__(self, config):
         super().__init__(config)
