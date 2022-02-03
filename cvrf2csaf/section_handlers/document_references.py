@@ -5,7 +5,7 @@ from ..common.common import SectionHandler
 class DocumentReferences(SectionHandler):
     def __init__(self, config):
         super().__init__()
-        self.force_default_category = config.get('force_default_reference_category')
+        self.force_default_category = config.get('force_insert_default_reference_category')
 
     def _process_mandatory_elements(self, root_element):
 
@@ -20,7 +20,7 @@ class DocumentReferences(SectionHandler):
             elif self.force_default_category:
                 ref_csaf['category'] = 'external'
                 logging.info('"Type" attribute not present in "Reference" element, using default value "external". '
-                             'This can be controlled by "force_default_reference_category" option.')
+                             'This can be controlled by "force_insert_default_reference_category" option.')
 
             references.append(ref_csaf)
 
