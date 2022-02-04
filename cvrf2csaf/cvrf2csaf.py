@@ -33,18 +33,14 @@ class DocumentHandler:
     CATALOG_FILE = 'schemata/catalog_1_2.xml'
 
     def __init__(self, config):
-        self.document_leaf_elements = DocumentLeafElements(config)
+        self.document_leaf_elements = DocumentLeafElements(config=config)
         self.document_acknowledgments = Acknowledgments()
-        self.document_notes = DocumentNotes(config=config)
-        self.document_publisher = DocumentPublisher(config['publisher_name'],
-                                                    config['publisher_namespace'])
-        self.document_references = DocumentReferences()
-        self.document_tracking = DocumentTracking(config,
-                                                  config['cvrf2csaf_name'],
-                                                  config['cvrf2csaf_version'],
-                                                  config['force_update_revision_history'])
+        self.document_notes = DocumentNotes()
+        self.document_publisher = DocumentPublisher(config=config)
+        self.document_references = DocumentReferences(config=config)
+        self.document_tracking = DocumentTracking(config=config)
         self.product_tree = ProductTree()
-        self.vulnerability = Vulnerability()
+        self.vulnerability = Vulnerability(config=config)
 
         self.sections_handlers = {
             'Acknowledgements': self.document_acknowledgments,
