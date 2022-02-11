@@ -74,7 +74,8 @@ class DocumentHandler:
 
         final_csaf = {'document': {}}
         final_csaf['document'] = self.document_leaf_elements.csaf
-        final_csaf['document']['acknowledgments'] = self.document_acknowledgments.csaf
+        if self.document_acknowledgments.csaf:
+            final_csaf['document']['acknowledgments'] = self.document_acknowledgments.csaf
         final_csaf['document']['notes'] = self.document_notes.csaf
         final_csaf['document']['publisher'] = self.document_publisher.csaf
         final_csaf['document']['tracking'] = self.document_tracking.csaf

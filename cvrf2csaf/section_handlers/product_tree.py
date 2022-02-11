@@ -4,7 +4,22 @@ from ..common.common import SectionHandler
 
 class ProductTree(SectionHandler):
     """ Responsible for converting the ProductTree section """
-    
+    branch_type_mapping = {
+        "Vendor": 'vendor',
+        "Product Family": 'product_family',
+        "Product Name": 'product_name',
+        "Product Version": 'product_version',
+        "Patch Level": 'patch_level',
+        "Service Pack": 'service_pack',
+        "Architecture": 'architecture',
+        "Language": 'language',
+        "Legacy": 'legacy',
+        "Specification": 'specification',
+        "Host Name": 'host_name',
+        "Realm": 'N/A',
+        "Resource": 'N/A',
+    }
+
     def __init__(self):
         super().__init__()
 
@@ -101,7 +116,7 @@ class ProductTree(SectionHandler):
 
             leaf_branch = {
                 'name': root_element.attrib['Name'],
-                'category': root_element.attrib['Type'],
+                'category': self.branch_type_mapping[root_element.attrib['Type']],
                 'product': self._construct_full_product_name(root_element.FullProductName)
             }
 
@@ -115,7 +130,7 @@ class ProductTree(SectionHandler):
                 else:
                     branches.append({
                         'name': branch_elem.attrib['Name'],
-                        'category': branch_elem.attrib['Type'],
+                        'category': self.branch_type_mapping[branch_elem.attrib['Type']],
                         'branches': self._handle_branches_recursive(branch_elem)
                     })
 

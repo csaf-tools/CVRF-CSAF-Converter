@@ -8,6 +8,12 @@ from ..common.utils import get_utc_timestamp
 
 
 class DocumentTracking(SectionHandler):
+    tracking_status_mapping = {
+        'Final': 'final',
+        'Draft': 'draft',
+        'Interim': 'interim',
+    }
+
     def __init__(self, config):
         super().__init__()
         self.cvrf2csaf_name = config.get('cvrf2csaf_name')
@@ -18,7 +24,7 @@ class DocumentTracking(SectionHandler):
         self.csaf['id'] = root_element.Identification.ID.text
         self.csaf['current_release_date'] = root_element.CurrentReleaseDate.text
         self.csaf['initial_release_date'] = root_element.InitialReleaseDate.text
-        self.csaf['status'] = root_element.Status.text
+        self.csaf['status'] = self.tracking_status_mapping[root_element.Status.text]
 
         revision_history, version = self._process_revision_history_and_version(root_element)
         self.csaf['revision_history'] = revision_history
