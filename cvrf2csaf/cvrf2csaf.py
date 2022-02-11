@@ -9,9 +9,9 @@ from .common.utils import get_config_from_file, store_json, critical_exit
 
 from .section_handlers.document_leaf_elements import DocumentLeafElements
 from .section_handlers.document_acknowlegments import Acknowledgments
-from .section_handlers.document_notes import DocumentNotes
+from .section_handlers.notes import Notes
 from .section_handlers.document_publisher import DocumentPublisher
-from .section_handlers.document_references import DocumentReferences
+from .section_handlers.references import References
 from .section_handlers.document_tracking import DocumentTracking
 from .section_handlers.product_tree import ProductTree
 from .section_handlers.vulnerability import Vulnerability
@@ -35,9 +35,9 @@ class DocumentHandler:
     def __init__(self, config):
         self.document_leaf_elements = DocumentLeafElements(config=config)
         self.document_acknowledgments = Acknowledgments()
-        self.document_notes = DocumentNotes()
+        self.document_notes = Notes()
         self.document_publisher = DocumentPublisher(config=config)
-        self.document_references = DocumentReferences(config=config)
+        self.document_references = References(config=config)
         self.document_tracking = DocumentTracking(config=config)
         self.product_tree = ProductTree()
         self.vulnerability = Vulnerability(config=config)
