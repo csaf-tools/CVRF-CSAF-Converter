@@ -2,7 +2,7 @@ import logging
 from ..common.common import SectionHandler
 from ..common.utils import critical_exit
 
-class DocumentNotes(SectionHandler):
+class Notes(SectionHandler):
     def __init__(self):
         super().__init__()
 
