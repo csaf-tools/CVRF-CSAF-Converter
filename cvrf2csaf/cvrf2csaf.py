@@ -4,7 +4,7 @@ import os
 import json
 from lxml import etree
 from lxml import objectify
-from jsonschema import validate, ValidationError
+from jsonschema import Draft202012Validator, ValidationError, SchemaError, draft202012_format_checker
 
 from .common.utils import get_config_from_file, store_json, critical_exit
 
@@ -119,9 +119,14 @@ class DocumentHandler:
             output_file_content = json.loads(f.read())
 
         try:
-            validate(output_file_content, csaf_schema_content)
+            Draft202012Validator.check_schema(csaf_schema_content)
+            v = Draft202012Validator(csaf_schema_content, format_checker=draft202012_format_checker)
+            v.validate(output_file_content)
+        except SchemaError as e:
+            logging.error(f'CSAF schema validation error. Provided CSAF schema is invalid. Message: {e.message}')
+            return False
         except ValidationError as e:
-            logging.error(f'CSAF schema validation: {e.message}')
+            logging.error(f'CSAF schema validation error. Path: {e.json_path}. Message: {e.message}.')
             return False
         else:
             logging.info('CSAF schema validation OK')
