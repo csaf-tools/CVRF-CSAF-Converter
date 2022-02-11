@@ -8,11 +8,11 @@ from ..common.utils import get_utc_timestamp
 
 
 class DocumentTracking(SectionHandler):
-    def __init__(self, config, cvrf2csaf_name, cvrf2csaf_version, force_update_revision_history):
-        super().__init__(config)
-        self.cvrf2csaf_name = cvrf2csaf_name
-        self.cvrf2csaf_version = cvrf2csaf_version
-        self.force_update_revision_history = force_update_revision_history
+    def __init__(self, config):
+        super().__init__()
+        self.cvrf2csaf_name = config.get('cvrf2csaf_name')
+        self.cvrf2csaf_version = config.get('cvrf2csaf_version')
+        self.force_update_revision_history = config.get('force_update_revision_history')
 
     def _process_mandatory_elements(self, root_element):
         self.csaf['id'] = root_element.Identification.ID.text
