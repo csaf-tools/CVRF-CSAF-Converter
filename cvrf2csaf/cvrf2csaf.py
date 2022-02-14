@@ -32,7 +32,9 @@ class DocumentHandler:
 
     SCHEMA_FILE = 'schemata/cvrf/1.2/cvrf.xsd'
     CATALOG_FILE = 'schemata/catalog_1_2.xml'
-    CSAF_SCHEMA_FILE = 'schemata/csaf/2.0/csaf_json_schema.json'
+
+    # Content copied from https://github.com/secvisogram/secvisogram/blob/main/app/lib/shared/Core/csaf_2.0_strict.json
+    CSAF_SCHEMA_FILE = 'schemata/csaf/2.0/csaf_json_schema_strict.json'
 
     def __init__(self, config):
         self.document_leaf_elements = DocumentLeafElements(config=config)
