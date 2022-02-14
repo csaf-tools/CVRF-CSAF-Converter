@@ -4,6 +4,7 @@ import os
 import json
 from lxml import etree
 from lxml import objectify
+from jsonschema import Draft202012Validator, ValidationError, SchemaError, draft202012_format_checker
 
 from .common.utils import get_config_from_file, store_json, critical_exit
 
@@ -31,6 +32,9 @@ class DocumentHandler:
 
     SCHEMA_FILE = 'schemata/cvrf/1.2/cvrf.xsd'
     CATALOG_FILE = 'schemata/catalog_1_2.xml'
+
+    # Content copied from https://github.com/secvisogram/secvisogram/blob/main/app/lib/shared/Core/csaf_2.0_strict.json
+    CSAF_SCHEMA_FILE = 'schemata/csaf/2.0/csaf_json_schema_strict.json'
 
     def __init__(self, config):
         self.document_leaf_elements = DocumentLeafElements(config=config)
@@ -105,6 +109,32 @@ class DocumentHandler:
         return self._compose_final_csaf()
 
 
+    def validate_output_against_schema(self, output_file) -> bool:
+        """
+        Validates the CSAF output against the CSAF JSON schema
+        return: True if valid, False if invalid
+        """
+        with open(self.CSAF_SCHEMA_FILE) as f:
+            csaf_schema_content = json.loads(f.read())
+
+        with open(output_file) as f:
+            output_file_content = json.loads(f.read())
+
+        try:
+            Draft202012Validator.check_schema(csaf_schema_content)
+            v = Draft202012Validator(csaf_schema_content, format_checker=draft202012_format_checker)
+            v.validate(output_file_content)
+        except SchemaError as e:
+            logging.error(f'CSAF schema validation error. Provided CSAF schema is invalid. Message: {e.message}')
+            return False
+        except ValidationError as e:
+            logging.error(f'CSAF schema validation error. Path: {e.json_path}. Message: {e.message}.')
+            return False
+        else:
+            logging.info('CSAF schema validation OK')
+            return True
+
+
 def main():
     # General args
     parser = argparse.ArgumentParser(description='Converts CVRF XML input into CSAF 2.0 JSON output.')
@@ -149,6 +179,10 @@ def main():
     # DocumentHandler is iterating over each XML element within convert_file and return CSAF 2.0 JSON
     h = DocumentHandler(config)
     final_csaf = h.convert_file(path=config.get('input_file'))
+
+    if not h.validate_output_against_schema(config.get('output_file')):
+        # TODO: If --force given, the output should not be written when CSAF not valid according to schema
+        pass
 
     # Output / Store results
     if final_csaf:
