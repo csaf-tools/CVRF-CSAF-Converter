@@ -110,7 +110,7 @@ class DocumentHandler:
         return self._compose_final_csaf()
 
 
-    def validate_output_against_schema(self, output_file) -> bool:
+    def validate_output_against_schema(self, final_csaf) -> bool:
         """
         Validates the CSAF output against the CSAF JSON schema
         return: True if valid, False if invalid
@@ -118,13 +118,10 @@ class DocumentHandler:
         with open(self.CSAF_SCHEMA_FILE) as f:
             csaf_schema_content = json.loads(f.read())
 
-        with open(output_file) as f:
-            output_file_content = json.loads(f.read())
-
         try:
             Draft202012Validator.check_schema(csaf_schema_content)
             v = Draft202012Validator(csaf_schema_content, format_checker=draft202012_format_checker)
-            v.validate(output_file_content)
+            v.validate(final_csaf)
         except SchemaError as e:
             logging.error(f'CSAF schema validation error. Provided CSAF schema is invalid. Message: {e.message}')
             return False
@@ -181,7 +178,7 @@ def main():
     h = DocumentHandler(config)
     final_csaf = h.convert_file(path=config.get('input_file'))
 
-    if not h.validate_output_against_schema(config.get('output_file')):
+    if not h.validate_output_against_schema(final_csaf):
         # TODO: If --force given, the output should not be written when CSAF not valid according to schema
         pass
 
