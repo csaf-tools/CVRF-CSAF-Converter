@@ -17,6 +17,7 @@ from .section_handlers.references import References
 from .section_handlers.document_tracking import DocumentTracking
 from .section_handlers.product_tree import ProductTree
 from .section_handlers.vulnerability import Vulnerability
+from .common.common import SectionHandler
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(module)s - %(levelname)s - %(message)s')
 
@@ -132,6 +133,9 @@ class DocumentHandler:
         root = DocumentHandler._validate_and_open_file(path)
 
         self._parse(root)
+
+        if SectionHandler.error_occurred:
+            critical_exit("Some error occurred during parsing the document, can't produce output.")
 
         return self._compose_final_csaf()
 
