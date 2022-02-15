@@ -14,32 +14,39 @@ class Acknowledgments(SectionHandler):
 
 
     def _process_optional_elements(self, root_element):
-        # optional values
-        names = []
-        organization = []
-        summary = []
-        urls = []
-        for ack in root_element.Acknowledgment:
-            if hasattr(ack, 'Name'):
-                names.append(ack.Name.text)
-            if hasattr(ack, 'Organization'):
-                organization.append(ack.Organization.text)
-            if hasattr(ack, 'Summary'):
-                summary.append(ack.Summary.text)
-            if hasattr(ack, 'Url'):
-                urls.append(ack.Url.text)
+        self.csaf = []
 
-        if len(organization)>=1:
-            # If more than one cvrf:Organization instance is given,
-            # the CVRF CSAF converter converts the first one into the organization.
-            # In addition the converter outputs a warning that information might be lost during conversion of document or vulnerability acknowledgment.
-            self.csaf['organization'] = organization[0]
-            if len(organization) > 1:
-                logging.warn(f'Due to CSAF 2.0 standard, only the first organization can be acknowledged. '
-                             f'{len(organization)-1} are not mentioned in the output.')
-        if len(names) > 0:
-            self.csaf['names'] = names
-        if len(summary) > 0:
-            self.csaf['summary'] = summary
-        if len(urls) > 0:
-            self.csaf['urls'] = urls
+        for ack in root_element.Acknowledgment:
+            # empty Acknowledgment slips CVRF input validation
+            if not any([hasattr(ack, 'Name'),
+                        hasattr(ack, 'Organization'),
+                        hasattr(ack, 'Description'),
+                        hasattr(ack, 'URL')]):
+                logging.warning(f'Skipping empty Acknowlegment entry, input line: {ack.sourceline}')
+                continue
+
+            ack_elem = {}
+
+            if hasattr(ack, 'Organization'):
+                if len(ack.Organization) > 1:
+                    # If more than one cvrf:Organization instance is given,
+                    # the CVRF CSAF converter converts the first one into the organization.
+                    # In addition the converter outputs a warning that information might be lost during conversion
+                    # of document or vulnerability acknowledgment.
+                    logging.warning(f'CSAF 2.0 allows only one organization inside Acknowledgments. '
+                                    f'Taking the first occurence, ignoring: {ack.Organization[1:]}.')
+
+                ack_elem['organization'] = ack.Organization[0].text
+
+            if hasattr(ack, 'Description'):
+                # Single Description elem is asserted on the input
+                ack_elem['summary'] = ack.Description[0].text
+
+            # Names and URLs can have more entries
+            if hasattr(ack, 'Name'):
+                ack_elem['names'] = [x.text for x in ack.Name]
+
+            if hasattr(ack, 'URL'):
+                ack_elem['urls'] = [x.text for x in ack.URL]
+
+            self.csaf.append(ack_elem)

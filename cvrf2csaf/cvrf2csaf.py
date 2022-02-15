@@ -47,7 +47,7 @@ class DocumentHandler:
         self.vulnerability = Vulnerability(config=config)
 
         self.sections_handlers = {
-            'Acknowledgements': self.document_acknowledgments,
+            'Acknowledgments': self.document_acknowledgments,
             'DocumentNotes': self.document_notes,
             'DocumentPublisher': self.document_publisher,
             'DocumentReferences': self.document_references,
