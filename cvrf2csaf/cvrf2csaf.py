@@ -74,16 +74,24 @@ class DocumentHandler:
         # Merges first level leaves into final CSAF document.
         # [mapping table](https://github.com/tschmidtb51/csaf/blob/csaf-2.0-what-is-new-table/notes/whats-new-csaf-v2.0-cn01.md#e4-mapped-elements)
 
+        # Mandatory root elements
         final_csaf = {'document': {}}
         final_csaf['document'] = self.document_leaf_elements.csaf
-        if self.document_acknowledgments.csaf:
-            final_csaf['document']['acknowledgments'] = self.document_acknowledgments.csaf
-        final_csaf['document']['notes'] = self.document_notes.csaf
         final_csaf['document']['publisher'] = self.document_publisher.csaf
         final_csaf['document']['tracking'] = self.document_tracking.csaf
-        final_csaf['document']['references'] = self.document_references.csaf
-        final_csaf['product_tree'] = self.product_tree.csaf
-        final_csaf['vulnerabilities'] = self.vulnerability.csaf
+
+        # Optional root elements
+        if self.document_notes.csaf:
+            final_csaf['document']['notes'] = self.document_notes.csaf
+        if self.document_references.csaf:
+            final_csaf['document']['references'] = self.document_references.csaf
+        if self.document_acknowledgments.csaf:
+            final_csaf['document']['acknowledgments'] = self.document_acknowledgments.csaf
+        if self.product_tree.csaf:
+            final_csaf['product_tree'] = self.product_tree.csaf
+        if self.vulnerability.csaf:
+            final_csaf['vulnerabilities'] = self.vulnerability.csaf
+
         return final_csaf
 
     @classmethod

@@ -20,6 +20,14 @@ class ProductTree(SectionHandler):
         "Resource": 'N/A',
     }
 
+    relation_type_mapping = {
+        'Default Component Of': 'default_component_of',
+        'Optional Component Of': 'optional_component_of',
+        'External Component Of': 'external_component_of',
+        'Installed On': 'installed_on',
+        'Installed With': 'installed_with',
+    }
+
     def __init__(self):
         super().__init__()
 
@@ -74,7 +82,7 @@ class ProductTree(SectionHandler):
                                 'only 1 value here')
 
             rel_to_add = {
-                'category': rel_elem.attrib['RelationType'],
+                'category': self.relation_type_mapping[rel_elem.attrib['RelationType']],
                 'product_reference': rel_elem.attrib['ProductReference'],
                 'relates_to_product_reference': rel_elem.attrib['RelatesToProductReference'],
                 'full_product_name': self._construct_full_product_name(first_prod_name)
