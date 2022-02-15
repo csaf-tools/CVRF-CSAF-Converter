@@ -22,7 +22,7 @@ class Acknowledgments(SectionHandler):
                         hasattr(ack, 'Organization'),
                         hasattr(ack, 'Description'),
                         hasattr(ack, 'URL')]):
-                logging.warning(f'Skipping empty Acknowlegment entry, input line: {ack.sourceline}')
+                logging.warning(f'Skipping empty Acknowledgment entry, input line: {ack.sourceline}')
                 continue
 
             ack_elem = {}

@@ -9,7 +9,7 @@ from jsonschema import Draft202012Validator, ValidationError, SchemaError, draft
 from .common.utils import get_config_from_file, store_json, critical_exit
 
 from .section_handlers.document_leaf_elements import DocumentLeafElements
-from .section_handlers.document_acknowlegments import Acknowledgments
+from .section_handlers.document_acknowledgments import Acknowledgments
 from .section_handlers.notes import Notes
 from .section_handlers.document_publisher import DocumentPublisher
 from .section_handlers.references import References
