@@ -59,7 +59,6 @@ class DocumentHandler:
             'Vulnerability': self.vulnerability,
         }
 
-        self.force = config.get('force', False)
 
     def _update_CVSSv3_version_from_schema(self, root_element):
         """ Tries to update CVSS 3.x version from schema."""
@@ -137,14 +136,6 @@ class DocumentHandler:
 
         self._parse(root)
 
-        if SectionHandler.error_occurred:
-            if not self.force:
-                critical_exit("Some error occurred during parsing the document, can't produce output."
-                              " To override this, use --force.")
-            else:
-                logging.warning('Some errors occurred during conversion,'
-                                ' but producing output as --force option is used.')
-
         return self._compose_final_csaf()
 
     def validate_output_against_schema(self, output_file) -> bool:
@@ -216,9 +207,14 @@ def main():
     h = DocumentHandler(config)
     final_csaf = h.convert_file(path=config.get('input_file'))
 
-    if not h.validate_output_against_schema(config.get('output_file')):
-        # TODO: If --force given, the output should not be written when CSAF not valid according to schema
-        pass
+    if not h.validate_output_against_schema(config.get('output_file')) or SectionHandler.error_occurred:
+        if not config.get('force', False):
+            critical_exit("Some error occurred during conversion, can't produce output."
+                          " To override this, use --force.")
+        else:
+            logging.warning('Some errors occurred during conversion,'
+                            ' but producing output as --force option is used.')
+
 
     # Output / Store results
     if final_csaf:
