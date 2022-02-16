@@ -16,8 +16,11 @@ class ProductTree(SectionHandler):
         "Legacy": 'legacy',
         "Specification": 'specification',
         "Host Name": 'host_name',
-        "Realm": 'N/A',
-        "Resource": 'N/A',
+
+        # These types do not exist in CSAF, agreed to convert it to product_name
+        # https://github.com/csaf-tools/CVRF-CSAF-Converter/pull/54#discussion_r805860658
+        "Realm": 'product_name',
+        "Resource": 'product_name',
     }
 
     relation_type_mapping = {
@@ -45,7 +48,7 @@ class ProductTree(SectionHandler):
             self.csaf['branches'] = branches
 
     @staticmethod
-    def _construct_full_product_name(fpn_elem) -> dict:
+    def _get_full_product_name(fpn_elem) -> dict:
         fpn = {
             'product_id': fpn_elem.attrib['ProductID'],
             'name': fpn_elem.text
@@ -56,13 +59,23 @@ class ProductTree(SectionHandler):
 
         return fpn
 
+
+    @classmethod
+    def _get_branch_type(cls, branch_type: str):
+        if branch_type in ['Realm', 'Resource']:
+            logging.warning(f'Input branch type {branch_type} is no longer supported in CSAF. '
+                            'Converting to product_name')
+
+        return cls.branch_type_mapping[branch_type]
+
+
     def _handle_full_product_names(self, root_element):
         if not hasattr(root_element, 'FullProductName'):
             return
 
         full_product_names = []
         for fpn_elem in root_element.FullProductName:
-            full_product_names.append(self._construct_full_product_name(fpn_elem))
+            full_product_names.append(self._get_full_product_name(fpn_elem))
 
         self.csaf['full_product_names'] = full_product_names
 
@@ -85,7 +98,7 @@ class ProductTree(SectionHandler):
                 'category': self.relation_type_mapping[rel_elem.attrib['RelationType']],
                 'product_reference': rel_elem.attrib['ProductReference'],
                 'relates_to_product_reference': rel_elem.attrib['RelatesToProductReference'],
-                'full_product_name': self._construct_full_product_name(first_prod_name)
+                'full_product_name': self._get_full_product_name(first_prod_name)
             }
 
             relationships.append(rel_to_add)
@@ -124,8 +137,8 @@ class ProductTree(SectionHandler):
 
             leaf_branch = {
                 'name': root_element.attrib['Name'],
-                'category': self.branch_type_mapping[root_element.attrib['Type']],
-                'product': self._construct_full_product_name(root_element.FullProductName)
+                'category': self._get_branch_type(root_element.attrib['Type']),
+                'product': self._get_full_product_name(root_element.FullProductName)
             }
 
             return leaf_branch
@@ -138,7 +151,7 @@ class ProductTree(SectionHandler):
                 else:
                     branches.append({
                         'name': branch_elem.attrib['Name'],
-                        'category': self.branch_type_mapping[branch_elem.attrib['Type']],
+                        'category': self._get_branch_type(branch_elem.attrib['Type']),
                         'branches': self._handle_branches_recursive(branch_elem)
                     })
 
