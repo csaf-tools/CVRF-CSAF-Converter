@@ -168,8 +168,8 @@ def main():
     parser = argparse.ArgumentParser(description='Converts CVRF XML input into CSAF 2.0 JSON output.')
     parser.add_argument('--input-file', dest='input_file', type=str, required=True,
                         help="CVRF XML input file to parse", metavar='PATH')
-    parser.add_argument('--output-file', dest='output_file', type=str, required=True,
-                        help="CVRF JSON output file to write to.", metavar='PATH')
+    parser.add_argument('--output-dir', dest='output_dir', type=str, required=True,
+                        help="CVRF JSON output dir to write to. Filename is derived from /document/tracking/id.", metavar='PATH')
     parser.add_argument('--print', dest='print', action='store_true', default=False,
                         help="Additionally prints JSON output on command line.")
     parser.add_argument('--force', action='store_true', dest='force',
@@ -219,7 +219,8 @@ def main():
 
     # Output / Store results
     file_name = create_file_name(final_csaf['document'].get('tracking', {}).get('id', None), valid_output)
-    store_json(js=final_csaf, fpath=config.get('output_file'))
+    file_path = str(os.path.join(config.get('output_dir'), file_name))
+    store_json(js=final_csaf, fpath=file_path)
     if config.get('print', False):
         print(json.dumps(final_csaf, indent=1))
 
