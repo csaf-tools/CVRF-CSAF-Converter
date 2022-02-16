@@ -42,7 +42,7 @@ class Notes(SectionHandler):
             notes.append(new_note)
 
         if notes and len(notes) > 0:
-            self.csaf['notes'] = notes
+            self.csaf = notes
 
     def _process_mandatory_elements(self, root_element):
         return self._process_mandatory_and_optional(root_element=root_element)

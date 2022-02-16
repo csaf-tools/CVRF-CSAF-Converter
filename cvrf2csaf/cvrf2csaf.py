@@ -7,11 +7,12 @@ import re
 from lxml import etree
 from lxml import objectify
 from jsonschema import Draft202012Validator, ValidationError, SchemaError, draft202012_format_checker
+from pkg_resources import get_distribution
 
 from .common.utils import get_config_from_file, store_json, critical_exit, create_file_name
 
 from .section_handlers.document_leaf_elements import DocumentLeafElements
-from .section_handlers.document_acknowlegments import Acknowledgments
+from .section_handlers.document_acknowledgments import Acknowledgments
 from .section_handlers.notes import Notes
 from .section_handlers.document_publisher import DocumentPublisher
 from .section_handlers.references import References
@@ -39,18 +40,18 @@ class DocumentHandler:
     # Content copied from https://github.com/secvisogram/secvisogram/blob/main/app/lib/shared/Core/csaf_2.0_strict.json
     CSAF_SCHEMA_FILE = 'schemata/csaf/2.0/csaf_json_schema_strict.json'
 
-    def __init__(self, config):
-        self.document_leaf_elements = DocumentLeafElements(config=config)
+    def __init__(self, config, pkg_version):
+        self.document_leaf_elements = DocumentLeafElements(config)
         self.document_acknowledgments = Acknowledgments()
         self.document_notes = Notes()
-        self.document_publisher = DocumentPublisher(config=config)
-        self.document_references = References(config=config)
-        self.document_tracking = DocumentTracking(config=config)
+        self.document_publisher = DocumentPublisher(config)
+        self.document_references = References(config)
+        self.document_tracking = DocumentTracking(config, pkg_version)
         self.product_tree = ProductTree()
-        self.vulnerability = Vulnerability(config=config)
+        self.vulnerability = Vulnerability(config)
 
         self.sections_handlers = {
-            'Acknowledgements': self.document_acknowledgments,
+            'Acknowledgments': self.document_acknowledgments,
             'DocumentNotes': self.document_notes,
             'DocumentPublisher': self.document_publisher,
             'DocumentReferences': self.document_references,
@@ -99,19 +100,28 @@ class DocumentHandler:
             if tag_handler:
                 tag_handler.create_csaf(root_element=elem)
 
+
     def _compose_final_csaf(self) -> dict:
         # Merges first level leaves into final CSAF document.
         # [mapping table](https://github.com/tschmidtb51/csaf/blob/csaf-2.0-what-is-new-table/notes/whats-new-csaf-v2.0-cn01.md#e4-mapped-elements)
 
         final_csaf = {'document': {}}
         final_csaf['document'] = self.document_leaf_elements.csaf
-        final_csaf['document']['acknowledgments'] = self.document_acknowledgments.csaf
-        final_csaf['document']['notes'] = self.document_notes.csaf
-        final_csaf['document']['publisher'] = self.document_publisher.csaf
-        final_csaf['document']['tracking'] = self.document_tracking.csaf
-        final_csaf['document']['references'] = self.document_references.csaf
-        final_csaf['product_tree'] = self.product_tree.csaf
-        final_csaf['vulnerabilities'] = self.vulnerability.csaf
+
+        section_mappings = (
+            (final_csaf['document'], 'publisher', self.document_publisher.csaf),
+            (final_csaf['document'], 'tracking', self.document_tracking.csaf),
+            (final_csaf['document'], 'notes', self.document_notes.csaf),
+            (final_csaf['document'], 'references', self.document_references.csaf),
+            (final_csaf['document'], 'acknowledgments', self.document_acknowledgments.csaf),
+            (final_csaf, 'product_tree', self.product_tree.csaf),
+            (final_csaf, 'vulnerabilities', self.vulnerability.csaf),
+        )
+
+        for root, section, csaf_content in section_mappings:
+            if csaf_content:
+                root[section] = csaf_content
+
         return final_csaf
 
     @classmethod
@@ -137,7 +147,8 @@ class DocumentHandler:
 
         return self._compose_final_csaf()
 
-    def validate_output_against_schema(self, output_file) -> bool:
+
+    def validate_output_against_schema(self, final_csaf) -> bool:
         """
         Validates the CSAF output against the CSAF JSON schema
         return: True if valid, False if invalid
@@ -145,13 +156,10 @@ class DocumentHandler:
         with open(self.CSAF_SCHEMA_FILE) as f:
             csaf_schema_content = json.loads(f.read())
 
-        with open(output_file) as f:
-            output_file_content = json.loads(f.read())
-
         try:
             Draft202012Validator.check_schema(csaf_schema_content)
             v = Draft202012Validator(csaf_schema_content, format_checker=draft202012_format_checker)
-            v.validate(output_file_content)
+            v.validate(final_csaf)
         except SchemaError as e:
             logging.error(f'CSAF schema validation error. Provided CSAF schema is invalid. Message: {e.message}')
             return False
@@ -166,6 +174,7 @@ class DocumentHandler:
 def main():
     # General args
     parser = argparse.ArgumentParser(description='Converts CVRF XML input into CSAF 2.0 JSON output.')
+    parser.add_argument('-v', '--version', action='version', version='{}'.format(get_distribution('cvrf2csaf').version))
     parser.add_argument('--input-file', dest='input_file', type=str, required=True,
                         help="CVRF XML input file to parse", metavar='PATH')
     parser.add_argument('--output-dir', dest='output_dir', type=str, required=True,
@@ -175,6 +184,8 @@ def main():
     parser.add_argument('--force', action='store_true', dest='force',
                         help="If used, the converter produces output that is invalid "
                              "(use case: convert to JSON, fix the errors manual, e.g. in Secvisogram.")
+
+
 
     # Document Publisher args
     parser.add_argument('--publisher-name', dest='publisher_name', type=str, help="Name of the publisher.")
@@ -202,8 +213,11 @@ def main():
     if not os.path.isfile(config.get('input_file')):
         critical_exit(f'Input file not found, check the path: {config.get("input_file")}')
 
+    # Get the version of the installed package
+    pkg_version = get_distribution('cvrf2csaf').version
+
     # DocumentHandler is iterating over each XML element within convert_file and return CSAF 2.0 JSON
-    h = DocumentHandler(config)
+    h = DocumentHandler(config, pkg_version)
     final_csaf = h.convert_file(path=config.get('input_file'))
 
     valid_output = True
