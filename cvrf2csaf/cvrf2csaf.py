@@ -1,8 +1,9 @@
 import logging
 import argparse
-import os
 import json
+import os
 import re
+
 from lxml import etree
 from lxml import objectify
 from jsonschema import Draft202012Validator, ValidationError, SchemaError, draft202012_format_checker
@@ -57,6 +58,8 @@ class DocumentHandler:
             'ProductTree': self.product_tree,
             'Vulnerability': self.vulnerability,
         }
+
+        self.force = config.get('force', False)
 
     def _update_CVSSv3_version_from_schema(self, root_element):
         """ Tries to update CVSS 3.x version from schema."""
@@ -135,7 +138,10 @@ class DocumentHandler:
         self._parse(root)
 
         if SectionHandler.error_occurred:
-            critical_exit("Some error occurred during parsing the document, can't produce output.")
+            if not self.force:
+                critical_exit("Some error occurred during parsing the document, can't produce output.")
+            else:
+                logging.warning('Some errors occurred during conversion, but --force option')
 
         return self._compose_final_csaf()
 
