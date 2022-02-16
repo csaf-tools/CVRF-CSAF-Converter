@@ -1,8 +1,10 @@
-import argparse
-import yaml
-import os, logging, json
-import inspect
 import pkg_resources
+import logging
+import json
+import yaml
+import os
+import re
+
 from pathlib import Path
 from datetime import datetime, timezone
 
@@ -50,8 +52,19 @@ def get_config_from_file() -> dict:
         return config
 
 
-def store_json(js, fpath):
+def create_file_name(document_tracking_id, valid_output):
+    if document_tracking_id is not None:
+        file_name = re.sub(r"([^+,_a-zA-Z0-9])", '_', document_tracking_id.lower())
+    else:
+        file_name = 'out'
 
+    if not valid_output:
+        file_name = f'{file_name}_invalid'
+    file_name = f'{file_name}.json'
+    return file_name
+
+
+def store_json(js, fpath):
     try:
 
         path = Path(fpath)

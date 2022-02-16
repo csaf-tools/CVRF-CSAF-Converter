@@ -8,7 +8,7 @@ from lxml import etree
 from lxml import objectify
 from jsonschema import Draft202012Validator, ValidationError, SchemaError, draft202012_format_checker
 
-from .common.utils import get_config_from_file, store_json, critical_exit
+from .common.utils import get_config_from_file, store_json, critical_exit, create_file_name
 
 from .section_handlers.document_leaf_elements import DocumentLeafElements
 from .section_handlers.document_acknowlegments import Acknowledgments
@@ -58,7 +58,6 @@ class DocumentHandler:
             'ProductTree': self.product_tree,
             'Vulnerability': self.vulnerability,
         }
-
 
     def _update_CVSSv3_version_from_schema(self, root_element):
         """ Tries to update CVSS 3.x version from schema."""
@@ -207,7 +206,10 @@ def main():
     h = DocumentHandler(config)
     final_csaf = h.convert_file(path=config.get('input_file'))
 
+    valid_output = True
     if not h.validate_output_against_schema(config.get('output_file')) or SectionHandler.error_occurred:
+        valid_output = False
+
         if not config.get('force', False):
             critical_exit("Some error occurred during conversion, can't produce output."
                           " To override this, use --force.")
@@ -215,12 +217,11 @@ def main():
             logging.warning('Some errors occurred during conversion,'
                             ' but producing output as --force option is used.')
 
-
     # Output / Store results
-    if final_csaf:
-        store_json(js=final_csaf, fpath=config.get('output_file'))
-        if config.get('print', False):
-            print(json.dumps(final_csaf, indent=1))
+    file_name = create_file_name(final_csaf['document'].get('tracking', {}).get('id', None), valid_output)
+    store_json(js=final_csaf, fpath=config.get('output_file'))
+    if config.get('print', False):
+        print(json.dumps(final_csaf, indent=1))
 
 
 if __name__ == '__main__':
