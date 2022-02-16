@@ -14,10 +14,10 @@ class DocumentTracking(SectionHandler):
         'Interim': 'interim',
     }
 
-    def __init__(self, config):
+    def __init__(self, config, pkg_version):
         super().__init__()
         self.cvrf2csaf_name = config.get('cvrf2csaf_name')
-        self.cvrf2csaf_version = config.get('cvrf2csaf_version')
+        self.cvrf2csaf_version = pkg_version
         self.force_update_revision_history = config.get('force_update_revision_history')
 
     def _process_mandatory_elements(self, root_element):
