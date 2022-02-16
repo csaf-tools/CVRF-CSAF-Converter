@@ -139,9 +139,11 @@ class DocumentHandler:
 
         if SectionHandler.error_occurred:
             if not self.force:
-                critical_exit("Some error occurred during parsing the document, can't produce output.")
+                critical_exit("Some error occurred during parsing the document, can't produce output."
+                              " To override this, use --force.")
             else:
-                logging.warning('Some errors occurred during conversion, but --force option')
+                logging.warning('Some errors occurred during conversion,'
+                                ' but producing output as --force option is used.')
 
         return self._compose_final_csaf()
 
