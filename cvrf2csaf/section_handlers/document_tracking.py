@@ -4,7 +4,7 @@ import sys
 from operator import itemgetter
 from typing import Tuple
 from ..common.common import SectionHandler
-from ..common.utils import get_utc_timestamp
+from ..common.utils import get_utc_timestamp, convert_to_utc_timestamp
 
 
 class DocumentTracking(SectionHandler):
@@ -22,8 +22,8 @@ class DocumentTracking(SectionHandler):
 
     def _process_mandatory_elements(self, root_element):
         self.csaf['id'] = root_element.Identification.ID.text
-        self.csaf['current_release_date'] = root_element.CurrentReleaseDate.text
-        self.csaf['initial_release_date'] = root_element.InitialReleaseDate.text
+        self.csaf['current_release_date'] = convert_to_utc_timestamp(root_element.CurrentReleaseDate.text)
+        self.csaf['initial_release_date'] = convert_to_utc_timestamp(root_element.InitialReleaseDate.text)
         self.csaf['status'] = self.tracking_status_mapping[root_element.Status.text]
 
         revision_history, version = self._process_revision_history_and_version(root_element)
@@ -100,7 +100,7 @@ class DocumentTracking(SectionHandler):
         # All the conditions were met, now add the actual revision to the history
         revision_history.append(
             {
-                'date': root_element.CurrentReleaseDate.text,
+                'date': convert_to_utc_timestamp(root_element.CurrentReleaseDate.text),
                 'number': root_element.Version.text,
                 'summary': f'Added by {self.cvrf2csaf_name} as the value was missing in the original CVRF.',
                 # Extra vars
@@ -132,7 +132,7 @@ class DocumentTracking(SectionHandler):
             # number: this value might be overwritten later if some version numbers doesn't match semantic versioning
             revision_history.append(
                 {
-                    'date': revision.Date.text,
+                    'date': convert_to_utc_timestamp(revision.Date.text),
                     'number': revision.Number.text,
                     'summary': revision.Description.text,
                     # Extra vars

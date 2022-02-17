@@ -5,6 +5,7 @@ import inspect
 import pkg_resources
 from pathlib import Path
 from datetime import datetime, timezone
+from .common import SectionHandler
 
 
 def critical_exit(msg, status_code=1):
@@ -76,3 +77,15 @@ def store_json(js, fpath):
 
 def get_utc_timestamp():
     return datetime.now(timezone.utc).isoformat(timespec='milliseconds')
+
+
+def convert_to_utc_timestamp(time_stamp):
+
+    ts = time_stamp.replace('Z', '+00:00')
+    try:
+        dt = datetime.fromisoformat(ts)
+        return dt.isoformat(timespec='milliseconds')
+    except Exception as e:
+        logging.error(f'invalid time stamp provided {time_stamp}.')
+        SectionHandler.error_occurred = True
+        return None
