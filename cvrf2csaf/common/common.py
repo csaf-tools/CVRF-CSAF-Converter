@@ -11,6 +11,8 @@ class SectionHandler:
         csaf     The CSAF interpretation of the data, to be converted to JSON in the final composition step
     """
 
+    error_occurred = False
+
     def __init__(self):
         self.csaf = {}
 
