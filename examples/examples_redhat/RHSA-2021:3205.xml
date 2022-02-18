@@ -1,0 +1,653 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cvrfdoc xmlns="http://www.icasi.org/CVRF/schema/cvrf/1.1" xmlns:cvrf="http://www.icasi.org/CVRF/schema/cvrf/1.1">
+  <DocumentTitle xml:lang="en">Red Hat Security Advisory: Red Hat Integration Camel-K 1.4 release and security update</DocumentTitle>
+  <DocumentType>Security Advisory</DocumentType>
+  <DocumentPublisher Type="Vendor">
+    <ContactDetails>secalert@redhat.com</ContactDetails>
+    <IssuingAuthority>Red Hat Product Security</IssuingAuthority>
+  </DocumentPublisher>
+  <DocumentTracking>
+    <Identification><ID>RHSA-2021:3205</ID></Identification>
+    <Status>Final</Status>
+    <Version>1</Version>
+    <RevisionHistory>
+       <Revision>
+         <Number>1</Number>
+         <Date>2021-10-18T13:54:00Z</Date>
+         <Description>Current version</Description>
+       </Revision>
+    </RevisionHistory>
+    <InitialReleaseDate>2021-08-18T09:13:00Z</InitialReleaseDate>
+    <CurrentReleaseDate>2021-10-18T13:54:00Z</CurrentReleaseDate>
+    <Generator>
+      <Engine>Red Hat SDEngine 3.2.1</Engine>
+      <Date>2021-10-21T13:38:00Z</Date>
+    </Generator>
+  </DocumentTracking>
+  <DocumentNotes>
+    <Note Title="Topic" Type="Summary" Ordinal="1" xml:lang="en">
+A minor version update (from 1.3 to 1.4) is now available for Red Hat Integration Camel K that includes bug fixes and enhancements. The purpose of this text-only errata is to inform you about the security issues fixed in this release.
+
+Red Hat Product Security has rated this update as having a security impact of Moderate. A Common Vulnerability Scoring System (CVSS) base score, which gives a detailed severity rating, is available for each vulnerability from the CVE link(s) in the References section.
+    </Note>
+    <Note Title="Details" Type="General" Ordinal="2" xml:lang="en">
+A minor version update (from 1.3 to 1.4) is now available for Red Hat Camel K that includes bug fixes and enhancements, which are documented in the Release Notes document linked to in the References.
+
+Security Fix(es):
+
+* cron-utils: template injection allows attackers to inject arbitrary Java EL expressions leading to remote code execution (CVE-2020-26238)
+
+* californium-core: DTLS - DoS vulnerability for certificate based handshakes (CVE-2020-27222)
+
+* undertow: special character in query results in server errors (CVE-2020-27782)
+
+* bouncycastle: password bypass in OpenBSDBCrypt.checkPassword utility possible (CVE-2020-28052)
+
+* activemq: improper authentication allows MITM attack (CVE-2020-13920)
+
+* flink: apache-flink: directory traversal attack allows remote file writing through the REST API (CVE-2020-17518)
+
+* groovy: OS temporary directory leads to information disclosure (CVE-2020-17521)
+
+* kubernetes-client: fabric8-kubernetes-client: vulnerable to a path traversal leading to integrity and availability compromise (CVE-2021-20218)
+
+* pdfbox: infinite loop while loading a crafted PDF file (CVE-2021-27807)
+
+* cxf-rt-rs-json-basic: CXF: Denial of service vulnerability in parsing JSON via JsonMapObjectReaderWriter (CVE-2021-30468)
+
+* kotlin-scripting-jvm: kotlin: vulnerable Java API was used for temporary file and folder creation which could result in information disclosure (CVE-2020-29582)
+
+* pdfbox: OutOfMemory-Exception while loading a crafted PDF file (CVE-2021-27906)
+
+* pdfbox: OutOfMemory-Exception while loading a crafted PDF file (CVE-2021-31811)
+
+For more details about the security issue(s), including the impact, a CVSS score, acknowledgments, and other related information, refer to the CVE page(s) listed in the References section.
+    </Note>
+    <Note Title="Terms of Use" Ordinal="3" Type="Legal Disclaimer" xml:lang="en">This content is licensed under the Creative Commons Attribution 4.0 International License (https://creativecommons.org/licenses/by/4.0/). If you distribute this content, or a modified version of it, you must provide attribution to Red Hat Inc. and provide a link to the original.</Note>
+  </DocumentNotes>
+  <DocumentDistribution xml:lang="en">Copyright © 2021 Red Hat, Inc. All rights reserved.</DocumentDistribution>
+  <AggregateSeverity Namespace="https://access.redhat.com/security/updates/classification/">Moderate</AggregateSeverity>
+  <DocumentReferences>
+    <Reference Type="Self">
+       <URL>https://access.redhat.com/errata/RHSA-2021:3205</URL>
+       <Description>https://access.redhat.com/errata/RHSA-2021:3205</Description>
+    </Reference>
+    <Reference Type="External">
+       <URL>https://access.redhat.com/security/updates/classification/#moderate</URL>
+       <Description>https://access.redhat.com/security/updates/classification/#moderate</Description>
+    </Reference>
+    <Reference Type="External">
+       <URL>https://access.redhat.com/documentation/en-us/red_hat_integration/2021.q3/html/getting_started_with_camel_k/</URL>
+       <Description>https://access.redhat.com/documentation/en-us/red_hat_integration/2021.q3/html/getting_started_with_camel_k/</Description>
+    </Reference>
+    <Reference Type="External">
+       <URL>https://access.redhat.com/jbossnetwork/restricted/listSoftware.html?downloadType=distributions&amp;product=red.hat.integration&amp;version=2021-Q3</URL>
+       <Description>https://access.redhat.com/jbossnetwork/restricted/listSoftware.html?downloadType=distributions&amp;product=red.hat.integration&amp;version=2021-Q3</Description>
+    </Reference>
+  </DocumentReferences>
+
+  <Vulnerability Ordinal="1" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">activemq: improper authentication allows MITM attack</Note></Notes>
+    <DiscoveryDate>2020-09-10T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2020-09-10T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2020-13920</CVE>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+Before applying this update, make sure all previously released errata
+relevant to your system have been applied.
+
+For details on how to apply this update, refer to:
+
+https://access.redhat.com/articles/11258
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:3205</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2020-13920</URL>
+        <Description>CVE-2020-13920</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1880101</URL>
+        <Description>bz#1880101: CVE-2020-13920 activemq: improper authentication allows MITM attack</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="2" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">cxf: XSS via the styleSheetPath</Note></Notes>
+    <DiscoveryDate>2020-11-12T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2020-11-12T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2020-13954</CVE>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+Before applying this update, make sure all previously released errata
+relevant to your system have been applied.
+
+For details on how to apply this update, refer to:
+
+https://access.redhat.com/articles/11258
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:3205</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2020-13954</URL>
+        <Description>CVE-2020-13954</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1898235</URL>
+        <Description>bz#1898235: CVE-2020-13954 cxf: XSS via the styleSheetPath</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="3" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">apache-flink: directory traversal attack allows remote file writing through the REST API</Note></Notes>
+    <DiscoveryDate>2021-01-05T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-01-05T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2020-17518</CVE>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+Before applying this update, make sure all previously released errata
+relevant to your system have been applied.
+
+For details on how to apply this update, refer to:
+
+https://access.redhat.com/articles/11258
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:3205</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2020-17518</URL>
+        <Description>CVE-2020-17518</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1913312</URL>
+        <Description>bz#1913312: CVE-2020-17518 apache-flink: directory traversal attack allows remote file writing through the REST API</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="4" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">groovy: OS temporary directory leads to information disclosure</Note></Notes>
+    <DiscoveryDate>2021-01-20T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2020-11-19T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2020-17521</CVE>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+Before applying this update, make sure all previously released errata
+relevant to your system have been applied.
+
+For details on how to apply this update, refer to:
+
+https://access.redhat.com/articles/11258
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:3205</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://groovy-lang.org/security.html#CVE-2020-17521</URL>
+        <Description>https://groovy-lang.org/security.html#CVE-2020-17521</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2020-17521</URL>
+        <Description>CVE-2020-17521</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1922123</URL>
+        <Description>bz#1922123: CVE-2020-17521 groovy: OS temporary directory leads to information disclosure</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="5" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">XStream: remote code execution due to insecure XML deserialization when relying on blocklists</Note></Notes>
+    <DiscoveryDate>2020-11-18T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2020-11-16T19:40:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2020-26217</CVE>
+    <Threats><Threat Type="Impact"><Description>Important</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+Before applying this update, make sure all previously released errata
+relevant to your system have been applied.
+
+For details on how to apply this update, refer to:
+
+https://access.redhat.com/articles/11258
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:3205</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2020-26217</URL>
+        <Description>CVE-2020-26217</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1898907</URL>
+        <Description>bz#1898907: CVE-2020-26217 XStream: remote code execution due to insecure XML deserialization when relying on blocklists</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="6" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">cron-utils: template injection allows attackers to inject arbitrary Java EL expressions leading to remote code execution</Note></Notes>
+    <DiscoveryDate>2020-11-24T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2020-11-24T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2020-26238</CVE>
+    <Threats><Threat Type="Impact"><Description>Important</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+Before applying this update, make sure all previously released errata
+relevant to your system have been applied.
+
+For details on how to apply this update, refer to:
+
+https://access.redhat.com/articles/11258
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:3205</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2020-26238</URL>
+        <Description>CVE-2020-26238</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1901655</URL>
+        <Description>bz#1901655: CVE-2020-26238 cron-utils: template injection allows attackers to inject arbitrary Java EL expressions leading to remote code execution</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="7" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">XStream: Server-Side Forgery Request vulnerability can be activated when unmarshalling</Note></Notes>
+    <DiscoveryDate>2020-12-16T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2020-12-13T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2020-26258</CVE>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+Before applying this update, make sure all previously released errata
+relevant to your system have been applied.
+
+For details on how to apply this update, refer to:
+
+https://access.redhat.com/articles/11258
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:3205</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2020-26258</URL>
+        <Description>CVE-2020-26258</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1908832</URL>
+        <Description>bz#1908832: CVE-2020-26258 XStream: Server-Side Forgery Request vulnerability can be activated when unmarshalling</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="8" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">XStream: arbitrary file deletion on the local host when unmarshalling</Note></Notes>
+    <DiscoveryDate>2020-12-16T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2020-12-13T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2020-26259</CVE>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+Before applying this update, make sure all previously released errata
+relevant to your system have been applied.
+
+For details on how to apply this update, refer to:
+
+https://access.redhat.com/articles/11258
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:3205</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2020-26259</URL>
+        <Description>CVE-2020-26259</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1908837</URL>
+        <Description>bz#1908837: CVE-2020-26259 XStream: arbitrary file deletion on the local host when unmarshalling</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="9" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">californium-core: DTLS - DoS vulnerability for certificate based handshakes</Note></Notes>
+    <DiscoveryDate>2021-02-03T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-02-03T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2020-27222</CVE>
+    <Threats><Threat Type="Impact"><Description>Important</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+Before applying this update, make sure all previously released errata
+relevant to your system have been applied.
+
+For details on how to apply this update, refer to:
+
+https://access.redhat.com/articles/11258
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:3205</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2020-27222</URL>
+        <Description>CVE-2020-27222</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1930230</URL>
+        <Description>bz#1930230: CVE-2020-27222 californium-core: DTLS - DoS vulnerability for certificate based handshakes</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="10" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">undertow: special character in query results in server errors</Note></Notes>
+    <DiscoveryDate>2020-11-24T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-01-25T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2020-27782</CVE>
+    <Threats><Threat Type="Impact"><Description>Important</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+Before applying this update, make sure all previously released errata
+relevant to your system have been applied.
+
+For details on how to apply this update, refer to:
+
+https://access.redhat.com/articles/11258
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:3205</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2020-27782</URL>
+        <Description>CVE-2020-27782</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1901304</URL>
+        <Description>bz#1901304: CVE-2020-27782 undertow: special character in query results in server errors</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="11" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">bouncycastle: password bypass in OpenBSDBCrypt.checkPassword utility possible</Note></Notes>
+    <DiscoveryDate>2021-01-05T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2020-12-18T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2020-28052</CVE>
+    <Threats><Threat Type="Impact"><Description>Important</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+Before applying this update, make sure all previously released errata
+relevant to your system have been applied.
+
+For details on how to apply this update, refer to:
+
+https://access.redhat.com/articles/11258
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:3205</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2020-28052</URL>
+        <Description>CVE-2020-28052</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1912881</URL>
+        <Description>bz#1912881: CVE-2020-28052 bouncycastle: password bypass in OpenBSDBCrypt.checkPassword utility possible</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="12" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">kotlin: vulnerable Java API was used for temporary file and folder creation which could result in information disclosure</Note></Notes>
+    <DiscoveryDate>2021-02-18T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-02-03T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2020-29582</CVE>
+    <Threats><Threat Type="Impact"><Description>Low</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+Before applying this update, make sure all previously released errata
+relevant to your system have been applied.
+
+For details on how to apply this update, refer to:
+
+https://access.redhat.com/articles/11258
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:3205</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://blog.jetbrains.com/blog/2021/02/03/jetbrains-security-bulletin-q4-2020/</URL>
+        <Description>https://blog.jetbrains.com/blog/2021/02/03/jetbrains-security-bulletin-q4-2020/</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2020-29582</URL>
+        <Description>CVE-2020-29582</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1930291</URL>
+        <Description>bz#1930291: CVE-2020-29582 kotlin: vulnerable Java API was used for temporary file and folder creation which could result in information disclosure</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="13" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">fabric8-kubernetes-client: vulnerable to a path traversal leading to integrity and availability compromise</Note></Notes>
+    <DiscoveryDate>2021-02-01T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-01-12T04:35:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-20218</CVE>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+Before applying this update, make sure all previously released errata
+relevant to your system have been applied.
+
+For details on how to apply this update, refer to:
+
+https://access.redhat.com/articles/11258
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:3205</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://github.com/fabric8io/kubernetes-client/issues/2715</URL>
+        <Description>https://github.com/fabric8io/kubernetes-client/issues/2715</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-20218</URL>
+        <Description>CVE-2021-20218</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1923405</URL>
+        <Description>bz#1923405: CVE-2021-20218 fabric8-kubernetes-client: vulnerable to a path traversal leading to integrity and availability compromise</Description>
+      </Reference>
+    </References>
+    <Acknowledgments><Acknowledgment><Description>This issue was discovered by Ivan Bodrov and Marc Nuri (Red Hat).</Description></Acknowledgment></Acknowledgments>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="14" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">spring-web: (re)creating the temporary storage directory could result in  a privilege escalation within WebFlux application</Note></Notes>
+    <DiscoveryDate>2021-06-22T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-05-25T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-22118</CVE>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+Before applying this update, make sure all previously released errata
+relevant to your system have been applied.
+
+For details on how to apply this update, refer to:
+
+https://access.redhat.com/articles/11258
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:3205</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://github.com/spring-projects/spring-framework/issues/26931</URL>
+        <Description>https://github.com/spring-projects/spring-framework/issues/26931</Description>
+      </Reference>
+      <Reference>
+        <URL>https://tanzu.vmware.com/security/cve-2021-22118</URL>
+        <Description>https://tanzu.vmware.com/security/cve-2021-22118</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-22118</URL>
+        <Description>CVE-2021-22118</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1974854</URL>
+        <Description>bz#1974854: CVE-2021-22118 spring-web: (re)creating the temporary storage directory could result in  a privilege escalation within WebFlux application</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="15" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">pdfbox: infinite loop while loading a crafted PDF file</Note></Notes>
+    <DiscoveryDate>2021-03-19T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-03-19T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-27807</CVE>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+Before applying this update, make sure all previously released errata
+relevant to your system have been applied.
+
+For details on how to apply this update, refer to:
+
+https://access.redhat.com/articles/11258
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:3205</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-27807</URL>
+        <Description>CVE-2021-27807</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1941055</URL>
+        <Description>bz#1941055: CVE-2021-27807 pdfbox: infinite loop while loading a crafted PDF file</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="16" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">pdfbox: OutOfMemory-Exception while loading a crafted PDF file</Note></Notes>
+    <DiscoveryDate>2021-03-19T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-03-19T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-27906</CVE>
+    <Threats><Threat Type="Impact"><Description>Low</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+Before applying this update, make sure all previously released errata
+relevant to your system have been applied.
+
+For details on how to apply this update, refer to:
+
+https://access.redhat.com/articles/11258
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:3205</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-27906</URL>
+        <Description>CVE-2021-27906</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1941050</URL>
+        <Description>bz#1941050: CVE-2021-27906 pdfbox: OutOfMemory-Exception while loading a crafted PDF file</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="17" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">CXF: Denial of service vulnerability in parsing JSON via JsonMapObjectReaderWriter</Note></Notes>
+    <DiscoveryDate>2021-06-16T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-06-16T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-30468</CVE>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+Before applying this update, make sure all previously released errata
+relevant to your system have been applied.
+
+For details on how to apply this update, refer to:
+
+https://access.redhat.com/articles/11258
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:3205</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>http://cxf.apache.org/security-advisories.data/CVE-2021-30468.txt.asc?version=1&amp;modificationDate=1623835369690&amp;api=v2</URL>
+        <Description>http://cxf.apache.org/security-advisories.data/CVE-2021-30468.txt.asc?version=1&amp;modificationDate=1623835369690&amp;api=v2</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-30468</URL>
+        <Description>CVE-2021-30468</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1973392</URL>
+        <Description>bz#1973392: CVE-2021-30468 CXF: Denial of service vulnerability in parsing JSON via JsonMapObjectReaderWriter</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="18" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">pdfbox: OutOfMemory-Exception while loading a crafted PDF file</Note></Notes>
+    <DiscoveryDate>2021-06-12T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-06-12T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-31811</CVE>
+    <Threats><Threat Type="Impact"><Description>Low</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+Before applying this update, make sure all previously released errata
+relevant to your system have been applied.
+
+For details on how to apply this update, refer to:
+
+https://access.redhat.com/articles/11258
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:3205</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-31811</URL>
+        <Description>CVE-2021-31811</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1971648</URL>
+        <Description>bz#1971648: CVE-2021-31811 pdfbox: OutOfMemory-Exception while loading a crafted PDF file</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+</cvrfdoc>

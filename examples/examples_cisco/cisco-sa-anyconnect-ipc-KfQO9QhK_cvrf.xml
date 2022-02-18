@@ -1,0 +1,475 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cvrf:cvrfdoc xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:cvrf-common="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/common" xmlns:cvrf="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/cvrf">
+  <cvrf:DocumentTitle>Cisco AnyConnect Secure Mobility Client Arbitrary Code Execution Vulnerability</cvrf:DocumentTitle>
+  <cvrf:DocumentType>Cisco Security Advisory</cvrf:DocumentType>
+  <cvrf:DocumentPublisher Type="Vendor">
+    <cvrf:ContactDetails>Emergency Support:
++1 877 228 7302 (toll-free within North America)
++1 408 525 6532 (International direct-dial)
+Non-emergency Support:
+Email: psirt@cisco.com
+Support requests that are received via e-mail are typically acknowledged within 48 hours.</cvrf:ContactDetails>
+    <cvrf:IssuingAuthority>Cisco product security incident response is the responsibility of the Cisco Product Security Incident Response Team (PSIRT). The Cisco PSIRT is a dedicated, global team that manages the receipt, investigation, and public reporting of security vulnerability information that is related to Cisco products and networks. The on-call Cisco PSIRT works 24x7 with Cisco customers, independent security researchers, consultants, industry organizations, and other vendors to identify possible security issues with Cisco products and networks.
+More information can be found in Cisco Security Vulnerability Policy available at http://www.cisco.com/web/about/security/psirt/security_vulnerability_policy.html</cvrf:IssuingAuthority>
+  </cvrf:DocumentPublisher>
+  <cvrf:DocumentTracking>
+    <cvrf:Identification>
+      <cvrf:ID>cisco-sa-anyconnect-ipc-KfQO9QhK</cvrf:ID>
+    </cvrf:Identification>
+    <cvrf:Status>Final</cvrf:Status>
+    <cvrf:Version>4.1</cvrf:Version>
+    <cvrf:RevisionHistory>
+      <cvrf:Revision>
+        <cvrf:Number>1.0</cvrf:Number>
+        <cvrf:Date>2020-11-04T15:21:41</cvrf:Date>
+        <cvrf:Description>Initial public release.</cvrf:Description>
+      </cvrf:Revision>
+      <cvrf:Revision>
+        <cvrf:Number>2.0</cvrf:Number>
+        <cvrf:Date>2020-11-05T22:27:26</cvrf:Date>
+        <cvrf:Description>Clarified the requirements for a successful attack. Corrected information about vulnerable configurations and mitigations.</cvrf:Description>
+      </cvrf:Revision>
+      <cvrf:Revision>
+        <cvrf:Number>2.1</cvrf:Number>
+        <cvrf:Date>2020-11-09T21:50:11</cvrf:Date>
+        <cvrf:Description>Clarified mitigation information.</cvrf:Description>
+      </cvrf:Revision>
+      <cvrf:Revision>
+        <cvrf:Number>2.2</cvrf:Number>
+        <cvrf:Date>2020-11-10T17:15:11</cvrf:Date>
+        <cvrf:Description>Added additional details on the vulnerability. Clarified the mitigation.</cvrf:Description>
+      </cvrf:Revision>
+      <cvrf:Revision>
+        <cvrf:Number>3.0</cvrf:Number>
+        <cvrf:Date>2020-12-04T15:21:28</cvrf:Date>
+        <cvrf:Description>Added information about the enhancement CSCvw48062.</cvrf:Description>
+      </cvrf:Revision>
+      <cvrf:Revision>
+        <cvrf:Number>4.0</cvrf:Number>
+        <cvrf:Date>2021-05-12T14:16:53</cvrf:Date>
+        <cvrf:Description>Added fixed release information. Added Universal Windows Platform information.</cvrf:Description>
+      </cvrf:Revision>
+      <cvrf:Revision>
+        <cvrf:Number>4.1</cvrf:Number>
+        <cvrf:Date>2021-05-21T18:06:37</cvrf:Date>
+        <cvrf:Description>Updated the BypassDownloader tagging examples to include the closing "/" in three instances.</cvrf:Description>
+      </cvrf:Revision>
+    </cvrf:RevisionHistory>
+    <cvrf:InitialReleaseDate>2020-11-04T16:00:00</cvrf:InitialReleaseDate>
+    <cvrf:CurrentReleaseDate>2021-05-21T18:06:37</cvrf:CurrentReleaseDate>
+    <cvrf:Generator>
+      <cvrf:Engine>TVCE</cvrf:Engine>
+    </cvrf:Generator>
+  </cvrf:DocumentTracking>
+  <cvrf:DocumentNotes>
+    <cvrf:Note Title="Summary" Type="Summary" Ordinal="1">A vulnerability in the interprocess communication (IPC) channel of Cisco AnyConnect Secure Mobility Client Software could allow an authenticated, local attacker to cause a targeted AnyConnect user to execute a malicious script.
+
+The vulnerability is due to a lack of authentication to the IPC listener. An attacker could exploit this vulnerability by sending crafted IPC messages to the AnyConnect client IPC listener. A successful exploit could allow an attacker to cause the targeted AnyConnect user to execute a script. This script would execute with the privileges of the targeted AnyConnect user.
+
+Note: To successfully exploit this vulnerability, an attacker would need all of the following:
+
+Valid user credentials on the system on which the AnyConnect client is being run by the targeted user.
+To be able to log in to that system while the targeted user either has an active AnyConnect session established or establishes a new AnyConnect session.
+To be able to execute code on that system.
+
+Cisco has released software updates that address this vulnerability. There are workarounds that address this vulnerability.
+
+This advisory is available at the following link:
+https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-anyconnect-ipc-KfQO9QhK ["https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-anyconnect-ipc-KfQO9QhK"]</cvrf:Note>
+    <cvrf:Note Title="Vulnerable Products" Type="General" Ordinal="2">This vulnerability affects all releases of Cisco AnyConnect Secure Mobility Client Software earlier than Release 4.10.00093 for the following platforms if they have a vulnerable configuration:
+
+AnyConnect Secure Mobility Client for Windows
+AnyConnect Secure Mobility Client for MacOS
+AnyConnect Secure Mobility Client for Linux
+
+The following subsections describe how to determine vulnerability for specific releases of Cisco AnyConnect Secure Mobility Client Software. The release of Cisco AnyConnect Secure Mobility Client Software that is running on the end machine determines which configurations the user must check.
+
+The configuration settings discussed in the following subsections are in the AnyConnectLocalPolicy.xml file. This file is in the following locations:
+
+Windows:&lt;DriveLetter&gt;:\ProgramData\Cisco\Cisco AnyConnect Secure Mobility Client\
+macOS: /opt/cisco/anyconnect/
+Linux: /opt/cisco/anyconnect/
+  Cisco AnyConnect Secure Mobility Client Software Releases 4.9.04053, 4.9.05042, and 4.9.06037
+The vulnerability described in this advisory affects Cisco AnyConnect Secure Mobility Client Software releases 4.9.04053, 4.9.05042, and 4.9.06037 if RestrictScriptWebDeploy is set to the default value of false.
+
+To verify the RestrictScriptWebDeploy configuration setting on a VPN client system, open the AnyConnectLocalPolicy.xml file and look for the following line:
+
+
+&lt;RestrictScriptWebDeploy&gt;false&lt;/RestrictScriptWebDeploy&gt;
+
+If RestrictScriptWebDeploy is set to false, RestrictScriptWebDeploy is disabled and the device is affected by this vulnerability. If RestrictScriptWebDeploy is set to true, RestrictScriptWebDeploy is enabled and the device is not affected by this vulnerability.
+
+See the Workarounds ["#workarounds"] section for additional optional but recommended settings.
+  Cisco AnyConnect Secure Mobility Client Software Releases Earlier than Release 4.9.04053
+The vulnerability described in this advisory affects all releases of Cisco AnyConnect Secure Mobility Client Software earlier than Release 4.9.04053 if BypassDownloader is set to the default value of false.
+
+To verify the BypassDownloader configuration setting on a VPN client system, open the AnyConnectLocalPolicy.xml file and look for the following line:
+
+
+&lt;BypassDownloader&gt;false&lt;/BypassDownloader&gt;
+
+If BypassDownloader is set to false, BypassDownloader is disabled and the device is affected by this vulnerability. If BypassDownloader is set to true, BypassDownloader is enabled and the device is not affected by this vulnerability.
+
+Note: Setting BypassDownloader to true is not a recommended configuration. See the Workarounds ["#workarounds"] section for more details.</cvrf:Note>
+    <cvrf:Note Title="Products Confirmed Not Vulnerable" Type="General" Ordinal="3">Only products listed in the Vulnerable Products ["#vp"] section of this advisory are known to be affected by this vulnerability.
+
+This vulnerability does not affect Cisco AnyConnect Secure Mobility Client for Apple iOS or Android platforms or for the Universal Windows Platform.</cvrf:Note>
+    <cvrf:Note Title="Details" Type="General" Ordinal="4">Details about the vulnerability are as follows.
+
+This vulnerability is not exploitable on laptops used by a single user, but instead requires valid logins for multiple users on the end-user device.
+This vulnerability is not remotely exploitable, as it requires local credentials on the end-user device for the attacker to take action on the local system.
+This vulnerability is not a privilege elevation exploit. The scripts run at the user level by default. If the local AnyConnect user manually raises the privilege of the User Interface process, the scripts would run at elevated privileges.
+This vulnerability’s CVSS score is high because, for configurations where the vulnerability is exploitable, it allows one user access to another user’s data and execution space.</cvrf:Note>
+    <cvrf:Note Title="Workarounds" Type="General" Ordinal="5">Workarounds that address this vulnerability were introduced in Cisco bug ID CSCvw48062 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCvw48062"] via new configuration settings. The new settings are available in releases 4.9.04053 and later. Cisco recommends using additional settings that were introduced in Release 4.10.00093 instead of using the settings introduced in 4.9.04053.
+
+The settings introduced in 4.10.00093 allow connections to trusted headends only, without any functionality loss. Additional information about the new settings is in the Recommendations ["#Recommendations"] section of this advisory.
+  Cisco AnyConnect Secure Mobility Client Software Release 4.10.00093
+Releases 4.10.00093 and later contain the fix for Cisco bug ID CSCvv30103 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCvv30103"] with no additional configuration required. See the Recommendations ["#Recommendations"] section for additional optional but recommended settings.
+  Upgrade instructions for systems where workarounds were previously applied
+This section is relevant only to customers that had previously applied the workaround settings for releases 4.9.04053, 4.9.05042, or 4.9.06037 or mitigation settings for releases earlier than Release 4.9.04053. If the workarounds or mitigations listed on this advisory were not previously used, use the normal upgrade process. More information about the normal upgrade process is in the Release Notes ["https://www.cisco.com/c/en/us/td/docs/security/vpn_client/anyconnect/anyconnect410/release/notes/release-notes-anyconnect-4-10.html"] or Configuration Guide ["https://www.cisco.com/c/en/us/td/docs/security/vpn_client/anyconnect/anyconnect410/administration/guide/b-anyconnect-admin-guide-4-10/deploy-anyconnect.html?bookSearch=true"].
+
+The following instructions describe how to upgrade to Release 4.10.00093 and remove the previously applied settings in the AnyConnectLocalPolicy.xml file. This file is in the following locations:
+
+Windows:&lt;DriveLetter&gt;:\ProgramData\Cisco\Cisco AnyConnect Secure Mobility Client\
+macOS: /opt/cisco/anyconnect/
+Linux: /opt/cisco/anyconnect/
+
+         AnyConnect Secure Mobility Client Software Release  AnyConnectLocalPolicy.xml Settings  Instructions
+Earlier than 4.9.04053
+
+Previously deployed AnyConnectLocalPolicy.xml settings:
+
+BypassDownloader= true
+
+New AnyConnectLocalPolicy.xml settings:
+
+BypassDownloader=false
+
+
+Upgrade to 4.10 using a predeploy method.
+Redistribute the AnyConnectLocalPolicy.xml file with new settings using an out-of-band deployment method.
+Apply the new 4.10 settings shown in the Recommendations ["#Recommendations"] section.
+
+
+4.9.04053, 4.9.05042, 4.9.06037
+
+Previously deployed AnyConnectLocalPolicy.xml settings:
+
+RestrictScriptWebDeploy=true
+RestrictHelpWebDeploy=true
+RestrictResourceWebDeploy=true
+RestrictLocalizationWebDeploy=true
+BypassDownloader=false
+
+New AnyConnectLocalPolicy.xml settings:
+
+RestrictScriptWebDeploy=false
+RestrictHelpWebDeploy=false
+RestrictResourceWebDeploy=false
+RestrictLocalizationWebDeploy=false
+BypassDownloader=false
+
+
+Upgrade to 4.10 using either a predeploy or webdeploy method.
+Redistribute1 the AnyConnectLocalPolicy.xml file with new settings using an out-of-band deployment method.
+Apply the new 4.10 settings shown in the Recommendations ["#Recommendations"] section.
+
+
+1. Customers may leave the settings intact for RestrictScriptWebDeploy, RestrictHelpWebDeploy, RestrictResourceWebDeploy, and RestrictLocalizationWebDeploy if the restricted functionality is not required. If these settings remain true, files must be distributed using an out-of-band deployment method.
+   Cisco AnyConnect Secure Mobility Client Software Releases 4.9.04053, 4.9.05042, and 4.9.06037  For customers who have already applied the RestrictScriptWebDeploy workaround
+For customers using Release 4.9.04053, 4.9.05042, or 4.9.06037 who have already applied the RestrictScriptWebDeploy, RestrictHelpWebDeploy, RestrictResourceWebDeploy, RestrictLocalizationWebDeploy workarounds, nothing further needs to be done to help ensure protection against exploitation of this vulnerability.
+
+To restore full functionality to the product, customers should upgrade to Release 4.10.00093 and apply the recommended settings shown in the Recommendations ["#Recommendations"] section. After full functionality is restored, customers can once again deploy files from the headend instead of using an out-of-band deployment method.
+  For customers who cannot upgrade to Release 4.10.00093 or later
+For customers using Release 4.9.04053, 4.9.05042, or 4.9.06037 who cannot upgrade to Release 4.10.00093 or later, the recommended workaround for these releases is to edit the AnyConnectLocalPolicy.xml file to set RestrictScriptWebDeploy to true and ensure that BypassDownloader is set to false. The new AnyConnectLocalPolicy.xml file would then be deployed to end machines using an out-of-band method of deployment.
+
+There are additional configuration settings for releases 4.9.04053, 4.9.05042, and 4.9.06037 that are strongly recommended for increased protection. The full set of custom web-deploy restrictions is listed below. For more details about the new configuration settings and implications of their use, refer to the Release Notes ["https://www.cisco.com/c/en/us/td/docs/security/vpn_client/anyconnect/anyconnect49/release/notes/release-notes-anyconnect-4-9.html#Cisco_Reference.dita_79c2fd57-db64-4449-9072-26e62e46630b"] or Cisco bug ID CSCvw48062 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCvw48062"]. These settings would allow profile updates and future software upgrades while helping to protect against exploitation of this vulnerability.
+
+RestrictScriptWebDeploy
+RestrictHelpWebDeploy
+RestrictResourceWebDeploy
+RestrictLocalizationWebDeploy
+
+The following procedure is for editing the policy on a local machine. In most deployment scenarios, the modification would be done to the AnyConnectLocalPolicy.xml file and then deployed to all client machines using an out-of-band method of deployment such as an enterprise software management system. Any modifications to the AnyConnectLocalPolicy.xml file must be done with sudo or admin rights.
+
+Find the AnyConnectLocalPolicy.xml file on the client machine. This file is in the following locations:
+Windows:&lt;DriveLetter&gt;:\ProgramData\Cisco\Cisco AnyConnect Secure Mobility Client\
+macOS:/opt/cisco/anyconnect/
+Linux:/opt/cisco/anyconnect/
+
+Open the AnyConnectLocalPolicy.xml file in a text editor and look for the following lines:
+&lt;RestrictScriptWebDeploy&gt;false&lt;/RestrictScriptWebDeploy&gt;
+&lt;RestrictHelpWebDeploy&gt;false&lt;/RestrictHelpWebDeploy&gt;  &lt;RestrictResourceWebDeploy&gt;false&lt;/RestrictResourceWebDeploy&gt;  &lt;RestrictLocalizationWebDeploy&gt;false&lt;/RestrictLocalizationWebDeploy&gt;
+
+Change that setting to true, as shown in the following example:
+&lt;RestrictScriptWebDeploy&gt;true&lt;/RestrictScriptWebDeploy&gt;
+&lt;RestrictHelpWebDeploy&gt;true&lt;/RestrictHelpWebDeploy&gt;  &lt;RestrictResourceWebDeploy&gt;true&lt;/RestrictResourceWebDeploy&gt;  &lt;RestrictLocalizationWebDeploy&gt;true&lt;/RestrictLocalizationWebDeploy&gt;
+
+Verify that the BypassDownloader setting is correct by looking for the following line:
+
+&lt;BypassDownloader&gt;false&lt;/BypassDownloader&gt;
+
+If the BypassDownloader setting is true, change it to false, as shown in the following example:
+
+&lt;BypassDownloader&gt;false&lt;/BypassDownloader&gt;
+
+Save the file to the original location. The network paths are noted above.
+Restart the VPN Agent service or reboot the client machine.
+
+   Cisco AnyConnect Secure Mobility Client Software Earlier than Release 4.9.04053  For customers who have already applied the BypassDownloader mitigation
+For customers using releases earlier than Release 4.9.04053 who have already applied the BypassDownloader mitigation, nothing further needs to be done to enable protection against exploitation of this vulnerability. Because this mitigation is not recommended, customers could upgrade to Release 4.10.00093 and apply the recommended settings shown in the Recommendations ["#Recommendations"] section.
+  For customers who cannot upgrade to Release 4.10.00093 or later
+For customers using releases earlier than Release 4.9.04053 who cannot upgrade to Release 4.10.00093 or later and/or do not require updated content on the VPN headend device to be downloaded to the client, enabling the BypassDownloader setting is a possible mitigation.
+
+Warning: Changing the BypassDownloader setting is not recommended in most customer environments. If the BypassDownloader is set to true, VPN users could be refused a connection from the VPN headend if their local VPN XML profiles are out of date with what is configured on the VPN headend.
+
+Note: Enabling the BypassDownloader setting can be done only out-of-band on the client devices and has a couple of implications:
+
+All future updates to either Cisco AnyConnect Secure Mobility Client Software or the AnyConnect profile would have to be done out-of-band. AnyConnect will no longer download updated content from the headend device.
+AnyConnect profiles would still need to be in sync between the headend device and the client. If the profiles are not in sync, the VPN connection could be established with default settings instead of with settings on the headend or client. The VPN headend could also refuse the connection.
+
+The procedure that follows is for editing the policy on a local machine. In most deployment scenarios, the modification would be done to the AnyConnectLocalPolicy.xml file and then deployed to all client machines using an out-of-band method of deployment such as an enterprise software management system. Any modifications to the AnyConnectLocalPolicy.xml file must be done with sudo or admin rights.
+
+Find the AnyConnectLocalPolicy.xml file on the client machine. This file is in the following locations:
+Windows:&lt;DriveLetter&gt;:\ProgramData\Cisco\Cisco AnyConnect Secure Mobility Client\
+macOS:/opt/cisco/anyconnect/
+Linux: /opt/cisco/anyconnect/
+
+Open the AnyConnectLocalPolicy.xml file in a text editor and look for the following line:
+
+&lt;BypassDownloader&gt;false&lt;/BypassDownloader&gt;
+
+Change that setting to true, as shown in the following example:
+
+&lt;BypassDownloader&gt;true&lt;/BypassDownloader&gt;
+
+Save the file to the original location. The network paths are noted above.
+Restart the VPN Agent service or reboot the client machine.</cvrf:Note>
+    <cvrf:Note Title="Fixed Software" Type="General" Ordinal="6">Cisco has released free software updates that address the vulnerability described in this advisory. Customers may only install and expect support for software versions and feature sets for which they have purchased a license. By installing, downloading, accessing, or otherwise using such software upgrades, customers agree to follow the terms of the Cisco software license:
+https://www.cisco.com/c/en/us/products/end-user-license-agreement.html ["https://www.cisco.com/c/en/us/products/end-user-license-agreement.html"]
+
+Additionally, customers may only download software for which they have a valid license, procured from Cisco directly, or through a Cisco authorized reseller or partner. In most cases this will be a maintenance upgrade to software that was previously purchased. Free security software updates do not entitle customers to a new software license, additional software feature sets, or major revision upgrades.
+
+When considering software upgrades ["https://tools.cisco.com/security/center/resources/security_vulnerability_policy.html#fixes"], customers are advised to regularly consult the advisories for Cisco products, which are available from the Cisco Security Advisories page ["https://www.cisco.com/go/psirt"], to determine exposure and a complete upgrade solution.
+
+In all cases, customers should ensure that the devices to be upgraded contain sufficient memory and confirm that current hardware and software configurations will continue to be supported properly by the new release. If the information is not clear, customers are advised to contact the Cisco Technical Assistance Center (TAC) or their contracted maintenance providers.
+  Customers Without Service Contracts
+Customers who purchase directly from Cisco but do not hold a Cisco service contract and customers who make purchases through third-party vendors but are unsuccessful in obtaining fixed software through their point of sale should obtain upgrades by contacting the Cisco TAC: https://www.cisco.com/c/en/us/support/web/tsd-cisco-worldwide-contacts.html ["https://www.cisco.com/c/en/us/support/web/tsd-cisco-worldwide-contacts.html"]
+
+Customers should have the product serial number available and be prepared to provide the URL of this advisory as evidence of entitlement to a free upgrade.
+      Fixed Releases
+Cisco fixed this vulnerability in Cisco AnyConnect Secure Mobility Client Software releases 4.10.00093 and later.</cvrf:Note>
+    <cvrf:Note Title="Recommendations" Type="General" Ordinal="7">Cisco AnyConnect Secure Mobility Client Software 4.10.00093 introduced new settings. It is now possible to individually allow/disallow scripts, help, resources, or localization updates in the local policy. These new settings are strongly recommended for increased protection. The full set of restrictions is listed below. For more details about the new configuration settings and implications of their use, refer to the AnyConnect Local Policy ["https://www.cisco.com/c/en/us/td/docs/security/vpn_client/anyconnect/anyconnect410/administration/guide/b-anyconnect-admin-guide-4-10/anyconnect-profile-editor.html?bookSearch=true#ID-1430-000002bf%20%20"] section of the administrator guide.
+        Configuration Setting Name  Default Value   Recommended Configuration Setting Value          StrictCertificateTrust   False  True      RestrictServerCertStore   False  True      AllowSoftwareUpdatesFromAnyServer   True  False      AllowComplianceUpdatesModuleFromAnyServer  True  False      AllowManagementVPNProfileUpdatesFromAnyServer  True  False      AllowISEPostureProfileUpdatesFromAnyServer  True  False      AllowServiceProfileUpdatesFromAnyServer  True  False      AllowScriptUpdatesFromAnyServer  True  False      AllowScriptUpdatesFromAnyServer  True  False      AllowHelpUpdatesFromAnyServer  True  False      AllowResourceUpdatesFromAnyServer  True  False      AllowLocalizationUpdatesFromAnyServer  True  False      ServerName  Blank  List of authorized servers.
+Can use wildcards, for example *.cisco.com
+
+BypassDownloader is not a new setting, but ensure that it is set to false.
+        Configuration Setting Name  Default Value   Recommended Configuration Setting Value          BypassDownloader  False  False
+
+To configure the recommended settings on Release 4.10.00093 and later, edit the AnyConnectLocalPolicy.xml file to change configuration values to the recommended values listed in the preceding table. The new AnyConnectLocalPolicy.xml file would then be deployed to end machines.
+
+The following procedure is for editing the policy on a local machine. In most deployment scenarios, the modification would be done to the AnyConnectLocalPolicy.xml file and then deployed to all client machines using an out-of-band method of deployment such as an enterprise software management system. Any modifications to the AnyConnectLocalPolicy.xml file must be done with sudo or admin rights.
+
+Find the AnyConnectLocalPolicy.xml file on the client machine. This file is in the following locations:
+Windows:&lt;DriveLetter&gt;:\ProgramData\Cisco\Cisco AnyConnect Secure Mobility Client\
+macOS:/opt/cisco/anyconnect/
+Linux:/opt/cisco/anyconnect/
+
+Open the AnyConnectLocalPolicy.xml file in a text editor and look for the following lines:
+
+&lt;BypassDownloader&gt;false&lt;/BypassDownloader&gt;
+&lt;StrictCertificateTrust&gt;true&lt;/StrictCertificateTrust&gt;
+&lt;RestrictServerCertStore&gt;true&lt;/RestrictServerCertStore&gt;
+&lt;AllowSoftwareUpdatesFromAnyServer&gt;false&lt;/AllowSoftwareUpdatesFromAnyServer&gt;
+&lt;AllowComplianceUpdatesModuleFromAnyServer&gt;false&lt;/AllowComplianceUpdatesModuleFromAnyServer&gt;
+&lt;AllowManagementVPNProfileUpdatesFromAnyServer&gt;false&lt;/AllowManagementVPNProfileUpdatesFromAnyServer&gt;
+&lt;AllowISEPostureProfileUpdatesFromAnyServer&gt;false&lt;/AllowISEPostureProfileUpdatesFromAnyServer&gt;
+&lt;AllowServiceProfileUpdatesFromAnyServer&gt;false&lt;/AllowServiceProfileUpdatesFromAnyServer&gt;
+&lt;AllowScriptUpdatesFromAnyServer&gt;false&lt;/AllowScriptUpdatesFromAnyServer&gt;
+&lt;AllowHelpUpdatesFromAnyServer&gt;false&lt;/AllowHelpUpdatesFromAnyServer&gt;
+&lt;AllowResourceUpdatesFromAnyServer&gt;false&lt;/AllowResourceUpdatesFromAnyServer&gt;
+&lt;AllowLocalizationUpdatesFromAnyServer&gt;false&lt;/AllowLocalizationUpdatesFromAnyServer&gt;
+
+If the configuration setting values do not match the values shown above, change them.
+Add authorized server names to the configuration file:
+&lt;ServerName&gt; *.example.com &lt;/ServerName&gt;
+
+Save the file to the original location. The network paths are noted above.
+Restart the VPN Agent service or reboot the client machine.</cvrf:Note>
+    <cvrf:Note Title="Vulnerability Policy" Type="General" Ordinal="8">To learn about Cisco security vulnerability disclosure policies and publications, see the Security Vulnerability Policy ["http://www.cisco.com/web/about/security/psirt/security_vulnerability_policy.html"]. This document also contains instructions for obtaining fixed software and receiving security vulnerability information from Cisco.</cvrf:Note>
+    <cvrf:Note Title="Exploitation and Public Announcements" Type="General" Ordinal="9">The Cisco Product Security Incident Response Team (PSIRT) is aware that proof-of-concept exploit code is available for the vulnerability described in this advisory.
+
+The Cisco PSIRT is not aware of any malicious use of the vulnerability that is described in this advisory.</cvrf:Note>
+    <cvrf:Note Title="Source" Type="General" Ordinal="10">Cisco would like to thank Gerbert Roitburd from Secure Mobile Networking Lab (TU Darmstadt) for reporting this vulnerability.</cvrf:Note>
+    <cvrf:Note Title="Legal Disclaimer" Type="Legal Disclaimer" Ordinal="11">THIS DOCUMENT IS PROVIDED ON AN "AS IS" BASIS AND DOES NOT IMPLY ANY KIND OF GUARANTEE OR WARRANTY, INCLUDING THE WARRANTIES OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR USE. YOUR USE OF THE INFORMATION ON THE DOCUMENT OR MATERIALS LINKED FROM THE DOCUMENT IS AT YOUR OWN RISK. CISCO RESERVES THE RIGHT TO CHANGE OR UPDATE THIS DOCUMENT AT ANY TIME.
+
+A standalone copy or paraphrase of the text of this document that omits the distribution URL is an uncontrolled copy and may lack important information or contain factual errors. The information in this document is intended for end users of Cisco products.</cvrf:Note>
+  </cvrf:DocumentNotes>
+  <cvrf:DocumentReferences>
+    <cvrf:Reference Type="Self">
+      <cvrf:URL>https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-anyconnect-ipc-KfQO9QhK</cvrf:URL>
+      <cvrf:Description>Cisco AnyConnect Secure Mobility Client Arbitrary Code Execution Vulnerability</cvrf:Description>
+    </cvrf:Reference>
+  </cvrf:DocumentReferences>
+  <ProductTree xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/prod">
+    <Branch Name="Cisco" Type="Vendor">
+      <Branch Name="Cisco AnyConnect Secure Mobility Client" Type="Product Name">
+        <FullProductName ProductID="CVRFPID-109810">Cisco AnyConnect Secure Mobility Client </FullProductName>
+      </Branch>
+    </Branch>
+  </ProductTree>
+  <Vulnerability Ordinal="1" xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln">
+    <Title>vuln-CVE-2020-3556</Title>
+    <ID SystemName="Cisco Bug ID">CSCvv30103</ID>
+    <Notes>
+      <Note Title="Cisco Bug IDs" Type="Other" Ordinal="1">CSCvv30103</Note>
+    </Notes>
+    <CVE>CVE-2020-3556</CVE>
+    <ProductStatuses>
+      <Status Type="Known Affected">
+        <ProductID>CVRFPID-109810</ProductID>
+      </Status>
+    </ProductStatuses>
+    <CVSSScoreSets>
+      <ScoreSetV3>
+        <BaseScoreV3>7.3</BaseScoreV3>
+        <VectorV3>CVSS:3.1/AV:L/AC:L/PR:L/UI:R/S:U/C:H/I:H/A:H</VectorV3>
+      </ScoreSetV3>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Workaround">
+        <Description>Workarounds that address this vulnerability were introduced in Cisco bug ID CSCvw48062 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCvw48062"] via new configuration settings. The new settings are available in releases 4.9.04053 and later. Cisco recommends using additional settings that were introduced in Release 4.10.00093 instead of using the settings introduced in 4.9.04053.
+
+The settings introduced in 4.10.00093 allow connections to trusted headends only, without any functionality loss. Additional information about the new settings is in the Recommendations ["#Recommendations"] section of this advisory.
+  Cisco AnyConnect Secure Mobility Client Software Release 4.10.00093
+Releases 4.10.00093 and later contain the fix for Cisco bug ID CSCvv30103 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCvv30103"] with no additional configuration required. See the Recommendations ["#Recommendations"] section for additional optional but recommended settings.
+  Upgrade instructions for systems where workarounds were previously applied
+This section is relevant only to customers that had previously applied the workaround settings for releases 4.9.04053, 4.9.05042, or 4.9.06037 or mitigation settings for releases earlier than Release 4.9.04053. If the workarounds or mitigations listed on this advisory were not previously used, use the normal upgrade process. More information about the normal upgrade process is in the Release Notes ["https://www.cisco.com/c/en/us/td/docs/security/vpn_client/anyconnect/anyconnect410/release/notes/release-notes-anyconnect-4-10.html"] or Configuration Guide ["https://www.cisco.com/c/en/us/td/docs/security/vpn_client/anyconnect/anyconnect410/administration/guide/b-anyconnect-admin-guide-4-10/deploy-anyconnect.html?bookSearch=true"].
+
+The following instructions describe how to upgrade to Release 4.10.00093 and remove the previously applied settings in the AnyConnectLocalPolicy.xml file. This file is in the following locations:
+
+Windows:&lt;DriveLetter&gt;:\ProgramData\Cisco\Cisco AnyConnect Secure Mobility Client\
+macOS: /opt/cisco/anyconnect/
+Linux: /opt/cisco/anyconnect/
+
+         AnyConnect Secure Mobility Client Software Release  AnyConnectLocalPolicy.xml Settings  Instructions
+Earlier than 4.9.04053
+
+Previously deployed AnyConnectLocalPolicy.xml settings:
+
+BypassDownloader= true
+
+New AnyConnectLocalPolicy.xml settings:
+
+BypassDownloader=false
+
+
+Upgrade to 4.10 using a predeploy method.
+Redistribute the AnyConnectLocalPolicy.xml file with new settings using an out-of-band deployment method.
+Apply the new 4.10 settings shown in the Recommendations ["#Recommendations"] section.
+
+
+4.9.04053, 4.9.05042, 4.9.06037
+
+Previously deployed AnyConnectLocalPolicy.xml settings:
+
+RestrictScriptWebDeploy=true
+RestrictHelpWebDeploy=true
+RestrictResourceWebDeploy=true
+RestrictLocalizationWebDeploy=true
+BypassDownloader=false
+
+New AnyConnectLocalPolicy.xml settings:
+
+RestrictScriptWebDeploy=false
+RestrictHelpWebDeploy=false
+RestrictResourceWebDeploy=false
+RestrictLocalizationWebDeploy=false
+BypassDownloader=false
+
+
+Upgrade to 4.10 using either a predeploy or webdeploy method.
+Redistribute1 the AnyConnectLocalPolicy.xml file with new settings using an out-of-band deployment method.
+Apply the new 4.10 settings shown in the Recommendations ["#Recommendations"] section.
+
+
+1. Customers may leave the settings intact for RestrictScriptWebDeploy, RestrictHelpWebDeploy, RestrictResourceWebDeploy, and RestrictLocalizationWebDeploy if the restricted functionality is not required. If these settings remain true, files must be distributed using an out-of-band deployment method.
+   Cisco AnyConnect Secure Mobility Client Software Releases 4.9.04053, 4.9.05042, and 4.9.06037  For customers who have already applied the RestrictScriptWebDeploy workaround
+For customers using Release 4.9.04053, 4.9.05042, or 4.9.06037 who have already applied the RestrictScriptWebDeploy, RestrictHelpWebDeploy, RestrictResourceWebDeploy, RestrictLocalizationWebDeploy workarounds, nothing further needs to be done to help ensure protection against exploitation of this vulnerability.
+
+To restore full functionality to the product, customers should upgrade to Release 4.10.00093 and apply the recommended settings shown in the Recommendations ["#Recommendations"] section. After full functionality is restored, customers can once again deploy files from the headend instead of using an out-of-band deployment method.
+  For customers who cannot upgrade to Release 4.10.00093 or later
+For customers using Release 4.9.04053, 4.9.05042, or 4.9.06037 who cannot upgrade to Release 4.10.00093 or later, the recommended workaround for these releases is to edit the AnyConnectLocalPolicy.xml file to set RestrictScriptWebDeploy to true and ensure that BypassDownloader is set to false. The new AnyConnectLocalPolicy.xml file would then be deployed to end machines using an out-of-band method of deployment.
+
+There are additional configuration settings for releases 4.9.04053, 4.9.05042, and 4.9.06037 that are strongly recommended for increased protection. The full set of custom web-deploy restrictions is listed below. For more details about the new configuration settings and implications of their use, refer to the Release Notes ["https://www.cisco.com/c/en/us/td/docs/security/vpn_client/anyconnect/anyconnect49/release/notes/release-notes-anyconnect-4-9.html#Cisco_Reference.dita_79c2fd57-db64-4449-9072-26e62e46630b"] or Cisco bug ID CSCvw48062 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCvw48062"]. These settings would allow profile updates and future software upgrades while helping to protect against exploitation of this vulnerability.
+
+RestrictScriptWebDeploy
+RestrictHelpWebDeploy
+RestrictResourceWebDeploy
+RestrictLocalizationWebDeploy
+
+The following procedure is for editing the policy on a local machine. In most deployment scenarios, the modification would be done to the AnyConnectLocalPolicy.xml file and then deployed to all client machines using an out-of-band method of deployment such as an enterprise software management system. Any modifications to the AnyConnectLocalPolicy.xml file must be done with sudo or admin rights.
+
+Find the AnyConnectLocalPolicy.xml file on the client machine. This file is in the following locations:
+Windows:&lt;DriveLetter&gt;:\ProgramData\Cisco\Cisco AnyConnect Secure Mobility Client\
+macOS:/opt/cisco/anyconnect/
+Linux:/opt/cisco/anyconnect/
+
+Open the AnyConnectLocalPolicy.xml file in a text editor and look for the following lines:
+&lt;RestrictScriptWebDeploy&gt;false&lt;/RestrictScriptWebDeploy&gt;
+&lt;RestrictHelpWebDeploy&gt;false&lt;/RestrictHelpWebDeploy&gt;  &lt;RestrictResourceWebDeploy&gt;false&lt;/RestrictResourceWebDeploy&gt;  &lt;RestrictLocalizationWebDeploy&gt;false&lt;/RestrictLocalizationWebDeploy&gt;
+
+Change that setting to true, as shown in the following example:
+&lt;RestrictScriptWebDeploy&gt;true&lt;/RestrictScriptWebDeploy&gt;
+&lt;RestrictHelpWebDeploy&gt;true&lt;/RestrictHelpWebDeploy&gt;  &lt;RestrictResourceWebDeploy&gt;true&lt;/RestrictResourceWebDeploy&gt;  &lt;RestrictLocalizationWebDeploy&gt;true&lt;/RestrictLocalizationWebDeploy&gt;
+
+Verify that the BypassDownloader setting is correct by looking for the following line:
+
+&lt;BypassDownloader&gt;false&lt;/BypassDownloader&gt;
+
+If the BypassDownloader setting is true, change it to false, as shown in the following example:
+
+&lt;BypassDownloader&gt;false&lt;/BypassDownloader&gt;
+
+Save the file to the original location. The network paths are noted above.
+Restart the VPN Agent service or reboot the client machine.
+
+   Cisco AnyConnect Secure Mobility Client Software Earlier than Release 4.9.04053  For customers who have already applied the BypassDownloader mitigation
+For customers using releases earlier than Release 4.9.04053 who have already applied the BypassDownloader mitigation, nothing further needs to be done to enable protection against exploitation of this vulnerability. Because this mitigation is not recommended, customers could upgrade to Release 4.10.00093 and apply the recommended settings shown in the Recommendations ["#Recommendations"] section.
+  For customers who cannot upgrade to Release 4.10.00093 or later
+For customers using releases earlier than Release 4.9.04053 who cannot upgrade to Release 4.10.00093 or later and/or do not require updated content on the VPN headend device to be downloaded to the client, enabling the BypassDownloader setting is a possible mitigation.
+
+Warning: Changing the BypassDownloader setting is not recommended in most customer environments. If the BypassDownloader is set to true, VPN users could be refused a connection from the VPN headend if their local VPN XML profiles are out of date with what is configured on the VPN headend.
+
+Note: Enabling the BypassDownloader setting can be done only out-of-band on the client devices and has a couple of implications:
+
+All future updates to either Cisco AnyConnect Secure Mobility Client Software or the AnyConnect profile would have to be done out-of-band. AnyConnect will no longer download updated content from the headend device.
+AnyConnect profiles would still need to be in sync between the headend device and the client. If the profiles are not in sync, the VPN connection could be established with default settings instead of with settings on the headend or client. The VPN headend could also refuse the connection.
+
+The procedure that follows is for editing the policy on a local machine. In most deployment scenarios, the modification would be done to the AnyConnectLocalPolicy.xml file and then deployed to all client machines using an out-of-band method of deployment such as an enterprise software management system. Any modifications to the AnyConnectLocalPolicy.xml file must be done with sudo or admin rights.
+
+Find the AnyConnectLocalPolicy.xml file on the client machine. This file is in the following locations:
+Windows:&lt;DriveLetter&gt;:\ProgramData\Cisco\Cisco AnyConnect Secure Mobility Client\
+macOS:/opt/cisco/anyconnect/
+Linux: /opt/cisco/anyconnect/
+
+Open the AnyConnectLocalPolicy.xml file in a text editor and look for the following line:
+
+&lt;BypassDownloader&gt;false&lt;/BypassDownloader&gt;
+
+Change that setting to true, as shown in the following example:
+
+&lt;BypassDownloader&gt;true&lt;/BypassDownloader&gt;
+
+Save the file to the original location. The network paths are noted above.
+Restart the VPN Agent service or reboot the client machine.</Description>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference Type="Self">
+        <URL>https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-anyconnect-ipc-KfQO9QhK</URL>
+        <Description>Cisco AnyConnect Secure Mobility Client Arbitrary Code Execution Vulnerability</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+</cvrf:cvrfdoc>

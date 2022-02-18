@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cvrfdoc xmlns="http://www.icasi.org/CVRF/schema/cvrf/1.1" xmlns:cvrf="http://www.icasi.org/CVRF/schema/cvrf/1.1">
+  <DocumentTitle xml:lang="en">Red Hat Security Advisory: Red Hat Virtualization Host security and bug fix update [ovirt-4.4.8]</DocumentTitle>
+  <DocumentType>Security Advisory</DocumentType>
+  <DocumentPublisher Type="Vendor">
+    <ContactDetails>secalert@redhat.com</ContactDetails>
+    <IssuingAuthority>Red Hat Product Security</IssuingAuthority>
+  </DocumentPublisher>
+  <DocumentTracking>
+    <Identification><ID>RHSA-2021:3459</ID></Identification>
+    <Status>Final</Status>
+    <Version>1</Version>
+    <RevisionHistory>
+       <Revision>
+         <Number>1</Number>
+         <Date>2021-09-08T14:09:00Z</Date>
+         <Description>Current version</Description>
+       </Revision>
+    </RevisionHistory>
+    <InitialReleaseDate>2021-09-08T14:09:00Z</InitialReleaseDate>
+    <CurrentReleaseDate>2021-09-08T14:09:00Z</CurrentReleaseDate>
+    <Generator>
+      <Engine>Red Hat SDEngine 3.0.2</Engine>
+      <Date>2021-09-08T17:12:00Z</Date>
+    </Generator>
+  </DocumentTracking>
+  <DocumentNotes>
+    <Note Title="Topic" Type="Summary" Ordinal="1" xml:lang="en">
+An update for cockpit-ovirt, ovirt-host, ovirt-hosted-engine-ha, ovirt-hosted-engine-setup, and vdsm is now available for Red Hat Virtualization 4 for Red Hat Enterprise Linux 8.
+
+Red Hat Product Security has rated this update as having a security impact of Moderate. A Common Vulnerability Scoring System (CVSS) base score, which gives a detailed severity rating, is available for each vulnerability from the CVE link(s) in the References section.
+    </Note>
+    <Note Title="Details" Type="General" Ordinal="2" xml:lang="en">
+The VDSM service is required by a Virtualization Manager to manage the Linux hosts. VDSM manages and monitors the host's storage, memory and networks as well as virtual machine creation, other host administration tasks, statistics gathering, and log collection.
+
+Security Fix(es):
+
+* nodejs-lodash: command injection via template (CVE-2021-23337)
+
+* nodejs-lodash: ReDoS via the toNumber, trim and trimEnd functions (CVE-2020-28500)
+
+For more details about the security issue(s), including the impact, a CVSS score, and other related information, refer to the CVE page(s) listed in the References section.
+
+Bug Fix(es):
+
+* An update in libvirt has changed the way block threshold events are submitted.
+As a result, the VDSM was confused by the libvirt event, and tried to look up a drive, logging a warning about a missing drive.
+In this release, the VDSM has been adapted to handle the new libvirt behavior, and does not log warnings about missing drives. (BZ#1948177)
+
+* Previously, when a virtual machine was powered off on the source host of a live migration and the migration finished successfully at the same time, the two events  interfered with each other, and sometimes prevented migration cleanup resulting in additional migrations from the host being blocked. 
+In this release, additional migrations are not blocked. (BZ#1959436)
+
+* Previously, when failing to execute a snapshot and re-executing it later, the second try would fail due to using the previous execution data. In this release, this data will be used only when needed, in recovery mode. (BZ#1984209)
+    </Note>
+    <Note Title="Terms of Use" Ordinal="3" Type="Legal Disclaimer" xml:lang="en">This content is licensed under the Creative Commons Attribution 4.0 International License (https://creativecommons.org/licenses/by/4.0/). If you distribute this content, or a modified version of it, you must provide attribution to Red Hat Inc. and provide a link to the original.</Note>
+  </DocumentNotes>
+  <DocumentDistribution xml:lang="en">Copyright © 2021 Red Hat, Inc. All rights reserved.</DocumentDistribution>
+  <AggregateSeverity Namespace="https://access.redhat.com/security/updates/classification/">Moderate</AggregateSeverity>
+  <DocumentReferences>
+    <Reference Type="Self">
+       <URL>https://access.redhat.com/errata/RHSA-2021:3459</URL>
+       <Description>https://access.redhat.com/errata/RHSA-2021:3459</Description>
+    </Reference>
+    <Reference Type="External">
+       <URL>https://access.redhat.com/security/updates/classification/#moderate</URL>
+       <Description>https://access.redhat.com/security/updates/classification/#moderate</Description>
+    </Reference>
+  </DocumentReferences>
+  <ProductTree xmlns="http://www.icasi.org/CVRF/schema/prod/1.1">
+    <Branch Type="Product Family" Name="Red Hat Virtualization">
+      <Branch Type="Product Name" Name="Red Hat Virtualization 4 Management Agent for RHEL 7 Hosts">
+        <FullProductName ProductID="8Base-RHV-Agents-4" CPE="cpe:/o:redhat:enterprise_linux:8::hypervisor">Red Hat Virtualization 4 Management Agent for RHEL 7 Hosts</FullProductName>
+      </Branch>
+      <Branch Type="Product Name" Name="Red Hat Virtualization 4 Hypervisor for RHEL 8">
+        <FullProductName ProductID="8Base-RHV-Hypervisor-4" CPE="cpe:/o:redhat:enterprise_linux:8::hypervisor">Red Hat Virtualization 4 Hypervisor for RHEL 8</FullProductName>
+      </Branch>
+    </Branch>
+    <Branch Type="Product Version" Name="cockpit-ovirt-0:0.15.1-2.el8ev">
+      <FullProductName ProductID="cockpit-ovirt-0:0.15.1-2.el8ev" CPE="cpe:/o:redhat:enterprise_linux:8::hypervisor">cockpit-ovirt-0.15.1-2.el8ev.src.rpm</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="ovirt-host-0:4.4.8-2.el8ev">
+      <FullProductName ProductID="ovirt-host-0:4.4.8-2.el8ev" CPE="cpe:/o:redhat:enterprise_linux:8::hypervisor">ovirt-host-4.4.8-2.el8ev.src.rpm</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="ovirt-hosted-engine-ha-0:2.4.8-1.el8ev">
+      <FullProductName ProductID="ovirt-hosted-engine-ha-0:2.4.8-1.el8ev" CPE="cpe:/o:redhat:enterprise_linux:8::hypervisor">ovirt-hosted-engine-ha-2.4.8-1.el8ev.src.rpm</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="ovirt-hosted-engine-setup-0:2.5.3-1.el8ev">
+      <FullProductName ProductID="ovirt-hosted-engine-setup-0:2.5.3-1.el8ev" CPE="cpe:/o:redhat:enterprise_linux:8::hypervisor">ovirt-hosted-engine-setup-2.5.3-1.el8ev.src.rpm</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="vdsm-0:4.40.80.5-1.el8ev">
+      <FullProductName ProductID="vdsm-0:4.40.80.5-1.el8ev" CPE="cpe:/o:redhat:enterprise_linux:8::hypervisor">vdsm-4.40.80.5-1.el8ev.src.rpm</FullProductName>
+    </Branch>
+    <Relationship ProductReference="cockpit-ovirt-0:0.15.1-2.el8ev" RelationType="Default Component Of" RelatesToProductReference="8Base-RHV-Agents-4">
+      <FullProductName ProductID="8Base-RHV-Agents-4:cockpit-ovirt-0:0.15.1-2.el8ev" CPE="cpe:/o:redhat:enterprise_linux:8::hypervisor">cockpit-ovirt-0:0.15.1-2.el8ev as a component of Red Hat Virtualization 4 Management Agent for RHEL 7 Hosts</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="ovirt-host-0:4.4.8-2.el8ev" RelationType="Default Component Of" RelatesToProductReference="8Base-RHV-Agents-4">
+      <FullProductName ProductID="8Base-RHV-Agents-4:ovirt-host-0:4.4.8-2.el8ev" CPE="cpe:/o:redhat:enterprise_linux:8::hypervisor">ovirt-host-0:4.4.8-2.el8ev as a component of Red Hat Virtualization 4 Management Agent for RHEL 7 Hosts</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="ovirt-hosted-engine-ha-0:2.4.8-1.el8ev" RelationType="Default Component Of" RelatesToProductReference="8Base-RHV-Agents-4">
+      <FullProductName ProductID="8Base-RHV-Agents-4:ovirt-hosted-engine-ha-0:2.4.8-1.el8ev" CPE="cpe:/o:redhat:enterprise_linux:8::hypervisor">ovirt-hosted-engine-ha-0:2.4.8-1.el8ev as a component of Red Hat Virtualization 4 Management Agent for RHEL 7 Hosts</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="ovirt-hosted-engine-setup-0:2.5.3-1.el8ev" RelationType="Default Component Of" RelatesToProductReference="8Base-RHV-Agents-4">
+      <FullProductName ProductID="8Base-RHV-Agents-4:ovirt-hosted-engine-setup-0:2.5.3-1.el8ev" CPE="cpe:/o:redhat:enterprise_linux:8::hypervisor">ovirt-hosted-engine-setup-0:2.5.3-1.el8ev as a component of Red Hat Virtualization 4 Management Agent for RHEL 7 Hosts</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="vdsm-0:4.40.80.5-1.el8ev" RelationType="Default Component Of" RelatesToProductReference="8Base-RHV-Agents-4">
+      <FullProductName ProductID="8Base-RHV-Agents-4:vdsm-0:4.40.80.5-1.el8ev" CPE="cpe:/o:redhat:enterprise_linux:8::hypervisor">vdsm-0:4.40.80.5-1.el8ev as a component of Red Hat Virtualization 4 Management Agent for RHEL 7 Hosts</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="vdsm-0:4.40.80.5-1.el8ev" RelationType="Default Component Of" RelatesToProductReference="8Base-RHV-Hypervisor-4">
+      <FullProductName ProductID="8Base-RHV-Hypervisor-4:vdsm-0:4.40.80.5-1.el8ev" CPE="cpe:/o:redhat:enterprise_linux:8::hypervisor">vdsm-0:4.40.80.5-1.el8ev as a component of Red Hat Virtualization 4 Hypervisor for RHEL 8</FullProductName>
+    </Relationship>
+  </ProductTree>
+
+  <Vulnerability Ordinal="1" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">nodejs-lodash: ReDoS via the toNumber, trim and trimEnd functions</Note></Notes>
+    <DiscoveryDate>2021-02-15T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-02-15T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2020-28500</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>8Base-RHV-Agents-4:cockpit-ovirt-0:0.15.1-2.el8ev</ProductID>
+      <ProductID>8Base-RHV-Agents-4:ovirt-host-0:4.4.8-2.el8ev</ProductID>
+      <ProductID>8Base-RHV-Agents-4:ovirt-hosted-engine-ha-0:2.4.8-1.el8ev</ProductID>
+      <ProductID>8Base-RHV-Agents-4:ovirt-hosted-engine-setup-0:2.5.3-1.el8ev</ProductID>
+      <ProductID>8Base-RHV-Agents-4:vdsm-0:4.40.80.5-1.el8ev</ProductID>
+      <ProductID>8Base-RHV-Hypervisor-4:vdsm-0:4.40.80.5-1.el8ev</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/2974891
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:3459</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://snyk.io/vuln/SNYK-JS-LODASH-1018905</URL>
+        <Description>https://snyk.io/vuln/SNYK-JS-LODASH-1018905</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2020-28500</URL>
+        <Description>CVE-2020-28500</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1928954</URL>
+        <Description>bz#1928954: CVE-2020-28500 nodejs-lodash: ReDoS via the toNumber, trim and trimEnd functions</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="2" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">nodejs-lodash: command injection via template</Note></Notes>
+    <DiscoveryDate>2021-02-15T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-02-15T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-23337</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>8Base-RHV-Agents-4:cockpit-ovirt-0:0.15.1-2.el8ev</ProductID>
+      <ProductID>8Base-RHV-Agents-4:ovirt-host-0:4.4.8-2.el8ev</ProductID>
+      <ProductID>8Base-RHV-Agents-4:ovirt-hosted-engine-ha-0:2.4.8-1.el8ev</ProductID>
+      <ProductID>8Base-RHV-Agents-4:ovirt-hosted-engine-setup-0:2.5.3-1.el8ev</ProductID>
+      <ProductID>8Base-RHV-Agents-4:vdsm-0:4.40.80.5-1.el8ev</ProductID>
+      <ProductID>8Base-RHV-Hypervisor-4:vdsm-0:4.40.80.5-1.el8ev</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/2974891
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:3459</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://snyk.io/vuln/SNYK-JS-LODASH-1040724</URL>
+        <Description>https://snyk.io/vuln/SNYK-JS-LODASH-1040724</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-23337</URL>
+        <Description>CVE-2021-23337</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1928937</URL>
+        <Description>bz#1928937: CVE-2021-23337 nodejs-lodash: command injection via template</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+</cvrfdoc>

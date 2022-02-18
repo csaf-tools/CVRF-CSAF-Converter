@@ -1,0 +1,375 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cvrfdoc xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:cpe="http://cpe.mitre.org/language/2.0" xmlns:cvrf="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/cvrf" xmlns:cvrf-common="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/common" xmlns:cvssv2="http://scap.nist.gov/schema/cvss-v2/1.0" xmlns:cvssv3="https://www.first.org/cvss/cvss-v3.0.xsd" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:ns0="http://purl.org/dc/elements/1.1/" xmlns:prod="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/prod" xmlns:scap-core="http://scap.nist.gov/schema/scap-core/1.0" xmlns:sch="http://purl.oclc.org/dsdl/schematron" xmlns:vuln="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/cvrf">
+  <DocumentTitle xml:lang="en">Security update for libopenssl0_9_8</DocumentTitle>
+  <DocumentType>SUSE Patch</DocumentType>
+  <DocumentPublisher Type="Vendor">
+    <ContactDetails>security@suse.de</ContactDetails>
+    <IssuingAuthority>SUSE Security Team</IssuingAuthority>
+  </DocumentPublisher>
+  <DocumentTracking>
+    <Identification>
+      <ID>openSUSE-SU-2016:1242-1</ID>
+    </Identification>
+    <Status>Final</Status>
+    <Version>1</Version>
+    <RevisionHistory>
+      <Revision>
+        <Number>1</Number>
+        <Date>2016-05-05T12:17:11Z</Date>
+        <Description>current</Description>
+      </Revision>
+    </RevisionHistory>
+    <InitialReleaseDate>2016-05-05T12:17:11Z</InitialReleaseDate>
+    <CurrentReleaseDate>2016-05-05T12:17:11Z</CurrentReleaseDate>
+    <Generator>
+      <Engine>cve-database/bin/generate-cvrf.pl</Engine>
+      <Date>2017-02-24T01:00:00Z</Date>
+    </Generator>
+  </DocumentTracking>
+  <DocumentNotes>
+    <Note Title="Topic" Type="Summary" Ordinal="1" xml:lang="en">Security update for libopenssl0_9_8</Note>
+    <Note Title="Details" Type="General" Ordinal="2" xml:lang="en">This update for libopenssl0_9_8 fixes the following issues:
+
+- CVE-2016-2105: EVP_EncodeUpdate overflow (bsc#977614)
+- CVE-2016-2106: EVP_EncryptUpdate overflow (bsc#977615)
+- CVE-2016-2108: Memory corruption in the ASN.1 encoder (bsc#977617)
+- CVE-2016-2109: ASN.1 BIO excessive memory allocation (bsc#976942)
+- CVE-2016-0702: Side channel attack on modular exponentiation 'CacheBleed' (bsc#968050)
+- bsc#976943: Buffer overrun in ASN1_parse
+</Note>
+    <Note Title="Terms of Use" Type="Legal Disclaimer" Ordinal="3" xml:lang="en">The CVRF data is provided by SUSE under the Creative Commons License 4.0 with Attribution for Non-Commercial usage (CC-BY-NC-4.0).</Note>
+  </DocumentNotes>
+  <DocumentDistribution xml:lang="en">Copyright SUSE LLC under the Creative Commons License 4.0 with Attribution for Non-Commercial usage (CC-BY-NC-4.0)</DocumentDistribution>
+  <DocumentReferences>
+    <Reference Type="Self">
+      <URL>https://lists.opensuse.org/opensuse-security-announce/2016-05/msg00018.html</URL>
+      <Description>E-Mail link for openSUSE-SU-2016:1242-1</Description>
+    </Reference>
+    <Reference Type="Self">
+      <URL>https://www.suse.com/support/security/rating/</URL>
+      <Description>SUSE Security Ratings</Description>
+    </Reference>
+  </DocumentReferences>
+  <ProductTree xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/prod">
+    <Branch Type="Product Family" Name="openSUSE Leap 42.1">
+      <Branch Type="Product Name" Name="openSUSE Leap 42.1">
+        <FullProductName ProductID="openSUSE Leap 42.1">openSUSE Leap 42.1</FullProductName>
+      </Branch>
+    </Branch>
+    <Branch Type="Product Version" Name="libopenssl0_9_8-0.9.8zh-17.1">
+      <FullProductName ProductID="libopenssl0_9_8-0.9.8zh-17.1">libopenssl0_9_8-0.9.8zh-17.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libopenssl0_9_8-32bit-0.9.8zh-17.1">
+      <FullProductName ProductID="libopenssl0_9_8-32bit-0.9.8zh-17.1">libopenssl0_9_8-32bit-0.9.8zh-17.1</FullProductName>
+    </Branch>
+    <Relationship ProductReference="libopenssl0_9_8-0.9.8zh-17.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:libopenssl0_9_8-0.9.8zh-17.1">libopenssl0_9_8-0.9.8zh-17.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="libopenssl0_9_8-32bit-0.9.8zh-17.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:libopenssl0_9_8-32bit-0.9.8zh-17.1">libopenssl0_9_8-32bit-0.9.8zh-17.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+  </ProductTree>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="1">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">The MOD_EXP_CTIME_COPY_FROM_PREBUF function in crypto/bn/bn_exp.c in OpenSSL 1.0.1 before 1.0.1s and 1.0.2 before 1.0.2g does not properly consider cache-bank access times during modular exponentiation, which makes it easier for local users to discover RSA keys by running a crafted application on the same Intel Sandy Bridge CPU core as a victim and leveraging cache-bank conflicts, aka a "CacheBleed" attack.</Note>
+    </Notes>
+    <CVE>CVE-2016-0702</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed">
+        <ProductID>openSUSE Leap 42.1:libopenssl0_9_8-0.9.8zh-17.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libopenssl0_9_8-32bit-0.9.8zh-17.1</ProductID>
+      </Status>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>low</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>1.9</BaseScoreV2>
+        <VectorV2>AV:L/AC:M/Au:N/C:P/I:N/A:N</VectorV2>
+      </ScoreSetV2>
+      <ScoreSetV3>
+        <BaseScoreV3>5.1</BaseScoreV3>
+        <VectorV3>CVSS:3.0/AV:L/AC:H/PR:N/UI:N/S:U/C:H/I:N/A:N</VectorV3>
+      </ScoreSetV3>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-security-announce/2016-05/msg00018.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2016-0702.html</URL>
+        <Description>CVE-2016-0702</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/1007806</URL>
+        <Description>SUSE Bug 1007806</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/968044</URL>
+        <Description>SUSE Bug 968044</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/968050</URL>
+        <Description>SUSE Bug 968050</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/971238</URL>
+        <Description>SUSE Bug 971238</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/990370</URL>
+        <Description>SUSE Bug 990370</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="2">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">Integer overflow in the EVP_EncodeUpdate function in crypto/evp/encode.c in OpenSSL before 1.0.1t and 1.0.2 before 1.0.2h allows remote attackers to cause a denial of service (heap memory corruption) via a large amount of binary data.</Note>
+    </Notes>
+    <CVE>CVE-2016-2105</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed">
+        <ProductID>openSUSE Leap 42.1:libopenssl0_9_8-0.9.8zh-17.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libopenssl0_9_8-32bit-0.9.8zh-17.1</ProductID>
+      </Status>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>low</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>3.3</BaseScoreV2>
+        <VectorV2>AV:L/AC:M/Au:N/C:N/I:P/A:P</VectorV2>
+      </ScoreSetV2>
+      <ScoreSetV3>
+        <BaseScoreV3>7.5</BaseScoreV3>
+        <VectorV3>CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H</VectorV3>
+      </ScoreSetV3>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-security-announce/2016-05/msg00018.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2016-2105.html</URL>
+        <Description>CVE-2016-2105</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/977584</URL>
+        <Description>SUSE Bug 977584</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/977614</URL>
+        <Description>SUSE Bug 977614</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/978492</URL>
+        <Description>SUSE Bug 978492</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/989902</URL>
+        <Description>SUSE Bug 989902</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/990369</URL>
+        <Description>SUSE Bug 990369</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/990370</URL>
+        <Description>SUSE Bug 990370</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="3">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">Integer overflow in the EVP_EncryptUpdate function in crypto/evp/evp_enc.c in OpenSSL before 1.0.1t and 1.0.2 before 1.0.2h allows remote attackers to cause a denial of service (heap memory corruption) via a large amount of data.</Note>
+    </Notes>
+    <CVE>CVE-2016-2106</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed">
+        <ProductID>openSUSE Leap 42.1:libopenssl0_9_8-0.9.8zh-17.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libopenssl0_9_8-32bit-0.9.8zh-17.1</ProductID>
+      </Status>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>low</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>5.1</BaseScoreV2>
+        <VectorV2>AV:N/AC:H/Au:N/C:P/I:P/A:P</VectorV2>
+      </ScoreSetV2>
+      <ScoreSetV3>
+        <BaseScoreV3>7.5</BaseScoreV3>
+        <VectorV3>CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H</VectorV3>
+      </ScoreSetV3>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-security-announce/2016-05/msg00018.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2016-2106.html</URL>
+        <Description>CVE-2016-2106</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/977584</URL>
+        <Description>SUSE Bug 977584</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/977615</URL>
+        <Description>SUSE Bug 977615</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/978492</URL>
+        <Description>SUSE Bug 978492</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/990369</URL>
+        <Description>SUSE Bug 990369</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="4">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">The ASN.1 implementation in OpenSSL before 1.0.1o and 1.0.2 before 1.0.2c allows remote attackers to execute arbitrary code or cause a denial of service (buffer underflow and memory corruption) via an ANY field in crafted serialized data, aka the "negative zero" issue.</Note>
+    </Notes>
+    <CVE>CVE-2016-2108</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed">
+        <ProductID>openSUSE Leap 42.1:libopenssl0_9_8-0.9.8zh-17.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libopenssl0_9_8-32bit-0.9.8zh-17.1</ProductID>
+      </Status>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>important</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>7.6</BaseScoreV2>
+        <VectorV2>AV:N/AC:H/Au:N/C:C/I:C/A:C</VectorV2>
+      </ScoreSetV2>
+      <ScoreSetV3>
+        <BaseScoreV3>9.8</BaseScoreV3>
+        <VectorV3>CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H</VectorV3>
+      </ScoreSetV3>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-security-announce/2016-05/msg00018.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2016-2108.html</URL>
+        <Description>CVE-2016-2108</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/1001502</URL>
+        <Description>SUSE Bug 1001502</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/1004499</URL>
+        <Description>SUSE Bug 1004499</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/1005878</URL>
+        <Description>SUSE Bug 1005878</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/977584</URL>
+        <Description>SUSE Bug 977584</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/977617</URL>
+        <Description>SUSE Bug 977617</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/978492</URL>
+        <Description>SUSE Bug 978492</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/989345</URL>
+        <Description>SUSE Bug 989345</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/996067</URL>
+        <Description>SUSE Bug 996067</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="5">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">The asn1_d2i_read_bio function in crypto/asn1/a_d2i_fp.c in the ASN.1 BIO implementation in OpenSSL before 1.0.1t and 1.0.2 before 1.0.2h allows remote attackers to cause a denial of service (memory consumption) via a short invalid encoding.</Note>
+    </Notes>
+    <CVE>CVE-2016-2109</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed">
+        <ProductID>openSUSE Leap 42.1:libopenssl0_9_8-0.9.8zh-17.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libopenssl0_9_8-32bit-0.9.8zh-17.1</ProductID>
+      </Status>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>4.3</BaseScoreV2>
+        <VectorV2>AV:N/AC:M/Au:N/C:N/I:N/A:P</VectorV2>
+      </ScoreSetV2>
+      <ScoreSetV3>
+        <BaseScoreV3>7.5</BaseScoreV3>
+        <VectorV3>CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H</VectorV3>
+      </ScoreSetV3>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-security-announce/2016-05/msg00018.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2016-2109.html</URL>
+        <Description>CVE-2016-2109</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/976942</URL>
+        <Description>SUSE Bug 976942</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/977584</URL>
+        <Description>SUSE Bug 977584</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/978492</URL>
+        <Description>SUSE Bug 978492</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/990369</URL>
+        <Description>SUSE Bug 990369</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+</cvrfdoc>

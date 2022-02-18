@@ -1,0 +1,2258 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cvrfdoc xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:cpe="http://cpe.mitre.org/language/2.0" xmlns:cvrf="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/cvrf" xmlns:cvrf-common="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/common" xmlns:cvssv2="http://scap.nist.gov/schema/cvss-v2/1.0" xmlns:cvssv3="https://www.first.org/cvss/cvss-v3.0.xsd" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:ns0="http://purl.org/dc/elements/1.1/" xmlns:prod="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/prod" xmlns:scap-core="http://scap.nist.gov/schema/scap-core/1.0" xmlns:sch="http://purl.oclc.org/dsdl/schematron" xmlns:vuln="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/cvrf">
+  <DocumentTitle xml:lang="en">Security update for webkit2gtk3</DocumentTitle>
+  <DocumentType>SUSE Patch</DocumentType>
+  <DocumentPublisher Type="Vendor">
+    <ContactDetails>security@suse.de</ContactDetails>
+    <IssuingAuthority>SUSE Security Team</IssuingAuthority>
+  </DocumentPublisher>
+  <DocumentTracking>
+    <Identification>
+      <ID>openSUSE-SU-2016:0761-1</ID>
+    </Identification>
+    <Status>Final</Status>
+    <Version>1</Version>
+    <RevisionHistory>
+      <Revision>
+        <Number>1</Number>
+        <Date>2016-03-15T08:26:49Z</Date>
+        <Description>current</Description>
+      </Revision>
+    </RevisionHistory>
+    <InitialReleaseDate>2016-03-15T08:26:49Z</InitialReleaseDate>
+    <CurrentReleaseDate>2016-03-15T08:26:49Z</CurrentReleaseDate>
+    <Generator>
+      <Engine>cve-database/bin/generate-cvrf.pl</Engine>
+      <Date>2017-02-24T01:00:00Z</Date>
+    </Generator>
+  </DocumentTracking>
+  <DocumentNotes>
+    <Note Title="Topic" Type="Summary" Ordinal="1" xml:lang="en">Security update for webkit2gtk3</Note>
+    <Note Title="Details" Type="General" Ordinal="2" xml:lang="en">
+This update for webkit2gtk3 fixes the following issues:
+
+- Update to version 2.10.7:
+  + Fix the build with GTK+ &lt; 3.16.
+- Changes from version 2.10.6:
+  + Fix a deadlock in the Web Process when JavaScript garbage
+    collector was running for a web worker thread that made google
+    maps to hang.
+  + Fix media controls displaying without controls attribute.
+  + Fix a Web Process crash when quickly attempting many DnD
+    operations.
+- Changes from version 2.10.5:
+  + Disable DNS prefetch when a proxy is configured.
+  + Reduce the maximum simultaneous network connections to match
+    other browsers.
+  + Make WebKitWebView always propagate motion-notify-event
+    signal.
+  + Add a way to force accelerating compositing mode at runtime
+    using an environment variable.
+  + Fix input elements and scrollbars rendering with GTK+ 3.19.
+  + Fix rendering of lines when using solid colors.
+  + Fix UI process crashes related to not having a main resource
+    response when the load is
+    committed for pages restored from the history cache.
+  + Fix a WebProcess crash when loading large contents with custom
+    URI schemes API.
+  + Fix a crash in the UI process when the WebView is destroyed
+    while the screensaver DBus proxy
+    is being created.
+  + Fix WebProcess crashes due to BadDrawable X errors in
+    accelerated compositing mode.
+  + Fix crashes on PPC64 due to mprotect() on address not aligned
+    to the page size.
+  + Fix std::bad_function_call exception raised in
+    dispatchDecidePolicyForNavigationAction.
+  + Fix downloads of data URLs.
+  + Fix runtime critical warnings when closing a page containing
+    windowed plugins.
+  + Fix several crashes and rendering issues.
+  + Translation updates: French, German, Italian, Turkish.
+  + Security fixes: CVE-2015-7096, CVE-2015-7098.
+- Update to version 2.10.4, notable changes:
+  + New HTTP disk cache for the Network Process.
+  + New Web Inspector UI.
+  + Automatic ScreenServer inhibition when playing fullscreen
+    videos.
+  + Initial Editor API.
+  + Performance improvements.
+- This update addresses the following security issues:
+    CVE-2015-1122, CVE-2015-1152, CVE-2015-1155, CVE-2015-3660,
+    CVE-2015-3730, CVE-2015-3738, CVE-2015-3740, CVE-2015-3742,
+    CVE-2015-3744, CVE-2015-3746, CVE-2015-3750, CVE-2015-3751,
+    CVE-2015-3754, CVE-2015-3755, CVE-2015-5804, CVE-2015-5805,
+    CVE-2015-5807, CVE-2015-5810, CVE-2015-5813, CVE-2015-5814,
+    CVE-2015-5815, CVE-2015-5817, CVE-2015-5818, CVE-2015-5825,
+    CVE-2015-5827, CVE-2015-5828, CVE-2015-5929, CVE-2015-5930,
+    CVE-2015-5931, CVE-2015-7002, CVE-2015-7013, CVE-2015-7014,
+    CVE-2015-7048, CVE-2015-7095, CVE-2015-7097, CVE-2015-7099,
+    CVE-2015-7100, CVE-2015-7102, CVE-2015-7103, CVE-2015-7104
+- Add BuildRequires: hyphen-devel to pick up hyphenation support.
+  Note this is broken upstream.
+- Build with -DENABLE_DATABASE_PROCESS=OFF and
+  -DENABLE_INDEXED_DATABASE=OFF to avoid an issue with GCC 4.8.
+</Note>
+    <Note Title="Terms of Use" Type="Legal Disclaimer" Ordinal="3" xml:lang="en">The CVRF data is provided by SUSE under the Creative Commons License 4.0 with Attribution for Non-Commercial usage (CC-BY-NC-4.0).</Note>
+  </DocumentNotes>
+  <DocumentDistribution xml:lang="en">Copyright SUSE LLC under the Creative Commons License 4.0 with Attribution for Non-Commercial usage (CC-BY-NC-4.0)</DocumentDistribution>
+  <DocumentReferences>
+    <Reference Type="Self">
+      <URL>https://lists.opensuse.org/opensuse-updates/2016-03/msg00054.html</URL>
+      <Description>E-Mail link for openSUSE-SU-2016:0761-1</Description>
+    </Reference>
+    <Reference Type="Self">
+      <URL>https://www.suse.com/support/security/rating/</URL>
+      <Description>SUSE Security Ratings</Description>
+    </Reference>
+  </DocumentReferences>
+  <ProductTree xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/prod">
+    <Branch Type="Product Family" Name="openSUSE Leap 42.1">
+      <Branch Type="Product Name" Name="openSUSE Leap 42.1">
+        <FullProductName ProductID="openSUSE Leap 42.1">openSUSE Leap 42.1</FullProductName>
+      </Branch>
+    </Branch>
+    <Branch Type="Product Version" Name="libjavascriptcoregtk-4_0-18-2.10.7-7.1">
+      <FullProductName ProductID="libjavascriptcoregtk-4_0-18-2.10.7-7.1">libjavascriptcoregtk-4_0-18-2.10.7-7.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libjavascriptcoregtk-4_0-18-32bit-2.10.7-7.1">
+      <FullProductName ProductID="libjavascriptcoregtk-4_0-18-32bit-2.10.7-7.1">libjavascriptcoregtk-4_0-18-32bit-2.10.7-7.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libwebkit2gtk-4_0-37-2.10.7-7.1">
+      <FullProductName ProductID="libwebkit2gtk-4_0-37-2.10.7-7.1">libwebkit2gtk-4_0-37-2.10.7-7.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libwebkit2gtk-4_0-37-32bit-2.10.7-7.1">
+      <FullProductName ProductID="libwebkit2gtk-4_0-37-32bit-2.10.7-7.1">libwebkit2gtk-4_0-37-32bit-2.10.7-7.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libwebkit2gtk3-lang-2.10.7-7.1">
+      <FullProductName ProductID="libwebkit2gtk3-lang-2.10.7-7.1">libwebkit2gtk3-lang-2.10.7-7.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="typelib-1_0-JavaScriptCore-4_0-2.10.7-7.1">
+      <FullProductName ProductID="typelib-1_0-JavaScriptCore-4_0-2.10.7-7.1">typelib-1_0-JavaScriptCore-4_0-2.10.7-7.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="typelib-1_0-WebKit2-4_0-2.10.7-7.1">
+      <FullProductName ProductID="typelib-1_0-WebKit2-4_0-2.10.7-7.1">typelib-1_0-WebKit2-4_0-2.10.7-7.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="typelib-1_0-WebKit2WebExtension-4_0-2.10.7-7.1">
+      <FullProductName ProductID="typelib-1_0-WebKit2WebExtension-4_0-2.10.7-7.1">typelib-1_0-WebKit2WebExtension-4_0-2.10.7-7.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="webkit-jsc-4-2.10.7-7.1">
+      <FullProductName ProductID="webkit-jsc-4-2.10.7-7.1">webkit-jsc-4-2.10.7-7.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="webkit2gtk-4_0-injected-bundles-2.10.7-7.1">
+      <FullProductName ProductID="webkit2gtk-4_0-injected-bundles-2.10.7-7.1">webkit2gtk-4_0-injected-bundles-2.10.7-7.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="webkit2gtk3-2.10.7-7.1">
+      <FullProductName ProductID="webkit2gtk3-2.10.7-7.1">webkit2gtk3-2.10.7-7.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="webkit2gtk3-devel-2.10.7-7.1">
+      <FullProductName ProductID="webkit2gtk3-devel-2.10.7-7.1">webkit2gtk3-devel-2.10.7-7.1</FullProductName>
+    </Branch>
+    <Relationship ProductReference="libjavascriptcoregtk-4_0-18-2.10.7-7.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:libjavascriptcoregtk-4_0-18-2.10.7-7.1">libjavascriptcoregtk-4_0-18-2.10.7-7.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="libjavascriptcoregtk-4_0-18-32bit-2.10.7-7.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:libjavascriptcoregtk-4_0-18-32bit-2.10.7-7.1">libjavascriptcoregtk-4_0-18-32bit-2.10.7-7.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="libwebkit2gtk-4_0-37-2.10.7-7.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:libwebkit2gtk-4_0-37-2.10.7-7.1">libwebkit2gtk-4_0-37-2.10.7-7.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="libwebkit2gtk-4_0-37-32bit-2.10.7-7.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:libwebkit2gtk-4_0-37-32bit-2.10.7-7.1">libwebkit2gtk-4_0-37-32bit-2.10.7-7.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="libwebkit2gtk3-lang-2.10.7-7.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:libwebkit2gtk3-lang-2.10.7-7.1">libwebkit2gtk3-lang-2.10.7-7.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="typelib-1_0-JavaScriptCore-4_0-2.10.7-7.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:typelib-1_0-JavaScriptCore-4_0-2.10.7-7.1">typelib-1_0-JavaScriptCore-4_0-2.10.7-7.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="typelib-1_0-WebKit2-4_0-2.10.7-7.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:typelib-1_0-WebKit2-4_0-2.10.7-7.1">typelib-1_0-WebKit2-4_0-2.10.7-7.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="typelib-1_0-WebKit2WebExtension-4_0-2.10.7-7.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:typelib-1_0-WebKit2WebExtension-4_0-2.10.7-7.1">typelib-1_0-WebKit2WebExtension-4_0-2.10.7-7.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="webkit-jsc-4-2.10.7-7.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:webkit-jsc-4-2.10.7-7.1">webkit-jsc-4-2.10.7-7.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="webkit2gtk-4_0-injected-bundles-2.10.7-7.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:webkit2gtk-4_0-injected-bundles-2.10.7-7.1">webkit2gtk-4_0-injected-bundles-2.10.7-7.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="webkit2gtk3-2.10.7-7.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:webkit2gtk3-2.10.7-7.1">webkit2gtk3-2.10.7-7.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="webkit2gtk3-devel-2.10.7-7.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:webkit2gtk3-devel-2.10.7-7.1">webkit2gtk3-devel-2.10.7-7.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+  </ProductTree>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="1">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">WebKit, as used in Apple iOS before 8.3, Apple TV before 7.2, and Apple Safari before 6.2.5, 7.x before 7.1.5, and 8.x before 8.0.5, allows remote attackers to execute arbitrary code or cause a denial of service (memory corruption and application crash) via a crafted web site, a different vulnerability than other WebKit CVEs listed in APPLE-SA-2015-04-08-1, APPLE-SA-2015-04-08-3, and APPLE-SA-2015-04-08-4.</Note>
+    </Notes>
+    <CVE>CVE-2015-1122</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed">
+        <ProductID>openSUSE Leap 42.1:libjavascriptcoregtk-4_0-18-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libjavascriptcoregtk-4_0-18-32bit-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libwebkit2gtk-4_0-37-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libwebkit2gtk-4_0-37-32bit-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libwebkit2gtk3-lang-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:typelib-1_0-JavaScriptCore-4_0-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:typelib-1_0-WebKit2-4_0-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:typelib-1_0-WebKit2WebExtension-4_0-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit-jsc-4-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit2gtk-4_0-injected-bundles-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit2gtk3-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit2gtk3-devel-2.10.7-7.1</ProductID>
+      </Status>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>6.8</BaseScoreV2>
+        <VectorV2>AV:N/AC:M/Au:N/C:P/I:P/A:P</VectorV2>
+      </ScoreSetV2>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-updates/2016-03/msg00054.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-1122.html</URL>
+        <Description>CVE-2015-1122</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/1082221</URL>
+        <Description>SUSE Bug 1082221</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/928380</URL>
+        <Description>SUSE Bug 928380</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/971460</URL>
+        <Description>SUSE Bug 971460</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="2">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">WebKit, as used in Apple Safari before 6.2.6, 7.x before 7.1.6, and 8.x before 8.0.6, allows remote attackers to execute arbitrary code or cause a denial of service (memory corruption and application crash) via a crafted web site, a different vulnerability than CVE-2015-1153 and CVE-2015-1154.</Note>
+    </Notes>
+    <CVE>CVE-2015-1152</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed">
+        <ProductID>openSUSE Leap 42.1:libjavascriptcoregtk-4_0-18-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libjavascriptcoregtk-4_0-18-32bit-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libwebkit2gtk-4_0-37-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libwebkit2gtk-4_0-37-32bit-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libwebkit2gtk3-lang-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:typelib-1_0-JavaScriptCore-4_0-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:typelib-1_0-WebKit2-4_0-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:typelib-1_0-WebKit2WebExtension-4_0-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit-jsc-4-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit2gtk-4_0-injected-bundles-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit2gtk3-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit2gtk3-devel-2.10.7-7.1</ProductID>
+      </Status>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>6.8</BaseScoreV2>
+        <VectorV2>AV:N/AC:M/Au:N/C:P/I:P/A:P</VectorV2>
+      </ScoreSetV2>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-updates/2016-03/msg00054.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-1152.html</URL>
+        <Description>CVE-2015-1152</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/1082221</URL>
+        <Description>SUSE Bug 1082221</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="3">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">The history implementation in WebKit, as used in Apple Safari before 6.2.6, 7.x before 7.1.6, and 8.x before 8.0.6, allows remote attackers to bypass the Same Origin Policy and read arbitrary files via a crafted web site.</Note>
+    </Notes>
+    <CVE>CVE-2015-1155</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed">
+        <ProductID>openSUSE Leap 42.1:libjavascriptcoregtk-4_0-18-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libjavascriptcoregtk-4_0-18-32bit-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libwebkit2gtk-4_0-37-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libwebkit2gtk-4_0-37-32bit-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libwebkit2gtk3-lang-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:typelib-1_0-JavaScriptCore-4_0-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:typelib-1_0-WebKit2-4_0-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:typelib-1_0-WebKit2WebExtension-4_0-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit-jsc-4-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit2gtk-4_0-injected-bundles-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit2gtk3-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit2gtk3-devel-2.10.7-7.1</ProductID>
+      </Status>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>4.3</BaseScoreV2>
+        <VectorV2>AV:N/AC:M/Au:N/C:P/I:N/A:N</VectorV2>
+      </ScoreSetV2>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-updates/2016-03/msg00054.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-1155.html</URL>
+        <Description>CVE-2015-1155</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/1082221</URL>
+        <Description>SUSE Bug 1082221</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/971460</URL>
+        <Description>SUSE Bug 971460</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="4">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">Cross-site scripting (XSS) vulnerability in the PDF functionality in WebKit in Apple Safari before 6.2.7, 7.x before 7.1.7, and 8.x before 8.0.7 allows remote attackers to inject arbitrary web script or HTML via a crafted URL in embedded PDF content.</Note>
+    </Notes>
+    <CVE>CVE-2015-3660</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed">
+        <ProductID>openSUSE Leap 42.1:libjavascriptcoregtk-4_0-18-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libjavascriptcoregtk-4_0-18-32bit-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libwebkit2gtk-4_0-37-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libwebkit2gtk-4_0-37-32bit-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libwebkit2gtk3-lang-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:typelib-1_0-JavaScriptCore-4_0-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:typelib-1_0-WebKit2-4_0-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:typelib-1_0-WebKit2WebExtension-4_0-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit-jsc-4-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit2gtk-4_0-injected-bundles-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit2gtk3-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit2gtk3-devel-2.10.7-7.1</ProductID>
+      </Status>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>4.3</BaseScoreV2>
+        <VectorV2>AV:N/AC:M/Au:N/C:N/I:P/A:N</VectorV2>
+      </ScoreSetV2>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-updates/2016-03/msg00054.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-3660.html</URL>
+        <Description>CVE-2015-3660</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/1082221</URL>
+        <Description>SUSE Bug 1082221</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="5">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">WebKit, as used in Apple iOS before 8.4.1 and Safari before 6.2.8, 7.x before 7.1.8, and 8.x before 8.0.8, allows remote attackers to execute arbitrary code or cause a denial of service (memory corruption and application crash) via a crafted web site, a different vulnerability than other WebKit CVEs listed in APPLE-SA-2015-08-13-1 and APPLE-SA-2015-08-13-3.</Note>
+    </Notes>
+    <CVE>CVE-2015-3730</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed">
+        <ProductID>openSUSE Leap 42.1:libjavascriptcoregtk-4_0-18-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libjavascriptcoregtk-4_0-18-32bit-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libwebkit2gtk-4_0-37-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libwebkit2gtk-4_0-37-32bit-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libwebkit2gtk3-lang-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:typelib-1_0-JavaScriptCore-4_0-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:typelib-1_0-WebKit2-4_0-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:typelib-1_0-WebKit2WebExtension-4_0-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit-jsc-4-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit2gtk-4_0-injected-bundles-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit2gtk3-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit2gtk3-devel-2.10.7-7.1</ProductID>
+      </Status>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>6.8</BaseScoreV2>
+        <VectorV2>AV:N/AC:M/Au:N/C:P/I:P/A:P</VectorV2>
+      </ScoreSetV2>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-updates/2016-03/msg00054.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-3730.html</URL>
+        <Description>CVE-2015-3730</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/1082221</URL>
+        <Description>SUSE Bug 1082221</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="6">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">WebKit, as used in Apple iOS before 8.4.1 and Safari before 6.2.8, 7.x before 7.1.8, and 8.x before 8.0.8, allows remote attackers to execute arbitrary code or cause a denial of service (memory corruption and application crash) via a crafted web site, a different vulnerability than other WebKit CVEs listed in APPLE-SA-2015-08-13-1 and APPLE-SA-2015-08-13-3.</Note>
+    </Notes>
+    <CVE>CVE-2015-3738</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed">
+        <ProductID>openSUSE Leap 42.1:libjavascriptcoregtk-4_0-18-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libjavascriptcoregtk-4_0-18-32bit-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libwebkit2gtk-4_0-37-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libwebkit2gtk-4_0-37-32bit-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libwebkit2gtk3-lang-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:typelib-1_0-JavaScriptCore-4_0-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:typelib-1_0-WebKit2-4_0-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:typelib-1_0-WebKit2WebExtension-4_0-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit-jsc-4-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit2gtk-4_0-injected-bundles-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit2gtk3-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit2gtk3-devel-2.10.7-7.1</ProductID>
+      </Status>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>6.8</BaseScoreV2>
+        <VectorV2>AV:N/AC:M/Au:N/C:P/I:P/A:P</VectorV2>
+      </ScoreSetV2>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-updates/2016-03/msg00054.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-3738.html</URL>
+        <Description>CVE-2015-3738</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/1082221</URL>
+        <Description>SUSE Bug 1082221</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="7">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">WebKit, as used in Apple iOS before 8.4.1 and Safari before 6.2.8, 7.x before 7.1.8, and 8.x before 8.0.8, allows remote attackers to execute arbitrary code or cause a denial of service (memory corruption and application crash) via a crafted web site, a different vulnerability than other WebKit CVEs listed in APPLE-SA-2015-08-13-1 and APPLE-SA-2015-08-13-3.</Note>
+    </Notes>
+    <CVE>CVE-2015-3740</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed">
+        <ProductID>openSUSE Leap 42.1:libjavascriptcoregtk-4_0-18-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libjavascriptcoregtk-4_0-18-32bit-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libwebkit2gtk-4_0-37-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libwebkit2gtk-4_0-37-32bit-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libwebkit2gtk3-lang-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:typelib-1_0-JavaScriptCore-4_0-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:typelib-1_0-WebKit2-4_0-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:typelib-1_0-WebKit2WebExtension-4_0-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit-jsc-4-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit2gtk-4_0-injected-bundles-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit2gtk3-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit2gtk3-devel-2.10.7-7.1</ProductID>
+      </Status>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>6.8</BaseScoreV2>
+        <VectorV2>AV:N/AC:M/Au:N/C:P/I:P/A:P</VectorV2>
+      </ScoreSetV2>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-updates/2016-03/msg00054.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-3740.html</URL>
+        <Description>CVE-2015-3740</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/1082221</URL>
+        <Description>SUSE Bug 1082221</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="8">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">WebKit, as used in Apple iOS before 8.4.1 and Safari before 6.2.8, 7.x before 7.1.8, and 8.x before 8.0.8, allows remote attackers to execute arbitrary code or cause a denial of service (memory corruption and application crash) via a crafted web site, a different vulnerability than other WebKit CVEs listed in APPLE-SA-2015-08-13-1 and APPLE-SA-2015-08-13-3.</Note>
+    </Notes>
+    <CVE>CVE-2015-3742</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed">
+        <ProductID>openSUSE Leap 42.1:libjavascriptcoregtk-4_0-18-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libjavascriptcoregtk-4_0-18-32bit-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libwebkit2gtk-4_0-37-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libwebkit2gtk-4_0-37-32bit-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libwebkit2gtk3-lang-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:typelib-1_0-JavaScriptCore-4_0-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:typelib-1_0-WebKit2-4_0-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:typelib-1_0-WebKit2WebExtension-4_0-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit-jsc-4-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit2gtk-4_0-injected-bundles-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit2gtk3-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit2gtk3-devel-2.10.7-7.1</ProductID>
+      </Status>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>6.8</BaseScoreV2>
+        <VectorV2>AV:N/AC:M/Au:N/C:P/I:P/A:P</VectorV2>
+      </ScoreSetV2>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-updates/2016-03/msg00054.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-3742.html</URL>
+        <Description>CVE-2015-3742</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/1082221</URL>
+        <Description>SUSE Bug 1082221</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="9">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">WebKit, as used in Apple iOS before 8.4.1 and Safari before 6.2.8, 7.x before 7.1.8, and 8.x before 8.0.8, allows remote attackers to execute arbitrary code or cause a denial of service (memory corruption and application crash) via a crafted web site, a different vulnerability than other WebKit CVEs listed in APPLE-SA-2015-08-13-1 and APPLE-SA-2015-08-13-3.</Note>
+    </Notes>
+    <CVE>CVE-2015-3744</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed">
+        <ProductID>openSUSE Leap 42.1:libjavascriptcoregtk-4_0-18-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libjavascriptcoregtk-4_0-18-32bit-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libwebkit2gtk-4_0-37-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libwebkit2gtk-4_0-37-32bit-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libwebkit2gtk3-lang-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:typelib-1_0-JavaScriptCore-4_0-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:typelib-1_0-WebKit2-4_0-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:typelib-1_0-WebKit2WebExtension-4_0-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit-jsc-4-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit2gtk-4_0-injected-bundles-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit2gtk3-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit2gtk3-devel-2.10.7-7.1</ProductID>
+      </Status>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>6.8</BaseScoreV2>
+        <VectorV2>AV:N/AC:M/Au:N/C:P/I:P/A:P</VectorV2>
+      </ScoreSetV2>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-updates/2016-03/msg00054.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-3744.html</URL>
+        <Description>CVE-2015-3744</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/1082221</URL>
+        <Description>SUSE Bug 1082221</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="10">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">WebKit, as used in Apple iOS before 8.4.1 and Safari before 6.2.8, 7.x before 7.1.8, and 8.x before 8.0.8, allows remote attackers to execute arbitrary code or cause a denial of service (memory corruption and application crash) via a crafted web site, a different vulnerability than other WebKit CVEs listed in APPLE-SA-2015-08-13-1 and APPLE-SA-2015-08-13-3.</Note>
+    </Notes>
+    <CVE>CVE-2015-3746</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed">
+        <ProductID>openSUSE Leap 42.1:libjavascriptcoregtk-4_0-18-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libjavascriptcoregtk-4_0-18-32bit-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libwebkit2gtk-4_0-37-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libwebkit2gtk-4_0-37-32bit-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libwebkit2gtk3-lang-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:typelib-1_0-JavaScriptCore-4_0-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:typelib-1_0-WebKit2-4_0-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:typelib-1_0-WebKit2WebExtension-4_0-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit-jsc-4-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit2gtk-4_0-injected-bundles-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit2gtk3-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit2gtk3-devel-2.10.7-7.1</ProductID>
+      </Status>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>6.8</BaseScoreV2>
+        <VectorV2>AV:N/AC:M/Au:N/C:P/I:P/A:P</VectorV2>
+      </ScoreSetV2>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-updates/2016-03/msg00054.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-3746.html</URL>
+        <Description>CVE-2015-3746</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/1082221</URL>
+        <Description>SUSE Bug 1082221</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="11">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">WebKit in Apple Safari before 6.2.8, 7.x before 7.1.8, and 8.x before 8.0.8, as used in iOS before 8.4.1 and other products, does not enforce the HTTP Strict Transport Security (HSTS) protection mechanism for Content Security Policy (CSP) report requests, which allows man-in-the-middle attackers to obtain sensitive information by sniffing the network or spoof a report by modifying the client-server data stream.</Note>
+    </Notes>
+    <CVE>CVE-2015-3750</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed">
+        <ProductID>openSUSE Leap 42.1:libjavascriptcoregtk-4_0-18-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libjavascriptcoregtk-4_0-18-32bit-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libwebkit2gtk-4_0-37-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libwebkit2gtk-4_0-37-32bit-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libwebkit2gtk3-lang-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:typelib-1_0-JavaScriptCore-4_0-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:typelib-1_0-WebKit2-4_0-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:typelib-1_0-WebKit2WebExtension-4_0-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit-jsc-4-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit2gtk-4_0-injected-bundles-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit2gtk3-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit2gtk3-devel-2.10.7-7.1</ProductID>
+      </Status>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>6.4</BaseScoreV2>
+        <VectorV2>AV:N/AC:L/Au:N/C:P/I:P/A:N</VectorV2>
+      </ScoreSetV2>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-updates/2016-03/msg00054.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-3750.html</URL>
+        <Description>CVE-2015-3750</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/1082221</URL>
+        <Description>SUSE Bug 1082221</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="12">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">WebKit in Apple Safari before 6.2.8, 7.x before 7.1.8, and 8.x before 8.0.8, as used in iOS before 8.4.1 and other products, allows remote attackers to bypass a Content Security Policy protection mechanism by using a video control in conjunction with an IMG element within an OBJECT element.</Note>
+    </Notes>
+    <CVE>CVE-2015-3751</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed">
+        <ProductID>openSUSE Leap 42.1:libjavascriptcoregtk-4_0-18-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libjavascriptcoregtk-4_0-18-32bit-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libwebkit2gtk-4_0-37-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libwebkit2gtk-4_0-37-32bit-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libwebkit2gtk3-lang-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:typelib-1_0-JavaScriptCore-4_0-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:typelib-1_0-WebKit2-4_0-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:typelib-1_0-WebKit2WebExtension-4_0-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit-jsc-4-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit2gtk-4_0-injected-bundles-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit2gtk3-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit2gtk3-devel-2.10.7-7.1</ProductID>
+      </Status>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>5</BaseScoreV2>
+        <VectorV2>AV:N/AC:L/Au:N/C:N/I:P/A:N</VectorV2>
+      </ScoreSetV2>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-updates/2016-03/msg00054.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-3751.html</URL>
+        <Description>CVE-2015-3751</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/1082221</URL>
+        <Description>SUSE Bug 1082221</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="13">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">The private-browsing implementation in WebKit in Apple Safari before 6.2.8, 7.x before 7.1.8, and 8.x before 8.0.8 does not prevent caching of HTTP authentication credentials, which makes it easier for remote attackers to track users via a crafted web site.</Note>
+    </Notes>
+    <CVE>CVE-2015-3754</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed">
+        <ProductID>openSUSE Leap 42.1:libjavascriptcoregtk-4_0-18-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libjavascriptcoregtk-4_0-18-32bit-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libwebkit2gtk-4_0-37-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libwebkit2gtk-4_0-37-32bit-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libwebkit2gtk3-lang-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:typelib-1_0-JavaScriptCore-4_0-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:typelib-1_0-WebKit2-4_0-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:typelib-1_0-WebKit2WebExtension-4_0-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit-jsc-4-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit2gtk-4_0-injected-bundles-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit2gtk3-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit2gtk3-devel-2.10.7-7.1</ProductID>
+      </Status>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>4.3</BaseScoreV2>
+        <VectorV2>AV:N/AC:M/Au:N/C:P/I:N/A:N</VectorV2>
+      </ScoreSetV2>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-updates/2016-03/msg00054.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-3754.html</URL>
+        <Description>CVE-2015-3754</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/1082221</URL>
+        <Description>SUSE Bug 1082221</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="14">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">WebKit in Apple Safari before 6.2.8, 7.x before 7.1.8, and 8.x before 8.0.8, as used in iOS before 8.4.1 and other products, allows remote attackers to spoof the user interface via a malformed URL.</Note>
+    </Notes>
+    <CVE>CVE-2015-3755</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed">
+        <ProductID>openSUSE Leap 42.1:libjavascriptcoregtk-4_0-18-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libjavascriptcoregtk-4_0-18-32bit-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libwebkit2gtk-4_0-37-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libwebkit2gtk-4_0-37-32bit-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libwebkit2gtk3-lang-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:typelib-1_0-JavaScriptCore-4_0-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:typelib-1_0-WebKit2-4_0-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:typelib-1_0-WebKit2WebExtension-4_0-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit-jsc-4-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit2gtk-4_0-injected-bundles-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit2gtk3-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit2gtk3-devel-2.10.7-7.1</ProductID>
+      </Status>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>4.3</BaseScoreV2>
+        <VectorV2>AV:N/AC:M/Au:N/C:N/I:P/A:N</VectorV2>
+      </ScoreSetV2>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-updates/2016-03/msg00054.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-3755.html</URL>
+        <Description>CVE-2015-3755</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/1082221</URL>
+        <Description>SUSE Bug 1082221</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="15">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">WebKit, as used in Apple iOS before 9 and iTunes before 12.3, allows remote attackers to execute arbitrary code or cause a denial of service (memory corruption and application crash) via a crafted web site, a different vulnerability than other WebKit CVEs listed in APPLE-SA-2015-09-16-1 and APPLE-SA-2015-09-16-3.</Note>
+    </Notes>
+    <CVE>CVE-2015-5804</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed">
+        <ProductID>openSUSE Leap 42.1:libjavascriptcoregtk-4_0-18-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libjavascriptcoregtk-4_0-18-32bit-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libwebkit2gtk-4_0-37-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libwebkit2gtk-4_0-37-32bit-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libwebkit2gtk3-lang-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:typelib-1_0-JavaScriptCore-4_0-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:typelib-1_0-WebKit2-4_0-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:typelib-1_0-WebKit2WebExtension-4_0-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit-jsc-4-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit2gtk-4_0-injected-bundles-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit2gtk3-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit2gtk3-devel-2.10.7-7.1</ProductID>
+      </Status>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>6.8</BaseScoreV2>
+        <VectorV2>AV:N/AC:M/Au:N/C:P/I:P/A:P</VectorV2>
+      </ScoreSetV2>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-updates/2016-03/msg00054.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-5804.html</URL>
+        <Description>CVE-2015-5804</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/1082221</URL>
+        <Description>SUSE Bug 1082221</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="16">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">WebKit, as used in Apple iOS before 9 and iTunes before 12.3, allows remote attackers to execute arbitrary code or cause a denial of service (memory corruption and application crash) via a crafted web site, a different vulnerability than other WebKit CVEs listed in APPLE-SA-2015-09-16-1 and APPLE-SA-2015-09-16-3.</Note>
+    </Notes>
+    <CVE>CVE-2015-5805</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed">
+        <ProductID>openSUSE Leap 42.1:libjavascriptcoregtk-4_0-18-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libjavascriptcoregtk-4_0-18-32bit-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libwebkit2gtk-4_0-37-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libwebkit2gtk-4_0-37-32bit-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libwebkit2gtk3-lang-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:typelib-1_0-JavaScriptCore-4_0-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:typelib-1_0-WebKit2-4_0-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:typelib-1_0-WebKit2WebExtension-4_0-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit-jsc-4-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit2gtk-4_0-injected-bundles-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit2gtk3-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit2gtk3-devel-2.10.7-7.1</ProductID>
+      </Status>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>6.8</BaseScoreV2>
+        <VectorV2>AV:N/AC:M/Au:N/C:P/I:P/A:P</VectorV2>
+      </ScoreSetV2>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-updates/2016-03/msg00054.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-5805.html</URL>
+        <Description>CVE-2015-5805</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/1082221</URL>
+        <Description>SUSE Bug 1082221</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="17">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">WebKit, as used in Apple iOS before 9 and iTunes before 12.3, allows remote attackers to execute arbitrary code or cause a denial of service (memory corruption and application crash) via a crafted web site, a different vulnerability than other WebKit CVEs listed in APPLE-SA-2015-09-16-1 and APPLE-SA-2015-09-16-3.</Note>
+    </Notes>
+    <CVE>CVE-2015-5807</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed">
+        <ProductID>openSUSE Leap 42.1:libjavascriptcoregtk-4_0-18-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libjavascriptcoregtk-4_0-18-32bit-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libwebkit2gtk-4_0-37-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libwebkit2gtk-4_0-37-32bit-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libwebkit2gtk3-lang-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:typelib-1_0-JavaScriptCore-4_0-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:typelib-1_0-WebKit2-4_0-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:typelib-1_0-WebKit2WebExtension-4_0-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit-jsc-4-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit2gtk-4_0-injected-bundles-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit2gtk3-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit2gtk3-devel-2.10.7-7.1</ProductID>
+      </Status>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>6.8</BaseScoreV2>
+        <VectorV2>AV:N/AC:M/Au:N/C:P/I:P/A:P</VectorV2>
+      </ScoreSetV2>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-updates/2016-03/msg00054.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-5807.html</URL>
+        <Description>CVE-2015-5807</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/1082221</URL>
+        <Description>SUSE Bug 1082221</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="18">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">WebKit, as used in Apple iOS before 9 and iTunes before 12.3, allows remote attackers to execute arbitrary code or cause a denial of service (memory corruption and application crash) via a crafted web site, a different vulnerability than other WebKit CVEs listed in APPLE-SA-2015-09-16-1 and APPLE-SA-2015-09-16-3.</Note>
+    </Notes>
+    <CVE>CVE-2015-5810</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed">
+        <ProductID>openSUSE Leap 42.1:libjavascriptcoregtk-4_0-18-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libjavascriptcoregtk-4_0-18-32bit-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libwebkit2gtk-4_0-37-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libwebkit2gtk-4_0-37-32bit-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libwebkit2gtk3-lang-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:typelib-1_0-JavaScriptCore-4_0-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:typelib-1_0-WebKit2-4_0-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:typelib-1_0-WebKit2WebExtension-4_0-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit-jsc-4-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit2gtk-4_0-injected-bundles-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit2gtk3-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit2gtk3-devel-2.10.7-7.1</ProductID>
+      </Status>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>6.8</BaseScoreV2>
+        <VectorV2>AV:N/AC:M/Au:N/C:P/I:P/A:P</VectorV2>
+      </ScoreSetV2>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-updates/2016-03/msg00054.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-5810.html</URL>
+        <Description>CVE-2015-5810</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/1082221</URL>
+        <Description>SUSE Bug 1082221</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="19">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">WebKit, as used in Apple iOS before 9 and iTunes before 12.3, allows remote attackers to execute arbitrary code or cause a denial of service (memory corruption and application crash) via a crafted web site, a different vulnerability than other WebKit CVEs listed in APPLE-SA-2015-09-16-1 and APPLE-SA-2015-09-16-3.</Note>
+    </Notes>
+    <CVE>CVE-2015-5813</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed">
+        <ProductID>openSUSE Leap 42.1:libjavascriptcoregtk-4_0-18-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libjavascriptcoregtk-4_0-18-32bit-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libwebkit2gtk-4_0-37-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libwebkit2gtk-4_0-37-32bit-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libwebkit2gtk3-lang-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:typelib-1_0-JavaScriptCore-4_0-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:typelib-1_0-WebKit2-4_0-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:typelib-1_0-WebKit2WebExtension-4_0-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit-jsc-4-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit2gtk-4_0-injected-bundles-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit2gtk3-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit2gtk3-devel-2.10.7-7.1</ProductID>
+      </Status>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>6.8</BaseScoreV2>
+        <VectorV2>AV:N/AC:M/Au:N/C:P/I:P/A:P</VectorV2>
+      </ScoreSetV2>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-updates/2016-03/msg00054.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-5813.html</URL>
+        <Description>CVE-2015-5813</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/1082221</URL>
+        <Description>SUSE Bug 1082221</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="20">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">WebKit, as used in JavaScriptCore in Apple iOS before 9 and iTunes before 12.3, allows remote attackers to execute arbitrary code or cause a denial of service (memory corruption and application crash) via a crafted web site, a different vulnerability than other WebKit CVEs listed in APPLE-SA-2015-09-16-1 and APPLE-SA-2015-09-16-3.</Note>
+    </Notes>
+    <CVE>CVE-2015-5814</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed">
+        <ProductID>openSUSE Leap 42.1:libjavascriptcoregtk-4_0-18-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libjavascriptcoregtk-4_0-18-32bit-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libwebkit2gtk-4_0-37-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libwebkit2gtk-4_0-37-32bit-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libwebkit2gtk3-lang-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:typelib-1_0-JavaScriptCore-4_0-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:typelib-1_0-WebKit2-4_0-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:typelib-1_0-WebKit2WebExtension-4_0-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit-jsc-4-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit2gtk-4_0-injected-bundles-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit2gtk3-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit2gtk3-devel-2.10.7-7.1</ProductID>
+      </Status>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>6.8</BaseScoreV2>
+        <VectorV2>AV:N/AC:M/Au:N/C:P/I:P/A:P</VectorV2>
+      </ScoreSetV2>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-updates/2016-03/msg00054.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-5814.html</URL>
+        <Description>CVE-2015-5814</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/1082221</URL>
+        <Description>SUSE Bug 1082221</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="21">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">WebKit, as used in Apple iTunes before 12.3, allows man-in-the-middle attackers to execute arbitrary code or cause a denial of service (memory corruption and application crash) via vectors related to iTunes Store browsing, a different vulnerability than other WebKit CVEs listed in APPLE-SA-2015-09-16-3.</Note>
+    </Notes>
+    <CVE>CVE-2015-5815</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed">
+        <ProductID>openSUSE Leap 42.1:libjavascriptcoregtk-4_0-18-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libjavascriptcoregtk-4_0-18-32bit-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libwebkit2gtk-4_0-37-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libwebkit2gtk-4_0-37-32bit-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libwebkit2gtk3-lang-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:typelib-1_0-JavaScriptCore-4_0-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:typelib-1_0-WebKit2-4_0-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:typelib-1_0-WebKit2WebExtension-4_0-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit-jsc-4-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit2gtk-4_0-injected-bundles-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit2gtk3-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit2gtk3-devel-2.10.7-7.1</ProductID>
+      </Status>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>6.8</BaseScoreV2>
+        <VectorV2>AV:N/AC:M/Au:N/C:P/I:P/A:P</VectorV2>
+      </ScoreSetV2>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-updates/2016-03/msg00054.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-5815.html</URL>
+        <Description>CVE-2015-5815</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/1082221</URL>
+        <Description>SUSE Bug 1082221</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="22">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">WebKit, as used in Apple iOS before 9 and iTunes before 12.3, allows remote attackers to execute arbitrary code or cause a denial of service (memory corruption and application crash) via a crafted web site, a different vulnerability than other WebKit CVEs listed in APPLE-SA-2015-09-16-1 and APPLE-SA-2015-09-16-3.</Note>
+    </Notes>
+    <CVE>CVE-2015-5817</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed">
+        <ProductID>openSUSE Leap 42.1:libjavascriptcoregtk-4_0-18-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libjavascriptcoregtk-4_0-18-32bit-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libwebkit2gtk-4_0-37-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libwebkit2gtk-4_0-37-32bit-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libwebkit2gtk3-lang-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:typelib-1_0-JavaScriptCore-4_0-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:typelib-1_0-WebKit2-4_0-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:typelib-1_0-WebKit2WebExtension-4_0-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit-jsc-4-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit2gtk-4_0-injected-bundles-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit2gtk3-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit2gtk3-devel-2.10.7-7.1</ProductID>
+      </Status>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>6.8</BaseScoreV2>
+        <VectorV2>AV:N/AC:M/Au:N/C:P/I:P/A:P</VectorV2>
+      </ScoreSetV2>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-updates/2016-03/msg00054.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-5817.html</URL>
+        <Description>CVE-2015-5817</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/1082221</URL>
+        <Description>SUSE Bug 1082221</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="23">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">WebKit, as used in Apple iOS before 9 and iTunes before 12.3, allows remote attackers to execute arbitrary code or cause a denial of service (memory corruption and application crash) via a crafted web site, a different vulnerability than other WebKit CVEs listed in APPLE-SA-2015-09-16-1 and APPLE-SA-2015-09-16-3.</Note>
+    </Notes>
+    <CVE>CVE-2015-5818</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed">
+        <ProductID>openSUSE Leap 42.1:libjavascriptcoregtk-4_0-18-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libjavascriptcoregtk-4_0-18-32bit-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libwebkit2gtk-4_0-37-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libwebkit2gtk-4_0-37-32bit-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libwebkit2gtk3-lang-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:typelib-1_0-JavaScriptCore-4_0-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:typelib-1_0-WebKit2-4_0-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:typelib-1_0-WebKit2WebExtension-4_0-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit-jsc-4-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit2gtk-4_0-injected-bundles-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit2gtk3-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit2gtk3-devel-2.10.7-7.1</ProductID>
+      </Status>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>6.8</BaseScoreV2>
+        <VectorV2>AV:N/AC:M/Au:N/C:P/I:P/A:P</VectorV2>
+      </ScoreSetV2>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-updates/2016-03/msg00054.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-5818.html</URL>
+        <Description>CVE-2015-5818</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/1082221</URL>
+        <Description>SUSE Bug 1082221</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="24">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">WebKit in Apple iOS before 9 does not properly restrict the availability of Performance API times, which allows remote attackers to obtain sensitive information about the browser history, mouse movement, or network traffic via crafted JavaScript code.</Note>
+    </Notes>
+    <CVE>CVE-2015-5825</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed">
+        <ProductID>openSUSE Leap 42.1:libjavascriptcoregtk-4_0-18-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libjavascriptcoregtk-4_0-18-32bit-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libwebkit2gtk-4_0-37-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libwebkit2gtk-4_0-37-32bit-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libwebkit2gtk3-lang-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:typelib-1_0-JavaScriptCore-4_0-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:typelib-1_0-WebKit2-4_0-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:typelib-1_0-WebKit2WebExtension-4_0-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit-jsc-4-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit2gtk-4_0-injected-bundles-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit2gtk3-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit2gtk3-devel-2.10.7-7.1</ProductID>
+      </Status>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>4.3</BaseScoreV2>
+        <VectorV2>AV:N/AC:M/Au:N/C:P/I:N/A:N</VectorV2>
+      </ScoreSetV2>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-updates/2016-03/msg00054.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-5825.html</URL>
+        <Description>CVE-2015-5825</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/1082221</URL>
+        <Description>SUSE Bug 1082221</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="25">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">WebKit in Apple iOS before 9 allows remote attackers to bypass the Same Origin Policy and obtain an object reference via vectors involving a (1) custom event, (2) message event, or (3) pop state event.</Note>
+    </Notes>
+    <CVE>CVE-2015-5827</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed">
+        <ProductID>openSUSE Leap 42.1:libjavascriptcoregtk-4_0-18-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libjavascriptcoregtk-4_0-18-32bit-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libwebkit2gtk-4_0-37-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libwebkit2gtk-4_0-37-32bit-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libwebkit2gtk3-lang-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:typelib-1_0-JavaScriptCore-4_0-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:typelib-1_0-WebKit2-4_0-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:typelib-1_0-WebKit2WebExtension-4_0-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit-jsc-4-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit2gtk-4_0-injected-bundles-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit2gtk3-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit2gtk3-devel-2.10.7-7.1</ProductID>
+      </Status>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>5</BaseScoreV2>
+        <VectorV2>AV:N/AC:L/Au:N/C:P/I:N/A:N</VectorV2>
+      </ScoreSetV2>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-updates/2016-03/msg00054.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-5827.html</URL>
+        <Description>CVE-2015-5827</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/1082221</URL>
+        <Description>SUSE Bug 1082221</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="26">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">The API in the WebKit Plug-ins component in Apple Safari before 9 does not provide notification of an HTTP Redirection (aka 3xx) status code to a plugin, which allows remote attackers to bypass intended request restrictions via a crafted web site.</Note>
+    </Notes>
+    <CVE>CVE-2015-5828</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed">
+        <ProductID>openSUSE Leap 42.1:libjavascriptcoregtk-4_0-18-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libjavascriptcoregtk-4_0-18-32bit-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libwebkit2gtk-4_0-37-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libwebkit2gtk-4_0-37-32bit-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libwebkit2gtk3-lang-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:typelib-1_0-JavaScriptCore-4_0-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:typelib-1_0-WebKit2-4_0-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:typelib-1_0-WebKit2WebExtension-4_0-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit-jsc-4-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit2gtk-4_0-injected-bundles-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit2gtk3-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit2gtk3-devel-2.10.7-7.1</ProductID>
+      </Status>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>4.3</BaseScoreV2>
+        <VectorV2>AV:N/AC:M/Au:N/C:N/I:P/A:N</VectorV2>
+      </ScoreSetV2>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-updates/2016-03/msg00054.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-5828.html</URL>
+        <Description>CVE-2015-5828</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/1082221</URL>
+        <Description>SUSE Bug 1082221</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="27">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">WebKit, as used in Apple iOS before 9.1, Safari before 9.0.1, and iTunes before 12.3.1, allows remote attackers to execute arbitrary code or cause a denial of service (memory corruption and application crash) via a crafted web site, a different vulnerability than other WebKit CVEs listed in APPLE-SA-2015-10-21-1, APPLE-SA-2015-10-21-3, and APPLE-SA-2015-10-21-5.</Note>
+    </Notes>
+    <CVE>CVE-2015-5929</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed">
+        <ProductID>openSUSE Leap 42.1:libjavascriptcoregtk-4_0-18-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libjavascriptcoregtk-4_0-18-32bit-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libwebkit2gtk-4_0-37-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libwebkit2gtk-4_0-37-32bit-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libwebkit2gtk3-lang-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:typelib-1_0-JavaScriptCore-4_0-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:typelib-1_0-WebKit2-4_0-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:typelib-1_0-WebKit2WebExtension-4_0-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit-jsc-4-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit2gtk-4_0-injected-bundles-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit2gtk3-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit2gtk3-devel-2.10.7-7.1</ProductID>
+      </Status>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>6.8</BaseScoreV2>
+        <VectorV2>AV:N/AC:M/Au:N/C:P/I:P/A:P</VectorV2>
+      </ScoreSetV2>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-updates/2016-03/msg00054.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-5929.html</URL>
+        <Description>CVE-2015-5929</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/1082221</URL>
+        <Description>SUSE Bug 1082221</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="28">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">WebKit, as used in Apple iOS before 9.1, Safari before 9.0.1, and iTunes before 12.3.1, allows remote attackers to execute arbitrary code or cause a denial of service (memory corruption and application crash) via a crafted web site, a different vulnerability than other WebKit CVEs listed in APPLE-SA-2015-10-21-1, APPLE-SA-2015-10-21-3, and APPLE-SA-2015-10-21-5.</Note>
+    </Notes>
+    <CVE>CVE-2015-5930</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed">
+        <ProductID>openSUSE Leap 42.1:libjavascriptcoregtk-4_0-18-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libjavascriptcoregtk-4_0-18-32bit-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libwebkit2gtk-4_0-37-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libwebkit2gtk-4_0-37-32bit-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libwebkit2gtk3-lang-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:typelib-1_0-JavaScriptCore-4_0-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:typelib-1_0-WebKit2-4_0-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:typelib-1_0-WebKit2WebExtension-4_0-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit-jsc-4-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit2gtk-4_0-injected-bundles-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit2gtk3-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit2gtk3-devel-2.10.7-7.1</ProductID>
+      </Status>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>6.8</BaseScoreV2>
+        <VectorV2>AV:N/AC:M/Au:N/C:P/I:P/A:P</VectorV2>
+      </ScoreSetV2>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-updates/2016-03/msg00054.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-5930.html</URL>
+        <Description>CVE-2015-5930</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/1082221</URL>
+        <Description>SUSE Bug 1082221</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="29">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">WebKit, as used in Apple Safari before 9.0.1 and iTunes before 12.3.1, allows remote attackers to execute arbitrary code or cause a denial of service (memory corruption and application crash) via a crafted web site, a different vulnerability than other WebKit CVEs listed in APPLE-SA-2015-10-21-3 and APPLE-SA-2015-10-21-5.</Note>
+    </Notes>
+    <CVE>CVE-2015-5931</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed">
+        <ProductID>openSUSE Leap 42.1:libjavascriptcoregtk-4_0-18-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libjavascriptcoregtk-4_0-18-32bit-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libwebkit2gtk-4_0-37-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libwebkit2gtk-4_0-37-32bit-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libwebkit2gtk3-lang-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:typelib-1_0-JavaScriptCore-4_0-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:typelib-1_0-WebKit2-4_0-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:typelib-1_0-WebKit2WebExtension-4_0-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit-jsc-4-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit2gtk-4_0-injected-bundles-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit2gtk3-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit2gtk3-devel-2.10.7-7.1</ProductID>
+      </Status>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>6.8</BaseScoreV2>
+        <VectorV2>AV:N/AC:M/Au:N/C:P/I:P/A:P</VectorV2>
+      </ScoreSetV2>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-updates/2016-03/msg00054.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-5931.html</URL>
+        <Description>CVE-2015-5931</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/1082221</URL>
+        <Description>SUSE Bug 1082221</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="30">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">WebKit, as used in Apple iOS before 9.1, Safari before 9.0.1, and iTunes before 12.3.1, allows remote attackers to execute arbitrary code or cause a denial of service (memory corruption and application crash) via a crafted web site, a different vulnerability than other WebKit CVEs listed in APPLE-SA-2015-10-21-1, APPLE-SA-2015-10-21-3, and APPLE-SA-2015-10-21-5.</Note>
+    </Notes>
+    <CVE>CVE-2015-7002</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed">
+        <ProductID>openSUSE Leap 42.1:libjavascriptcoregtk-4_0-18-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libjavascriptcoregtk-4_0-18-32bit-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libwebkit2gtk-4_0-37-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libwebkit2gtk-4_0-37-32bit-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libwebkit2gtk3-lang-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:typelib-1_0-JavaScriptCore-4_0-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:typelib-1_0-WebKit2-4_0-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:typelib-1_0-WebKit2WebExtension-4_0-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit-jsc-4-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit2gtk-4_0-injected-bundles-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit2gtk3-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit2gtk3-devel-2.10.7-7.1</ProductID>
+      </Status>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>6.8</BaseScoreV2>
+        <VectorV2>AV:N/AC:M/Au:N/C:P/I:P/A:P</VectorV2>
+      </ScoreSetV2>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-updates/2016-03/msg00054.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-7002.html</URL>
+        <Description>CVE-2015-7002</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/1082221</URL>
+        <Description>SUSE Bug 1082221</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="31">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">WebKit, as used in Apple Safari before 9.0.1 and iTunes before 12.3.1, allows remote attackers to execute arbitrary code or cause a denial of service (memory corruption and application crash) via a crafted web site, a different vulnerability than other WebKit CVEs listed in APPLE-SA-2015-10-21-3 and APPLE-SA-2015-10-21-5.</Note>
+    </Notes>
+    <CVE>CVE-2015-7013</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed">
+        <ProductID>openSUSE Leap 42.1:libjavascriptcoregtk-4_0-18-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libjavascriptcoregtk-4_0-18-32bit-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libwebkit2gtk-4_0-37-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libwebkit2gtk-4_0-37-32bit-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libwebkit2gtk3-lang-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:typelib-1_0-JavaScriptCore-4_0-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:typelib-1_0-WebKit2-4_0-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:typelib-1_0-WebKit2WebExtension-4_0-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit-jsc-4-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit2gtk-4_0-injected-bundles-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit2gtk3-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit2gtk3-devel-2.10.7-7.1</ProductID>
+      </Status>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>6.8</BaseScoreV2>
+        <VectorV2>AV:N/AC:M/Au:N/C:P/I:P/A:P</VectorV2>
+      </ScoreSetV2>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-updates/2016-03/msg00054.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-7013.html</URL>
+        <Description>CVE-2015-7013</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/1082221</URL>
+        <Description>SUSE Bug 1082221</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="32">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">WebKit, as used in Apple iOS before 9.1, Safari before 9.0.1, and iTunes before 12.3.1, allows remote attackers to execute arbitrary code or cause a denial of service (memory corruption and application crash) via a crafted web site, a different vulnerability than other WebKit CVEs listed in APPLE-SA-2015-10-21-1, APPLE-SA-2015-10-21-3, and APPLE-SA-2015-10-21-5.</Note>
+    </Notes>
+    <CVE>CVE-2015-7014</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed">
+        <ProductID>openSUSE Leap 42.1:libjavascriptcoregtk-4_0-18-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libjavascriptcoregtk-4_0-18-32bit-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libwebkit2gtk-4_0-37-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libwebkit2gtk-4_0-37-32bit-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libwebkit2gtk3-lang-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:typelib-1_0-JavaScriptCore-4_0-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:typelib-1_0-WebKit2-4_0-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:typelib-1_0-WebKit2WebExtension-4_0-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit-jsc-4-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit2gtk-4_0-injected-bundles-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit2gtk3-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit2gtk3-devel-2.10.7-7.1</ProductID>
+      </Status>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>6.8</BaseScoreV2>
+        <VectorV2>AV:N/AC:M/Au:N/C:P/I:P/A:P</VectorV2>
+      </ScoreSetV2>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-updates/2016-03/msg00054.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-7014.html</URL>
+        <Description>CVE-2015-7014</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/1082221</URL>
+        <Description>SUSE Bug 1082221</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="33">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">WebKit in Apple iOS before 9.2, Safari before 9.0.2, and tvOS before 9.1 allows remote attackers to execute arbitrary code or cause a denial of service (memory corruption and application crash) via a crafted web site, a different vulnerability than CVE-2015-7095, CVE-2015-7096, CVE-2015-7097, CVE-2015-7098, CVE-2015-7099, CVE-2015-7100, CVE-2015-7101, CVE-2015-7102, and CVE-2015-7103.</Note>
+    </Notes>
+    <CVE>CVE-2015-7048</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed">
+        <ProductID>openSUSE Leap 42.1:libjavascriptcoregtk-4_0-18-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libjavascriptcoregtk-4_0-18-32bit-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libwebkit2gtk-4_0-37-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libwebkit2gtk-4_0-37-32bit-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libwebkit2gtk3-lang-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:typelib-1_0-JavaScriptCore-4_0-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:typelib-1_0-WebKit2-4_0-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:typelib-1_0-WebKit2WebExtension-4_0-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit-jsc-4-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit2gtk-4_0-injected-bundles-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit2gtk3-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit2gtk3-devel-2.10.7-7.1</ProductID>
+      </Status>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>6.8</BaseScoreV2>
+        <VectorV2>AV:N/AC:M/Au:N/C:P/I:P/A:P</VectorV2>
+      </ScoreSetV2>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-updates/2016-03/msg00054.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-7048.html</URL>
+        <Description>CVE-2015-7048</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/1082221</URL>
+        <Description>SUSE Bug 1082221</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="34">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">WebKit in Apple iOS before 9.2, Safari before 9.0.2, and tvOS before 9.1 allows remote attackers to execute arbitrary code or cause a denial of service (memory corruption and application crash) via a crafted web site, a different vulnerability than CVE-2015-7048, CVE-2015-7096, CVE-2015-7097, CVE-2015-7098, CVE-2015-7099, CVE-2015-7100, CVE-2015-7101, CVE-2015-7102, and CVE-2015-7103.</Note>
+    </Notes>
+    <CVE>CVE-2015-7095</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed">
+        <ProductID>openSUSE Leap 42.1:libjavascriptcoregtk-4_0-18-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libjavascriptcoregtk-4_0-18-32bit-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libwebkit2gtk-4_0-37-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libwebkit2gtk-4_0-37-32bit-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libwebkit2gtk3-lang-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:typelib-1_0-JavaScriptCore-4_0-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:typelib-1_0-WebKit2-4_0-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:typelib-1_0-WebKit2WebExtension-4_0-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit-jsc-4-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit2gtk-4_0-injected-bundles-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit2gtk3-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit2gtk3-devel-2.10.7-7.1</ProductID>
+      </Status>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>6.8</BaseScoreV2>
+        <VectorV2>AV:N/AC:M/Au:N/C:P/I:P/A:P</VectorV2>
+      </ScoreSetV2>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-updates/2016-03/msg00054.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-7095.html</URL>
+        <Description>CVE-2015-7095</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/1082221</URL>
+        <Description>SUSE Bug 1082221</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="35">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">WebKit in Apple iOS before 9.2, Safari before 9.0.2, and tvOS before 9.1 allows remote attackers to execute arbitrary code or cause a denial of service (memory corruption and application crash) via a crafted web site, a different vulnerability than CVE-2015-7048, CVE-2015-7095, CVE-2015-7097, CVE-2015-7098, CVE-2015-7099, CVE-2015-7100, CVE-2015-7101, CVE-2015-7102, and CVE-2015-7103.</Note>
+    </Notes>
+    <CVE>CVE-2015-7096</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed">
+        <ProductID>openSUSE Leap 42.1:libjavascriptcoregtk-4_0-18-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libjavascriptcoregtk-4_0-18-32bit-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libwebkit2gtk-4_0-37-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libwebkit2gtk-4_0-37-32bit-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libwebkit2gtk3-lang-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:typelib-1_0-JavaScriptCore-4_0-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:typelib-1_0-WebKit2-4_0-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:typelib-1_0-WebKit2WebExtension-4_0-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit-jsc-4-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit2gtk-4_0-injected-bundles-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit2gtk3-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit2gtk3-devel-2.10.7-7.1</ProductID>
+      </Status>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>6.8</BaseScoreV2>
+        <VectorV2>AV:N/AC:M/Au:N/C:P/I:P/A:P</VectorV2>
+      </ScoreSetV2>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-updates/2016-03/msg00054.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-7096.html</URL>
+        <Description>CVE-2015-7096</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/1082221</URL>
+        <Description>SUSE Bug 1082221</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="36">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">WebKit in Apple iOS before 9.2, Safari before 9.0.2, and tvOS before 9.1 allows remote attackers to execute arbitrary code or cause a denial of service (memory corruption and application crash) via a crafted web site, a different vulnerability than CVE-2015-7048, CVE-2015-7095, CVE-2015-7096, CVE-2015-7098, CVE-2015-7099, CVE-2015-7100, CVE-2015-7101, CVE-2015-7102, and CVE-2015-7103.</Note>
+    </Notes>
+    <CVE>CVE-2015-7097</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed">
+        <ProductID>openSUSE Leap 42.1:libjavascriptcoregtk-4_0-18-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libjavascriptcoregtk-4_0-18-32bit-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libwebkit2gtk-4_0-37-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libwebkit2gtk-4_0-37-32bit-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libwebkit2gtk3-lang-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:typelib-1_0-JavaScriptCore-4_0-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:typelib-1_0-WebKit2-4_0-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:typelib-1_0-WebKit2WebExtension-4_0-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit-jsc-4-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit2gtk-4_0-injected-bundles-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit2gtk3-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit2gtk3-devel-2.10.7-7.1</ProductID>
+      </Status>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>6.8</BaseScoreV2>
+        <VectorV2>AV:N/AC:M/Au:N/C:P/I:P/A:P</VectorV2>
+      </ScoreSetV2>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-updates/2016-03/msg00054.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-7097.html</URL>
+        <Description>CVE-2015-7097</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/1082221</URL>
+        <Description>SUSE Bug 1082221</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="37">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">WebKit in Apple iOS before 9.2, Safari before 9.0.2, and tvOS before 9.1 allows remote attackers to execute arbitrary code or cause a denial of service (memory corruption and application crash) via a crafted web site, a different vulnerability than CVE-2015-7048, CVE-2015-7095, CVE-2015-7096, CVE-2015-7097, CVE-2015-7099, CVE-2015-7100, CVE-2015-7101, CVE-2015-7102, and CVE-2015-7103.</Note>
+    </Notes>
+    <CVE>CVE-2015-7098</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed">
+        <ProductID>openSUSE Leap 42.1:libjavascriptcoregtk-4_0-18-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libjavascriptcoregtk-4_0-18-32bit-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libwebkit2gtk-4_0-37-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libwebkit2gtk-4_0-37-32bit-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libwebkit2gtk3-lang-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:typelib-1_0-JavaScriptCore-4_0-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:typelib-1_0-WebKit2-4_0-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:typelib-1_0-WebKit2WebExtension-4_0-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit-jsc-4-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit2gtk-4_0-injected-bundles-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit2gtk3-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit2gtk3-devel-2.10.7-7.1</ProductID>
+      </Status>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>6.8</BaseScoreV2>
+        <VectorV2>AV:N/AC:M/Au:N/C:P/I:P/A:P</VectorV2>
+      </ScoreSetV2>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-updates/2016-03/msg00054.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-7098.html</URL>
+        <Description>CVE-2015-7098</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/1082221</URL>
+        <Description>SUSE Bug 1082221</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="38">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">WebKit in Apple iOS before 9.2, Safari before 9.0.2, and tvOS before 9.1 allows remote attackers to execute arbitrary code or cause a denial of service (memory corruption and application crash) via a crafted web site, a different vulnerability than CVE-2015-7048, CVE-2015-7095, CVE-2015-7096, CVE-2015-7097, CVE-2015-7098, CVE-2015-7100, CVE-2015-7101, CVE-2015-7102, and CVE-2015-7103.</Note>
+    </Notes>
+    <CVE>CVE-2015-7099</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed">
+        <ProductID>openSUSE Leap 42.1:libjavascriptcoregtk-4_0-18-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libjavascriptcoregtk-4_0-18-32bit-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libwebkit2gtk-4_0-37-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libwebkit2gtk-4_0-37-32bit-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libwebkit2gtk3-lang-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:typelib-1_0-JavaScriptCore-4_0-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:typelib-1_0-WebKit2-4_0-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:typelib-1_0-WebKit2WebExtension-4_0-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit-jsc-4-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit2gtk-4_0-injected-bundles-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit2gtk3-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit2gtk3-devel-2.10.7-7.1</ProductID>
+      </Status>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>6.8</BaseScoreV2>
+        <VectorV2>AV:N/AC:M/Au:N/C:P/I:P/A:P</VectorV2>
+      </ScoreSetV2>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-updates/2016-03/msg00054.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-7099.html</URL>
+        <Description>CVE-2015-7099</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/1082221</URL>
+        <Description>SUSE Bug 1082221</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="39">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">WebKit in Apple iOS before 9.2, Safari before 9.0.2, and tvOS before 9.1 allows remote attackers to execute arbitrary code or cause a denial of service (memory corruption and application crash) via a crafted web site, a different vulnerability than CVE-2015-7048, CVE-2015-7095, CVE-2015-7096, CVE-2015-7097, CVE-2015-7098, CVE-2015-7099, CVE-2015-7101, CVE-2015-7102, and CVE-2015-7103.</Note>
+    </Notes>
+    <CVE>CVE-2015-7100</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed">
+        <ProductID>openSUSE Leap 42.1:libjavascriptcoregtk-4_0-18-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libjavascriptcoregtk-4_0-18-32bit-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libwebkit2gtk-4_0-37-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libwebkit2gtk-4_0-37-32bit-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libwebkit2gtk3-lang-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:typelib-1_0-JavaScriptCore-4_0-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:typelib-1_0-WebKit2-4_0-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:typelib-1_0-WebKit2WebExtension-4_0-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit-jsc-4-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit2gtk-4_0-injected-bundles-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit2gtk3-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit2gtk3-devel-2.10.7-7.1</ProductID>
+      </Status>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>6.8</BaseScoreV2>
+        <VectorV2>AV:N/AC:M/Au:N/C:P/I:P/A:P</VectorV2>
+      </ScoreSetV2>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-updates/2016-03/msg00054.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-7100.html</URL>
+        <Description>CVE-2015-7100</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/1082221</URL>
+        <Description>SUSE Bug 1082221</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="40">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">WebKit in Apple iOS before 9.2, Safari before 9.0.2, and tvOS before 9.1 allows remote attackers to execute arbitrary code or cause a denial of service (memory corruption and application crash) via a crafted web site, a different vulnerability than CVE-2015-7048, CVE-2015-7095, CVE-2015-7096, CVE-2015-7097, CVE-2015-7098, CVE-2015-7099, CVE-2015-7100, CVE-2015-7101, and CVE-2015-7103.</Note>
+    </Notes>
+    <CVE>CVE-2015-7102</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed">
+        <ProductID>openSUSE Leap 42.1:libjavascriptcoregtk-4_0-18-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libjavascriptcoregtk-4_0-18-32bit-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libwebkit2gtk-4_0-37-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libwebkit2gtk-4_0-37-32bit-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libwebkit2gtk3-lang-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:typelib-1_0-JavaScriptCore-4_0-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:typelib-1_0-WebKit2-4_0-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:typelib-1_0-WebKit2WebExtension-4_0-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit-jsc-4-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit2gtk-4_0-injected-bundles-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit2gtk3-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit2gtk3-devel-2.10.7-7.1</ProductID>
+      </Status>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>6.8</BaseScoreV2>
+        <VectorV2>AV:N/AC:M/Au:N/C:P/I:P/A:P</VectorV2>
+      </ScoreSetV2>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-updates/2016-03/msg00054.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-7102.html</URL>
+        <Description>CVE-2015-7102</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/1082221</URL>
+        <Description>SUSE Bug 1082221</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="41">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">WebKit in Apple iOS before 9.2, Safari before 9.0.2, and tvOS before 9.1 allows remote attackers to execute arbitrary code or cause a denial of service (memory corruption and application crash) via a crafted web site, a different vulnerability than CVE-2015-7048, CVE-2015-7095, CVE-2015-7096, CVE-2015-7097, CVE-2015-7098, CVE-2015-7099, CVE-2015-7100, CVE-2015-7101, and CVE-2015-7102.</Note>
+    </Notes>
+    <CVE>CVE-2015-7103</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed">
+        <ProductID>openSUSE Leap 42.1:libjavascriptcoregtk-4_0-18-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libjavascriptcoregtk-4_0-18-32bit-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libwebkit2gtk-4_0-37-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libwebkit2gtk-4_0-37-32bit-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libwebkit2gtk3-lang-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:typelib-1_0-JavaScriptCore-4_0-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:typelib-1_0-WebKit2-4_0-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:typelib-1_0-WebKit2WebExtension-4_0-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit-jsc-4-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit2gtk-4_0-injected-bundles-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit2gtk3-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit2gtk3-devel-2.10.7-7.1</ProductID>
+      </Status>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>6.8</BaseScoreV2>
+        <VectorV2>AV:N/AC:M/Au:N/C:P/I:P/A:P</VectorV2>
+      </ScoreSetV2>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-updates/2016-03/msg00054.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-7103.html</URL>
+        <Description>CVE-2015-7103</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/1082221</URL>
+        <Description>SUSE Bug 1082221</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="42">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">WebKit in Apple Safari before 9.0.2 and tvOS before 9.1 allows remote attackers to execute arbitrary code or cause a denial of service (memory corruption and application crash) via a crafted web site.</Note>
+    </Notes>
+    <CVE>CVE-2015-7104</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed">
+        <ProductID>openSUSE Leap 42.1:libjavascriptcoregtk-4_0-18-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libjavascriptcoregtk-4_0-18-32bit-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libwebkit2gtk-4_0-37-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libwebkit2gtk-4_0-37-32bit-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libwebkit2gtk3-lang-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:typelib-1_0-JavaScriptCore-4_0-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:typelib-1_0-WebKit2-4_0-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:typelib-1_0-WebKit2WebExtension-4_0-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit-jsc-4-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit2gtk-4_0-injected-bundles-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit2gtk3-2.10.7-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:webkit2gtk3-devel-2.10.7-7.1</ProductID>
+      </Status>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>6.8</BaseScoreV2>
+        <VectorV2>AV:N/AC:M/Au:N/C:P/I:P/A:P</VectorV2>
+      </ScoreSetV2>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-updates/2016-03/msg00054.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-7104.html</URL>
+        <Description>CVE-2015-7104</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/1082221</URL>
+        <Description>SUSE Bug 1082221</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+</cvrfdoc>

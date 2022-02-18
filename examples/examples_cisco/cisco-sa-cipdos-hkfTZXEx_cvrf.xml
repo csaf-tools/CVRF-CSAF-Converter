@@ -1,0 +1,1347 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cvrf:cvrfdoc xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:cvrf-common="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/common" xmlns:cvrf="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/cvrf">
+  <cvrf:DocumentTitle>Cisco IOS and IOS XE Software Common Industrial Protocol Denial of Service Vulnerabilities</cvrf:DocumentTitle>
+  <cvrf:DocumentType>Cisco Security Advisory</cvrf:DocumentType>
+  <cvrf:DocumentPublisher Type="Vendor">
+    <cvrf:ContactDetails>Emergency Support:
++1 877 228 7302 (toll-free within North America)
++1 408 525 6532 (International direct-dial)
+Non-emergency Support:
+Email: psirt@cisco.com
+Support requests that are received via e-mail are typically acknowledged within 48 hours.</cvrf:ContactDetails>
+    <cvrf:IssuingAuthority>Cisco product security incident response is the responsibility of the Cisco Product Security Incident Response Team (PSIRT). The Cisco PSIRT is a dedicated, global team that manages the receipt, investigation, and public reporting of security vulnerability information that is related to Cisco products and networks. The on-call Cisco PSIRT works 24x7 with Cisco customers, independent security researchers, consultants, industry organizations, and other vendors to identify possible security issues with Cisco products and networks.
+More information can be found in Cisco Security Vulnerability Policy available at http://www.cisco.com/web/about/security/psirt/security_vulnerability_policy.html</cvrf:IssuingAuthority>
+  </cvrf:DocumentPublisher>
+  <cvrf:DocumentTracking>
+    <cvrf:Identification>
+      <cvrf:ID>cisco-sa-cipdos-hkfTZXEx</cvrf:ID>
+    </cvrf:Identification>
+    <cvrf:Status>Final</cvrf:Status>
+    <cvrf:Version>1.0</cvrf:Version>
+    <cvrf:RevisionHistory>
+      <cvrf:Revision>
+        <cvrf:Number>1.0</cvrf:Number>
+        <cvrf:Date>2020-04-30T19:04:54</cvrf:Date>
+        <cvrf:Description>Initial public release.</cvrf:Description>
+      </cvrf:Revision>
+    </cvrf:RevisionHistory>
+    <cvrf:InitialReleaseDate>2020-06-03T16:00:00</cvrf:InitialReleaseDate>
+    <cvrf:CurrentReleaseDate>2020-06-03T16:00:00</cvrf:CurrentReleaseDate>
+    <cvrf:Generator>
+      <cvrf:Engine>TVCE</cvrf:Engine>
+    </cvrf:Generator>
+  </cvrf:DocumentTracking>
+  <cvrf:DocumentNotes>
+    <cvrf:Note Title="Summary" Type="Summary" Ordinal="1">Multiple vulnerabilities in the implementation of the Common Industrial Protocol (CIP) feature of Cisco IOS Software and Cisco IOS XE Software could allow an unauthenticated, remote attacker to cause an affected device to reload, resulting in a denial of service (DoS) condition.
+
+The vulnerabilities are due to insufficient input processing of CIP traffic. An attacker could exploit these vulnerabilities by sending crafted CIP traffic to be processed by an affected device. A successful exploit could allow the attacker to cause the affected device to reload, resulting in a DoS condition.
+
+
+Cisco has released software updates that address these vulnerabilities. There are no workarounds that address these vulnerabilities.
+
+This advisory is available at the following link:
+https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-cipdos-hkfTZXEx ["https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-cipdos-hkfTZXEx"]
+
+
+This advisory is part of the June 3, 2020, release of the Cisco IOS and IOS XE Software Security Advisory Bundled Publication, which includes 23 Cisco Security Advisories that describe 25 vulnerabilities. For a complete list of the advisories and links to them, see Cisco Event Response: June 2020 Semiannual Cisco IOS and IOS XE Software Security Advisory Bundled Publication [" http://tools.cisco.com/security/center/viewErp.x?alertId=ERP-73388"].</cvrf:Note>
+    <cvrf:Note Title="Vulnerable Products" Type="General" Ordinal="2">These vulnerabilities affect Cisco IOS and IOS XE Software if they are configured for CIP. CIP is not enabled by default.
+
+For information about which Cisco software releases are vulnerable, see the Fixed Software ["#fs"] section of this advisory.
+  Determine Whether CIP Is Enabled
+An administrator can determine whether CIP is enabled on a device by issuing the show cip status command and checking the State: value.
+
+The following show cip status output shows that CIP is enabled for VLAN 1:
+
+
+Device&gt;show cip status
+State : Enabled
+Vlan : 1
+
+If the command returns no output, the device is not affected by the vulnerabilities described in this advisory.</cvrf:Note>
+    <cvrf:Note Title="Products Confirmed Not Vulnerable" Type="General" Ordinal="3">Only products listed in the Vulnerable Products ["#vp"] section of this advisory are known to be affected by these vulnerabilities.
+
+Cisco has confirmed that these vulnerabilities do not affect Cisco IOS XR Software or Cisco NX-OS Software.</cvrf:Note>
+    <cvrf:Note Title="Workarounds" Type="General" Ordinal="4">There are no workarounds that address these vulnerabilities.</cvrf:Note>
+    <cvrf:Note Title="Fixed Software" Type="General" Ordinal="5">Cisco has released free software updates that address the vulnerabilities described in this advisory. Customers may only install and expect support for software versions and feature sets for which they have purchased a license. By installing, downloading, accessing, or otherwise using such software upgrades, customers agree to follow the terms of the Cisco software license:
+https://www.cisco.com/c/en/us/products/end-user-license-agreement.html ["https://www.cisco.com/c/en/us/products/end-user-license-agreement.html"]
+
+Additionally, customers may only download software for which they have a valid license, procured from Cisco directly, or through a Cisco authorized reseller or partner. In most cases this will be a maintenance upgrade to software that was previously purchased. Free security software updates do not entitle customers to a new software license, additional software feature sets, or major revision upgrades.
+
+When considering software upgrades ["https://tools.cisco.com/security/center/resources/security_vulnerability_policy.html#fixes"], customers are advised to regularly consult the advisories for Cisco products, which are available from the Cisco Security Advisories and Alerts page ["https://www.cisco.com/go/psirt"], to determine exposure and a complete upgrade solution.
+
+In all cases, customers should ensure that the devices to be upgraded contain sufficient memory and confirm that current hardware and software configurations will continue to be supported properly by the new release. If the information is not clear, customers are advised to contact the Cisco Technical Assistance Center (TAC) or their contracted maintenance providers.
+  Customers Without Service Contracts
+Customers who purchase directly from Cisco but do not hold a Cisco service contract and customers who make purchases through third-party vendors but are unsuccessful in obtaining fixed software through their point of sale should obtain upgrades by contacting the Cisco TAC:
+https://www.cisco.com/c/en/us/support/web/tsd-cisco-worldwide-contacts.html ["https://www.cisco.com/c/en/us/support/web/tsd-cisco-worldwide-contacts.html"]
+
+Customers should have the product serial number available and be prepared to provide the URL of this advisory as evidence of entitlement to a free upgrade.
+
+
+                        Cisco IOS and IOS XE Software
+To help customers determine their exposure to vulnerabilities in Cisco IOS and IOS XE Software, Cisco provides the Cisco Software Checker ["https://tools.cisco.com/security/center/softwarechecker.x"] to identify any Cisco Security Advisories that impact a specific software release and the earliest release that fixes the vulnerabilities described in each advisory (“First Fixed”). If applicable, the tool also returns the earliest release that fixes all the vulnerabilities described in all the advisories identified (“Combined First Fixed”).
+
+Customers can use the Cisco Software Checker ["https://tools.cisco.com/security/center/softwarechecker.x"] to search advisories in the following ways:
+
+Choose the software and one or more releases
+Upload a .txt file that includes a list of specific releases
+Enter the output of the show version command
+
+After initiating a search, customers can customize the search to include all Cisco Security Advisories, a specific advisory, or all advisories in the most recent bundled publication.
+
+Customers can also use the following form to determine whether a release is affected by any Cisco Security Advisory by entering a Cisco IOS or IOS XE Software release—for example, 15.1(4)M2 or 3.13.8S:
+
+
+
+By default, the Cisco Software Checker ["https://tools.cisco.com/security/center/softwarechecker.x"] includes results only for vulnerabilities that have a Critical or High Security Impact Rating (SIR). To include results for Medium SIR vulnerabilities, customers can use the Cisco Software Checker on Cisco.com and check the Medium check box in the drop-down list under Impact Rating when customizing a search.
+
+For a mapping of Cisco IOS XE Software releases to Cisco IOS Software releases, refer to the Cisco IOS XE 2 Release Notes ["https://www.cisco.com/c/en/us/td/docs/ios/ios_xe/2/release/notes/rnasr21/rnasr21_gen.html#wp3000032"], Cisco IOS XE 3S Release Notes ["https://www.cisco.com/c/en/us/td/docs/ios/ios_xe/3/release/notes/asr1k_rn_3s_rel_notes/asr1k_rn_3s_sys_req.html#wp3069754"], or Cisco IOS XE 3SG Release Notes ["https://www.cisco.com/c/en/us/td/docs/switches/lan/catalyst4500/release/note/OL_24726.html#pgfId-2570252"], depending on the Cisco IOS XE Software release.</cvrf:Note>
+    <cvrf:Note Title="Vulnerability Policy" Type="General" Ordinal="6">To learn about Cisco security vulnerability disclosure policies and publications, see the Security Vulnerability Policy ["http://www.cisco.com/web/about/security/psirt/security_vulnerability_policy.html"]. This document also contains instructions for obtaining fixed software and receiving security vulnerability information from Cisco.</cvrf:Note>
+    <cvrf:Note Title="Exploitation and Public Announcements" Type="General" Ordinal="7">The Cisco Product Security Incident Response Team (PSIRT) is not aware of any public announcements or malicious use of the vulnerabilities that are described in this advisory.</cvrf:Note>
+    <cvrf:Note Title="Source" Type="General" Ordinal="8">These vulnerabilities were found during the resolution of a Cisco TAC support case.</cvrf:Note>
+    <cvrf:Note Title="Legal Disclaimer" Type="Legal Disclaimer" Ordinal="9">THIS DOCUMENT IS PROVIDED ON AN "AS IS" BASIS AND DOES NOT IMPLY ANY KIND OF GUARANTEE OR WARRANTY, INCLUDING THE WARRANTIES OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR USE. YOUR USE OF THE INFORMATION ON THE DOCUMENT OR MATERIALS LINKED FROM THE DOCUMENT IS AT YOUR OWN RISK. CISCO RESERVES THE RIGHT TO CHANGE OR UPDATE THIS DOCUMENT AT ANY TIME.
+
+A standalone copy or paraphrase of the text of this document that omits the distribution URL is an uncontrolled copy and may lack important information or contain factual errors. The information in this document is intended for end users of Cisco products.</cvrf:Note>
+  </cvrf:DocumentNotes>
+  <cvrf:DocumentReferences>
+    <cvrf:Reference Type="Self">
+      <cvrf:URL>https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-cipdos-hkfTZXEx</cvrf:URL>
+      <cvrf:Description>Cisco IOS and IOS XE Software Common Industrial Protocol Denial of Service Vulnerabilities</cvrf:Description>
+    </cvrf:Reference>
+    <cvrf:Reference>
+      <cvrf:URL>http://tools.cisco.com/security/center/viewErp.x?alertId=ERP-73388</cvrf:URL>
+      <cvrf:Description>Cisco Event Response: June 2020 Semiannual Cisco IOS and IOS XE Software Security Advisory Bundled Publication</cvrf:Description>
+    </cvrf:Reference>
+  </cvrf:DocumentReferences>
+  <ProductTree xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/prod">
+    <Branch Name="Cisco" Type="Vendor">
+      <Branch Name="IOS" Type="Product Name">
+        <Branch Name="12.2SE" Type="Product Version">
+          <Branch Name="12.2(55)SE" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-103763">Cisco IOS 12.2(55)SE</FullProductName>
+          </Branch>
+          <Branch Name="12.2(46)SE2" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-104089">Cisco IOS 12.2(46)SE2</FullProductName>
+          </Branch>
+          <Branch Name="12.2(50)SE2" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-104101">Cisco IOS 12.2(50)SE2</FullProductName>
+          </Branch>
+          <Branch Name="12.2(50)SE1" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-104342">Cisco IOS 12.2(50)SE1</FullProductName>
+          </Branch>
+          <Branch Name="12.2(50)SE5" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-104855">Cisco IOS 12.2(50)SE5</FullProductName>
+          </Branch>
+          <Branch Name="12.2(55)SE3" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-105394">Cisco IOS 12.2(55)SE3</FullProductName>
+          </Branch>
+          <Branch Name="12.2(52)SE" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-105973">Cisco IOS 12.2(52)SE</FullProductName>
+          </Branch>
+          <Branch Name="12.2(58)SE" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-105987">Cisco IOS 12.2(58)SE</FullProductName>
+          </Branch>
+          <Branch Name="12.2(50)SE3" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-106016">Cisco IOS 12.2(50)SE3</FullProductName>
+          </Branch>
+          <Branch Name="12.2(52)SE1" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-106684">Cisco IOS 12.2(52)SE1</FullProductName>
+          </Branch>
+          <Branch Name="12.2(46)SE1" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-106997">Cisco IOS 12.2(46)SE1</FullProductName>
+          </Branch>
+          <Branch Name="12.2(50)SE4" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-107209">Cisco IOS 12.2(50)SE4</FullProductName>
+          </Branch>
+          <Branch Name="12.2(50)SE" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-107630">Cisco IOS 12.2(50)SE</FullProductName>
+          </Branch>
+          <Branch Name="12.2(58)SE1" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-109098">Cisco IOS 12.2(58)SE1</FullProductName>
+          </Branch>
+          <Branch Name="12.2(55)SE4" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-109439">Cisco IOS 12.2(55)SE4</FullProductName>
+          </Branch>
+          <Branch Name="12.2(58)SE2" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-109808">Cisco IOS 12.2(58)SE2</FullProductName>
+          </Branch>
+          <Branch Name="12.2(55)SE5" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-111674">Cisco IOS 12.2(55)SE5</FullProductName>
+          </Branch>
+          <Branch Name="12.2(55)SE6" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-114665">Cisco IOS 12.2(55)SE6</FullProductName>
+          </Branch>
+          <Branch Name="12.2(55)SE7" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-184125">Cisco IOS 12.2(55)SE7</FullProductName>
+          </Branch>
+          <Branch Name="12.2(55)SE9" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-192911">Cisco IOS 12.2(55)SE9</FullProductName>
+          </Branch>
+          <Branch Name="12.2(55)SE10" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-198542">Cisco IOS 12.2(55)SE10</FullProductName>
+          </Branch>
+          <Branch Name="12.2(55)SE11" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-210732">Cisco IOS 12.2(55)SE11</FullProductName>
+          </Branch>
+          <Branch Name="12.2(55)SE12" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-228057">Cisco IOS 12.2(55)SE12</FullProductName>
+          </Branch>
+          <Branch Name="12.2(55)SE13" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-230962">Cisco IOS 12.2(55)SE13</FullProductName>
+          </Branch>
+          <Branch Name="12.2(55)SE13a" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-261784">Cisco IOS 12.2(55)SE13a</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="12.2EX" Type="Product Version">
+          <Branch Name="12.2(44)EX" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-104061">Cisco IOS 12.2(44)EX</FullProductName>
+          </Branch>
+          <Branch Name="12.2(44)EX1" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-105253">Cisco IOS 12.2(44)EX1</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="12.2EZ" Type="Product Version">
+          <Branch Name="12.2(60)EZ16" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-262536">Cisco IOS 12.2(60)EZ16</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="15.0EY" Type="Product Version">
+          <Branch Name="15.0(1)EY" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-104376">Cisco IOS 15.0(1)EY</FullProductName>
+          </Branch>
+          <Branch Name="15.0(1)EY1" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-115969">Cisco IOS 15.0(1)EY1</FullProductName>
+          </Branch>
+          <Branch Name="15.0(1)EY2" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-187269">Cisco IOS 15.0(1)EY2</FullProductName>
+          </Branch>
+          <Branch Name="15.0(2)EY" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-187932">Cisco IOS 15.0(2)EY</FullProductName>
+          </Branch>
+          <Branch Name="15.0(2)EY1" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-190250">Cisco IOS 15.0(2)EY1</FullProductName>
+          </Branch>
+          <Branch Name="15.0(2)EY2" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-192831">Cisco IOS 15.0(2)EY2</FullProductName>
+          </Branch>
+          <Branch Name="15.0(2)EY3" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-195481">Cisco IOS 15.0(2)EY3</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="15.0SE" Type="Product Version">
+          <Branch Name="15.0(2)SE" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-107852">Cisco IOS 15.0(2)SE</FullProductName>
+          </Branch>
+          <Branch Name="15.0(2)SE1" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-115939">Cisco IOS 15.0(2)SE1</FullProductName>
+          </Branch>
+          <Branch Name="15.0(2)SE2" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-116083">Cisco IOS 15.0(2)SE2</FullProductName>
+          </Branch>
+          <Branch Name="15.0(2)SE3" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-189455">Cisco IOS 15.0(2)SE3</FullProductName>
+          </Branch>
+          <Branch Name="15.0(2)SE4" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-190635">Cisco IOS 15.0(2)SE4</FullProductName>
+          </Branch>
+          <Branch Name="15.0(2)SE5" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-192706">Cisco IOS 15.0(2)SE5</FullProductName>
+          </Branch>
+          <Branch Name="15.0(2)SE6" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-195770">Cisco IOS 15.0(2)SE6</FullProductName>
+          </Branch>
+          <Branch Name="15.0(2)SE7" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-204097">Cisco IOS 15.0(2)SE7</FullProductName>
+          </Branch>
+          <Branch Name="15.0(2)SE8" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-209028">Cisco IOS 15.0(2)SE8</FullProductName>
+          </Branch>
+          <Branch Name="15.0(2)SE9" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-209029">Cisco IOS 15.0(2)SE9</FullProductName>
+          </Branch>
+          <Branch Name="15.0(2)SE10" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-213788">Cisco IOS 15.0(2)SE10</FullProductName>
+          </Branch>
+          <Branch Name="15.0(2)SE11" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-220466">Cisco IOS 15.0(2)SE11</FullProductName>
+          </Branch>
+          <Branch Name="15.0(2)SE10a" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-222342">Cisco IOS 15.0(2)SE10a</FullProductName>
+          </Branch>
+          <Branch Name="15.0(2)SE12" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-234926">Cisco IOS 15.0(2)SE12</FullProductName>
+          </Branch>
+          <Branch Name="15.0(2)SE13" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-245380">Cisco IOS 15.0(2)SE13</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="15.0SG" Type="Product Version">
+          <Branch Name="15.0(2)SG11a" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-262335">Cisco IOS 15.0(2)SG11a</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="15.0EX" Type="Product Version">
+          <Branch Name="15.0(2)EX2" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-192910">Cisco IOS 15.0(2)EX2</FullProductName>
+          </Branch>
+          <Branch Name="15.0(2)EX8" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-204831">Cisco IOS 15.0(2)EX8</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="15.2E" Type="Product Version">
+          <Branch Name="15.2(2)E" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-187057">Cisco IOS 15.2(2)E</FullProductName>
+          </Branch>
+          <Branch Name="15.2(2)E1" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-201074">Cisco IOS 15.2(2)E1</FullProductName>
+          </Branch>
+          <Branch Name="15.2(2b)E" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-204102">Cisco IOS 15.2(2b)E</FullProductName>
+          </Branch>
+          <Branch Name="15.2(3)E1" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-204186">Cisco IOS 15.2(3)E1</FullProductName>
+          </Branch>
+          <Branch Name="15.2(2)E2" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-204228">Cisco IOS 15.2(2)E2</FullProductName>
+          </Branch>
+          <Branch Name="15.2(2)E3" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-205672">Cisco IOS 15.2(2)E3</FullProductName>
+          </Branch>
+          <Branch Name="15.2(3)E2" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-209046">Cisco IOS 15.2(3)E2</FullProductName>
+          </Branch>
+          <Branch Name="15.2(3)E3" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-209358">Cisco IOS 15.2(3)E3</FullProductName>
+          </Branch>
+          <Branch Name="15.2(2)E4" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-210766">Cisco IOS 15.2(2)E4</FullProductName>
+          </Branch>
+          <Branch Name="15.2(2)E5" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-211296">Cisco IOS 15.2(2)E5</FullProductName>
+          </Branch>
+          <Branch Name="15.2(3)E4" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-214078">Cisco IOS 15.2(3)E4</FullProductName>
+          </Branch>
+          <Branch Name="15.2(5)E" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-214556">Cisco IOS 15.2(5)E</FullProductName>
+          </Branch>
+          <Branch Name="15.2(2)E6" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-218891">Cisco IOS 15.2(2)E6</FullProductName>
+          </Branch>
+          <Branch Name="15.2(5)E1" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-220441">Cisco IOS 15.2(5)E1</FullProductName>
+          </Branch>
+          <Branch Name="15.2(2)E5a" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-221033">Cisco IOS 15.2(2)E5a</FullProductName>
+          </Branch>
+          <Branch Name="15.2(3)E5" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-222275">Cisco IOS 15.2(3)E5</FullProductName>
+          </Branch>
+          <Branch Name="15.2(2)E5b" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-222436">Cisco IOS 15.2(2)E5b</FullProductName>
+          </Branch>
+          <Branch Name="15.2(5a)E1" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-223143">Cisco IOS 15.2(5a)E1</FullProductName>
+          </Branch>
+          <Branch Name="15.2(2)E7" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-224868">Cisco IOS 15.2(2)E7</FullProductName>
+          </Branch>
+          <Branch Name="15.2(5)E2" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-225740">Cisco IOS 15.2(5)E2</FullProductName>
+          </Branch>
+          <Branch Name="15.2(6)E" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-227598">Cisco IOS 15.2(6)E</FullProductName>
+          </Branch>
+          <Branch Name="15.2(5)E2b" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-227754">Cisco IOS 15.2(5)E2b</FullProductName>
+          </Branch>
+          <Branch Name="15.2(5)E2c" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-228151">Cisco IOS 15.2(5)E2c</FullProductName>
+          </Branch>
+          <Branch Name="15.2(2)E8" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-230587">Cisco IOS 15.2(2)E8</FullProductName>
+          </Branch>
+          <Branch Name="15.2(6)E0a" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-230591">Cisco IOS 15.2(6)E0a</FullProductName>
+          </Branch>
+          <Branch Name="15.2(6)E1" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-230592">Cisco IOS 15.2(6)E1</FullProductName>
+          </Branch>
+          <Branch Name="15.2(2)E7b" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-230990">Cisco IOS 15.2(2)E7b</FullProductName>
+          </Branch>
+          <Branch Name="15.2(6)E0c" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-231245">Cisco IOS 15.2(6)E0c</FullProductName>
+          </Branch>
+          <Branch Name="15.2(2)E9" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-232765">Cisco IOS 15.2(2)E9</FullProductName>
+          </Branch>
+          <Branch Name="15.2(6)E1a" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-238999">Cisco IOS 15.2(6)E1a</FullProductName>
+          </Branch>
+          <Branch Name="15.2(6)E1s" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-240186">Cisco IOS 15.2(6)E1s</FullProductName>
+          </Branch>
+          <Branch Name="15.2(7)E" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-242313">Cisco IOS 15.2(7)E</FullProductName>
+          </Branch>
+          <Branch Name="15.2(2)E10" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-244911">Cisco IOS 15.2(2)E10</FullProductName>
+          </Branch>
+          <Branch Name="15.2(6)E2a" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-247630">Cisco IOS 15.2(6)E2a</FullProductName>
+          </Branch>
+          <Branch Name="15.2(7)E0b" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-260993">Cisco IOS 15.2(7)E0b</FullProductName>
+          </Branch>
+          <Branch Name="15.2(7)E0s" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-262300">Cisco IOS 15.2(7)E0s</FullProductName>
+          </Branch>
+          <Branch Name="15.2(6)E3" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-262684">Cisco IOS 15.2(6)E3</FullProductName>
+          </Branch>
+          <Branch Name="15.2(4)E9" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-264643">Cisco IOS 15.2(4)E9</FullProductName>
+          </Branch>
+          <Branch Name="15.2(7a)E0b" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-271140">Cisco IOS 15.2(7a)E0b</FullProductName>
+          </Branch>
+          <Branch Name="15.2(7b)E0b" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-276903">Cisco IOS 15.2(7b)E0b</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="15.2EY" Type="Product Version">
+          <Branch Name="15.2(1)EY" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-191928">Cisco IOS 15.2(1)EY</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="15.2JAZ" Type="Product Version">
+          <Branch Name="15.2(4)JAZ" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-195528">Cisco IOS 15.2(4)JAZ</FullProductName>
+          </Branch>
+          <Branch Name="15.2(4)JAZ1" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-200503">Cisco IOS 15.2(4)JAZ1</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="15.0EK" Type="Product Version">
+          <Branch Name="15.0(2)EK" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-195544">Cisco IOS 15.0(2)EK</FullProductName>
+          </Branch>
+          <Branch Name="15.0(2)EK1" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-197468">Cisco IOS 15.0(2)EK1</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="15.2EB" Type="Product Version">
+          <Branch Name="15.2(2)EB" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-197462">Cisco IOS 15.2(2)EB</FullProductName>
+          </Branch>
+          <Branch Name="15.2(2)EB1" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-209839">Cisco IOS 15.2(2)EB1</FullProductName>
+          </Branch>
+          <Branch Name="15.2(2)EB2" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-214218">Cisco IOS 15.2(2)EB2</FullProductName>
+          </Branch>
+          <Branch Name="15.2(6)EB" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-251487">Cisco IOS 15.2(6)EB</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="15.2EA" Type="Product Version">
+          <Branch Name="15.2(2)EA" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-198063">Cisco IOS 15.2(2)EA</FullProductName>
+          </Branch>
+          <Branch Name="15.2(2)EA1" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-209049">Cisco IOS 15.2(2)EA1</FullProductName>
+          </Branch>
+          <Branch Name="15.2(2)EA2" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-209050">Cisco IOS 15.2(2)EA2</FullProductName>
+          </Branch>
+          <Branch Name="15.2(3)EA" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-209051">Cisco IOS 15.2(3)EA</FullProductName>
+          </Branch>
+          <Branch Name="15.2(4)EA" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-210203">Cisco IOS 15.2(4)EA</FullProductName>
+          </Branch>
+          <Branch Name="15.2(4)EA1" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-210958">Cisco IOS 15.2(4)EA1</FullProductName>
+          </Branch>
+          <Branch Name="15.2(2)EA3" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-214217">Cisco IOS 15.2(2)EA3</FullProductName>
+          </Branch>
+          <Branch Name="15.2(4)EA3" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-214965">Cisco IOS 15.2(4)EA3</FullProductName>
+          </Branch>
+          <Branch Name="15.2(5)EA" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-220038">Cisco IOS 15.2(5)EA</FullProductName>
+          </Branch>
+          <Branch Name="15.2(4)EA4" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-220460">Cisco IOS 15.2(4)EA4</FullProductName>
+          </Branch>
+          <Branch Name="15.2(4)EA2" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-220507">Cisco IOS 15.2(4)EA2</FullProductName>
+          </Branch>
+          <Branch Name="15.2(4)EA5" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-222419">Cisco IOS 15.2(4)EA5</FullProductName>
+          </Branch>
+          <Branch Name="15.2(4)EA6" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-228075">Cisco IOS 15.2(4)EA6</FullProductName>
+          </Branch>
+          <Branch Name="15.2(4)EA7" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-230992">Cisco IOS 15.2(4)EA7</FullProductName>
+          </Branch>
+          <Branch Name="15.2(4)EA8" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-241614">Cisco IOS 15.2(4)EA8</FullProductName>
+          </Branch>
+          <Branch Name="15.2(4)EA9" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-257830">Cisco IOS 15.2(4)EA9</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="15.3JN" Type="Product Version">
+          <Branch Name="15.3(3)JN" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-200492">Cisco IOS 15.3(3)JN</FullProductName>
+          </Branch>
+          <Branch Name="15.3(3)JN1" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-209083">Cisco IOS 15.3(3)JN1</FullProductName>
+          </Branch>
+          <Branch Name="15.3(3)JN2" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-209085">Cisco IOS 15.3(3)JN2</FullProductName>
+          </Branch>
+          <Branch Name="15.3(3)JN3" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-209086">Cisco IOS 15.3(3)JN3</FullProductName>
+          </Branch>
+          <Branch Name="15.3(3)JN4" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-209087">Cisco IOS 15.3(3)JN4</FullProductName>
+          </Branch>
+          <Branch Name="15.3(3)JN6" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-209930">Cisco IOS 15.3(3)JN6</FullProductName>
+          </Branch>
+          <Branch Name="15.3(3)JN7" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-209935">Cisco IOS 15.3(3)JN7</FullProductName>
+          </Branch>
+          <Branch Name="15.3(3)JN8" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-210410">Cisco IOS 15.3(3)JN8</FullProductName>
+          </Branch>
+          <Branch Name="15.3(3)JN9" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-213654">Cisco IOS 15.3(3)JN9</FullProductName>
+          </Branch>
+          <Branch Name="15.3(3)JN11" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-222537">Cisco IOS 15.3(3)JN11</FullProductName>
+          </Branch>
+          <Branch Name="15.3(3)JN13" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-230915">Cisco IOS 15.3(3)JN13</FullProductName>
+          </Branch>
+          <Branch Name="15.3(3)JN14" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-232122">Cisco IOS 15.3(3)JN14</FullProductName>
+          </Branch>
+          <Branch Name="15.3(3)JN15" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-239279">Cisco IOS 15.3(3)JN15</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="15.3JA" Type="Product Version">
+          <Branch Name="15.3(3)JA1n" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-204310">Cisco IOS 15.3(3)JA1n</FullProductName>
+          </Branch>
+          <Branch Name="15.3(3)JA1" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-204826">Cisco IOS 15.3(3)JA1</FullProductName>
+          </Branch>
+          <Branch Name="15.3(3)JA4" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-209067">Cisco IOS 15.3(3)JA4</FullProductName>
+          </Branch>
+          <Branch Name="15.3(3)JA5" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-209068">Cisco IOS 15.3(3)JA5</FullProductName>
+          </Branch>
+          <Branch Name="15.3(3)JA6" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-210937">Cisco IOS 15.3(3)JA6</FullProductName>
+          </Branch>
+          <Branch Name="15.3(3)JA7" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-214382">Cisco IOS 15.3(3)JA7</FullProductName>
+          </Branch>
+          <Branch Name="15.3(3)JA8" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-214764">Cisco IOS 15.3(3)JA8</FullProductName>
+          </Branch>
+          <Branch Name="15.3(3)JA10" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-217779">Cisco IOS 15.3(3)JA10</FullProductName>
+          </Branch>
+          <Branch Name="15.3(3)JA11" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-226174">Cisco IOS 15.3(3)JA11</FullProductName>
+          </Branch>
+          <Branch Name="15.3(3)JA12" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-230712">Cisco IOS 15.3(3)JA12</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="15.3JAA" Type="Product Version">
+          <Branch Name="15.3(3)JAA" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-204103">Cisco IOS 15.3(3)JAA</FullProductName>
+          </Branch>
+          <Branch Name="15.3(3)JAA1" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-230594">Cisco IOS 15.3(3)JAA1</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="15.3JB" Type="Product Version">
+          <Branch Name="15.3(3)JB" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-209077">Cisco IOS 15.3(3)JB</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="15.3JNB" Type="Product Version">
+          <Branch Name="15.3(3)JNB" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-205723">Cisco IOS 15.3(3)JNB</FullProductName>
+          </Branch>
+          <Branch Name="15.3(3)JNB1" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-209089">Cisco IOS 15.3(3)JNB1</FullProductName>
+          </Branch>
+          <Branch Name="15.3(3)JNB2" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-209090">Cisco IOS 15.3(3)JNB2</FullProductName>
+          </Branch>
+          <Branch Name="15.3(3)JNB3" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-210411">Cisco IOS 15.3(3)JNB3</FullProductName>
+          </Branch>
+          <Branch Name="15.3(3)JNB4" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-213655">Cisco IOS 15.3(3)JNB4</FullProductName>
+          </Branch>
+          <Branch Name="15.3(3)JNB6" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-224738">Cisco IOS 15.3(3)JNB6</FullProductName>
+          </Branch>
+          <Branch Name="15.3(3)JNB5" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-230606">Cisco IOS 15.3(3)JNB5</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="15.3JAX" Type="Product Version">
+          <Branch Name="15.3(3)JAX" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-209073">Cisco IOS 15.3(3)JAX</FullProductName>
+          </Branch>
+          <Branch Name="15.3(3)JAX1" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-209074">Cisco IOS 15.3(3)JAX1</FullProductName>
+          </Branch>
+          <Branch Name="15.3(3)JAX2" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-209075">Cisco IOS 15.3(3)JAX2</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="15.3JBB" Type="Product Version">
+          <Branch Name="15.3(3)JBB" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-209080">Cisco IOS 15.3(3)JBB</FullProductName>
+          </Branch>
+          <Branch Name="15.3(3)JBB1" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-209081">Cisco IOS 15.3(3)JBB1</FullProductName>
+          </Branch>
+          <Branch Name="15.3(3)JBB2" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-209419">Cisco IOS 15.3(3)JBB2</FullProductName>
+          </Branch>
+          <Branch Name="15.3(3)JBB4" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-210189">Cisco IOS 15.3(3)JBB4</FullProductName>
+          </Branch>
+          <Branch Name="15.3(3)JBB5" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-210262">Cisco IOS 15.3(3)JBB5</FullProductName>
+          </Branch>
+          <Branch Name="15.3(3)JBB6" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-210491">Cisco IOS 15.3(3)JBB6</FullProductName>
+          </Branch>
+          <Branch Name="15.3(3)JBB8" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-212266">Cisco IOS 15.3(3)JBB8</FullProductName>
+          </Branch>
+          <Branch Name="15.3(3)JBB6a" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-213770">Cisco IOS 15.3(3)JBB6a</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="15.3JC" Type="Product Version">
+          <Branch Name="15.3(3)JC" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-209474">Cisco IOS 15.3(3)JC</FullProductName>
+          </Branch>
+          <Branch Name="15.3(3)JC1" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-213089">Cisco IOS 15.3(3)JC1</FullProductName>
+          </Branch>
+          <Branch Name="15.3(3)JC2" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-216573">Cisco IOS 15.3(3)JC2</FullProductName>
+          </Branch>
+          <Branch Name="15.3(3)JC3" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-217803">Cisco IOS 15.3(3)JC3</FullProductName>
+          </Branch>
+          <Branch Name="15.3(3)JC4" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-220446">Cisco IOS 15.3(3)JC4</FullProductName>
+          </Branch>
+          <Branch Name="15.3(3)JC5" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-222258">Cisco IOS 15.3(3)JC5</FullProductName>
+          </Branch>
+          <Branch Name="15.3(3)JC6" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-224442">Cisco IOS 15.3(3)JC6</FullProductName>
+          </Branch>
+          <Branch Name="15.3(3)JC8" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-227791">Cisco IOS 15.3(3)JC8</FullProductName>
+          </Branch>
+          <Branch Name="15.3(3)JC9" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-230596">Cisco IOS 15.3(3)JC9</FullProductName>
+          </Branch>
+          <Branch Name="15.3(3)JC14" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-231017">Cisco IOS 15.3(3)JC14</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="15.3JNC" Type="Product Version">
+          <Branch Name="15.3(3)JNC" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-210137">Cisco IOS 15.3(3)JNC</FullProductName>
+          </Branch>
+          <Branch Name="15.3(3)JNC1" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-212497">Cisco IOS 15.3(3)JNC1</FullProductName>
+          </Branch>
+          <Branch Name="15.3(3)JNC2" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-216632">Cisco IOS 15.3(3)JNC2</FullProductName>
+          </Branch>
+          <Branch Name="15.3(3)JNC3" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-222412">Cisco IOS 15.3(3)JNC3</FullProductName>
+          </Branch>
+          <Branch Name="15.3(3)JNC4" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-225662">Cisco IOS 15.3(3)JNC4</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="15.3JNP" Type="Product Version">
+          <Branch Name="15.3(3)JNP" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-211256">Cisco IOS 15.3(3)JNP</FullProductName>
+          </Branch>
+          <Branch Name="15.3(3)JNP1" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-212686">Cisco IOS 15.3(3)JNP1</FullProductName>
+          </Branch>
+          <Branch Name="15.3(3)JNP3" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-220657">Cisco IOS 15.3(3)JNP3</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="15.3JPB" Type="Product Version">
+          <Branch Name="15.3(3)JPB" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-213843">Cisco IOS 15.3(3)JPB</FullProductName>
+          </Branch>
+          <Branch Name="15.3(3)JPB1" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-216277">Cisco IOS 15.3(3)JPB1</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="15.3JD" Type="Product Version">
+          <Branch Name="15.3(3)JD" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-213954">Cisco IOS 15.3(3)JD</FullProductName>
+          </Branch>
+          <Branch Name="15.3(3)JD2" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-222630">Cisco IOS 15.3(3)JD2</FullProductName>
+          </Branch>
+          <Branch Name="15.3(3)JD3" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-222716">Cisco IOS 15.3(3)JD3</FullProductName>
+          </Branch>
+          <Branch Name="15.3(3)JD4" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-225790">Cisco IOS 15.3(3)JD4</FullProductName>
+          </Branch>
+          <Branch Name="15.3(3)JD5" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-226172">Cisco IOS 15.3(3)JD5</FullProductName>
+          </Branch>
+          <Branch Name="15.3(3)JD6" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-227789">Cisco IOS 15.3(3)JD6</FullProductName>
+          </Branch>
+          <Branch Name="15.3(3)JD7" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-228955">Cisco IOS 15.3(3)JD7</FullProductName>
+          </Branch>
+          <Branch Name="15.3(3)JD8" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-230598">Cisco IOS 15.3(3)JD8</FullProductName>
+          </Branch>
+          <Branch Name="15.3(3)JD9" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-230824">Cisco IOS 15.3(3)JD9</FullProductName>
+          </Branch>
+          <Branch Name="15.3(3)JD11" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-231000">Cisco IOS 15.3(3)JD11</FullProductName>
+          </Branch>
+          <Branch Name="15.3(3)JD12" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-231001">Cisco IOS 15.3(3)JD12</FullProductName>
+          </Branch>
+          <Branch Name="15.3(3)JD13" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-232852">Cisco IOS 15.3(3)JD13</FullProductName>
+          </Branch>
+          <Branch Name="15.3(3)JD14" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-234115">Cisco IOS 15.3(3)JD14</FullProductName>
+          </Branch>
+          <Branch Name="15.3(3)JD16" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-239225">Cisco IOS 15.3(3)JD16</FullProductName>
+          </Branch>
+          <Branch Name="15.3(3)JD17" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-259985">Cisco IOS 15.3(3)JD17</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="15.2EC" Type="Product Version">
+          <Branch Name="15.2(4)EC1" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-220461">Cisco IOS 15.2(4)EC1</FullProductName>
+          </Branch>
+          <Branch Name="15.2(4)EC2" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-223086">Cisco IOS 15.2(4)EC2</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="15.3JPC" Type="Product Version">
+          <Branch Name="15.3(3)JPC" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-217048">Cisco IOS 15.3(3)JPC</FullProductName>
+          </Branch>
+          <Branch Name="15.3(3)JPC1" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-220235">Cisco IOS 15.3(3)JPC1</FullProductName>
+          </Branch>
+          <Branch Name="15.3(3)JPC2" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-220658">Cisco IOS 15.3(3)JPC2</FullProductName>
+          </Branch>
+          <Branch Name="15.3(3)JPC3" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-225167">Cisco IOS 15.3(3)JPC3</FullProductName>
+          </Branch>
+          <Branch Name="15.3(3)JPC5" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-230995">Cisco IOS 15.3(3)JPC5</FullProductName>
+          </Branch>
+          <Branch Name="15.3(3)JPC99" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-273510">Cisco IOS 15.3(3)JPC99</FullProductName>
+          </Branch>
+          <Branch Name="15.3(3)JPC97" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-278403">Cisco IOS 15.3(3)JPC97</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="15.3JND" Type="Product Version">
+          <Branch Name="15.3(3)JND" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-217194">Cisco IOS 15.3(3)JND</FullProductName>
+          </Branch>
+          <Branch Name="15.3(3)JND1" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-222930">Cisco IOS 15.3(3)JND1</FullProductName>
+          </Branch>
+          <Branch Name="15.3(3)JND2" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-226202">Cisco IOS 15.3(3)JND2</FullProductName>
+          </Branch>
+          <Branch Name="15.3(3)JND3" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-227960">Cisco IOS 15.3(3)JND3</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="15.3JE" Type="Product Version">
+          <Branch Name="15.3(3)JE" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-218946">Cisco IOS 15.3(3)JE</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="15.3JPD" Type="Product Version">
+          <Branch Name="15.3(3)JPD" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-218948">Cisco IOS 15.3(3)JPD</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="15.3JF" Type="Product Version">
+          <Branch Name="15.3(3)JF" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-227048">Cisco IOS 15.3(3)JF</FullProductName>
+          </Branch>
+          <Branch Name="15.3(3)JF1" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-228956">Cisco IOS 15.3(3)JF1</FullProductName>
+          </Branch>
+          <Branch Name="15.3(3)JF2" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-230826">Cisco IOS 15.3(3)JF2</FullProductName>
+          </Branch>
+          <Branch Name="15.3(3)JF4" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-231679">Cisco IOS 15.3(3)JF4</FullProductName>
+          </Branch>
+          <Branch Name="15.3(3)JF5" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-232061">Cisco IOS 15.3(3)JF5</FullProductName>
+          </Branch>
+          <Branch Name="15.3(3)JF6" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-236205">Cisco IOS 15.3(3)JF6</FullProductName>
+          </Branch>
+          <Branch Name="15.3(3)JF7" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-239361">Cisco IOS 15.3(3)JF7</FullProductName>
+          </Branch>
+          <Branch Name="15.3(3)JF8" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-241765">Cisco IOS 15.3(3)JF8</FullProductName>
+          </Branch>
+          <Branch Name="15.3(3)JF9" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-243525">Cisco IOS 15.3(3)JF9</FullProductName>
+          </Branch>
+          <Branch Name="15.3(3)JF10" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-259238">Cisco IOS 15.3(3)JF10</FullProductName>
+          </Branch>
+          <Branch Name="15.3(3)JF99" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-277192">Cisco IOS 15.3(3)JF99</FullProductName>
+          </Branch>
+          <Branch Name="15.3(3)JF14" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-278008">Cisco IOS 15.3(3)JF14</FullProductName>
+          </Branch>
+          <Branch Name="15.3(3)JF14i" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-281972">Cisco IOS 15.3(3)JF14i</FullProductName>
+          </Branch>
+          <Branch Name="15.3(3)JF15" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-282668">Cisco IOS 15.3(3)JF15</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="15.3JG" Type="Product Version">
+          <Branch Name="15.3(3)JG" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-230603">Cisco IOS 15.3(3)JG</FullProductName>
+          </Branch>
+          <Branch Name="15.3(3)JG1" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-231796">Cisco IOS 15.3(3)JG1</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="15.3JH" Type="Product Version">
+          <Branch Name="15.3(3)JH" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-230605">Cisco IOS 15.3(3)JH</FullProductName>
+          </Branch>
+          <Branch Name="15.3(3)JH1" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-238504">Cisco IOS 15.3(3)JH1</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="15.3JI" Type="Product Version">
+          <Branch Name="15.3(3)JI1" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-244913">Cisco IOS 15.3(3)JI1</FullProductName>
+          </Branch>
+          <Branch Name="15.3(3)JI3" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-252156">Cisco IOS 15.3(3)JI3</FullProductName>
+          </Branch>
+          <Branch Name="15.3(3)JI4" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-257209">Cisco IOS 15.3(3)JI4</FullProductName>
+          </Branch>
+          <Branch Name="15.3(3)JI5" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-260691">Cisco IOS 15.3(3)JI5</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="15.3JK" Type="Product Version">
+          <Branch Name="15.3(3)JK" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-255002">Cisco IOS 15.3(3)JK</FullProductName>
+          </Branch>
+          <Branch Name="15.3(3)JK99" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-273350">Cisco IOS 15.3(3)JK99</FullProductName>
+          </Branch>
+          <Branch Name="15.3(3)JK3" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-277339">Cisco IOS 15.3(3)JK3</FullProductName>
+          </Branch>
+          <Branch Name="15.3(3)JK1a" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-277340">Cisco IOS 15.3(3)JK1a</FullProductName>
+          </Branch>
+          <Branch Name="15.3(3)JK2a" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-277341">Cisco IOS 15.3(3)JK2a</FullProductName>
+          </Branch>
+          <Branch Name="15.3(3)JK1t" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-277352">Cisco IOS 15.3(3)JK1t</FullProductName>
+          </Branch>
+          <Branch Name="15.3(3)JK4" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-280552">Cisco IOS 15.3(3)JK4</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="15.3JJ" Type="Product Version">
+          <Branch Name="15.3(3)JJ" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-259869">Cisco IOS 15.3(3)JJ</FullProductName>
+          </Branch>
+          <Branch Name="15.3(3)JJ1" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-261487">Cisco IOS 15.3(3)JJ1</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="15.3JPI" Type="Product Version">
+          <Branch Name="15.3(3)JPI" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-274202">Cisco IOS 15.3(3)JPI</FullProductName>
+          </Branch>
+          <Branch Name="15.3(3)JPI3" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-274203">Cisco IOS 15.3(3)JPI3</FullProductName>
+          </Branch>
+        </Branch>
+      </Branch>
+      <Branch Name="Cisco IOS XE Software" Type="Product Name">
+        <Branch Name="3.3XO" Type="Product Version">
+          <Branch Name="3.3.0XO" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-196220">Cisco IOS XE Software 3.3.0XO</FullProductName>
+          </Branch>
+          <Branch Name="3.3.1XO" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-206163">Cisco IOS XE Software 3.3.1XO</FullProductName>
+          </Branch>
+          <Branch Name="3.3.2XO" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-206164">Cisco IOS XE Software 3.3.2XO</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="3.6E" Type="Product Version">
+          <Branch Name="3.6.5bE" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-222435">Cisco IOS XE Software 3.6.5bE</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="3.8E" Type="Product Version">
+          <Branch Name="3.8.9E" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-264514">Cisco IOS XE Software 3.8.9E</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="16.3" Type="Product Version">
+          <Branch Name="16.3.9" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-262389">Cisco IOS XE Software 16.3.9</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="16.6" Type="Product Version">
+          <Branch Name="16.6.7" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-261241">Cisco IOS XE Software 16.6.7</FullProductName>
+          </Branch>
+          <Branch Name="16.6.7a" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-270097">Cisco IOS XE Software 16.6.7a</FullProductName>
+          </Branch>
+          <Branch Name="16.6.8" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-277148">Cisco IOS XE Software 16.6.8</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="16.9" Type="Product Version">
+          <Branch Name="16.9.1" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-225856">Cisco IOS XE Software 16.9.1</FullProductName>
+          </Branch>
+          <Branch Name="16.9.1d" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-248242">Cisco IOS XE Software 16.9.1d</FullProductName>
+          </Branch>
+          <Branch Name="16.9.4" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-262390">Cisco IOS XE Software 16.9.4</FullProductName>
+          </Branch>
+          <Branch Name="16.9.4c" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-268921">Cisco IOS XE Software 16.9.4c</FullProductName>
+          </Branch>
+          <Branch Name="16.9.5" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-271798">Cisco IOS XE Software 16.9.5</FullProductName>
+          </Branch>
+          <Branch Name="16.9.5f" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-276837">Cisco IOS XE Software 16.9.5f</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="16.10" Type="Product Version">
+          <Branch Name="16.10.1" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-225858">Cisco IOS XE Software 16.10.1</FullProductName>
+          </Branch>
+          <Branch Name="16.10.1e" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-257955">Cisco IOS XE Software 16.10.1e</FullProductName>
+          </Branch>
+          <Branch Name="16.10.1g" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-266259">Cisco IOS XE Software 16.10.1g</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="3.10E" Type="Product Version">
+          <Branch Name="3.10.3E" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-262994">Cisco IOS XE Software 3.10.3E</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="16.11" Type="Product Version">
+          <Branch Name="16.11.1" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-227918">Cisco IOS XE Software 16.11.1</FullProductName>
+          </Branch>
+          <Branch Name="16.11.1a" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-252271">Cisco IOS XE Software 16.11.1a</FullProductName>
+          </Branch>
+          <Branch Name="16.11.1b" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-260741">Cisco IOS XE Software 16.11.1b</FullProductName>
+          </Branch>
+          <Branch Name="16.11.1s" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-261465">Cisco IOS XE Software 16.11.1s</FullProductName>
+          </Branch>
+          <Branch Name="16.11.1c" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-264096">Cisco IOS XE Software 16.11.1c</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="16.12" Type="Product Version">
+          <Branch Name="16.12.1" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-227920">Cisco IOS XE Software 16.12.1</FullProductName>
+          </Branch>
+          <Branch Name="16.12.1s" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-265735">Cisco IOS XE Software 16.12.1s</FullProductName>
+          </Branch>
+          <Branch Name="16.12.1a" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-265841">Cisco IOS XE Software 16.12.1a</FullProductName>
+          </Branch>
+          <Branch Name="16.12.1c" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-267110">Cisco IOS XE Software 16.12.1c</FullProductName>
+          </Branch>
+          <Branch Name="16.12.1w" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-267240">Cisco IOS XE Software 16.12.1w</FullProductName>
+          </Branch>
+          <Branch Name="16.12.1t" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-274832">Cisco IOS XE Software 16.12.1t</FullProductName>
+          </Branch>
+        </Branch>
+      </Branch>
+    </Branch>
+  </ProductTree>
+  <Vulnerability Ordinal="1" xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln">
+    <Title>vuln-CVE-2020-3225</Title>
+    <ID SystemName="Cisco Bug ID">CSCvo17827</ID>
+    <Notes>
+      <Note Title="Cisco Bug IDs" Type="Other" Ordinal="1">CSCvo17827,CSCvp56319,CSCvr47365,CSCvr67776</Note>
+      <Note Title="Affected Product Comprehensiveness" Type="Other" Ordinal="2">Complete.</Note>
+    </Notes>
+    <CVE>CVE-2020-3225</CVE>
+    <ProductStatuses>
+      <Status Type="Known Affected">
+        <ProductID>CVRFPID-103763</ProductID>
+        <ProductID>CVRFPID-104061</ProductID>
+        <ProductID>CVRFPID-104089</ProductID>
+        <ProductID>CVRFPID-104101</ProductID>
+        <ProductID>CVRFPID-104342</ProductID>
+        <ProductID>CVRFPID-104376</ProductID>
+        <ProductID>CVRFPID-104855</ProductID>
+        <ProductID>CVRFPID-105253</ProductID>
+        <ProductID>CVRFPID-105394</ProductID>
+        <ProductID>CVRFPID-105973</ProductID>
+        <ProductID>CVRFPID-105987</ProductID>
+        <ProductID>CVRFPID-106016</ProductID>
+        <ProductID>CVRFPID-106684</ProductID>
+        <ProductID>CVRFPID-106997</ProductID>
+        <ProductID>CVRFPID-107209</ProductID>
+        <ProductID>CVRFPID-107630</ProductID>
+        <ProductID>CVRFPID-107852</ProductID>
+        <ProductID>CVRFPID-109098</ProductID>
+        <ProductID>CVRFPID-109439</ProductID>
+        <ProductID>CVRFPID-109808</ProductID>
+        <ProductID>CVRFPID-111674</ProductID>
+        <ProductID>CVRFPID-114665</ProductID>
+        <ProductID>CVRFPID-115939</ProductID>
+        <ProductID>CVRFPID-115969</ProductID>
+        <ProductID>CVRFPID-116083</ProductID>
+        <ProductID>CVRFPID-184125</ProductID>
+        <ProductID>CVRFPID-187057</ProductID>
+        <ProductID>CVRFPID-187269</ProductID>
+        <ProductID>CVRFPID-187932</ProductID>
+        <ProductID>CVRFPID-189455</ProductID>
+        <ProductID>CVRFPID-190250</ProductID>
+        <ProductID>CVRFPID-190635</ProductID>
+        <ProductID>CVRFPID-191928</ProductID>
+        <ProductID>CVRFPID-192706</ProductID>
+        <ProductID>CVRFPID-192831</ProductID>
+        <ProductID>CVRFPID-192910</ProductID>
+        <ProductID>CVRFPID-192911</ProductID>
+        <ProductID>CVRFPID-195481</ProductID>
+        <ProductID>CVRFPID-195528</ProductID>
+        <ProductID>CVRFPID-195544</ProductID>
+        <ProductID>CVRFPID-195770</ProductID>
+        <ProductID>CVRFPID-197462</ProductID>
+        <ProductID>CVRFPID-197468</ProductID>
+        <ProductID>CVRFPID-198063</ProductID>
+        <ProductID>CVRFPID-198542</ProductID>
+        <ProductID>CVRFPID-200492</ProductID>
+        <ProductID>CVRFPID-200503</ProductID>
+        <ProductID>CVRFPID-201074</ProductID>
+        <ProductID>CVRFPID-204097</ProductID>
+        <ProductID>CVRFPID-204102</ProductID>
+        <ProductID>CVRFPID-204103</ProductID>
+        <ProductID>CVRFPID-204186</ProductID>
+        <ProductID>CVRFPID-204228</ProductID>
+        <ProductID>CVRFPID-204310</ProductID>
+        <ProductID>CVRFPID-204826</ProductID>
+        <ProductID>CVRFPID-204831</ProductID>
+        <ProductID>CVRFPID-205672</ProductID>
+        <ProductID>CVRFPID-205723</ProductID>
+        <ProductID>CVRFPID-209028</ProductID>
+        <ProductID>CVRFPID-209029</ProductID>
+        <ProductID>CVRFPID-209046</ProductID>
+        <ProductID>CVRFPID-209049</ProductID>
+        <ProductID>CVRFPID-209050</ProductID>
+        <ProductID>CVRFPID-209051</ProductID>
+        <ProductID>CVRFPID-209067</ProductID>
+        <ProductID>CVRFPID-209068</ProductID>
+        <ProductID>CVRFPID-209073</ProductID>
+        <ProductID>CVRFPID-209074</ProductID>
+        <ProductID>CVRFPID-209075</ProductID>
+        <ProductID>CVRFPID-209077</ProductID>
+        <ProductID>CVRFPID-209080</ProductID>
+        <ProductID>CVRFPID-209081</ProductID>
+        <ProductID>CVRFPID-209083</ProductID>
+        <ProductID>CVRFPID-209085</ProductID>
+        <ProductID>CVRFPID-209086</ProductID>
+        <ProductID>CVRFPID-209087</ProductID>
+        <ProductID>CVRFPID-209089</ProductID>
+        <ProductID>CVRFPID-209090</ProductID>
+        <ProductID>CVRFPID-209358</ProductID>
+        <ProductID>CVRFPID-209419</ProductID>
+        <ProductID>CVRFPID-209474</ProductID>
+        <ProductID>CVRFPID-209839</ProductID>
+        <ProductID>CVRFPID-209930</ProductID>
+        <ProductID>CVRFPID-209935</ProductID>
+        <ProductID>CVRFPID-210137</ProductID>
+        <ProductID>CVRFPID-210189</ProductID>
+        <ProductID>CVRFPID-210203</ProductID>
+        <ProductID>CVRFPID-210262</ProductID>
+        <ProductID>CVRFPID-210410</ProductID>
+        <ProductID>CVRFPID-210411</ProductID>
+        <ProductID>CVRFPID-210491</ProductID>
+        <ProductID>CVRFPID-210732</ProductID>
+        <ProductID>CVRFPID-210766</ProductID>
+        <ProductID>CVRFPID-210937</ProductID>
+        <ProductID>CVRFPID-210958</ProductID>
+        <ProductID>CVRFPID-211256</ProductID>
+        <ProductID>CVRFPID-211296</ProductID>
+        <ProductID>CVRFPID-212266</ProductID>
+        <ProductID>CVRFPID-212497</ProductID>
+        <ProductID>CVRFPID-212686</ProductID>
+        <ProductID>CVRFPID-213089</ProductID>
+        <ProductID>CVRFPID-213654</ProductID>
+        <ProductID>CVRFPID-213655</ProductID>
+        <ProductID>CVRFPID-213770</ProductID>
+        <ProductID>CVRFPID-213788</ProductID>
+        <ProductID>CVRFPID-213843</ProductID>
+        <ProductID>CVRFPID-213954</ProductID>
+        <ProductID>CVRFPID-214078</ProductID>
+        <ProductID>CVRFPID-214217</ProductID>
+        <ProductID>CVRFPID-214218</ProductID>
+        <ProductID>CVRFPID-214382</ProductID>
+        <ProductID>CVRFPID-214556</ProductID>
+        <ProductID>CVRFPID-214764</ProductID>
+        <ProductID>CVRFPID-214965</ProductID>
+        <ProductID>CVRFPID-216277</ProductID>
+        <ProductID>CVRFPID-216573</ProductID>
+        <ProductID>CVRFPID-216632</ProductID>
+        <ProductID>CVRFPID-217048</ProductID>
+        <ProductID>CVRFPID-217194</ProductID>
+        <ProductID>CVRFPID-217779</ProductID>
+        <ProductID>CVRFPID-217803</ProductID>
+        <ProductID>CVRFPID-218891</ProductID>
+        <ProductID>CVRFPID-218946</ProductID>
+        <ProductID>CVRFPID-218948</ProductID>
+        <ProductID>CVRFPID-220038</ProductID>
+        <ProductID>CVRFPID-220235</ProductID>
+        <ProductID>CVRFPID-220441</ProductID>
+        <ProductID>CVRFPID-220446</ProductID>
+        <ProductID>CVRFPID-220460</ProductID>
+        <ProductID>CVRFPID-220461</ProductID>
+        <ProductID>CVRFPID-220466</ProductID>
+        <ProductID>CVRFPID-220507</ProductID>
+        <ProductID>CVRFPID-220657</ProductID>
+        <ProductID>CVRFPID-220658</ProductID>
+        <ProductID>CVRFPID-221033</ProductID>
+        <ProductID>CVRFPID-222258</ProductID>
+        <ProductID>CVRFPID-222275</ProductID>
+        <ProductID>CVRFPID-222342</ProductID>
+        <ProductID>CVRFPID-222412</ProductID>
+        <ProductID>CVRFPID-222419</ProductID>
+        <ProductID>CVRFPID-222436</ProductID>
+        <ProductID>CVRFPID-222537</ProductID>
+        <ProductID>CVRFPID-222630</ProductID>
+        <ProductID>CVRFPID-222716</ProductID>
+        <ProductID>CVRFPID-222930</ProductID>
+        <ProductID>CVRFPID-223086</ProductID>
+        <ProductID>CVRFPID-223143</ProductID>
+        <ProductID>CVRFPID-224442</ProductID>
+        <ProductID>CVRFPID-224738</ProductID>
+        <ProductID>CVRFPID-224868</ProductID>
+        <ProductID>CVRFPID-225167</ProductID>
+        <ProductID>CVRFPID-225662</ProductID>
+        <ProductID>CVRFPID-225740</ProductID>
+        <ProductID>CVRFPID-225790</ProductID>
+        <ProductID>CVRFPID-226172</ProductID>
+        <ProductID>CVRFPID-226174</ProductID>
+        <ProductID>CVRFPID-226202</ProductID>
+        <ProductID>CVRFPID-227048</ProductID>
+        <ProductID>CVRFPID-227598</ProductID>
+        <ProductID>CVRFPID-227754</ProductID>
+        <ProductID>CVRFPID-227789</ProductID>
+        <ProductID>CVRFPID-227791</ProductID>
+        <ProductID>CVRFPID-227960</ProductID>
+        <ProductID>CVRFPID-228057</ProductID>
+        <ProductID>CVRFPID-228075</ProductID>
+        <ProductID>CVRFPID-228151</ProductID>
+        <ProductID>CVRFPID-228955</ProductID>
+        <ProductID>CVRFPID-228956</ProductID>
+        <ProductID>CVRFPID-230587</ProductID>
+        <ProductID>CVRFPID-230591</ProductID>
+        <ProductID>CVRFPID-230592</ProductID>
+        <ProductID>CVRFPID-230594</ProductID>
+        <ProductID>CVRFPID-230596</ProductID>
+        <ProductID>CVRFPID-230598</ProductID>
+        <ProductID>CVRFPID-230603</ProductID>
+        <ProductID>CVRFPID-230605</ProductID>
+        <ProductID>CVRFPID-230606</ProductID>
+        <ProductID>CVRFPID-230712</ProductID>
+        <ProductID>CVRFPID-230824</ProductID>
+        <ProductID>CVRFPID-230826</ProductID>
+        <ProductID>CVRFPID-230915</ProductID>
+        <ProductID>CVRFPID-230962</ProductID>
+        <ProductID>CVRFPID-230990</ProductID>
+        <ProductID>CVRFPID-230992</ProductID>
+        <ProductID>CVRFPID-230995</ProductID>
+        <ProductID>CVRFPID-231000</ProductID>
+        <ProductID>CVRFPID-231001</ProductID>
+        <ProductID>CVRFPID-231017</ProductID>
+        <ProductID>CVRFPID-231245</ProductID>
+        <ProductID>CVRFPID-231679</ProductID>
+        <ProductID>CVRFPID-231796</ProductID>
+        <ProductID>CVRFPID-232061</ProductID>
+        <ProductID>CVRFPID-232122</ProductID>
+        <ProductID>CVRFPID-232765</ProductID>
+        <ProductID>CVRFPID-232852</ProductID>
+        <ProductID>CVRFPID-234115</ProductID>
+        <ProductID>CVRFPID-234926</ProductID>
+        <ProductID>CVRFPID-236205</ProductID>
+        <ProductID>CVRFPID-238504</ProductID>
+        <ProductID>CVRFPID-238999</ProductID>
+        <ProductID>CVRFPID-239225</ProductID>
+        <ProductID>CVRFPID-239279</ProductID>
+        <ProductID>CVRFPID-239361</ProductID>
+        <ProductID>CVRFPID-240186</ProductID>
+        <ProductID>CVRFPID-241614</ProductID>
+        <ProductID>CVRFPID-241765</ProductID>
+        <ProductID>CVRFPID-242313</ProductID>
+        <ProductID>CVRFPID-243525</ProductID>
+        <ProductID>CVRFPID-244911</ProductID>
+        <ProductID>CVRFPID-244913</ProductID>
+        <ProductID>CVRFPID-245380</ProductID>
+        <ProductID>CVRFPID-247630</ProductID>
+        <ProductID>CVRFPID-251487</ProductID>
+        <ProductID>CVRFPID-252156</ProductID>
+        <ProductID>CVRFPID-255002</ProductID>
+        <ProductID>CVRFPID-257209</ProductID>
+        <ProductID>CVRFPID-257830</ProductID>
+        <ProductID>CVRFPID-259238</ProductID>
+        <ProductID>CVRFPID-259869</ProductID>
+        <ProductID>CVRFPID-259985</ProductID>
+        <ProductID>CVRFPID-260691</ProductID>
+        <ProductID>CVRFPID-260993</ProductID>
+        <ProductID>CVRFPID-261487</ProductID>
+        <ProductID>CVRFPID-261784</ProductID>
+        <ProductID>CVRFPID-262300</ProductID>
+        <ProductID>CVRFPID-262335</ProductID>
+        <ProductID>CVRFPID-262536</ProductID>
+        <ProductID>CVRFPID-262684</ProductID>
+        <ProductID>CVRFPID-264643</ProductID>
+        <ProductID>CVRFPID-271140</ProductID>
+        <ProductID>CVRFPID-273350</ProductID>
+        <ProductID>CVRFPID-273510</ProductID>
+        <ProductID>CVRFPID-274202</ProductID>
+        <ProductID>CVRFPID-274203</ProductID>
+        <ProductID>CVRFPID-276903</ProductID>
+        <ProductID>CVRFPID-277192</ProductID>
+        <ProductID>CVRFPID-277339</ProductID>
+        <ProductID>CVRFPID-277340</ProductID>
+        <ProductID>CVRFPID-277341</ProductID>
+        <ProductID>CVRFPID-277352</ProductID>
+        <ProductID>CVRFPID-278008</ProductID>
+        <ProductID>CVRFPID-278403</ProductID>
+        <ProductID>CVRFPID-280552</ProductID>
+        <ProductID>CVRFPID-281972</ProductID>
+        <ProductID>CVRFPID-282668</ProductID>
+        <ProductID>CVRFPID-196220</ProductID>
+        <ProductID>CVRFPID-206163</ProductID>
+        <ProductID>CVRFPID-206164</ProductID>
+        <ProductID>CVRFPID-222435</ProductID>
+        <ProductID>CVRFPID-225856</ProductID>
+        <ProductID>CVRFPID-225858</ProductID>
+        <ProductID>CVRFPID-227918</ProductID>
+        <ProductID>CVRFPID-227920</ProductID>
+        <ProductID>CVRFPID-248242</ProductID>
+        <ProductID>CVRFPID-252271</ProductID>
+        <ProductID>CVRFPID-257955</ProductID>
+        <ProductID>CVRFPID-260741</ProductID>
+        <ProductID>CVRFPID-261241</ProductID>
+        <ProductID>CVRFPID-261465</ProductID>
+        <ProductID>CVRFPID-262389</ProductID>
+        <ProductID>CVRFPID-262390</ProductID>
+        <ProductID>CVRFPID-262994</ProductID>
+        <ProductID>CVRFPID-264096</ProductID>
+        <ProductID>CVRFPID-264514</ProductID>
+        <ProductID>CVRFPID-265735</ProductID>
+        <ProductID>CVRFPID-265841</ProductID>
+        <ProductID>CVRFPID-266259</ProductID>
+        <ProductID>CVRFPID-267110</ProductID>
+        <ProductID>CVRFPID-267240</ProductID>
+        <ProductID>CVRFPID-268921</ProductID>
+        <ProductID>CVRFPID-270097</ProductID>
+        <ProductID>CVRFPID-271798</ProductID>
+        <ProductID>CVRFPID-274832</ProductID>
+        <ProductID>CVRFPID-276837</ProductID>
+        <ProductID>CVRFPID-277148</ProductID>
+      </Status>
+    </ProductStatuses>
+    <CVSSScoreSets>
+      <ScoreSetV3>
+        <BaseScoreV3>8.6</BaseScoreV3>
+        <VectorV3>CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:C/C:N/I:N/A:H</VectorV3>
+      </ScoreSetV3>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Workaround">
+        <Description>There are no workarounds that address these vulnerabilities.</Description>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference Type="Self">
+        <URL>https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-cipdos-hkfTZXEx</URL>
+        <Description>Cisco IOS and IOS XE Software Common Industrial Protocol Denial of Service Vulnerabilities</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+</cvrf:cvrfdoc>

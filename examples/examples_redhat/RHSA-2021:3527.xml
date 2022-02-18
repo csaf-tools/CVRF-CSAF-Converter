@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cvrfdoc xmlns="http://www.icasi.org/CVRF/schema/cvrf/1.1" xmlns:cvrf="http://www.icasi.org/CVRF/schema/cvrf/1.1">
+  <DocumentTitle xml:lang="en">Red Hat Security Advisory: Red Hat Single Sign-On 7.4.9 security update on RHEL 6</DocumentTitle>
+  <DocumentType>Security Advisory</DocumentType>
+  <DocumentPublisher Type="Vendor">
+    <ContactDetails>secalert@redhat.com</ContactDetails>
+    <IssuingAuthority>Red Hat Product Security</IssuingAuthority>
+  </DocumentPublisher>
+  <DocumentTracking>
+    <Identification><ID>RHSA-2021:3527</ID></Identification>
+    <Status>Final</Status>
+    <Version>1</Version>
+    <RevisionHistory>
+       <Revision>
+         <Number>1</Number>
+         <Date>2021-09-14T12:37:00Z</Date>
+         <Description>Current version</Description>
+       </Revision>
+    </RevisionHistory>
+    <InitialReleaseDate>2021-09-14T12:37:00Z</InitialReleaseDate>
+    <CurrentReleaseDate>2021-09-14T12:37:00Z</CurrentReleaseDate>
+    <Generator>
+      <Engine>Red Hat SDEngine 3.0.2</Engine>
+      <Date>2021-09-14T17:11:00Z</Date>
+    </Generator>
+  </DocumentTracking>
+  <DocumentNotes>
+    <Note Title="Topic" Type="Summary" Ordinal="1" xml:lang="en">
+New Red Hat Single Sign-On 7.4.9 packages are now available for Red Hat Enterprise Linux 6.
+
+Red Hat Product Security has rated this update as having a security impact of Moderate. A Common Vulnerability Scoring System (CVSS) base score, which gives a detailed severity rating, is available for each vulnerability from the CVE link(s) in the References section.
+    </Note>
+    <Note Title="Details" Type="General" Ordinal="2" xml:lang="en">
+Red Hat Single Sign-On 7.4 is a standalone server, based on the Keycloak project, that provides authentication and standards-based single sign-on capabilities for web and mobile applications.
+
+This release of Red Hat Single Sign-On 7.4.9 serves as a replacement for Red Hat Single Sign-On 7.4.8, and includes bug fixes and enhancements, which are documented in the Release Notes document linked to in the References.
+
+Security Fix(es):
+
+* jackson-dataformat-cbor:  Unchecked allocation of byte buffer can cause a java.lang.OutOfMemoryError exception (CVE-2020-28491)
+
+* keycloak: Brute force attack is possible even after the account lockout (CVE-2021-3513)
+
+* keycloak: Anyone can register a new device when there is no device registered for passwordless login (CVE-2021-3632)
+
+* keycloak-model-infinispan: authenticationSessions map in RootAuthenticationSessionEntity grows boundlessly could lead to a DoS attack (CVE-2021-3637)
+
+* keycloak: X509 Direct Grant Auth does not verify certificate timestamp validity (CVE-2020-35509)
+
+For more details about the security issue(s), including the impact, a CVSS score, acknowledgments, and other related information, refer to the CVE page(s) listed in the References section.
+    </Note>
+    <Note Title="Terms of Use" Ordinal="3" Type="Legal Disclaimer" xml:lang="en">This content is licensed under the Creative Commons Attribution 4.0 International License (https://creativecommons.org/licenses/by/4.0/). If you distribute this content, or a modified version of it, you must provide attribution to Red Hat Inc. and provide a link to the original.</Note>
+  </DocumentNotes>
+  <DocumentDistribution xml:lang="en">Copyright © 2021 Red Hat, Inc. All rights reserved.</DocumentDistribution>
+  <AggregateSeverity Namespace="https://access.redhat.com/security/updates/classification/">Moderate</AggregateSeverity>
+  <DocumentReferences>
+    <Reference Type="Self">
+       <URL>https://access.redhat.com/errata/RHSA-2021:3527</URL>
+       <Description>https://access.redhat.com/errata/RHSA-2021:3527</Description>
+    </Reference>
+    <Reference Type="External">
+       <URL>https://access.redhat.com/security/updates/classification/#moderate</URL>
+       <Description>https://access.redhat.com/security/updates/classification/#moderate</Description>
+    </Reference>
+    <Reference Type="External">
+       <URL>https://access.redhat.com/documentation/en-us/red_hat_single_sign-on/7.4/html/release_notes/index</URL>
+       <Description>https://access.redhat.com/documentation/en-us/red_hat_single_sign-on/7.4/html/release_notes/index</Description>
+    </Reference>
+  </DocumentReferences>
+  <ProductTree xmlns="http://www.icasi.org/CVRF/schema/prod/1.1">
+    <Branch Type="Product Family" Name="Red Hat Single Sign-On">
+      <Branch Type="Product Name" Name="Red Hat Single Sign-On 7.4 for RHEL 6 Server">
+        <FullProductName ProductID="6Server-RHSSO-7.4" CPE="cpe:/a:redhat:red_hat_single_sign_on:7::el6">Red Hat Single Sign-On 7.4 for RHEL 6 Server</FullProductName>
+      </Branch>
+    </Branch>
+    <Branch Type="Product Version" Name="rh-sso7-keycloak-0:9.0.15-1.redhat_00002.1.el6sso">
+      <FullProductName ProductID="rh-sso7-keycloak-0:9.0.15-1.redhat_00002.1.el6sso" CPE="cpe:/a:redhat:red_hat_single_sign_on:7::el6">rh-sso7-keycloak-9.0.15-1.redhat_00002.1.el6sso.src.rpm</FullProductName>
+    </Branch>
+    <Relationship ProductReference="rh-sso7-keycloak-0:9.0.15-1.redhat_00002.1.el6sso" RelationType="Default Component Of" RelatesToProductReference="6Server-RHSSO-7.4">
+      <FullProductName ProductID="6Server-RHSSO-7.4:rh-sso7-keycloak-0:9.0.15-1.redhat_00002.1.el6sso" CPE="cpe:/a:redhat:red_hat_single_sign_on:7::el6">rh-sso7-keycloak-0:9.0.15-1.redhat_00002.1.el6sso as a component of Red Hat Single Sign-On 7.4 for RHEL 6 Server</FullProductName>
+    </Relationship>
+  </ProductTree>
+
+  <Vulnerability Ordinal="1" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">jackson-dataformat-cbor:  Unchecked allocation of byte buffer can cause a java.lang.OutOfMemoryError exception</Note></Notes>
+    <DiscoveryDate>2021-02-18T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-02-18T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2020-28491</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>6Server-RHSSO-7.4:rh-sso7-keycloak-0:9.0.15-1.redhat_00002.1.el6sso</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+Before applying this update, make sure all previously released errata relevant to your system have been applied.
+
+For details on how to apply this update, refer to:
+
+https://access.redhat.com/articles/11258
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:3527</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://snyk.io/vuln/SNYK-JAVA-COMFASTERXMLJACKSONDATAFORMAT-1047329</URL>
+        <Description>https://snyk.io/vuln/SNYK-JAVA-COMFASTERXMLJACKSONDATAFORMAT-1047329</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2020-28491</URL>
+        <Description>CVE-2020-28491</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1930423</URL>
+        <Description>bz#1930423: CVE-2020-28491 jackson-dataformat-cbor:  Unchecked allocation of byte buffer can cause a java.lang.OutOfMemoryError exception</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="2" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">keycloak: X509 Direct Grant Auth does not verify certificate timestamp validity</Note></Notes>
+    <DiscoveryDate>2021-01-04T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-01-04T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2020-35509</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>6Server-RHSSO-7.4:rh-sso7-keycloak-0:9.0.15-1.redhat_00002.1.el6sso</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Low</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+Before applying this update, make sure all previously released errata relevant to your system have been applied.
+
+For details on how to apply this update, refer to:
+
+https://access.redhat.com/articles/11258
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:3527</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2020-35509</URL>
+        <Description>CVE-2020-35509</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1912427</URL>
+        <Description>bz#1912427: CVE-2020-35509 keycloak: X509 Direct Grant Auth does not verify certificate timestamp validity</Description>
+      </Reference>
+    </References>
+    <Acknowledgments><Acknowledgment><Description>Red Hat would like to thank Luca Leonardo Scorcia for reporting this issue.</Description></Acknowledgment></Acknowledgments>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="3" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">keycloak: Brute force attack is possible even after the account lockout</Note></Notes>
+    <DiscoveryDate>2021-04-26T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-04-26T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-3513</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>6Server-RHSSO-7.4:rh-sso7-keycloak-0:9.0.15-1.redhat_00002.1.el6sso</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+Before applying this update, make sure all previously released errata relevant to your system have been applied.
+
+For details on how to apply this update, refer to:
+
+https://access.redhat.com/articles/11258
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:3527</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-3513</URL>
+        <Description>CVE-2021-3513</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1953439</URL>
+        <Description>bz#1953439: CVE-2021-3513 keycloak: Brute force attack is possible even after the account lockout</Description>
+      </Reference>
+    </References>
+    <Acknowledgments><Acknowledgment><Description>Red Hat would like to thank Michał Knapik &amp; Peter Nicholson (u2i) for reporting this issue.</Description></Acknowledgment></Acknowledgments>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="4" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">keycloak: Anyone can register a new device when there is no device registered for passwordless login</Note></Notes>
+    <DiscoveryDate>2021-06-20T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-06-12T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-3632</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>6Server-RHSSO-7.4:rh-sso7-keycloak-0:9.0.15-1.redhat_00002.1.el6sso</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+Before applying this update, make sure all previously released errata relevant to your system have been applied.
+
+For details on how to apply this update, refer to:
+
+https://access.redhat.com/articles/11258
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:3527</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-3632</URL>
+        <Description>CVE-2021-3632</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1978196</URL>
+        <Description>bz#1978196: CVE-2021-3632 keycloak: Anyone can register a new device when there is no device registered for passwordless login</Description>
+      </Reference>
+    </References>
+    <Acknowledgments><Acknowledgment><Description>Red Hat would like to thank Florian Ritterhoff (University of Applied Sciences Munich) for reporting this issue.</Description></Acknowledgment></Acknowledgments>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="5" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">keycloak-model-infinispan: authenticationSessions map in RootAuthenticationSessionEntity grows boundlessly could lead to a DoS attack</Note></Notes>
+    <DiscoveryDate>2021-07-06T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2020-12-14T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-3637</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>6Server-RHSSO-7.4:rh-sso7-keycloak-0:9.0.15-1.redhat_00002.1.el6sso</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+Before applying this update, make sure all previously released errata relevant to your system have been applied.
+
+For details on how to apply this update, refer to:
+
+https://access.redhat.com/articles/11258
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:3527</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-3637</URL>
+        <Description>CVE-2021-3637</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1979638</URL>
+        <Description>bz#1979638: CVE-2021-3637 keycloak-model-infinispan: authenticationSessions map in RootAuthenticationSessionEntity grows boundlessly could lead to a DoS attack</Description>
+      </Reference>
+    </References>
+    <Acknowledgments><Acknowledgment><Description>Red Hat would like to thank Halil İbrahim Şener (hibsener@gmail.com) (Picnic Technologies) for reporting this issue.</Description></Acknowledgment></Acknowledgments>
+  </Vulnerability>
+</cvrfdoc>

@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cvrfdoc xmlns="http://www.icasi.org/CVRF/schema/cvrf/1.1" xmlns:cvrf="http://www.icasi.org/CVRF/schema/cvrf/1.1">
+  <DocumentTitle xml:lang="en">Security update for privoxy</DocumentTitle>
+  <DocumentType>SUSE Patch</DocumentType>
+  <DocumentPublisher Type="Vendor">
+    <ContactDetails>security@suse.de</ContactDetails>
+    <IssuingAuthority>SUSE Security Team</IssuingAuthority>
+  </DocumentPublisher>
+  <DocumentTracking>
+    <Identification>
+      <ID>openSUSE-SU-2015:0230-1</ID>
+    </Identification>
+    <Status>Final</Status>
+    <Version>1</Version>
+    <RevisionHistory>
+      <Revision>
+        <Number>1</Number>
+        <Date>2015-01-30T14:57:46Z</Date>
+        <Description>current</Description>
+      </Revision>
+    </RevisionHistory>
+    <InitialReleaseDate>2015-01-30T14:57:46Z</InitialReleaseDate>
+    <CurrentReleaseDate>2015-01-30T14:57:46Z</CurrentReleaseDate>
+    <Generator>
+      <Engine>cve-database/bin/generate-cvrf.pl</Engine>
+      <Date>2017-02-24T01:00:00Z</Date>
+    </Generator>
+  </DocumentTracking>
+  <DocumentNotes>
+    <Note Title="Topic" Type="Summary" Ordinal="1" xml:lang="en">Security update for privoxy</Note>
+    <Note Title="Details" Type="General" Ordinal="2" xml:lang="en">privoxy was updated to version 3.0.23 to fix three security issues.
+
+These security issues were fixed:
+- Fixed a DoS issue in case of client requests with incorrect
+chunk-encoded body. When compiled with assertions enabled
+(the default) they could previously cause Privoxy to abort() (CVE-2015-1380).
+- Fixed multiple segmentation faults and memory leaks in the
+pcrs code. This fix also increases the chances that an invalid
+pcrs command is rejected as such (CVE-2015-1381).
+- Client requests with body that can't be delivered no longer
+cause pipelined requests behind them to be rejected as invalid (CVE-2015-1382).
+</Note>
+    <Note Title="Terms of Use" Type="Legal Disclaimer" Ordinal="3" xml:lang="en">The CVRF data is provided by SUSE under the Creative Commons License 4.0 with Attribution for Non-Commercial usage (CC-BY-NC-4.0).</Note>
+  </DocumentNotes>
+  <DocumentDistribution xml:lang="en">Copyright SUSE LLC under the Creative Commons License 4.0 with Attribution for Non-Commercial usage (CC-BY-NC-4.0)</DocumentDistribution>
+  <DocumentReferences>
+    <Reference Type="Self">
+      <URL>https://lists.opensuse.org/opensuse-updates/2015-02/msg00031.html</URL>
+      <Description>E-Mail link for openSUSE-SU-2015:0230-1</Description>
+    </Reference>
+    <Reference Type="Self">
+      <URL>https://www.suse.com/support/security/rating/</URL>
+      <Description>SUSE Security Ratings</Description>
+    </Reference>
+  </DocumentReferences>
+  <ProductTree xmlns="http://www.icasi.org/CVRF/schema/prod/1.1">
+    <Branch Type="Product Version" Name="privoxy-3.0.23-2.20.1">
+      <FullProductName ProductID="privoxy-3.0.23-2.20.1">privoxy-3.0.23-2.20.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="privoxy-doc-3.0.23-2.20.1">
+      <FullProductName ProductID="privoxy-doc-3.0.23-2.20.1">privoxy-doc-3.0.23-2.20.1</FullProductName>
+    </Branch>
+  </ProductTree>
+  <Vulnerability xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1" Ordinal="1">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">jcc.c in Privoxy before 3.0.23 allows remote attackers to cause a denial of service (abort) via a crafted chunk-encoded body.</Note>
+    </Notes>
+    <CVE>CVE-2015-1380</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed"/>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-updates/2015-02/msg00031.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-1380.html</URL>
+        <Description>CVE-2015-1380</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/914934</URL>
+        <Description>SUSE Bug 914934</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+  <Vulnerability xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1" Ordinal="2">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">Multiple unspecified vulnerabilities in pcrs.c in Privoxy before 3.0.23 allow remote attackers to cause a denial of service (segmentation fault or memory consumption) via unspecified vectors.</Note>
+    </Notes>
+    <CVE>CVE-2015-1381</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed"/>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-updates/2015-02/msg00031.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-1381.html</URL>
+        <Description>CVE-2015-1381</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/914934</URL>
+        <Description>SUSE Bug 914934</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+  <Vulnerability xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1" Ordinal="3">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">parsers.c in Privoxy before 3.0.23 allows remote attackers to cause a denial of service (invalid read and crash) via vectors related to an HTTP time header.</Note>
+    </Notes>
+    <CVE>CVE-2015-1382</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed"/>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-updates/2015-02/msg00031.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-1382.html</URL>
+        <Description>CVE-2015-1382</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/914934</URL>
+        <Description>SUSE Bug 914934</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+</cvrfdoc>

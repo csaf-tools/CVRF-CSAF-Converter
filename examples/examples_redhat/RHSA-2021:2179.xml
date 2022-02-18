@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cvrfdoc xmlns="http://www.icasi.org/CVRF/schema/cvrf/1.1" xmlns:cvrf="http://www.icasi.org/CVRF/schema/cvrf/1.1">
+  <DocumentTitle xml:lang="en">Red Hat Security Advisory: RHV Manager security update (ovirt-engine) [ovirt-4.4.6]</DocumentTitle>
+  <DocumentType>Security Advisory</DocumentType>
+  <DocumentPublisher Type="Vendor">
+    <ContactDetails>secalert@redhat.com</ContactDetails>
+    <IssuingAuthority>Red Hat Product Security</IssuingAuthority>
+  </DocumentPublisher>
+  <DocumentTracking>
+    <Identification><ID>RHSA-2021:2179</ID></Identification>
+    <Status>Final</Status>
+    <Version>1</Version>
+    <RevisionHistory>
+       <Revision>
+         <Number>1</Number>
+         <Date>2021-06-01T13:24:00Z</Date>
+         <Description>Current version</Description>
+       </Revision>
+    </RevisionHistory>
+    <InitialReleaseDate>2021-06-01T13:24:00Z</InitialReleaseDate>
+    <CurrentReleaseDate>2021-06-01T13:24:00Z</CurrentReleaseDate>
+    <Generator>
+      <Engine>Red Hat SDEngine 3.0.0</Engine>
+      <Date>2021-08-23T04:54:00Z</Date>
+    </Generator>
+  </DocumentTracking>
+  <DocumentNotes>
+    <Note Title="Topic" Type="Summary" Ordinal="1" xml:lang="en">
+Updated ovirt-engine packages that fix several bugs , security flaws and add various enhancements are now available.
+
+Red Hat Product Security has rated this update as having a security impact of Moderate. A Common Vulnerability Scoring System (CVSS) base score, which gives a detailed severity rating, is available for each vulnerability from the CVE link(s) in the References section.
+    </Note>
+    <Note Title="Details" Type="General" Ordinal="2" xml:lang="en">
+The ovirt-engine package provides the manager for virtualization environments.
+This manager enables admins to define hosts and networks, as well as to add
+storage, create VMs and manage user permissions.
+
+A list of bugs fixed in this update is available in the Technical Notes
+book:
+
+https://access.redhat.com/documentation/en-us/red_hat_virtualization/4.4/html-single/technical_notes
+
+Security Fix(es):
+
+* nodejs-lodash: command injection via template (CVE-2021-23337)
+
+* nodejs-lodash: ReDoS via the toNumber, trim and trimEnd functions (CVE-2020-28500)
+
+For more details about the security issue(s), including the impact, a CVSS score, acknowledgments, and other related information, refer to the CVE page(s) listed in the References section.
+
+Bug Fix(es):
+
+* This release adds the queue attribute to the virtio-scsi driver in the virtual machine configuration. This improvement enables multi-queue performance with the virtio-scsi driver. (BZ#911394)
+
+* With this release, source-load-balancing has been added as a new sub-option for xmit_hash_policy. It can be configured for bond modes balance-xor (2), 802.3ad (4) and balance-tlb (5), by specifying xmit_hash_policy=vlan+srcmac. (BZ#1683987)
+
+* The default DataCenter/Cluster will be set to compatibility level 4.6 on new installations of Red Hat Virtualization 4.4.6.; (BZ#1950348)
+
+* With this release, support has been added for copying disks between regular Storage Domains and Managed Block Storage Domains.
+It is now possible to migrate disks between Managed Block Storage Domains and regular Storage Domains. (BZ#1906074)
+
+* Previously, the engine-config value LiveSnapshotPerformFreezeInEngine was set by default to false and was supposed to be uses in cluster compatibility levels below 4.4. The value was set to general version. 
+With this release, each cluster level has it's own value, defaulting to false for 4.4 and above. This will reduce unnecessary overhead in removing time outs of the file system freeze command. (BZ#1932284)
+
+* With this release, running virtual machines is supported for up to 16TB of RAM on x86_64 architectures. (BZ#1944723)
+
+* This release adds the gathering of oVirt/RHV related certificates to allow easier debugging of issues for faster customer help and issue resolution.
+Information from certificates is now included as part of the sosreport. Note that no corresponding private key information is gathered, due to security considerations. (BZ#1845877)
+    </Note>
+    <Note Title="Terms of Use" Ordinal="3" Type="Legal Disclaimer" xml:lang="en">This content is licensed under the Creative Commons Attribution 4.0 International License (https://creativecommons.org/licenses/by/4.0/). If you distribute this content, or a modified version of it, you must provide attribution to Red Hat Inc. and provide a link to the original.</Note>
+  </DocumentNotes>
+  <DocumentDistribution xml:lang="en">Copyright © 2021 Red Hat, Inc. All rights reserved.</DocumentDistribution>
+  <AggregateSeverity Namespace="https://access.redhat.com/security/updates/classification/">Moderate</AggregateSeverity>
+  <DocumentReferences>
+    <Reference Type="Self">
+       <URL>https://access.redhat.com/errata/RHSA-2021:2179</URL>
+       <Description>https://access.redhat.com/errata/RHSA-2021:2179</Description>
+    </Reference>
+    <Reference Type="External">
+       <URL>https://access.redhat.com/security/updates/classification/#moderate</URL>
+       <Description>https://access.redhat.com/security/updates/classification/#moderate</Description>
+    </Reference>
+    <Reference Type="External">
+       <URL>https://access.redhat.com/documentation/en-us/red_hat_virtualization/4.4/html-single/technical_notes</URL>
+       <Description>https://access.redhat.com/documentation/en-us/red_hat_virtualization/4.4/html-single/technical_notes</Description>
+    </Reference>
+  </DocumentReferences>
+  <ProductTree xmlns="http://www.icasi.org/CVRF/schema/prod/1.1">
+    <Branch Type="Product Family" Name="Red Hat Virtualization">
+      <Branch Type="Product Name" Name="RHEL-8-RHEV-S-4.4 - Red Hat Virtualization Engine 4.4">
+        <FullProductName ProductID="8Base-RHV-S-4.4" CPE="cpe:/a:redhat:rhev_manager:4.4:el8">RHEL-8-RHEV-S-4.4 - Red Hat Virtualization Engine 4.4</FullProductName>
+      </Branch>
+    </Branch>
+    <Branch Type="Product Version" Name="engine-db-query-0:1.6.3-1.el8ev">
+      <FullProductName ProductID="engine-db-query-0:1.6.3-1.el8ev" CPE="cpe:/a:redhat:rhev_manager:4.4:el8">engine-db-query-1.6.3-1.el8ev.src.rpm</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="org.ovirt.engine-root-0:4.4.6.6-10">
+      <FullProductName ProductID="org.ovirt.engine-root-0:4.4.6.6-10" CPE="cpe:/a:redhat:rhev_manager:4.4:el8">org.ovirt.engine-root-4.4.6.6-10.src.rpm</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="ovirt-cockpit-sso-0:0.1.4-2.el8ev">
+      <FullProductName ProductID="ovirt-cockpit-sso-0:0.1.4-2.el8ev" CPE="cpe:/a:redhat:rhev_manager:4.4:el8">ovirt-cockpit-sso-0.1.4-2.el8ev.src.rpm</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="ovirt-engine-dwh-0:4.4.6.2-1.el8ev">
+      <FullProductName ProductID="ovirt-engine-dwh-0:4.4.6.2-1.el8ev" CPE="cpe:/a:redhat:rhev_manager:4.4:el8">ovirt-engine-dwh-4.4.6.2-1.el8ev.src.rpm</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="ovirt-engine-ui-extensions-0:1.2.6-1.el8ev">
+      <FullProductName ProductID="ovirt-engine-ui-extensions-0:1.2.6-1.el8ev" CPE="cpe:/a:redhat:rhev_manager:4.4:el8">ovirt-engine-ui-extensions-1.2.6-1.el8ev.src.rpm</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="ovirt-web-ui-0:1.6.9-1.el8ev">
+      <FullProductName ProductID="ovirt-web-ui-0:1.6.9-1.el8ev" CPE="cpe:/a:redhat:rhev_manager:4.4:el8">ovirt-web-ui-1.6.9-1.el8ev.src.rpm</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="rhv-log-collector-analyzer-0:1.0.8-1.el8ev">
+      <FullProductName ProductID="rhv-log-collector-analyzer-0:1.0.8-1.el8ev" CPE="cpe:/a:redhat:rhev_manager:4.4:el8">rhv-log-collector-analyzer-1.0.8-1.el8ev.src.rpm</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="rhvm-branding-rhv-0:4.4.8-1.el8ev">
+      <FullProductName ProductID="rhvm-branding-rhv-0:4.4.8-1.el8ev" CPE="cpe:/a:redhat:rhev_manager:4.4:el8">rhvm-branding-rhv-4.4.8-1.el8ev.src.rpm</FullProductName>
+    </Branch>
+    <Relationship ProductReference="engine-db-query-0:1.6.3-1.el8ev" RelationType="Default Component Of" RelatesToProductReference="8Base-RHV-S-4.4">
+      <FullProductName ProductID="8Base-RHV-S-4.4:engine-db-query-0:1.6.3-1.el8ev" CPE="cpe:/a:redhat:rhev_manager:4.4:el8">engine-db-query-0:1.6.3-1.el8ev as a component of RHEL-8-RHEV-S-4.4 - Red Hat Virtualization Engine 4.4</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="org.ovirt.engine-root-0:4.4.6.6-10" RelationType="Default Component Of" RelatesToProductReference="8Base-RHV-S-4.4">
+      <FullProductName ProductID="8Base-RHV-S-4.4:org.ovirt.engine-root-0:4.4.6.6-10" CPE="cpe:/a:redhat:rhev_manager:4.4:el8">org.ovirt.engine-root-0:4.4.6.6-10 as a component of RHEL-8-RHEV-S-4.4 - Red Hat Virtualization Engine 4.4</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="ovirt-cockpit-sso-0:0.1.4-2.el8ev" RelationType="Default Component Of" RelatesToProductReference="8Base-RHV-S-4.4">
+      <FullProductName ProductID="8Base-RHV-S-4.4:ovirt-cockpit-sso-0:0.1.4-2.el8ev" CPE="cpe:/a:redhat:rhev_manager:4.4:el8">ovirt-cockpit-sso-0:0.1.4-2.el8ev as a component of RHEL-8-RHEV-S-4.4 - Red Hat Virtualization Engine 4.4</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="ovirt-engine-dwh-0:4.4.6.2-1.el8ev" RelationType="Default Component Of" RelatesToProductReference="8Base-RHV-S-4.4">
+      <FullProductName ProductID="8Base-RHV-S-4.4:ovirt-engine-dwh-0:4.4.6.2-1.el8ev" CPE="cpe:/a:redhat:rhev_manager:4.4:el8">ovirt-engine-dwh-0:4.4.6.2-1.el8ev as a component of RHEL-8-RHEV-S-4.4 - Red Hat Virtualization Engine 4.4</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="ovirt-engine-ui-extensions-0:1.2.6-1.el8ev" RelationType="Default Component Of" RelatesToProductReference="8Base-RHV-S-4.4">
+      <FullProductName ProductID="8Base-RHV-S-4.4:ovirt-engine-ui-extensions-0:1.2.6-1.el8ev" CPE="cpe:/a:redhat:rhev_manager:4.4:el8">ovirt-engine-ui-extensions-0:1.2.6-1.el8ev as a component of RHEL-8-RHEV-S-4.4 - Red Hat Virtualization Engine 4.4</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="ovirt-web-ui-0:1.6.9-1.el8ev" RelationType="Default Component Of" RelatesToProductReference="8Base-RHV-S-4.4">
+      <FullProductName ProductID="8Base-RHV-S-4.4:ovirt-web-ui-0:1.6.9-1.el8ev" CPE="cpe:/a:redhat:rhev_manager:4.4:el8">ovirt-web-ui-0:1.6.9-1.el8ev as a component of RHEL-8-RHEV-S-4.4 - Red Hat Virtualization Engine 4.4</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="rhv-log-collector-analyzer-0:1.0.8-1.el8ev" RelationType="Default Component Of" RelatesToProductReference="8Base-RHV-S-4.4">
+      <FullProductName ProductID="8Base-RHV-S-4.4:rhv-log-collector-analyzer-0:1.0.8-1.el8ev" CPE="cpe:/a:redhat:rhev_manager:4.4:el8">rhv-log-collector-analyzer-0:1.0.8-1.el8ev as a component of RHEL-8-RHEV-S-4.4 - Red Hat Virtualization Engine 4.4</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="rhvm-branding-rhv-0:4.4.8-1.el8ev" RelationType="Default Component Of" RelatesToProductReference="8Base-RHV-S-4.4">
+      <FullProductName ProductID="8Base-RHV-S-4.4:rhvm-branding-rhv-0:4.4.8-1.el8ev" CPE="cpe:/a:redhat:rhev_manager:4.4:el8">rhvm-branding-rhv-0:4.4.8-1.el8ev as a component of RHEL-8-RHEV-S-4.4 - Red Hat Virtualization Engine 4.4</FullProductName>
+    </Relationship>
+  </ProductTree>
+
+  <Vulnerability Ordinal="1" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">nodejs-lodash: ReDoS via the toNumber, trim and trimEnd functions</Note></Notes>
+    <DiscoveryDate>2021-02-15T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-02-15T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2020-28500</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>8Base-RHV-S-4.4:engine-db-query-0:1.6.3-1.el8ev</ProductID>
+      <ProductID>8Base-RHV-S-4.4:org.ovirt.engine-root-0:4.4.6.6-10</ProductID>
+      <ProductID>8Base-RHV-S-4.4:ovirt-cockpit-sso-0:0.1.4-2.el8ev</ProductID>
+      <ProductID>8Base-RHV-S-4.4:ovirt-engine-dwh-0:4.4.6.2-1.el8ev</ProductID>
+      <ProductID>8Base-RHV-S-4.4:ovirt-engine-ui-extensions-0:1.2.6-1.el8ev</ProductID>
+      <ProductID>8Base-RHV-S-4.4:ovirt-web-ui-0:1.6.9-1.el8ev</ProductID>
+      <ProductID>8Base-RHV-S-4.4:rhv-log-collector-analyzer-0:1.0.8-1.el8ev</ProductID>
+      <ProductID>8Base-RHV-S-4.4:rhvm-branding-rhv-0:4.4.8-1.el8ev</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/2974891
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:2179</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://snyk.io/vuln/SNYK-JS-LODASH-1018905</URL>
+        <Description>https://snyk.io/vuln/SNYK-JS-LODASH-1018905</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2020-28500</URL>
+        <Description>CVE-2020-28500</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1928954</URL>
+        <Description>bz#1928954: CVE-2020-28500 nodejs-lodash: ReDoS via the toNumber, trim and trimEnd functions</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="2" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">nodejs-lodash: command injection via template</Note></Notes>
+    <DiscoveryDate>2021-02-15T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-02-15T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-23337</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>8Base-RHV-S-4.4:engine-db-query-0:1.6.3-1.el8ev</ProductID>
+      <ProductID>8Base-RHV-S-4.4:org.ovirt.engine-root-0:4.4.6.6-10</ProductID>
+      <ProductID>8Base-RHV-S-4.4:ovirt-cockpit-sso-0:0.1.4-2.el8ev</ProductID>
+      <ProductID>8Base-RHV-S-4.4:ovirt-engine-dwh-0:4.4.6.2-1.el8ev</ProductID>
+      <ProductID>8Base-RHV-S-4.4:ovirt-engine-ui-extensions-0:1.2.6-1.el8ev</ProductID>
+      <ProductID>8Base-RHV-S-4.4:ovirt-web-ui-0:1.6.9-1.el8ev</ProductID>
+      <ProductID>8Base-RHV-S-4.4:rhv-log-collector-analyzer-0:1.0.8-1.el8ev</ProductID>
+      <ProductID>8Base-RHV-S-4.4:rhvm-branding-rhv-0:4.4.8-1.el8ev</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/2974891
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:2179</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://snyk.io/vuln/SNYK-JS-LODASH-1040724</URL>
+        <Description>https://snyk.io/vuln/SNYK-JS-LODASH-1040724</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-23337</URL>
+        <Description>CVE-2021-23337</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1928937</URL>
+        <Description>bz#1928937: CVE-2021-23337 nodejs-lodash: command injection via template</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+</cvrfdoc>

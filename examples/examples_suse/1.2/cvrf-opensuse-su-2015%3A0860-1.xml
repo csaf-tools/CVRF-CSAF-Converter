@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cvrfdoc xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:cpe="http://cpe.mitre.org/language/2.0" xmlns:cvrf="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/cvrf" xmlns:cvrf-common="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/common" xmlns:cvssv2="http://scap.nist.gov/schema/cvss-v2/1.0" xmlns:cvssv3="https://www.first.org/cvss/cvss-v3.0.xsd" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:ns0="http://purl.org/dc/elements/1.1/" xmlns:prod="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/prod" xmlns:scap-core="http://scap.nist.gov/schema/scap-core/1.0" xmlns:sch="http://purl.oclc.org/dsdl/schematron" xmlns:vuln="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/cvrf">
+  <DocumentTitle xml:lang="en">Security update for libssh</DocumentTitle>
+  <DocumentType>SUSE Patch</DocumentType>
+  <DocumentPublisher Type="Vendor">
+    <ContactDetails>security@suse.de</ContactDetails>
+    <IssuingAuthority>SUSE Security Team</IssuingAuthority>
+  </DocumentPublisher>
+  <DocumentTracking>
+    <Identification>
+      <ID>openSUSE-SU-2015:0860-1</ID>
+    </Identification>
+    <Status>Final</Status>
+    <Version>1</Version>
+    <RevisionHistory>
+      <Revision>
+        <Number>1</Number>
+        <Date>2015-05-03T09:07:47Z</Date>
+        <Description>current</Description>
+      </Revision>
+    </RevisionHistory>
+    <InitialReleaseDate>2015-05-03T09:07:47Z</InitialReleaseDate>
+    <CurrentReleaseDate>2015-05-03T09:07:47Z</CurrentReleaseDate>
+    <Generator>
+      <Engine>cve-database/bin/generate-cvrf.pl</Engine>
+      <Date>2017-02-24T01:00:00Z</Date>
+    </Generator>
+  </DocumentTracking>
+  <DocumentNotes>
+    <Note Title="Topic" Type="Summary" Ordinal="1" xml:lang="en">Security update for libssh</Note>
+    <Note Title="Details" Type="General" Ordinal="2" xml:lang="en">libssh was updated to fix one security issue.
+
+The following vulnerability was fixed:
+
+* CVE-2015-3146: Specially crafted packages inserted into a connection could have lead to  a client or server process crash via a null pointer dereference.</Note>
+    <Note Title="Terms of Use" Type="Legal Disclaimer" Ordinal="3" xml:lang="en">The CVRF data is provided by SUSE under the Creative Commons License 4.0 with Attribution for Non-Commercial usage (CC-BY-NC-4.0).</Note>
+  </DocumentNotes>
+  <DocumentDistribution xml:lang="en">Copyright SUSE LLC under the Creative Commons License 4.0 with Attribution for Non-Commercial usage (CC-BY-NC-4.0)</DocumentDistribution>
+  <DocumentReferences>
+    <Reference Type="Self">
+      <URL>https://lists.opensuse.org/opensuse-updates/2015-05/msg00016.html</URL>
+      <Description>E-Mail link for openSUSE-SU-2015:0860-1</Description>
+    </Reference>
+    <Reference Type="Self">
+      <URL>https://www.suse.com/support/security/rating/</URL>
+      <Description>SUSE Security Ratings</Description>
+    </Reference>
+  </DocumentReferences>
+  <ProductTree xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/prod">
+    <Branch Type="Product Version" Name="libssh-0.5.5-2.15.1">
+      <FullProductName ProductID="libssh-0.5.5-2.15.1">libssh-0.5.5-2.15.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libssh-devel-0.5.5-2.15.1">
+      <FullProductName ProductID="libssh-devel-0.5.5-2.15.1">libssh-devel-0.5.5-2.15.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libssh-devel-doc-0.5.5-2.15.1">
+      <FullProductName ProductID="libssh-devel-doc-0.5.5-2.15.1">libssh-devel-doc-0.5.5-2.15.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libssh4-0.5.5-2.15.1">
+      <FullProductName ProductID="libssh4-0.5.5-2.15.1">libssh4-0.5.5-2.15.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libssh4-32bit-0.5.5-2.15.1">
+      <FullProductName ProductID="libssh4-32bit-0.5.5-2.15.1">libssh4-32bit-0.5.5-2.15.1</FullProductName>
+    </Branch>
+  </ProductTree>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="1">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">The (1) SSH_MSG_NEWKEYS and (2) SSH_MSG_KEXDH_REPLY packet handlers in package_cb.c in libssh before 0.6.5 do not properly validate state, which allows remote attackers to cause a denial of service (NULL pointer dereference and crash) via a crafted SSH packet.</Note>
+    </Notes>
+    <CVE>CVE-2015-3146</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed"/>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>5</BaseScoreV2>
+        <VectorV2>AV:N/AC:L/Au:N/C:N/I:N/A:P</VectorV2>
+      </ScoreSetV2>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-updates/2015-05/msg00016.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-3146.html</URL>
+        <Description>CVE-2015-3146</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/928323</URL>
+        <Description>SUSE Bug 928323</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+</cvrfdoc>

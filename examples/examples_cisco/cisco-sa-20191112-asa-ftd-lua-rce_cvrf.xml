@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cvrf:cvrfdoc xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:cvrf-common="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/common" xmlns:cvrf="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/cvrf">
+  <cvrf:DocumentTitle>Cisco Adaptive Security Appliance Software and Firepower Threat Defense Software Remote Code Execution Vulnerability</cvrf:DocumentTitle>
+  <cvrf:DocumentType>Cisco Security Advisory</cvrf:DocumentType>
+  <cvrf:DocumentPublisher Type="Vendor">
+    <cvrf:ContactDetails>Emergency Support:
++1 877 228 7302 (toll-free within North America)
++1 408 525 6532 (International direct-dial)
+Non-emergency Support:
+Email: psirt@cisco.com
+Support requests that are received via e-mail are typically acknowledged within 48 hours.</cvrf:ContactDetails>
+    <cvrf:IssuingAuthority>Cisco product security incident response is the responsibility of the Cisco Product Security Incident Response Team (PSIRT). The Cisco PSIRT is a dedicated, global team that manages the receipt, investigation, and public reporting of security vulnerability information that is related to Cisco products and networks. The on-call Cisco PSIRT works 24x7 with Cisco customers, independent security researchers, consultants, industry organizations, and other vendors to identify possible security issues with Cisco products and networks.
+More information can be found in Cisco Security Vulnerability Policy available at http://www.cisco.com/web/about/security/psirt/security_vulnerability_policy.html</cvrf:IssuingAuthority>
+  </cvrf:DocumentPublisher>
+  <cvrf:DocumentTracking>
+    <cvrf:Identification>
+      <cvrf:ID>cisco-sa-20191112-asa-ftd-lua-rce</cvrf:ID>
+    </cvrf:Identification>
+    <cvrf:Status>Final</cvrf:Status>
+    <cvrf:Version>2.6</cvrf:Version>
+    <cvrf:RevisionHistory>
+      <cvrf:Revision>
+        <cvrf:Number>1.0</cvrf:Number>
+        <cvrf:Date>2019-11-12T13:09:50</cvrf:Date>
+        <cvrf:Description>Initial public release.</cvrf:Description>
+      </cvrf:Revision>
+      <cvrf:Revision>
+        <cvrf:Number>1.1</cvrf:Number>
+        <cvrf:Date>2019-11-17T17:30:05</cvrf:Date>
+        <cvrf:Description>Added fixed software release information to the Summary and Fixed Software sections.</cvrf:Description>
+      </cvrf:Revision>
+      <cvrf:Revision>
+        <cvrf:Number>2.0</cvrf:Number>
+        <cvrf:Date>2019-11-19T22:59:47</cvrf:Date>
+        <cvrf:Description>Updated fixed software release information and removed Cisco FTD Software fixed software table. The FTD table was removed in version 2.0 of this advisory because VDB Update 329 did not provide adequate mitigation for this vulnerability for FTD until FMC was addressed. FMC was later addressed with hotfixes beginning with version 2.4 of this advisory.</cvrf:Description>
+      </cvrf:Revision>
+      <cvrf:Revision>
+        <cvrf:Number>2.1</cvrf:Number>
+        <cvrf:Date>2019-11-22T22:03:12</cvrf:Date>
+        <cvrf:Description>Added ASA fixed software release information.</cvrf:Description>
+      </cvrf:Revision>
+      <cvrf:Revision>
+        <cvrf:Number>2.2</cvrf:Number>
+        <cvrf:Date>2019-11-27T18:04:59</cvrf:Date>
+        <cvrf:Description>Fixed formatting and typo in ASA fixed software release information.</cvrf:Description>
+      </cvrf:Revision>
+      <cvrf:Revision>
+        <cvrf:Number>2.3</cvrf:Number>
+        <cvrf:Date>2019-12-03T16:37:47</cvrf:Date>
+        <cvrf:Description>Added ASA fixed software release information.</cvrf:Description>
+      </cvrf:Revision>
+      <cvrf:Revision>
+        <cvrf:Number>2.4</cvrf:Number>
+        <cvrf:Date>2019-12-16T14:48:29</cvrf:Date>
+        <cvrf:Description>Added FTD fixed software release information, including discussion of the FMC hotfixes. Updated ASA fixed software release information. Expanded revision history for version 2.0 of this advisory when removing the history of VDB Update 329 from the Summary section.</cvrf:Description>
+      </cvrf:Revision>
+      <cvrf:Revision>
+        <cvrf:Number>2.5</cvrf:Number>
+        <cvrf:Date>2019-12-17T14:33:48</cvrf:Date>
+        <cvrf:Description>Added FTD fixed software release information.</cvrf:Description>
+      </cvrf:Revision>
+      <cvrf:Revision>
+        <cvrf:Number>2.6</cvrf:Number>
+        <cvrf:Date>2021-01-11T19:14:20</cvrf:Date>
+        <cvrf:Description>Added ASA fixed software release information.</cvrf:Description>
+      </cvrf:Revision>
+    </cvrf:RevisionHistory>
+    <cvrf:InitialReleaseDate>2019-11-12T13:15:00</cvrf:InitialReleaseDate>
+    <cvrf:CurrentReleaseDate>2021-01-11T19:14:20</cvrf:CurrentReleaseDate>
+    <cvrf:Generator>
+      <cvrf:Engine>TVCE</cvrf:Engine>
+    </cvrf:Generator>
+  </cvrf:DocumentTracking>
+  <cvrf:DocumentNotes>
+    <cvrf:Note Title="Summary" Type="Summary" Ordinal="1">A vulnerability in the implementation of the Lua interpreter integrated in Cisco Adaptive Security Appliance (ASA) Software and Cisco Firepower Threat Defense (FTD) Software could allow an authenticated, remote attacker to execute arbitrary code with root privileges on the underlying Linux operating system of an affected device.
+
+The vulnerability is due to insufficient restrictions on the allowed Lua function calls within the context of user-supplied Lua scripts. A successful exploit could allow the attacker to trigger a heap overflow condition and execute arbitrary code with root privileges on the underlying Linux operating system of an affected device.
+
+Cisco has released software updates that address this vulnerability. There are no workarounds that address this vulnerability.
+
+This advisory is available at the following link:
+https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20191112-asa-ftd-lua-rce ["https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20191112-asa-ftd-lua-rce"]</cvrf:Note>
+    <cvrf:Note Title="Vulnerable Products" Type="General" Ordinal="2">This vulnerability affects Cisco ASA Software and Cisco FTD Software.
+
+For information about which Cisco software releases are vulnerable, see the Fixed Software ["#fs"] section of this advisory.</cvrf:Note>
+    <cvrf:Note Title="Products Confirmed Not Vulnerable" Type="General" Ordinal="3">Only products listed in the Vulnerable Products ["#vp"] section of this advisory are known to be affected by this vulnerability.
+
+Cisco has confirmed that this vulnerability does not affect the following Cisco products:
+
+Adaptive Security Device Manager
+Cisco Security Manager
+Firepower Management Center
+Firepower Management Center 1000</cvrf:Note>
+    <cvrf:Note Title="Details" Type="General" Ordinal="4">At publication time, the vulnerability described in this advisory had been identified in the following Cisco Products:
+  Cisco Adaptive Security Appliance (ASA) Software
+The Dynamic Access Policy (DAP) feature of Cisco ASA Software allows an administrator to create policies that apply the appropriate access control attributes based on factors dynamically assessed at the time of the establishment of the VPN session. DAP offers the capability of defining enhanced authentication, authorization, and accounting (AAA) policies by using the Lua programming language. These user-defined Lua scripts are executed within the scripting sandbox of the device.
+
+The local implementation of the Lua interpreter, however, imposes insufficient restrictions on the allowed Lua function calls within the scripting sandbox of the affected device. An attacker who has valid administrative credentials can submit a malicious Lua script that, on execution, will escape the scripting sandbox and execute arbitrary code with root privileges on the underlying Linux Operating System of an affected device.
+  Cisco Firepower Threat Defense (FTD) Software
+The Custom Application Detectors feature allows an administrator to define custom logic to identify and filter IP traffic based on user-defined applications on Cisco FTD devices managed through Firepower Management Center (FMC).
+
+As part of the process of defining custom application detection logic, an administrator can create two types of detectors: Basic or Advanced. Basic application detectors are created in the FMC web-based interface by filling out a series of web form fields. Advanced application detectors are created externally and uploaded to the FMC web interface as custom Lua files that contain user-defined application detector logic. Once configured, the advanced custom application detectors are downloaded and executed within the scripting sandbox of the managed FTD device.
+
+An attacker who has valid administrative credentials can configure an Advanced Detector on the FMC web interface and submit a malicious Lua script. The detector configuration and the malicious script will be pushed to a managed FTD device. On execution, the malicious script will escape the scripting sandbox and execute arbitrary code with root privileges on the underlying Linux operating system of the FTD device.</cvrf:Note>
+    <cvrf:Note Title="Workarounds" Type="General" Ordinal="5">There are no workarounds that address this vulnerability.</cvrf:Note>
+    <cvrf:Note Title="Fixed Software" Type="General" Ordinal="6">Cisco has released free updates that address the vulnerability described in this advisory. Customers may only install and expect support for software versions and feature sets for which they have purchased a license. By installing, downloading, accessing, or otherwise using such software upgrades, customers agree to follow the terms of the Cisco software license:
+
+https://www.cisco.com/c/en/us/products/end-user-license-agreement.html ["https://www.cisco.com/c/en/us/products/end-user-license-agreement.html"]
+
+Additionally, customers may only download software for which they have a valid license, procured from Cisco directly, or through a Cisco authorized reseller or partner. In most cases this will be a maintenance upgrade to software that was previously purchased. Free security software updates do not entitle customers to a new software license, additional software feature sets, or major revision upgrades.
+
+When considering software upgrades ["https://tools.cisco.com/security/center/resources/security_vulnerability_policy.html#fixes"], customers are advised to regularly consult the advisories for Cisco products, which are available from the Cisco Security Advisories page ["https://www.cisco.com/go/psirt"], to determine exposure and a complete upgrade solution.
+
+In all cases, customers should ensure that the devices to be upgraded contain sufficient memory and confirm that current hardware and software configurations will continue to be supported properly by the new release. If the information is not clear, customers are advised to contact the Cisco Technical Assistance Center (TAC) or their contracted maintenance providers.
+  Customers Without Service Contracts
+Customers who purchase directly from Cisco but do not hold a Cisco service contract and customers who make purchases through third-party vendors but are unsuccessful in obtaining fixed software through their point of sale should obtain upgrades by contacting the Cisco TAC:
+https://www.cisco.com/c/en/us/support/web/tsd-cisco-worldwide-contacts.html ["https://www.cisco.com/c/en/us/support/web/tsd-cisco-worldwide-contacts.html"]
+
+Customers should have the product serial number available and be prepared to provide the URL of this advisory as evidence of entitlement to a free upgrade.
+      Fixed Releases
+Cisco ASA Software
+
+In the following table, the left column lists releases of Cisco ASA Software. The right column indicates the first release that includes the fix for this vulnerability.
+
+Cisco advises customers to refer to Cisco bug CSCvr85295 ["https://tools.cisco.com/bugsearch/bug/CSCvr85295"] for further details.
+        Cisco ASA Software Release  First Fixed Release for This Vulnerability          Earlier than 9.41  Migrate to 9.6.4.36.      9.41  Migrate to 9.6.4.36.      9.51  Migrate to 9.6.4.36.      9.6  9.6.4.36      9.71  Migrate to 9.8.4.15.      9.8  9.8.4.15      9.9  9.9.2.61      9.10  9.10.1.32      9.12  9.12.3      9.13  9.13.1.4      9.14  9.14.2.7 (Feb 2021)      9.15  9.15.1.4 (Jan 2021)
+1. Cisco ASA Software releases 9.5 and earlier and Cisco ASA Software Release 9.7 have reached end of maintenance. Customers are advised to migrate to a supported release that includes the fix for this vulnerability.
+Cisco FTD Software
+
+Although this vulnerability affects sensors that are running Cisco FTD Software, fixing this vulnerability also requires closing the attack vector via the Cisco Firepower Management Center (FMC).
+
+Cisco has released software updates that address the vulnerability described in this advisory. The complete fix requires installation of the VDB updates that can be installed through FMC on a managed FTD device and the installation of FMC hotfixes. Cisco suggests that customers install VDB updates and FMC hotfixes in any order before any deployment.
+
+Cisco advises customers to refer to Cisco bug CSCvr96680 ["https://tools.cisco.com/bugsearch/bug/CSCvr96680"] for further details.
+
+In the following table, the left column lists releases of FMC Software. The center column indicates the first VDB update that includes the fix for this vulnerability, and the right column indicates the FMC hotfix that includes the fix for this vulnerability.
+        Cisco FMC Software Release  First Fixed VDB Update for This Vulnerability  First Fixed FMC Release for This Vulnerability
+          Earlier than 6.1.0  VDB Update 329  Migrate to FMC 6.2.3      6.1.0  VDB Update 329  Migrate to FMC 6.2.3      6.2.0  VDB Update 329  Migrate to FMC 6.2.3      6.2.1  VDB Update 329  Migrate to FMC 6.2.3      6.2.2  VDB Update 329  Migrate to FMC 6.2.3      6.2.3  VDB Update 329  Sourcefire_3D_Defense_Center_S3_Hotfix_DQ-6.2.3.16-2      6.3.0  VDB Update 329  Cisco_Firepower_Mgmt_Center_Hotfix_AK-6.3.0.6-2      6.4.0  VDB Update 329   Cisco_Firepower_Mgmt_Center_Hotfix_AA-6.4.0.7-3      6.5.0  VDB Update 329  Cisco_Firepower_Mgmt_Center_Hotfix_B-6.5.0.2-2
+Customers can download VDB updates from the Software Center ["https://software.cisco.com/download/home/286259687/type/286321931/release/VDB"] on Cisco.com and install them by following the steps indicated in the Firepower Management Center Configuration Guide ["https://www.cisco.com/c/en/us/td/docs/security/firepower/60/configuration/guide/fpmc-config-guide-v60/System_Software_Updates.html#ID-2259-0000031c"].
+
+Customers can download FMC hotfixes from the Software Center ["https://software.cisco.com/download/home/286313394/type/286271056/release/6.4.0.4"] on Cisco.com and install them by following the steps indicated in the Cisco Firepower Hotfix Release Notes ["https://www.cisco.com/c/en/us/td/docs/security/firepower/hotfix/Firepower_Hotfix_Release_Notes/Firepower_Hotfix_Release_Notes_chapter_010.html#id_53377"].</cvrf:Note>
+    <cvrf:Note Title="Vulnerability Policy" Type="General" Ordinal="7">To learn about Cisco security vulnerability disclosure policies and publications, see the Security Vulnerability Policy ["http://www.cisco.com/web/about/security/psirt/security_vulnerability_policy.html"]. This document also contains instructions for obtaining fixed software and receiving security vulnerability information from Cisco.</cvrf:Note>
+    <cvrf:Note Title="Exploitation and Public Announcements" Type="General" Ordinal="8">The Cisco Product Security Incident Response Team (PSIRT) is aware that proof-of-concept exploit code is available for the vulnerability described in this advisory.
+
+Cisco PSIRT is not aware of any malicious use of the vulnerability that is described in this advisory.</cvrf:Note>
+    <cvrf:Note Title="Source" Type="General" Ordinal="9">Cisco would like to thank md4 of HatLab@DBAPPSecurity for reporting this vulnerability.</cvrf:Note>
+    <cvrf:Note Title="Legal Disclaimer" Type="Legal Disclaimer" Ordinal="10">THIS DOCUMENT IS PROVIDED ON AN "AS IS" BASIS AND DOES NOT IMPLY ANY KIND OF GUARANTEE OR WARRANTY, INCLUDING THE WARRANTIES OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR USE. YOUR USE OF THE INFORMATION ON THE DOCUMENT OR MATERIALS LINKED FROM THE DOCUMENT IS AT YOUR OWN RISK. CISCO RESERVES THE RIGHT TO CHANGE OR UPDATE THIS DOCUMENT AT ANY TIME.
+
+A standalone copy or paraphrase of the text of this document that omits the distribution URL is an uncontrolled copy and may lack important information or contain factual errors. The information in this document is intended for end users of Cisco products.</cvrf:Note>
+  </cvrf:DocumentNotes>
+  <cvrf:DocumentReferences>
+    <cvrf:Reference Type="Self">
+      <cvrf:URL>https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20191112-asa-ftd-lua-rce</cvrf:URL>
+      <cvrf:Description>Cisco Adaptive Security Appliance Software and Firepower Threat Defense Software Remote Code Execution Vulnerability</cvrf:Description>
+    </cvrf:Reference>
+  </cvrf:DocumentReferences>
+  <ProductTree xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/prod">
+    <Branch Name="Cisco" Type="Vendor">
+      <Branch Name="Cisco Adaptive Security Appliance (ASA) Software" Type="Product Name">
+        <FullProductName ProductID="CVRFPID-6588">Cisco Adaptive Security Appliance (ASA) Software </FullProductName>
+      </Branch>
+      <Branch Name="Cisco Firepower Threat Defense Software" Type="Product Name">
+        <FullProductName ProductID="CVRFPID-220203">Cisco Firepower Threat Defense Software </FullProductName>
+      </Branch>
+    </Branch>
+  </ProductTree>
+  <Vulnerability Ordinal="1" xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln">
+    <Title>Cisco Adaptive Security Appliance Remote Code Execution Vulnerability</Title>
+    <ID SystemName="Cisco Bug ID">CSCvr85295</ID>
+    <Notes>
+      <Note Title="Cisco Bug IDs" Type="Other" Ordinal="1">CSCvr85295,CSCvr96680</Note>
+    </Notes>
+    <CVE>CVE-2019-15992</CVE>
+    <ProductStatuses>
+      <Status Type="Known Affected">
+        <ProductID>CVRFPID-6588</ProductID>
+        <ProductID>CVRFPID-220203</ProductID>
+      </Status>
+    </ProductStatuses>
+    <CVSSScoreSets>
+      <ScoreSetV3>
+        <BaseScoreV3>7.2</BaseScoreV3>
+        <VectorV3>CVSS:3.0/AV:N/AC:L/PR:H/UI:N/S:U/C:H/I:H/A:H</VectorV3>
+      </ScoreSetV3>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Workaround">
+        <Description>There are no workarounds that address this vulnerability.</Description>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference Type="Self">
+        <URL>https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20191112-asa-ftd-lua-rce</URL>
+        <Description>Cisco Adaptive Security Appliance Software and Firepower Threat Defense Software Remote Code Execution Vulnerability</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+</cvrf:cvrfdoc>

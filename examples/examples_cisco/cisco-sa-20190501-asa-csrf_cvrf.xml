@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cvrf:cvrfdoc xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:cvrf-common="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/common" xmlns:cvrf="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/cvrf">
+  <cvrf:DocumentTitle>Cisco Adaptive Security Appliance Software Cross-Site Request Forgery Vulnerability</cvrf:DocumentTitle>
+  <cvrf:DocumentType>Cisco Security Advisory</cvrf:DocumentType>
+  <cvrf:DocumentPublisher Type="Vendor">
+    <cvrf:ContactDetails>Emergency Support:
++1 877 228 7302 (toll-free within North America)
++1 408 525 6532 (International direct-dial)
+Non-emergency Support:
+Email: psirt@cisco.com
+Support requests that are received via e-mail are typically acknowledged within 48 hours.</cvrf:ContactDetails>
+    <cvrf:IssuingAuthority>Cisco product security incident response is the responsibility of the Cisco Product Security Incident Response Team (PSIRT). The Cisco PSIRT is a dedicated, global team that manages the receipt, investigation, and public reporting of security vulnerability information that is related to Cisco products and networks. The on-call Cisco PSIRT works 24x7 with Cisco customers, independent security researchers, consultants, industry organizations, and other vendors to identify possible security issues with Cisco products and networks.
+More information can be found in Cisco Security Vulnerability Policy available at http://www.cisco.com/web/about/security/psirt/security_vulnerability_policy.html</cvrf:IssuingAuthority>
+  </cvrf:DocumentPublisher>
+  <cvrf:DocumentTracking>
+    <cvrf:Identification>
+      <cvrf:ID>cisco-sa-20190501-asa-csrf</cvrf:ID>
+    </cvrf:Identification>
+    <cvrf:Status>Final</cvrf:Status>
+    <cvrf:Version>1.0</cvrf:Version>
+    <cvrf:RevisionHistory>
+      <cvrf:Revision>
+        <cvrf:Number>1.0</cvrf:Number>
+        <cvrf:Date>2019-05-01T15:23:20</cvrf:Date>
+        <cvrf:Description>Initial public release.</cvrf:Description>
+      </cvrf:Revision>
+    </cvrf:RevisionHistory>
+    <cvrf:InitialReleaseDate>2019-05-01T16:00:00</cvrf:InitialReleaseDate>
+    <cvrf:CurrentReleaseDate>2019-05-01T15:23:20</cvrf:CurrentReleaseDate>
+    <cvrf:Generator>
+      <cvrf:Engine>TVCE</cvrf:Engine>
+    </cvrf:Generator>
+  </cvrf:DocumentTracking>
+  <cvrf:DocumentNotes>
+    <cvrf:Note Title="Summary" Type="Summary" Ordinal="1">A vulnerability in the web-based management interface of Cisco Adaptive Security Appliance (ASA) Software could allow an unauthenticated, remote attacker to conduct a cross-site request forgery (CSRF) attack on an affected system.
+
+The vulnerability is due to insufficient CSRF protections for the web-based management interface on an affected device. An attacker could exploit this vulnerability by persuading a user of the interface to follow a malicious link. A successful exploit could allow the attacker to perform arbitrary actions with the privilege level of the affected user. If the user has administrative privileges, the attacker could alter the configuration of, extract information from, or reload an affected device.
+
+Cisco has released software updates that address this vulnerability. There are no workarounds that address this vulnerability.
+
+This advisory is available at the following link:
+https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20190501-asa-csrf ["https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20190501-asa-csrf"]</cvrf:Note>
+    <cvrf:Note Title="Vulnerable Products" Type="General" Ordinal="2">This vulnerability affects Cisco products that are running a vulnerable release of Cisco ASA Software and have web management access enabled.
+
+For information about which Cisco ASA Software releases are vulnerable, see the Fixed Software ["#fs"] section of this advisory.
+ Determining Whether Web Management Access Is Configured
+Administrators can use the show running-config http command to determine whether web management access is enabled. The following example shows the output of the command for a device that has the web management feature enabled and that allows access to the web management feature from the 10.10.10.0/24 network via the Management interface:
+
+
+ciscoasa# show running-config http
+
+http server enable
+http 10.10.10.0 255.255.255.0 Management
+
+
+Note: The device is vulnerable to requests only when they are sent from an IP address in the range configured in the http &lt;remote_ip_address&gt; &lt;remote_subnet_mask&gt; &lt;interface_name&gt; command.
+ Determining the Cisco ASA Software Release
+To determine which Cisco ASA Software release is running on a device, administrators can log in to the device, use the show version | include Version command in the CLI, and refer to the output of the command. The following example shows the output of the command for a device that is running Cisco ASA Software Release 9.9.2.18:
+
+
+ciscoasa# show version | include Version
+Cisco Adaptive Security Appliance Software Version 9.9.2.18  Device Manager Version 7.4(1)  .  .  .
+
+If a device is managed by using Cisco Adaptive Security Device Manager (ASDM), administrators can also determine which release is running on a device by referring to the release information in the table that appears in the Cisco ASDM login window or the Device Dashboard tab of the Cisco ASDM Home pane.</cvrf:Note>
+    <cvrf:Note Title="Products Confirmed Not Vulnerable" Type="General" Ordinal="3">Only products listed in the Vulnerable Products ["#vp"] section of this advisory are known to be affected by this vulnerability.
+
+Cisco has confirmed that Cisco Firepower Threat Defense (FTD) Software is not affected by this vulnerability.</cvrf:Note>
+    <cvrf:Note Title="Workarounds" Type="General" Ordinal="4">There are no workarounds that address this vulnerability.</cvrf:Note>
+    <cvrf:Note Title="Fixed Software" Type="General" Ordinal="5">Cisco has released free software updates that address the vulnerability described in this advisory. Customers may only install and expect support for software versions and feature sets for which they have purchased a license. By installing, downloading, accessing, or otherwise using such software upgrades, customers agree to follow the terms of the Cisco software license:
+https://www.cisco.com/c/en/us/products/end-user-license-agreement.html ["https://www.cisco.com/c/en/us/products/end-user-license-agreement.html"]
+
+Additionally, customers may only download software for which they have a valid license, procured from Cisco directly, or through a Cisco authorized reseller or partner. In most cases this will be a maintenance upgrade to software that was previously purchased. Free security software updates do not entitle customers to a new software license, additional software feature sets, or major revision upgrades.
+
+When considering software upgrades, customers are advised to regularly consult the advisories for Cisco products, which are available from the Cisco Security Advisories and Alerts page ["https://www.cisco.com/go/psirt"], to determine exposure and a complete upgrade solution.
+
+In all cases, customers should ensure that the devices to be upgraded contain sufficient memory and confirm that current hardware and software configurations will continue to be supported properly by the new release. If the information is not clear, customers are advised to contact the Cisco Technical Assistance Center (TAC) or their contracted maintenance providers.
+ Customers Without Service Contracts
+Customers who purchase directly from Cisco but do not hold a Cisco service contract and customers who make purchases through third-party vendors but are unsuccessful in obtaining fixed software through their point of sale should obtain upgrades by contacting the Cisco TAC:
+https://www.cisco.com/c/en/us/support/web/tsd-cisco-worldwide-contacts.html ["https://www.cisco.com/c/en/us/support/web/tsd-cisco-worldwide-contacts.html"]
+
+Customers should have the product serial number available and be prepared to provide the URL of this advisory as evidence of entitlement to a free upgrade.
+ Fixed Releases
+Customers are advised to upgrade to an appropriate release ["https://tools.cisco.com/security/center/resources/security_vulnerability_policy.html#fixes"] as indicated in the applicable table in this section. To ensure a complete upgrade solution, customers should consider that this advisory is part of a collection that includes the following advisories:
+
+cisco-sa-20190501-asa-csrf ["https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20190501-asa-csrf"]: Cisco Adaptive Security Appliance Software Cross-Site Request Forgery Vulnerability
+cisco-sa-20190501-asa-frpwrtd-dos ["https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20190501-asa-frpwrtd-dos"]: Cisco Adaptive Security Appliance Software and Cisco Firepower Threat Defense Software TCP Timer Handling Denial of Service Vulnerability
+cisco-sa-20190501-asa-ftd-dos ["https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20190501-asa-ftd-dos"]: Cisco Adaptive Security Appliance Software and Firepower Threat Defense Software WebVPN Denial of Service Vulnerability
+cisco-sa-20190501-asa-ftd-entropy ["https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20190501-asa-ftd-entropy"]: Cisco Adaptive Security Appliance Software and Firepower Threat Defense Software Low-Entropy Keys Vulnerability
+cisco-sa-20190501-asa-ftd-ike-dos ["https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20190501-asa-ftd-ike-dos"]: Cisco      Adaptive Security Appliance Software and Cisco Firepower Threat Defense      Software MOBIKE Denial of Service Vulnerability
+cisco-sa-20190501-asaftd-saml-vpn ["https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20190501-asaftd-saml-vpn"]: Cisco      Adaptive Security Appliance Software and Firepower Threat Defense      Software VPN SAML Authentication Bypass Vulnerability
+cisco-sa-20190501-asa-ipsec-dos ["https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20190501-asa-ipsec-dos"]: Cisco Adaptive Security Appliance Software IPsec Denial of Service Vulnerability
+cisco-sa-20190501-firepower-dos ["https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20190501-firepower-dos"]: Cisco Firepower Threat Defense Software TCP Ingress Handler Denial of Service Vulnerability
+cisco-sa-20190501-frpwr-dos: ["http://https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20190501-frpwr-dos"] Cisco Firepower Threat Defense Software Packet Processing Denial of Service Vulnerability
+cisco-sa-20190501-frpwr-smb-snort ["https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20190501-frpwr-smb-snort"]: Cisco Firepower Threat Defense Software SMB Protocol Preprocessor Detection Engine Denial of Service Vulnerabilities
+cisco-sa-20190501-sd-cpu-dos ["https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20190501-sd-cpu-dos"]: Cisco Adaptive Security Appliance Software and Firepower Threat Defense Software WebVPN Denial of Service Vulnerability
+
+In the following table(s), the left column lists Cisco software releases. The center column indicates whether a release is affected by the vulnerability described in this advisory and the release that includes the fix for this vulnerability. The right column indicates whether a release is affected by all the vulnerabilities described in this collection of advisories and which release includes fixes for those vulnerabilities.
+
+ASA Software
+                            Cisco ASA Software Release
+             Recommended Release for This Vulnerability
+             Recommended Release for All Vulnerabilities Described in the Collection of Advisories                                         Prior to 9.41
+             9.4.4.34
+             9.4.4.34                               9.4             9.4.4.34             9.4.4.34                               9.51             9.6.4.25             9.6.4.25                               9.6             9.6.4.25             9.6.4.25                               9.71             9.8.4
+             9.8.4
+                               9.8             9.8.4             9.8.4                               9.9             9.9.2.50
+             9.9.2.50
+                               9.10             9.10.1.17             9.10.1.17                               9.12             Not vulnerable
+             Not vulnerable
+                1Cisco ASA Software releases prior to Release 9.4 and Cisco ASA Software Releases 9.5 and 9.7 have reached end of maintenance. Customers should migrate to a supported release that includes the fix for this vulnerability.</cvrf:Note>
+    <cvrf:Note Title="Vulnerability Policy" Type="General" Ordinal="6">To learn about Cisco security vulnerability disclosure policies and publications, see the Security Vulnerability Policy ["http://www.cisco.com/web/about/security/psirt/security_vulnerability_policy.html"]. This document also contains instructions for obtaining fixed software and receiving security vulnerability information from Cisco.</cvrf:Note>
+    <cvrf:Note Title="Exploitation and Public Announcements" Type="General" Ordinal="7">The Cisco Product Security Incident Response Team (PSIRT) is not aware of any public announcements or malicious use of the vulnerability that is described in this advisory.</cvrf:Note>
+    <cvrf:Note Title="Source" Type="General" Ordinal="8">Cisco would like to thank security researcher Farid Heydari for reporting this vulnerability.</cvrf:Note>
+    <cvrf:Note Title="Legal Disclaimer" Type="Legal Disclaimer" Ordinal="9">THIS DOCUMENT IS PROVIDED ON AN "AS IS" BASIS AND DOES NOT IMPLY ANY KIND OF GUARANTEE OR WARRANTY, INCLUDING THE WARRANTIES OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR USE. YOUR USE OF THE INFORMATION ON THE DOCUMENT OR MATERIALS LINKED FROM THE DOCUMENT IS AT YOUR OWN RISK. CISCO RESERVES THE RIGHT TO CHANGE OR UPDATE THIS DOCUMENT AT ANY TIME.
+
+A standalone copy or paraphrase of the text of this document that omits the distribution URL is an uncontrolled copy and may lack important information or contain factual errors. The information in this document is intended for end users of Cisco products.</cvrf:Note>
+  </cvrf:DocumentNotes>
+  <cvrf:DocumentReferences>
+    <cvrf:Reference Type="Self">
+      <cvrf:URL>https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20190501-asa-csrf</cvrf:URL>
+      <cvrf:Description>Cisco Adaptive Security Appliance Software Cross-Site Request Forgery Vulnerability</cvrf:Description>
+    </cvrf:Reference>
+  </cvrf:DocumentReferences>
+  <ProductTree xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/prod">
+    <Branch Name="Cisco" Type="Vendor">
+      <Branch Name="Cisco Adaptive Security Appliance (ASA) Software" Type="Product Name">
+        <FullProductName ProductID="CVRFPID-6588">Cisco Adaptive Security Appliance (ASA) Software </FullProductName>
+      </Branch>
+    </Branch>
+  </ProductTree>
+  <Vulnerability Ordinal="1" xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln">
+    <Title>Cisco Adaptive Security Appliance Software Cross-Site Request Forgery Vulnerability</Title>
+    <ID SystemName="Cisco Bug ID">CSCvj34599</ID>
+    <Notes>
+      <Note Title="Summary" Type="Summary" Ordinal="1">A vulnerability in the web-based management interface of Cisco Adaptive Security Appliance (ASA) Software could allow an unauthenticated, remote attacker to conduct a cross-site request forgery (CSRF) attack on an affected system.
+
+
+
+The vulnerability is due to insufficient CSRF protections for the web-based management interface on an affected device. An attacker could exploit this vulnerability by persuading a user of the interface to follow a malicious link. A successful exploit could allow the attacker to perform arbitrary actions with the privilege level of the affected user. If the user has administrative privileges, the attacker could alter the configuration of, extract information from, or reload an affected device.</Note>
+      <Note Title="Cisco Bug IDs" Type="Other" Ordinal="2">CSCvj34599</Note>
+    </Notes>
+    <CVE>CVE-2019-1713</CVE>
+    <ProductStatuses>
+      <Status Type="Known Affected">
+        <ProductID>CVRFPID-6588</ProductID>
+      </Status>
+    </ProductStatuses>
+    <CVSSScoreSets>
+      <ScoreSetV3>
+        <BaseScoreV3>8.1</BaseScoreV3>
+        <VectorV3>CVSS:3.0/AV:N/AC:L/PR:N/UI:R/S:U/C:N/I:H/A:H</VectorV3>
+      </ScoreSetV3>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Workaround">
+        <Description>There are no workarounds that address this vulnerability.</Description>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference Type="Self">
+        <URL>https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20190501-asa-csrf</URL>
+        <Description>Cisco Adaptive Security Appliance Software Cross-Site Request Forgery Vulnerability</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+</cvrf:cvrfdoc>

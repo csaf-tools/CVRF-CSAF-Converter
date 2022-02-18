@@ -1,0 +1,535 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cvrf:cvrfdoc xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:cvrf-common="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/common" xmlns:cvrf="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/cvrf">
+  <cvrf:DocumentTitle>Multiple Vulnerabilities in Treck IP Stack Affecting Cisco Products: June 2020</cvrf:DocumentTitle>
+  <cvrf:DocumentType>Cisco Security Advisory</cvrf:DocumentType>
+  <cvrf:DocumentPublisher Type="Vendor">
+    <cvrf:ContactDetails>Emergency Support:
++1 877 228 7302 (toll-free within North America)
++1 408 525 6532 (International direct-dial)
+Non-emergency Support:
+Email: psirt@cisco.com
+Support requests that are received via e-mail are typically acknowledged within 48 hours.</cvrf:ContactDetails>
+    <cvrf:IssuingAuthority>Cisco product security incident response is the responsibility of the Cisco Product Security Incident Response Team (PSIRT). The Cisco PSIRT is a dedicated, global team that manages the receipt, investigation, and public reporting of security vulnerability information that is related to Cisco products and networks. The on-call Cisco PSIRT works 24x7 with Cisco customers, independent security researchers, consultants, industry organizations, and other vendors to identify possible security issues with Cisco products and networks.
+More information can be found in Cisco Security Vulnerability Policy available at http://www.cisco.com/web/about/security/psirt/security_vulnerability_policy.html</cvrf:IssuingAuthority>
+  </cvrf:DocumentPublisher>
+  <cvrf:DocumentTracking>
+    <cvrf:Identification>
+      <cvrf:ID>cisco-sa-treck-ip-stack-JyBQ5GyC</cvrf:ID>
+    </cvrf:Identification>
+    <cvrf:Status>Interim</cvrf:Status>
+    <cvrf:Version>1.8</cvrf:Version>
+    <cvrf:RevisionHistory>
+      <cvrf:Revision>
+        <cvrf:Number>1.0</cvrf:Number>
+        <cvrf:Date>2020-06-17T20:08:26</cvrf:Date>
+        <cvrf:Description>Initial public release.</cvrf:Description>
+      </cvrf:Revision>
+      <cvrf:Revision>
+        <cvrf:Number>1.1</cvrf:Number>
+        <cvrf:Date>2020-06-22T21:59:35</cvrf:Date>
+        <cvrf:Description>Updated the lists of products under investigation and vulnerable products.</cvrf:Description>
+      </cvrf:Revision>
+      <cvrf:Revision>
+        <cvrf:Number>1.2</cvrf:Number>
+        <cvrf:Date>2020-07-07T19:09:00</cvrf:Date>
+        <cvrf:Description>Updated the list of vulnerable products: changed the product naming to refer to the affected platform rather than to the function (for example, GGSN, IPSG) for StarOS-based products. No products remain under investigation.</cvrf:Description>
+      </cvrf:Revision>
+      <cvrf:Revision>
+        <cvrf:Number>1.3</cvrf:Number>
+        <cvrf:Date>2020-07-10T17:10:26</cvrf:Date>
+        <cvrf:Description>Added the fixed release availability information for vulnerable products. Added links to Snort rules.</cvrf:Description>
+      </cvrf:Revision>
+      <cvrf:Revision>
+        <cvrf:Number>1.4</cvrf:Number>
+        <cvrf:Date>2020-07-17T15:59:05</cvrf:Date>
+        <cvrf:Description>Updated the vulnerable products with fix availability information. Added a reference to mitigations documented by CERT/CC.</cvrf:Description>
+      </cvrf:Revision>
+      <cvrf:Revision>
+        <cvrf:Number>1.5</cvrf:Number>
+        <cvrf:Date>2020-07-22T18:35:23</cvrf:Date>
+        <cvrf:Description>Updated fixed release availability information. Clarified that exposure to the vulnerabilities may be configuration dependent.</cvrf:Description>
+      </cvrf:Revision>
+      <cvrf:Revision>
+        <cvrf:Number>1.6</cvrf:Number>
+        <cvrf:Date>2020-07-24T17:04:38</cvrf:Date>
+        <cvrf:Description>Updated fixed release availability information. Documented vulnerable StarOS configurations. Specified which vulnerabilities affect StarOS.</cvrf:Description>
+      </cvrf:Revision>
+      <cvrf:Revision>
+        <cvrf:Number>1.7</cvrf:Number>
+        <cvrf:Date>2020-07-29T16:09:58</cvrf:Date>
+        <cvrf:Description>Updated fixed release availability information.</cvrf:Description>
+      </cvrf:Revision>
+      <cvrf:Revision>
+        <cvrf:Number>1.8</cvrf:Number>
+        <cvrf:Date>2020-08-21T16:40:13</cvrf:Date>
+        <cvrf:Description>Updated fixed release availability information. Added links to additional Snort rules.</cvrf:Description>
+      </cvrf:Revision>
+    </cvrf:RevisionHistory>
+    <cvrf:InitialReleaseDate>2020-06-17T20:00:00</cvrf:InitialReleaseDate>
+    <cvrf:CurrentReleaseDate>2020-08-21T16:40:13</cvrf:CurrentReleaseDate>
+    <cvrf:Generator>
+      <cvrf:Engine>TVCE</cvrf:Engine>
+    </cvrf:Generator>
+  </cvrf:DocumentTracking>
+  <cvrf:DocumentNotes>
+    <cvrf:Note Title="Summary" Type="Summary" Ordinal="1">A set of previously unknown vulnerabilities on the Treck IP stack implementation were disclosed on June 16, 2020. The vulnerabilities are collectively known as Ripple20. Exploitation of these vulnerabilities could result in remote code execution, denial of service (DoS), or information disclosure, depending on the specific vulnerability.
+
+This advisory will be updated as additional information becomes available.
+
+This advisory is available at the following link:
+https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-treck-ip-stack-JyBQ5GyC ["https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-treck-ip-stack-JyBQ5GyC"]</cvrf:Note>
+    <cvrf:Note Title="Affected Products" Type="General" Ordinal="2">Cisco investigated its product line to determine which products may be affected by these vulnerabilities.
+
+The Vulnerable Products ["#vp"] section of this advisory includes Cisco bug IDs for each affected product. The bugs are accessible through the Cisco Bug Search Tool ["https://bst.cloudapps.cisco.com/bugsearch/bug/BUGID"] and contain additional platform-specific information, including workarounds (if available) and fixed software releases.
+
+Any product or service not listed in the Vulnerable Products ["#vp"] section of this advisory is to be considered not vulnerable.</cvrf:Note>
+    <cvrf:Note Title="Vulnerable Products" Type="General" Ordinal="3">The following table lists Cisco products that are affected by the vulnerabilities that are described in this advisory. If a future release date is indicated for software, the date provided represents an estimate based on all information known to Cisco as of the Last Updated date at the top of the advisory. Availability dates are subject to change based on a number of factors, including satisfactory testing results and delivery of other priority features and fixes. If no version or date is listed for an affected component (indicated by a blank field and/or an advisory designation of Interim), Cisco is continuing to evaluate the fix and will update the advisory as additional information becomes available. After the advisory is marked Final, customers should refer to the associated Cisco bug(s) for further details. Unless otherwise documented, all software releases prior to the first fixed release are to be considered affected by these vulnerabilities.
+        Product  Cisco Bug ID  Fixed Release Availability      Routing and Switching - Enterprise and Service Provider      Cisco ASR 5000  CSCvu68945 ["https://tools.cisco.com/bugsearch/bug/CSCvu68945"]  21.5.27 (30 Jul 2020)      Cisco ASR 5500  CSCvu68945 ["https://tools.cisco.com/bugsearch/bug/CSCvu68945"]  21.5.27 (30 Jul 2020)
+21.8.x (14 Sep 2020)
+21.9.x (8 Sep 2020)
+21.10.x (2 Sep 2020)
+21.11.15 (29 Jul 2020)
+21.12.x (4 Sep 2020)
+21.13.x (31 Aug 2020)
+21.14.22 (30 Jul 2020)
+21.15.45 (22 Jul 2020)
+21.16.x (25 Aug 2020)
+21.17.10 (20 Aug 2020)
+21.18.8 (24 Aug 2020)
+21.19.5 (19 Aug 2020)
+21.20.2 (24 Jul 2020)      Cisco Virtual Packet Core  CSCvu68945 ["https://tools.cisco.com/bugsearch/bug/CSCvu68945"]  21.5.27 (30 Jul 2020)
+21.8.x (14 Sep 2020)
+21.9.x (8 Sep 2020)
+21.10.x (2 Sep 2020)
+21.11.15 (29 Jul 2020)
+21.12.x (4 Sep 2020)
+21.13.x (31 Aug 2020)
+21.14.22 (30 Jul 2020)
+21.15.45 (22 Jul 2020)
+21.16.x (25 Aug 2020)
+21.17.10 (20 Aug 2020)
+21.18.8 (24 Aug 2020)
+21.19.5 (19 Aug 2020)
+21.20.2 (24 Jul 2020)
+Note: Exposure to the vulnerabilities may be configuration dependent. See the Cisco bug(s) for the most complete product-specific information.
+  Cisco StarOS Software
+In the following table, the left column lists the Cisco StarOS Software features that are vulnerable. The right column indicates the basic configuration for the feature from the show running-config CLI command. If a device is configured for one of these features, it is vulnerable.
+        Cisco StarOS Software Feature  Vulnerable Configuration          URL-based Re-addressing
+flow action url-readdress server [...]
+      SIP ALG NAT Inspection
+firewall nat-alg sip [...]
+      H323 ALG NAT Inspection
+firewall nat-alg h323 [...]
+      Inline TCP Optimization (CUSP)
+tcp-acceleration [...]
+
+If a Cisco StarOS Software deployment uses a vulnerable configuration, as described above, it may be affected by the following vulnerabilities:
+
+CVE-2020-11896: Malformed IPv4 Tunneled Packets Processing Remote Code Execution Vulnerability
+CVE-2020-11898: Malformed IPv4 Packets Processing Out-of-Bounds Read Vulnerability
+CVE-2020-11899: Improper Input Validation in IPv6 Out-of-Bounds Read Vulnerability
+CVE-2020-11900: IPv4 Tunneling Component Double-Free Vulnerability
+CVE-2020-11907: Improper Packet Length Checks Integer Underflow Vulnerability
+CVE-2020-11909: Improper Input Validation in IPv4 Component
+CVE-2020-11912: Improper Input Validation in TCP Component
+CVE-2020-11913: Improper Input Validation in IPv6 Component
+
+Cisco has confirmed that Cisco StarOS Software is not affected by the following vulnerabilities:
+
+CVE-2020-11897: Malformed IPv6 Packets Processing Out-of-Bounds Read and Write Vulnerability
+CVE-2020-11901: DNS Response Processing Remote Code Execution Vulnerability
+CVE-2020-11902: Out-of-Bounds Read When Processing IPv6 over IPv4 Packets
+CVE-2020-11903: Out-of-Bounds Read Processing DHCP Response
+CVE-2020-11904: Integer Overflow in Memory Allocation
+CVE-2020-11905: DHCPv6 Out-of-Bounds Read Vulnerability
+CVE-2020-11906: Ethernet Link Layer Component Integer Underflow Vulnerability
+CVE-2020-11908: Improper Null Termination in DHCP Component
+CVE-2020-11910: Improper Input Validation in ICMPv4 Component
+CVE-2020-11911: Improper Access Control in ICMPv4 Component
+CVE-2020-11914: Improper Input Validation in ARP Component</cvrf:Note>
+    <cvrf:Note Title="Products Confirmed Not Vulnerable" Type="General" Ordinal="4">Only products and services listed in the Vulnerable Products ["#vulnerable"] section of this advisory are known to be affected by these vulnerabilities.</cvrf:Note>
+    <cvrf:Note Title="Workarounds" Type="General" Ordinal="5">There are no workarounds that address these vulnerabilities.
+
+A set of network based mitigations has been documented by the CERT Coordination Center and is available at the following address:
+
+https://github.com/CERTCC/PoC-Exploits/blob/master/vu-257161/recommendations.md ["https://github.com/CERTCC/PoC-Exploits/blob/master/vu-257161/recommendations.md"]</cvrf:Note>
+    <cvrf:Note Title="Fixed Software" Type="General" Ordinal="6">For information about fixed software releases, consult the Cisco bugs identified in the Vulnerable Products ["#vp"] section of this advisory.
+
+When considering software upgrades ["https://tools.cisco.com/security/center/resources/security_vulnerability_policy.html#fixes"], customers are advised to regularly consult the advisories for Cisco products, which are available from the Cisco Security Advisories page ["https://www.cisco.com/go/psirt"], to determine exposure and a complete upgrade solution.
+
+In all cases, customers should ensure that the devices to be upgraded contain sufficient memory and confirm that current hardware and software configurations will continue to be supported properly by the new release. If the information is not clear, customers are advised to contact the Cisco Technical Assistance Center (TAC) or their contracted maintenance providers.</cvrf:Note>
+    <cvrf:Note Title="Vulnerability Policy" Type="General" Ordinal="7">To learn about Cisco security vulnerability disclosure policies and publications, see the Security Vulnerability Policy ["http://www.cisco.com/web/about/security/psirt/security_vulnerability_policy.html"]. This document also contains instructions for obtaining fixed software and receiving security vulnerability information from Cisco.</cvrf:Note>
+    <cvrf:Note Title="Exploitation and Public Announcements" Type="General" Ordinal="8">The Cisco Product Security Incident Response Team (PSIRT) is not aware of any malicious use of the vulnerabilities that are described in this advisory.</cvrf:Note>
+    <cvrf:Note Title="Source" Type="General" Ordinal="9">These vulnerabilities were discovered and reported to CERT/CC by JSOF.</cvrf:Note>
+    <cvrf:Note Title="Legal Disclaimer" Type="Legal Disclaimer" Ordinal="10">THIS DOCUMENT IS PROVIDED ON AN "AS IS" BASIS AND DOES NOT IMPLY ANY KIND OF GUARANTEE OR WARRANTY, INCLUDING THE WARRANTIES OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR USE. YOUR USE OF THE INFORMATION ON THE DOCUMENT OR MATERIALS LINKED FROM THE DOCUMENT IS AT YOUR OWN RISK. CISCO RESERVES THE RIGHT TO CHANGE OR UPDATE THIS DOCUMENT AT ANY TIME. CISCO EXPECTS TO UPDATE THIS DOCUMENT AS NEW INFORMATION BECOMES AVAILABLE.
+
+A standalone copy or paraphrase of the text of this document that omits the distribution URL is an uncontrolled copy and may lack important information or contain factual errors. The information in this document is intended for end users of Cisco products.</cvrf:Note>
+  </cvrf:DocumentNotes>
+  <cvrf:DocumentReferences>
+    <cvrf:Reference Type="Self">
+      <cvrf:URL>https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-treck-ip-stack-JyBQ5GyC</cvrf:URL>
+      <cvrf:Description>Multiple Vulnerabilities in Treck IP Stack Affecting Cisco Products: June 2020</cvrf:Description>
+    </cvrf:Reference>
+  </cvrf:DocumentReferences>
+  <Vulnerability Ordinal="1" xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln">
+    <Title>vuln-CVE-2020-11896</Title>
+    <CVE>CVE-2020-11896</CVE>
+    <Remediations>
+      <Remediation Type="Workaround">
+        <Description>There are no workarounds that address these vulnerabilities.
+
+A set of network based mitigations has been documented by the CERT Coordination Center and is available at the following address:
+
+https://github.com/CERTCC/PoC-Exploits/blob/master/vu-257161/recommendations.md ["https://github.com/CERTCC/PoC-Exploits/blob/master/vu-257161/recommendations.md"]</Description>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference Type="Self">
+        <URL>https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-treck-ip-stack-JyBQ5GyC</URL>
+        <Description>Multiple Vulnerabilities in Treck IP Stack Affecting Cisco Products: June 2020</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+  <Vulnerability Ordinal="2" xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln">
+    <Title>vuln-CVE-2020-11897</Title>
+    <CVE>CVE-2020-11897</CVE>
+    <Remediations>
+      <Remediation Type="Workaround">
+        <Description>There are no workarounds that address these vulnerabilities.
+
+A set of network based mitigations has been documented by the CERT Coordination Center and is available at the following address:
+
+https://github.com/CERTCC/PoC-Exploits/blob/master/vu-257161/recommendations.md ["https://github.com/CERTCC/PoC-Exploits/blob/master/vu-257161/recommendations.md"]</Description>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference Type="Self">
+        <URL>https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-treck-ip-stack-JyBQ5GyC</URL>
+        <Description>Multiple Vulnerabilities in Treck IP Stack Affecting Cisco Products: June 2020</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+  <Vulnerability Ordinal="3" xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln">
+    <Title>vuln-CVE-2020-11901</Title>
+    <CVE>CVE-2020-11901</CVE>
+    <Remediations>
+      <Remediation Type="Workaround">
+        <Description>There are no workarounds that address these vulnerabilities.
+
+A set of network based mitigations has been documented by the CERT Coordination Center and is available at the following address:
+
+https://github.com/CERTCC/PoC-Exploits/blob/master/vu-257161/recommendations.md ["https://github.com/CERTCC/PoC-Exploits/blob/master/vu-257161/recommendations.md"]</Description>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference Type="Self">
+        <URL>https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-treck-ip-stack-JyBQ5GyC</URL>
+        <Description>Multiple Vulnerabilities in Treck IP Stack Affecting Cisco Products: June 2020</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+  <Vulnerability Ordinal="4" xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln">
+    <Title>vuln-CVE-2020-11900</Title>
+    <CVE>CVE-2020-11900</CVE>
+    <Remediations>
+      <Remediation Type="Workaround">
+        <Description>There are no workarounds that address these vulnerabilities.
+
+A set of network based mitigations has been documented by the CERT Coordination Center and is available at the following address:
+
+https://github.com/CERTCC/PoC-Exploits/blob/master/vu-257161/recommendations.md ["https://github.com/CERTCC/PoC-Exploits/blob/master/vu-257161/recommendations.md"]</Description>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference Type="Self">
+        <URL>https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-treck-ip-stack-JyBQ5GyC</URL>
+        <Description>Multiple Vulnerabilities in Treck IP Stack Affecting Cisco Products: June 2020</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+  <Vulnerability Ordinal="5" xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln">
+    <Title>vuln-CVE-2020-11898</Title>
+    <CVE>CVE-2020-11898</CVE>
+    <Remediations>
+      <Remediation Type="Workaround">
+        <Description>There are no workarounds that address these vulnerabilities.
+
+A set of network based mitigations has been documented by the CERT Coordination Center and is available at the following address:
+
+https://github.com/CERTCC/PoC-Exploits/blob/master/vu-257161/recommendations.md ["https://github.com/CERTCC/PoC-Exploits/blob/master/vu-257161/recommendations.md"]</Description>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference Type="Self">
+        <URL>https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-treck-ip-stack-JyBQ5GyC</URL>
+        <Description>Multiple Vulnerabilities in Treck IP Stack Affecting Cisco Products: June 2020</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+  <Vulnerability Ordinal="6" xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln">
+    <Title>vuln-CVE-2020-11904</Title>
+    <CVE>CVE-2020-11904</CVE>
+    <Remediations>
+      <Remediation Type="Workaround">
+        <Description>There are no workarounds that address these vulnerabilities.
+
+A set of network based mitigations has been documented by the CERT Coordination Center and is available at the following address:
+
+https://github.com/CERTCC/PoC-Exploits/blob/master/vu-257161/recommendations.md ["https://github.com/CERTCC/PoC-Exploits/blob/master/vu-257161/recommendations.md"]</Description>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference Type="Self">
+        <URL>https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-treck-ip-stack-JyBQ5GyC</URL>
+        <Description>Multiple Vulnerabilities in Treck IP Stack Affecting Cisco Products: June 2020</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+  <Vulnerability Ordinal="7" xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln">
+    <Title>vuln-CVE-2020-11903</Title>
+    <CVE>CVE-2020-11903</CVE>
+    <Remediations>
+      <Remediation Type="Workaround">
+        <Description>There are no workarounds that address these vulnerabilities.
+
+A set of network based mitigations has been documented by the CERT Coordination Center and is available at the following address:
+
+https://github.com/CERTCC/PoC-Exploits/blob/master/vu-257161/recommendations.md ["https://github.com/CERTCC/PoC-Exploits/blob/master/vu-257161/recommendations.md"]</Description>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference Type="Self">
+        <URL>https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-treck-ip-stack-JyBQ5GyC</URL>
+        <Description>Multiple Vulnerabilities in Treck IP Stack Affecting Cisco Products: June 2020</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+  <Vulnerability Ordinal="8" xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln">
+    <Title>vuln-CVE-2020-11899</Title>
+    <CVE>CVE-2020-11899</CVE>
+    <Remediations>
+      <Remediation Type="Workaround">
+        <Description>There are no workarounds that address these vulnerabilities.
+
+A set of network based mitigations has been documented by the CERT Coordination Center and is available at the following address:
+
+https://github.com/CERTCC/PoC-Exploits/blob/master/vu-257161/recommendations.md ["https://github.com/CERTCC/PoC-Exploits/blob/master/vu-257161/recommendations.md"]</Description>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference Type="Self">
+        <URL>https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-treck-ip-stack-JyBQ5GyC</URL>
+        <Description>Multiple Vulnerabilities in Treck IP Stack Affecting Cisco Products: June 2020</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+  <Vulnerability Ordinal="9" xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln">
+    <Title>vuln-CVE-2020-11910</Title>
+    <CVE>CVE-2020-11910</CVE>
+    <Remediations>
+      <Remediation Type="Workaround">
+        <Description>There are no workarounds that address these vulnerabilities.
+
+A set of network based mitigations has been documented by the CERT Coordination Center and is available at the following address:
+
+https://github.com/CERTCC/PoC-Exploits/blob/master/vu-257161/recommendations.md ["https://github.com/CERTCC/PoC-Exploits/blob/master/vu-257161/recommendations.md"]</Description>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference Type="Self">
+        <URL>https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-treck-ip-stack-JyBQ5GyC</URL>
+        <Description>Multiple Vulnerabilities in Treck IP Stack Affecting Cisco Products: June 2020</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+  <Vulnerability Ordinal="10" xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln">
+    <Title>vuln-CVE-2020-11902</Title>
+    <CVE>CVE-2020-11902</CVE>
+    <Remediations>
+      <Remediation Type="Workaround">
+        <Description>There are no workarounds that address these vulnerabilities.
+
+A set of network based mitigations has been documented by the CERT Coordination Center and is available at the following address:
+
+https://github.com/CERTCC/PoC-Exploits/blob/master/vu-257161/recommendations.md ["https://github.com/CERTCC/PoC-Exploits/blob/master/vu-257161/recommendations.md"]</Description>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference Type="Self">
+        <URL>https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-treck-ip-stack-JyBQ5GyC</URL>
+        <Description>Multiple Vulnerabilities in Treck IP Stack Affecting Cisco Products: June 2020</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+  <Vulnerability Ordinal="11" xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln">
+    <Title>vuln-CVE-2020-11914</Title>
+    <CVE>CVE-2020-11914</CVE>
+    <Remediations>
+      <Remediation Type="Workaround">
+        <Description>There are no workarounds that address these vulnerabilities.
+
+A set of network based mitigations has been documented by the CERT Coordination Center and is available at the following address:
+
+https://github.com/CERTCC/PoC-Exploits/blob/master/vu-257161/recommendations.md ["https://github.com/CERTCC/PoC-Exploits/blob/master/vu-257161/recommendations.md"]</Description>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference Type="Self">
+        <URL>https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-treck-ip-stack-JyBQ5GyC</URL>
+        <Description>Multiple Vulnerabilities in Treck IP Stack Affecting Cisco Products: June 2020</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+  <Vulnerability Ordinal="12" xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln">
+    <Title>vuln-CVE-2020-11906</Title>
+    <CVE>CVE-2020-11906</CVE>
+    <Remediations>
+      <Remediation Type="Workaround">
+        <Description>There are no workarounds that address these vulnerabilities.
+
+A set of network based mitigations has been documented by the CERT Coordination Center and is available at the following address:
+
+https://github.com/CERTCC/PoC-Exploits/blob/master/vu-257161/recommendations.md ["https://github.com/CERTCC/PoC-Exploits/blob/master/vu-257161/recommendations.md"]</Description>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference Type="Self">
+        <URL>https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-treck-ip-stack-JyBQ5GyC</URL>
+        <Description>Multiple Vulnerabilities in Treck IP Stack Affecting Cisco Products: June 2020</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+  <Vulnerability Ordinal="13" xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln">
+    <Title>vuln-CVE-2020-11911</Title>
+    <CVE>CVE-2020-11911</CVE>
+    <Remediations>
+      <Remediation Type="Workaround">
+        <Description>There are no workarounds that address these vulnerabilities.
+
+A set of network based mitigations has been documented by the CERT Coordination Center and is available at the following address:
+
+https://github.com/CERTCC/PoC-Exploits/blob/master/vu-257161/recommendations.md ["https://github.com/CERTCC/PoC-Exploits/blob/master/vu-257161/recommendations.md"]</Description>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference Type="Self">
+        <URL>https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-treck-ip-stack-JyBQ5GyC</URL>
+        <Description>Multiple Vulnerabilities in Treck IP Stack Affecting Cisco Products: June 2020</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+  <Vulnerability Ordinal="14" xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln">
+    <Title>vuln-CVE-2020-11907</Title>
+    <CVE>CVE-2020-11907</CVE>
+    <Remediations>
+      <Remediation Type="Workaround">
+        <Description>There are no workarounds that address these vulnerabilities.
+
+A set of network based mitigations has been documented by the CERT Coordination Center and is available at the following address:
+
+https://github.com/CERTCC/PoC-Exploits/blob/master/vu-257161/recommendations.md ["https://github.com/CERTCC/PoC-Exploits/blob/master/vu-257161/recommendations.md"]</Description>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference Type="Self">
+        <URL>https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-treck-ip-stack-JyBQ5GyC</URL>
+        <Description>Multiple Vulnerabilities in Treck IP Stack Affecting Cisco Products: June 2020</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+  <Vulnerability Ordinal="15" xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln">
+    <Title>vuln-CVE-2020-11912</Title>
+    <CVE>CVE-2020-11912</CVE>
+    <Remediations>
+      <Remediation Type="Workaround">
+        <Description>There are no workarounds that address these vulnerabilities.
+
+A set of network based mitigations has been documented by the CERT Coordination Center and is available at the following address:
+
+https://github.com/CERTCC/PoC-Exploits/blob/master/vu-257161/recommendations.md ["https://github.com/CERTCC/PoC-Exploits/blob/master/vu-257161/recommendations.md"]</Description>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference Type="Self">
+        <URL>https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-treck-ip-stack-JyBQ5GyC</URL>
+        <Description>Multiple Vulnerabilities in Treck IP Stack Affecting Cisco Products: June 2020</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+  <Vulnerability Ordinal="16" xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln">
+    <Title>vuln-CVE-2020-11908</Title>
+    <CVE>CVE-2020-11908</CVE>
+    <Remediations>
+      <Remediation Type="Workaround">
+        <Description>There are no workarounds that address these vulnerabilities.
+
+A set of network based mitigations has been documented by the CERT Coordination Center and is available at the following address:
+
+https://github.com/CERTCC/PoC-Exploits/blob/master/vu-257161/recommendations.md ["https://github.com/CERTCC/PoC-Exploits/blob/master/vu-257161/recommendations.md"]</Description>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference Type="Self">
+        <URL>https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-treck-ip-stack-JyBQ5GyC</URL>
+        <Description>Multiple Vulnerabilities in Treck IP Stack Affecting Cisco Products: June 2020</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+  <Vulnerability Ordinal="17" xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln">
+    <Title>vuln-CVE-2020-11913</Title>
+    <CVE>CVE-2020-11913</CVE>
+    <Remediations>
+      <Remediation Type="Workaround">
+        <Description>There are no workarounds that address these vulnerabilities.
+
+A set of network based mitigations has been documented by the CERT Coordination Center and is available at the following address:
+
+https://github.com/CERTCC/PoC-Exploits/blob/master/vu-257161/recommendations.md ["https://github.com/CERTCC/PoC-Exploits/blob/master/vu-257161/recommendations.md"]</Description>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference Type="Self">
+        <URL>https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-treck-ip-stack-JyBQ5GyC</URL>
+        <Description>Multiple Vulnerabilities in Treck IP Stack Affecting Cisco Products: June 2020</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+  <Vulnerability Ordinal="18" xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln">
+    <Title>vuln-CVE-2020-11909</Title>
+    <CVE>CVE-2020-11909</CVE>
+    <Remediations>
+      <Remediation Type="Workaround">
+        <Description>There are no workarounds that address these vulnerabilities.
+
+A set of network based mitigations has been documented by the CERT Coordination Center and is available at the following address:
+
+https://github.com/CERTCC/PoC-Exploits/blob/master/vu-257161/recommendations.md ["https://github.com/CERTCC/PoC-Exploits/blob/master/vu-257161/recommendations.md"]</Description>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference Type="Self">
+        <URL>https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-treck-ip-stack-JyBQ5GyC</URL>
+        <Description>Multiple Vulnerabilities in Treck IP Stack Affecting Cisco Products: June 2020</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+  <Vulnerability Ordinal="19" xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln">
+    <Title>vuln-CVE-2020-11905</Title>
+    <CVE>CVE-2020-11905</CVE>
+    <Remediations>
+      <Remediation Type="Workaround">
+        <Description>There are no workarounds that address these vulnerabilities.
+
+A set of network based mitigations has been documented by the CERT Coordination Center and is available at the following address:
+
+https://github.com/CERTCC/PoC-Exploits/blob/master/vu-257161/recommendations.md ["https://github.com/CERTCC/PoC-Exploits/blob/master/vu-257161/recommendations.md"]</Description>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference Type="Self">
+        <URL>https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-treck-ip-stack-JyBQ5GyC</URL>
+        <Description>Multiple Vulnerabilities in Treck IP Stack Affecting Cisco Products: June 2020</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+</cvrf:cvrfdoc>

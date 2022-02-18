@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cvrfdoc xmlns="http://www.icasi.org/CVRF/schema/cvrf/1.1" xmlns:cvrf="http://www.icasi.org/CVRF/schema/cvrf/1.1">
+  <DocumentTitle xml:lang="en">Red Hat Security Advisory: systemd security, bug fix, and enhancement update</DocumentTitle>
+  <DocumentType>Security Advisory</DocumentType>
+  <DocumentPublisher Type="Vendor">
+    <ContactDetails>secalert@redhat.com</ContactDetails>
+    <IssuingAuthority>Red Hat Product Security</IssuingAuthority>
+  </DocumentPublisher>
+  <DocumentTracking>
+    <Identification><ID>RHSA-2021:1611</ID></Identification>
+    <Status>Final</Status>
+    <Version>1</Version>
+    <RevisionHistory>
+       <Revision>
+         <Number>1</Number>
+         <Date>2021-05-18T15:28:00Z</Date>
+         <Description>Current version</Description>
+       </Revision>
+    </RevisionHistory>
+    <InitialReleaseDate>2021-05-18T15:28:00Z</InitialReleaseDate>
+    <CurrentReleaseDate>2021-05-18T15:28:00Z</CurrentReleaseDate>
+    <Generator>
+      <Engine>Red Hat SDEngine 3.0.0</Engine>
+      <Date>2021-08-23T05:00:00Z</Date>
+    </Generator>
+  </DocumentTracking>
+  <DocumentNotes>
+    <Note Title="Topic" Type="Summary" Ordinal="1" xml:lang="en">
+An update for systemd is now available for Red Hat Enterprise Linux 8.
+
+Red Hat Product Security has rated this update as having a security impact of Moderate. A Common Vulnerability Scoring System (CVSS) base score, which gives a detailed severity rating, is available for each vulnerability from the CVE link(s) in the References section.
+    </Note>
+    <Note Title="Details" Type="General" Ordinal="2" xml:lang="en">
+The systemd packages contain systemd, a system and service manager for Linux, compatible with the SysV and LSB init scripts. It provides aggressive parallelism capabilities, uses socket and D-Bus activation for starting services, offers on-demand starting of daemons, and keeps track of processes using Linux cgroups. In addition, it supports snapshotting and restoring of the system state, maintains mount and automount points, and implements an elaborate transactional dependency-based service control logic. It can also work as a drop-in replacement for sysvinit.
+
+Security Fix(es):
+
+* systemd: Spoofing of XDG_SEAT allows for actions to be checked against &quot;allow_active&quot; instead of &quot;allow_any&quot; (CVE-2019-3842)
+
+* systemd: Mishandles numerical usernames beginning with decimal digits or 0x followed by hexadecimal digits (CVE-2020-13776)
+
+For more details about the security issue(s), including the impact, a CVSS score, acknowledgments, and other related information, refer to the CVE page(s) listed in the References section.
+
+Additional Changes:
+
+For detailed information on changes in this release, see the Red Hat Enterprise Linux 8.4 Release Notes linked from the References section.
+    </Note>
+    <Note Title="Terms of Use" Ordinal="3" Type="Legal Disclaimer" xml:lang="en">This content is licensed under the Creative Commons Attribution 4.0 International License (https://creativecommons.org/licenses/by/4.0/). If you distribute this content, or a modified version of it, you must provide attribution to Red Hat Inc. and provide a link to the original.</Note>
+  </DocumentNotes>
+  <DocumentDistribution xml:lang="en">Copyright © 2021 Red Hat, Inc. All rights reserved.</DocumentDistribution>
+  <AggregateSeverity Namespace="https://access.redhat.com/security/updates/classification/">Moderate</AggregateSeverity>
+  <DocumentReferences>
+    <Reference Type="Self">
+       <URL>https://access.redhat.com/errata/RHSA-2021:1611</URL>
+       <Description>https://access.redhat.com/errata/RHSA-2021:1611</Description>
+    </Reference>
+    <Reference Type="External">
+       <URL>https://access.redhat.com/security/updates/classification/#moderate</URL>
+       <Description>https://access.redhat.com/security/updates/classification/#moderate</Description>
+    </Reference>
+    <Reference Type="External">
+       <URL>https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/8.4_release_notes/</URL>
+       <Description>https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/8.4_release_notes/</Description>
+    </Reference>
+  </DocumentReferences>
+  <ProductTree xmlns="http://www.icasi.org/CVRF/schema/prod/1.1">
+    <Branch Type="Product Family" Name="Red Hat Enterprise Linux">
+      <Branch Type="Product Name" Name="Red Hat Enterprise Linux BaseOS (v. 8)">
+        <FullProductName ProductID="BaseOS-8.4.0.GA" CPE="cpe:/o:redhat:enterprise_linux:8::baseos">Red Hat Enterprise Linux BaseOS (v. 8)</FullProductName>
+      </Branch>
+    </Branch>
+    <Branch Type="Product Version" Name="systemd-0:239-45.el8">
+      <FullProductName ProductID="systemd-0:239-45.el8" CPE="cpe:/o:redhat:enterprise_linux:8::baseos">systemd-239-45.el8.src.rpm</FullProductName>
+    </Branch>
+    <Relationship ProductReference="systemd-0:239-45.el8" RelationType="Default Component Of" RelatesToProductReference="BaseOS-8.4.0.GA">
+      <FullProductName ProductID="BaseOS-8.4.0.GA:systemd-0:239-45.el8" CPE="cpe:/o:redhat:enterprise_linux:8::baseos">systemd-0:239-45.el8 as a component of Red Hat Enterprise Linux BaseOS (v. 8)</FullProductName>
+    </Relationship>
+  </ProductTree>
+
+  <Vulnerability Ordinal="1" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">systemd: Spoofing of XDG_SEAT allows for actions to be checked against &quot;allow_active&quot; instead of &quot;allow_any&quot;</Note></Notes>
+    <DiscoveryDate>2019-01-23T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2019-04-08T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2019-3842</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>BaseOS-8.4.0.GA:systemd-0:239-45.el8</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:1611</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2019-3842</URL>
+        <Description>CVE-2019-3842</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1668521</URL>
+        <Description>bz#1668521: CVE-2019-3842 systemd: Spoofing of XDG_SEAT allows for actions to be checked against &quot;allow_active&quot; instead of &quot;allow_any&quot;</Description>
+      </Reference>
+    </References>
+    <Acknowledgments><Acknowledgment><Description>Red Hat would like to thank Jann Horn (Google Project Zero) for reporting this issue.</Description></Acknowledgment></Acknowledgments>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="2" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">systemd: Mishandles numerical usernames beginning with decimal digits or 0x followed by hexadecimal digits</Note></Notes>
+    <DiscoveryDate>2020-06-03T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2020-05-31T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2020-13776</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>BaseOS-8.4.0.GA:systemd-0:239-45.el8</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:1611</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2020-13776</URL>
+        <Description>CVE-2020-13776</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1845534</URL>
+        <Description>bz#1845534: CVE-2020-13776 systemd: Mishandles numerical usernames beginning with decimal digits or 0x followed by hexadecimal digits</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+</cvrfdoc>

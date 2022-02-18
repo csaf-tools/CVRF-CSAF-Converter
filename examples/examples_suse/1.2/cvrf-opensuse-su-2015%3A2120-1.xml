@@ -1,0 +1,544 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cvrfdoc xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:cpe="http://cpe.mitre.org/language/2.0" xmlns:cvrf="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/cvrf" xmlns:cvrf-common="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/common" xmlns:cvssv2="http://scap.nist.gov/schema/cvss-v2/1.0" xmlns:cvssv3="https://www.first.org/cvss/cvss-v3.0.xsd" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:ns0="http://purl.org/dc/elements/1.1/" xmlns:prod="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/prod" xmlns:scap-core="http://scap.nist.gov/schema/scap-core/1.0" xmlns:sch="http://purl.oclc.org/dsdl/schematron" xmlns:vuln="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/cvrf">
+  <DocumentTitle xml:lang="en">Security update for ffmpeg</DocumentTitle>
+  <DocumentType>SUSE Patch</DocumentType>
+  <DocumentPublisher Type="Vendor">
+    <ContactDetails>security@suse.de</ContactDetails>
+    <IssuingAuthority>SUSE Security Team</IssuingAuthority>
+  </DocumentPublisher>
+  <DocumentTracking>
+    <Identification>
+      <ID>openSUSE-SU-2015:2120-1</ID>
+    </Identification>
+    <Status>Final</Status>
+    <Version>1</Version>
+    <RevisionHistory>
+      <Revision>
+        <Number>1</Number>
+        <Date>2015-11-27T12:50:49Z</Date>
+        <Description>current</Description>
+      </Revision>
+    </RevisionHistory>
+    <InitialReleaseDate>2015-11-27T12:50:49Z</InitialReleaseDate>
+    <CurrentReleaseDate>2015-11-27T12:50:49Z</CurrentReleaseDate>
+    <Generator>
+      <Engine>cve-database/bin/generate-cvrf.pl</Engine>
+      <Date>2017-02-24T01:00:00Z</Date>
+    </Generator>
+  </DocumentTracking>
+  <DocumentNotes>
+    <Note Title="Topic" Type="Summary" Ordinal="1" xml:lang="en">Security update for ffmpeg</Note>
+    <Note Title="Details" Type="General" Ordinal="2" xml:lang="en">The ffmpeg package was updated to version 2.8.2 to fix the following security and non security issues:
+
+- CVE-2015-8216: Fixed the ljpeg_decode_yuv_scan function in libavcodec/mjpegdec.c which could cause a denial of service (out-of-bounds array access) (bnc#955346).
+- CVE-2015-8217: Fixed the ff_hevc_parse_sps function in libavcodec/hevc_ps.c which could cause a denial of service (out-of-bounds array access) (bnc#955347).
+- CVE-2015-8218: Fixed the decode_uncompressed function in libavcodec/faxcompr.c which could cause a denial of service (out-of-bounds array access) (bnc#955348).
+- CVE-2015-8219: Fixed the init_tile function in libavcodec/jpeg2000dec.c which could cause a denial of service (out-of-bounds array access) (bnc#955350).
+
+- Update to new upstream release 2.8.2
+  * various fixes in the aac_fixed decoder
+  * various fixes in softfloat
+  * swresample/resample: increase precision for compensation
+  * lavf/mov: add support for sidx fragment indexes
+  * avformat/mxfenc: Only store user comment related tags when needed
+  * ffmpeg: Don't try and write sdp info if none of the outputs had an rtp format.
+  * apng: use correct size for output buffer
+  * jvdec: avoid unsigned overflow in comparison
+  * avcodec/jpeg2000dec: Clip all tile coordinates
+  * avcodec/microdvddec: Check for string end in 'P' case
+  * avcodec/dirac_parser: Fix undefined memcpy() use
+  * avformat/xmv: Discard remainder of packet on error
+  * avformat/xmv: factor return check out of if/else
+  * avcodec/mpeg12dec: Do not call show_bits() with invalid bits
+  * avcodec/faxcompr: Add missing runs check in decode_uncompressed()
+  * libavutil/channel_layout: Check strtol*() for failure
+  * avformat/mpegts: Only start probing data streams within probe_packets
+  * avcodec/hevc_ps: Check chroma_format_idc
+  * avcodec/ffv1dec: Check for 0 quant tables
+  * avcodec/mjpegdec: Reinitialize IDCT on BPP changes
+  * avcodec/mjpegdec: Check index in ljpeg_decode_yuv_scan() before using it
+  * avcodec/h264_slice: Disable slice threads if there are multiple access units in a packet
+  * avformat/hls: update cookies on setcookie response
+  * opusdec: Don't run vector_fmul_scalar on zero length arrays
+  * avcodec/opusdec: Fix extra samples read index
+  * avcodec/ffv1: Initialize vlc_state on allocation
+  * avcodec/ffv1dec: update progress in case of broken pointer chains
+  * avcodec/ffv1dec: Clear slice coordinates if they are invalid or slice header decoding fails for other reasons
+  * rtsp: Allow $ as interleaved packet indicator before a complete response header
+  * videodsp: don't overread edges in vfix3 emu_edge.
+  * avformat/mp3dec: improve junk skipping heuristic
+  * concatdec: fix file_start_time calculation regression
+  * avcodec: loongson optimize h264dsp idct and loop filter with mmi
+  * avcodec/jpeg2000dec: Clear properties in jpeg2000_dec_cleanup() too
+  * avformat/hls: add support for EXT-X-MAP
+  * avformat/hls: fix segment selection regression on track changes of live streams
+  * configure: Require libkvazaar &lt; 0.7.
+  * avcodec/vp8: Do not use num_coeff_partitions in thread/buffer setup
+- Drop ffmpeg-mov-sidx-fragment.patch, fixed upstream.
+
+- Update to new upstream release 2.8.1
+  * Minor bugfix release
+  * Includes all changes from. Ffmpeg-mt, 
+    libav master of 2015-08-28, libav 11 as of 2015-08-28
+- Add ffmpeg-mov-sidx-fragment.patch to add sidx fragment indexes.
+  Needed for new mpv release.
+</Note>
+    <Note Title="Terms of Use" Type="Legal Disclaimer" Ordinal="3" xml:lang="en">The CVRF data is provided by SUSE under the Creative Commons License 4.0 with Attribution for Non-Commercial usage (CC-BY-NC-4.0).</Note>
+  </DocumentNotes>
+  <DocumentDistribution xml:lang="en">Copyright SUSE LLC under the Creative Commons License 4.0 with Attribution for Non-Commercial usage (CC-BY-NC-4.0)</DocumentDistribution>
+  <DocumentReferences>
+    <Reference Type="Self">
+      <URL>https://lists.opensuse.org/opensuse-updates/2015-11/msg00146.html</URL>
+      <Description>E-Mail link for openSUSE-SU-2015:2120-1</Description>
+    </Reference>
+    <Reference Type="Self">
+      <URL>https://www.suse.com/support/security/rating/</URL>
+      <Description>SUSE Security Ratings</Description>
+    </Reference>
+  </DocumentReferences>
+  <ProductTree xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/prod">
+    <Branch Type="Product Family" Name="openSUSE Leap 42.1">
+      <Branch Type="Product Name" Name="openSUSE Leap 42.1">
+        <FullProductName ProductID="openSUSE Leap 42.1">openSUSE Leap 42.1</FullProductName>
+      </Branch>
+    </Branch>
+    <Branch Type="Product Version" Name="ffmpeg-2.8.2-3.1">
+      <FullProductName ProductID="ffmpeg-2.8.2-3.1">ffmpeg-2.8.2-3.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="ffmpeg-devel-2.8.2-3.1">
+      <FullProductName ProductID="ffmpeg-devel-2.8.2-3.1">ffmpeg-devel-2.8.2-3.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libavcodec-devel-2.8.2-3.1">
+      <FullProductName ProductID="libavcodec-devel-2.8.2-3.1">libavcodec-devel-2.8.2-3.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libavcodec56-2.8.2-3.1">
+      <FullProductName ProductID="libavcodec56-2.8.2-3.1">libavcodec56-2.8.2-3.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libavcodec56-32bit-2.8.2-3.1">
+      <FullProductName ProductID="libavcodec56-32bit-2.8.2-3.1">libavcodec56-32bit-2.8.2-3.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libavdevice-devel-2.8.2-3.1">
+      <FullProductName ProductID="libavdevice-devel-2.8.2-3.1">libavdevice-devel-2.8.2-3.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libavdevice56-2.8.2-3.1">
+      <FullProductName ProductID="libavdevice56-2.8.2-3.1">libavdevice56-2.8.2-3.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libavdevice56-32bit-2.8.2-3.1">
+      <FullProductName ProductID="libavdevice56-32bit-2.8.2-3.1">libavdevice56-32bit-2.8.2-3.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libavfilter-devel-2.8.2-3.1">
+      <FullProductName ProductID="libavfilter-devel-2.8.2-3.1">libavfilter-devel-2.8.2-3.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libavfilter5-2.8.2-3.1">
+      <FullProductName ProductID="libavfilter5-2.8.2-3.1">libavfilter5-2.8.2-3.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libavfilter5-32bit-2.8.2-3.1">
+      <FullProductName ProductID="libavfilter5-32bit-2.8.2-3.1">libavfilter5-32bit-2.8.2-3.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libavformat-devel-2.8.2-3.1">
+      <FullProductName ProductID="libavformat-devel-2.8.2-3.1">libavformat-devel-2.8.2-3.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libavformat56-2.8.2-3.1">
+      <FullProductName ProductID="libavformat56-2.8.2-3.1">libavformat56-2.8.2-3.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libavformat56-32bit-2.8.2-3.1">
+      <FullProductName ProductID="libavformat56-32bit-2.8.2-3.1">libavformat56-32bit-2.8.2-3.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libavresample-devel-2.8.2-3.1">
+      <FullProductName ProductID="libavresample-devel-2.8.2-3.1">libavresample-devel-2.8.2-3.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libavresample2-2.8.2-3.1">
+      <FullProductName ProductID="libavresample2-2.8.2-3.1">libavresample2-2.8.2-3.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libavresample2-32bit-2.8.2-3.1">
+      <FullProductName ProductID="libavresample2-32bit-2.8.2-3.1">libavresample2-32bit-2.8.2-3.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libavutil-devel-2.8.2-3.1">
+      <FullProductName ProductID="libavutil-devel-2.8.2-3.1">libavutil-devel-2.8.2-3.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libavutil54-2.8.2-3.1">
+      <FullProductName ProductID="libavutil54-2.8.2-3.1">libavutil54-2.8.2-3.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libavutil54-32bit-2.8.2-3.1">
+      <FullProductName ProductID="libavutil54-32bit-2.8.2-3.1">libavutil54-32bit-2.8.2-3.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libpostproc-devel-2.8.2-3.1">
+      <FullProductName ProductID="libpostproc-devel-2.8.2-3.1">libpostproc-devel-2.8.2-3.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libpostproc53-2.8.2-3.1">
+      <FullProductName ProductID="libpostproc53-2.8.2-3.1">libpostproc53-2.8.2-3.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libpostproc53-32bit-2.8.2-3.1">
+      <FullProductName ProductID="libpostproc53-32bit-2.8.2-3.1">libpostproc53-32bit-2.8.2-3.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libswresample-devel-2.8.2-3.1">
+      <FullProductName ProductID="libswresample-devel-2.8.2-3.1">libswresample-devel-2.8.2-3.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libswresample1-2.8.2-3.1">
+      <FullProductName ProductID="libswresample1-2.8.2-3.1">libswresample1-2.8.2-3.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libswresample1-32bit-2.8.2-3.1">
+      <FullProductName ProductID="libswresample1-32bit-2.8.2-3.1">libswresample1-32bit-2.8.2-3.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libswscale-devel-2.8.2-3.1">
+      <FullProductName ProductID="libswscale-devel-2.8.2-3.1">libswscale-devel-2.8.2-3.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libswscale3-2.8.2-3.1">
+      <FullProductName ProductID="libswscale3-2.8.2-3.1">libswscale3-2.8.2-3.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libswscale3-32bit-2.8.2-3.1">
+      <FullProductName ProductID="libswscale3-32bit-2.8.2-3.1">libswscale3-32bit-2.8.2-3.1</FullProductName>
+    </Branch>
+    <Relationship ProductReference="ffmpeg-2.8.2-3.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:ffmpeg-2.8.2-3.1">ffmpeg-2.8.2-3.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="ffmpeg-devel-2.8.2-3.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:ffmpeg-devel-2.8.2-3.1">ffmpeg-devel-2.8.2-3.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="libavcodec-devel-2.8.2-3.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:libavcodec-devel-2.8.2-3.1">libavcodec-devel-2.8.2-3.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="libavcodec56-2.8.2-3.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:libavcodec56-2.8.2-3.1">libavcodec56-2.8.2-3.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="libavcodec56-32bit-2.8.2-3.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:libavcodec56-32bit-2.8.2-3.1">libavcodec56-32bit-2.8.2-3.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="libavdevice-devel-2.8.2-3.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:libavdevice-devel-2.8.2-3.1">libavdevice-devel-2.8.2-3.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="libavdevice56-2.8.2-3.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:libavdevice56-2.8.2-3.1">libavdevice56-2.8.2-3.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="libavdevice56-32bit-2.8.2-3.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:libavdevice56-32bit-2.8.2-3.1">libavdevice56-32bit-2.8.2-3.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="libavfilter-devel-2.8.2-3.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:libavfilter-devel-2.8.2-3.1">libavfilter-devel-2.8.2-3.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="libavfilter5-2.8.2-3.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:libavfilter5-2.8.2-3.1">libavfilter5-2.8.2-3.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="libavfilter5-32bit-2.8.2-3.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:libavfilter5-32bit-2.8.2-3.1">libavfilter5-32bit-2.8.2-3.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="libavformat-devel-2.8.2-3.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:libavformat-devel-2.8.2-3.1">libavformat-devel-2.8.2-3.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="libavformat56-2.8.2-3.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:libavformat56-2.8.2-3.1">libavformat56-2.8.2-3.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="libavformat56-32bit-2.8.2-3.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:libavformat56-32bit-2.8.2-3.1">libavformat56-32bit-2.8.2-3.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="libavresample-devel-2.8.2-3.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:libavresample-devel-2.8.2-3.1">libavresample-devel-2.8.2-3.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="libavresample2-2.8.2-3.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:libavresample2-2.8.2-3.1">libavresample2-2.8.2-3.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="libavresample2-32bit-2.8.2-3.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:libavresample2-32bit-2.8.2-3.1">libavresample2-32bit-2.8.2-3.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="libavutil-devel-2.8.2-3.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:libavutil-devel-2.8.2-3.1">libavutil-devel-2.8.2-3.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="libavutil54-2.8.2-3.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:libavutil54-2.8.2-3.1">libavutil54-2.8.2-3.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="libavutil54-32bit-2.8.2-3.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:libavutil54-32bit-2.8.2-3.1">libavutil54-32bit-2.8.2-3.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="libpostproc-devel-2.8.2-3.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:libpostproc-devel-2.8.2-3.1">libpostproc-devel-2.8.2-3.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="libpostproc53-2.8.2-3.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:libpostproc53-2.8.2-3.1">libpostproc53-2.8.2-3.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="libpostproc53-32bit-2.8.2-3.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:libpostproc53-32bit-2.8.2-3.1">libpostproc53-32bit-2.8.2-3.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="libswresample-devel-2.8.2-3.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:libswresample-devel-2.8.2-3.1">libswresample-devel-2.8.2-3.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="libswresample1-2.8.2-3.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:libswresample1-2.8.2-3.1">libswresample1-2.8.2-3.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="libswresample1-32bit-2.8.2-3.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:libswresample1-32bit-2.8.2-3.1">libswresample1-32bit-2.8.2-3.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="libswscale-devel-2.8.2-3.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:libswscale-devel-2.8.2-3.1">libswscale-devel-2.8.2-3.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="libswscale3-2.8.2-3.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:libswscale3-2.8.2-3.1">libswscale3-2.8.2-3.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="libswscale3-32bit-2.8.2-3.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:libswscale3-32bit-2.8.2-3.1">libswscale3-32bit-2.8.2-3.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+  </ProductTree>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="1">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">The ljpeg_decode_yuv_scan function in libavcodec/mjpegdec.c in FFmpeg before 2.8.2 omits certain width and height checks, which allows remote attackers to cause a denial of service (out-of-bounds array access) or possibly have unspecified other impact via crafted MJPEG data.</Note>
+    </Notes>
+    <CVE>CVE-2015-8216</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed">
+        <ProductID>openSUSE Leap 42.1:ffmpeg-2.8.2-3.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:ffmpeg-devel-2.8.2-3.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libavcodec-devel-2.8.2-3.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libavcodec56-2.8.2-3.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libavcodec56-32bit-2.8.2-3.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libavdevice-devel-2.8.2-3.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libavdevice56-2.8.2-3.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libavdevice56-32bit-2.8.2-3.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libavfilter-devel-2.8.2-3.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libavfilter5-2.8.2-3.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libavfilter5-32bit-2.8.2-3.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libavformat-devel-2.8.2-3.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libavformat56-2.8.2-3.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libavformat56-32bit-2.8.2-3.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libavresample-devel-2.8.2-3.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libavresample2-2.8.2-3.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libavresample2-32bit-2.8.2-3.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libavutil-devel-2.8.2-3.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libavutil54-2.8.2-3.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libavutil54-32bit-2.8.2-3.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libpostproc-devel-2.8.2-3.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libpostproc53-2.8.2-3.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libpostproc53-32bit-2.8.2-3.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libswresample-devel-2.8.2-3.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libswresample1-2.8.2-3.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libswresample1-32bit-2.8.2-3.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libswscale-devel-2.8.2-3.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libswscale3-2.8.2-3.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libswscale3-32bit-2.8.2-3.1</ProductID>
+      </Status>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>7.5</BaseScoreV2>
+        <VectorV2>AV:N/AC:L/Au:N/C:P/I:P/A:P</VectorV2>
+      </ScoreSetV2>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-updates/2015-11/msg00146.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-8216.html</URL>
+        <Description>CVE-2015-8216</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/955346</URL>
+        <Description>SUSE Bug 955346</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="2">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">The ff_hevc_parse_sps function in libavcodec/hevc_ps.c in FFmpeg before 2.8.2 does not validate the Chroma Format Indicator, which allows remote attackers to cause a denial of service (out-of-bounds array access) or possibly have unspecified other impact via crafted High Efficiency Video Coding (HEVC) data.</Note>
+    </Notes>
+    <CVE>CVE-2015-8217</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed">
+        <ProductID>openSUSE Leap 42.1:ffmpeg-2.8.2-3.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:ffmpeg-devel-2.8.2-3.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libavcodec-devel-2.8.2-3.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libavcodec56-2.8.2-3.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libavcodec56-32bit-2.8.2-3.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libavdevice-devel-2.8.2-3.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libavdevice56-2.8.2-3.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libavdevice56-32bit-2.8.2-3.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libavfilter-devel-2.8.2-3.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libavfilter5-2.8.2-3.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libavfilter5-32bit-2.8.2-3.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libavformat-devel-2.8.2-3.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libavformat56-2.8.2-3.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libavformat56-32bit-2.8.2-3.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libavresample-devel-2.8.2-3.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libavresample2-2.8.2-3.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libavresample2-32bit-2.8.2-3.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libavutil-devel-2.8.2-3.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libavutil54-2.8.2-3.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libavutil54-32bit-2.8.2-3.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libpostproc-devel-2.8.2-3.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libpostproc53-2.8.2-3.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libpostproc53-32bit-2.8.2-3.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libswresample-devel-2.8.2-3.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libswresample1-2.8.2-3.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libswresample1-32bit-2.8.2-3.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libswscale-devel-2.8.2-3.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libswscale3-2.8.2-3.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libswscale3-32bit-2.8.2-3.1</ProductID>
+      </Status>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>7.5</BaseScoreV2>
+        <VectorV2>AV:N/AC:L/Au:N/C:P/I:P/A:P</VectorV2>
+      </ScoreSetV2>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-updates/2015-11/msg00146.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-8217.html</URL>
+        <Description>CVE-2015-8217</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/955347</URL>
+        <Description>SUSE Bug 955347</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="3">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">The decode_uncompressed function in libavcodec/faxcompr.c in FFmpeg before 2.8.2 does not validate uncompressed runs, which allows remote attackers to cause a denial of service (out-of-bounds array access) or possibly have unspecified other impact via crafted CCITT FAX data.</Note>
+    </Notes>
+    <CVE>CVE-2015-8218</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed">
+        <ProductID>openSUSE Leap 42.1:ffmpeg-2.8.2-3.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:ffmpeg-devel-2.8.2-3.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libavcodec-devel-2.8.2-3.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libavcodec56-2.8.2-3.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libavcodec56-32bit-2.8.2-3.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libavdevice-devel-2.8.2-3.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libavdevice56-2.8.2-3.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libavdevice56-32bit-2.8.2-3.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libavfilter-devel-2.8.2-3.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libavfilter5-2.8.2-3.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libavfilter5-32bit-2.8.2-3.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libavformat-devel-2.8.2-3.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libavformat56-2.8.2-3.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libavformat56-32bit-2.8.2-3.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libavresample-devel-2.8.2-3.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libavresample2-2.8.2-3.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libavresample2-32bit-2.8.2-3.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libavutil-devel-2.8.2-3.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libavutil54-2.8.2-3.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libavutil54-32bit-2.8.2-3.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libpostproc-devel-2.8.2-3.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libpostproc53-2.8.2-3.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libpostproc53-32bit-2.8.2-3.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libswresample-devel-2.8.2-3.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libswresample1-2.8.2-3.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libswresample1-32bit-2.8.2-3.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libswscale-devel-2.8.2-3.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libswscale3-2.8.2-3.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libswscale3-32bit-2.8.2-3.1</ProductID>
+      </Status>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>6.8</BaseScoreV2>
+        <VectorV2>AV:N/AC:M/Au:N/C:P/I:P/A:P</VectorV2>
+      </ScoreSetV2>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-updates/2015-11/msg00146.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-8218.html</URL>
+        <Description>CVE-2015-8218</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/955348</URL>
+        <Description>SUSE Bug 955348</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="4">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">The init_tile function in libavcodec/jpeg2000dec.c in FFmpeg before 2.8.2 does not enforce minimum-value and maximum-value constraints on tile coordinates, which allows remote attackers to cause a denial of service (out-of-bounds array access) or possibly have unspecified other impact via crafted JPEG 2000 data.</Note>
+    </Notes>
+    <CVE>CVE-2015-8219</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed">
+        <ProductID>openSUSE Leap 42.1:ffmpeg-2.8.2-3.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:ffmpeg-devel-2.8.2-3.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libavcodec-devel-2.8.2-3.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libavcodec56-2.8.2-3.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libavcodec56-32bit-2.8.2-3.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libavdevice-devel-2.8.2-3.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libavdevice56-2.8.2-3.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libavdevice56-32bit-2.8.2-3.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libavfilter-devel-2.8.2-3.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libavfilter5-2.8.2-3.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libavfilter5-32bit-2.8.2-3.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libavformat-devel-2.8.2-3.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libavformat56-2.8.2-3.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libavformat56-32bit-2.8.2-3.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libavresample-devel-2.8.2-3.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libavresample2-2.8.2-3.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libavresample2-32bit-2.8.2-3.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libavutil-devel-2.8.2-3.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libavutil54-2.8.2-3.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libavutil54-32bit-2.8.2-3.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libpostproc-devel-2.8.2-3.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libpostproc53-2.8.2-3.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libpostproc53-32bit-2.8.2-3.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libswresample-devel-2.8.2-3.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libswresample1-2.8.2-3.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libswresample1-32bit-2.8.2-3.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libswscale-devel-2.8.2-3.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libswscale3-2.8.2-3.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libswscale3-32bit-2.8.2-3.1</ProductID>
+      </Status>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>7.5</BaseScoreV2>
+        <VectorV2>AV:N/AC:L/Au:N/C:P/I:P/A:P</VectorV2>
+      </ScoreSetV2>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-updates/2015-11/msg00146.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-8219.html</URL>
+        <Description>CVE-2015-8219</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/955350</URL>
+        <Description>SUSE Bug 955350</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+</cvrfdoc>

@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cvrf:cvrfdoc xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:cvrf-common="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/common" xmlns:cvrf="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/cvrf">
+  <cvrf:DocumentTitle>Cisco Wireless LAN Controller Software GUI Privilege Escalation Vulnerability</cvrf:DocumentTitle>
+  <cvrf:DocumentType>Cisco Security Advisory</cvrf:DocumentType>
+  <cvrf:DocumentPublisher Type="Vendor">
+    <cvrf:ContactDetails>Emergency Support:
++1 877 228 7302 (toll-free within North America)
++1 408 525 6532 (International direct-dial)
+Non-emergency Support:
+Email: psirt@cisco.com
+Support requests that are received via e-mail are typically acknowledged within 48 hours.</cvrf:ContactDetails>
+    <cvrf:IssuingAuthority>Cisco product security incident response is the responsibility of the Cisco Product Security Incident Response Team (PSIRT). The Cisco PSIRT is a dedicated, global team that manages the receipt, investigation, and public reporting of security vulnerability information that is related to Cisco products and networks. The on-call Cisco PSIRT works 24x7 with Cisco customers, independent security researchers, consultants, industry organizations, and other vendors to identify possible security issues with Cisco products and networks.
+More information can be found in Cisco Security Vulnerability Policy available at http://www.cisco.com/web/about/security/psirt/security_vulnerability_policy.html</cvrf:IssuingAuthority>
+  </cvrf:DocumentPublisher>
+  <cvrf:DocumentTracking>
+    <cvrf:Identification>
+      <cvrf:ID>cisco-sa-20181017-wlc-gui-privesc</cvrf:ID>
+    </cvrf:Identification>
+    <cvrf:Status>Final</cvrf:Status>
+    <cvrf:Version>1.0</cvrf:Version>
+    <cvrf:RevisionHistory>
+      <cvrf:Revision>
+        <cvrf:Number>1.0</cvrf:Number>
+        <cvrf:Date>2018-10-17T15:26:49</cvrf:Date>
+        <cvrf:Description>Initial public release.</cvrf:Description>
+      </cvrf:Revision>
+      <cvrf:Revision>
+        <cvrf:Number>1.0</cvrf:Number>
+        <cvrf:Date>2018-10-17T16:18:16</cvrf:Date>
+        <cvrf:Description>Initial public release.</cvrf:Description>
+      </cvrf:Revision>
+    </cvrf:RevisionHistory>
+    <cvrf:InitialReleaseDate>2018-10-17T16:00:00</cvrf:InitialReleaseDate>
+    <cvrf:CurrentReleaseDate>2018-10-17T16:18:16</cvrf:CurrentReleaseDate>
+    <cvrf:Generator>
+      <cvrf:Engine>TVCE</cvrf:Engine>
+    </cvrf:Generator>
+  </cvrf:DocumentTracking>
+  <cvrf:DocumentNotes>
+    <cvrf:Note Title="Summary" Type="Summary" Ordinal="1">A vulnerability in TACACS authentication with Cisco Wireless LAN Controller (WLC) Software could allow an authenticated, local attacker to perform certain operations within the GUI that are not normally available to that user on the CLI.
+
+The vulnerability is due to incorrect parsing of a specific TACACS attribute received in the TACACS response from the remote TACACS server. An attacker could exploit this vulnerability by authenticating via TACACS to the GUI on the affected device. A successful exploit could allow an attacker to create local user accounts with administrative privileges on an affected WLC and execute other commands that are not allowed from the CLI and should be prohibited.
+
+Cisco has released software updates that address this vulnerability. There are no workarounds that address this vulnerability.
+
+  This advisory is available at the following link:
+https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20181017-wlc-gui-privesc ["https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20181017-wlc-gui-privesc"]</cvrf:Note>
+    <cvrf:Note Title="Vulnerable Products" Type="General" Ordinal="2">This vulnerability affects Cisco Wireless LAN Controllers that are running a software release prior to the first fixed release and are configured for TACACS authorization. If TACACS authorization is not configured, the WLC is not vulnerable.
+  Determine If TACACS Authorization Is Configured
+If the show tacacs-server feature is not available, this indicates that the TACACS feature (feature tacacs) is not enabled and the device is not affected by this vulnerability. The following example displays the output an administrator may use to verify if the device is vulnerable.
+
+If no output is shown under the tables after issuing the command show tacas summary, the device is not running the TACACS service and is not vulnerable. The following output shows an example of output from a vulnerable device running the TACACS service.
+
+
+(wlc) &gt;show tacacs summary
+Authentication Servers    Idx  Server Address    Port    State     Tout  ---  ----------------  ------  --------  ----  1    10.1.1.12         49      Enabled   2    Authorization Servers    Idx  Server Address    Port    State     Tout  ---  ----------------  ------  --------  ----  1    10.1.1.12         49      Enabled   2    Accounting Servers    Idx  Server Address    Port    State     Tout  ---  ----------------  ------  --------  ----  1    10.1.1.12         49      Enabled   2
+
+For information about which Cisco WLC Software releases are vulnerable, see the Fixed Software ["#fixed"] section of this advisory.
+  Determining the Cisco WLC Software Release
+To determine which Cisco WLC Software release is running on a device, administrators can use the controller’s web interface or the CLI.
+
+To use the web interface, do the following:
+
+By using a browser, log in to the controller’s web interface
+Click the Monitor tab
+Click Summary in the left pane
+Under Controller Summary, the Software Version field shows the release number of the software that is currently running on the device
+
+To use the CLI, log in to the controller via Telnet, issue the show sysinfo command, and then refer to the value in the Product Version field of the command output. The following example shows the command output for a device that is running Cisco WLC Software Release 8.3.102.0:
+
+
+(wlc)&gt; show sysinfo
+  Manufacturer's Name.............................. Cisco Systems Inc.  Product Name..................................... Cisco Controller  Product Version.................................. 8.3.102.0  Bootloader Version............................... 1.0.1
+Field Recovery Image Version..................... 6.0.182.0  Firmware Version................................. FPGA 1.3, Env 1.6, USB console 1.27  Build Type....................................... DATA + WPS  .  .  .</cvrf:Note>
+    <cvrf:Note Title="Products Confirmed Not Vulnerable" Type="General" Ordinal="3">Only products listed in the Vulnerable Products ["#vp"] section of this advisory are known to be affected by these vulnerabilities.</cvrf:Note>
+    <cvrf:Note Title="Workarounds" Type="General" Ordinal="4">There are no workarounds that address this vulnerability. As a mitigation, customers may choose to implement access control lists (ACLs) to filter or restrict management access on a configured device.</cvrf:Note>
+    <cvrf:Note Title="Fixed Software" Type="General" Ordinal="5">Cisco has released free software updates that address the vulnerability described in this advisory. Customers may only install and expect support for software versions and feature sets for which they have purchased a license. By installing, downloading, accessing, or otherwise using such software upgrades, customers agree to follow the terms of the Cisco software license:  https://www.cisco.com/c/en/us/products/end-user-license-agreement.html ["https://www.cisco.com/c/en/us/products/end-user-license-agreement.html"]
+
+Additionally, customers may only download software for which they have a valid license, procured from Cisco directly, or through a Cisco authorized reseller or partner. In most cases this will be a maintenance upgrade to software that was previously purchased. Free security software updates do not entitle customers to a new software license, additional software feature sets, or major revision upgrades.
+
+When considering software upgrades, customers are advised to regularly consult the advisories for Cisco products, which are available from the Cisco Security Advisories and Alerts page ["https://www.cisco.com/go/psirt"], to determine exposure and a complete upgrade solution.
+
+In all cases, customers should ensure that the devices to be upgraded contain sufficient memory and confirm that current hardware and software configurations will continue to be supported properly by the new release. If the information is not clear, customers are advised to contact the Cisco Technical Assistance Center (TAC) or their contracted maintenance providers.
+
+Customers Without Service Contracts
+
+Customers who purchase directly from Cisco but do not hold a Cisco service contract and customers who make purchases through third-party vendors but are unsuccessful in obtaining fixed software through their point of sale should obtain upgrades by contacting the Cisco TAC: https://www.cisco.com/c/en/us/support/web/tsd-cisco-worldwide-contacts.html ["https://www.cisco.com/c/en/us/support/web/tsd-cisco-worldwide-contacts.html"]
+
+Customers should have the product serial number available and be prepared to provide the URL of this advisory as evidence of entitlement to a free upgrade.
+  Fixed Releases
+
+To help ensure a complete upgrade solution, consider that this advisory is part of a collection that includes the following advisories:
+
+cisco-sa-20181017-wlc-gui-privesc ["https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20181017-wlc-gui-privesc"]: Cisco Wireless LAN Controller Software GUI Privilege Escalation Vulnerability
+cisco-sa-20181017-ap-ft-dos ["https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20181017-ap-ft-dos"]: Cisco IOS Access Points Software 802.11r Fast Transition Denial of Service Vulnerability
+cisco-sa-20181017-wlc-capwap-memory-leak ["https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20181017-wlc-capwap-memory-leak"]: Cisco Wireless LAN Controller Software Control and Provisioning of Wireless Access Points Protocol Information Disclosure Vulnerability
+cisco-sa-20181017-wlc-capwap-dos ["https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20181017-wlc-capwap-dos"]: Cisco Wireless LAN Controller Software Control and Provisioning of Wireless Access Points Protocol Denial of Service Vulnerability
+
+Customers should upgrade to an appropriate release as indicated in the table in this section. In the following table, the left column lists major releases of Cisco software, and the center column indicates the first minor release that includes the fix for this vulnerability. The right column indicates which release is recommended to address this vulnerability.
+
+
+                                Cisco Wireless LAN Controller Major Software Release              First Fixed Release for This Vulnerability              Recommended Release for This Vulnerability                                              Prior to 8.0
+              8.2.170.0              8.2.170.0                                   8.0              8.2.170.0              8.2.170.0
+                                  8.1              8.2.170.0              8.2.170.0
+                                  8.2              8.2.170.0
+              8.2.170.0
+                                  8.3              Available from TAC1
+              Available from TAC1
+                                  8.4              8.5.131.0              8.5.135.0
+                                  8.5              8.5.131.0
+              8.5.135.0
+                                  8.6              8.7.102.0
+              8.7.106.0
+                                  8.7              8.7.102.0
+              8.7.106.0                                  8.8              Not vulnerable
+              Not vulnerable
+1 The 8.3 Maintenance Release 4 escalation image is available from Cisco TAC upon request.</cvrf:Note>
+    <cvrf:Note Title="Vulnerability Policy" Type="General" Ordinal="6">To learn about Cisco security vulnerability disclosure policies and publications, see the Security Vulnerability Policy ["http://www.cisco.com/web/about/security/psirt/security_vulnerability_policy.html"]. This document also contains instructions for obtaining fixed software and receiving security vulnerability information from Cisco.</cvrf:Note>
+    <cvrf:Note Title="Exploitation and Public Announcements" Type="General" Ordinal="7">The Cisco Product Security Incident Response Team (PSIRT) is not aware of any public announcements or malicious use of the vulnerability that is described in this advisory.</cvrf:Note>
+    <cvrf:Note Title="Source" Type="General" Ordinal="8">This vulnerability was found during internal security testing.</cvrf:Note>
+    <cvrf:Note Title="Legal Disclaimer" Type="Legal Disclaimer" Ordinal="9">THIS DOCUMENT IS PROVIDED ON AN "AS IS" BASIS AND DOES NOT IMPLY ANY KIND OF GUARANTEE OR WARRANTY, INCLUDING THE WARRANTIES OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR USE. YOUR USE OF THE INFORMATION ON THE DOCUMENT OR MATERIALS LINKED FROM THE DOCUMENT IS AT YOUR OWN RISK. CISCO RESERVES THE RIGHT TO CHANGE OR UPDATE THIS DOCUMENT AT ANY TIME.
+
+A standalone copy or paraphrase of the text of this document that omits the distribution URL is an uncontrolled copy and may lack important information or contain factual errors. The information in this document is intended for end users of Cisco products.</cvrf:Note>
+  </cvrf:DocumentNotes>
+  <cvrf:DocumentReferences>
+    <cvrf:Reference Type="Self">
+      <cvrf:URL>https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20181017-wlc-gui-privesc</cvrf:URL>
+      <cvrf:Description>Cisco Wireless LAN Controller Software GUI Privilege Escalation Vulnerability</cvrf:Description>
+    </cvrf:Reference>
+    <cvrf:Reference>
+      <cvrf:URL>http://tools.cisco.com/security/center/viewErp.x?alertId=ERP-70108</cvrf:URL>
+      <cvrf:Description>Cisco Event Response: October 2018 Cisco Wireless LAN Controller Security Advisory Collection</cvrf:Description>
+    </cvrf:Reference>
+  </cvrf:DocumentReferences>
+  <ProductTree xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/prod">
+    <Branch Name="Cisco" Type="Vendor">
+      <Branch Name="Cisco Wireless LAN Controller (WLC)" Type="Product Name">
+        <FullProductName ProductID="CVRFPID-7368">Cisco Wireless LAN Controller (WLC) </FullProductName>
+      </Branch>
+    </Branch>
+  </ProductTree>
+  <Vulnerability Ordinal="1" xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln">
+    <Title>Cisco Wireless LAN Controller Software GUI Privilege Escalation Vulnerability</Title>
+    <ID SystemName="Cisco Bug ID">CSCvh65876</ID>
+    <Notes>
+      <Note Title="Summary" Type="Summary" Ordinal="1">A vulnerability in TACACS authentication with Cisco Wireless LAN Controller (WLC) Software could allow an authenticated, local attacker to perform certain operations within the GUI that are not normally available to that user on the CLI.
+
+The vulnerability is due to incorrect parsing of a specific TACACS attribute received in the TACACS response from the remote TACACS server. An attacker could exploit this vulnerability by authenticating via TACACS to the GUI on the affected device. A successful exploit could allow an attacker to create local user accounts with administrative privileges on an affected WLC and execute other commands that are not allowed from the CLI and should be prohibited.
+</Note>
+      <Note Title="Cisco Bug IDs" Type="Other" Ordinal="2">CSCvh65876</Note>
+    </Notes>
+    <CVE>CVE-2018-0417</CVE>
+    <ProductStatuses>
+      <Status Type="Known Affected">
+        <ProductID>CVRFPID-7368</ProductID>
+      </Status>
+    </ProductStatuses>
+    <CVSSScoreSets>
+      <ScoreSetV3>
+        <BaseScoreV3>7.5</BaseScoreV3>
+        <VectorV3>CVSS:3.0/AV:N/AC:H/PR:L/UI:N/S:U/C:H/I:H/A:H</VectorV3>
+      </ScoreSetV3>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Workaround">
+        <Description>There are no workarounds that address this vulnerability. As a mitigation, customers may choose to implement access control lists (ACLs) to filter or restrict management access on a configured device.</Description>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference Type="Self">
+        <URL>https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20181017-wlc-gui-privesc</URL>
+        <Description>Cisco Wireless LAN Controller Software GUI Privilege Escalation Vulnerability</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+</cvrf:cvrfdoc>

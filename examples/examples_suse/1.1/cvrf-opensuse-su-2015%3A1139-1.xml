@@ -1,0 +1,455 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cvrfdoc xmlns="http://www.icasi.org/CVRF/schema/cvrf/1.1" xmlns:cvrf="http://www.icasi.org/CVRF/schema/cvrf/1.1">
+  <DocumentTitle xml:lang="en">Security update for openssl</DocumentTitle>
+  <DocumentType>SUSE Patch</DocumentType>
+  <DocumentPublisher Type="Vendor">
+    <ContactDetails>security@suse.de</ContactDetails>
+    <IssuingAuthority>SUSE Security Team</IssuingAuthority>
+  </DocumentPublisher>
+  <DocumentTracking>
+    <Identification>
+      <ID>openSUSE-SU-2015:1139-1</ID>
+    </Identification>
+    <Status>Final</Status>
+    <Version>1</Version>
+    <RevisionHistory>
+      <Revision>
+        <Number>1</Number>
+        <Date>2015-06-17T13:48:21Z</Date>
+        <Description>current</Description>
+      </Revision>
+    </RevisionHistory>
+    <InitialReleaseDate>2015-06-17T13:48:21Z</InitialReleaseDate>
+    <CurrentReleaseDate>2015-06-17T13:48:21Z</CurrentReleaseDate>
+    <Generator>
+      <Engine>cve-database/bin/generate-cvrf.pl</Engine>
+      <Date>2017-02-24T01:00:00Z</Date>
+    </Generator>
+  </DocumentTracking>
+  <DocumentNotes>
+    <Note Title="Topic" Type="Summary" Ordinal="1" xml:lang="en">Security update for openssl</Note>
+    <Note Title="Details" Type="General" Ordinal="2" xml:lang="en">openssl was updated to fix six security issues.
+
+The following vulnerabilities were fixed:
+
+* CVE-2015-4000: The Logjam Attack / weakdh.org. Rject connections with DH parameters shorter than 768 bits, generates 2048-bit DH parameters by default. (boo#931698)
+* CVE-2015-1788: Malformed ECParameters causes infinite loop (boo#934487)
+* CVE-2015-1789: Exploitable out-of-bounds read in X509_cmp_time (boo#934489)
+* CVE-2015-1790: PKCS7 crash with missing EnvelopedContent (boo#934491)
+* CVE-2015-1792: CMS verify infinite loop with unknown hash function (boo#934493)
+* CVE-2015-1791: race condition in NewSessionTicket (boo#933911)
+* CVE-2015-3216: Crash in ssleay_rand_bytes due to locking regression (boo#933898)</Note>
+    <Note Title="Terms of Use" Type="Legal Disclaimer" Ordinal="3" xml:lang="en">The CVRF data is provided by SUSE under the Creative Commons License 4.0 with Attribution for Non-Commercial usage (CC-BY-NC-4.0).</Note>
+  </DocumentNotes>
+  <DocumentDistribution xml:lang="en">Copyright SUSE LLC under the Creative Commons License 4.0 with Attribution for Non-Commercial usage (CC-BY-NC-4.0)</DocumentDistribution>
+  <DocumentReferences>
+    <Reference Type="Self">
+      <URL>https://lists.opensuse.org/opensuse-security-announce/2015-06/msg00023.html</URL>
+      <Description>E-Mail link for openSUSE-SU-2015:1139-1</Description>
+    </Reference>
+    <Reference Type="Self">
+      <URL>https://www.suse.com/support/security/rating/</URL>
+      <Description>SUSE Security Ratings</Description>
+    </Reference>
+  </DocumentReferences>
+  <ProductTree xmlns="http://www.icasi.org/CVRF/schema/prod/1.1">
+    <Branch Type="Product Version" Name="libopenssl-devel-1.0.1k-11.72.1">
+      <FullProductName ProductID="libopenssl-devel-1.0.1k-11.72.1">libopenssl-devel-1.0.1k-11.72.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libopenssl-devel-32bit-1.0.1k-11.72.1">
+      <FullProductName ProductID="libopenssl-devel-32bit-1.0.1k-11.72.1">libopenssl-devel-32bit-1.0.1k-11.72.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libopenssl1_0_0-1.0.1k-11.72.1">
+      <FullProductName ProductID="libopenssl1_0_0-1.0.1k-11.72.1">libopenssl1_0_0-1.0.1k-11.72.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libopenssl1_0_0-32bit-1.0.1k-11.72.1">
+      <FullProductName ProductID="libopenssl1_0_0-32bit-1.0.1k-11.72.1">libopenssl1_0_0-32bit-1.0.1k-11.72.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="openssl-1.0.1k-11.72.1">
+      <FullProductName ProductID="openssl-1.0.1k-11.72.1">openssl-1.0.1k-11.72.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="openssl-doc-1.0.1k-11.72.1">
+      <FullProductName ProductID="openssl-doc-1.0.1k-11.72.1">openssl-doc-1.0.1k-11.72.1</FullProductName>
+    </Branch>
+  </ProductTree>
+  <Vulnerability xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1" Ordinal="1">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">The BN_GF2m_mod_inv function in crypto/bn/bn_gf2m.c in OpenSSL before 0.9.8s, 1.0.0 before 1.0.0e, 1.0.1 before 1.0.1n, and 1.0.2 before 1.0.2b does not properly handle ECParameters structures in which the curve is over a malformed binary polynomial field, which allows remote attackers to cause a denial of service (infinite loop) via a session that uses an Elliptic Curve algorithm, as demonstrated by an attack against a server that supports client authentication.</Note>
+    </Notes>
+    <CVE>CVE-2015-1788</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed"/>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-security-announce/2015-06/msg00023.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-1788.html</URL>
+        <Description>CVE-2015-1788</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/934487</URL>
+        <Description>SUSE Bug 934487</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/936586</URL>
+        <Description>SUSE Bug 936586</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/937891</URL>
+        <Description>SUSE Bug 937891</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/938432</URL>
+        <Description>SUSE Bug 938432</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+  <Vulnerability xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1" Ordinal="2">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">The X509_cmp_time function in crypto/x509/x509_vfy.c in OpenSSL before 0.9.8zg, 1.0.0 before 1.0.0s, 1.0.1 before 1.0.1n, and 1.0.2 before 1.0.2b allows remote attackers to cause a denial of service (out-of-bounds read and application crash) via a crafted length field in ASN1_TIME data, as demonstrated by an attack against a server that supports client authentication with a custom verification callback.</Note>
+    </Notes>
+    <CVE>CVE-2015-1789</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed"/>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-security-announce/2015-06/msg00023.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-1789.html</URL>
+        <Description>CVE-2015-1789</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/934489</URL>
+        <Description>SUSE Bug 934489</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/936586</URL>
+        <Description>SUSE Bug 936586</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/937891</URL>
+        <Description>SUSE Bug 937891</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/938432</URL>
+        <Description>SUSE Bug 938432</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/951391</URL>
+        <Description>SUSE Bug 951391</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+  <Vulnerability xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1" Ordinal="3">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">The PKCS7_dataDecodefunction in crypto/pkcs7/pk7_doit.c in OpenSSL before 0.9.8zg, 1.0.0 before 1.0.0s, 1.0.1 before 1.0.1n, and 1.0.2 before 1.0.2b allows remote attackers to cause a denial of service (NULL pointer dereference and application crash) via a PKCS#7 blob that uses ASN.1 encoding and lacks inner EncryptedContent data.</Note>
+    </Notes>
+    <CVE>CVE-2015-1790</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed"/>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-security-announce/2015-06/msg00023.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-1790.html</URL>
+        <Description>CVE-2015-1790</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/934491</URL>
+        <Description>SUSE Bug 934491</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/936586</URL>
+        <Description>SUSE Bug 936586</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/938432</URL>
+        <Description>SUSE Bug 938432</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+  <Vulnerability xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1" Ordinal="4">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">Race condition in the ssl3_get_new_session_ticket function in ssl/s3_clnt.c in OpenSSL before 0.9.8zg, 1.0.0 before 1.0.0s, 1.0.1 before 1.0.1n, and 1.0.2 before 1.0.2b, when used for a multi-threaded client, allows remote attackers to cause a denial of service (double free and application crash) or possibly have unspecified other impact by providing a NewSessionTicket during an attempt to reuse a ticket that had been obtained earlier.</Note>
+    </Notes>
+    <CVE>CVE-2015-1791</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed"/>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-security-announce/2015-06/msg00023.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-1791.html</URL>
+        <Description>CVE-2015-1791</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/933911</URL>
+        <Description>SUSE Bug 933911</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/986238</URL>
+        <Description>SUSE Bug 986238</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/989464</URL>
+        <Description>SUSE Bug 989464</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+  <Vulnerability xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1" Ordinal="5">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">The do_free_upto function in crypto/cms/cms_smime.c in OpenSSL before 0.9.8zg, 1.0.0 before 1.0.0s, 1.0.1 before 1.0.1n, and 1.0.2 before 1.0.2b allows remote attackers to cause a denial of service (infinite loop) via vectors that trigger a NULL value of a BIO data structure, as demonstrated by an unrecognized X.660 OID for a hash function.</Note>
+    </Notes>
+    <CVE>CVE-2015-1792</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed"/>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-security-announce/2015-06/msg00023.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-1792.html</URL>
+        <Description>CVE-2015-1792</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/934493</URL>
+        <Description>SUSE Bug 934493</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/937891</URL>
+        <Description>SUSE Bug 937891</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/986238</URL>
+        <Description>SUSE Bug 986238</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+  <Vulnerability xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1" Ordinal="6">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">Race condition in a certain Red Hat patch to the PRNG lock implementation in the ssleay_rand_bytes function in OpenSSL, as distributed in openssl-1.0.1e-25.el7 in Red Hat Enterprise Linux (RHEL) 7 and other products, allows remote attackers to cause a denial of service (application crash) by establishing many TLS sessions to a multithreaded server, leading to use of a negative value for a certain length field.</Note>
+    </Notes>
+    <CVE>CVE-2015-3216</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed"/>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-security-announce/2015-06/msg00023.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-3216.html</URL>
+        <Description>CVE-2015-3216</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/933898</URL>
+        <Description>SUSE Bug 933898</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+  <Vulnerability xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1" Ordinal="7">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">The TLS protocol 1.2 and earlier, when a DHE_EXPORT ciphersuite is enabled on a server but not on a client, does not properly convey a DHE_EXPORT choice, which allows man-in-the-middle attackers to conduct cipher-downgrade attacks by rewriting a ClientHello with DHE replaced by DHE_EXPORT and then rewriting a ServerHello with DHE_EXPORT replaced by DHE, aka the "Logjam" issue.</Note>
+    </Notes>
+    <CVE>CVE-2015-4000</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed"/>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>important</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSet>
+        <BaseScore>7.3</BaseScore>
+        <Vector>AV:N/AC:H/Au:N/C:C/I:C/A:P</Vector>
+      </ScoreSet>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-security-announce/2015-06/msg00023.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-4000.html</URL>
+        <Description>CVE-2015-4000</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/1074631</URL>
+        <Description>SUSE Bug 1074631</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/931600</URL>
+        <Description>SUSE Bug 931600</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/931698</URL>
+        <Description>SUSE Bug 931698</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/931723</URL>
+        <Description>SUSE Bug 931723</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/931845</URL>
+        <Description>SUSE Bug 931845</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/932026</URL>
+        <Description>SUSE Bug 932026</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/932483</URL>
+        <Description>SUSE Bug 932483</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/934789</URL>
+        <Description>SUSE Bug 934789</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/935033</URL>
+        <Description>SUSE Bug 935033</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/935540</URL>
+        <Description>SUSE Bug 935540</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/935979</URL>
+        <Description>SUSE Bug 935979</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/936168</URL>
+        <Description>SUSE Bug 936168</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/937202</URL>
+        <Description>SUSE Bug 937202</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/937724</URL>
+        <Description>SUSE Bug 937724</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/937766</URL>
+        <Description>SUSE Bug 937766</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/938248</URL>
+        <Description>SUSE Bug 938248</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/938432</URL>
+        <Description>SUSE Bug 938432</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/938895</URL>
+        <Description>SUSE Bug 938895</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/938905</URL>
+        <Description>SUSE Bug 938905</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/938906</URL>
+        <Description>SUSE Bug 938906</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/938913</URL>
+        <Description>SUSE Bug 938913</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/938945</URL>
+        <Description>SUSE Bug 938945</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/941696</URL>
+        <Description>SUSE Bug 941696</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/943664</URL>
+        <Description>SUSE Bug 943664</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/944729</URL>
+        <Description>SUSE Bug 944729</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/945582</URL>
+        <Description>SUSE Bug 945582</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/955589</URL>
+        <Description>SUSE Bug 955589</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/980406</URL>
+        <Description>SUSE Bug 980406</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/990592</URL>
+        <Description>SUSE Bug 990592</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+</cvrfdoc>

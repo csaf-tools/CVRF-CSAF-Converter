@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cvrf:cvrfdoc xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:cvrf-common="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/common" xmlns:cvrf="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/cvrf">
+  <cvrf:DocumentTitle>Cisco IOS Software for Cisco Industrial Routers Virtual Device Server CLI Command Injection Vulnerability</cvrf:DocumentTitle>
+  <cvrf:DocumentType>Cisco Security Advisory</cvrf:DocumentType>
+  <cvrf:DocumentPublisher Type="Vendor">
+    <cvrf:ContactDetails>Emergency Support:
++1 877 228 7302 (toll-free within North America)
++1 408 525 6532 (International direct-dial)
+Non-emergency Support:
+Email: psirt@cisco.com
+Support requests that are received via e-mail are typically acknowledged within 48 hours.</cvrf:ContactDetails>
+    <cvrf:IssuingAuthority>Cisco product security incident response is the responsibility of the Cisco Product Security Incident Response Team (PSIRT). The Cisco PSIRT is a dedicated, global team that manages the receipt, investigation, and public reporting of security vulnerability information that is related to Cisco products and networks. The on-call Cisco PSIRT works 24x7 with Cisco customers, independent security researchers, consultants, industry organizations, and other vendors to identify possible security issues with Cisco products and networks.
+More information can be found in Cisco Security Vulnerability Policy available at http://www.cisco.com/web/about/security/psirt/security_vulnerability_policy.html</cvrf:IssuingAuthority>
+  </cvrf:DocumentPublisher>
+  <cvrf:DocumentTracking>
+    <cvrf:Identification>
+      <cvrf:ID>cisco-sa-ios-iot-vds-cmd-inj-VfJtqGhE</cvrf:ID>
+    </cvrf:Identification>
+    <cvrf:Status>Final</cvrf:Status>
+    <cvrf:Version>1.0</cvrf:Version>
+    <cvrf:RevisionHistory>
+      <cvrf:Revision>
+        <cvrf:Number>1.0</cvrf:Number>
+        <cvrf:Date>2020-04-30T18:00:59</cvrf:Date>
+        <cvrf:Description>Initial public release.</cvrf:Description>
+      </cvrf:Revision>
+    </cvrf:RevisionHistory>
+    <cvrf:InitialReleaseDate>2020-06-03T16:00:00</cvrf:InitialReleaseDate>
+    <cvrf:CurrentReleaseDate>2020-06-03T16:00:00</cvrf:CurrentReleaseDate>
+    <cvrf:Generator>
+      <cvrf:Engine>TVCE</cvrf:Engine>
+    </cvrf:Generator>
+  </cvrf:DocumentTracking>
+  <cvrf:DocumentNotes>
+    <cvrf:Note Title="Summary" Type="Summary" Ordinal="1">A vulnerability in the CLI parsers of Cisco IOS Software for Cisco 809 and 829 Industrial Integrated Services Routers (Industrial ISRs) and Cisco 1000 Series Connected Grid Routers (CGR1000) could allow an authenticated, local attacker to execute arbitrary shell commands on the Virtual Device Server (VDS) of an affected device. The attacker must have valid user credentials at privilege level 15.
+
+The vulnerability is due to insufficient validation of arguments that are passed to specific VDS-related CLI commands. An attacker could exploit this vulnerability by authenticating to the targeted device and including malicious input as the argument of an affected command. A successful exploit could allow the attacker to execute arbitrary commands in the context of the Linux shell of VDS with the privileges of the root user.
+
+
+Cisco has released software updates that address this vulnerability. There are no workarounds that address this vulnerability.
+
+This advisory is available at the following link:
+https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-ios-iot-vds-cmd-inj-VfJtqGhE ["https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-ios-iot-vds-cmd-inj-VfJtqGhE"]
+
+
+This advisory is part of the June 3, 2020, release of the Cisco IOS and IOS XE Software Security Advisory Bundled Publication, which includes 23 Cisco Security Advisories that describe 25 vulnerabilities. For a complete list of the advisories and links to them, see Cisco Event Response: June 2020 Semiannual Cisco IOS and IOS XE Software Security Advisory Bundled Publication [" http://tools.cisco.com/security/center/viewErp.x?alertId=ERP-73388"].</cvrf:Note>
+    <cvrf:Note Title="Vulnerable Products" Type="General" Ordinal="2">This vulnerability affects the following Cisco products if they are running a vulnerable release of Cisco IOS Software:
+
+Cisco 809 and 829 Industrial ISRs
+CGR1000
+
+For information about which Cisco software releases are vulnerable, see the Fixed Software ["#fs"] section of this advisory.</cvrf:Note>
+    <cvrf:Note Title="Products Confirmed Not Vulnerable" Type="General" Ordinal="3">Only products listed in the Vulnerable Products ["#vp"] section of this advisory are known to be affected by this vulnerability.
+
+Cisco has confirmed that this vulnerability does not affect the following Cisco products:
+
+800 Series ISRs
+807 Industrial ISRs
+IOS XE Software
+IOS XR Software
+NX-OS Software</cvrf:Note>
+    <cvrf:Note Title="Details" Type="General" Ordinal="4">Cisco 800 Series Industrial ISRs and Cisco CGR1000 devices are designed on a hypervisor architecture, where Cisco IOS Software, a Guest Operating System (Guest OS), and VDS run as separate virtual machines (VMs). Cisco IOS Software and Guest OS need to access some shared devices. Examples are embedded multimedia card eMMC flash memory, USB ports, and the console. VDS coordinates access to the shared devices and provides communication channels between VMs over emulated Ethernet interfaces.
+
+Exploitation of this vulnerability could allow the attacker to gain full control of VDS and therefore compromise the system completely, including compromise of the Cisco IOS Software VM and the Guest OS VM.</cvrf:Note>
+    <cvrf:Note Title="Workarounds" Type="General" Ordinal="5">There are no workarounds that address this vulnerability.</cvrf:Note>
+    <cvrf:Note Title="Fixed Software" Type="General" Ordinal="6">Cisco has released free software updates that address the vulnerability described in this advisory. Customers may only install and expect support for software versions and feature sets for which they have purchased a license. By installing, downloading, accessing, or otherwise using such software upgrades, customers agree to follow the terms of the Cisco software license:
+https://www.cisco.com/c/en/us/products/end-user-license-agreement.html ["https://www.cisco.com/c/en/us/products/end-user-license-agreement.html"]
+
+Additionally, customers may only download software for which they have a valid license, procured from Cisco directly, or through a Cisco authorized reseller or partner. In most cases this will be a maintenance upgrade to software that was previously purchased. Free security software updates do not entitle customers to a new software license, additional software feature sets, or major revision upgrades.
+
+When considering software upgrades ["https://tools.cisco.com/security/center/resources/security_vulnerability_policy.html#fixes"], customers are advised to regularly consult the advisories for Cisco products, which are available from the Cisco Security Advisories and Alerts page ["https://www.cisco.com/go/psirt"], to determine exposure and a complete upgrade solution.
+
+In all cases, customers should ensure that the devices to be upgraded contain sufficient memory and confirm that current hardware and software configurations will continue to be supported properly by the new release. If the information is not clear, customers are advised to contact the Cisco Technical Assistance Center (TAC) or their contracted maintenance providers.
+  Customers Without Service Contracts
+Customers who purchase directly from Cisco but do not hold a Cisco service contract and customers who make purchases through third-party vendors but are unsuccessful in obtaining fixed software through their point of sale should obtain upgrades by contacting the Cisco TAC:
+https://www.cisco.com/c/en/us/support/web/tsd-cisco-worldwide-contacts.html ["https://www.cisco.com/c/en/us/support/web/tsd-cisco-worldwide-contacts.html"]
+
+Customers should have the product serial number available and be prepared to provide the URL of this advisory as evidence of entitlement to a free upgrade.
+
+
+                        Cisco IOS Software
+To help customers determine their exposure to vulnerabilities in Cisco IOS Software, Cisco provides the Cisco Software Checker ["https://tools.cisco.com/security/center/softwarechecker.x"] to identify any Cisco Security Advisories that impact a specific Cisco IOS Software release and the earliest release that fixes the vulnerabilities described in each advisory (“First Fixed”). If applicable, the tool also returns the earliest release that fixes all the vulnerabilities described in all the advisories identified (“Combined First Fixed”).
+
+Customers can use the Cisco Software Checker ["https://tools.cisco.com/security/center/softwarechecker.x"] to search advisories in the following ways:
+
+Choose the software and one or more releases
+Upload a .txt file that includes a list of specific releases
+Enter the output of the show version command
+
+After initiating a search, customers can customize the search to include all Cisco Security Advisories, a specific advisory, or all advisories in the most recent bundled publication.
+
+Customers can use the following form to determine whether a release is affected by any Cisco Security Advisory by entering a Cisco IOS Software release—for example, 15.1(4)M2:
+
+
+
+By default, the Cisco Software Checker ["https://tools.cisco.com/security/center/softwarechecker.x"] includes results only for vulnerabilities that have a Critical or High Security Impact Rating (SIR). To include results for Medium SIR vulnerabilities, customers can use the Cisco Software Checker on Cisco.com and check the Medium check box in the drop-down list under Impact Rating when customizing a search.
+        Fixed Releases for All VDS-Related Vulnerabilities in This Bundle of Advisories
+This release of the Cisco IOS and IOS XE Software Security Advisory Bundled Publication contains multiple advisories for vulnerabilities that affect VDS. To help ensure a complete upgrade solution for these vulnerabilities, administrators are advised to upgrade affected devices to a fixed software release that addresses all VDS-related advisories in this bundled publication:
+
+cisco-sa-ios-iot-udp-vds-inj-f2D5Jzrt ["https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-ios-iot-udp-vds-inj-f2D5Jzrt"]
+cisco-sa-ios-iot-vds-cmd-inj-VfJtqGhE ["https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-ios-iot-vds-cmd-inj-VfJtqGhE"]
+cisco-sa-ios-iot-vds-cred-uPMp9zbY ["https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-ios-iot-vds-cred-uPMp9zbY"]
+cisco-sa-ios-ir800-img-verif-wHhLYHjK ["https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-ios-ir800-img-verif-wHhLYHjK"]</cvrf:Note>
+    <cvrf:Note Title="Vulnerability Policy" Type="General" Ordinal="7">To learn about Cisco security vulnerability disclosure policies and publications, see the Security Vulnerability Policy ["http://www.cisco.com/web/about/security/psirt/security_vulnerability_policy.html"]. This document also contains instructions for obtaining fixed software and receiving security vulnerability information from Cisco.</cvrf:Note>
+    <cvrf:Note Title="Exploitation and Public Announcements" Type="General" Ordinal="8">The Cisco Product Security Incident Response Team (PSIRT) is not aware of any public announcements or malicious use of the vulnerability that is described in this advisory.</cvrf:Note>
+    <cvrf:Note Title="Source" Type="General" Ordinal="9">This vulnerability was found during internal security testing by X.B. of the Cisco Advanced Security Initiatives Group (ASIG) and E.I. of Cisco PSIRT.</cvrf:Note>
+    <cvrf:Note Title="Legal Disclaimer" Type="Legal Disclaimer" Ordinal="10">THIS DOCUMENT IS PROVIDED ON AN "AS IS" BASIS AND DOES NOT IMPLY ANY KIND OF GUARANTEE OR WARRANTY, INCLUDING THE WARRANTIES OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR USE. YOUR USE OF THE INFORMATION ON THE DOCUMENT OR MATERIALS LINKED FROM THE DOCUMENT IS AT YOUR OWN RISK. CISCO RESERVES THE RIGHT TO CHANGE OR UPDATE THIS DOCUMENT AT ANY TIME.
+
+A standalone copy or paraphrase of the text of this document that omits the distribution URL is an uncontrolled copy and may lack important information or contain factual errors. The information in this document is intended for end users of Cisco products.</cvrf:Note>
+  </cvrf:DocumentNotes>
+  <cvrf:DocumentReferences>
+    <cvrf:Reference Type="Self">
+      <cvrf:URL>https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-ios-iot-vds-cmd-inj-VfJtqGhE</cvrf:URL>
+      <cvrf:Description>Cisco IOS Software for Cisco Industrial Routers Virtual Device Server CLI Command Injection Vulnerability</cvrf:Description>
+    </cvrf:Reference>
+    <cvrf:Reference>
+      <cvrf:URL>http://tools.cisco.com/security/center/viewErp.x?alertId=ERP-73388</cvrf:URL>
+      <cvrf:Description>Cisco Event Response: June 2020 Semiannual Cisco IOS and IOS XE Software Security Advisory Bundled Publication</cvrf:Description>
+    </cvrf:Reference>
+  </cvrf:DocumentReferences>
+  <ProductTree xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/prod">
+    <Branch Name="Cisco" Type="Vendor">
+      <Branch Name="IOS" Type="Product Name">
+        <Branch Name="12.2EZ" Type="Product Version">
+          <Branch Name="12.2(60)EZ16" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-262536">Cisco IOS 12.2(60)EZ16</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="15.0SG" Type="Product Version">
+          <Branch Name="15.0(2)SG11a" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-262335">Cisco IOS 15.0(2)SG11a</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="15.3JAA" Type="Product Version">
+          <Branch Name="15.3(3)JAA1" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-230594">Cisco IOS 15.3(3)JAA1</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="15.9M" Type="Product Version">
+          <Branch Name="15.9(3)M" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-252162">Cisco IOS 15.9(3)M</FullProductName>
+          </Branch>
+          <Branch Name="15.9(3)M0a" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-271796">Cisco IOS 15.9(3)M0a</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="15.1SVS" Type="Product Version">
+          <Branch Name="15.1(3)SVS" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-277232">Cisco IOS 15.1(3)SVS</FullProductName>
+          </Branch>
+        </Branch>
+      </Branch>
+    </Branch>
+  </ProductTree>
+  <Vulnerability Ordinal="1" xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln">
+    <Title>vuln-CVE-2020-3210</Title>
+    <ID SystemName="Cisco Bug ID">CSCvq87451</ID>
+    <Notes>
+      <Note Title="Cisco Bug IDs" Type="Other" Ordinal="1">CSCvq87451,CSCvr18056</Note>
+    </Notes>
+    <CVE>CVE-2020-3210</CVE>
+    <ProductStatuses>
+      <Status Type="Known Affected">
+        <ProductID>CVRFPID-230594</ProductID>
+        <ProductID>CVRFPID-252162</ProductID>
+        <ProductID>CVRFPID-262335</ProductID>
+        <ProductID>CVRFPID-262536</ProductID>
+        <ProductID>CVRFPID-271796</ProductID>
+        <ProductID>CVRFPID-277232</ProductID>
+      </Status>
+    </ProductStatuses>
+    <CVSSScoreSets>
+      <ScoreSetV3>
+        <BaseScoreV3>6.7</BaseScoreV3>
+        <VectorV3>CVSS:3.0/AV:L/AC:L/PR:H/UI:N/S:U/C:H/I:H/A:H</VectorV3>
+      </ScoreSetV3>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Workaround">
+        <Description>There are no workarounds that address this vulnerability.</Description>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference Type="Self">
+        <URL>https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-ios-iot-vds-cmd-inj-VfJtqGhE</URL>
+        <Description>Cisco IOS Software for Cisco Industrial Routers Virtual Device Server CLI Command Injection Vulnerability</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+</cvrf:cvrfdoc>

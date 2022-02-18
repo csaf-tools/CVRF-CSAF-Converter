@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cvrfdoc xmlns="http://www.icasi.org/CVRF/schema/cvrf/1.1" xmlns:cvrf="http://www.icasi.org/CVRF/schema/cvrf/1.1">
+  <DocumentTitle xml:lang="en">Red Hat Security Advisory: OpenShift Container Platform 3.11.z security update</DocumentTitle>
+  <DocumentType>Security Advisory</DocumentType>
+  <DocumentPublisher Type="Vendor">
+    <ContactDetails>secalert@redhat.com</ContactDetails>
+    <IssuingAuthority>Red Hat Product Security</IssuingAuthority>
+  </DocumentPublisher>
+  <DocumentTracking>
+    <Identification><ID>RHSA-2021:5094</ID></Identification>
+    <Status>Final</Status>
+    <Version>1</Version>
+    <RevisionHistory>
+       <Revision>
+         <Number>1</Number>
+         <Date>2021-12-21T23:56:00Z</Date>
+         <Description>Current version</Description>
+       </Revision>
+    </RevisionHistory>
+    <InitialReleaseDate>2021-12-14T05:50:00Z</InitialReleaseDate>
+    <CurrentReleaseDate>2021-12-21T23:56:00Z</CurrentReleaseDate>
+    <Generator>
+      <Engine>Red Hat SDEngine 3.3.0</Engine>
+      <Date>2021-12-24T23:29:00Z</Date>
+    </Generator>
+  </DocumentTracking>
+  <DocumentNotes>
+    <Note Title="Topic" Type="Summary" Ordinal="1" xml:lang="en">
+Red Hat OpenShift Container Platform release 3.11.z is now available with
+updates to packages and images that fix several bugs and add enhancements.
+
+Red Hat Product Security has rated this update as having a security impact
+of Moderate. A Common Vulnerability Scoring System (CVSS) base score, which
+gives a detailed severity rating, is available for each vulnerability from
+the CVE link(s) in the References section.
+    </Note>
+    <Note Title="Details" Type="General" Ordinal="2" xml:lang="en">
+Red Hat OpenShift Container Platform is Red Hat's cloud computing
+Kubernetes application platform solution designed for on-premise or private
+cloud deployments.
+
+Security Fix(es):
+
+* log4j-core: Remote code execution in Log4j 2.x when logs contain an
+attacker-controlled string value (CVE-2021-44228)
+
+For more details about the security issue(s), including the impact, a CVSS
+score, acknowledgments, and other related information, refer to the CVE
+page(s)
+listed in the References section.
+    </Note>
+    <Note Title="Terms of Use" Ordinal="3" Type="Legal Disclaimer" xml:lang="en">This content is licensed under the Creative Commons Attribution 4.0 International License (https://creativecommons.org/licenses/by/4.0/). If you distribute this content, or a modified version of it, you must provide attribution to Red Hat Inc. and provide a link to the original.</Note>
+  </DocumentNotes>
+  <DocumentDistribution xml:lang="en">Copyright © 2021 Red Hat, Inc. All rights reserved.</DocumentDistribution>
+  <AggregateSeverity Namespace="https://access.redhat.com/security/updates/classification/">Moderate</AggregateSeverity>
+  <DocumentReferences>
+    <Reference Type="Self">
+       <URL>https://access.redhat.com/errata/RHSA-2021:5094</URL>
+       <Description>https://access.redhat.com/errata/RHSA-2021:5094</Description>
+    </Reference>
+    <Reference Type="External">
+       <URL>https://access.redhat.com/security/updates/classification/#moderate</URL>
+       <Description>https://access.redhat.com/security/updates/classification/#moderate</Description>
+    </Reference>
+    <Reference Type="External">
+       <URL>https://access.redhat.com/security/vulnerabilities/RHSB-2021-009</URL>
+       <Description>https://access.redhat.com/security/vulnerabilities/RHSB-2021-009</Description>
+    </Reference>
+  </DocumentReferences>
+  <ProductTree xmlns="http://www.icasi.org/CVRF/schema/prod/1.1">
+    <Branch Type="Product Family" Name="Red Hat OpenShift Enterprise">
+      <Branch Type="Product Name" Name="Red Hat OpenShift Container Platform 3.11">
+        <FullProductName ProductID="7Server-RH7-RHOSE-3.11" CPE="cpe:/a:redhat:openshift:3.11::el7">Red Hat OpenShift Container Platform 3.11</FullProductName>
+      </Branch>
+    </Branch>
+    <Branch Type="Product Version" Name="openshift3/ose-logging-elasticsearch5:v3.11.570-2.gd119820">
+      <FullProductName ProductID="openshift3/ose-logging-elasticsearch5:v3.11.570-2.gd119820" CPE="cpe:/a:redhat:openshift:3.11::el7">openshift3/ose-logging-elasticsearch5:v3.11.570-2.gd119820</FullProductName>
+    </Branch>
+    <Relationship ProductReference="logging-elasticsearch5-container-v3.11.570-2.gd119820" RelationType="Default Component Of" RelatesToProductReference="7Server-RH7-RHOSE-3.11">
+      <FullProductName ProductID="7Server-RH7-RHOSE-3.11:logging-elasticsearch5-container-v3.11.570-2.gd119820" CPE="cpe:/a:redhat:openshift:3.11::el7">logging-elasticsearch5-container-v3.11.570-2.gd119820 as a component of Red Hat OpenShift Container Platform 3.11</FullProductName>
+    </Relationship>
+  </ProductTree>
+
+  <Vulnerability Ordinal="1" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">log4j-core: Remote code execution in Log4j 2.x when logs contain an attacker-controlled string value</Note></Notes>
+    <DiscoveryDate>2021-12-10T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-12-10T02:01:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-44228</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>7Server-RH7-RHOSE-3.11:logging-elasticsearch5-container-v3.11.570-2.gd119820</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Critical</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+See the following documentation, which will be updated shortly for release
+3.11.z, for important instructions on how to upgrade your cluster and fully
+apply this asynchronous errata update:
+
+https://docs.openshift.com/container-platform/3.11/release_notes/ocp_3_11_release_notes.html
+
+This update is available via the Red Hat Network. Details on how to use the
+Red Hat Network to apply this update are available at
+https://access.redhat.com/articles/11258 .
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:5094</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://github.com/advisories/GHSA-jfh8-c2jp-5v3q</URL>
+        <Description>https://github.com/advisories/GHSA-jfh8-c2jp-5v3q</Description>
+      </Reference>
+      <Reference>
+        <URL>https://logging.apache.org/log4j/2.x/security.html</URL>
+        <Description>https://logging.apache.org/log4j/2.x/security.html</Description>
+      </Reference>
+      <Reference>
+        <URL>https://www.lunasec.io/docs/blog/log4j-zero-day/</URL>
+        <Description>https://www.lunasec.io/docs/blog/log4j-zero-day/</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-44228</URL>
+        <Description>CVE-2021-44228</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=2030932</URL>
+        <Description>bz#2030932: CVE-2021-44228 log4j-core: Remote code execution in Log4j 2.x when logs contain an attacker-controlled string value</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="2" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">log4j-core: DoS in log4j 2.x with thread context message pattern and context lookup pattern (incomplete fix for CVE-2021-44228)</Note></Notes>
+    <DiscoveryDate>2021-12-14T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-12-14T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-45046</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>7Server-RH7-RHOSE-3.11:logging-elasticsearch5-container-v3.11.570-2.gd119820</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+See the following documentation, which will be updated shortly for release
+3.11.z, for important instructions on how to upgrade your cluster and fully
+apply this asynchronous errata update:
+
+https://docs.openshift.com/container-platform/3.11/release_notes/ocp_3_11_release_notes.html
+
+This update is available via the Red Hat Network. Details on how to use the
+Red Hat Network to apply this update are available at
+https://access.redhat.com/articles/11258 .
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:5094</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-44228</URL>
+        <Description>https://access.redhat.com/security/cve/CVE-2021-44228</Description>
+      </Reference>
+      <Reference>
+        <URL>https://logging.apache.org/log4j/2.x/security.html</URL>
+        <Description>https://logging.apache.org/log4j/2.x/security.html</Description>
+      </Reference>
+      <Reference>
+        <URL>https://www.cve.org/CVERecord?id=CVE-2021-45046</URL>
+        <Description>https://www.cve.org/CVERecord?id=CVE-2021-45046</Description>
+      </Reference>
+      <Reference>
+        <URL>https://www.openwall.com/lists/oss-security/2021/12/14/4</URL>
+        <Description>https://www.openwall.com/lists/oss-security/2021/12/14/4</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-45046</URL>
+        <Description>CVE-2021-45046</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=2032580</URL>
+        <Description>bz#2032580: CVE-2021-45046 log4j-core: DoS in log4j 2.x with thread context message pattern and context lookup pattern (incomplete fix for CVE-2021-44228)</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+</cvrfdoc>

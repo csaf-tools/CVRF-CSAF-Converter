@@ -1,0 +1,1453 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cvrf:cvrfdoc xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:cvrf-common="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/common" xmlns:cvrf="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/cvrf">
+  <cvrf:DocumentTitle>Cisco Nexus 9000 Series Fabric Switches ACI Mode Arbitrary File Read Vulnerability</cvrf:DocumentTitle>
+  <cvrf:DocumentType>Cisco Security Advisory</cvrf:DocumentType>
+  <cvrf:DocumentPublisher Type="Vendor">
+    <cvrf:ContactDetails>Emergency Support:
++1 877 228 7302 (toll-free within North America)
++1 408 525 6532 (International direct-dial)
+Non-emergency Support:
+Email: psirt@cisco.com
+Support requests that are received via e-mail are typically acknowledged within 48 hours.</cvrf:ContactDetails>
+    <cvrf:IssuingAuthority>Cisco product security incident response is the responsibility of the Cisco Product Security Incident Response Team (PSIRT). The Cisco PSIRT is a dedicated, global team that manages the receipt, investigation, and public reporting of security vulnerability information that is related to Cisco products and networks. The on-call Cisco PSIRT works 24x7 with Cisco customers, independent security researchers, consultants, industry organizations, and other vendors to identify possible security issues with Cisco products and networks.
+More information can be found in Cisco Security Vulnerability Policy available at http://www.cisco.com/web/about/security/psirt/security_vulnerability_policy.html</cvrf:IssuingAuthority>
+  </cvrf:DocumentPublisher>
+  <cvrf:DocumentTracking>
+    <cvrf:Identification>
+      <cvrf:ID>cisco-sa-naci-afr-UtjfO2D7</cvrf:ID>
+    </cvrf:Identification>
+    <cvrf:Status>Final</cvrf:Status>
+    <cvrf:Version>1.0</cvrf:Version>
+    <cvrf:RevisionHistory>
+      <cvrf:Revision>
+        <cvrf:Number>1.0</cvrf:Number>
+        <cvrf:Date>2021-08-25T15:49:18</cvrf:Date>
+        <cvrf:Description>Initial public release.</cvrf:Description>
+      </cvrf:Revision>
+    </cvrf:RevisionHistory>
+    <cvrf:InitialReleaseDate>2021-08-25T16:00:00</cvrf:InitialReleaseDate>
+    <cvrf:CurrentReleaseDate>2021-08-25T16:00:00</cvrf:CurrentReleaseDate>
+    <cvrf:Generator>
+      <cvrf:Engine>TVCE</cvrf:Engine>
+    </cvrf:Generator>
+  </cvrf:DocumentTracking>
+  <cvrf:DocumentNotes>
+    <cvrf:Note Title="Summary" Type="Summary" Ordinal="1">A vulnerability in the fabric infrastructure file system access control of Cisco Nexus 9000 Series Fabric Switches in Application Centric Infrastructure (ACI) mode could allow an authenticated, local attacker to read arbitrary files on an affected system.
+
+This vulnerability is due to improper access control. An attacker with Administrator privileges could exploit this vulnerability by executing a specific vulnerable command on an affected device. A successful exploit could allow the attacker to read arbitrary files on the file system of the affected device.
+
+Cisco has released software updates that address this vulnerability. There are no workarounds that address this vulnerability.
+
+This advisory is available at the following link:
+https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-naci-afr-UtjfO2D7 ["https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-naci-afr-UtjfO2D7"]
+
+This advisory is part of the August 2021 Cisco FXOS and NX-OS Software Security Advisory Bundled Publication. For a complete list of the advisories and links to them, see Cisco Event Response: August 2021 Cisco FXOS and NX-OS Software Security Advisory Bundled Publication ["https://tools.cisco.com/security/center/viewErp.x?alertId=ERP-74640"].</cvrf:Note>
+    <cvrf:Note Title="Vulnerable Products" Type="General" Ordinal="2">At the time of publication, this vulnerability affected Cisco Nexus 9000 Series Fabric Switches in ACI mode if they were running a vulnerable release of Cisco NX-OS Software and using the default configuration.
+
+For information about which Cisco software releases are vulnerable, see the Fixed Software ["#fs"] section of this advisory.</cvrf:Note>
+    <cvrf:Note Title="Products Confirmed Not Vulnerable" Type="General" Ordinal="3">Only products listed in the Vulnerable Products ["https://tvce.cisco.com/security/aims/PublicationPreview.aspx?ID=74634&amp;Version=1&amp;Revision=1#vp"] section of this advisory are known to be affected by this vulnerability.
+
+Cisco has confirmed that this vulnerability does not affect the following Cisco products:
+
+Firepower 1000 Series
+Firepower 2100 Series
+Firepower 4100 Series
+Firepower 9300 Security Appliances
+MDS 9000 Series Multilayer Switches
+Nexus 1000 Virtual Edge for VMware vSphere
+Nexus 1000V Switch for Microsoft Hyper-V
+Nexus 1000V Switch for VMware vSphere
+Nexus 3000 Series Switches
+Nexus 5500 Platform Switches
+Nexus 5600 Platform Switches
+Nexus 6000 Series Switches
+Nexus 7000 Series Switches
+Nexus 9000 Series Switches in standalone NX-OS mode
+UCS 6200 Series Fabric Interconnects
+UCS 6300 Series Fabric Interconnects
+UCS 6400 Series Fabric Interconnects</cvrf:Note>
+    <cvrf:Note Title="Workarounds" Type="General" Ordinal="4">There are no workarounds that address this vulnerability.</cvrf:Note>
+    <cvrf:Note Title="Fixed Software" Type="General" Ordinal="5">When considering software upgrades ["https://tools.cisco.com/security/center/resources/security_vulnerability_policy.html#fixes"], customers are advised to regularly consult the advisories for Cisco products, which are available from the Cisco Security Advisories page ["https://www.cisco.com/go/psirt"], to determine exposure and a complete upgrade solution.
+
+In all cases, customers should ensure that the devices to be upgraded contain sufficient memory and confirm that current hardware and software configurations will continue to be supported properly by the new release. If the information is not clear, customers are advised to contact the Cisco Technical Assistance Center (TAC) or their contracted maintenance providers.
+        Cisco NX-OS Software
+To help customers determine their exposure to vulnerabilities in Cisco NX-OS Software, Cisco provides the Cisco Software Checker ["https://tools.cisco.com/security/center/softwarechecker.x"] to identify any Cisco Security Advisories that impact a specific Cisco NX-OS Software release and the earliest release that fixes the vulnerabilities that are described in each advisory (“First Fixed”). If applicable, the tool also returns the earliest release that fixes all the vulnerabilities described in all the advisories identified (“Combined First Fixed”).
+
+Customers can use the Cisco Software Checker ["https://tools.cisco.com/security/center/softwarechecker.x"] to search advisories in the following ways:
+
+Choose the software, platform, and one or more releases
+Upload a .txt file that includes a list of specific releases
+Enter the output of the show version command
+
+After initiating a search, customers can customize the search to include all Cisco Security Advisories or one or more specific advisories.
+
+Customers can also use the following form to determine whether a release is affected by any Cisco Security Advisory by choosing the Cisco NX-OS Software and platform and then entering a release—for example, 7.0(3)I7(5) for Cisco Nexus 3000 Series Switches or 14.0(1h) for Cisco NX-OS Software in ACI mode:
+    Cisco NX-OS Software  Cisco NX-OS Software in ACI Mode    MDS 9000 Series Multilayer Switches  Nexus 1000V Series Switches  Nexus 3000 Series Switches  Nexus 5000 Series Switches  Nexus 6000 Series Switches  Nexus 7000 Series Switches  Nexus 9000 Series Switches
+
+
+
+
+By default, the Cisco Software Checker ["https://tools.cisco.com/security/center/softwarechecker.x"] includes results only for vulnerabilities that have a Critical or High Security Impact Rating (SIR). To include results for Medium SIR vulnerabilities, customers can use the Cisco Software Checker and check the Medium check box in the drop-down list under Impact Rating when customizing a search.
+      Additional Resources
+For help determining the best Cisco NX-OS Software release for a Cisco Nexus Switch, see the following Recommended Releases documents. If a security advisory recommends a later release, Cisco recommends following the advisory guidance.
+
+
+Cisco MDS Series Switches ["https://www.cisco.com/c/en/us/td/docs/switches/datacenter/mds9000/sw/b_MDS_NX-OS_Recommended_Releases.html"]
+Cisco Nexus 1000V for VMware Switch ["http://www.cisco.com/c/en/us/td/docs/switches/datacenter/nexus1000/sw/recommended_releases/b_Cisco_N1KV_VMware_MinRecommendedReleases.html"]
+Cisco Nexus 3000 Series Switches ["http://www.cisco.com/c/en/us/td/docs/switches/datacenter/nexus3000/sw/recommended_release/b_Minimum_and_Recommended_Cisco_NX-OS_Releases_for_Cisco_Nexus_3000_Series_Switches.html"]
+Cisco Nexus 5500 Platform Switches ["http://www.cisco.com/c/en/us/td/docs/switches/datacenter/nexus5500/sw/release/recommended_releases/n5500_recommended_nx-os_releases.html"]
+Cisco Nexus 5600 Platform Switches ["https://www.cisco.com/c/en/us/td/docs/switches/datacenter/nexus5600/sw/release/recommended_releases/n5600_recommended_nx-os_releases.html"]
+Cisco Nexus 6000 Series Switches ["http://www.cisco.com/c/en/us/td/docs/switches/datacenter/nexus6000/sw/release/recommended_releases/recommended_nx-os_releases.html"]
+Cisco Nexus 7000 Series Switches ["http://www.cisco.com/c/en/us/td/docs/switches/datacenter/sw/nx-os/recommended_releases/recommended_nx-os_releases.html"]
+Cisco Nexus 9000 Series Switches ["http://www.cisco.com/c/en/us/td/docs/switches/datacenter/nexus9000/sw/recommended_release/b_Minimum_and_Recommended_Cisco_NX-OS_Releases_for_Cisco_Nexus_9000_Series_Switches.html"]
+Cisco Nexus 9000 Series ACI-Mode Switches ["https://www.cisco.com/c/en/us/td/docs/switches/datacenter/aci/apic/sw/recommended-release/b_Recommended_Cisco_ACI_Releases.html"]
+
+To determine the best release for Cisco UCS Software, see the Recommended Releases documents in the release notes for the device.</cvrf:Note>
+    <cvrf:Note Title="Vulnerability Policy" Type="General" Ordinal="6">To learn about Cisco security vulnerability disclosure policies and publications, see the Security Vulnerability Policy ["http://www.cisco.com/web/about/security/psirt/security_vulnerability_policy.html"]. This document also contains instructions for obtaining fixed software and receiving security vulnerability information from Cisco.</cvrf:Note>
+    <cvrf:Note Title="Exploitation and Public Announcements" Type="General" Ordinal="7">The Cisco Product Security Incident Response Team (PSIRT) is not aware of any public announcements or malicious use of the vulnerability that is described in this advisory.</cvrf:Note>
+    <cvrf:Note Title="Source" Type="General" Ordinal="8">Cisco would like to thank Adrien Peter, Pierre Milioni, and Clément Amic of Synacktiv for reporting this vulnerability.</cvrf:Note>
+    <cvrf:Note Title="Legal Disclaimer" Type="Legal Disclaimer" Ordinal="9">THIS DOCUMENT IS PROVIDED ON AN "AS IS" BASIS AND DOES NOT IMPLY ANY KIND OF GUARANTEE OR WARRANTY, INCLUDING THE WARRANTIES OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR USE. YOUR USE OF THE INFORMATION ON THE DOCUMENT OR MATERIALS LINKED FROM THE DOCUMENT IS AT YOUR OWN RISK. CISCO RESERVES THE RIGHT TO CHANGE OR UPDATE THIS DOCUMENT AT ANY TIME.
+
+A standalone copy or paraphrase of the text of this document that omits the distribution URL is an uncontrolled copy and may lack important information or contain factual errors. The information in this document is intended for end users of Cisco products.</cvrf:Note>
+  </cvrf:DocumentNotes>
+  <cvrf:DocumentReferences>
+    <cvrf:Reference Type="Self">
+      <cvrf:URL>https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-naci-afr-UtjfO2D7</cvrf:URL>
+      <cvrf:Description>Cisco Nexus 9000 Series Fabric Switches ACI Mode Arbitrary File Read Vulnerability</cvrf:Description>
+    </cvrf:Reference>
+    <cvrf:Reference>
+      <cvrf:URL>http://tools.cisco.com/security/center/viewErp.x?alertId=ERP-74640</cvrf:URL>
+      <cvrf:Description>Cisco Event Response: August 2021 Semiannual Cisco FXOS and NX-OS Software Security Advisory Bundled Publication</cvrf:Description>
+    </cvrf:Reference>
+  </cvrf:DocumentReferences>
+  <ProductTree xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/prod">
+    <Branch Name="Cisco" Type="Vendor">
+      <Branch Name="Cisco NX-OS System Software in ACI Mode" Type="Product Name">
+        <Branch Name="11.0" Type="Product Version">
+          <Branch Name="11.0(1b)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-241204">Cisco NX-OS System Software in ACI Mode 11.0(1b)</FullProductName>
+          </Branch>
+          <Branch Name="11.0(1c)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-241244">Cisco NX-OS System Software in ACI Mode 11.0(1c)</FullProductName>
+          </Branch>
+          <Branch Name="11.0(1d)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-241245">Cisco NX-OS System Software in ACI Mode 11.0(1d)</FullProductName>
+          </Branch>
+          <Branch Name="11.0(1e)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-241246">Cisco NX-OS System Software in ACI Mode 11.0(1e)</FullProductName>
+          </Branch>
+          <Branch Name="11.0(2j)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-241247">Cisco NX-OS System Software in ACI Mode 11.0(2j)</FullProductName>
+          </Branch>
+          <Branch Name="11.0(2m)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-241248">Cisco NX-OS System Software in ACI Mode 11.0(2m)</FullProductName>
+          </Branch>
+          <Branch Name="11.0(3f)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-241249">Cisco NX-OS System Software in ACI Mode 11.0(3f)</FullProductName>
+          </Branch>
+          <Branch Name="11.0(3i)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-241250">Cisco NX-OS System Software in ACI Mode 11.0(3i)</FullProductName>
+          </Branch>
+          <Branch Name="11.0(3k)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-241251">Cisco NX-OS System Software in ACI Mode 11.0(3k)</FullProductName>
+          </Branch>
+          <Branch Name="11.0(3n)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-241252">Cisco NX-OS System Software in ACI Mode 11.0(3n)</FullProductName>
+          </Branch>
+          <Branch Name="11.0(3o)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-241253">Cisco NX-OS System Software in ACI Mode 11.0(3o)</FullProductName>
+          </Branch>
+          <Branch Name="11.0(4h)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-241254">Cisco NX-OS System Software in ACI Mode 11.0(4h)</FullProductName>
+          </Branch>
+          <Branch Name="11.0(4o)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-241255">Cisco NX-OS System Software in ACI Mode 11.0(4o)</FullProductName>
+          </Branch>
+          <Branch Name="11.0(4q)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-241256">Cisco NX-OS System Software in ACI Mode 11.0(4q)</FullProductName>
+          </Branch>
+          <Branch Name="11.0(4g)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-264660">Cisco NX-OS System Software in ACI Mode 11.0(4g)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="11.1" Type="Product Version">
+          <Branch Name="11.1(1j)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-241206">Cisco NX-OS System Software in ACI Mode 11.1(1j)</FullProductName>
+          </Branch>
+          <Branch Name="11.1(1o)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-241237">Cisco NX-OS System Software in ACI Mode 11.1(1o)</FullProductName>
+          </Branch>
+          <Branch Name="11.1(1r)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-241238">Cisco NX-OS System Software in ACI Mode 11.1(1r)</FullProductName>
+          </Branch>
+          <Branch Name="11.1(1s)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-241239">Cisco NX-OS System Software in ACI Mode 11.1(1s)</FullProductName>
+          </Branch>
+          <Branch Name="11.1(2h)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-241240">Cisco NX-OS System Software in ACI Mode 11.1(2h)</FullProductName>
+          </Branch>
+          <Branch Name="11.1(2i)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-241241">Cisco NX-OS System Software in ACI Mode 11.1(2i)</FullProductName>
+          </Branch>
+          <Branch Name="11.1(3f)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-241242">Cisco NX-OS System Software in ACI Mode 11.1(3f)</FullProductName>
+          </Branch>
+          <Branch Name="11.1(4e)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-241243">Cisco NX-OS System Software in ACI Mode 11.1(4e)</FullProductName>
+          </Branch>
+          <Branch Name="11.1(4f)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-257359">Cisco NX-OS System Software in ACI Mode 11.1(4f)</FullProductName>
+          </Branch>
+          <Branch Name="11.1(4g)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-257360">Cisco NX-OS System Software in ACI Mode 11.1(4g)</FullProductName>
+          </Branch>
+          <Branch Name="11.1(4i)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-257361">Cisco NX-OS System Software in ACI Mode 11.1(4i)</FullProductName>
+          </Branch>
+          <Branch Name="11.1(4l)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-257362">Cisco NX-OS System Software in ACI Mode 11.1(4l)</FullProductName>
+          </Branch>
+          <Branch Name="11.1(4m)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-257363">Cisco NX-OS System Software in ACI Mode 11.1(4m)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="11.2" Type="Product Version">
+          <Branch Name="11.2(1i)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-241208">Cisco NX-OS System Software in ACI Mode 11.2(1i)</FullProductName>
+          </Branch>
+          <Branch Name="11.2(2g)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-241235">Cisco NX-OS System Software in ACI Mode 11.2(2g)</FullProductName>
+          </Branch>
+          <Branch Name="11.2(3c)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-241236">Cisco NX-OS System Software in ACI Mode 11.2(3c)</FullProductName>
+          </Branch>
+          <Branch Name="11.2(2h)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-241366">Cisco NX-OS System Software in ACI Mode 11.2(2h)</FullProductName>
+          </Branch>
+          <Branch Name="11.2(2i)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-241367">Cisco NX-OS System Software in ACI Mode 11.2(2i)</FullProductName>
+          </Branch>
+          <Branch Name="11.2(3e)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-241368">Cisco NX-OS System Software in ACI Mode 11.2(3e)</FullProductName>
+          </Branch>
+          <Branch Name="11.2(3h)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-241369">Cisco NX-OS System Software in ACI Mode 11.2(3h)</FullProductName>
+          </Branch>
+          <Branch Name="11.2(3m)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-241370">Cisco NX-OS System Software in ACI Mode 11.2(3m)</FullProductName>
+          </Branch>
+          <Branch Name="11.2(1k)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-257364">Cisco NX-OS System Software in ACI Mode 11.2(1k)</FullProductName>
+          </Branch>
+          <Branch Name="11.2(1m)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-257365">Cisco NX-OS System Software in ACI Mode 11.2(1m)</FullProductName>
+          </Branch>
+          <Branch Name="11.2(2j)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-257366">Cisco NX-OS System Software in ACI Mode 11.2(2j)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="12.0" Type="Product Version">
+          <Branch Name="12.0(1m)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-241210">Cisco NX-OS System Software in ACI Mode 12.0(1m)</FullProductName>
+          </Branch>
+          <Branch Name="12.0(2g)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-241231">Cisco NX-OS System Software in ACI Mode 12.0(2g)</FullProductName>
+          </Branch>
+          <Branch Name="12.0(1n)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-241351">Cisco NX-OS System Software in ACI Mode 12.0(1n)</FullProductName>
+          </Branch>
+          <Branch Name="12.0(1o)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-241352">Cisco NX-OS System Software in ACI Mode 12.0(1o)</FullProductName>
+          </Branch>
+          <Branch Name="12.0(1p)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-241353">Cisco NX-OS System Software in ACI Mode 12.0(1p)</FullProductName>
+          </Branch>
+          <Branch Name="12.0(1q)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-241354">Cisco NX-OS System Software in ACI Mode 12.0(1q)</FullProductName>
+          </Branch>
+          <Branch Name="12.0(2h)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-241355">Cisco NX-OS System Software in ACI Mode 12.0(2h)</FullProductName>
+          </Branch>
+          <Branch Name="12.0(2l)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-241356">Cisco NX-OS System Software in ACI Mode 12.0(2l)</FullProductName>
+          </Branch>
+          <Branch Name="12.0(2m)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-241357">Cisco NX-OS System Software in ACI Mode 12.0(2m)</FullProductName>
+          </Branch>
+          <Branch Name="12.0(2n)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-241358">Cisco NX-OS System Software in ACI Mode 12.0(2n)</FullProductName>
+          </Branch>
+          <Branch Name="12.0(2o)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-241359">Cisco NX-OS System Software in ACI Mode 12.0(2o)</FullProductName>
+          </Branch>
+          <Branch Name="12.0(2f)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-241360">Cisco NX-OS System Software in ACI Mode 12.0(2f)</FullProductName>
+          </Branch>
+          <Branch Name="12.0(1r)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-257369">Cisco NX-OS System Software in ACI Mode 12.0(1r)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="12.1" Type="Product Version">
+          <Branch Name="12.1(1h)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-241212">Cisco NX-OS System Software in ACI Mode 12.1(1h)</FullProductName>
+          </Branch>
+          <Branch Name="12.1(2e)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-241228">Cisco NX-OS System Software in ACI Mode 12.1(2e)</FullProductName>
+          </Branch>
+          <Branch Name="12.1(3g)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-241229">Cisco NX-OS System Software in ACI Mode 12.1(3g)</FullProductName>
+          </Branch>
+          <Branch Name="12.1(4a)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-241230">Cisco NX-OS System Software in ACI Mode 12.1(4a)</FullProductName>
+          </Branch>
+          <Branch Name="12.1(1i)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-241283">Cisco NX-OS System Software in ACI Mode 12.1(1i)</FullProductName>
+          </Branch>
+          <Branch Name="12.1(2g)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-241309">Cisco NX-OS System Software in ACI Mode 12.1(2g)</FullProductName>
+          </Branch>
+          <Branch Name="12.1(2k)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-241310">Cisco NX-OS System Software in ACI Mode 12.1(2k)</FullProductName>
+          </Branch>
+          <Branch Name="12.1(3h)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-241349">Cisco NX-OS System Software in ACI Mode 12.1(3h)</FullProductName>
+          </Branch>
+          <Branch Name="12.1(3j)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-241350">Cisco NX-OS System Software in ACI Mode 12.1(3j)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="12.2" Type="Product Version">
+          <Branch Name="12.2(1n)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-241214">Cisco NX-OS System Software in ACI Mode 12.2(1n)</FullProductName>
+          </Branch>
+          <Branch Name="12.2(2e)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-241225">Cisco NX-OS System Software in ACI Mode 12.2(2e)</FullProductName>
+          </Branch>
+          <Branch Name="12.2(3j)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-241226">Cisco NX-OS System Software in ACI Mode 12.2(3j)</FullProductName>
+          </Branch>
+          <Branch Name="12.2(4f)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-241227">Cisco NX-OS System Software in ACI Mode 12.2(4f)</FullProductName>
+          </Branch>
+          <Branch Name="12.2(4p)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-241268">Cisco NX-OS System Software in ACI Mode 12.2(4p)</FullProductName>
+          </Branch>
+          <Branch Name="12.2(3p)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-241272">Cisco NX-OS System Software in ACI Mode 12.2(3p)</FullProductName>
+          </Branch>
+          <Branch Name="12.2(3r)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-241273">Cisco NX-OS System Software in ACI Mode 12.2(3r)</FullProductName>
+          </Branch>
+          <Branch Name="12.2(3s)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-241274">Cisco NX-OS System Software in ACI Mode 12.2(3s)</FullProductName>
+          </Branch>
+          <Branch Name="12.2(3t)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-241275">Cisco NX-OS System Software in ACI Mode 12.2(3t)</FullProductName>
+          </Branch>
+          <Branch Name="12.2(2f)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-241276">Cisco NX-OS System Software in ACI Mode 12.2(2f)</FullProductName>
+          </Branch>
+          <Branch Name="12.2(2i)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-241278">Cisco NX-OS System Software in ACI Mode 12.2(2i)</FullProductName>
+          </Branch>
+          <Branch Name="12.2(2j)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-241279">Cisco NX-OS System Software in ACI Mode 12.2(2j)</FullProductName>
+          </Branch>
+          <Branch Name="12.2(2k)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-241280">Cisco NX-OS System Software in ACI Mode 12.2(2k)</FullProductName>
+          </Branch>
+          <Branch Name="12.2(2q)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-241281">Cisco NX-OS System Software in ACI Mode 12.2(2q)</FullProductName>
+          </Branch>
+          <Branch Name="12.2(1o)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-241282">Cisco NX-OS System Software in ACI Mode 12.2(1o)</FullProductName>
+          </Branch>
+          <Branch Name="12.2(4q)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-257370">Cisco NX-OS System Software in ACI Mode 12.2(4q)</FullProductName>
+          </Branch>
+          <Branch Name="12.2(4r)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-257371">Cisco NX-OS System Software in ACI Mode 12.2(4r)</FullProductName>
+          </Branch>
+          <Branch Name="12.2(1k)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-264659">Cisco NX-OS System Software in ACI Mode 12.2(1k)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="12.3" Type="Product Version">
+          <Branch Name="12.3(1e)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-241216">Cisco NX-OS System Software in ACI Mode 12.3(1e)</FullProductName>
+          </Branch>
+          <Branch Name="12.3(1f)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-241263">Cisco NX-OS System Software in ACI Mode 12.3(1f)</FullProductName>
+          </Branch>
+          <Branch Name="12.3(1i)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-241264">Cisco NX-OS System Software in ACI Mode 12.3(1i)</FullProductName>
+          </Branch>
+          <Branch Name="12.3(1l)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-241265">Cisco NX-OS System Software in ACI Mode 12.3(1l)</FullProductName>
+          </Branch>
+          <Branch Name="12.3(1o)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-241266">Cisco NX-OS System Software in ACI Mode 12.3(1o)</FullProductName>
+          </Branch>
+          <Branch Name="12.3(1p)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-241267">Cisco NX-OS System Software in ACI Mode 12.3(1p)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="13.0" Type="Product Version">
+          <Branch Name="13.0(1k)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-241218">Cisco NX-OS System Software in ACI Mode 13.0(1k)</FullProductName>
+          </Branch>
+          <Branch Name="13.0(2h)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-241224">Cisco NX-OS System Software in ACI Mode 13.0(2h)</FullProductName>
+          </Branch>
+          <Branch Name="13.0(2k)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-241261">Cisco NX-OS System Software in ACI Mode 13.0(2k)</FullProductName>
+          </Branch>
+          <Branch Name="13.0(2n)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-241262">Cisco NX-OS System Software in ACI Mode 13.0(2n)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="13.1" Type="Product Version">
+          <Branch Name="13.1(1i)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-241220">Cisco NX-OS System Software in ACI Mode 13.1(1i)</FullProductName>
+          </Branch>
+          <Branch Name="13.1(2m)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-241223">Cisco NX-OS System Software in ACI Mode 13.1(2m)</FullProductName>
+          </Branch>
+          <Branch Name="13.1(2o)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-241258">Cisco NX-OS System Software in ACI Mode 13.1(2o)</FullProductName>
+          </Branch>
+          <Branch Name="13.1(2p)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-241259">Cisco NX-OS System Software in ACI Mode 13.1(2p)</FullProductName>
+          </Branch>
+          <Branch Name="13.1(2q)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-241260">Cisco NX-OS System Software in ACI Mode 13.1(2q)</FullProductName>
+          </Branch>
+          <Branch Name="13.1(2s)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-257372">Cisco NX-OS System Software in ACI Mode 13.1(2s)</FullProductName>
+          </Branch>
+          <Branch Name="13.1(2t)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-257373">Cisco NX-OS System Software in ACI Mode 13.1(2t)</FullProductName>
+          </Branch>
+          <Branch Name="13.1(2u)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-264656">Cisco NX-OS System Software in ACI Mode 13.1(2u)</FullProductName>
+          </Branch>
+          <Branch Name="13.1(2v)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-273934">Cisco NX-OS System Software in ACI Mode 13.1(2v)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="13.2" Type="Product Version">
+          <Branch Name="13.2(1l)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-241222">Cisco NX-OS System Software in ACI Mode 13.2(1l)</FullProductName>
+          </Branch>
+          <Branch Name="13.2(1m)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-241257">Cisco NX-OS System Software in ACI Mode 13.2(1m)</FullProductName>
+          </Branch>
+          <Branch Name="13.2(2l)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-257374">Cisco NX-OS System Software in ACI Mode 13.2(2l)</FullProductName>
+          </Branch>
+          <Branch Name="13.2(2o)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-257375">Cisco NX-OS System Software in ACI Mode 13.2(2o)</FullProductName>
+          </Branch>
+          <Branch Name="13.2(3i)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-257376">Cisco NX-OS System Software in ACI Mode 13.2(3i)</FullProductName>
+          </Branch>
+          <Branch Name="13.2(3n)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-257377">Cisco NX-OS System Software in ACI Mode 13.2(3n)</FullProductName>
+          </Branch>
+          <Branch Name="13.2(3o)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-257378">Cisco NX-OS System Software in ACI Mode 13.2(3o)</FullProductName>
+          </Branch>
+          <Branch Name="13.2(3r)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-257379">Cisco NX-OS System Software in ACI Mode 13.2(3r)</FullProductName>
+          </Branch>
+          <Branch Name="13.2(4d)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-257757">Cisco NX-OS System Software in ACI Mode 13.2(4d)</FullProductName>
+          </Branch>
+          <Branch Name="13.2(4e)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-257758">Cisco NX-OS System Software in ACI Mode 13.2(4e)</FullProductName>
+          </Branch>
+          <Branch Name="13.2(3j)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-264650">Cisco NX-OS System Software in ACI Mode 13.2(3j)</FullProductName>
+          </Branch>
+          <Branch Name="13.2(3s)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-264651">Cisco NX-OS System Software in ACI Mode 13.2(3s)</FullProductName>
+          </Branch>
+          <Branch Name="13.2(5d)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-264652">Cisco NX-OS System Software in ACI Mode 13.2(5d)</FullProductName>
+          </Branch>
+          <Branch Name="13.2(5e)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-264653">Cisco NX-OS System Software in ACI Mode 13.2(5e)</FullProductName>
+          </Branch>
+          <Branch Name="13.2(5f)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-264654">Cisco NX-OS System Software in ACI Mode 13.2(5f)</FullProductName>
+          </Branch>
+          <Branch Name="13.2(6i)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-264655">Cisco NX-OS System Software in ACI Mode 13.2(6i)</FullProductName>
+          </Branch>
+          <Branch Name="13.2(41d)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-273935">Cisco NX-OS System Software in ACI Mode 13.2(41d)</FullProductName>
+          </Branch>
+          <Branch Name="13.2(7f)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-273936">Cisco NX-OS System Software in ACI Mode 13.2(7f)</FullProductName>
+          </Branch>
+          <Branch Name="13.2(7k)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-273937">Cisco NX-OS System Software in ACI Mode 13.2(7k)</FullProductName>
+          </Branch>
+          <Branch Name="13.2(9b)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-273938">Cisco NX-OS System Software in ACI Mode 13.2(9b)</FullProductName>
+          </Branch>
+          <Branch Name="13.2(8d)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-274786">Cisco NX-OS System Software in ACI Mode 13.2(8d)</FullProductName>
+          </Branch>
+          <Branch Name="13.2(9f)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-277151">Cisco NX-OS System Software in ACI Mode 13.2(9f)</FullProductName>
+          </Branch>
+          <Branch Name="13.2(9h)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-277349">Cisco NX-OS System Software in ACI Mode 13.2(9h)</FullProductName>
+          </Branch>
+          <Branch Name="13.2(10e)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-281586">Cisco NX-OS System Software in ACI Mode 13.2(10e)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="11.3" Type="Product Version">
+          <Branch Name="11.3(1g)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-241233">Cisco NX-OS System Software in ACI Mode 11.3(1g)</FullProductName>
+          </Branch>
+          <Branch Name="11.3(2f)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-241234">Cisco NX-OS System Software in ACI Mode 11.3(2f)</FullProductName>
+          </Branch>
+          <Branch Name="11.3(1h)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-241361">Cisco NX-OS System Software in ACI Mode 11.3(1h)</FullProductName>
+          </Branch>
+          <Branch Name="11.3(1i)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-241362">Cisco NX-OS System Software in ACI Mode 11.3(1i)</FullProductName>
+          </Branch>
+          <Branch Name="11.3(2h)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-241363">Cisco NX-OS System Software in ACI Mode 11.3(2h)</FullProductName>
+          </Branch>
+          <Branch Name="11.3(2i)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-241364">Cisco NX-OS System Software in ACI Mode 11.3(2i)</FullProductName>
+          </Branch>
+          <Branch Name="11.3(2k)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-241365">Cisco NX-OS System Software in ACI Mode 11.3(2k)</FullProductName>
+          </Branch>
+          <Branch Name="11.3(1j)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-257367">Cisco NX-OS System Software in ACI Mode 11.3(1j)</FullProductName>
+          </Branch>
+          <Branch Name="11.3(2j)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-257368">Cisco NX-OS System Software in ACI Mode 11.3(2j)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="14.0" Type="Product Version">
+          <Branch Name="14.0(1h)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-257580">Cisco NX-OS System Software in ACI Mode 14.0(1h)</FullProductName>
+          </Branch>
+          <Branch Name="14.0(2c)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-257581">Cisco NX-OS System Software in ACI Mode 14.0(2c)</FullProductName>
+          </Branch>
+          <Branch Name="14.0(3d)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-259822">Cisco NX-OS System Software in ACI Mode 14.0(3d)</FullProductName>
+          </Branch>
+          <Branch Name="14.0(3c)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-264644">Cisco NX-OS System Software in ACI Mode 14.0(3c)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="14.1" Type="Product Version">
+          <Branch Name="14.1(1i)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-264646">Cisco NX-OS System Software in ACI Mode 14.1(1i)</FullProductName>
+          </Branch>
+          <Branch Name="14.1(1j)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-264647">Cisco NX-OS System Software in ACI Mode 14.1(1j)</FullProductName>
+          </Branch>
+          <Branch Name="14.1(1k)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-264648">Cisco NX-OS System Software in ACI Mode 14.1(1k)</FullProductName>
+          </Branch>
+          <Branch Name="14.1(1l)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-264649">Cisco NX-OS System Software in ACI Mode 14.1(1l)</FullProductName>
+          </Branch>
+          <Branch Name="14.1(2g)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-265564">Cisco NX-OS System Software in ACI Mode 14.1(2g)</FullProductName>
+          </Branch>
+          <Branch Name="14.1(2m)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-273939">Cisco NX-OS System Software in ACI Mode 14.1(2m)</FullProductName>
+          </Branch>
+          <Branch Name="14.1(2o)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-273940">Cisco NX-OS System Software in ACI Mode 14.1(2o)</FullProductName>
+          </Branch>
+          <Branch Name="14.1(2s)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-273941">Cisco NX-OS System Software in ACI Mode 14.1(2s)</FullProductName>
+          </Branch>
+          <Branch Name="14.1(2u)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-273942">Cisco NX-OS System Software in ACI Mode 14.1(2u)</FullProductName>
+          </Branch>
+          <Branch Name="14.1(2w)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-276890">Cisco NX-OS System Software in ACI Mode 14.1(2w)</FullProductName>
+          </Branch>
+          <Branch Name="14.1(2x)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-276891">Cisco NX-OS System Software in ACI Mode 14.1(2x)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="14.2" Type="Product Version">
+          <Branch Name="14.2(1i)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-273944">Cisco NX-OS System Software in ACI Mode 14.2(1i)</FullProductName>
+          </Branch>
+          <Branch Name="14.2(1j)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-273945">Cisco NX-OS System Software in ACI Mode 14.2(1j)</FullProductName>
+          </Branch>
+          <Branch Name="14.2(1l)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-273946">Cisco NX-OS System Software in ACI Mode 14.2(1l)</FullProductName>
+          </Branch>
+          <Branch Name="14.2(2e)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-273947">Cisco NX-OS System Software in ACI Mode 14.2(2e)</FullProductName>
+          </Branch>
+          <Branch Name="14.2(2f)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-273948">Cisco NX-OS System Software in ACI Mode 14.2(2f)</FullProductName>
+          </Branch>
+          <Branch Name="14.2(2g)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-273949">Cisco NX-OS System Software in ACI Mode 14.2(2g)</FullProductName>
+          </Branch>
+          <Branch Name="14.2(3j)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-273950">Cisco NX-OS System Software in ACI Mode 14.2(3j)</FullProductName>
+          </Branch>
+          <Branch Name="14.2(3l)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-274558">Cisco NX-OS System Software in ACI Mode 14.2(3l)</FullProductName>
+          </Branch>
+          <Branch Name="14.2(3n)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-275887">Cisco NX-OS System Software in ACI Mode 14.2(3n)</FullProductName>
+          </Branch>
+          <Branch Name="14.2(3q)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-277320">Cisco NX-OS System Software in ACI Mode 14.2(3q)</FullProductName>
+          </Branch>
+          <Branch Name="14.2(4i)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-277351">Cisco NX-OS System Software in ACI Mode 14.2(4i)</FullProductName>
+          </Branch>
+          <Branch Name="14.2(4k)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-278028">Cisco NX-OS System Software in ACI Mode 14.2(4k)</FullProductName>
+          </Branch>
+          <Branch Name="14.2(4o)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-278782">Cisco NX-OS System Software in ACI Mode 14.2(4o)</FullProductName>
+          </Branch>
+          <Branch Name="14.2(4p)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-279381">Cisco NX-OS System Software in ACI Mode 14.2(4p)</FullProductName>
+          </Branch>
+          <Branch Name="14.2(5k)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-279461">Cisco NX-OS System Software in ACI Mode 14.2(5k)</FullProductName>
+          </Branch>
+          <Branch Name="14.2(5l)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-280216">Cisco NX-OS System Software in ACI Mode 14.2(5l)</FullProductName>
+          </Branch>
+          <Branch Name="14.2(5n)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-280465">Cisco NX-OS System Software in ACI Mode 14.2(5n)</FullProductName>
+          </Branch>
+          <Branch Name="14.2(6d)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-280772">Cisco NX-OS System Software in ACI Mode 14.2(6d)</FullProductName>
+          </Branch>
+          <Branch Name="14.2(6g)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-281001">Cisco NX-OS System Software in ACI Mode 14.2(6g)</FullProductName>
+          </Branch>
+          <Branch Name="14.2(6h)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-281317">Cisco NX-OS System Software in ACI Mode 14.2(6h)</FullProductName>
+          </Branch>
+          <Branch Name="14.2(6l)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-281585">Cisco NX-OS System Software in ACI Mode 14.2(6l)</FullProductName>
+          </Branch>
+          <Branch Name="14.2(7f)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-282009">Cisco NX-OS System Software in ACI Mode 14.2(7f)</FullProductName>
+          </Branch>
+          <Branch Name="14.2(6o)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-284295">Cisco NX-OS System Software in ACI Mode 14.2(6o)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="15.0" Type="Product Version">
+          <Branch Name="15.0(1k)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-277362">Cisco NX-OS System Software in ACI Mode 15.0(1k)</FullProductName>
+          </Branch>
+          <Branch Name="15.0(1l)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-278357">Cisco NX-OS System Software in ACI Mode 15.0(1l)</FullProductName>
+          </Branch>
+          <Branch Name="15.0(2e)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-278781">Cisco NX-OS System Software in ACI Mode 15.0(2e)</FullProductName>
+          </Branch>
+          <Branch Name="15.0(2h)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-279382">Cisco NX-OS System Software in ACI Mode 15.0(2h)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="15.1" Type="Product Version">
+          <Branch Name="15.1(1h)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-280475">Cisco NX-OS System Software in ACI Mode 15.1(1h)</FullProductName>
+          </Branch>
+          <Branch Name="15.1(2e)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-280784">Cisco NX-OS System Software in ACI Mode 15.1(2e)</FullProductName>
+          </Branch>
+          <Branch Name="15.1(3e)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-281318">Cisco NX-OS System Software in ACI Mode 15.1(3e)</FullProductName>
+          </Branch>
+          <Branch Name="15.1(4c)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-282014">Cisco NX-OS System Software in ACI Mode 15.1(4c)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="15.2" Type="Product Version">
+          <Branch Name="15.2(1g)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-283749">Cisco NX-OS System Software in ACI Mode 15.2(1g)</FullProductName>
+          </Branch>
+          <Branch Name="15.2(2e)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-284173">Cisco NX-OS System Software in ACI Mode 15.2(2e)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="Cisco Nexus 9000 Series Switches" Type="Product Name">
+          <FullProductName ProductID="CVRFPID-265096">Cisco NX-OS System Software in ACI Mode Platform Cisco Nexus 9000 Series Switches</FullProductName>
+        </Branch>
+      </Branch>
+      <Branch Name="Cisco NX-OS System Software in ACI Mode" Type="Product Name">
+        <FullProductName ProductID="CVRFPID-241202">Cisco NX-OS System Software in ACI Mode </FullProductName>
+      </Branch>
+    </Branch>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-241204">
+      <FullProductName ProductID="CVRFPID-241204:265096">Cisco NX-OS System Software in ACI Mode 11.0(1b) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-241244">
+      <FullProductName ProductID="CVRFPID-241244:265096">Cisco NX-OS System Software in ACI Mode 11.0(1c) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-241245">
+      <FullProductName ProductID="CVRFPID-241245:265096">Cisco NX-OS System Software in ACI Mode 11.0(1d) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-241246">
+      <FullProductName ProductID="CVRFPID-241246:265096">Cisco NX-OS System Software in ACI Mode 11.0(1e) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-241247">
+      <FullProductName ProductID="CVRFPID-241247:265096">Cisco NX-OS System Software in ACI Mode 11.0(2j) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-241248">
+      <FullProductName ProductID="CVRFPID-241248:265096">Cisco NX-OS System Software in ACI Mode 11.0(2m) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-241249">
+      <FullProductName ProductID="CVRFPID-241249:265096">Cisco NX-OS System Software in ACI Mode 11.0(3f) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-241250">
+      <FullProductName ProductID="CVRFPID-241250:265096">Cisco NX-OS System Software in ACI Mode 11.0(3i) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-241251">
+      <FullProductName ProductID="CVRFPID-241251:265096">Cisco NX-OS System Software in ACI Mode 11.0(3k) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-241252">
+      <FullProductName ProductID="CVRFPID-241252:265096">Cisco NX-OS System Software in ACI Mode 11.0(3n) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-241253">
+      <FullProductName ProductID="CVRFPID-241253:265096">Cisco NX-OS System Software in ACI Mode 11.0(3o) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-241254">
+      <FullProductName ProductID="CVRFPID-241254:265096">Cisco NX-OS System Software in ACI Mode 11.0(4h) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-241255">
+      <FullProductName ProductID="CVRFPID-241255:265096">Cisco NX-OS System Software in ACI Mode 11.0(4o) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-241256">
+      <FullProductName ProductID="CVRFPID-241256:265096">Cisco NX-OS System Software in ACI Mode 11.0(4q) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-264660">
+      <FullProductName ProductID="CVRFPID-264660:265096">Cisco NX-OS System Software in ACI Mode 11.0(4g) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-241206">
+      <FullProductName ProductID="CVRFPID-241206:265096">Cisco NX-OS System Software in ACI Mode 11.1(1j) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-241237">
+      <FullProductName ProductID="CVRFPID-241237:265096">Cisco NX-OS System Software in ACI Mode 11.1(1o) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-241238">
+      <FullProductName ProductID="CVRFPID-241238:265096">Cisco NX-OS System Software in ACI Mode 11.1(1r) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-241239">
+      <FullProductName ProductID="CVRFPID-241239:265096">Cisco NX-OS System Software in ACI Mode 11.1(1s) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-241240">
+      <FullProductName ProductID="CVRFPID-241240:265096">Cisco NX-OS System Software in ACI Mode 11.1(2h) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-241241">
+      <FullProductName ProductID="CVRFPID-241241:265096">Cisco NX-OS System Software in ACI Mode 11.1(2i) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-241242">
+      <FullProductName ProductID="CVRFPID-241242:265096">Cisco NX-OS System Software in ACI Mode 11.1(3f) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-241243">
+      <FullProductName ProductID="CVRFPID-241243:265096">Cisco NX-OS System Software in ACI Mode 11.1(4e) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-257359">
+      <FullProductName ProductID="CVRFPID-257359:265096">Cisco NX-OS System Software in ACI Mode 11.1(4f) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-257360">
+      <FullProductName ProductID="CVRFPID-257360:265096">Cisco NX-OS System Software in ACI Mode 11.1(4g) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-257361">
+      <FullProductName ProductID="CVRFPID-257361:265096">Cisco NX-OS System Software in ACI Mode 11.1(4i) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-257362">
+      <FullProductName ProductID="CVRFPID-257362:265096">Cisco NX-OS System Software in ACI Mode 11.1(4l) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-257363">
+      <FullProductName ProductID="CVRFPID-257363:265096">Cisco NX-OS System Software in ACI Mode 11.1(4m) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-241208">
+      <FullProductName ProductID="CVRFPID-241208:265096">Cisco NX-OS System Software in ACI Mode 11.2(1i) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-241235">
+      <FullProductName ProductID="CVRFPID-241235:265096">Cisco NX-OS System Software in ACI Mode 11.2(2g) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-241236">
+      <FullProductName ProductID="CVRFPID-241236:265096">Cisco NX-OS System Software in ACI Mode 11.2(3c) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-241366">
+      <FullProductName ProductID="CVRFPID-241366:265096">Cisco NX-OS System Software in ACI Mode 11.2(2h) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-241367">
+      <FullProductName ProductID="CVRFPID-241367:265096">Cisco NX-OS System Software in ACI Mode 11.2(2i) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-241368">
+      <FullProductName ProductID="CVRFPID-241368:265096">Cisco NX-OS System Software in ACI Mode 11.2(3e) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-241369">
+      <FullProductName ProductID="CVRFPID-241369:265096">Cisco NX-OS System Software in ACI Mode 11.2(3h) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-241370">
+      <FullProductName ProductID="CVRFPID-241370:265096">Cisco NX-OS System Software in ACI Mode 11.2(3m) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-257364">
+      <FullProductName ProductID="CVRFPID-257364:265096">Cisco NX-OS System Software in ACI Mode 11.2(1k) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-257365">
+      <FullProductName ProductID="CVRFPID-257365:265096">Cisco NX-OS System Software in ACI Mode 11.2(1m) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-257366">
+      <FullProductName ProductID="CVRFPID-257366:265096">Cisco NX-OS System Software in ACI Mode 11.2(2j) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-241210">
+      <FullProductName ProductID="CVRFPID-241210:265096">Cisco NX-OS System Software in ACI Mode 12.0(1m) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-241231">
+      <FullProductName ProductID="CVRFPID-241231:265096">Cisco NX-OS System Software in ACI Mode 12.0(2g) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-241351">
+      <FullProductName ProductID="CVRFPID-241351:265096">Cisco NX-OS System Software in ACI Mode 12.0(1n) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-241352">
+      <FullProductName ProductID="CVRFPID-241352:265096">Cisco NX-OS System Software in ACI Mode 12.0(1o) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-241353">
+      <FullProductName ProductID="CVRFPID-241353:265096">Cisco NX-OS System Software in ACI Mode 12.0(1p) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-241354">
+      <FullProductName ProductID="CVRFPID-241354:265096">Cisco NX-OS System Software in ACI Mode 12.0(1q) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-241355">
+      <FullProductName ProductID="CVRFPID-241355:265096">Cisco NX-OS System Software in ACI Mode 12.0(2h) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-241356">
+      <FullProductName ProductID="CVRFPID-241356:265096">Cisco NX-OS System Software in ACI Mode 12.0(2l) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-241357">
+      <FullProductName ProductID="CVRFPID-241357:265096">Cisco NX-OS System Software in ACI Mode 12.0(2m) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-241358">
+      <FullProductName ProductID="CVRFPID-241358:265096">Cisco NX-OS System Software in ACI Mode 12.0(2n) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-241359">
+      <FullProductName ProductID="CVRFPID-241359:265096">Cisco NX-OS System Software in ACI Mode 12.0(2o) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-241360">
+      <FullProductName ProductID="CVRFPID-241360:265096">Cisco NX-OS System Software in ACI Mode 12.0(2f) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-257369">
+      <FullProductName ProductID="CVRFPID-257369:265096">Cisco NX-OS System Software in ACI Mode 12.0(1r) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-241212">
+      <FullProductName ProductID="CVRFPID-241212:265096">Cisco NX-OS System Software in ACI Mode 12.1(1h) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-241228">
+      <FullProductName ProductID="CVRFPID-241228:265096">Cisco NX-OS System Software in ACI Mode 12.1(2e) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-241229">
+      <FullProductName ProductID="CVRFPID-241229:265096">Cisco NX-OS System Software in ACI Mode 12.1(3g) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-241230">
+      <FullProductName ProductID="CVRFPID-241230:265096">Cisco NX-OS System Software in ACI Mode 12.1(4a) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-241283">
+      <FullProductName ProductID="CVRFPID-241283:265096">Cisco NX-OS System Software in ACI Mode 12.1(1i) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-241309">
+      <FullProductName ProductID="CVRFPID-241309:265096">Cisco NX-OS System Software in ACI Mode 12.1(2g) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-241310">
+      <FullProductName ProductID="CVRFPID-241310:265096">Cisco NX-OS System Software in ACI Mode 12.1(2k) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-241349">
+      <FullProductName ProductID="CVRFPID-241349:265096">Cisco NX-OS System Software in ACI Mode 12.1(3h) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-241350">
+      <FullProductName ProductID="CVRFPID-241350:265096">Cisco NX-OS System Software in ACI Mode 12.1(3j) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-241214">
+      <FullProductName ProductID="CVRFPID-241214:265096">Cisco NX-OS System Software in ACI Mode 12.2(1n) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-241225">
+      <FullProductName ProductID="CVRFPID-241225:265096">Cisco NX-OS System Software in ACI Mode 12.2(2e) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-241226">
+      <FullProductName ProductID="CVRFPID-241226:265096">Cisco NX-OS System Software in ACI Mode 12.2(3j) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-241227">
+      <FullProductName ProductID="CVRFPID-241227:265096">Cisco NX-OS System Software in ACI Mode 12.2(4f) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-241268">
+      <FullProductName ProductID="CVRFPID-241268:265096">Cisco NX-OS System Software in ACI Mode 12.2(4p) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-241272">
+      <FullProductName ProductID="CVRFPID-241272:265096">Cisco NX-OS System Software in ACI Mode 12.2(3p) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-241273">
+      <FullProductName ProductID="CVRFPID-241273:265096">Cisco NX-OS System Software in ACI Mode 12.2(3r) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-241274">
+      <FullProductName ProductID="CVRFPID-241274:265096">Cisco NX-OS System Software in ACI Mode 12.2(3s) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-241275">
+      <FullProductName ProductID="CVRFPID-241275:265096">Cisco NX-OS System Software in ACI Mode 12.2(3t) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-241276">
+      <FullProductName ProductID="CVRFPID-241276:265096">Cisco NX-OS System Software in ACI Mode 12.2(2f) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-241278">
+      <FullProductName ProductID="CVRFPID-241278:265096">Cisco NX-OS System Software in ACI Mode 12.2(2i) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-241279">
+      <FullProductName ProductID="CVRFPID-241279:265096">Cisco NX-OS System Software in ACI Mode 12.2(2j) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-241280">
+      <FullProductName ProductID="CVRFPID-241280:265096">Cisco NX-OS System Software in ACI Mode 12.2(2k) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-241281">
+      <FullProductName ProductID="CVRFPID-241281:265096">Cisco NX-OS System Software in ACI Mode 12.2(2q) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-241282">
+      <FullProductName ProductID="CVRFPID-241282:265096">Cisco NX-OS System Software in ACI Mode 12.2(1o) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-257370">
+      <FullProductName ProductID="CVRFPID-257370:265096">Cisco NX-OS System Software in ACI Mode 12.2(4q) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-257371">
+      <FullProductName ProductID="CVRFPID-257371:265096">Cisco NX-OS System Software in ACI Mode 12.2(4r) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-264659">
+      <FullProductName ProductID="CVRFPID-264659:265096">Cisco NX-OS System Software in ACI Mode 12.2(1k) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-241216">
+      <FullProductName ProductID="CVRFPID-241216:265096">Cisco NX-OS System Software in ACI Mode 12.3(1e) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-241263">
+      <FullProductName ProductID="CVRFPID-241263:265096">Cisco NX-OS System Software in ACI Mode 12.3(1f) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-241264">
+      <FullProductName ProductID="CVRFPID-241264:265096">Cisco NX-OS System Software in ACI Mode 12.3(1i) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-241265">
+      <FullProductName ProductID="CVRFPID-241265:265096">Cisco NX-OS System Software in ACI Mode 12.3(1l) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-241266">
+      <FullProductName ProductID="CVRFPID-241266:265096">Cisco NX-OS System Software in ACI Mode 12.3(1o) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-241267">
+      <FullProductName ProductID="CVRFPID-241267:265096">Cisco NX-OS System Software in ACI Mode 12.3(1p) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-241218">
+      <FullProductName ProductID="CVRFPID-241218:265096">Cisco NX-OS System Software in ACI Mode 13.0(1k) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-241224">
+      <FullProductName ProductID="CVRFPID-241224:265096">Cisco NX-OS System Software in ACI Mode 13.0(2h) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-241261">
+      <FullProductName ProductID="CVRFPID-241261:265096">Cisco NX-OS System Software in ACI Mode 13.0(2k) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-241262">
+      <FullProductName ProductID="CVRFPID-241262:265096">Cisco NX-OS System Software in ACI Mode 13.0(2n) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-241220">
+      <FullProductName ProductID="CVRFPID-241220:265096">Cisco NX-OS System Software in ACI Mode 13.1(1i) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-241223">
+      <FullProductName ProductID="CVRFPID-241223:265096">Cisco NX-OS System Software in ACI Mode 13.1(2m) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-241258">
+      <FullProductName ProductID="CVRFPID-241258:265096">Cisco NX-OS System Software in ACI Mode 13.1(2o) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-241259">
+      <FullProductName ProductID="CVRFPID-241259:265096">Cisco NX-OS System Software in ACI Mode 13.1(2p) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-241260">
+      <FullProductName ProductID="CVRFPID-241260:265096">Cisco NX-OS System Software in ACI Mode 13.1(2q) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-257372">
+      <FullProductName ProductID="CVRFPID-257372:265096">Cisco NX-OS System Software in ACI Mode 13.1(2s) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-257373">
+      <FullProductName ProductID="CVRFPID-257373:265096">Cisco NX-OS System Software in ACI Mode 13.1(2t) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-264656">
+      <FullProductName ProductID="CVRFPID-264656:265096">Cisco NX-OS System Software in ACI Mode 13.1(2u) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-273934">
+      <FullProductName ProductID="CVRFPID-273934:265096">Cisco NX-OS System Software in ACI Mode 13.1(2v) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-241222">
+      <FullProductName ProductID="CVRFPID-241222:265096">Cisco NX-OS System Software in ACI Mode 13.2(1l) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-241257">
+      <FullProductName ProductID="CVRFPID-241257:265096">Cisco NX-OS System Software in ACI Mode 13.2(1m) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-257374">
+      <FullProductName ProductID="CVRFPID-257374:265096">Cisco NX-OS System Software in ACI Mode 13.2(2l) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-257375">
+      <FullProductName ProductID="CVRFPID-257375:265096">Cisco NX-OS System Software in ACI Mode 13.2(2o) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-257376">
+      <FullProductName ProductID="CVRFPID-257376:265096">Cisco NX-OS System Software in ACI Mode 13.2(3i) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-257377">
+      <FullProductName ProductID="CVRFPID-257377:265096">Cisco NX-OS System Software in ACI Mode 13.2(3n) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-257378">
+      <FullProductName ProductID="CVRFPID-257378:265096">Cisco NX-OS System Software in ACI Mode 13.2(3o) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-257379">
+      <FullProductName ProductID="CVRFPID-257379:265096">Cisco NX-OS System Software in ACI Mode 13.2(3r) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-257757">
+      <FullProductName ProductID="CVRFPID-257757:265096">Cisco NX-OS System Software in ACI Mode 13.2(4d) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-257758">
+      <FullProductName ProductID="CVRFPID-257758:265096">Cisco NX-OS System Software in ACI Mode 13.2(4e) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-264650">
+      <FullProductName ProductID="CVRFPID-264650:265096">Cisco NX-OS System Software in ACI Mode 13.2(3j) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-264651">
+      <FullProductName ProductID="CVRFPID-264651:265096">Cisco NX-OS System Software in ACI Mode 13.2(3s) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-264652">
+      <FullProductName ProductID="CVRFPID-264652:265096">Cisco NX-OS System Software in ACI Mode 13.2(5d) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-264653">
+      <FullProductName ProductID="CVRFPID-264653:265096">Cisco NX-OS System Software in ACI Mode 13.2(5e) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-264654">
+      <FullProductName ProductID="CVRFPID-264654:265096">Cisco NX-OS System Software in ACI Mode 13.2(5f) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-264655">
+      <FullProductName ProductID="CVRFPID-264655:265096">Cisco NX-OS System Software in ACI Mode 13.2(6i) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-273935">
+      <FullProductName ProductID="CVRFPID-273935:265096">Cisco NX-OS System Software in ACI Mode 13.2(41d) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-273936">
+      <FullProductName ProductID="CVRFPID-273936:265096">Cisco NX-OS System Software in ACI Mode 13.2(7f) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-273937">
+      <FullProductName ProductID="CVRFPID-273937:265096">Cisco NX-OS System Software in ACI Mode 13.2(7k) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-273938">
+      <FullProductName ProductID="CVRFPID-273938:265096">Cisco NX-OS System Software in ACI Mode 13.2(9b) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-274786">
+      <FullProductName ProductID="CVRFPID-274786:265096">Cisco NX-OS System Software in ACI Mode 13.2(8d) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-277151">
+      <FullProductName ProductID="CVRFPID-277151:265096">Cisco NX-OS System Software in ACI Mode 13.2(9f) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-277349">
+      <FullProductName ProductID="CVRFPID-277349:265096">Cisco NX-OS System Software in ACI Mode 13.2(9h) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-281586">
+      <FullProductName ProductID="CVRFPID-281586:265096">Cisco NX-OS System Software in ACI Mode 13.2(10e) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-241233">
+      <FullProductName ProductID="CVRFPID-241233:265096">Cisco NX-OS System Software in ACI Mode 11.3(1g) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-241234">
+      <FullProductName ProductID="CVRFPID-241234:265096">Cisco NX-OS System Software in ACI Mode 11.3(2f) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-241361">
+      <FullProductName ProductID="CVRFPID-241361:265096">Cisco NX-OS System Software in ACI Mode 11.3(1h) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-241362">
+      <FullProductName ProductID="CVRFPID-241362:265096">Cisco NX-OS System Software in ACI Mode 11.3(1i) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-241363">
+      <FullProductName ProductID="CVRFPID-241363:265096">Cisco NX-OS System Software in ACI Mode 11.3(2h) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-241364">
+      <FullProductName ProductID="CVRFPID-241364:265096">Cisco NX-OS System Software in ACI Mode 11.3(2i) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-241365">
+      <FullProductName ProductID="CVRFPID-241365:265096">Cisco NX-OS System Software in ACI Mode 11.3(2k) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-257367">
+      <FullProductName ProductID="CVRFPID-257367:265096">Cisco NX-OS System Software in ACI Mode 11.3(1j) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-257368">
+      <FullProductName ProductID="CVRFPID-257368:265096">Cisco NX-OS System Software in ACI Mode 11.3(2j) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-257580">
+      <FullProductName ProductID="CVRFPID-257580:265096">Cisco NX-OS System Software in ACI Mode 14.0(1h) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-257581">
+      <FullProductName ProductID="CVRFPID-257581:265096">Cisco NX-OS System Software in ACI Mode 14.0(2c) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-259822">
+      <FullProductName ProductID="CVRFPID-259822:265096">Cisco NX-OS System Software in ACI Mode 14.0(3d) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-264644">
+      <FullProductName ProductID="CVRFPID-264644:265096">Cisco NX-OS System Software in ACI Mode 14.0(3c) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-264646">
+      <FullProductName ProductID="CVRFPID-264646:265096">Cisco NX-OS System Software in ACI Mode 14.1(1i) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-264647">
+      <FullProductName ProductID="CVRFPID-264647:265096">Cisco NX-OS System Software in ACI Mode 14.1(1j) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-264648">
+      <FullProductName ProductID="CVRFPID-264648:265096">Cisco NX-OS System Software in ACI Mode 14.1(1k) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-264649">
+      <FullProductName ProductID="CVRFPID-264649:265096">Cisco NX-OS System Software in ACI Mode 14.1(1l) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-265564">
+      <FullProductName ProductID="CVRFPID-265564:265096">Cisco NX-OS System Software in ACI Mode 14.1(2g) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-273939">
+      <FullProductName ProductID="CVRFPID-273939:265096">Cisco NX-OS System Software in ACI Mode 14.1(2m) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-273940">
+      <FullProductName ProductID="CVRFPID-273940:265096">Cisco NX-OS System Software in ACI Mode 14.1(2o) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-273941">
+      <FullProductName ProductID="CVRFPID-273941:265096">Cisco NX-OS System Software in ACI Mode 14.1(2s) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-273942">
+      <FullProductName ProductID="CVRFPID-273942:265096">Cisco NX-OS System Software in ACI Mode 14.1(2u) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-276890">
+      <FullProductName ProductID="CVRFPID-276890:265096">Cisco NX-OS System Software in ACI Mode 14.1(2w) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-276891">
+      <FullProductName ProductID="CVRFPID-276891:265096">Cisco NX-OS System Software in ACI Mode 14.1(2x) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-273944">
+      <FullProductName ProductID="CVRFPID-273944:265096">Cisco NX-OS System Software in ACI Mode 14.2(1i) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-273945">
+      <FullProductName ProductID="CVRFPID-273945:265096">Cisco NX-OS System Software in ACI Mode 14.2(1j) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-273946">
+      <FullProductName ProductID="CVRFPID-273946:265096">Cisco NX-OS System Software in ACI Mode 14.2(1l) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-273947">
+      <FullProductName ProductID="CVRFPID-273947:265096">Cisco NX-OS System Software in ACI Mode 14.2(2e) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-273948">
+      <FullProductName ProductID="CVRFPID-273948:265096">Cisco NX-OS System Software in ACI Mode 14.2(2f) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-273949">
+      <FullProductName ProductID="CVRFPID-273949:265096">Cisco NX-OS System Software in ACI Mode 14.2(2g) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-273950">
+      <FullProductName ProductID="CVRFPID-273950:265096">Cisco NX-OS System Software in ACI Mode 14.2(3j) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-274558">
+      <FullProductName ProductID="CVRFPID-274558:265096">Cisco NX-OS System Software in ACI Mode 14.2(3l) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-275887">
+      <FullProductName ProductID="CVRFPID-275887:265096">Cisco NX-OS System Software in ACI Mode 14.2(3n) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-277320">
+      <FullProductName ProductID="CVRFPID-277320:265096">Cisco NX-OS System Software in ACI Mode 14.2(3q) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-277351">
+      <FullProductName ProductID="CVRFPID-277351:265096">Cisco NX-OS System Software in ACI Mode 14.2(4i) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-278028">
+      <FullProductName ProductID="CVRFPID-278028:265096">Cisco NX-OS System Software in ACI Mode 14.2(4k) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-278782">
+      <FullProductName ProductID="CVRFPID-278782:265096">Cisco NX-OS System Software in ACI Mode 14.2(4o) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-279381">
+      <FullProductName ProductID="CVRFPID-279381:265096">Cisco NX-OS System Software in ACI Mode 14.2(4p) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-279461">
+      <FullProductName ProductID="CVRFPID-279461:265096">Cisco NX-OS System Software in ACI Mode 14.2(5k) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-280216">
+      <FullProductName ProductID="CVRFPID-280216:265096">Cisco NX-OS System Software in ACI Mode 14.2(5l) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-280465">
+      <FullProductName ProductID="CVRFPID-280465:265096">Cisco NX-OS System Software in ACI Mode 14.2(5n) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-280772">
+      <FullProductName ProductID="CVRFPID-280772:265096">Cisco NX-OS System Software in ACI Mode 14.2(6d) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-281001">
+      <FullProductName ProductID="CVRFPID-281001:265096">Cisco NX-OS System Software in ACI Mode 14.2(6g) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-281317">
+      <FullProductName ProductID="CVRFPID-281317:265096">Cisco NX-OS System Software in ACI Mode 14.2(6h) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-281585">
+      <FullProductName ProductID="CVRFPID-281585:265096">Cisco NX-OS System Software in ACI Mode 14.2(6l) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-282009">
+      <FullProductName ProductID="CVRFPID-282009:265096">Cisco NX-OS System Software in ACI Mode 14.2(7f) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-284295">
+      <FullProductName ProductID="CVRFPID-284295:265096">Cisco NX-OS System Software in ACI Mode 14.2(6o) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-277362">
+      <FullProductName ProductID="CVRFPID-277362:265096">Cisco NX-OS System Software in ACI Mode 15.0(1k) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-278357">
+      <FullProductName ProductID="CVRFPID-278357:265096">Cisco NX-OS System Software in ACI Mode 15.0(1l) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-278781">
+      <FullProductName ProductID="CVRFPID-278781:265096">Cisco NX-OS System Software in ACI Mode 15.0(2e) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-279382">
+      <FullProductName ProductID="CVRFPID-279382:265096">Cisco NX-OS System Software in ACI Mode 15.0(2h) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-280475">
+      <FullProductName ProductID="CVRFPID-280475:265096">Cisco NX-OS System Software in ACI Mode 15.1(1h) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-280784">
+      <FullProductName ProductID="CVRFPID-280784:265096">Cisco NX-OS System Software in ACI Mode 15.1(2e) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-281318">
+      <FullProductName ProductID="CVRFPID-281318:265096">Cisco NX-OS System Software in ACI Mode 15.1(3e) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-282014">
+      <FullProductName ProductID="CVRFPID-282014:265096">Cisco NX-OS System Software in ACI Mode 15.1(4c) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-283749">
+      <FullProductName ProductID="CVRFPID-283749:265096">Cisco NX-OS System Software in ACI Mode 15.2(1g) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-284173">
+      <FullProductName ProductID="CVRFPID-284173:265096">Cisco NX-OS System Software in ACI Mode 15.2(2e) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+  </ProductTree>
+  <Vulnerability Ordinal="1" xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln">
+    <Title>vuln-CVE-2021-1583</Title>
+    <ID SystemName="Cisco Bug ID">CSCvy05010</ID>
+    <Notes>
+      <Note Title="Cisco Bug IDs" Type="Other" Ordinal="1">CSCvy05010</Note>
+      <Note Title="Affected Product Comprehensiveness" Type="Other" Ordinal="2">Complete.</Note>
+    </Notes>
+    <CVE>CVE-2021-1583</CVE>
+    <ProductStatuses>
+      <Status Type="Known Affected">
+        <ProductID>CVRFPID-241202</ProductID>
+        <ProductID>CVRFPID-241204:265096</ProductID>
+        <ProductID>CVRFPID-241206:265096</ProductID>
+        <ProductID>CVRFPID-241208:265096</ProductID>
+        <ProductID>CVRFPID-241210:265096</ProductID>
+        <ProductID>CVRFPID-241212:265096</ProductID>
+        <ProductID>CVRFPID-241214:265096</ProductID>
+        <ProductID>CVRFPID-241216:265096</ProductID>
+        <ProductID>CVRFPID-241218:265096</ProductID>
+        <ProductID>CVRFPID-241220:265096</ProductID>
+        <ProductID>CVRFPID-241222:265096</ProductID>
+        <ProductID>CVRFPID-241223:265096</ProductID>
+        <ProductID>CVRFPID-241224:265096</ProductID>
+        <ProductID>CVRFPID-241225:265096</ProductID>
+        <ProductID>CVRFPID-241226:265096</ProductID>
+        <ProductID>CVRFPID-241227:265096</ProductID>
+        <ProductID>CVRFPID-241228:265096</ProductID>
+        <ProductID>CVRFPID-241229:265096</ProductID>
+        <ProductID>CVRFPID-241230:265096</ProductID>
+        <ProductID>CVRFPID-241231:265096</ProductID>
+        <ProductID>CVRFPID-241233:265096</ProductID>
+        <ProductID>CVRFPID-241234:265096</ProductID>
+        <ProductID>CVRFPID-241235:265096</ProductID>
+        <ProductID>CVRFPID-241236:265096</ProductID>
+        <ProductID>CVRFPID-241237:265096</ProductID>
+        <ProductID>CVRFPID-241238:265096</ProductID>
+        <ProductID>CVRFPID-241239:265096</ProductID>
+        <ProductID>CVRFPID-241240:265096</ProductID>
+        <ProductID>CVRFPID-241241:265096</ProductID>
+        <ProductID>CVRFPID-241242:265096</ProductID>
+        <ProductID>CVRFPID-241243:265096</ProductID>
+        <ProductID>CVRFPID-241244:265096</ProductID>
+        <ProductID>CVRFPID-241245:265096</ProductID>
+        <ProductID>CVRFPID-241246:265096</ProductID>
+        <ProductID>CVRFPID-241247:265096</ProductID>
+        <ProductID>CVRFPID-241248:265096</ProductID>
+        <ProductID>CVRFPID-241249:265096</ProductID>
+        <ProductID>CVRFPID-241250:265096</ProductID>
+        <ProductID>CVRFPID-241251:265096</ProductID>
+        <ProductID>CVRFPID-241252:265096</ProductID>
+        <ProductID>CVRFPID-241253:265096</ProductID>
+        <ProductID>CVRFPID-241254:265096</ProductID>
+        <ProductID>CVRFPID-241255:265096</ProductID>
+        <ProductID>CVRFPID-241256:265096</ProductID>
+        <ProductID>CVRFPID-241257:265096</ProductID>
+        <ProductID>CVRFPID-241258:265096</ProductID>
+        <ProductID>CVRFPID-241259:265096</ProductID>
+        <ProductID>CVRFPID-241260:265096</ProductID>
+        <ProductID>CVRFPID-241261:265096</ProductID>
+        <ProductID>CVRFPID-241262:265096</ProductID>
+        <ProductID>CVRFPID-241263:265096</ProductID>
+        <ProductID>CVRFPID-241264:265096</ProductID>
+        <ProductID>CVRFPID-241265:265096</ProductID>
+        <ProductID>CVRFPID-241266:265096</ProductID>
+        <ProductID>CVRFPID-241267:265096</ProductID>
+        <ProductID>CVRFPID-241268:265096</ProductID>
+        <ProductID>CVRFPID-241272:265096</ProductID>
+        <ProductID>CVRFPID-241273:265096</ProductID>
+        <ProductID>CVRFPID-241274:265096</ProductID>
+        <ProductID>CVRFPID-241275:265096</ProductID>
+        <ProductID>CVRFPID-241276:265096</ProductID>
+        <ProductID>CVRFPID-241278:265096</ProductID>
+        <ProductID>CVRFPID-241279:265096</ProductID>
+        <ProductID>CVRFPID-241280:265096</ProductID>
+        <ProductID>CVRFPID-241281:265096</ProductID>
+        <ProductID>CVRFPID-241282:265096</ProductID>
+        <ProductID>CVRFPID-241283:265096</ProductID>
+        <ProductID>CVRFPID-241309:265096</ProductID>
+        <ProductID>CVRFPID-241310:265096</ProductID>
+        <ProductID>CVRFPID-241349:265096</ProductID>
+        <ProductID>CVRFPID-241350:265096</ProductID>
+        <ProductID>CVRFPID-241351:265096</ProductID>
+        <ProductID>CVRFPID-241352:265096</ProductID>
+        <ProductID>CVRFPID-241353:265096</ProductID>
+        <ProductID>CVRFPID-241354:265096</ProductID>
+        <ProductID>CVRFPID-241355:265096</ProductID>
+        <ProductID>CVRFPID-241356:265096</ProductID>
+        <ProductID>CVRFPID-241357:265096</ProductID>
+        <ProductID>CVRFPID-241358:265096</ProductID>
+        <ProductID>CVRFPID-241359:265096</ProductID>
+        <ProductID>CVRFPID-241360:265096</ProductID>
+        <ProductID>CVRFPID-241361:265096</ProductID>
+        <ProductID>CVRFPID-241362:265096</ProductID>
+        <ProductID>CVRFPID-241363:265096</ProductID>
+        <ProductID>CVRFPID-241364:265096</ProductID>
+        <ProductID>CVRFPID-241365:265096</ProductID>
+        <ProductID>CVRFPID-241366:265096</ProductID>
+        <ProductID>CVRFPID-241367:265096</ProductID>
+        <ProductID>CVRFPID-241368:265096</ProductID>
+        <ProductID>CVRFPID-241369:265096</ProductID>
+        <ProductID>CVRFPID-241370:265096</ProductID>
+        <ProductID>CVRFPID-257359:265096</ProductID>
+        <ProductID>CVRFPID-257360:265096</ProductID>
+        <ProductID>CVRFPID-257361:265096</ProductID>
+        <ProductID>CVRFPID-257362:265096</ProductID>
+        <ProductID>CVRFPID-257363:265096</ProductID>
+        <ProductID>CVRFPID-257364:265096</ProductID>
+        <ProductID>CVRFPID-257365:265096</ProductID>
+        <ProductID>CVRFPID-257366:265096</ProductID>
+        <ProductID>CVRFPID-257367:265096</ProductID>
+        <ProductID>CVRFPID-257368:265096</ProductID>
+        <ProductID>CVRFPID-257369:265096</ProductID>
+        <ProductID>CVRFPID-257370:265096</ProductID>
+        <ProductID>CVRFPID-257371:265096</ProductID>
+        <ProductID>CVRFPID-257372:265096</ProductID>
+        <ProductID>CVRFPID-257373:265096</ProductID>
+        <ProductID>CVRFPID-257374:265096</ProductID>
+        <ProductID>CVRFPID-257375:265096</ProductID>
+        <ProductID>CVRFPID-257376:265096</ProductID>
+        <ProductID>CVRFPID-257377:265096</ProductID>
+        <ProductID>CVRFPID-257378:265096</ProductID>
+        <ProductID>CVRFPID-257379:265096</ProductID>
+        <ProductID>CVRFPID-257580:265096</ProductID>
+        <ProductID>CVRFPID-257581:265096</ProductID>
+        <ProductID>CVRFPID-257757:265096</ProductID>
+        <ProductID>CVRFPID-257758:265096</ProductID>
+        <ProductID>CVRFPID-259822:265096</ProductID>
+        <ProductID>CVRFPID-264644:265096</ProductID>
+        <ProductID>CVRFPID-264646:265096</ProductID>
+        <ProductID>CVRFPID-264647:265096</ProductID>
+        <ProductID>CVRFPID-264648:265096</ProductID>
+        <ProductID>CVRFPID-264649:265096</ProductID>
+        <ProductID>CVRFPID-264650:265096</ProductID>
+        <ProductID>CVRFPID-264651:265096</ProductID>
+        <ProductID>CVRFPID-264652:265096</ProductID>
+        <ProductID>CVRFPID-264653:265096</ProductID>
+        <ProductID>CVRFPID-264654:265096</ProductID>
+        <ProductID>CVRFPID-264655:265096</ProductID>
+        <ProductID>CVRFPID-264656:265096</ProductID>
+        <ProductID>CVRFPID-264659:265096</ProductID>
+        <ProductID>CVRFPID-264660:265096</ProductID>
+        <ProductID>CVRFPID-265564:265096</ProductID>
+        <ProductID>CVRFPID-273934:265096</ProductID>
+        <ProductID>CVRFPID-273935:265096</ProductID>
+        <ProductID>CVRFPID-273936:265096</ProductID>
+        <ProductID>CVRFPID-273937:265096</ProductID>
+        <ProductID>CVRFPID-273938:265096</ProductID>
+        <ProductID>CVRFPID-273939:265096</ProductID>
+        <ProductID>CVRFPID-273940:265096</ProductID>
+        <ProductID>CVRFPID-273941:265096</ProductID>
+        <ProductID>CVRFPID-273942:265096</ProductID>
+        <ProductID>CVRFPID-273944:265096</ProductID>
+        <ProductID>CVRFPID-273945:265096</ProductID>
+        <ProductID>CVRFPID-273946:265096</ProductID>
+        <ProductID>CVRFPID-273947:265096</ProductID>
+        <ProductID>CVRFPID-273948:265096</ProductID>
+        <ProductID>CVRFPID-273949:265096</ProductID>
+        <ProductID>CVRFPID-273950:265096</ProductID>
+        <ProductID>CVRFPID-274558:265096</ProductID>
+        <ProductID>CVRFPID-274786:265096</ProductID>
+        <ProductID>CVRFPID-275887:265096</ProductID>
+        <ProductID>CVRFPID-276890:265096</ProductID>
+        <ProductID>CVRFPID-276891:265096</ProductID>
+        <ProductID>CVRFPID-277151:265096</ProductID>
+        <ProductID>CVRFPID-277320:265096</ProductID>
+        <ProductID>CVRFPID-277349:265096</ProductID>
+        <ProductID>CVRFPID-277351:265096</ProductID>
+        <ProductID>CVRFPID-277362:265096</ProductID>
+        <ProductID>CVRFPID-278028:265096</ProductID>
+        <ProductID>CVRFPID-278357:265096</ProductID>
+        <ProductID>CVRFPID-278781:265096</ProductID>
+        <ProductID>CVRFPID-278782:265096</ProductID>
+        <ProductID>CVRFPID-279381:265096</ProductID>
+        <ProductID>CVRFPID-279382:265096</ProductID>
+        <ProductID>CVRFPID-279461:265096</ProductID>
+        <ProductID>CVRFPID-280216:265096</ProductID>
+        <ProductID>CVRFPID-280465:265096</ProductID>
+        <ProductID>CVRFPID-280475:265096</ProductID>
+        <ProductID>CVRFPID-280772:265096</ProductID>
+        <ProductID>CVRFPID-280784:265096</ProductID>
+        <ProductID>CVRFPID-281001:265096</ProductID>
+        <ProductID>CVRFPID-281317:265096</ProductID>
+        <ProductID>CVRFPID-281318:265096</ProductID>
+        <ProductID>CVRFPID-281585:265096</ProductID>
+        <ProductID>CVRFPID-281586:265096</ProductID>
+        <ProductID>CVRFPID-282009:265096</ProductID>
+        <ProductID>CVRFPID-282014:265096</ProductID>
+        <ProductID>CVRFPID-283749:265096</ProductID>
+        <ProductID>CVRFPID-284173:265096</ProductID>
+        <ProductID>CVRFPID-284295:265096</ProductID>
+      </Status>
+    </ProductStatuses>
+    <CVSSScoreSets>
+      <ScoreSetV3>
+        <BaseScoreV3>4.4</BaseScoreV3>
+        <VectorV3>CVSS:3.1/AV:L/AC:L/PR:H/UI:N/S:U/C:H/I:N/A:N</VectorV3>
+      </ScoreSetV3>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Workaround">
+        <Description>There are no workarounds that address this vulnerability.</Description>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference Type="Self">
+        <URL>https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-naci-afr-UtjfO2D7</URL>
+        <Description>Cisco Nexus 9000 Series Fabric Switches ACI Mode Arbitrary File Read Vulnerability</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+</cvrf:cvrfdoc>

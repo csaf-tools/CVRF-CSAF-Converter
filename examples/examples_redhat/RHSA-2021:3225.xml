@@ -1,0 +1,432 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cvrfdoc xmlns="http://www.icasi.org/CVRF/schema/cvrf/1.1" xmlns:cvrf="http://www.icasi.org/CVRF/schema/cvrf/1.1">
+  <DocumentTitle xml:lang="en">Red Hat Security Advisory: Red Hat AMQ Streams 1.8.0 release and security update</DocumentTitle>
+  <DocumentType>Security Advisory</DocumentType>
+  <DocumentPublisher Type="Vendor">
+    <ContactDetails>secalert@redhat.com</ContactDetails>
+    <IssuingAuthority>Red Hat Product Security</IssuingAuthority>
+  </DocumentPublisher>
+  <DocumentTracking>
+    <Identification><ID>RHSA-2021:3225</ID></Identification>
+    <Status>Final</Status>
+    <Version>1</Version>
+    <RevisionHistory>
+       <Revision>
+         <Number>1</Number>
+         <Date>2021-08-19T07:17:00Z</Date>
+         <Description>Current version</Description>
+       </Revision>
+    </RevisionHistory>
+    <InitialReleaseDate>2021-08-19T07:17:00Z</InitialReleaseDate>
+    <CurrentReleaseDate>2021-08-19T07:17:00Z</CurrentReleaseDate>
+    <Generator>
+      <Engine>Red Hat SDEngine 3.0.0</Engine>
+      <Date>2021-08-23T04:56:00Z</Date>
+    </Generator>
+  </DocumentTracking>
+  <DocumentNotes>
+    <Note Title="Topic" Type="Summary" Ordinal="1" xml:lang="en">
+Red Hat AMQ Streams 1.8.0 is now available from the Red Hat Customer Portal.
+
+Red Hat Product Security has rated this update as having a security impact of Moderate. A Common Vulnerability Scoring System (CVSS) base score, which gives a detailed severity rating, is available for each vulnerability from the CVE link(s) in the References section.
+    </Note>
+    <Note Title="Details" Type="General" Ordinal="2" xml:lang="en">
+Red Hat AMQ Streams, based on the Apache Kafka project, offers a distributed backbone that allows microservices and other applications to share data with extremely high throughput and extremely low latency. 
+
+This release of Red Hat AMQ Streams 1.8.0 serves as a replacement for Red Hat AMQ Streams 1.7.0, and includes security and bug fixes, and enhancements.
+
+Security Fix(es):
+
+* snakeyaml: Billion laughs attack via alias feature (CVE-2017-18640)
+
+* netty: Information disclosure via the local system temporary directory (CVE-2021-21290)
+
+* netty: possible request smuggling in HTTP/2 due missing validation (CVE-2021-21295)
+
+* netty: Request smuggling via content-length header (CVE-2021-21409)
+
+* json-smart: uncaught exception may lead to crash or information disclosure (CVE-2021-27568)
+
+* jetty: Symlink directory exposes webapp directory contents (CVE-2021-28163)
+
+* jetty: Ambiguous paths can access WEB-INF (CVE-2021-28164)
+
+* jetty: Resource exhaustion when receiving an invalid large TLS frame (CVE-2021-28165)
+
+* jersey: Local information disclosure via system temporary directory (CVE-2021-28168)
+
+* jetty: requests to the ConcatServlet and WelcomeFilter are able to access protected resources within the WEB-INF directory (CVE-2021-28169)
+
+* apache-commons-io: Limited path traversal in Apache Commons IO 2.2 to 2.6 (CVE-2021-29425)
+
+* jetty: SessionListener can prevent a session from being invalidated breaking logout (CVE-2021-34428)
+
+For more details about the security issue(s), including the impact, a CVSS score, acknowledgments, and other related information, refer to the CVE page(s) listed in the References section.
+    </Note>
+    <Note Title="Terms of Use" Ordinal="3" Type="Legal Disclaimer" xml:lang="en">This content is licensed under the Creative Commons Attribution 4.0 International License (https://creativecommons.org/licenses/by/4.0/). If you distribute this content, or a modified version of it, you must provide attribution to Red Hat Inc. and provide a link to the original.</Note>
+  </DocumentNotes>
+  <DocumentDistribution xml:lang="en">Copyright © 2021 Red Hat, Inc. All rights reserved.</DocumentDistribution>
+  <AggregateSeverity Namespace="https://access.redhat.com/security/updates/classification/">Moderate</AggregateSeverity>
+  <DocumentReferences>
+    <Reference Type="Self">
+       <URL>https://access.redhat.com/errata/RHSA-2021:3225</URL>
+       <Description>https://access.redhat.com/errata/RHSA-2021:3225</Description>
+    </Reference>
+    <Reference Type="External">
+       <URL>https://access.redhat.com/security/updates/classification/#moderate</URL>
+       <Description>https://access.redhat.com/security/updates/classification/#moderate</Description>
+    </Reference>
+    <Reference Type="External">
+       <URL>https://access.redhat.com/jbossnetwork/restricted/listSoftware.html?downloadType=distributions&amp;product=jboss.amq.streams&amp;version=1.8.0</URL>
+       <Description>https://access.redhat.com/jbossnetwork/restricted/listSoftware.html?downloadType=distributions&amp;product=jboss.amq.streams&amp;version=1.8.0</Description>
+    </Reference>
+  </DocumentReferences>
+
+  <Vulnerability Ordinal="1" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">snakeyaml: Billion laughs attack via alias feature</Note></Notes>
+    <DiscoveryDate>2019-12-19T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2019-12-12T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2017-18640</CVE>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+Before applying the update, back up your existing installation, including all applications, configuration files, databases and database settings, and so on.
+
+The References section of this erratum contains a download link (you must log in to download the update).
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:3225</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2017-18640</URL>
+        <Description>CVE-2017-18640</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1785376</URL>
+        <Description>bz#1785376: CVE-2017-18640 snakeyaml: Billion laughs attack via alias feature</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="2" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">netty: Information disclosure via the local system temporary directory</Note></Notes>
+    <DiscoveryDate>2021-02-09T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-02-09T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-21290</CVE>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+Before applying the update, back up your existing installation, including all applications, configuration files, databases and database settings, and so on.
+
+The References section of this erratum contains a download link (you must log in to download the update).
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:3225</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-21290</URL>
+        <Description>CVE-2021-21290</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1927028</URL>
+        <Description>bz#1927028: CVE-2021-21290 netty: Information disclosure via the local system temporary directory</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="3" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">netty: possible request smuggling in HTTP/2 due missing validation</Note></Notes>
+    <DiscoveryDate>2021-03-09T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-03-09T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-21295</CVE>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+Before applying the update, back up your existing installation, including all applications, configuration files, databases and database settings, and so on.
+
+The References section of this erratum contains a download link (you must log in to download the update).
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:3225</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://github.com/netty/netty/security/advisories/GHSA-wm47-8v5p-wjpj</URL>
+        <Description>https://github.com/netty/netty/security/advisories/GHSA-wm47-8v5p-wjpj</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-21295</URL>
+        <Description>CVE-2021-21295</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1937364</URL>
+        <Description>bz#1937364: CVE-2021-21295 netty: possible request smuggling in HTTP/2 due missing validation</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="4" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">netty: Request smuggling via content-length header</Note></Notes>
+    <DiscoveryDate>2021-03-30T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-03-30T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-21409</CVE>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+Before applying the update, back up your existing installation, including all applications, configuration files, databases and database settings, and so on.
+
+The References section of this erratum contains a download link (you must log in to download the update).
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:3225</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://github.com/netty/netty/security/advisories/GHSA-f256-j965-7f32</URL>
+        <Description>https://github.com/netty/netty/security/advisories/GHSA-f256-j965-7f32</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-21409</URL>
+        <Description>CVE-2021-21409</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1944888</URL>
+        <Description>bz#1944888: CVE-2021-21409 netty: Request smuggling via content-length header</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="5" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">json-smart: uncaught exception may lead to crash or information disclosure</Note></Notes>
+    <DiscoveryDate>2021-03-02T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-02-23T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-27568</CVE>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+Before applying the update, back up your existing installation, including all applications, configuration files, databases and database settings, and so on.
+
+The References section of this erratum contains a download link (you must log in to download the update).
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:3225</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-27568</URL>
+        <Description>CVE-2021-27568</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1939839</URL>
+        <Description>bz#1939839: CVE-2021-27568 json-smart: uncaught exception may lead to crash or information disclosure</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="6" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">jetty: Symlink directory exposes webapp directory contents</Note></Notes>
+    <DiscoveryDate>2021-04-01T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-04-01T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-28163</CVE>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+Before applying the update, back up your existing installation, including all applications, configuration files, databases and database settings, and so on.
+
+The References section of this erratum contains a download link (you must log in to download the update).
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:3225</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://github.com/eclipse/jetty.project/security/advisories/GHSA-j6qj-j888-vvgq</URL>
+        <Description>https://github.com/eclipse/jetty.project/security/advisories/GHSA-j6qj-j888-vvgq</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-28163</URL>
+        <Description>CVE-2021-28163</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1945710</URL>
+        <Description>bz#1945710: CVE-2021-28163 jetty: Symlink directory exposes webapp directory contents</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="7" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">jetty: Ambiguous paths can access WEB-INF</Note></Notes>
+    <DiscoveryDate>2021-04-01T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-04-01T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-28164</CVE>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+Before applying the update, back up your existing installation, including all applications, configuration files, databases and database settings, and so on.
+
+The References section of this erratum contains a download link (you must log in to download the update).
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:3225</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://github.com/eclipse/jetty.project/security/advisories/GHSA-v7ff-8wcx-gmc5</URL>
+        <Description>https://github.com/eclipse/jetty.project/security/advisories/GHSA-v7ff-8wcx-gmc5</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-28164</URL>
+        <Description>CVE-2021-28164</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1945712</URL>
+        <Description>bz#1945712: CVE-2021-28164 jetty: Ambiguous paths can access WEB-INF</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="8" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">jetty: Resource exhaustion when receiving an invalid large TLS frame</Note></Notes>
+    <DiscoveryDate>2021-04-01T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-04-01T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-28165</CVE>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+Before applying the update, back up your existing installation, including all applications, configuration files, databases and database settings, and so on.
+
+The References section of this erratum contains a download link (you must log in to download the update).
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:3225</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://github.com/eclipse/jetty.project/security/advisories/GHSA-26vr-8j45-3r4w</URL>
+        <Description>https://github.com/eclipse/jetty.project/security/advisories/GHSA-26vr-8j45-3r4w</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-28165</URL>
+        <Description>CVE-2021-28165</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1945714</URL>
+        <Description>bz#1945714: CVE-2021-28165 jetty: Resource exhaustion when receiving an invalid large TLS frame</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="9" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">jersey: Local information disclosure via system temporary directory</Note></Notes>
+    <DiscoveryDate>2021-04-22T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-04-22T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-28168</CVE>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+Before applying the update, back up your existing installation, including all applications, configuration files, databases and database settings, and so on.
+
+The References section of this erratum contains a download link (you must log in to download the update).
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:3225</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-28168</URL>
+        <Description>CVE-2021-28168</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1953024</URL>
+        <Description>bz#1953024: CVE-2021-28168 jersey: Local information disclosure via system temporary directory</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="10" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">jetty: requests to the ConcatServlet and WelcomeFilter are able to access protected resources within the WEB-INF directory</Note></Notes>
+    <DiscoveryDate>2021-06-09T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-06-08T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-28169</CVE>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+Before applying the update, back up your existing installation, including all applications, configuration files, databases and database settings, and so on.
+
+The References section of this erratum contains a download link (you must log in to download the update).
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:3225</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-28169</URL>
+        <Description>CVE-2021-28169</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1971016</URL>
+        <Description>bz#1971016: CVE-2021-28169 jetty: requests to the ConcatServlet and WelcomeFilter are able to access protected resources within the WEB-INF directory</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="11" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">apache-commons-io: Limited path traversal in Apache Commons IO 2.2 to 2.6</Note></Notes>
+    <DiscoveryDate>2021-04-12T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-04-12T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-29425</CVE>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+Before applying the update, back up your existing installation, including all applications, configuration files, databases and database settings, and so on.
+
+The References section of this erratum contains a download link (you must log in to download the update).
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:3225</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-29425</URL>
+        <Description>CVE-2021-29425</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1948752</URL>
+        <Description>bz#1948752: CVE-2021-29425 apache-commons-io: Limited path traversal in Apache Commons IO 2.2 to 2.6</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="12" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">jetty: SessionListener can prevent a session from being invalidated breaking logout</Note></Notes>
+    <DiscoveryDate>2021-06-22T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-06-22T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-34428</CVE>
+    <Threats><Threat Type="Impact"><Description>Low</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+Before applying the update, back up your existing installation, including all applications, configuration files, databases and database settings, and so on.
+
+The References section of this erratum contains a download link (you must log in to download the update).
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:3225</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://github.com/eclipse/jetty.project/security/advisories/GHSA-m6cp-vxjx-65j6</URL>
+        <Description>https://github.com/eclipse/jetty.project/security/advisories/GHSA-m6cp-vxjx-65j6</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-34428</URL>
+        <Description>CVE-2021-34428</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1974891</URL>
+        <Description>bz#1974891: CVE-2021-34428 jetty: SessionListener can prevent a session from being invalidated breaking logout</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+</cvrfdoc>

@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cvrf:cvrfdoc xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:cvrf-common="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/common" xmlns:cvrf="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/cvrf">
+  <cvrf:DocumentTitle>Cisco IOS and IOS XE Software Secure Shell Connection on VRF Vulnerability</cvrf:DocumentTitle>
+  <cvrf:DocumentType>Cisco Security Advisory</cvrf:DocumentType>
+  <cvrf:DocumentPublisher Type="Vendor">
+    <cvrf:ContactDetails>Emergency Support:
++1 877 228 7302 (toll-free within North America)
++1 408 525 6532 (International direct-dial)
+Non-emergency Support:
+Email: psirt@cisco.com
+Support requests that are received via e-mail are typically acknowledged within 48 hours.</cvrf:ContactDetails>
+    <cvrf:IssuingAuthority>Cisco product security incident response is the responsibility of the Cisco Product Security Incident Response Team (PSIRT). The Cisco PSIRT is a dedicated, global team that manages the receipt, investigation, and public reporting of security vulnerability information that is related to Cisco products and networks. The on-call Cisco PSIRT works 24x7 with Cisco customers, independent security researchers, consultants, industry organizations, and other vendors to identify possible security issues with Cisco products and networks.
+More information can be found in Cisco Security Vulnerability Policy available at http://www.cisco.com/web/about/security/psirt/security_vulnerability_policy.html</cvrf:IssuingAuthority>
+  </cvrf:DocumentPublisher>
+  <cvrf:DocumentTracking>
+    <cvrf:Identification>
+      <cvrf:ID>cisco-sa-20190109-ios-ssh-vrf</cvrf:ID>
+    </cvrf:Identification>
+    <cvrf:Status>Final</cvrf:Status>
+    <cvrf:Version>1.0</cvrf:Version>
+    <cvrf:RevisionHistory>
+      <cvrf:Revision>
+        <cvrf:Number>1.0</cvrf:Number>
+        <cvrf:Date>2019-01-09T15:58:20</cvrf:Date>
+        <cvrf:Description>Initial public release.</cvrf:Description>
+      </cvrf:Revision>
+    </cvrf:RevisionHistory>
+    <cvrf:InitialReleaseDate>2019-01-09T16:00:00</cvrf:InitialReleaseDate>
+    <cvrf:CurrentReleaseDate>2019-01-09T15:58:20</cvrf:CurrentReleaseDate>
+    <cvrf:Generator>
+      <cvrf:Engine>TVCE</cvrf:Engine>
+    </cvrf:Generator>
+  </cvrf:DocumentTracking>
+  <cvrf:DocumentNotes>
+    <cvrf:Note Title="Summary" Type="Summary" Ordinal="1">A vulnerability in the access control logic of the Secure Shell (SSH) server of Cisco IOS and IOS XE Software may allow connections sourced from a virtual routing and forwarding (VRF) instance despite the absence of the vrf-also keyword in the access-class configuration.
+
+The vulnerability is due to a missing check in the SSH server. An attacker could use this vulnerability to open an SSH connection to an affected  Cisco IOS or IOS XE device with a source address belonging to a VRF instance. Once connected, the attacker would still need to provide valid credentials to access the device.
+
+
+There are no workarounds that address this vulnerability.
+
+This advisory is available at the following link:
+https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20190109-ios-ssh-vrf ["https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20190109-ios-ssh-vrf"]</cvrf:Note>
+    <cvrf:Note Title="Vulnerable Products" Type="General" Ordinal="2">This vulnerability affects Cisco IOS and Cisco IOS XE Software. For information about which software releases are vulnerable, see the Fixed Software ["#fs"] section of this advisory.</cvrf:Note>
+    <cvrf:Note Title="Products Confirmed Not Vulnerable" Type="General" Ordinal="3">Only products listed in the Vulnerable Products ["#vp"] section of this advisory are known to be affected by this vulnerability.
+
+Determining the Cisco IOS Software Release
+To determine which Cisco IOS Software release is running on a device, administrators can log in to the device, use the show version command in the CLI, and then refer to the system banner that appears. If the device is running Cisco IOS Software, the system banner displays text similar to Cisco Internetwork Operating System Software or Cisco IOS Software. The banner also displays the installed image name in parentheses, followed by the Cisco IOS Software release number and release name. Some Cisco devices do not support the show version command or may provide different output.
+
+The following example shows the output of the command for a device that is running Cisco IOS Software Release 15.5(2)T1 and has an installed image name of C2951-UNIVERSALK9-M:
+
+
+Router&gt; show version
+  Cisco IOS Software, C2951 Software (C2951-UNIVERSALK9-M), Version 15.5(2)T1, RELEASE SOFTWARE (fc1)  Technical Support: http://www.cisco.com/techsupport  Copyright (c) 1986-2015 by Cisco Systems, Inc.  Compiled Mon 22-Jun-15 09:32 by prod_rel_team  .  .  .
+
+For information about the naming and numbering conventions for Cisco IOS Software releases, see the Cisco IOS and NX-OS Software Reference Guide ["https://www.cisco.com/c/en/us/about/security-center/ios-nx-os-reference-guide.html"].
+
+
+Determining the Cisco IOS XE Software Release
+To determine which Cisco IOS XE Software release is running on a device, administrators can log in to the device, use the show version command in the CLI, and then refer to the system banner that appears. If the device is running Cisco IOS XE Software, the system banner displays Cisco IOS Software, Cisco IOS XE Software, or similar text.
+
+The following example shows the output of the command for a device that is running Cisco IOS XE Software Release 16.2.1 and has an installed image name of CAT3K_CAA-UNIVERSALK9-M:
+
+
+ios-xe-device# show version
+  Cisco IOS Software, Catalyst L3 Switch Software (CAT3K_CAA-UNIVERSALK9-M), Version Denali 16.2.1, RELEASE SOFTWARE (fc1)  Technical Support: http://www.cisco.com/techsupport  Copyright (c) 1986-2016 by Cisco Systems, Inc.  Compiled Sun 27-Mar-16 21:47 by mcpre  .  .  .
+
+For information about the naming and numbering conventions for Cisco IOS XE Software releases, see the Cisco IOS and NX-OS Software Reference Guide ["https://www.cisco.com/c/en/us/about/security-center/ios-nx-os-reference-guide.html"].</cvrf:Note>
+    <cvrf:Note Title="Workarounds" Type="General" Ordinal="4">There are no workarounds that address this vulnerability.</cvrf:Note>
+    <cvrf:Note Title="Fixed Software" Type="General" Ordinal="5">For detailed information about affected and fixed software releases, consult the Cisco IOS Software Checker.
+
+When considering software upgrades, customers are advised to regularly consult the advisories for Cisco products, which are available from the Cisco Security Advisories and Alerts page ["https://www.cisco.com/go/psirt"], to determine exposure and a complete upgrade solution.
+
+In all cases, customers should ensure that the devices to be upgraded contain sufficient memory and confirm that current hardware and software configurations will continue to be supported properly by the new release. If the information is not clear, customers are advised to contact the Cisco Technical Assistance Center (TAC) or their contracted maintenance providers.
+
+                          Cisco IOS and IOS XE Software
+To help customers determine their exposure to vulnerabilities in Cisco IOS and IOS XE Software, Cisco provides a tool, the Cisco IOS Software Checker ["https://tools.cisco.com/security/center/softwarechecker.x"], that identifies any Cisco Security Advisories that impact a specific software release and the earliest release that fixes the vulnerabilities described in each advisory (“First Fixed”). If applicable, the tool also returns the earliest release that fixes all the vulnerabilities described in all the advisories identified (“Combined First Fixed”).
+
+Customers can use this tool to perform the following tasks:
+
+Initiate a search by choosing one or more releases from a drop-down list or uploading a file from a local system for the tool to parse
+Enter the output of the show version command for the tool to parse
+Create a custom search by including all previously published Cisco Security Advisories, a specific advisory, or all advisories in the most recent bundled publication
+
+To determine whether a release is affected by any published Cisco Security Advisory, use the Cisco IOS Software Checker ["https://tools.cisco.com/security/center/softwarechecker.x"] on Cisco.com or enter a Cisco IOS Software or Cisco IOS XE Software release—for example, 15.1(4)M2 or 3.13.8S—in the following field:
+
+
+
+By default, the Cisco IOS Software Checker includes results only for vulnerabilities that have a Critical or High Security Impact Rating (SIR). To include results for Medium SIR vulnerabilities, use the Cisco IOS Software Checker on Cisco.com and check the Medium check box in the Impact Rating drop-down list.</cvrf:Note>
+    <cvrf:Note Title="Vulnerability Policy" Type="General" Ordinal="6">To learn about Cisco security vulnerability disclosure policies and publications, see the Security Vulnerability Policy ["http://www.cisco.com/web/about/security/psirt/security_vulnerability_policy.html"]. This document also contains instructions for obtaining fixed software and receiving security vulnerability information from Cisco.</cvrf:Note>
+    <cvrf:Note Title="Exploitation and Public Announcements" Type="General" Ordinal="7">The Cisco Product Security Incident Response Team (PSIRT) is not aware of any public announcements or malicious use of the vulnerability that is described in this advisory.</cvrf:Note>
+    <cvrf:Note Title="Source" Type="General" Ordinal="8">This vulnerability was found during the resolution of a Cisco TAC support case.</cvrf:Note>
+    <cvrf:Note Title="Legal Disclaimer" Type="Legal Disclaimer" Ordinal="9">THIS DOCUMENT IS PROVIDED ON AN "AS IS" BASIS AND DOES NOT IMPLY ANY KIND OF GUARANTEE OR WARRANTY, INCLUDING THE WARRANTIES OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR USE. YOUR USE OF THE INFORMATION ON THE DOCUMENT OR MATERIALS LINKED FROM THE DOCUMENT IS AT YOUR OWN RISK. CISCO RESERVES THE RIGHT TO CHANGE OR UPDATE THIS DOCUMENT AT ANY TIME.
+
+A standalone copy or paraphrase of the text of this document that omits the distribution URL is an uncontrolled copy and may lack important information or contain factual errors. The information in this document is intended for end users of Cisco products.</cvrf:Note>
+  </cvrf:DocumentNotes>
+  <cvrf:DocumentReferences>
+    <cvrf:Reference Type="Self">
+      <cvrf:URL>https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20190109-ios-ssh-vrf</cvrf:URL>
+      <cvrf:Description>Cisco IOS and IOS XE Software Secure Shell Connection on VRF Vulnerability</cvrf:Description>
+    </cvrf:Reference>
+  </cvrf:DocumentReferences>
+  <ProductTree xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/prod">
+    <Branch Name="Cisco" Type="Vendor">
+      <Branch Name="IOS" Type="Product Name">
+        <Branch Name="12.2EZ" Type="Product Version">
+          <Branch Name="12.2(60)EZ12" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-228941">Cisco IOS 12.2(60)EZ12</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="15.7M" Type="Product Version">
+          <Branch Name="15.7(3)M3" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-231509">Cisco IOS 15.7(3)M3</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="15.8M" Type="Product Version">
+          <Branch Name="15.8(3)M" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-240653">Cisco IOS 15.8(3)M</FullProductName>
+          </Branch>
+          <Branch Name="15.8(3)M0a" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-245741">Cisco IOS 15.8(3)M0a</FullProductName>
+          </Branch>
+          <Branch Name="15.8(3)M0b" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-247679">Cisco IOS 15.8(3)M0b</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="15.3JK" Type="Product Version">
+          <Branch Name="15.3(3)JK6" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-282669">Cisco IOS 15.3(3)JK6</FullProductName>
+          </Branch>
+        </Branch>
+      </Branch>
+      <Branch Name="Cisco IOS XE Software" Type="Product Name">
+        <Branch Name="16.6" Type="Product Version">
+          <Branch Name="16.6.3" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-231682">Cisco IOS XE Software 16.6.3</FullProductName>
+          </Branch>
+          <Branch Name="16.6.4" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-233155">Cisco IOS XE Software 16.6.4</FullProductName>
+          </Branch>
+          <Branch Name="16.6.4s" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-244900">Cisco IOS XE Software 16.6.4s</FullProductName>
+          </Branch>
+          <Branch Name="16.6.4a" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-247629">Cisco IOS XE Software 16.6.4a</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="3.11E" Type="Product Version">
+          <Branch Name="3.11.99zE" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-283781">Cisco IOS XE Software 3.11.99zE</FullProductName>
+          </Branch>
+        </Branch>
+      </Branch>
+      <Branch Name="Cisco IOS XE Software" Type="Product Name">
+        <FullProductName ProductID="CVRFPID-93036">Cisco IOS XE Software </FullProductName>
+      </Branch>
+    </Branch>
+  </ProductTree>
+  <Vulnerability Ordinal="1" xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln">
+    <Title>Cisco IOS and IOS XE Software SSH Connection on VRF Vulnerability</Title>
+    <ID SystemName="Cisco Bug ID">CSCvk37852</ID>
+    <Notes>
+      <Note Title="Cisco Bug IDs" Type="Other" Ordinal="1">CSCvk37852</Note>
+      <Note Title="Affected Product Comprehensiveness" Type="Other" Ordinal="2">Complete.</Note>
+    </Notes>
+    <CVE>CVE-2018-0484</CVE>
+    <ProductStatuses>
+      <Status Type="Known Affected">
+        <ProductID>CVRFPID-228941</ProductID>
+        <ProductID>CVRFPID-231509</ProductID>
+        <ProductID>CVRFPID-240653</ProductID>
+        <ProductID>CVRFPID-245741</ProductID>
+        <ProductID>CVRFPID-247679</ProductID>
+        <ProductID>CVRFPID-282669</ProductID>
+        <ProductID>CVRFPID-231682</ProductID>
+        <ProductID>CVRFPID-233155</ProductID>
+        <ProductID>CVRFPID-244900</ProductID>
+        <ProductID>CVRFPID-247629</ProductID>
+        <ProductID>CVRFPID-283781</ProductID>
+        <ProductID>CVRFPID-93036</ProductID>
+      </Status>
+    </ProductStatuses>
+    <CVSSScoreSets>
+      <ScoreSetV3>
+        <BaseScoreV3>5.3</BaseScoreV3>
+        <VectorV3>CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:L/A:N</VectorV3>
+      </ScoreSetV3>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Workaround">
+        <Description>There are no workarounds that address this vulnerability.</Description>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference Type="Self">
+        <URL>https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20190109-ios-ssh-vrf</URL>
+        <Description>Cisco IOS and IOS XE Software Secure Shell Connection on VRF Vulnerability</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+</cvrf:cvrfdoc>

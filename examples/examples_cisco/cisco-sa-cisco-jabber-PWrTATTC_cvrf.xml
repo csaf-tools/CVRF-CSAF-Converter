@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cvrf:cvrfdoc xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:cvrf-common="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/common" xmlns:cvrf="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/cvrf">
+  <cvrf:DocumentTitle>Cisco Jabber Desktop and Mobile Client Software Vulnerabilities</cvrf:DocumentTitle>
+  <cvrf:DocumentType>Cisco Security Advisory</cvrf:DocumentType>
+  <cvrf:DocumentPublisher Type="Vendor">
+    <cvrf:ContactDetails>Emergency Support:
++1 877 228 7302 (toll-free within North America)
++1 408 525 6532 (International direct-dial)
+Non-emergency Support:
+Email: psirt@cisco.com
+Support requests that are received via e-mail are typically acknowledged within 48 hours.</cvrf:ContactDetails>
+    <cvrf:IssuingAuthority>Cisco product security incident response is the responsibility of the Cisco Product Security Incident Response Team (PSIRT). The Cisco PSIRT is a dedicated, global team that manages the receipt, investigation, and public reporting of security vulnerability information that is related to Cisco products and networks. The on-call Cisco PSIRT works 24x7 with Cisco customers, independent security researchers, consultants, industry organizations, and other vendors to identify possible security issues with Cisco products and networks.
+More information can be found in Cisco Security Vulnerability Policy available at http://www.cisco.com/web/about/security/psirt/security_vulnerability_policy.html</cvrf:IssuingAuthority>
+  </cvrf:DocumentPublisher>
+  <cvrf:DocumentTracking>
+    <cvrf:Identification>
+      <cvrf:ID>cisco-sa-cisco-jabber-PWrTATTC</cvrf:ID>
+    </cvrf:Identification>
+    <cvrf:Status>Final</cvrf:Status>
+    <cvrf:Version>1.1</cvrf:Version>
+    <cvrf:RevisionHistory>
+      <cvrf:Revision>
+        <cvrf:Number>1.0</cvrf:Number>
+        <cvrf:Date>2021-03-24T15:30:42</cvrf:Date>
+        <cvrf:Description>Initial public release.</cvrf:Description>
+      </cvrf:Revision>
+      <cvrf:Revision>
+        <cvrf:Number>1.1</cvrf:Number>
+        <cvrf:Date>2021-03-25T13:44:34</cvrf:Date>
+        <cvrf:Description>Included additional information for software updates for additional mobile platforms.</cvrf:Description>
+      </cvrf:Revision>
+    </cvrf:RevisionHistory>
+    <cvrf:InitialReleaseDate>2021-03-24T16:00:00</cvrf:InitialReleaseDate>
+    <cvrf:CurrentReleaseDate>2021-03-25T13:44:34</cvrf:CurrentReleaseDate>
+    <cvrf:Generator>
+      <cvrf:Engine>TVCE</cvrf:Engine>
+    </cvrf:Generator>
+  </cvrf:DocumentTracking>
+  <cvrf:DocumentNotes>
+    <cvrf:Note Title="Summary" Type="Summary" Ordinal="1">Multiple vulnerabilities in Cisco Jabber for Windows, Cisco Jabber for MacOS, and Cisco Jabber for mobile platforms could allow an attacker to execute arbitrary programs on the underlying operating system with elevated privileges, access sensitive information, intercept protected network traffic, or cause a denial of service (DoS) condition.
+
+For more information about these vulnerabilities, see the Details ["#details"] section of this advisory.
+
+Cisco has released software updates that address these vulnerabilities. There are no workarounds that address these vulnerabilities.
+
+This advisory is available at the following link:
+https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-cisco-jabber-PWrTATTC ["https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-cisco-jabber-PWrTATTC"]</cvrf:Note>
+    <cvrf:Note Title="Vulnerable Products" Type="General" Ordinal="2">These vulnerabilities affect Cisco Jabber for Windows, Cisco Jabber for MacOS, and Cisco Jabber for mobile platforms.
+
+For information about which Cisco software releases are vulnerable, see the Fixed Software ["#fs"] section of this advisory.
+
+The following table indicates which platforms are affected by each Cisco CVE ID that is described in the Details ["#details"] section of this advisory.
+        Cisco Jabber Platform  Associated CVE IDs          Windows  CVE-2021-1411, CVE-2021-1417, CVE-2021-1418, CVE-2021-1469, and CVE-2021-1471      MacOS  CVE-2021-1418 and CVE-2021-1471      Android and iOS  CVE-2021-1418 and CVE-2021-1471</cvrf:Note>
+    <cvrf:Note Title="Products Confirmed Not Vulnerable" Type="General" Ordinal="3">Only products listed in the Vulnerable Products ["#vp"] section of this advisory are known to be affected by these vulnerabilities.
+
+Cisco has confirmed that these vulnerabilities, with the exception of CVE-2021-1471, do not affect Cisco Jabber client software that is configured for either of the following modes:
+
+Phone-only mode
+Team Messaging Mode</cvrf:Note>
+    <cvrf:Note Title="Details" Type="General" Ordinal="4">The vulnerabilities are not dependent on one another. Exploitation of one of the vulnerabilities is not required to exploit another vulnerability. In addition, a software release that is affected by one of the vulnerabilities may not be affected by the other vulnerabilities.
+
+To exploit the vulnerabilities, an attacker must be:
+
+Authenticated to an Extensible Messaging and Presence Protocol (XMPP) server that the affected software is using
+Able to send XMPP messages to a targeted system
+
+Cisco has confirmed that these vulnerabilities, with the exception of CVE-2021-1471, do not affect Cisco Jabber client software that is configured for either of the following modes:
+
+Phone-only mode
+Team Messaging Mode
+
+Details about the vulnerabilities are as follows:
+
+CVE-2021-1411: Cisco Jabber Arbitrary Program Execution Vulnerability
+
+A vulnerability in Cisco Jabber for Windows could allow an authenticated, remote attacker to execute programs on a targeted system.
+
+This vulnerability is due to improper validation of message content. An attacker could exploit this vulnerability by sending crafted XMPP messages to the affected software. A successful exploit could allow the attacker to cause the application to execute arbitrary programs on the targeted system with the privileges of the user account that is running the Cisco Jabber client software, which could result in arbitrary code execution.
+
+Cisco has released software updates that address this vulnerability. There are no workarounds that address this vulnerability.
+
+Bug ID(s): CSCvw96073 ["http://bst.cloudapps.cisco.com/bugsearch/bug/CSCvw96073"]
+CVE ID: CVE-2021-1411
+Security Impact Rating (SIR): Critical
+CVSS Base Score: 9.9
+CVSS Vector: CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:C/C:H/I:H/A:H ["https://tools.cisco.com/security/center/cvssCalculator.x?version=3.1&amp;vector=CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:C/C:H/I:H/A:H"]
+
+CVE-2021-1469: Cisco Jabber Arbitrary Program Execution Vulnerability
+
+A vulnerability in Cisco Jabber for Windows could allow an authenticated, remote attacker to execute programs on a targeted system.
+
+This vulnerability is due to improper validation of message content. An attacker with a specially provisioned XMPP server account could exploit this vulnerability by sending crafted XMPP messages to the affected software. A successful exploit could allow the attacker to cause the application to execute arbitrary programs on the targeted system with the privileges of the user account that is running the Cisco Jabber client software, which could result in arbitrary code execution.
+
+Cisco has released software updates that address this vulnerability. There are no workarounds that address this vulnerability.
+
+Bug ID(s): CSCvx36433 ["http://bst.cloudapps.cisco.com/bugsearch/bug/CSCvx36433"]
+CVE ID: CVE-2021-1469
+Security Impact Rating (SIR): High
+CVSS Base Score: 7.2
+CVSS Vector: CVSS:3.1/AV:N/AC:L/PR:H/UI:N/S:U/C:H/I:H/A:H ["https://tools.cisco.com/security/center/cvssCalculator.x?version=3.1&amp;vector=CVSS:3.1/AV:N/AC:L/PR:H/UI:N/S:U/C:H/I:H/A:H"]
+
+CVE-2021-1417: Cisco Jabber Information Disclosure Vulnerability
+
+A vulnerability in Cisco Jabber for Windows could allow an authenticated, remote attacker to access sensitive information.
+
+This vulnerability is due to improper validation of message content. An attacker could exploit this vulnerability by sending crafted XMPP messages to a targeted system. A successful exploit could allow the attacker to cause the application to return sensitive authentication information to another system, which the attacker could use in further attacks.
+
+Cisco has released software updates that address this vulnerability. There are no workarounds that address this vulnerability.
+
+Bug ID(s): CSCvw96075 ["http://bst.cloudapps.cisco.com/bugsearch/bug/CSCvw96075"]
+CVE ID: CVE-2021-1417
+Security Impact Rating (SIR): Medium
+CVSS Base Score: 6.5
+CVSS Vector: CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:N/A:N ["https://tools.cisco.com/security/center/cvssCalculator.x?version=3.1&amp;vector=CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:N/A:N"]
+
+CVE-2021-1471: Cisco Jabber Certificate Validation Vulnerability
+
+A vulnerability in Cisco Jabber for Windows, Cisco Jabber for MacOS, and Cisco Jabber for mobile platforms could allow an unauthenticated, remote attacker to intercept protected network traffic.
+
+This vulnerability is due to improper validation of certificates. An attacker could exploit this vulnerability by using a privileged network position to intercept network requests from the affected software and present a maliciously crafted certificate. A successful exploit could allow the attacker to inspect or modify connections between the Cisco Jabber client and a server.
+
+Cisco has released software updates that address this vulnerability. There are no workarounds that address this vulnerability.
+
+Bug ID(s): CSCvx43270 ["http://bst.cloudapps.cisco.com/bugsearch/bug/CSCvx43270"]
+CVE ID: CVE-2021-1471
+Security Impact Rating (SIR): Medium
+CVSS Base Score: 5.6
+CVSS Vector: CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:L/I:L/A:L ["https://tools.cisco.com/security/center/cvssCalculator.x?version=3.1&amp;vector=CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:L/I:L/A:L"]
+
+CVE-2021-1418: Cisco Jabber Denial of Service Vulnerability
+
+A vulnerability in Cisco Jabber for Windows, Cisco Jabber for MacOS, and Cisco Jabber for mobile platforms could allow an authenticated, remote attacker to cause a DoS condition.
+
+This vulnerability is due to improper validation of message content. An attacker could exploit this vulnerability by sending crafted XMPP messages to a targeted system. A successful exploit could allow the attacker to cause the application to terminate, resulting in a DoS condition.
+
+Cisco has released software updates that address this vulnerability. There are no workarounds that address this vulnerability.
+
+Bug ID(s): CSCvw96079 ["http://bst.cloudapps.cisco.com/bugsearch/bug/CSCvw96079"]
+CVE ID: CVE-2021-1418
+Security Impact Rating (SIR): Medium
+CVSS Base Score: 4.3
+CVSS Vector: CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:N/I:N/A:L ["https://tools.cisco.com/security/center/cvssCalculator.x?version=3.1&amp;vector=CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:N/A:N"]</cvrf:Note>
+    <cvrf:Note Title="Workarounds" Type="General" Ordinal="5">There are no workarounds that address these vulnerabilities.</cvrf:Note>
+    <cvrf:Note Title="Fixed Software" Type="General" Ordinal="6">Cisco has released free software updates that address the vulnerabilities described in this advisory. Customers may only install and expect support for software versions and feature sets for which they have purchased a license. By installing, downloading, accessing, or otherwise using such software upgrades, customers agree to follow the terms of the Cisco software license:
+https://www.cisco.com/c/en/us/products/end-user-license-agreement.html ["https://www.cisco.com/c/en/us/products/end-user-license-agreement.html"]
+
+Additionally, customers may only download software for which they have a valid license, procured from Cisco directly, or through a Cisco authorized reseller or partner. In most cases this will be a maintenance upgrade to software that was previously purchased. Free security software updates do not entitle customers to a new software license, additional software feature sets, or major revision upgrades.
+
+When considering software upgrades ["https://tools.cisco.com/security/center/resources/security_vulnerability_policy.html#fixes"], customers are advised to regularly consult the advisories for Cisco products, which are available from the Cisco Security Advisories page ["https://www.cisco.com/go/psirt"], to determine exposure and a complete upgrade solution.
+
+In all cases, customers should ensure that the devices to be upgraded contain sufficient memory and confirm that current hardware and software configurations will continue to be supported properly by the new release. If the information is not clear, customers are advised to contact the Cisco Technical Assistance Center (TAC) or their contracted maintenance providers.
+  Customers Without Service Contracts
+Customers who purchase directly from Cisco but do not hold a Cisco service contract and customers who make purchases through third-party vendors but are unsuccessful in obtaining fixed software through their point of sale should obtain upgrades by contacting the Cisco TAC: https://www.cisco.com/c/en/us/support/web/tsd-cisco-worldwide-contacts.html ["https://www.cisco.com/c/en/us/support/web/tsd-cisco-worldwide-contacts.html"]
+
+Customers should have the product serial number available and be prepared to provide the URL of this advisory as evidence of entitlement to a free upgrade.
+      Fixed Releases
+Customers are advised to upgrade to an appropriate fixed software release as indicated in the following tables:
+
+Cisco Jabber for Windows
+        Cisco Jabber for Windows Release  First Fixed Release          Earlier than 12.1  Migrate to a fixed release.      12.1  12.1.5      12.5  12.5.4      12.6  12.6.5      12.7  12.7.4      12.8  12.8.5      12.9  12.9.5
+Cisco Jabber for MacOS
+        Cisco Jabber for MacOS Release  First Fixed Release          12.7 and earlier  Migrate to a fixed release.      12.8  12.8.7      12.9  12.9.6
+Cisco Jabber for Android and iOS
+        Cisco Jabber for Android and iOS Release  First Fixed Release          12.9 and earlier  Migrate to a fixed release.      14.01  Not vulnerable.
+
+Cisco Jabber for BlackBerry and Cisco Jabber for Intune MAM
+
+        Cisco Jabber   First Fixed Release          12.9  12.9.1</cvrf:Note>
+    <cvrf:Note Title="Vulnerability Policy" Type="General" Ordinal="7">To learn about Cisco security vulnerability disclosure policies and publications, see the Security Vulnerability Policy ["http://www.cisco.com/web/about/security/psirt/security_vulnerability_policy.html"]. This document also contains instructions for obtaining fixed software and receiving security vulnerability information from Cisco.</cvrf:Note>
+    <cvrf:Note Title="Exploitation and Public Announcements" Type="General" Ordinal="8">The Cisco Product Security Incident Response Team (PSIRT) is not aware of any public announcements or malicious use of the vulnerabilities that are described in this advisory.</cvrf:Note>
+    <cvrf:Note Title="Source" Type="General" Ordinal="9">Cisco would like to thank Olav Sortland Thoresen of Watchcom for reporting the following vulnerabilities: CVE-2021-1411, CVE-2021-1417, and CVE-2021-1418.
+
+The following vulnerabilities were found during internal security testing: CVE-2021-1469 and CVE-2021-1471.</cvrf:Note>
+    <cvrf:Note Title="Legal Disclaimer" Type="Legal Disclaimer" Ordinal="10">THIS DOCUMENT IS PROVIDED ON AN "AS IS" BASIS AND DOES NOT IMPLY ANY KIND OF GUARANTEE OR WARRANTY, INCLUDING THE WARRANTIES OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR USE. YOUR USE OF THE INFORMATION ON THE DOCUMENT OR MATERIALS LINKED FROM THE DOCUMENT IS AT YOUR OWN RISK. CISCO RESERVES THE RIGHT TO CHANGE OR UPDATE THIS DOCUMENT AT ANY TIME.
+
+A standalone copy or paraphrase of the text of this document that omits the distribution URL is an uncontrolled copy and may lack important information or contain factual errors. The information in this document is intended for end users of Cisco products.</cvrf:Note>
+  </cvrf:DocumentNotes>
+  <cvrf:DocumentReferences>
+    <cvrf:Reference Type="Self">
+      <cvrf:URL>https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-cisco-jabber-PWrTATTC</cvrf:URL>
+      <cvrf:Description>Cisco Jabber Desktop and Mobile Client Software Vulnerabilities</cvrf:Description>
+    </cvrf:Reference>
+  </cvrf:DocumentReferences>
+  <ProductTree xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/prod">
+    <Branch Name="Cisco" Type="Vendor">
+      <Branch Name="Cisco Jabber" Type="Product Name">
+        <FullProductName ProductID="CVRFPID-278016">Cisco Jabber </FullProductName>
+      </Branch>
+    </Branch>
+  </ProductTree>
+  <Vulnerability Ordinal="1" xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln">
+    <Title>vuln-CVE-2021-1411</Title>
+    <ID SystemName="Cisco Bug ID">CSCvw96073</ID>
+    <Notes>
+      <Note Title="Cisco Bug IDs" Type="Other" Ordinal="1">CSCvw96073</Note>
+    </Notes>
+    <CVE>CVE-2021-1411</CVE>
+    <ProductStatuses>
+      <Status Type="Known Affected">
+        <ProductID>CVRFPID-278016</ProductID>
+      </Status>
+    </ProductStatuses>
+    <CVSSScoreSets>
+      <ScoreSetV3>
+        <BaseScoreV3>9.9</BaseScoreV3>
+        <VectorV3>CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:C/C:H/I:H/A:H</VectorV3>
+      </ScoreSetV3>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Workaround">
+        <Description>There are no workarounds that address these vulnerabilities.</Description>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference Type="Self">
+        <URL>https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-cisco-jabber-PWrTATTC</URL>
+        <Description>Cisco Jabber Desktop and Mobile Client Software Vulnerabilities</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+  <Vulnerability Ordinal="2" xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln">
+    <Title>vuln-CVE-2021-1417</Title>
+    <ID SystemName="Cisco Bug ID">CSCvw96075</ID>
+    <Notes>
+      <Note Title="Cisco Bug IDs" Type="Other" Ordinal="1">CSCvw96075</Note>
+    </Notes>
+    <CVE>CVE-2021-1417</CVE>
+    <ProductStatuses>
+      <Status Type="Known Affected">
+        <ProductID>CVRFPID-278016</ProductID>
+      </Status>
+    </ProductStatuses>
+    <CVSSScoreSets>
+      <ScoreSetV3>
+        <BaseScoreV3>6.5</BaseScoreV3>
+        <VectorV3>CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:N/A:N</VectorV3>
+      </ScoreSetV3>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Workaround">
+        <Description>There are no workarounds that address these vulnerabilities.</Description>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference Type="Self">
+        <URL>https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-cisco-jabber-PWrTATTC</URL>
+        <Description>Cisco Jabber Desktop and Mobile Client Software Vulnerabilities</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+  <Vulnerability Ordinal="3" xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln">
+    <Title>vuln-CVE-2021-1418</Title>
+    <ID SystemName="Cisco Bug ID">CSCvw96079</ID>
+    <Notes>
+      <Note Title="Cisco Bug IDs" Type="Other" Ordinal="1">CSCvw96079</Note>
+    </Notes>
+    <CVE>CVE-2021-1418</CVE>
+    <ProductStatuses>
+      <Status Type="Known Affected">
+        <ProductID>CVRFPID-278016</ProductID>
+      </Status>
+    </ProductStatuses>
+    <CVSSScoreSets>
+      <ScoreSetV3>
+        <BaseScoreV3>4.3</BaseScoreV3>
+        <VectorV3>CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:N/I:N/A:L</VectorV3>
+      </ScoreSetV3>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Workaround">
+        <Description>There are no workarounds that address these vulnerabilities.</Description>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference Type="Self">
+        <URL>https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-cisco-jabber-PWrTATTC</URL>
+        <Description>Cisco Jabber Desktop and Mobile Client Software Vulnerabilities</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+  <Vulnerability Ordinal="4" xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln">
+    <Title>vuln-CVE-2021-1469</Title>
+    <ID SystemName="Cisco Bug ID">CSCvx36433</ID>
+    <Notes>
+      <Note Title="Cisco Bug IDs" Type="Other" Ordinal="1">CSCvx36433</Note>
+    </Notes>
+    <CVE>CVE-2021-1469</CVE>
+    <ProductStatuses>
+      <Status Type="Known Affected">
+        <ProductID>CVRFPID-278016</ProductID>
+      </Status>
+    </ProductStatuses>
+    <CVSSScoreSets>
+      <ScoreSetV3>
+        <BaseScoreV3>7.2</BaseScoreV3>
+        <VectorV3>CVSS:3.1/AV:N/AC:L/PR:H/UI:N/S:U/C:H/I:H/A:H</VectorV3>
+      </ScoreSetV3>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Workaround">
+        <Description>There are no workarounds that address these vulnerabilities.</Description>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference Type="Self">
+        <URL>https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-cisco-jabber-PWrTATTC</URL>
+        <Description>Cisco Jabber Desktop and Mobile Client Software Vulnerabilities</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+  <Vulnerability Ordinal="5" xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln">
+    <Title>vuln-CVE-2021-1471</Title>
+    <ID SystemName="Cisco Bug ID">CSCvx43270</ID>
+    <Notes>
+      <Note Title="Cisco Bug IDs" Type="Other" Ordinal="1">CSCvx43270</Note>
+    </Notes>
+    <CVE>CVE-2021-1471</CVE>
+    <ProductStatuses>
+      <Status Type="Known Affected">
+        <ProductID>CVRFPID-278016</ProductID>
+      </Status>
+    </ProductStatuses>
+    <CVSSScoreSets>
+      <ScoreSetV3>
+        <BaseScoreV3>5.6</BaseScoreV3>
+        <VectorV3>CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:L/I:L/A:L</VectorV3>
+      </ScoreSetV3>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Workaround">
+        <Description>There are no workarounds that address these vulnerabilities.</Description>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference Type="Self">
+        <URL>https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-cisco-jabber-PWrTATTC</URL>
+        <Description>Cisco Jabber Desktop and Mobile Client Software Vulnerabilities</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+</cvrf:cvrfdoc>

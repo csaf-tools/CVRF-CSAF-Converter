@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cvrfdoc xmlns="http://www.icasi.org/CVRF/schema/cvrf/1.1" xmlns:cvrf="http://www.icasi.org/CVRF/schema/cvrf/1.1">
+  <DocumentTitle xml:lang="en">Red Hat Security Advisory: rust-toolset:rhel8 security, bug fix, and enhancement update</DocumentTitle>
+  <DocumentType>Security Advisory</DocumentType>
+  <DocumentPublisher Type="Vendor">
+    <ContactDetails>secalert@redhat.com</ContactDetails>
+    <IssuingAuthority>Red Hat Product Security</IssuingAuthority>
+  </DocumentPublisher>
+  <DocumentTracking>
+    <Identification><ID>RHSA-2021:3063</ID></Identification>
+    <Status>Final</Status>
+    <Version>1</Version>
+    <RevisionHistory>
+       <Revision>
+         <Number>1</Number>
+         <Date>2021-08-10T16:14:00Z</Date>
+         <Description>Current version</Description>
+       </Revision>
+    </RevisionHistory>
+    <InitialReleaseDate>2021-08-10T16:14:00Z</InitialReleaseDate>
+    <CurrentReleaseDate>2021-08-10T16:14:00Z</CurrentReleaseDate>
+    <Generator>
+      <Engine>Red Hat SDEngine 3.0.0</Engine>
+      <Date>2021-08-23T04:55:00Z</Date>
+    </Generator>
+  </DocumentTracking>
+  <DocumentNotes>
+    <Note Title="Topic" Type="Summary" Ordinal="1" xml:lang="en">
+An update for the rust-toolset:rhel8 module is now available for Red Hat Enterprise Linux 8.
+
+Red Hat Product Security has rated this update as having a security impact of Moderate. A Common Vulnerability Scoring System (CVSS) base score, which gives a detailed severity rating, is available for each vulnerability from the CVE link(s) in the References section.
+    </Note>
+    <Note Title="Details" Type="General" Ordinal="2" xml:lang="en">
+Rust Toolset provides the Rust programming language compiler rustc, the cargo build tool and dependency manager, and required libraries.
+
+The following packages have been upgraded to a later upstream version: rust (1.52.1). (BZ#1953002)
+
+Security Fix(es):
+
+* rust: optimization for joining strings can cause uninitialized bytes to be exposed (CVE-2020-36323)
+
+* rust: heap-based buffer overflow in read_to_end() because it does not validate the return value from Read in an unsafe context (CVE-2021-28875)
+
+* rust: panic safety issue in Zip implementation (CVE-2021-28876)
+
+* rust: memory safety violation in Zip implementation for nested iter::Zips (CVE-2021-28877)
+
+* rust: memory safety violation in Zip implementation when next_back() and next() are used together (CVE-2021-28878)
+
+* rust: integer overflow in the Zip implementation can lead to a buffer overflow (CVE-2021-28879)
+
+* rust: double free in Vec::from_iter function if freeing the element panics (CVE-2021-31162)
+
+For more details about the security issue(s), including the impact, a CVSS score, acknowledgments, and other related information, refer to the CVE page(s) listed in the References section.
+
+For information on usage, see Using Rust Toolset linked in the References section.
+    </Note>
+    <Note Title="Terms of Use" Ordinal="3" Type="Legal Disclaimer" xml:lang="en">This content is licensed under the Creative Commons Attribution 4.0 International License (https://creativecommons.org/licenses/by/4.0/). If you distribute this content, or a modified version of it, you must provide attribution to Red Hat Inc. and provide a link to the original.</Note>
+  </DocumentNotes>
+  <DocumentDistribution xml:lang="en">Copyright © 2021 Red Hat, Inc. All rights reserved.</DocumentDistribution>
+  <AggregateSeverity Namespace="https://access.redhat.com/security/updates/classification/">Moderate</AggregateSeverity>
+  <DocumentReferences>
+    <Reference Type="Self">
+       <URL>https://access.redhat.com/errata/RHSA-2021:3063</URL>
+       <Description>https://access.redhat.com/errata/RHSA-2021:3063</Description>
+    </Reference>
+    <Reference Type="External">
+       <URL>https://access.redhat.com/security/updates/classification/#moderate</URL>
+       <Description>https://access.redhat.com/security/updates/classification/#moderate</Description>
+    </Reference>
+    <Reference Type="External">
+       <URL>https://access.redhat.com/documentation/en-us/red_hat_developer_tools/1/html/using_rust_1.52.1_toolset</URL>
+       <Description>https://access.redhat.com/documentation/en-us/red_hat_developer_tools/1/html/using_rust_1.52.1_toolset</Description>
+    </Reference>
+  </DocumentReferences>
+  <ProductTree xmlns="http://www.icasi.org/CVRF/schema/prod/1.1">
+    <Branch Type="Product Family" Name="Red Hat Enterprise Linux">
+      <Branch Type="Product Name" Name="Red Hat Enterprise Linux AppStream (v. 8)">
+        <FullProductName ProductID="AppStream-8.4.0.Z.MAIN.EUS" CPE="cpe:/a:redhat:enterprise_linux:8::appstream">Red Hat Enterprise Linux AppStream (v. 8)</FullProductName>
+      </Branch>
+    </Branch>
+    <Branch Type="Product Version" Name="rust-toolset:rhel8-8040020210603202531.2daa1a95">
+      <FullProductName ProductID="rust-toolset:rhel8-8040020210603202531.2daa1a95" CPE="cpe:/a:redhat:enterprise_linux:8::appstream">rust-toolset-rhel8-8040020210603202531.2daa1a95</FullProductName>
+    </Branch>
+    <Relationship ProductReference="rust-toolset:rhel8-8040020210603202531.2daa1a95" RelationType="Default Component Of" RelatesToProductReference="AppStream-8.4.0.Z.MAIN.EUS">
+      <FullProductName ProductID="AppStream-8.4.0.Z.MAIN.EUS:rust-toolset:rhel8-8040020210603202531.2daa1a95" CPE="cpe:/a:redhat:enterprise_linux:8::appstream">rust-toolset:rhel8-8040020210603202531.2daa1a95 as a component of Red Hat Enterprise Linux AppStream (v. 8)</FullProductName>
+    </Relationship>
+  </ProductTree>
+
+  <Vulnerability Ordinal="1" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">rust: optimization for joining strings can cause uninitialized bytes to be exposed</Note></Notes>
+    <DiscoveryDate>2021-04-14T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2020-12-23T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2020-36323</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>AppStream-8.4.0.Z.MAIN.EUS:rust-toolset:rhel8-8040020210603202531.2daa1a95</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:3063</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2020-36323</URL>
+        <Description>CVE-2020-36323</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1950396</URL>
+        <Description>bz#1950396: CVE-2020-36323 rust: optimization for joining strings can cause uninitialized bytes to be exposed</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="2" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">rust: heap-based buffer overflow in read_to_end() because it does not validate the return value from Read in an unsafe context</Note></Notes>
+    <DiscoveryDate>2021-04-11T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-01-10T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-28875</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>AppStream-8.4.0.Z.MAIN.EUS:rust-toolset:rhel8-8040020210603202531.2daa1a95</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:3063</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-28875</URL>
+        <Description>CVE-2021-28875</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1949194</URL>
+        <Description>bz#1949194: CVE-2021-28875 rust: heap-based buffer overflow in read_to_end() because it does not validate the return value from Read in an unsafe context</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="3" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">rust: panic safety issue in Zip implementation</Note></Notes>
+    <DiscoveryDate>2021-04-11T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-02-04T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-28876</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>AppStream-8.4.0.Z.MAIN.EUS:rust-toolset:rhel8-8040020210603202531.2daa1a95</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:3063</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-28876</URL>
+        <Description>CVE-2021-28876</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1949198</URL>
+        <Description>bz#1949198: CVE-2021-28876 rust: panic safety issue in Zip implementation</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="4" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">rust: memory safety violation in Zip implementation for nested iter::Zips</Note></Notes>
+    <DiscoveryDate>2021-04-11T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-01-16T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-28877</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>AppStream-8.4.0.Z.MAIN.EUS:rust-toolset:rhel8-8040020210603202531.2daa1a95</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:3063</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-28877</URL>
+        <Description>CVE-2021-28877</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1949204</URL>
+        <Description>bz#1949204: CVE-2021-28877 rust: memory safety violation in Zip implementation for nested iter::Zips</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="5" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">rust: memory safety violation in Zip implementation when next_back() and next() are used together</Note></Notes>
+    <DiscoveryDate>2021-04-11T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-03-07T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-28878</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>AppStream-8.4.0.Z.MAIN.EUS:rust-toolset:rhel8-8040020210603202531.2daa1a95</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:3063</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-28878</URL>
+        <Description>CVE-2021-28878</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1949207</URL>
+        <Description>bz#1949207: CVE-2021-28878 rust: memory safety violation in Zip implementation when next_back() and next() are used together</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="6" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">rust: integer overflow in the Zip implementation can lead to a buffer overflow</Note></Notes>
+    <DiscoveryDate>2021-04-11T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-03-05T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-28879</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>AppStream-8.4.0.Z.MAIN.EUS:rust-toolset:rhel8-8040020210603202531.2daa1a95</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:3063</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-28879</URL>
+        <Description>CVE-2021-28879</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1949211</URL>
+        <Description>bz#1949211: CVE-2021-28879 rust: integer overflow in the Zip implementation can lead to a buffer overflow</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="7" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">rust: double free in Vec::from_iter function if freeing the element panics</Note></Notes>
+    <DiscoveryDate>2021-04-14T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-03-28T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-31162</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>AppStream-8.4.0.Z.MAIN.EUS:rust-toolset:rhel8-8040020210603202531.2daa1a95</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:3063</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-31162</URL>
+        <Description>CVE-2021-31162</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1950398</URL>
+        <Description>bz#1950398: CVE-2021-31162 rust: double free in Vec::from_iter function if freeing the element panics</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+</cvrfdoc>

@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cvrf:cvrfdoc xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:cvrf-common="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/common" xmlns:cvrf="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/cvrf">
+  <cvrf:DocumentTitle>Cisco Email Security Appliance and Cisco Content Security Management Appliance Denial of Service Vulnerability</cvrf:DocumentTitle>
+  <cvrf:DocumentType>Cisco Security Advisory</cvrf:DocumentType>
+  <cvrf:DocumentPublisher Type="Vendor">
+    <cvrf:ContactDetails>Emergency Support:
++1 877 228 7302 (toll-free within North America)
++1 408 525 6532 (International direct-dial)
+Non-emergency Support:
+Email: psirt@cisco.com
+Support requests that are received via e-mail are typically acknowledged within 48 hours.</cvrf:ContactDetails>
+    <cvrf:IssuingAuthority>Cisco product security incident response is the responsibility of the Cisco Product Security Incident Response Team (PSIRT). The Cisco PSIRT is a dedicated, global team that manages the receipt, investigation, and public reporting of security vulnerability information that is related to Cisco products and networks. The on-call Cisco PSIRT works 24x7 with Cisco customers, independent security researchers, consultants, industry organizations, and other vendors to identify possible security issues with Cisco products and networks.
+More information can be found in Cisco Security Vulnerability Policy available at http://www.cisco.com/web/about/security/psirt/security_vulnerability_policy.html</cvrf:IssuingAuthority>
+  </cvrf:DocumentPublisher>
+  <cvrf:DocumentTracking>
+    <cvrf:Identification>
+      <cvrf:ID>cisco-sa-20200219-esa-sma-dos</cvrf:ID>
+    </cvrf:Identification>
+    <cvrf:Status>Final</cvrf:Status>
+    <cvrf:Version>1.0</cvrf:Version>
+    <cvrf:RevisionHistory>
+      <cvrf:Revision>
+        <cvrf:Number>1.0</cvrf:Number>
+        <cvrf:Date>2020-02-19T15:09:09</cvrf:Date>
+        <cvrf:Description>Initial public release.</cvrf:Description>
+      </cvrf:Revision>
+    </cvrf:RevisionHistory>
+    <cvrf:InitialReleaseDate>2020-02-19T16:00:00</cvrf:InitialReleaseDate>
+    <cvrf:CurrentReleaseDate>2020-02-19T15:09:09</cvrf:CurrentReleaseDate>
+    <cvrf:Generator>
+      <cvrf:Engine>TVCE</cvrf:Engine>
+    </cvrf:Generator>
+  </cvrf:DocumentTracking>
+  <cvrf:DocumentNotes>
+    <cvrf:Note Title="Summary" Type="Summary" Ordinal="1">A vulnerability in the email message filtering feature of Cisco AsyncOS Software for Cisco Email Security Appliance (ESA) and Cisco Content Security Management Appliance (SMA) could allow an unauthenticated, remote attacker to cause repeated crashes in some internal processes that are running on the affected devices, resulting in a denial of service (DoS) condition.
+
+The vulnerability is due to insufficient input validation of email attachments. An attacker could exploit this vulnerability by sending an email message with a crafted attachment through an affected device. A successful exploit could allow the attacker to cause specific processes to crash repeatedly, resulting in the complete unavailability of both the Cisco Advanced Malware Protection (AMP) and message tracking features and in severe performance degradation while processing email.
+
+After the affected processes restart, the software resumes filtering for the same attachment, causing the affected processes to crash and restart again. A successful exploit could also allow the attacker to cause a repeated DoS condition. Manual intervention may be required to recover from this situation.
+
+Cisco has released software updates that address this vulnerability. There are no workarounds that address this vulnerability.
+
+This advisory is available at the following link:
+https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20200219-esa-sma-dos ["https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20200219-esa-sma-dos"]</cvrf:Note>
+    <cvrf:Note Title="Vulnerable Products" Type="General" Ordinal="2">This vulnerability affects Cisco ESA and Cisco SMA virtual and hardware appliances if they are running a vulnerable release of Cisco AsyncOS Software that is configured to use either Cisco AMP or message tracking.
+
+For information about which releases are vulnerable, see the Fixed Software ["#fs"] section of this advisory.</cvrf:Note>
+    <cvrf:Note Title="Products Confirmed Not Vulnerable" Type="General" Ordinal="3">Only products listed in the Vulnerable Products ["#vp"] section of this advisory are known to be affected by this vulnerability.
+
+Cisco has confirmed that this vulnerability does not affect Cisco Web Security Appliance (WSA).</cvrf:Note>
+    <cvrf:Note Title="Workarounds" Type="General" Ordinal="4">There are no workarounds that address this vulnerability.</cvrf:Note>
+    <cvrf:Note Title="Fixed Software" Type="General" Ordinal="5">Cisco has released free software updates that address the vulnerability described in this advisory. Customers may only install and expect support for software versions and feature sets for which they have purchased a license. By installing, downloading, accessing, or otherwise using such software upgrades, customers agree to follow the terms of the Cisco software license:
+https://www.cisco.com/c/en/us/products/end-user-license-agreement.html ["https://www.cisco.com/c/en/us/products/end-user-license-agreement.html"]
+
+Additionally, customers may only download software for which they have a valid license, procured from Cisco directly, or through a Cisco authorized reseller or partner. In most cases this will be a maintenance upgrade to software that was previously purchased. Free security software updates do not entitle customers to a new software license, additional software feature sets, or major revision upgrades.
+
+When considering software upgrades ["https://tools.cisco.com/security/center/resources/security_vulnerability_policy.html#fixes"], customers are advised to regularly consult the advisories for Cisco products, which are available from the Cisco Security Advisories and Alerts page ["https://www.cisco.com/go/psirt"], to determine exposure and a complete upgrade solution.
+
+In all cases, customers should ensure that the devices to be upgraded contain sufficient memory and confirm that current hardware and software configurations will continue to be supported properly by the new release. If the information is not clear, customers are advised to contact the Cisco Technical Assistance Center (TAC) or their contracted maintenance providers.
+
+Customers Without Service Contracts
+
+Customers who purchase directly from Cisco but do not hold a Cisco service contract and customers who make purchases through third-party vendors but are unsuccessful in obtaining fixed software through their point of sale should obtain upgrades by contacting the Cisco TAC:
+https://www.cisco.com/c/en/us/support/web/tsd-cisco-worldwide-contacts.html ["https://www.cisco.com/c/en/us/support/web/tsd-cisco-worldwide-contacts.html"]
+
+Customers should have the product serial number available and be prepared to provide the URL of this advisory as evidence of entitlement to a free upgrade.
+
+Fixed Releases
+
+Customers are advised to upgrade to an appropriate release as indicated in the applicable table in this section. In the following table(s), the left column lists major releases of Cisco AsyncOS Software. The right column indicates whether a release is affected by the vulnerability described in this advisory and the first release that includes the fix for this vulnerability.
+
+Cisco ESA: CSCvo89192 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCvo89192"]
+
+                                Cisco AsyncOS Major              Software Release                             First Fixed Release                                  Earlier than 111              Migrate to 11.0.3-251
+                                  11              11.0.3-251
+                                  12              12.5.0-059                                  13              Not vulnerable                      1. Cisco AsyncOS Software releases earlier than Release 11 have reached  end of software maintenance. Customers are advised to migrate to a  supported release that includes the fix for this vulnerability.
+Cisco SMA: CSCvo89182 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCvo89182"]
+
+                                Cisco AsyncOS Major              Software Release                            First Fixed Release                                  Earlier than 111              Migrate to 11.0.1-161
+                                  11              11.0.1-161
+                                  12              12.5.0-633                                  13              Not vulnerable                      1. Cisco AsyncOS Software releases earlier than Release 11 have reached  end of software maintenance. Customers are advised to migrate to a  supported release that includes the fix for this vulnerability.
+Cisco Cloud Email Security (CES) includes Cisco ESA and Cisco SMA devices as part of the service solution. Cisco provides regular maintenance of the products included in this solution. Customers can also request a software upgrade by contacting Cisco CES support.</cvrf:Note>
+    <cvrf:Note Title="Vulnerability Policy" Type="General" Ordinal="6">To learn about Cisco security vulnerability disclosure policies and publications, see the Security Vulnerability Policy ["http://www.cisco.com/web/about/security/psirt/security_vulnerability_policy.html"]. This document also contains instructions for obtaining fixed software and receiving security vulnerability information from Cisco.</cvrf:Note>
+    <cvrf:Note Title="Exploitation and Public Announcements" Type="General" Ordinal="7">The Cisco Product Security Incident Response Team (PSIRT) is not aware of any public announcements or malicious use of the vulnerability that is described in this advisory.</cvrf:Note>
+    <cvrf:Note Title="Source" Type="General" Ordinal="8">This vulnerability was found during the resolution of a Cisco TAC support case.</cvrf:Note>
+    <cvrf:Note Title="Legal Disclaimer" Type="Legal Disclaimer" Ordinal="9">THIS DOCUMENT IS PROVIDED ON AN "AS IS" BASIS AND DOES NOT IMPLY ANY KIND OF GUARANTEE OR WARRANTY, INCLUDING THE WARRANTIES OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR USE. YOUR USE OF THE INFORMATION ON THE DOCUMENT OR MATERIALS LINKED FROM THE DOCUMENT IS AT YOUR OWN RISK. CISCO RESERVES THE RIGHT TO CHANGE OR UPDATE THIS DOCUMENT AT ANY TIME.
+
+A standalone copy or paraphrase of the text of this document that omits the distribution URL is an uncontrolled copy and may lack important information or contain factual errors. The information in this document is intended for end users of Cisco products.</cvrf:Note>
+  </cvrf:DocumentNotes>
+  <cvrf:DocumentReferences>
+    <cvrf:Reference Type="Self">
+      <cvrf:URL>https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20200219-esa-sma-dos</cvrf:URL>
+      <cvrf:Description>Cisco Email Security Appliance and Cisco Content Security Management Appliance Denial of Service Vulnerability</cvrf:Description>
+    </cvrf:Reference>
+  </cvrf:DocumentReferences>
+  <ProductTree xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/prod">
+    <Branch Name="Cisco" Type="Vendor">
+      <Branch Name="Cisco Email Security Appliance (ESA)" Type="Product Name">
+        <FullProductName ProductID="CVRFPID-189790">Cisco Email Security Appliance (ESA) </FullProductName>
+      </Branch>
+      <Branch Name="Cisco Content Security Management Appliance (SMA)" Type="Product Name">
+        <FullProductName ProductID="CVRFPID-189791">Cisco Content Security Management Appliance (SMA) </FullProductName>
+      </Branch>
+    </Branch>
+  </ProductTree>
+  <Vulnerability Ordinal="1" xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln">
+    <Title>Cisco Email Security Appliance and Cisco Content Security Management Appliance Denial of Service Vulnerability</Title>
+    <ID SystemName="Cisco Bug ID">CSCvo89192</ID>
+    <Notes>
+      <Note Title="Summary" Type="Summary" Ordinal="1">A vulnerability in the email message filtering feature of Cisco AsyncOS Software for Cisco Email Security Appliance (ESA) and Cisco Content Security Management Appliance (SMA) could allow an unauthenticated, remote attacker to cause repeated crashes in some internal processes that are running on the affected devices, resulting in a denial of service (DoS) condition.
+
+The vulnerability is due to insufficient input validation of email attachments. An attacker could exploit this vulnerability by sending an email message with a crafted attachment through an affected device. A successful exploit could allow the attacker to cause specific processes to crash repeatedly, resulting in the complete unavailability of both the Cisco Advanced Malware Protection (AMP) and message tracking features and in severe performance degradation while processing email.
+
+After the affected processes restart, the software resumes filtering for the same attachment, causing the affected processes to crash and restart again. A successful exploit could also allow the attacker to cause a repeated DoS condition. Manual intervention may be required to recover from this situation.
+</Note>
+      <Note Title="Cisco Bug IDs" Type="Other" Ordinal="2">CSCvo89192,CSCvo89182</Note>
+    </Notes>
+    <CVE>CVE-2019-1983</CVE>
+    <ProductStatuses>
+      <Status Type="Known Affected">
+        <ProductID>CVRFPID-189790</ProductID>
+        <ProductID>CVRFPID-189791</ProductID>
+      </Status>
+    </ProductStatuses>
+    <CVSSScoreSets>
+      <ScoreSetV3>
+        <BaseScoreV3>7.5</BaseScoreV3>
+        <VectorV3>CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H</VectorV3>
+      </ScoreSetV3>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Workaround">
+        <Description>There are no workarounds that address this vulnerability.</Description>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference Type="Self">
+        <URL>https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20200219-esa-sma-dos</URL>
+        <Description>Cisco Email Security Appliance and Cisco Content Security Management Appliance Denial of Service Vulnerability</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+</cvrf:cvrfdoc>

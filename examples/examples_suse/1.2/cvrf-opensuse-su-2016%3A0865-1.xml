@@ -1,0 +1,527 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cvrfdoc xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:cpe="http://cpe.mitre.org/language/2.0" xmlns:cvrf="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/cvrf" xmlns:cvrf-common="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/common" xmlns:cvssv2="http://scap.nist.gov/schema/cvss-v2/1.0" xmlns:cvssv3="https://www.first.org/cvss/cvss-v3.0.xsd" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:ns0="http://purl.org/dc/elements/1.1/" xmlns:prod="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/prod" xmlns:scap-core="http://scap.nist.gov/schema/scap-core/1.0" xmlns:sch="http://purl.oclc.org/dsdl/schematron" xmlns:vuln="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/cvrf">
+  <DocumentTitle xml:lang="en">Security update for tomcat</DocumentTitle>
+  <DocumentType>SUSE Patch</DocumentType>
+  <DocumentPublisher Type="Vendor">
+    <ContactDetails>security@suse.de</ContactDetails>
+    <IssuingAuthority>SUSE Security Team</IssuingAuthority>
+  </DocumentPublisher>
+  <DocumentTracking>
+    <Identification>
+      <ID>openSUSE-SU-2016:0865-1</ID>
+    </Identification>
+    <Status>Final</Status>
+    <Version>1</Version>
+    <RevisionHistory>
+      <Revision>
+        <Number>1</Number>
+        <Date>2016-03-23T14:03:37Z</Date>
+        <Description>current</Description>
+      </Revision>
+    </RevisionHistory>
+    <InitialReleaseDate>2016-03-23T14:03:37Z</InitialReleaseDate>
+    <CurrentReleaseDate>2016-03-23T14:03:37Z</CurrentReleaseDate>
+    <Generator>
+      <Engine>cve-database/bin/generate-cvrf.pl</Engine>
+      <Date>2017-02-24T01:00:00Z</Date>
+    </Generator>
+  </DocumentTracking>
+  <DocumentNotes>
+    <Note Title="Topic" Type="Summary" Ordinal="1" xml:lang="en">Security update for tomcat</Note>
+    <Note Title="Details" Type="General" Ordinal="2" xml:lang="en">
+This update for tomcat fixes the following issues:
+
+Tomcat 8 was updated from 8.0.23 to 8.0.32, to fix bugs and security issues.
+
+Fixed security issues:
+
+* CVE-2015-5174: Directory traversal vulnerability in RequestUtil.java
+  in Apache Tomcat allowed remote authenticated users to bypass intended
+  SecurityManager restrictions and list a parent directory via a /.. (slash
+  dot dot) in a pathname used by a web application in a getResource,
+  getResourceAsStream, or getResourcePaths call, as demonstrated by the
+  $CATALINA_BASE/webapps directory.  (bsc#967967)
+* CVE-2015-5346: Session fixation vulnerability in Apache Tomcat when
+  different session settings are used for deployments of multiple versions
+  of the same web application, might have allowed remote attackers
+  to hijack web sessions by leveraging use of a requestedSessionSSL
+  field for an unintended request, related to CoyoteAdapter.java and
+  Request.java. (bsc#967814)
+* CVE-2015-5345: The Mapper component in Apache Tomcat processes redirects
+  before considering security constraints and Filters, which allowed remote
+  attackers to determine the existence of a directory via a URL that lacks
+  a trailing / (slash) character. (bsc#967965)
+* CVE-2015-5351: The (1) Manager and (2) Host Manager applications in
+  Apache Tomcat established sessions and send CSRF tokens for arbitrary
+  new requests, which allowed remote attackers to bypass a CSRF protection
+  mechanism by using a token. (bsc#967812)
+* CVE-2016-0706: Apache Tomcat did not place
+  org.apache.catalina.manager.StatusManagerServlet on the
+  org/apache/catalina/core/RestrictedServlets.properties list, which
+  allowed remote authenticated users to bypass intended SecurityManager
+  restrictions and read arbitrary HTTP requests, and consequently discover
+  session ID values, via a crafted web application.  (bsc#967815)
+* CVE-2016-0714: The session-persistence implementation in Apache Tomcat
+  mishandled session attributes, which allowed remote authenticated users
+  to bypass intended SecurityManager restrictions and execute arbitrary
+  code in a privileged context via a web application that places a crafted
+  object in a session. (bsc#967964)
+* CVE-2016-0763: The setGlobalContext method in
+  org/apache/naming/factory/ResourceLinkFactory.java in Apache Tomcat did
+  not consider whether ResourceLinkFactory.setGlobalContext callers are
+  authorized, which allowed remote authenticated users to bypass intended
+  SecurityManager restrictions and read or write to arbitrary application
+  data, or cause a denial of service (application disruption), via a web
+  application that sets a crafted global context.  (bsc#967966)
+
+The full changes can be read on:
+    http://tomcat.apache.org/tomcat-8.0-doc/changelog.html
+
+This update was imported from the SUSE:SLE-12-SP1:Update update project.</Note>
+    <Note Title="Terms of Use" Type="Legal Disclaimer" Ordinal="3" xml:lang="en">The CVRF data is provided by SUSE under the Creative Commons License 4.0 with Attribution for Non-Commercial usage (CC-BY-NC-4.0).</Note>
+  </DocumentNotes>
+  <DocumentDistribution xml:lang="en">Copyright SUSE LLC under the Creative Commons License 4.0 with Attribution for Non-Commercial usage (CC-BY-NC-4.0)</DocumentDistribution>
+  <DocumentReferences>
+    <Reference Type="Self">
+      <URL>https://lists.opensuse.org/opensuse-security-announce/2016-03/msg00085.html</URL>
+      <Description>E-Mail link for openSUSE-SU-2016:0865-1</Description>
+    </Reference>
+    <Reference Type="Self">
+      <URL>https://www.suse.com/support/security/rating/</URL>
+      <Description>SUSE Security Ratings</Description>
+    </Reference>
+  </DocumentReferences>
+  <ProductTree xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/prod">
+    <Branch Type="Product Family" Name="openSUSE Leap 42.1">
+      <Branch Type="Product Name" Name="openSUSE Leap 42.1">
+        <FullProductName ProductID="openSUSE Leap 42.1">openSUSE Leap 42.1</FullProductName>
+      </Branch>
+    </Branch>
+    <Branch Type="Product Version" Name="tomcat-8.0.32-5.1">
+      <FullProductName ProductID="tomcat-8.0.32-5.1">tomcat-8.0.32-5.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="tomcat-admin-webapps-8.0.32-5.1">
+      <FullProductName ProductID="tomcat-admin-webapps-8.0.32-5.1">tomcat-admin-webapps-8.0.32-5.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="tomcat-docs-webapp-8.0.32-5.1">
+      <FullProductName ProductID="tomcat-docs-webapp-8.0.32-5.1">tomcat-docs-webapp-8.0.32-5.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="tomcat-el-3_0-api-8.0.32-5.1">
+      <FullProductName ProductID="tomcat-el-3_0-api-8.0.32-5.1">tomcat-el-3_0-api-8.0.32-5.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="tomcat-embed-8.0.32-5.1">
+      <FullProductName ProductID="tomcat-embed-8.0.32-5.1">tomcat-embed-8.0.32-5.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="tomcat-javadoc-8.0.32-5.1">
+      <FullProductName ProductID="tomcat-javadoc-8.0.32-5.1">tomcat-javadoc-8.0.32-5.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="tomcat-jsp-2_3-api-8.0.32-5.1">
+      <FullProductName ProductID="tomcat-jsp-2_3-api-8.0.32-5.1">tomcat-jsp-2_3-api-8.0.32-5.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="tomcat-jsvc-8.0.32-5.1">
+      <FullProductName ProductID="tomcat-jsvc-8.0.32-5.1">tomcat-jsvc-8.0.32-5.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="tomcat-lib-8.0.32-5.1">
+      <FullProductName ProductID="tomcat-lib-8.0.32-5.1">tomcat-lib-8.0.32-5.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="tomcat-servlet-3_1-api-8.0.32-5.1">
+      <FullProductName ProductID="tomcat-servlet-3_1-api-8.0.32-5.1">tomcat-servlet-3_1-api-8.0.32-5.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="tomcat-webapps-8.0.32-5.1">
+      <FullProductName ProductID="tomcat-webapps-8.0.32-5.1">tomcat-webapps-8.0.32-5.1</FullProductName>
+    </Branch>
+    <Relationship ProductReference="tomcat-8.0.32-5.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:tomcat-8.0.32-5.1">tomcat-8.0.32-5.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="tomcat-admin-webapps-8.0.32-5.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:tomcat-admin-webapps-8.0.32-5.1">tomcat-admin-webapps-8.0.32-5.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="tomcat-docs-webapp-8.0.32-5.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:tomcat-docs-webapp-8.0.32-5.1">tomcat-docs-webapp-8.0.32-5.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="tomcat-el-3_0-api-8.0.32-5.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:tomcat-el-3_0-api-8.0.32-5.1">tomcat-el-3_0-api-8.0.32-5.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="tomcat-embed-8.0.32-5.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:tomcat-embed-8.0.32-5.1">tomcat-embed-8.0.32-5.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="tomcat-javadoc-8.0.32-5.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:tomcat-javadoc-8.0.32-5.1">tomcat-javadoc-8.0.32-5.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="tomcat-jsp-2_3-api-8.0.32-5.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:tomcat-jsp-2_3-api-8.0.32-5.1">tomcat-jsp-2_3-api-8.0.32-5.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="tomcat-jsvc-8.0.32-5.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:tomcat-jsvc-8.0.32-5.1">tomcat-jsvc-8.0.32-5.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="tomcat-lib-8.0.32-5.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:tomcat-lib-8.0.32-5.1">tomcat-lib-8.0.32-5.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="tomcat-servlet-3_1-api-8.0.32-5.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:tomcat-servlet-3_1-api-8.0.32-5.1">tomcat-servlet-3_1-api-8.0.32-5.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="tomcat-webapps-8.0.32-5.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:tomcat-webapps-8.0.32-5.1">tomcat-webapps-8.0.32-5.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+  </ProductTree>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="1">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">Directory traversal vulnerability in RequestUtil.java in Apache Tomcat 6.x before 6.0.45, 7.x before 7.0.65, and 8.x before 8.0.27 allows remote authenticated users to bypass intended SecurityManager restrictions and list a parent directory via a /.. (slash dot dot) in a pathname used by a web application in a getResource, getResourceAsStream, or getResourcePaths call, as demonstrated by the $CATALINA_BASE/webapps directory.</Note>
+    </Notes>
+    <CVE>CVE-2015-5174</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed">
+        <ProductID>openSUSE Leap 42.1:tomcat-8.0.32-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:tomcat-admin-webapps-8.0.32-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:tomcat-docs-webapp-8.0.32-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:tomcat-el-3_0-api-8.0.32-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:tomcat-embed-8.0.32-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:tomcat-javadoc-8.0.32-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:tomcat-jsp-2_3-api-8.0.32-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:tomcat-jsvc-8.0.32-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:tomcat-lib-8.0.32-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:tomcat-servlet-3_1-api-8.0.32-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:tomcat-webapps-8.0.32-5.1</ProductID>
+      </Status>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>4.3</BaseScoreV2>
+        <VectorV2>AV:A/AC:M/Au:N/C:P/I:P/A:N</VectorV2>
+      </ScoreSetV2>
+      <ScoreSetV3>
+        <BaseScoreV3>4.3</BaseScoreV3>
+        <VectorV3>CVSS:3.0/AV:N/AC:L/PR:L/UI:N/S:U/C:L/I:N/A:N</VectorV3>
+      </ScoreSetV3>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-security-announce/2016-03/msg00085.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-5174.html</URL>
+        <Description>CVE-2015-5174</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/967967</URL>
+        <Description>SUSE Bug 967967</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="2">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">The Mapper component in Apache Tomcat 6.x before 6.0.45, 7.x before 7.0.68, 8.x before 8.0.30, and 9.x before 9.0.0.M2 processes redirects before considering security constraints and Filters, which allows remote attackers to determine the existence of a directory via a URL that lacks a trailing / (slash) character.</Note>
+    </Notes>
+    <CVE>CVE-2015-5345</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed">
+        <ProductID>openSUSE Leap 42.1:tomcat-8.0.32-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:tomcat-admin-webapps-8.0.32-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:tomcat-docs-webapp-8.0.32-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:tomcat-el-3_0-api-8.0.32-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:tomcat-embed-8.0.32-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:tomcat-javadoc-8.0.32-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:tomcat-jsp-2_3-api-8.0.32-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:tomcat-jsvc-8.0.32-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:tomcat-lib-8.0.32-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:tomcat-servlet-3_1-api-8.0.32-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:tomcat-webapps-8.0.32-5.1</ProductID>
+      </Status>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>5</BaseScoreV2>
+        <VectorV2>AV:N/AC:L/Au:N/C:P/I:N/A:N</VectorV2>
+      </ScoreSetV2>
+      <ScoreSetV3>
+        <BaseScoreV3>5.3</BaseScoreV3>
+        <VectorV3>CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N</VectorV3>
+      </ScoreSetV3>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-security-announce/2016-03/msg00085.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-5345.html</URL>
+        <Description>CVE-2015-5345</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/967965</URL>
+        <Description>SUSE Bug 967965</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="3">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">Session fixation vulnerability in Apache Tomcat 7.x before 7.0.66, 8.x before 8.0.30, and 9.x before 9.0.0.M2, when different session settings are used for deployments of multiple versions of the same web application, might allow remote attackers to hijack web sessions by leveraging use of a requestedSessionSSL field for an unintended request, related to CoyoteAdapter.java and Request.java.</Note>
+    </Notes>
+    <CVE>CVE-2015-5346</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed">
+        <ProductID>openSUSE Leap 42.1:tomcat-8.0.32-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:tomcat-admin-webapps-8.0.32-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:tomcat-docs-webapp-8.0.32-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:tomcat-el-3_0-api-8.0.32-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:tomcat-embed-8.0.32-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:tomcat-javadoc-8.0.32-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:tomcat-jsp-2_3-api-8.0.32-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:tomcat-jsvc-8.0.32-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:tomcat-lib-8.0.32-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:tomcat-servlet-3_1-api-8.0.32-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:tomcat-webapps-8.0.32-5.1</ProductID>
+      </Status>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>5.4</BaseScoreV2>
+        <VectorV2>AV:A/AC:M/Au:N/C:P/I:P/A:P</VectorV2>
+      </ScoreSetV2>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-security-announce/2016-03/msg00085.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-5346.html</URL>
+        <Description>CVE-2015-5346</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/967814</URL>
+        <Description>SUSE Bug 967814</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="4">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">The (1) Manager and (2) Host Manager applications in Apache Tomcat 7.x before 7.0.68, 8.x before 8.0.31, and 9.x before 9.0.0.M2 establish sessions and send CSRF tokens for arbitrary new requests, which allows remote attackers to bypass a CSRF protection mechanism by using a token.</Note>
+    </Notes>
+    <CVE>CVE-2015-5351</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed">
+        <ProductID>openSUSE Leap 42.1:tomcat-8.0.32-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:tomcat-admin-webapps-8.0.32-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:tomcat-docs-webapp-8.0.32-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:tomcat-el-3_0-api-8.0.32-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:tomcat-embed-8.0.32-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:tomcat-javadoc-8.0.32-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:tomcat-jsp-2_3-api-8.0.32-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:tomcat-jsvc-8.0.32-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:tomcat-lib-8.0.32-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:tomcat-servlet-3_1-api-8.0.32-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:tomcat-webapps-8.0.32-5.1</ProductID>
+      </Status>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>5.4</BaseScoreV2>
+        <VectorV2>AV:A/AC:M/Au:N/C:P/I:P/A:P</VectorV2>
+      </ScoreSetV2>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-security-announce/2016-03/msg00085.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-5351.html</URL>
+        <Description>CVE-2015-5351</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/967812</URL>
+        <Description>SUSE Bug 967812</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="5">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">Apache Tomcat 6.x before 6.0.45, 7.x before 7.0.68, 8.x before 8.0.31, and 9.x before 9.0.0.M2 does not place org.apache.catalina.manager.StatusManagerServlet on the org/apache/catalina/core/RestrictedServlets.properties list, which allows remote authenticated users to bypass intended SecurityManager restrictions and read arbitrary HTTP requests, and consequently discover session ID values, via a crafted web application.</Note>
+    </Notes>
+    <CVE>CVE-2016-0706</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed">
+        <ProductID>openSUSE Leap 42.1:tomcat-8.0.32-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:tomcat-admin-webapps-8.0.32-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:tomcat-docs-webapp-8.0.32-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:tomcat-el-3_0-api-8.0.32-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:tomcat-embed-8.0.32-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:tomcat-javadoc-8.0.32-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:tomcat-jsp-2_3-api-8.0.32-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:tomcat-jsvc-8.0.32-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:tomcat-lib-8.0.32-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:tomcat-servlet-3_1-api-8.0.32-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:tomcat-webapps-8.0.32-5.1</ProductID>
+      </Status>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>4</BaseScoreV2>
+        <VectorV2>AV:N/AC:L/Au:S/C:P/I:N/A:N</VectorV2>
+      </ScoreSetV2>
+      <ScoreSetV3>
+        <BaseScoreV3>4.3</BaseScoreV3>
+        <VectorV3>CVSS:3.0/AV:N/AC:L/PR:L/UI:N/S:U/C:L/I:N/A:N</VectorV3>
+      </ScoreSetV3>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-security-announce/2016-03/msg00085.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2016-0706.html</URL>
+        <Description>CVE-2016-0706</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/967815</URL>
+        <Description>SUSE Bug 967815</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/988489</URL>
+        <Description>SUSE Bug 988489</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="6">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">The session-persistence implementation in Apache Tomcat 6.x before 6.0.45, 7.x before 7.0.68, 8.x before 8.0.31, and 9.x before 9.0.0.M2 mishandles session attributes, which allows remote authenticated users to bypass intended SecurityManager restrictions and execute arbitrary code in a privileged context via a web application that places a crafted object in a session.</Note>
+    </Notes>
+    <CVE>CVE-2016-0714</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed">
+        <ProductID>openSUSE Leap 42.1:tomcat-8.0.32-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:tomcat-admin-webapps-8.0.32-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:tomcat-docs-webapp-8.0.32-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:tomcat-el-3_0-api-8.0.32-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:tomcat-embed-8.0.32-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:tomcat-javadoc-8.0.32-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:tomcat-jsp-2_3-api-8.0.32-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:tomcat-jsvc-8.0.32-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:tomcat-lib-8.0.32-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:tomcat-servlet-3_1-api-8.0.32-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:tomcat-webapps-8.0.32-5.1</ProductID>
+      </Status>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>6.5</BaseScoreV2>
+        <VectorV2>AV:N/AC:L/Au:S/C:P/I:P/A:P</VectorV2>
+      </ScoreSetV2>
+      <ScoreSetV3>
+        <BaseScoreV3>8.8</BaseScoreV3>
+        <VectorV3>CVSS:3.0/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H</VectorV3>
+      </ScoreSetV3>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-security-announce/2016-03/msg00085.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2016-0714.html</URL>
+        <Description>CVE-2016-0714</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/967964</URL>
+        <Description>SUSE Bug 967964</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="7">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">The setGlobalContext method in org/apache/naming/factory/ResourceLinkFactory.java in Apache Tomcat 7.x before 7.0.68, 8.x before 8.0.31, and 9.x before 9.0.0.M3 does not consider whether ResourceLinkFactory.setGlobalContext callers are authorized, which allows remote authenticated users to bypass intended SecurityManager restrictions and read or write to arbitrary application data, or cause a denial of service (application disruption), via a web application that sets a crafted global context.</Note>
+    </Notes>
+    <CVE>CVE-2016-0763</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed">
+        <ProductID>openSUSE Leap 42.1:tomcat-8.0.32-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:tomcat-admin-webapps-8.0.32-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:tomcat-docs-webapp-8.0.32-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:tomcat-el-3_0-api-8.0.32-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:tomcat-embed-8.0.32-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:tomcat-javadoc-8.0.32-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:tomcat-jsp-2_3-api-8.0.32-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:tomcat-jsvc-8.0.32-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:tomcat-lib-8.0.32-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:tomcat-servlet-3_1-api-8.0.32-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:tomcat-webapps-8.0.32-5.1</ProductID>
+      </Status>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>6.5</BaseScoreV2>
+        <VectorV2>AV:N/AC:L/Au:S/C:P/I:P/A:P</VectorV2>
+      </ScoreSetV2>
+      <ScoreSetV3>
+        <BaseScoreV3>6.3</BaseScoreV3>
+        <VectorV3>CVSS:3.0/AV:N/AC:L/PR:L/UI:N/S:U/C:L/I:L/A:L</VectorV3>
+      </ScoreSetV3>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-security-announce/2016-03/msg00085.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2016-0763.html</URL>
+        <Description>CVE-2016-0763</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/967966</URL>
+        <Description>SUSE Bug 967966</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+</cvrfdoc>

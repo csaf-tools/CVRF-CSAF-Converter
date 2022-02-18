@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cvrf:cvrfdoc xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:cvrf-common="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/common" xmlns:cvrf="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/cvrf">
+  <cvrf:DocumentTitle>Cisco IOS XR Software Enf Broker Denial of Service Vulnerability</cvrf:DocumentTitle>
+  <cvrf:DocumentType>Cisco Security Advisory</cvrf:DocumentType>
+  <cvrf:DocumentPublisher Type="Vendor">
+    <cvrf:ContactDetails>Emergency Support:
++1 877 228 7302 (toll-free within North America)
++1 408 525 6532 (International direct-dial)
+Non-emergency Support:
+Email: psirt@cisco.com
+Support requests that are received via e-mail are typically acknowledged within 48 hours.</cvrf:ContactDetails>
+    <cvrf:IssuingAuthority>Cisco product security incident response is the responsibility of the Cisco Product Security Incident Response Team (PSIRT). The Cisco PSIRT is a dedicated, global team that manages the receipt, investigation, and public reporting of security vulnerability information that is related to Cisco products and networks. The on-call Cisco PSIRT works 24x7 with Cisco customers, independent security researchers, consultants, industry organizations, and other vendors to identify possible security issues with Cisco products and networks.
+More information can be found in Cisco Security Vulnerability Policy available at http://www.cisco.com/web/about/security/psirt/security_vulnerability_policy.html</cvrf:IssuingAuthority>
+  </cvrf:DocumentPublisher>
+  <cvrf:DocumentTracking>
+    <cvrf:Identification>
+      <cvrf:ID>cisco-sa-iosxr-dos-WwDdghs2</cvrf:ID>
+    </cvrf:Identification>
+    <cvrf:Status>Final</cvrf:Status>
+    <cvrf:Version>1.1</cvrf:Version>
+    <cvrf:RevisionHistory>
+      <cvrf:Revision>
+        <cvrf:Number>1.0</cvrf:Number>
+        <cvrf:Date>2021-01-26T22:35:43</cvrf:Date>
+        <cvrf:Description>Initial public release.</cvrf:Description>
+      </cvrf:Revision>
+      <cvrf:Revision>
+        <cvrf:Number>1.1</cvrf:Number>
+        <cvrf:Date>2021-02-04T22:08:58</cvrf:Date>
+        <cvrf:Description>Updated information about fixed release availability for Cisco IOS XR Software Release 5.0. Fixes for both vulnerabilities were integrated into releases 5.2.6 and 5.3.4.</cvrf:Description>
+      </cvrf:Revision>
+    </cvrf:RevisionHistory>
+    <cvrf:InitialReleaseDate>2021-02-03T16:00:00</cvrf:InitialReleaseDate>
+    <cvrf:CurrentReleaseDate>2021-02-04T22:08:58</cvrf:CurrentReleaseDate>
+    <cvrf:Generator>
+      <cvrf:Engine>TVCE</cvrf:Engine>
+    </cvrf:Generator>
+  </cvrf:DocumentTracking>
+  <cvrf:DocumentNotes>
+    <cvrf:Note Title="Summary" Type="Summary" Ordinal="1">Multiple vulnerabilities in the ingress packet processing function of Cisco IOS XR Software could allow an unauthenticated, remote attacker to cause a denial of service (DoS) condition on an affected device.
+
+For more information about these vulnerabilities, see the Details ["#details"] section of this advisory.
+
+Cisco has released software updates that address these vulnerabilities. There are no workarounds that address these vulnerabilities.
+
+
+This advisory is available at the following link:
+https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-iosxr-dos-WwDdghs2 ["https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-iosxr-dos-WwDdghs2"]</cvrf:Note>
+    <cvrf:Note Title="Vulnerable Products" Type="General" Ordinal="2">These vulnerabilities affect Cisco devices if they are running an affected release of Cisco IOS XR Software.
+
+For information about which Cisco software releases are vulnerable, see the Fixed Software ["#fs"] section of this advisory.</cvrf:Note>
+    <cvrf:Note Title="Products Confirmed Not Vulnerable" Type="General" Ordinal="3">Only products listed in the Vulnerable Products ["#vp"] section of this advisory are known to be affected by these vulnerabilities.
+
+Cisco has confirmed that these vulnerabilities do not affect the following Cisco products:
+
+IOS Software
+IOS XE Software
+NX-OS Software</cvrf:Note>
+    <cvrf:Note Title="Details" Type="General" Ordinal="4">The vulnerabilities are not dependent on one another. Exploitation of one of the vulnerabilities is not required to exploit the other vulnerability. In addition, a software release that is affected by one of the vulnerabilities may not be affected by the other vulnerability.
+
+Details about the vulnerabilities are as follows.
+
+CVE-2021-1288: Cisco IOS XR Software Enf Broker Denial of Service Vulnerability
+
+A vulnerability in the ingress packet processing function of Cisco IOS XR Software could allow an unauthenticated, remote attacker to cause a DoS condition on an affected device.
+
+The vulnerability is due to a logic error that occurs when an affected device processes Telnet protocol packets. An attacker could exploit this vulnerability by sending specific streams of packets to the affected device. A successful exploit could allow the attacker to cause the enf_broker process to crash, which could lead to system instability and the inability to process or forward traffic through the affected device.
+
+This vulnerability can be exploited using specific, crafted streams of packets over either IPv4 or IPv6.
+
+Cisco has released software updates that address this vulnerability. There are no workarounds that address this vulnerability.
+
+Bug ID(s): CSCuz39742 ["http://bst.cloudapps.cisco.com/bugsearch/bug/CSCuz39742"]
+CVE ID: CVE-2021-1288
+Security Impact Rating (SIR): High
+CVSS Base Score: 8.6
+CVSS Vector: CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:N/I:N/A:H ["https://tools.cisco.com/security/center/cvssCalculator.x?version=3.1&amp;vector=CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:N/I:N/A:H"]
+
+CVE-2021-1313: Cisco IOS XR Software Enf Broker Denial of Service Vulnerability
+
+A vulnerability in the ingress packet processing function of Cisco IOS XR Software could allow an unauthenticated, remote attacker to cause a DoS condition on an affected device.
+
+The vulnerability is due to improper resource allocation when an affected device processes either ICMP or Telnet protocol packets. An attacker could exploit this vulnerability by sending specific streams of packets to the affected device. A successful exploit could allow the attacker to cause the enf_broker process to leak system memory. Over time, this memory leak could cause the enf_broker process to crash, which could lead to system instability and the inability to process or forward traffic through the affected device.
+
+This vulnerability can be exploited using specific, crafted streams of packets over either IPv4 or IPv6.
+
+Cisco has released software updates that address this vulnerability. There are no workarounds that address this vulnerability.
+
+Bug ID(s): CSCuy67256 ["http://bst.cloudapps.cisco.com/bugsearch/bug/CSCuy67256"]
+CVE ID: CVE-2021-1313
+Security Impact Rating (SIR): High
+CVSS Base Score: 8.6
+CVSS Vector: CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:N/I:N/A:H ["https://tools.cisco.com/security/center/cvssCalculator.x?version=3.1&amp;vector=CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:N/I:N/A:H"]</cvrf:Note>
+    <cvrf:Note Title="Indicators of Compromise" Type="General" Ordinal="5">Exploitation of either of these vulnerabilities can result in a crash of the enf_broker process on an affected device. When a device has experienced a crash of the enf_broker process, the following messages may be seen in the system logs:
+        %OS-SYSMGR-3-ERROR : enf_broker(1) (jid 209) exited, will be respawned with a delay (slow-restart)      %OS-SYSMGR-3-ERROR : enf_broker(209) (fail count 28597) will be respawned in 120 seconds      %OS-DUMPER-7-DUMP_REQUEST : Dump request for process pkg/bin/enf_broker%OS-DUMPER-7-DUMP_ATTRIBUTE : Dump request with attribute 200 for process pkg/bin/enf_broker
+These error messages indicate that the enf_broker process has crashed. However, the process may have crashed for a reason other than the exploitation of one of these vulnerabilities. Customers are advised to contact their support organization to review the error messages and determine whether the device has been compromised by an exploitation of one of these vulnerabilities.</cvrf:Note>
+    <cvrf:Note Title="Workarounds" Type="General" Ordinal="6">There are no workarounds for these vulnerabilities. However, multiple mitigations are available.
+
+As a mitigation for CVE-2021-1288, customers can disable the Telnet protocol for incoming connections. Information on how to disable Telnet can be found in the Cisco Guide to Harden Cisco IOS XR Devices. ["https://tools.cisco.com/security/center/resources/increase_security_ios_xr_devices.html"]
+
+Because CVE-2021-1313 can be exploited when processing a stream of either Telnet or ICMP protocol packets, the following steps for mitigation should be implemented together to ensure protection against the two attack vectors:
+
+Disable the Telnet protocol for incoming connections.
+Implement an access control entry (ACE) to an existing interface ACL or create a new ACL that denies ICMP traffic that is inbound to a specific interface. The following input is an example of how to create an IPv4 ACL and deny ICMP traffic:
+
+P/0/0/CPU0:router(config)# ipv4 access-list &lt;acl_name&gt; deny icmp any any
+
+
+For information on how to perform both of these mitigations, see the Cisco Guide to Harden Cisco IOS XR Devices ["https://tools.cisco.com/security/center/resources/increase_security_ios_xr_devices.html"].
+
+While these mitigations have been deployed and were proven successful in a test environment, customers should determine the applicability and effectiveness on their own environment and under their own use conditions. Customers should be aware that any workaround or mitigation that is implemented may negatively impact the functionality or performance of their network, based on intrinsic customer deployment scenarios and limitations. Customers should not deploy any workarounds or mitigations before first evaluating their applicability to their own environment and any impact to such environment.</cvrf:Note>
+    <cvrf:Note Title="Fixed Software" Type="General" Ordinal="7">Cisco has released free software updates that address the vulnerabilities described in this advisory. Customers may only install and expect support for software versions and feature sets for which they have purchased a license. By installing, downloading, accessing, or otherwise using such software upgrades, customers agree to follow the terms of the Cisco software license:
+https://www.cisco.com/c/en/us/products/end-user-license-agreement.html ["https://www.cisco.com/c/en/us/products/end-user-license-agreement.html"]
+
+Additionally, customers may only download software for which they have a valid license, procured from Cisco directly, or through a Cisco authorized reseller or partner. In most cases this will be a maintenance upgrade to software that was previously purchased. Free security software updates do not entitle customers to a new software license, additional software feature sets, or major revision upgrades.
+
+When considering software upgrades ["https://tools.cisco.com/security/center/resources/security_vulnerability_policy.html#fixes"], customers are advised to regularly consult the advisories for Cisco products, which are available from the Cisco Security Advisories page ["https://www.cisco.com/go/psirt"], to determine exposure and a complete upgrade solution.
+
+In all cases, customers should ensure that the devices to be upgraded contain sufficient memory and confirm that current hardware and software configurations will continue to be supported properly by the new release. If the information is not clear, customers are advised to contact the Cisco Technical Assistance Center (TAC) or their contracted maintenance providers.
+  Customers Without Service Contracts
+Customers who purchase directly from Cisco but do not hold a Cisco service contract and customers who make purchases through third-party vendors but are unsuccessful in obtaining fixed software through their point of sale should obtain upgrades by contacting the Cisco TAC: https://www.cisco.com/c/en/us/support/web/tsd-cisco-worldwide-contacts.html ["https://www.cisco.com/c/en/us/support/web/tsd-cisco-worldwide-contacts.html"]
+
+Customers should have the product serial number available and be prepared to provide the URL of this advisory as evidence of entitlement to a free upgrade.
+      Fixed Releases
+Customers are advised to upgrade to an appropriate fixed software release as indicated in the following table(s):
+        Cisco IOS XR Software Release  First Fixed Release for
+CVE-2021-1288 (CSCuz39742)  First Fixed Release for
+CVE-2021-1313 (CSCuy67256)  First Fixed Release for All Vulnerabilities Described in This Advisory          5.0  5.2.6
+5.3.4  5.2.471
+5.2.6
+5.3.4  5.2.6
+5.3.4      6.0  6.0.2  Not vulnerable.  6.0.2      7.0 and later  Not vulnerable.  Not vulnerable.  Not vulnerable.
+1. Cisco IOS XR Software Release 5.2.47 addresses CVE-2021-1313 on Cisco Network Convergence System 4000 Series. For all other affected platforms that are running Cisco IOS XR, Cisco has fixed CVE-2021-1313 on Cisco IOS XR Software releases 5.3.4 and later.
+
+Note: Cisco IOS XR Software Release 5.3.3 does not include fixes for both CVE-2021-1288 (CSCuz39742) and CVE-2021-1313 (CSCuy67256). Customers who are running Cisco IOS XR Software Release 5.3.3 are advised either to migrate to a fixed IOS XR Software release or to apply the appropriate SMUs for their platform.
+Cisco has released SMUs that address these vulnerabilities. The following tables provide the SMU name for each release based on platform. Although names of the SMUs include CSCuy67256 only, the SMUs contain the fixes for both CSCuz39742 and CSCuy67256.
+        Cisco IOS XR Software Release  Platform  SMU Name          5.1.3  ASR9K-PX  asr9k-px-5.1.3.CSCuy67256      5.3.2  ASR9K-PX  asr9k-px-5.3.2.CSCuy67256      5.3.3  ASR9K-PX  asr9k-px-5.3.3.CSCuy67256      CRS-PX  hfr-px-5.3.3.CSCuy67256</cvrf:Note>
+    <cvrf:Note Title="Vulnerability Policy" Type="General" Ordinal="8">To learn about Cisco security vulnerability disclosure policies and publications, see the Security Vulnerability Policy ["http://www.cisco.com/web/about/security/psirt/security_vulnerability_policy.html"]. This document also contains instructions for obtaining fixed software and receiving security vulnerability information from Cisco.</cvrf:Note>
+    <cvrf:Note Title="Exploitation and Public Announcements" Type="General" Ordinal="9">The Cisco Product Security Incident Response Team (PSIRT) is not aware of any public announcements or malicious use of the vulnerabilities that are described in this advisory.</cvrf:Note>
+    <cvrf:Note Title="Source" Type="General" Ordinal="10">CVE-2021-1288: Cisco would like to thank the U.S. National Security Agency (NSA) for reporting this vulnerability.
+
+CVE-2021-1313: This vulnerability was found during the resolution of a Cisco TAC support case.</cvrf:Note>
+    <cvrf:Note Title="Legal Disclaimer" Type="Legal Disclaimer" Ordinal="11">THIS DOCUMENT IS PROVIDED ON AN "AS IS" BASIS AND DOES NOT IMPLY ANY KIND OF GUARANTEE OR WARRANTY, INCLUDING THE WARRANTIES OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR USE. YOUR USE OF THE INFORMATION ON THE DOCUMENT OR MATERIALS LINKED FROM THE DOCUMENT IS AT YOUR OWN RISK. CISCO RESERVES THE RIGHT TO CHANGE OR UPDATE THIS DOCUMENT AT ANY TIME.
+
+A standalone copy or paraphrase of the text of this document that omits the distribution URL is an uncontrolled copy and may lack important information or contain factual errors. The information in this document is intended for end users of Cisco products.</cvrf:Note>
+  </cvrf:DocumentNotes>
+  <cvrf:DocumentReferences>
+    <cvrf:Reference Type="Self">
+      <cvrf:URL>https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-iosxr-dos-WwDdghs2</cvrf:URL>
+      <cvrf:Description>Cisco IOS XR Software Enf Broker Denial of Service Vulnerability</cvrf:Description>
+    </cvrf:Reference>
+  </cvrf:DocumentReferences>
+  <ProductTree xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/prod">
+    <Branch Name="Cisco" Type="Vendor">
+      <Branch Name="Cisco IOS XR Software" Type="Product Name">
+        <FullProductName ProductID="CVRFPID-5834">Cisco IOS XR Software </FullProductName>
+      </Branch>
+    </Branch>
+  </ProductTree>
+  <Vulnerability Ordinal="1" xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln">
+    <Title>vuln-CVE-2021-1288</Title>
+    <ID SystemName="Cisco Bug ID">CSCuz39742</ID>
+    <Notes>
+      <Note Title="Cisco Bug IDs" Type="Other" Ordinal="1">CSCuz39742,CSCuy67256</Note>
+    </Notes>
+    <CVE>CVE-2021-1288</CVE>
+    <ProductStatuses>
+      <Status Type="Known Affected">
+        <ProductID>CVRFPID-5834</ProductID>
+      </Status>
+    </ProductStatuses>
+    <CVSSScoreSets>
+      <ScoreSetV3>
+        <BaseScoreV3>8.6</BaseScoreV3>
+        <VectorV3>CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:N/I:N/A:H</VectorV3>
+      </ScoreSetV3>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Workaround">
+        <Description>There are no workarounds for these vulnerabilities. However, multiple mitigations are available.
+
+As a mitigation for CVE-2021-1288, customers can disable the Telnet protocol for incoming connections. Information on how to disable Telnet can be found in the Cisco Guide to Harden Cisco IOS XR Devices. ["https://tools.cisco.com/security/center/resources/increase_security_ios_xr_devices.html"]
+
+Because CVE-2021-1313 can be exploited when processing a stream of either Telnet or ICMP protocol packets, the following steps for mitigation should be implemented together to ensure protection against the two attack vectors:
+
+Disable the Telnet protocol for incoming connections.
+Implement an access control entry (ACE) to an existing interface ACL or create a new ACL that denies ICMP traffic that is inbound to a specific interface. The following input is an example of how to create an IPv4 ACL and deny ICMP traffic:
+
+P/0/0/CPU0:router(config)# ipv4 access-list &lt;acl_name&gt; deny icmp any any
+
+
+For information on how to perform both of these mitigations, see the Cisco Guide to Harden Cisco IOS XR Devices ["https://tools.cisco.com/security/center/resources/increase_security_ios_xr_devices.html"].
+
+While these mitigations have been deployed and were proven successful in a test environment, customers should determine the applicability and effectiveness on their own environment and under their own use conditions. Customers should be aware that any workaround or mitigation that is implemented may negatively impact the functionality or performance of their network, based on intrinsic customer deployment scenarios and limitations. Customers should not deploy any workarounds or mitigations before first evaluating their applicability to their own environment and any impact to such environment.</Description>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference Type="Self">
+        <URL>https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-iosxr-dos-WwDdghs2</URL>
+        <Description>Cisco IOS XR Software Enf Broker Denial of Service Vulnerability</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+  <Vulnerability Ordinal="2" xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln">
+    <Title>vuln-CVE-2021-1313</Title>
+    <ID SystemName="Cisco Bug ID">CSCuy67256</ID>
+    <Notes>
+      <Note Title="Cisco Bug IDs" Type="Other" Ordinal="1">CSCuy67256</Note>
+    </Notes>
+    <CVE>CVE-2021-1313</CVE>
+    <ProductStatuses>
+      <Status Type="Known Affected">
+        <ProductID>CVRFPID-5834</ProductID>
+      </Status>
+    </ProductStatuses>
+    <CVSSScoreSets>
+      <ScoreSetV3>
+        <BaseScoreV3>8.6</BaseScoreV3>
+        <VectorV3>CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:N/I:N/A:H</VectorV3>
+      </ScoreSetV3>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Workaround">
+        <Description>There are no workarounds for these vulnerabilities. However, multiple mitigations are available.
+
+As a mitigation for CVE-2021-1288, customers can disable the Telnet protocol for incoming connections. Information on how to disable Telnet can be found in the Cisco Guide to Harden Cisco IOS XR Devices. ["https://tools.cisco.com/security/center/resources/increase_security_ios_xr_devices.html"]
+
+Because CVE-2021-1313 can be exploited when processing a stream of either Telnet or ICMP protocol packets, the following steps for mitigation should be implemented together to ensure protection against the two attack vectors:
+
+Disable the Telnet protocol for incoming connections.
+Implement an access control entry (ACE) to an existing interface ACL or create a new ACL that denies ICMP traffic that is inbound to a specific interface. The following input is an example of how to create an IPv4 ACL and deny ICMP traffic:
+
+P/0/0/CPU0:router(config)# ipv4 access-list &lt;acl_name&gt; deny icmp any any
+
+
+For information on how to perform both of these mitigations, see the Cisco Guide to Harden Cisco IOS XR Devices ["https://tools.cisco.com/security/center/resources/increase_security_ios_xr_devices.html"].
+
+While these mitigations have been deployed and were proven successful in a test environment, customers should determine the applicability and effectiveness on their own environment and under their own use conditions. Customers should be aware that any workaround or mitigation that is implemented may negatively impact the functionality or performance of their network, based on intrinsic customer deployment scenarios and limitations. Customers should not deploy any workarounds or mitigations before first evaluating their applicability to their own environment and any impact to such environment.</Description>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference Type="Self">
+        <URL>https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-iosxr-dos-WwDdghs2</URL>
+        <Description>Cisco IOS XR Software Enf Broker Denial of Service Vulnerability</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+</cvrf:cvrfdoc>

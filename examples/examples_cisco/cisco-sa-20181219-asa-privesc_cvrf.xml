@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cvrf:cvrfdoc xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:cvrf-common="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/common" xmlns:cvrf="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/cvrf">
+  <cvrf:DocumentTitle>Cisco Adaptive Security Appliance Software Privilege Escalation Vulnerability</cvrf:DocumentTitle>
+  <cvrf:DocumentType>Cisco Security Advisory</cvrf:DocumentType>
+  <cvrf:DocumentPublisher Type="Vendor">
+    <cvrf:ContactDetails>Emergency Support:
++1 877 228 7302 (toll-free within North America)
++1 408 525 6532 (International direct-dial)
+Non-emergency Support:
+Email: psirt@cisco.com
+Support requests that are received via e-mail are typically acknowledged within 48 hours.</cvrf:ContactDetails>
+    <cvrf:IssuingAuthority>Cisco product security incident response is the responsibility of the Cisco Product Security Incident Response Team (PSIRT). The Cisco PSIRT is a dedicated, global team that manages the receipt, investigation, and public reporting of security vulnerability information that is related to Cisco products and networks. The on-call Cisco PSIRT works 24x7 with Cisco customers, independent security researchers, consultants, industry organizations, and other vendors to identify possible security issues with Cisco products and networks.
+More information can be found in Cisco Security Vulnerability Policy available at http://www.cisco.com/web/about/security/psirt/security_vulnerability_policy.html</cvrf:IssuingAuthority>
+  </cvrf:DocumentPublisher>
+  <cvrf:DocumentTracking>
+    <cvrf:Identification>
+      <cvrf:ID>cisco-sa-20181219-asa-privesc</cvrf:ID>
+    </cvrf:Identification>
+    <cvrf:Status>Final</cvrf:Status>
+    <cvrf:Version>1.1</cvrf:Version>
+    <cvrf:RevisionHistory>
+      <cvrf:Revision>
+        <cvrf:Number>1.0</cvrf:Number>
+        <cvrf:Date>2018-12-19T15:03:33</cvrf:Date>
+        <cvrf:Description>Initial public release.</cvrf:Description>
+      </cvrf:Revision>
+      <cvrf:Revision>
+        <cvrf:Number>1.1</cvrf:Number>
+        <cvrf:Date>2019-05-01T15:30:16</cvrf:Date>
+        <cvrf:Description>Added information about a more complete fix.</cvrf:Description>
+      </cvrf:Revision>
+    </cvrf:RevisionHistory>
+    <cvrf:InitialReleaseDate>2018-12-19T16:00:00</cvrf:InitialReleaseDate>
+    <cvrf:CurrentReleaseDate>2019-05-01T15:30:16</cvrf:CurrentReleaseDate>
+    <cvrf:Generator>
+      <cvrf:Engine>TVCE</cvrf:Engine>
+    </cvrf:Generator>
+  </cvrf:DocumentTracking>
+  <cvrf:DocumentNotes>
+    <cvrf:Note Title="Summary" Type="Summary" Ordinal="1">A vulnerability in the authorization subsystem of Cisco Adaptive Security Appliance (ASA) Software could allow an authenticated, but unprivileged (levels 0 and 1), remote attacker to perform privileged actions by using the web management interface.
+
+The vulnerability is due to improper validation of user privileges when using the web management interface. An attacker could exploit this vulnerability by sending specific HTTP requests via HTTPS to an affected device as an unprivileged user. An exploit could allow the attacker to retrieve files (including the running configuration) from the device or to upload and replace software images on the device.
+
+
+Cisco has released software updates that address this vulnerability. There are workarounds that address this vulnerability.
+
+This advisory is available at the following link:
+https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20181219-asa-privesc ["https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20181219-asa-privesc"]</cvrf:Note>
+    <cvrf:Note Title="Vulnerable Products" Type="General" Ordinal="2">This vulnerability affects Cisco ASA Software that is running on any Cisco product that has web management access enabled.
+  Determine Whether Web Management Access Is Configured
+Administrators can use the show running-config http command to determine whether web management access is enabled. The following example shows the output of the command for a device that has the web management feature enabled and that allows access to the web management feature from the 10.10.10.0/24 network via the Management interface:
+
+
+ciscoasa# show running-config http
+  http server enable  http 10.10.10.0 255.255.255.0 Management
+
+Note: The device is vulnerable to requests only when they are sent from an IP address in the range configured in the http &lt;remote_ip_address&gt; &lt;remote_subnet_mask&gt; &lt;interface_name&gt; command.
+
+Determine the Cisco ASA Software Release
+To determine which Cisco ASA Software release is running on a device, administrators can log in to the device, use the show version command in the CLI, and refer to the output of the command. The following example shows the output of the command for a device that is running Cisco ASA Software Release 9.4(4):
+
+
+ciscoasa# show version | include Version
+  Cisco Adaptive Security Appliance Software Version 9.4(4)  Device Manager Version 7.4(1)  .  .  .
+
+If a device is managed by using Cisco Adaptive Security Device Manager (ASDM), administrators can also determine which release is running on a device by referring to the release information in the table that appears in the Cisco ASDM login window or the Device Dashboard tab of the Cisco ASDM Home pane.</cvrf:Note>
+    <cvrf:Note Title="Products Confirmed Not Vulnerable" Type="General" Ordinal="3">Only products listed in the Vulnerable Products ["#vp"] section of this advisory are known to be affected by this vulnerability.
+
+Cisco has confirmed that Cisco Firepower Threat Defense (FTD) Software is not affected by this vulnerability.</cvrf:Note>
+    <cvrf:Note Title="Details" Type="General" Ordinal="4">This vulnerability could allow an authenticated but unprivileged (levels 0 and 1) user to perform privileged actions when command authorization is disabled on the Cisco ASA.
+
+When command authorization is not enabled, the ASA distinguishes only between unprivileged (levels 0 and 1) and privileged (levels 2 through 15) users. Privileged (levels 2 through 15) users are expected to have full administrative access to the ASA via the web management interface, even without knowing the enable password. Command authorization is disabled on the ASA by default.
+
+The “AAA and the Local Database” chapter in the Cisco ASA Configuration Guide ["https://www.cisco.com/c/en/us/td/docs/security/asa/asa910/configuration/general/asa-910-general-config/aaa-local.html"] provides further information.</cvrf:Note>
+    <cvrf:Note Title="Workarounds" Type="General" Ordinal="5">Enabling command authorization prevents exploitation of this vulnerability.
+  Notes
+Enabling command authorization significantly changes the way that the Cisco ASA interprets privilege levels and authorizes actions. Before enabling the feature, administrators must clearly define which actions are allowed per privilege level using the privilege command in global configuration mode. Administrators should not enable command authorization using the aaa authorization command command until they have defined these actions.
+
+Administrators who use the Adaptive Security Device Manager (ASDM) to manage the ASA are advised to enable command authorization by using the ASDM because doing so will allow the ASDM to push predefined command sets for different privilege levels to the ASA. Having these command sets in place will ensure proper ASDM operation after command authorization is enabled.
+
+Further information about command authorization is in the “Management Access” chapter of the “System Administration” section in Cisco ASA Series General Operations CLI Configuration Guide ["https://www.cisco.com/c/en/us/td/docs/security/asa/asa910/configuration/general/asa-910-general-config/admin-management.html#ID-2111-00000646"] and Cisco ASA Series General Operations ASDM Configuration Guide ["https://www.cisco.com/c/en/us/td/docs/security/asa/asa910/asdm710/general/asdm-710-general-config/admin-management.html#ID-2111-00000646"].</cvrf:Note>
+    <cvrf:Note Title="Fixed Software" Type="General" Ordinal="6">Cisco has released free software updates that address the vulnerability described in this advisory. Customers may only install and expect support for software versions and feature sets for which they have purchased a license. By installing, downloading, accessing, or otherwise using such software upgrades, customers agree to follow the terms of the Cisco software license:
+https://www.cisco.com/c/en/us/products/end-user-license-agreement.html ["https://www.cisco.com/c/en/us/products/end-user-license-agreement.html"]
+
+Additionally, customers may only download software for which they have a valid license, procured from Cisco directly, or through a Cisco authorized reseller or partner. In most cases this will be a maintenance upgrade to software that was previously purchased. Free security software updates do not entitle customers to a new software license, additional software feature sets, or major revision upgrades.
+
+When considering software upgrades, customers are advised to regularly consult the advisories for Cisco products, which are available from the Cisco Security Advisories and Alerts page ["https://www.cisco.com/go/psirt"], to determine exposure and a complete upgrade solution.
+
+In all cases, customers should ensure that the devices to be upgraded contain sufficient memory and confirm that current hardware and software configurations will continue to be supported properly by the new release. If the information is not clear, customers are advised to contact the Cisco Technical Assistance Center (TAC) or their contracted maintenance providers.
+  Customers Without Service Contracts
+Customers who purchase directly from Cisco but do not hold a Cisco service contract and customers who make purchases through third-party vendors but are unsuccessful in obtaining fixed software through their point of sale should obtain upgrades by contacting the Cisco TAC:
+https://www.cisco.com/c/en/us/support/web/tsd-cisco-worldwide-contacts.html ["https://www.cisco.com/c/en/us/support/web/tsd-cisco-worldwide-contacts.html"]
+
+Customers should have the product serial number available and be prepared to provide the URL of this advisory as evidence of entitlement to a free upgrade.
+  Fixed Releases
+Customers should upgrade to an appropriate release as indicated in the following table:
+                                Cisco ASA Software Release              First Fixed Release for CSCvm53531              Recommended Fixed Release for CSCvn65527
+                                              Prior to 9.41
+              Migrate to 9.4.4.29
+              Migrate to 9.4.4.34
+                                  9.4              9.4.4.29
+              9.4.4.34                                  9.51              Migrate to 9.6.4.20              Migrate to 9.6.4.25
+                                  9.6              9.6.4.20              9.6.4.25                                  9.71              Migrate to 9.8.3.18              Migrate to 9.8.4
+                                  9.8              9.8.3.18              9.8.4                                  9.9              9.9.2.36
+              9.9.2.50                                  9.10              9.10.1.7              9.10.1.17                                  9.12              Not vulnerable
+              Not vulnerable
+
+1 Cisco ASA Software releases prior to Release 9.4 and Cisco ASA Software Releases 9.5 and 9.7 have reached end-of-software maintenance. Customers should migrate to a supported release.
+
+Customers can download the software from the Software Center ["https://software.cisco.com/download/navigator.html"] on Cisco.com by clicking Browse all and navigating to Security &gt; Firewalls &gt; Adaptive Security Appliances (ASA) &gt; ASA 5500-X Series Firewalls, where there is a list of Cisco ASA hardware platforms. Choose a platform, then choose Software on Chassis &gt; Adaptive Security Appliance (ASA) Software. Most of these software releases are listed under Interim.
+
+Note: For the fix for CSCvm53531 to be effective, customers who have web management access enabled must ensure that the AAA configuration is accurate and complete. In particular, the aaa authentication http console {LOCAL | &lt;aaa-server&gt;} command must be present. For further information, refer to the “About ASDM Authentication” section of the Cisco ASA Configuration Guide ["https://www.cisco.com/c/en/us/td/docs/security/asa/asa910/configuration/general/asa-910-general-config/admin-management.html#concept_0B1238EFA3BD419FA738E8F85BEAE4FA"]. The fix for CSCvn65527 no longer has this limitation.</cvrf:Note>
+    <cvrf:Note Title="Vulnerability Policy" Type="General" Ordinal="7">To learn about Cisco security vulnerability disclosure policies and publications, see the Security Vulnerability Policy ["http://www.cisco.com/web/about/security/psirt/security_vulnerability_policy.html"]. This document also contains instructions for obtaining fixed software and receiving security vulnerability information from Cisco.</cvrf:Note>
+    <cvrf:Note Title="Exploitation and Public Announcements" Type="General" Ordinal="8">The Cisco Product Security Incident Response Team (PSIRT) is not aware of any public announcements or malicious use of the vulnerability that is described in this advisory.</cvrf:Note>
+    <cvrf:Note Title="Source" Type="General" Ordinal="9">Cisco would like to thank Ken Johnson of Tenable, Inc. for reporting this vulnerability.</cvrf:Note>
+    <cvrf:Note Title="Legal Disclaimer" Type="Legal Disclaimer" Ordinal="10">THIS DOCUMENT IS PROVIDED ON AN "AS IS" BASIS AND DOES NOT IMPLY ANY KIND OF GUARANTEE OR WARRANTY, INCLUDING THE WARRANTIES OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR USE. YOUR USE OF THE INFORMATION ON THE DOCUMENT OR MATERIALS LINKED FROM THE DOCUMENT IS AT YOUR OWN RISK. CISCO RESERVES THE RIGHT TO CHANGE OR UPDATE THIS DOCUMENT AT ANY TIME.
+
+A standalone copy or paraphrase of the text of this document that omits the distribution URL is an uncontrolled copy and may lack important information or contain factual errors. The information in this document is intended for end users of Cisco products.</cvrf:Note>
+  </cvrf:DocumentNotes>
+  <cvrf:DocumentReferences>
+    <cvrf:Reference Type="Self">
+      <cvrf:URL>https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20181219-asa-privesc</cvrf:URL>
+      <cvrf:Description>Cisco Adaptive Security Appliance Software Privilege Escalation Vulnerability</cvrf:Description>
+    </cvrf:Reference>
+  </cvrf:DocumentReferences>
+  <ProductTree xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/prod">
+    <Branch Name="Cisco" Type="Vendor">
+      <Branch Name="Cisco Adaptive Security Appliance (ASA) Software" Type="Product Name">
+        <FullProductName ProductID="CVRFPID-6588">Cisco Adaptive Security Appliance (ASA) Software </FullProductName>
+      </Branch>
+    </Branch>
+  </ProductTree>
+  <Vulnerability Ordinal="1" xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln">
+    <Title>Cisco Adaptive Security Appliance Software Privilege Escalation Vulnerability</Title>
+    <ID SystemName="Cisco Bug ID">CSCvm53531</ID>
+    <Notes>
+      <Note Title="Summary" Type="Summary" Ordinal="1">A vulnerability in the authorization subsystem of Cisco Adaptive Security Appliance (ASA) Software could allow an authenticated, but unprivileged (levels 0 and 1), remote attacker to perform privileged actions by using the web management interface.
+
+The vulnerability is due to improper validation of user privileges when using the web management interface. An attacker could exploit this vulnerability by sending specific HTTP requests via HTTPS to an affected device as an unprivileged user. An exploit could allow the attacker to retrieve files (including the running configuration) from the device or to upload and replace software images on the device.
+</Note>
+      <Note Title="Cisco Bug IDs" Type="Other" Ordinal="2">CSCvm53531,CSCvn65527</Note>
+    </Notes>
+    <CVE>CVE-2018-15465</CVE>
+    <ProductStatuses>
+      <Status Type="Known Affected">
+        <ProductID>CVRFPID-6588</ProductID>
+      </Status>
+    </ProductStatuses>
+    <CVSSScoreSets>
+      <ScoreSetV3>
+        <BaseScoreV3>8.1</BaseScoreV3>
+        <VectorV3>CVSS:3.0/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:N</VectorV3>
+      </ScoreSetV3>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Workaround">
+        <Description>Enabling command authorization prevents exploitation of this vulnerability.
+  Notes
+Enabling command authorization significantly changes the way that the Cisco ASA interprets privilege levels and authorizes actions. Before enabling the feature, administrators must clearly define which actions are allowed per privilege level using the privilege command in global configuration mode. Administrators should not enable command authorization using the aaa authorization command command until they have defined these actions.
+
+Administrators who use the Adaptive Security Device Manager (ASDM) to manage the ASA are advised to enable command authorization by using the ASDM because doing so will allow the ASDM to push predefined command sets for different privilege levels to the ASA. Having these command sets in place will ensure proper ASDM operation after command authorization is enabled.
+
+Further information about command authorization is in the “Management Access” chapter of the “System Administration” section in Cisco ASA Series General Operations CLI Configuration Guide ["https://www.cisco.com/c/en/us/td/docs/security/asa/asa910/configuration/general/asa-910-general-config/admin-management.html#ID-2111-00000646"] and Cisco ASA Series General Operations ASDM Configuration Guide ["https://www.cisco.com/c/en/us/td/docs/security/asa/asa910/asdm710/general/asdm-710-general-config/admin-management.html#ID-2111-00000646"].</Description>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference Type="Self">
+        <URL>https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20181219-asa-privesc</URL>
+        <Description>Cisco Adaptive Security Appliance Software Privilege Escalation Vulnerability</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+</cvrf:cvrfdoc>

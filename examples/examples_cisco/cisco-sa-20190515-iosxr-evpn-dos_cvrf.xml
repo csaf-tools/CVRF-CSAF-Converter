@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cvrf:cvrfdoc xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:cvrf-common="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/common" xmlns:cvrf="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/cvrf">
+  <cvrf:DocumentTitle>Cisco IOS XR Software BGP MPLS-Based EVPN Denial of Service Vulnerability</cvrf:DocumentTitle>
+  <cvrf:DocumentType>Cisco Security Advisory</cvrf:DocumentType>
+  <cvrf:DocumentPublisher Type="Vendor">
+    <cvrf:ContactDetails>Emergency Support:
++1 877 228 7302 (toll-free within North America)
++1 408 525 6532 (International direct-dial)
+Non-emergency Support:
+Email: psirt@cisco.com
+Support requests that are received via e-mail are typically acknowledged within 48 hours.</cvrf:ContactDetails>
+    <cvrf:IssuingAuthority>Cisco product security incident response is the responsibility of the Cisco Product Security Incident Response Team (PSIRT). The Cisco PSIRT is a dedicated, global team that manages the receipt, investigation, and public reporting of security vulnerability information that is related to Cisco products and networks. The on-call Cisco PSIRT works 24x7 with Cisco customers, independent security researchers, consultants, industry organizations, and other vendors to identify possible security issues with Cisco products and networks.
+More information can be found in Cisco Security Vulnerability Policy available at http://www.cisco.com/web/about/security/psirt/security_vulnerability_policy.html</cvrf:IssuingAuthority>
+  </cvrf:DocumentPublisher>
+  <cvrf:DocumentTracking>
+    <cvrf:Identification>
+      <cvrf:ID>cisco-sa-20190515-iosxr-evpn-dos</cvrf:ID>
+    </cvrf:Identification>
+    <cvrf:Status>Final</cvrf:Status>
+    <cvrf:Version>1.1</cvrf:Version>
+    <cvrf:RevisionHistory>
+      <cvrf:Revision>
+        <cvrf:Number>1.0</cvrf:Number>
+        <cvrf:Date>2019-05-14T19:23:22</cvrf:Date>
+        <cvrf:Description>Initial public release.</cvrf:Description>
+      </cvrf:Revision>
+      <cvrf:Revision>
+        <cvrf:Number>1.0</cvrf:Number>
+        <cvrf:Date>2019-06-03T13:34:20</cvrf:Date>
+        <cvrf:Description>Initial public release.</cvrf:Description>
+      </cvrf:Revision>
+      <cvrf:Revision>
+        <cvrf:Number>1.1</cvrf:Number>
+        <cvrf:Date>2019-07-10T16:56:52</cvrf:Date>
+        <cvrf:Description>Added SMU information.</cvrf:Description>
+      </cvrf:Revision>
+    </cvrf:RevisionHistory>
+    <cvrf:InitialReleaseDate>2019-05-15T16:00:00</cvrf:InitialReleaseDate>
+    <cvrf:CurrentReleaseDate>2019-07-10T16:56:52</cvrf:CurrentReleaseDate>
+    <cvrf:Generator>
+      <cvrf:Engine>TVCE</cvrf:Engine>
+    </cvrf:Generator>
+  </cvrf:DocumentTracking>
+  <cvrf:DocumentNotes>
+    <cvrf:Note Title="Summary" Type="Summary" Ordinal="1">A vulnerability in the Border Gateway Protocol (BGP) Multiprotocol Label Switching (MPLS)-based Ethernet VPN (EVPN) implementation of Cisco IOS XR Software could allow an unauthenticated, adjacent attacker to trigger a denial of service (DoS) condition on an affected device.
+The vulnerability is due to a logic error that occurs when the affected software processes specific EVPN routing information. An attacker could exploit this vulnerability by injecting malicious traffic patterns into the targeted EVPN network.
+
+A successful exploit could result in a crash of the l2vpn_mgr process on Provider Edge (PE) device members of the same EVPN instance (EVI). On each of the affected devices, a crash could lead to system instability and the inability to process or forward traffic through the device, resulting in a DoS condition that would require manual intervention to restore normal operating conditions.
+
+
+Cisco has released software updates that address this vulnerability. There are no workarounds that address this vulnerability.
+
+This advisory is available at the following link:
+https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20190515-iosxr-evpn-dos ["https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20190515-iosxr-evpn-dos"]</cvrf:Note>
+    <cvrf:Note Title="Vulnerable Products" Type="General" Ordinal="2">This vulnerability affects Cisco devices that are running a vulnerable release of Cisco IOS XR Software and are participating in a BGP MPLS-based EVI.
+
+Cisco has confirmed that this vulnerability affects both Cisco IOS XR 32-bit Software and Cisco IOS XR 64-bit Software.
+
+For information about which Cisco IOS XR Software releases are vulnerable, see the Fixed Software ["#fs"] section of this advisory.
+  Determining Whether the Device Has a Vulnerable Configuration
+There are two methods for determining whether the device has a vulnerable configuration.
+
+Option 1: Using the show evpn evi | include EVPN command
+
+Administrators can use the show evpn evi | include EVPN command to determine whether the device is participating in a BGP MPLS-based EVI.
+
+The following example shows the output of the command for a device that is participating in a BGP MPLS-based EVI:
+
+
+RP/0/0/CPU0:Router#show evpn evi | i EVPN
+Tue May 14 09:40:09.277 EST
+
+
+
+VPN-ID     Encap     Bridge Domain                Type
+---------- ------ ---------------------------- -------------------  &lt;VPN-ID&gt;   MPLS     &lt;BD-NAME&gt;                      EVPN
+
+If this command does not exist, or if it produces an output that does not show the string EVPN within the Type column, the device is not affected by the vulnerability described in this advisory.
+
+Option 2: Using the show running-config formal l2vpn | include "l2vpn bridge group [^ ]+ bridge-domain [^ ]+ evi [0-9]+" command
+
+Administrators can use the show running-config formal l2vpn | include "l2vpn bridge group [^ ]+ bridge-domain [^ ]+ evi [0-9]+" command  to determine whether the device is participating in a BGP MPLS-based EVI.  The following example shows the output of the command for a device that is participating in a BGP MPLS-based EVI:
+
+
+RP/0/0/CPU0:Router#show running-config formal l2vpn | include "l2vpn bridge group [^ ]+ bridge-domain [^ ]+ evi [0-9]+"
+l2vpn bridge group  bridge-domain  evi
+
+An empty output of this command indicates that the device is not affected by the vulnerability described in this advisory.
+
+Note: Some hardware/software combinations may not support the show running-config formal command. In that case, use the verification step indicated in Option 1.
+  Determining the Cisco IOS XR Software Release
+  To determine which Cisco IOS XR Software release is running on a device and the name of the device on which it is running, administrators can log in to the device and use the show version command in the CLI. If the device is running Cisco IOS XR Software or similar text appears in the system banner. The location and name of the system image file that is currently running on the device appears next to the System image file is text. The name of the hardware product appears on the line after the name of the system image file.
+
+The following example shows the output of the show version command on a device that is running Cisco IOS XR Software Release 6.5.2:
+
+
+RP/0/RSP0/CPU0:ASR9001#show version
+Tue May 14 01:32:32.751 EST    Cisco IOS XR Software, Version 6.5.2[Default]  Copyright (c) 2019 by Cisco Systems, Inc.    ROM: System Bootstrap, Version 2.04(20140227:092320) [ASR9K ROMMON],      ASR9001 uptime is 6 hours, 17 minutes  System image file is "bootflash:disk0/asr9k-os-mbi-5.3.4.sp4-1.0.0/0x100000/mbiasr9k-rp.vm"    cisco ASR9K Series (P4040) processor with 8388608K bytes of memory.  P4040 processor at 1500MHz, Revision 2.0  ASR-9001 Chassis    2 Management Ethernet  8 TenGigE  20 GigabitEthernet  8 DWDM controller(s)  8 WANPHY controller(s)  44 GigabitEthernet/IEEE 802.3 interface(s)  219k bytes of non-volatile configuration memory.  2880M bytes of hard disk.  3932144k bytes of disk0: (Sector size 512 bytes).    Configuration register on node 0/RSP0/CPU0 is 0x2102</cvrf:Note>
+    <cvrf:Note Title="Products Confirmed Not Vulnerable" Type="General" Ordinal="3">Only products listed in the Vulnerable Products ["#vp"] section of this advisory are known to be affected by this vulnerability.
+
+No other Cisco products are currently known to be affected by this vulnerability.
+
+Cisco has confirmed that this vulnerability does not affect devices running Cisco IOS Software, Cisco IOS XE Software, or Cisco NX-OS Software.</cvrf:Note>
+    <cvrf:Note Title="Details" Type="General" Ordinal="4">EVPN is a next-generation solution that provides Ethernet multipoint services over MPLS networks. In EVPN, customers' MAC addresses are used as routable addresses. PE devices participating in an EVI use Multiprotocol BGP (MP-BGP) as a route learning and distribution mechanism.
+
+The vulnerability is due to a logic error that occurs when the affected software processes specific MP-BGP EVPN update messages. An attacker that controls multiple Customer Edge (CE) devices could exploit this vulnerability by injecting malicious traffic patterns into the EVPN network. An exploit could cause the Provider Edge (PE) device to advertise specific MP-BGP EVPN update messages that could result in a crash of the l2vpn_mgr process on PE device members of the same EVI.</cvrf:Note>
+    <cvrf:Note Title="Indicators of Compromise" Type="General" Ordinal="5">Exploitation of this vulnerability could cause the affected device to repeatedly generate an error message similar to the following:
+
+
+RP/0/RP0/CPU0:May 14 15:41:03.241 IST: syslog_dev[117]: l2vpn_mgr[1265] PID-8642:
+l2vpn/evpn/include/evpn_label_db_defs.h: 412 FALSE -- assertion failed
+
+Customers are advised to contact their support organization to review the error message and determine whether the device has been affected by exploitation of this vulnerability.</cvrf:Note>
+    <cvrf:Note Title="Workarounds" Type="General" Ordinal="6">There are no workarounds that address this vulnerability.</cvrf:Note>
+    <cvrf:Note Title="Fixed Software" Type="General" Ordinal="7">Cisco has released free software updates that address the vulnerability described in this advisory. Customers may only install and expect support for software versions and feature sets for which they have purchased a license. By installing, downloading, accessing, or otherwise using such software upgrades, customers agree to follow the terms of the Cisco software license:
+https://www.cisco.com/c/en/us/products/end-user-license-agreement.html ["https://www.cisco.com/c/en/us/products/end-user-license-agreement.html"]
+
+Additionally, customers may only download software for which they have a valid license, procured from Cisco directly, or through a Cisco authorized reseller or partner. In most cases this will be a maintenance upgrade to software that was previously purchased. Free security software updates do not entitle customers to a new software license, additional software feature sets, or major revision upgrades.
+
+When considering software upgrades, customers are advised to regularly consult the advisories for Cisco products, which are available from the Cisco Security Advisories and Alerts page ["https://www.cisco.com/go/psirt"], to determine exposure and a complete upgrade solution.
+
+In all cases, customers should ensure that the devices to be upgraded contain sufficient memory and confirm that current hardware and software configurations will continue to be supported properly by the new release. If the information is not clear, customers are advised to contact the Cisco Technical Assistance Center (TAC) or their contracted maintenance providers.
+  Customers Without Service Contracts&lt;!--/h3--&gt;
+Customers who purchase directly from Cisco but do not hold a Cisco service contract and customers who make purchases through third-party vendors but are unsuccessful in obtaining fixed software through their point of sale should obtain upgrades by contacting the Cisco TAC:
+https://www.cisco.com/c/en/us/support/web/tsd-cisco-worldwide-contacts.html ["https://www.cisco.com/c/en/us/support/web/tsd-cisco-worldwide-contacts.html"]
+
+Customers should have the product serial number available and be prepared to provide the URL of this advisory as evidence of entitlement to a free upgrade.
+  Fixed Releases
+The following table lists major software release trains of Cisco IOS XR Software, indicates whether a release train is affected by the vulnerabilities described in this advisory, and the first minor release that includes the fix for these vulnerabilities, if applicable. Customers should migrate to an appropriate release as indicated in the following table:
+                                 Software Train               First Fixed Release               Recommended Release                                   4.3               Not vulnerable               Not vulnerable                                   5.0               Not vulnerable               Not vulnerable                                   5.1               Not vulnerable               Not vulnerable                                   5.2               Not vulnerable               Not vulnerable                                   5.3               Not vulnerable               Not vulnerable                                   6.0               Not vulnerable               Not vulnerable                                   6.1               6.5.3               6.5.3                                   6.2               6.5.3               6.5.3                                   6.3               6.3.3               6.3.3                                   6.4               6.4.2               6.4.2                                   6.5               6.5.2               6.5.3                                   6.6               6.6.1               6.6.12
+Cisco has also released a software maintenance upgrade (SMU) for Cisco Aggregation Services Router (ASR) 9000 Series that addresses this vulnerability.
+
+IOS XR Release
+
+SMU ID
+
+ASR 9000 SMU Name
+
+6.2.3
+
+AA15558
+
+asr9k-px-6.2.3.CSCvk35997
+
+The SMU/service pack can be downloaded from the Software Center ["https://software.cisco.com/download/home"] on Cisco.com.</cvrf:Note>
+    <cvrf:Note Title="Vulnerability Policy" Type="General" Ordinal="8">To learn about Cisco security vulnerability disclosure policies and publications, see the Security Vulnerability Policy ["http://www.cisco.com/web/about/security/psirt/security_vulnerability_policy.html"]. This document also contains instructions for obtaining fixed software and receiving security vulnerability information from Cisco.</cvrf:Note>
+    <cvrf:Note Title="Exploitation and Public Announcements" Type="General" Ordinal="9">The Cisco Product Security Incident Response Team (PSIRT) is not aware of any public announcements or malicious use of the vulnerability that is described in this advisory.</cvrf:Note>
+    <cvrf:Note Title="Source" Type="General" Ordinal="10">This vulnerability was found during internal security testing.</cvrf:Note>
+    <cvrf:Note Title="Legal Disclaimer" Type="Legal Disclaimer" Ordinal="11">THIS DOCUMENT IS PROVIDED ON AN "AS IS" BASIS AND DOES NOT IMPLY ANY KIND OF GUARANTEE OR WARRANTY, INCLUDING THE WARRANTIES OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR USE. YOUR USE OF THE INFORMATION ON THE DOCUMENT OR MATERIALS LINKED FROM THE DOCUMENT IS AT YOUR OWN RISK. CISCO RESERVES THE RIGHT TO CHANGE OR UPDATE THIS DOCUMENT AT ANY TIME.
+
+A standalone copy or paraphrase of the text of this document that omits the distribution URL is an uncontrolled copy and may lack important information or contain factual errors. The information in this document is intended for end users of Cisco products.</cvrf:Note>
+  </cvrf:DocumentNotes>
+  <cvrf:DocumentReferences>
+    <cvrf:Reference Type="Self">
+      <cvrf:URL>https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20190515-iosxr-evpn-dos</cvrf:URL>
+      <cvrf:Description>Cisco IOS XR Software BGP MPLS-Based EVPN Denial of Service Vulnerability</cvrf:Description>
+    </cvrf:Reference>
+  </cvrf:DocumentReferences>
+  <ProductTree xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/prod">
+    <Branch Name="Cisco" Type="Vendor">
+      <Branch Name="Cisco IOS XR Software" Type="Product Name">
+        <FullProductName ProductID="CVRFPID-5834">Cisco IOS XR Software </FullProductName>
+      </Branch>
+    </Branch>
+  </ProductTree>
+  <Vulnerability Ordinal="1" xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln">
+    <Title>Cisco IOS XR Software BGP MPLS-Based EVPN Denial of Service Vulnerability</Title>
+    <ID SystemName="Cisco Bug ID">CSCvk35997</ID>
+    <Notes>
+      <Note Title="Summary" Type="Summary" Ordinal="1">A vulnerability in the Border Gateway Protocol (BGP) Multiprotocol Label Switching (MPLS)-based Ethernet VPN (EVPN) implementation of Cisco IOS XR Software could allow an unauthenticated, adjacent attacker to trigger a denial of service (DoS) condition on an affected device.
+The vulnerability is due to a logic error that occurs when the affected software processes specific EVPN routing information. An attacker could exploit this vulnerability by injecting malicious traffic patterns into the targeted EVPN network.
+
+A successful exploit could result in a crash of the l2vpn_mgr process on Provider Edge (PE) device members of the same EVPN instance (EVI). On each of the affected devices, a crash could lead to system instability and the inability to process or forward traffic through the device, resulting in a DoS condition that would require manual intervention to restore normal operating conditions.
+</Note>
+      <Note Title="Cisco Bug IDs" Type="Other" Ordinal="2">CSCvk35997</Note>
+    </Notes>
+    <CVE>CVE-2019-1849</CVE>
+    <ProductStatuses>
+      <Status Type="Known Affected">
+        <ProductID>CVRFPID-5834</ProductID>
+      </Status>
+    </ProductStatuses>
+    <CVSSScoreSets>
+      <ScoreSetV3>
+        <BaseScoreV3>7.4</BaseScoreV3>
+        <VectorV3>CVSS:3.0/AV:A/AC:L/PR:N/UI:N/S:C/C:N/I:N/A:H</VectorV3>
+      </ScoreSetV3>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Workaround">
+        <Description>There are no workarounds that address this vulnerability.</Description>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference Type="Self">
+        <URL>https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20190515-iosxr-evpn-dos</URL>
+        <Description>Cisco IOS XR Software BGP MPLS-Based EVPN Denial of Service Vulnerability</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+</cvrf:cvrfdoc>

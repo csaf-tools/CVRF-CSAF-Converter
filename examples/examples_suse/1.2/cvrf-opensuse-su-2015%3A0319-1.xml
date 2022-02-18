@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cvrfdoc xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:cpe="http://cpe.mitre.org/language/2.0" xmlns:cvrf="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/cvrf" xmlns:cvrf-common="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/common" xmlns:cvssv2="http://scap.nist.gov/schema/cvss-v2/1.0" xmlns:cvssv3="https://www.first.org/cvss/cvss-v3.0.xsd" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:ns0="http://purl.org/dc/elements/1.1/" xmlns:prod="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/prod" xmlns:scap-core="http://scap.nist.gov/schema/scap-core/1.0" xmlns:sch="http://purl.oclc.org/dsdl/schematron" xmlns:vuln="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/cvrf">
+  <DocumentTitle xml:lang="en">Security update for perl-YAML-LibYAML</DocumentTitle>
+  <DocumentType>SUSE Patch</DocumentType>
+  <DocumentPublisher Type="Vendor">
+    <ContactDetails>security@suse.de</ContactDetails>
+    <IssuingAuthority>SUSE Security Team</IssuingAuthority>
+  </DocumentPublisher>
+  <DocumentTracking>
+    <Identification>
+      <ID>openSUSE-SU-2015:0319-1</ID>
+    </Identification>
+    <Status>Final</Status>
+    <Version>1</Version>
+    <RevisionHistory>
+      <Revision>
+        <Number>1</Number>
+        <Date>2015-02-11T11:38:18Z</Date>
+        <Description>current</Description>
+      </Revision>
+    </RevisionHistory>
+    <InitialReleaseDate>2015-02-11T11:38:18Z</InitialReleaseDate>
+    <CurrentReleaseDate>2015-02-11T11:38:18Z</CurrentReleaseDate>
+    <Generator>
+      <Engine>cve-database/bin/generate-cvrf.pl</Engine>
+      <Date>2017-02-24T01:00:00Z</Date>
+    </Generator>
+  </DocumentTracking>
+  <DocumentNotes>
+    <Note Title="Topic" Type="Summary" Ordinal="1" xml:lang="en">Security update for perl-YAML-LibYAML</Note>
+    <Note Title="Details" Type="General" Ordinal="2" xml:lang="en">perl-YAML-LibYAML was updated to version 0.59 to fix four security issues.
+
+These security issues were fixed:
+- CVE-2013-6393: The yaml_parser_scan_tag_uri function in scanner.c in LibYAML before 0.1.5 performs an incorrect cast, which allowed remote attackers to cause a denial of service (application crash) and possibly execute arbitrary code via crafted tags in a YAML document, which triggers a heap-based buffer overflow (bnc#860617, bnc#911782).
+- CVE-2012-1152: Multiple format string vulnerabilities in the error reporting functionality in the YAML::LibYAML (aka YAML-LibYAML and perl-YAML-LibYAML) module 0.38 for Perl allowed remote attackers to cause a denial of service (process crash) via format string specifiers in a (1) YAML stream to the Load function, (2) YAML node to the load_node function, (3) YAML mapping to the load_mapping function, or (4) YAML sequence to the load_sequence function (bnc#751503).
+- CVE-2014-9130: scanner.c in LibYAML 0.1.5 and 0.1.6, as used in the YAML-LibYAML (aka YAML-XS) module for Perl, allowed context-dependent attackers to cause a denial of service (assertion failure and crash) via vectors involving line-wrapping (bnc#907809, bnc#911782).
+- CVE-2014-2525: Heap-based buffer overflow in the yaml_parser_scan_uri_escapes function in LibYAML before 0.1.6 allowed context-dependent attackers to execute arbitrary code via a long sequence of percent-encoded characters in a URI in a YAML file (bnc#868944, bnc#911782).
+
+These non-security issues were fixed:
+- PR/23 Better scalar dump heuristics
+- More closely match YAML.pm
+- Add a VERSION statement to YAML::LibYAML (issue#8)
+- Applied fix for PR/21. nawglan++
+- Use Swim cpan-tail block functions in doc
+- Get YAML::XS using latest libyaml
+- Fix for https://bitbucket.org/xi/libyaml/issue/10/wrapped-strings-cause-assert-failure
+- Fix e1 test failure on 5.21.4
+- Remove =travis section
+- Meta 0.0.2
+- Eliminate spurious trailing whitespace
+- Add t/000-compile-modules.t
+- Fix swim errors
+- Add badges to doc
+- Fix ReadMe
+- Fix Meta and add Contributing.
+- Doc fix. GitHub-Issue-#6. Thanks to Debian Perl Group for finding this.
+- Test::Base tests needed 'inc' in @INC
+- Switch to Zilla::Dist
+- No longer dep on Test::Base, Spiffy, and Filter::Util::Call
+- Remove test/changes.t
+- Removed another C++ // style comment. jdb++
+- Removed C++ // style comments, for better portability. jdb++
+- Using the latest libyaml codebase
+- https://github.com/yaml/libyaml/tree/perl-yaml-xs
+- Changes have been made to start moving libyaml to 1.2
+</Note>
+    <Note Title="Terms of Use" Type="Legal Disclaimer" Ordinal="3" xml:lang="en">The CVRF data is provided by SUSE under the Creative Commons License 4.0 with Attribution for Non-Commercial usage (CC-BY-NC-4.0).</Note>
+  </DocumentNotes>
+  <DocumentDistribution xml:lang="en">Copyright SUSE LLC under the Creative Commons License 4.0 with Attribution for Non-Commercial usage (CC-BY-NC-4.0)</DocumentDistribution>
+  <DocumentReferences>
+    <Reference Type="Self">
+      <URL>https://lists.opensuse.org/opensuse-updates/2015-02/msg00078.html</URL>
+      <Description>E-Mail link for openSUSE-SU-2015:0319-1</Description>
+    </Reference>
+    <Reference Type="Self">
+      <URL>https://www.suse.com/support/security/rating/</URL>
+      <Description>SUSE Security Ratings</Description>
+    </Reference>
+  </DocumentReferences>
+  <ProductTree xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/prod">
+    <Branch Type="Product Version" Name="perl-YAML-LibYAML-0.59-6.4.1">
+      <FullProductName ProductID="perl-YAML-LibYAML-0.59-6.4.1">perl-YAML-LibYAML-0.59-6.4.1</FullProductName>
+    </Branch>
+  </ProductTree>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="1">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">Multiple format string vulnerabilities in the error reporting functionality in the YAML::LibYAML (aka YAML-LibYAML and perl-YAML-LibYAML) module 0.38 for Perl allow remote attackers to cause a denial of service (process crash) via format string specifiers in a (1) YAML stream to the Load function, (2) YAML node to the load_node function, (3) YAML mapping to the load_mapping function, or (4) YAML sequence to the load_sequence function.</Note>
+    </Notes>
+    <CVE>CVE-2012-1152</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed"/>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>5</BaseScoreV2>
+        <VectorV2>AV:N/AC:L/Au:N/C:N/I:N/A:P</VectorV2>
+      </ScoreSetV2>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-updates/2015-02/msg00078.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2012-1152.html</URL>
+        <Description>CVE-2012-1152</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/751503</URL>
+        <Description>SUSE Bug 751503</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="2">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">The yaml_parser_scan_tag_uri function in scanner.c in LibYAML before 0.1.5 performs an incorrect cast, which allows remote attackers to cause a denial of service (application crash) and possibly execute arbitrary code via crafted tags in a YAML document, which triggers a heap-based buffer overflow.</Note>
+    </Notes>
+    <CVE>CVE-2013-6393</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed"/>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>6.8</BaseScoreV2>
+        <VectorV2>AV:N/AC:M/Au:N/C:P/I:P/A:P</VectorV2>
+      </ScoreSetV2>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-updates/2015-02/msg00078.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2013-6393.html</URL>
+        <Description>CVE-2013-6393</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/860617</URL>
+        <Description>SUSE Bug 860617</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/911782</URL>
+        <Description>SUSE Bug 911782</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="3">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">Heap-based buffer overflow in the yaml_parser_scan_uri_escapes function in LibYAML before 0.1.6 allows context-dependent attackers to execute arbitrary code via a long sequence of percent-encoded characters in a URI in a YAML file.</Note>
+    </Notes>
+    <CVE>CVE-2014-2525</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed"/>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>6.8</BaseScoreV2>
+        <VectorV2>AV:N/AC:M/Au:N/C:P/I:P/A:P</VectorV2>
+      </ScoreSetV2>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-updates/2015-02/msg00078.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2014-2525.html</URL>
+        <Description>CVE-2014-2525</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/868944</URL>
+        <Description>SUSE Bug 868944</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/911782</URL>
+        <Description>SUSE Bug 911782</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="4">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">scanner.c in LibYAML 0.1.5 and 0.1.6, as used in the YAML-LibYAML (aka YAML-XS) module for Perl, allows context-dependent attackers to cause a denial of service (assertion failure and crash) via vectors involving line-wrapping.</Note>
+    </Notes>
+    <CVE>CVE-2014-9130</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed"/>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>5</BaseScoreV2>
+        <VectorV2>AV:N/AC:L/Au:N/C:N/I:N/A:P</VectorV2>
+      </ScoreSetV2>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-updates/2015-02/msg00078.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2014-9130.html</URL>
+        <Description>CVE-2014-9130</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/907809</URL>
+        <Description>SUSE Bug 907809</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/911782</URL>
+        <Description>SUSE Bug 911782</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/921588</URL>
+        <Description>SUSE Bug 921588</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+</cvrfdoc>

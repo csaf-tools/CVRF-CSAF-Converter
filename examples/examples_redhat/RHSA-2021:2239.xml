@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cvrfdoc xmlns="http://www.icasi.org/CVRF/schema/cvrf/1.1" xmlns:cvrf="http://www.icasi.org/CVRF/schema/cvrf/1.1">
+  <DocumentTitle xml:lang="en">Red Hat Security Advisory: Red Hat Virtualization Host security update [ovirt-4.4.6]</DocumentTitle>
+  <DocumentType>Security Advisory</DocumentType>
+  <DocumentPublisher Type="Vendor">
+    <ContactDetails>secalert@redhat.com</ContactDetails>
+    <IssuingAuthority>Red Hat Product Security</IssuingAuthority>
+  </DocumentPublisher>
+  <DocumentTracking>
+    <Identification><ID>RHSA-2021:2239</ID></Identification>
+    <Status>Final</Status>
+    <Version>1</Version>
+    <RevisionHistory>
+       <Revision>
+         <Number>1</Number>
+         <Date>2021-06-03T10:26:00Z</Date>
+         <Description>Current version</Description>
+       </Revision>
+    </RevisionHistory>
+    <InitialReleaseDate>2021-06-03T10:26:00Z</InitialReleaseDate>
+    <CurrentReleaseDate>2021-06-03T10:26:00Z</CurrentReleaseDate>
+    <Generator>
+      <Engine>Red Hat SDEngine 3.0.0</Engine>
+      <Date>2021-08-23T04:57:00Z</Date>
+    </Generator>
+  </DocumentTracking>
+  <DocumentNotes>
+    <Note Title="Topic" Type="Summary" Ordinal="1" xml:lang="en">
+An update for imgbased, redhat-release-virtualization-host, and redhat-virtualization-host is now available for Red Hat Virtualization 4 for Red Hat Enterprise Linux 8.
+
+Red Hat Product Security has rated this update as having a security impact of Moderate. A Common Vulnerability Scoring System (CVSS) base score, which gives a detailed severity rating, is available for each vulnerability from the CVE link(s) in the References section.
+    </Note>
+    <Note Title="Details" Type="General" Ordinal="2" xml:lang="en">
+The redhat-virtualization-host packages provide the Red Hat Virtualization Host. These packages include redhat-release-virtualization-host, ovirt-node, and rhev-hypervisor. Red Hat Virtualization Hosts (RHVH) are installed using a special build of Red Hat Enterprise Linux with only the packages required to host virtual machines. RHVH features a Cockpit user interface for monitoring the host's resources and performing administrative tasks.
+
+The redhat-virtualization-host packages provide the Red Hat Virtualization Host. These packages include redhat-release-virtualization-host, ovirt-node, and rhev-hypervisor. Red Hat Virtualization Hosts (RHVH) are installed using a special build of Red Hat Enterprise Linux with only the packages required to host virtual machines. RHVH features a Cockpit user interface for monitoring the host's resources and performing administrative tasks. 
+
+The ovirt-node-ng packages provide the Red Hat Virtualization Host. These packages include redhat-release-virtualization-host, ovirt-node, and rhev-hypervisor. Red Hat Virtualization Hosts (RHVH) are installed using a special build of Red Hat Enterprise Linux with only the packages required to host virtual machines. RHVH features a Cockpit user interface for monitoring the host's resources and performing administrative tasks.
+
+Security Fix(es):
+
+* python-cryptography: bleichenbacher timing oracle attack against RSA decryption (CVE-2020-25659)
+
+* krb5: unbounded recursion via an ASN.1-encoded Kerberos message in lib/krb5/asn.1/asn1_encode.c may lead to DoS (CVE-2020-28196)
+
+* python-cryptography: certain sequences of update() calls when symmetrically encrypting very large payloads could result in an integer overflow and lead to buffer overflows (CVE-2020-36242)
+
+For more details about the security issue(s), including the impact, a CVSS score, and other related information, refer to the CVE page(s) listed in the References section.
+
+Bug Fix(es):
+
+* Previously, old RPM files were not properly removed during package removal (uninistall) or upgrade. As a result, removed packages were reinstalled, or, during and upgrade, the system tried to install two or more different versions at once, causing the upgrade to fail.
+In this release, the dnf plugin has been fixed, and RPM packages are now properly removed.
+The new version will also auto-heal the broken system by removing RPM packages which are not supposed to be in the persisted-rpms directory. (BZ#1936972)
+
+* With this release, ovirt-hosted-engine-ha supports multiple, comma-separated values for all iSCSI configuration items. (BZ#1909888)
+    </Note>
+    <Note Title="Terms of Use" Ordinal="3" Type="Legal Disclaimer" xml:lang="en">This content is licensed under the Creative Commons Attribution 4.0 International License (https://creativecommons.org/licenses/by/4.0/). If you distribute this content, or a modified version of it, you must provide attribution to Red Hat Inc. and provide a link to the original.</Note>
+  </DocumentNotes>
+  <DocumentDistribution xml:lang="en">Copyright © 2021 Red Hat, Inc. All rights reserved.</DocumentDistribution>
+  <AggregateSeverity Namespace="https://access.redhat.com/security/updates/classification/">Moderate</AggregateSeverity>
+  <DocumentReferences>
+    <Reference Type="Self">
+       <URL>https://access.redhat.com/errata/RHSA-2021:2239</URL>
+       <Description>https://access.redhat.com/errata/RHSA-2021:2239</Description>
+    </Reference>
+    <Reference Type="External">
+       <URL>https://access.redhat.com/security/updates/classification/#moderate</URL>
+       <Description>https://access.redhat.com/security/updates/classification/#moderate</Description>
+    </Reference>
+  </DocumentReferences>
+  <ProductTree xmlns="http://www.icasi.org/CVRF/schema/prod/1.1">
+    <Branch Type="Product Family" Name="Red Hat Virtualization">
+      <Branch Type="Product Name" Name="Red Hat Virtualization 4 Management Agent for RHEL 7 Hosts">
+        <FullProductName ProductID="8Base-RHV-Agents-4" CPE="cpe:/o:redhat:enterprise_linux:8::hypervisor">Red Hat Virtualization 4 Management Agent for RHEL 7 Hosts</FullProductName>
+      </Branch>
+      <Branch Type="Product Name" Name="Red Hat Virtualization 4 Hypervisor for RHEL 8">
+        <FullProductName ProductID="8Base-RHV-Hypervisor-4" CPE="cpe:/o:redhat:enterprise_linux:8::hypervisor">Red Hat Virtualization 4 Hypervisor for RHEL 8</FullProductName>
+      </Branch>
+      <Branch Type="Product Name" Name="RHEL 8-based RHEV-H for RHEV 4 (build requirements)">
+        <FullProductName ProductID="8Base-RHV-HypervisorBuild-4" CPE="cpe:/o:redhat:enterprise_linux:8::hypervisor">RHEL 8-based RHEV-H for RHEV 4 (build requirements)</FullProductName>
+      </Branch>
+    </Branch>
+    <Branch Type="Product Version" Name="cockpit-ovirt-0:0.15.0-2.el8ev">
+      <FullProductName ProductID="cockpit-ovirt-0:0.15.0-2.el8ev" CPE="cpe:/o:redhat:enterprise_linux:8::hypervisor">cockpit-ovirt-0.15.0-2.el8ev.src.rpm</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="elfutils-0:0.182-3.el8">
+      <FullProductName ProductID="elfutils-0:0.182-3.el8" CPE="cpe:/o:redhat:enterprise_linux:8::hypervisor">elfutils-0.182-3.el8.src.rpm</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="imgbased-0:1.2.19-1.el8ev">
+      <FullProductName ProductID="imgbased-0:1.2.19-1.el8ev" CPE="cpe:/o:redhat:enterprise_linux:8::hypervisor">imgbased-1.2.19-1.el8ev.src.rpm</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="ovirt-hosted-engine-ha-0:2.4.7-1.el8ev">
+      <FullProductName ProductID="ovirt-hosted-engine-ha-0:2.4.7-1.el8ev" CPE="cpe:/o:redhat:enterprise_linux:8::hypervisor">ovirt-hosted-engine-ha-2.4.7-1.el8ev.src.rpm</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="redhat-release-virtualization-host-0:4.4.6-1.el8ev">
+      <FullProductName ProductID="redhat-release-virtualization-host-0:4.4.6-1.el8ev" CPE="cpe:/o:redhat:enterprise_linux:8::hypervisor">redhat-release-virtualization-host-4.4.6-1.el8ev.src.rpm</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="redhat-virtualization-host-0:4.4.6-20210527.3.el8_4">
+      <FullProductName ProductID="redhat-virtualization-host-0:4.4.6-20210527.3.el8_4" CPE="cpe:/o:redhat:enterprise_linux:8::hypervisor">redhat-virtualization-host-4.4.6-20210527.3.el8_4.src.rpm</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="scap-security-guide-0:0.1.54-1.el8ev">
+      <FullProductName ProductID="scap-security-guide-0:0.1.54-1.el8ev" CPE="cpe:/o:redhat:enterprise_linux:8::hypervisor">scap-security-guide-0.1.54-1.el8ev.src.rpm</FullProductName>
+    </Branch>
+    <Relationship ProductReference="cockpit-ovirt-0:0.15.0-2.el8ev" RelationType="Default Component Of" RelatesToProductReference="8Base-RHV-Agents-4">
+      <FullProductName ProductID="8Base-RHV-Agents-4:cockpit-ovirt-0:0.15.0-2.el8ev" CPE="cpe:/o:redhat:enterprise_linux:8::hypervisor">cockpit-ovirt-0:0.15.0-2.el8ev as a component of Red Hat Virtualization 4 Management Agent for RHEL 7 Hosts</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="ovirt-hosted-engine-ha-0:2.4.7-1.el8ev" RelationType="Default Component Of" RelatesToProductReference="8Base-RHV-Agents-4">
+      <FullProductName ProductID="8Base-RHV-Agents-4:ovirt-hosted-engine-ha-0:2.4.7-1.el8ev" CPE="cpe:/o:redhat:enterprise_linux:8::hypervisor">ovirt-hosted-engine-ha-0:2.4.7-1.el8ev as a component of Red Hat Virtualization 4 Management Agent for RHEL 7 Hosts</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="elfutils-0:0.182-3.el8" RelationType="Default Component Of" RelatesToProductReference="8Base-RHV-Hypervisor-4">
+      <FullProductName ProductID="8Base-RHV-Hypervisor-4:elfutils-0:0.182-3.el8" CPE="cpe:/o:redhat:enterprise_linux:8::hypervisor">elfutils-0:0.182-3.el8 as a component of Red Hat Virtualization 4 Hypervisor for RHEL 8</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="redhat-virtualization-host-0:4.4.6-20210527.3.el8_4" RelationType="Default Component Of" RelatesToProductReference="8Base-RHV-Hypervisor-4">
+      <FullProductName ProductID="8Base-RHV-Hypervisor-4:redhat-virtualization-host-0:4.4.6-20210527.3.el8_4" CPE="cpe:/o:redhat:enterprise_linux:8::hypervisor">redhat-virtualization-host-0:4.4.6-20210527.3.el8_4 as a component of Red Hat Virtualization 4 Hypervisor for RHEL 8</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="imgbased-0:1.2.19-1.el8ev" RelationType="Default Component Of" RelatesToProductReference="8Base-RHV-HypervisorBuild-4">
+      <FullProductName ProductID="8Base-RHV-HypervisorBuild-4:imgbased-0:1.2.19-1.el8ev" CPE="cpe:/o:redhat:enterprise_linux:8::hypervisor">imgbased-0:1.2.19-1.el8ev as a component of RHEL 8-based RHEV-H for RHEV 4 (build requirements)</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="redhat-release-virtualization-host-0:4.4.6-1.el8ev" RelationType="Default Component Of" RelatesToProductReference="8Base-RHV-HypervisorBuild-4">
+      <FullProductName ProductID="8Base-RHV-HypervisorBuild-4:redhat-release-virtualization-host-0:4.4.6-1.el8ev" CPE="cpe:/o:redhat:enterprise_linux:8::hypervisor">redhat-release-virtualization-host-0:4.4.6-1.el8ev as a component of RHEL 8-based RHEV-H for RHEV 4 (build requirements)</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="scap-security-guide-0:0.1.54-1.el8ev" RelationType="Default Component Of" RelatesToProductReference="8Base-RHV-HypervisorBuild-4">
+      <FullProductName ProductID="8Base-RHV-HypervisorBuild-4:scap-security-guide-0:0.1.54-1.el8ev" CPE="cpe:/o:redhat:enterprise_linux:8::hypervisor">scap-security-guide-0:0.1.54-1.el8ev as a component of RHEL 8-based RHEV-H for RHEV 4 (build requirements)</FullProductName>
+    </Relationship>
+  </ProductTree>
+
+  <Vulnerability Ordinal="1" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">python-cryptography: Bleichenbacher timing oracle attack against RSA decryption</Note></Notes>
+    <DiscoveryDate>2020-10-21T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2020-10-25T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2020-25659</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>8Base-RHV-Agents-4:cockpit-ovirt-0:0.15.0-2.el8ev</ProductID>
+      <ProductID>8Base-RHV-Agents-4:ovirt-hosted-engine-ha-0:2.4.7-1.el8ev</ProductID>
+      <ProductID>8Base-RHV-Hypervisor-4:elfutils-0:0.182-3.el8</ProductID>
+      <ProductID>8Base-RHV-Hypervisor-4:redhat-virtualization-host-0:4.4.6-20210527.3.el8_4</ProductID>
+      <ProductID>8Base-RHV-HypervisorBuild-4:imgbased-0:1.2.19-1.el8ev</ProductID>
+      <ProductID>8Base-RHV-HypervisorBuild-4:redhat-release-virtualization-host-0:4.4.6-1.el8ev</ProductID>
+      <ProductID>8Base-RHV-HypervisorBuild-4:scap-security-guide-0:0.1.54-1.el8ev</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/2974891
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:2239</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://cryptography.io/en/latest/changelog.html#v3-2</URL>
+        <Description>https://cryptography.io/en/latest/changelog.html#v3-2</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2020-25659</URL>
+        <Description>CVE-2020-25659</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1889988</URL>
+        <Description>bz#1889988: CVE-2020-25659 python-cryptography: Bleichenbacher timing oracle attack against RSA decryption</Description>
+      </Reference>
+    </References>
+    <Acknowledgments><Acknowledgment><Description>This issue was discovered by Hubert Kario (Red Hat).</Description></Acknowledgment></Acknowledgments>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="2" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">krb5: unbounded recursion via an ASN.1-encoded Kerberos message in lib/krb5/asn.1/asn1_encode.c may lead to DoS</Note></Notes>
+    <DiscoveryDate>2020-11-06T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2020-11-06T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2020-28196</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>8Base-RHV-Agents-4:cockpit-ovirt-0:0.15.0-2.el8ev</ProductID>
+      <ProductID>8Base-RHV-Agents-4:ovirt-hosted-engine-ha-0:2.4.7-1.el8ev</ProductID>
+      <ProductID>8Base-RHV-Hypervisor-4:elfutils-0:0.182-3.el8</ProductID>
+      <ProductID>8Base-RHV-Hypervisor-4:redhat-virtualization-host-0:4.4.6-20210527.3.el8_4</ProductID>
+      <ProductID>8Base-RHV-HypervisorBuild-4:imgbased-0:1.2.19-1.el8ev</ProductID>
+      <ProductID>8Base-RHV-HypervisorBuild-4:redhat-release-virtualization-host-0:4.4.6-1.el8ev</ProductID>
+      <ProductID>8Base-RHV-HypervisorBuild-4:scap-security-guide-0:0.1.54-1.el8ev</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/2974891
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:2239</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2020-28196</URL>
+        <Description>CVE-2020-28196</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1901041</URL>
+        <Description>bz#1901041: CVE-2020-28196 krb5: unbounded recursion via an ASN.1-encoded Kerberos message in lib/krb5/asn.1/asn1_encode.c may lead to DoS</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="3" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">python-cryptography: Large inputs for symmetric encryption can trigger integer overflow leading to buffer overflow</Note></Notes>
+    <DiscoveryDate>2021-02-07T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2020-12-09T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2020-36242</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>8Base-RHV-Agents-4:cockpit-ovirt-0:0.15.0-2.el8ev</ProductID>
+      <ProductID>8Base-RHV-Agents-4:ovirt-hosted-engine-ha-0:2.4.7-1.el8ev</ProductID>
+      <ProductID>8Base-RHV-Hypervisor-4:elfutils-0:0.182-3.el8</ProductID>
+      <ProductID>8Base-RHV-Hypervisor-4:redhat-virtualization-host-0:4.4.6-20210527.3.el8_4</ProductID>
+      <ProductID>8Base-RHV-HypervisorBuild-4:imgbased-0:1.2.19-1.el8ev</ProductID>
+      <ProductID>8Base-RHV-HypervisorBuild-4:redhat-release-virtualization-host-0:4.4.6-1.el8ev</ProductID>
+      <ProductID>8Base-RHV-HypervisorBuild-4:scap-security-guide-0:0.1.54-1.el8ev</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/2974891
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:2239</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://cryptography.io/en/latest/changelog.html#v3-3-2</URL>
+        <Description>https://cryptography.io/en/latest/changelog.html#v3-3-2</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2020-36242</URL>
+        <Description>CVE-2020-36242</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1926226</URL>
+        <Description>bz#1926226: CVE-2020-36242 python-cryptography: Large inputs for symmetric encryption can trigger integer overflow leading to buffer overflow</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+</cvrfdoc>

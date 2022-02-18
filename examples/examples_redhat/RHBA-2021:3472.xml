@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cvrfdoc xmlns="http://www.icasi.org/CVRF/schema/cvrf/1.1" xmlns:cvrf="http://www.icasi.org/CVRF/schema/cvrf/1.1">
+  <DocumentTitle xml:lang="en">Red Hat Bug Fix Advisory: Red Hat Ansible Tower 3.8.4-1 - Container</DocumentTitle>
+  <DocumentType>Security Advisory</DocumentType>
+  <DocumentPublisher Type="Vendor">
+    <ContactDetails>secalert@redhat.com</ContactDetails>
+    <IssuingAuthority>Red Hat Product Security</IssuingAuthority>
+  </DocumentPublisher>
+  <DocumentTracking>
+    <Identification><ID>RHBA-2021:3472</ID></Identification>
+    <Status>Final</Status>
+    <Version>1</Version>
+    <RevisionHistory>
+       <Revision>
+         <Number>1</Number>
+         <Date>2021-10-07T07:55:00Z</Date>
+         <Description>Current version</Description>
+       </Revision>
+    </RevisionHistory>
+    <InitialReleaseDate>2021-09-08T19:22:00Z</InitialReleaseDate>
+    <CurrentReleaseDate>2021-10-07T07:55:00Z</CurrentReleaseDate>
+    <Generator>
+      <Engine>Red Hat SDEngine 3.3.0</Engine>
+      <Date>2022-01-11T05:23:00Z</Date>
+    </Generator>
+  </DocumentTracking>
+  <DocumentNotes>
+    <Note Title="Topic" Type="Summary" Ordinal="1" xml:lang="en">
+Red Hat Ansible Tower 3.8.4-1 - Container
+    </Note>
+    <Note Title="Details" Type="General" Ordinal="2" xml:lang="en">
+* Running inventories of ~60k hosts no longer takes a very long time for events to show up
+* Removed ``artifact_data`` from data sent to analytics as part of ``playbook_on_stats``, since ``artifact_data`` can contain PII or sensitive data
+* Regular users are no longer experiencing longer load times than a superuser when clicking to edit a job template
+* Updated password validation support to allow modifying password complexity requirements using some Django configurations
+* Fixed AWS inventory tags filtering to support the ``OR`` condition
+* Updated Ansible version to 2.9.25
+* Updated Django version to 2.2.20
+* Fixed Tower's NGINX Instance vulnerability (CVE-2021-23017)
+    </Note>
+    <Note Title="Terms of Use" Ordinal="3" Type="Legal Disclaimer" xml:lang="en">This content is licensed under the Creative Commons Attribution 4.0 International License (https://creativecommons.org/licenses/by/4.0/). If you distribute this content, or a modified version of it, you must provide attribution to Red Hat Inc. and provide a link to the original.</Note>
+  </DocumentNotes>
+  <DocumentDistribution xml:lang="en">Copyright © 2022 Red Hat, Inc. All rights reserved.</DocumentDistribution>
+  <AggregateSeverity Namespace="https://access.redhat.com/security/updates/classification/">Important</AggregateSeverity>
+  <DocumentReferences>
+    <Reference Type="Self">
+       <URL>https://access.redhat.com/errata/RHBA-2021:3472</URL>
+       <Description>https://access.redhat.com/errata/RHBA-2021:3472</Description>
+    </Reference>
+    <Reference Type="External">
+       <URL></URL>
+       <Description></Description>
+    </Reference>
+  </DocumentReferences>
+  <ProductTree xmlns="http://www.icasi.org/CVRF/schema/prod/1.1">
+    <Branch Type="Product Family" Name="Red Hat Ansible Automation Platform">
+      <Branch Type="Product Name" Name="Red Hat Ansible Tower 3.8 for RHEL 7">
+        <FullProductName ProductID="7Server-Ansible-Tower-3.8" CPE="cpe:/a:redhat:ansible_automation_platform:3.8::el7">Red Hat Ansible Tower 3.8 for RHEL 7</FullProductName>
+      </Branch>
+    </Branch>
+    <Branch Type="Product Version" Name="ansible-tower-38/ansible-tower-rhel7:3.8.4-1">
+      <FullProductName ProductID="ansible-tower-38/ansible-tower-rhel7:3.8.4-1" CPE="cpe:/a:redhat:ansible_automation_platform:3.8::el7">ansible-tower-38/ansible-tower-rhel7:3.8.4-1</FullProductName>
+    </Branch>
+    <Relationship ProductReference="ansible-tower-container-3.8.4-1" RelationType="Default Component Of" RelatesToProductReference="7Server-Ansible-Tower-3.8">
+      <FullProductName ProductID="7Server-Ansible-Tower-3.8:ansible-tower-container-3.8.4-1" CPE="cpe:/a:redhat:ansible_automation_platform:3.8::el7">ansible-tower-container-3.8.4-1 as a component of Red Hat Ansible Tower 3.8 for RHEL 7</FullProductName>
+    </Relationship>
+  </ProductTree>
+
+  <Vulnerability Ordinal="1" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">nginx: Off-by-one in ngx_resolver_copy() when labels are followed by a pointer to a root domain name</Note></Notes>
+    <DiscoveryDate>2021-05-19T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-05-25T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-23017</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>7Server-Ansible-Tower-3.8:ansible-tower-container-3.8.4-1</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Important</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+Before applying this update, make sure all previously released errata
+relevant to your system have been applied.
+
+For details on how to apply this update, refer to:
+
+https://access.redhat.com/articles/11258
+    </Description>
+      <URL>https://access.redhat.com/errata/RHBA-2021:3472</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-23017</URL>
+        <Description>CVE-2021-23017</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1963121</URL>
+        <Description>bz#1963121: CVE-2021-23017 nginx: Off-by-one in ngx_resolver_copy() when labels are followed by a pointer to a root domain name</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="2" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">libX11: missing request length checks</Note></Notes>
+    <DiscoveryDate>2021-05-18T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-05-18T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-31535</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>7Server-Ansible-Tower-3.8:ansible-tower-container-3.8.4-1</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Important</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+Before applying this update, make sure all previously released errata
+relevant to your system have been applied.
+
+For details on how to apply this update, refer to:
+
+https://access.redhat.com/articles/11258
+    </Description>
+      <URL>https://access.redhat.com/errata/RHBA-2021:3472</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://unparalleled.eu/blog/2021/20210518-using-xterm-to-navigate-the-huge-color-space/</URL>
+        <Description>https://unparalleled.eu/blog/2021/20210518-using-xterm-to-navigate-the-huge-color-space/</Description>
+      </Reference>
+      <Reference>
+        <URL>https://unparalleled.eu/publications/2021/advisory-unpar-2021-1.txt</URL>
+        <Description>https://unparalleled.eu/publications/2021/advisory-unpar-2021-1.txt</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-31535</URL>
+        <Description>CVE-2021-31535</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1961822</URL>
+        <Description>bz#1961822: CVE-2021-31535 libX11: missing request length checks</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="3" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">postgresql: Buffer overrun from integer overflow in array subscripting calculations</Note></Notes>
+    <DiscoveryDate>2021-05-04T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-05-13T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-32027</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>7Server-Ansible-Tower-3.8:ansible-tower-container-3.8.4-1</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Important</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+Before applying this update, make sure all previously released errata
+relevant to your system have been applied.
+
+For details on how to apply this update, refer to:
+
+https://access.redhat.com/articles/11258
+    </Description>
+      <URL>https://access.redhat.com/errata/RHBA-2021:3472</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.postgresql.org/support/security/CVE-2021-32027/</URL>
+        <Description>https://www.postgresql.org/support/security/CVE-2021-32027/</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-32027</URL>
+        <Description>CVE-2021-32027</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1956876</URL>
+        <Description>bz#1956876: CVE-2021-32027 postgresql: Buffer overrun from integer overflow in array subscripting calculations</Description>
+      </Reference>
+    </References>
+    <Acknowledgments><Acknowledgment><Description>Upstream acknowledges Tom Lane as the original reporter.</Description></Acknowledgment></Acknowledgments>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="4" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">postgresql: Memory disclosure in INSERT ... ON CONFLICT ... DO UPDATE</Note></Notes>
+    <DiscoveryDate>2021-05-04T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-05-13T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-32028</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>7Server-Ansible-Tower-3.8:ansible-tower-container-3.8.4-1</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+Before applying this update, make sure all previously released errata
+relevant to your system have been applied.
+
+For details on how to apply this update, refer to:
+
+https://access.redhat.com/articles/11258
+    </Description>
+      <URL>https://access.redhat.com/errata/RHBA-2021:3472</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.postgresql.org/support/security/CVE-2021-32028/</URL>
+        <Description>https://www.postgresql.org/support/security/CVE-2021-32028/</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-32028</URL>
+        <Description>CVE-2021-32028</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1956877</URL>
+        <Description>bz#1956877: CVE-2021-32028 postgresql: Memory disclosure in INSERT ... ON CONFLICT ... DO UPDATE</Description>
+      </Reference>
+    </References>
+    <Acknowledgments><Acknowledgment><Description>Upstream acknowledges Andres Freund as the original reporter.</Description></Acknowledgment></Acknowledgments>
+  </Vulnerability>
+</cvrfdoc>

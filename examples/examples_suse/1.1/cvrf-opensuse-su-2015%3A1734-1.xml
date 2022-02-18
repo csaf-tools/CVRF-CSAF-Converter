@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cvrfdoc xmlns="http://www.icasi.org/CVRF/schema/cvrf/1.1" xmlns:cvrf="http://www.icasi.org/CVRF/schema/cvrf/1.1">
+  <DocumentTitle xml:lang="en">Security update for polkit</DocumentTitle>
+  <DocumentType>SUSE Patch</DocumentType>
+  <DocumentPublisher Type="Vendor">
+    <ContactDetails>security@suse.de</ContactDetails>
+    <IssuingAuthority>SUSE Security Team</IssuingAuthority>
+  </DocumentPublisher>
+  <DocumentTracking>
+    <Identification>
+      <ID>openSUSE-SU-2015:1734-1</ID>
+    </Identification>
+    <Status>Final</Status>
+    <Version>1</Version>
+    <RevisionHistory>
+      <Revision>
+        <Number>1</Number>
+        <Date>2015-10-06T19:48:48Z</Date>
+        <Description>current</Description>
+      </Revision>
+    </RevisionHistory>
+    <InitialReleaseDate>2015-10-06T19:48:48Z</InitialReleaseDate>
+    <CurrentReleaseDate>2015-10-06T19:48:48Z</CurrentReleaseDate>
+    <Generator>
+      <Engine>cve-database/bin/generate-cvrf.pl</Engine>
+      <Date>2017-02-24T01:00:00Z</Date>
+    </Generator>
+  </DocumentTracking>
+  <DocumentNotes>
+    <Note Title="Topic" Type="Summary" Ordinal="1" xml:lang="en">Security update for polkit</Note>
+    <Note Title="Details" Type="General" Ordinal="2" xml:lang="en">Polkit was updated to 0.113 to fix four security issues.
+
+The following vulnerabilities were fixed:
+
+* CVE-2015-4625: a local privilege escalation due to predictable authentication session cookie values. (boo#935119)
+* CVE-2015-3256: various memory corruption vulnerabilities in use of the JavaScript interpreter, possibly leading to local privilege escalation. (boo#943816)
+* CVE-2015-3255: a memory corruption vulnerability in handling duplicate action IDs, possibly leading to local privilege escalation. (boo#939246)
+* CVE-2015-3218: Allowed any local user to crash polkitd. (boo#933922)</Note>
+    <Note Title="Terms of Use" Type="Legal Disclaimer" Ordinal="3" xml:lang="en">The CVRF data is provided by SUSE under the Creative Commons License 4.0 with Attribution for Non-Commercial usage (CC-BY-NC-4.0).</Note>
+  </DocumentNotes>
+  <DocumentDistribution xml:lang="en">Copyright SUSE LLC under the Creative Commons License 4.0 with Attribution for Non-Commercial usage (CC-BY-NC-4.0)</DocumentDistribution>
+  <DocumentReferences>
+    <Reference Type="Self">
+      <URL>https://lists.opensuse.org/opensuse-security-announce/2015-10/msg00010.html</URL>
+      <Description>E-Mail link for openSUSE-SU-2015:1734-1</Description>
+    </Reference>
+    <Reference Type="Self">
+      <URL>https://www.suse.com/support/security/rating/</URL>
+      <Description>SUSE Security Ratings</Description>
+    </Reference>
+  </DocumentReferences>
+  <ProductTree xmlns="http://www.icasi.org/CVRF/schema/prod/1.1">
+    <Branch Type="Product Version" Name="libpolkit0-0.113-9.1">
+      <FullProductName ProductID="libpolkit0-0.113-9.1">libpolkit0-0.113-9.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libpolkit0-32bit-0.113-9.1">
+      <FullProductName ProductID="libpolkit0-32bit-0.113-9.1">libpolkit0-32bit-0.113-9.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="polkit-0.113-9.1">
+      <FullProductName ProductID="polkit-0.113-9.1">polkit-0.113-9.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="polkit-devel-0.113-9.1">
+      <FullProductName ProductID="polkit-devel-0.113-9.1">polkit-devel-0.113-9.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="polkit-doc-0.113-9.1">
+      <FullProductName ProductID="polkit-doc-0.113-9.1">polkit-doc-0.113-9.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="typelib-1_0-Polkit-1_0-0.113-9.1">
+      <FullProductName ProductID="typelib-1_0-Polkit-1_0-0.113-9.1">typelib-1_0-Polkit-1_0-0.113-9.1</FullProductName>
+    </Branch>
+  </ProductTree>
+  <Vulnerability xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1" Ordinal="1">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">The authentication_agent_new function in polkitbackend/polkitbackendinteractiveauthority.c in PolicyKit (aka polkit) before 0.113 allows local users to cause a denial of service (NULL pointer dereference and polkitd daemon crash) by calling RegisterAuthenticationAgent with an invalid object path.</Note>
+    </Notes>
+    <CVE>CVE-2015-3218</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed"/>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSet>
+        <BaseScore>4.4</BaseScore>
+        <Vector>AV:L/AC:M/Au:N/C:P/I:P/A:P</Vector>
+      </ScoreSet>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-security-announce/2015-10/msg00010.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-3218.html</URL>
+        <Description>CVE-2015-3218</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/933922</URL>
+        <Description>SUSE Bug 933922</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/943816</URL>
+        <Description>SUSE Bug 943816</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+  <Vulnerability xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1" Ordinal="2">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">The polkit_backend_action_pool_init function in polkitbackend/polkitbackendactionpool.c in PolicyKit (aka polkit) before 0.113 might allow local users to gain privileges via duplicate action IDs in action descriptions.</Note>
+    </Notes>
+    <CVE>CVE-2015-3255</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed"/>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-security-announce/2015-10/msg00010.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-3255.html</URL>
+        <Description>CVE-2015-3255</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/939246</URL>
+        <Description>SUSE Bug 939246</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/943816</URL>
+        <Description>SUSE Bug 943816</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+  <Vulnerability xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1" Ordinal="3">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">PolicyKit (aka polkit) before 0.113 allows local users to cause a denial of service (memory corruption and polkitd daemon crash) and possibly gain privileges via unspecified vectors, related to "javascript rule evaluation."</Note>
+    </Notes>
+    <CVE>CVE-2015-3256</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed"/>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-security-announce/2015-10/msg00010.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-3256.html</URL>
+        <Description>CVE-2015-3256</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/943816</URL>
+        <Description>SUSE Bug 943816</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+  <Vulnerability xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1" Ordinal="4">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">Integer overflow in the authentication_agent_new_cookie function in PolicyKit (aka polkit) before 0.113 allows local users to gain privileges by creating a large number of connections, which triggers the issuance of a duplicate cookie value.</Note>
+    </Notes>
+    <CVE>CVE-2015-4625</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed"/>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>low</Description>
+      </Threat>
+    </Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-security-announce/2015-10/msg00010.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-4625.html</URL>
+        <Description>CVE-2015-4625</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/935119</URL>
+        <Description>SUSE Bug 935119</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/943816</URL>
+        <Description>SUSE Bug 943816</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+</cvrfdoc>

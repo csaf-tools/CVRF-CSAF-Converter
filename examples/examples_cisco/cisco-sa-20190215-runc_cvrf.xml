@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cvrf:cvrfdoc xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:cvrf-common="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/common" xmlns:cvrf="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/cvrf">
+  <cvrf:DocumentTitle>Container Privilege Escalation Vulnerability Affecting Cisco Products: February 2019</cvrf:DocumentTitle>
+  <cvrf:DocumentType>Cisco Security Advisory</cvrf:DocumentType>
+  <cvrf:DocumentPublisher Type="Vendor">
+    <cvrf:ContactDetails>Emergency Support:
++1 877 228 7302 (toll-free within North America)
++1 408 525 6532 (International direct-dial)
+Non-emergency Support:
+Email: psirt@cisco.com
+Support requests that are received via e-mail are typically acknowledged within 48 hours.</cvrf:ContactDetails>
+    <cvrf:IssuingAuthority>Cisco product security incident response is the responsibility of the Cisco Product Security Incident Response Team (PSIRT). The Cisco PSIRT is a dedicated, global team that manages the receipt, investigation, and public reporting of security vulnerability information that is related to Cisco products and networks. The on-call Cisco PSIRT works 24x7 with Cisco customers, independent security researchers, consultants, industry organizations, and other vendors to identify possible security issues with Cisco products and networks.
+More information can be found in Cisco Security Vulnerability Policy available at http://www.cisco.com/web/about/security/psirt/security_vulnerability_policy.html</cvrf:IssuingAuthority>
+  </cvrf:DocumentPublisher>
+  <cvrf:DocumentTracking>
+    <cvrf:Identification>
+      <cvrf:ID>cisco-sa-20190215-runc</cvrf:ID>
+    </cvrf:Identification>
+    <cvrf:Status>Final</cvrf:Status>
+    <cvrf:Version>1.6</cvrf:Version>
+    <cvrf:RevisionHistory>
+      <cvrf:Revision>
+        <cvrf:Number>1.0</cvrf:Number>
+        <cvrf:Date>2019-02-15T18:31:56</cvrf:Date>
+        <cvrf:Description>Initial public release.</cvrf:Description>
+      </cvrf:Revision>
+      <cvrf:Revision>
+        <cvrf:Number>1.1</cvrf:Number>
+        <cvrf:Date>2019-02-18T21:21:48</cvrf:Date>
+        <cvrf:Description>Updated the lists of products under investigation, vulnerable products, and products confirmed not vulnerable.</cvrf:Description>
+      </cvrf:Revision>
+      <cvrf:Revision>
+        <cvrf:Number>1.2</cvrf:Number>
+        <cvrf:Date>2019-02-20T23:00:04</cvrf:Date>
+        <cvrf:Description>Updated the lists of products under investigation, vulnerable products, and products confirmed not vulnerable.</cvrf:Description>
+      </cvrf:Revision>
+      <cvrf:Revision>
+        <cvrf:Number>1.3</cvrf:Number>
+        <cvrf:Date>2019-02-21T22:32:41</cvrf:Date>
+        <cvrf:Description>Updated the lists of products under investigation, vulnerable products, and products confirmed not vulnerable.</cvrf:Description>
+      </cvrf:Revision>
+      <cvrf:Revision>
+        <cvrf:Number>1.4</cvrf:Number>
+        <cvrf:Date>2019-02-26T20:00:24</cvrf:Date>
+        <cvrf:Description>Updated the lists of products under investigation, vulnerable products, and products confirmed not vulnerable.</cvrf:Description>
+      </cvrf:Revision>
+      <cvrf:Revision>
+        <cvrf:Number>1.5</cvrf:Number>
+        <cvrf:Date>2019-03-08T16:57:49</cvrf:Date>
+        <cvrf:Description>Updated the lists of products under investigation, vulnerable products, and products confirmed not vulnerable.</cvrf:Description>
+      </cvrf:Revision>
+      <cvrf:Revision>
+        <cvrf:Number>1.6</cvrf:Number>
+        <cvrf:Date>2019-03-15T19:59:44</cvrf:Date>
+        <cvrf:Description>Updated the lists, vulnerable products, and products confirmed not vulnerable.</cvrf:Description>
+      </cvrf:Revision>
+    </cvrf:RevisionHistory>
+    <cvrf:InitialReleaseDate>2019-02-15T17:00:00</cvrf:InitialReleaseDate>
+    <cvrf:CurrentReleaseDate>2019-03-15T19:59:44</cvrf:CurrentReleaseDate>
+    <cvrf:Generator>
+      <cvrf:Engine>TVCE</cvrf:Engine>
+    </cvrf:Generator>
+  </cvrf:DocumentTracking>
+  <cvrf:DocumentNotes>
+    <cvrf:Note Title="Summary" Type="Summary" Ordinal="1">A vulnerability in the Open Container Initiative runc CLI tool used by multiple products could allow an unauthenticated, remote attacker to escalate privileges on a targeted system.
+
+The vulnerability exists because the affected software improperly handles file descriptors related to /proc/self/exe. An attacker could exploit the vulnerability either by persuading a user to create a new container using an attacker-controlled image or by using the docker exec command to attach into an existing container that the attacker already has write access to. A successful exploit could allow the attacker to overwrite the host's runc binary file with a malicious file, escape the container, and execute arbitrary commands with root privileges on the host system.
+
+This advisory will be updated as additional information becomes available.
+
+This advisory is available at the following link:
+https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20190215-runc ["https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20190215-runc"]</cvrf:Note>
+    <cvrf:Note Title="Affected Products" Type="General" Ordinal="2">The Vulnerable Products ["#vp"] section will include Cisco bug IDs for each affected product or service. The bugs will be accessible through the Cisco Bug Search Tool ["https://bst.cloudapps.cisco.com/bugsearch/bug/BUGID"] and contain additional platform-specific information, including workarounds (if available) and fixed software releases.</cvrf:Note>
+    <cvrf:Note Title="Vulnerable Products" Type="General" Ordinal="3">The following table lists Cisco products that are affected by the vulnerability that is described in this advisory. If a future release date is indicated for software, the date provided represents an estimate based on all information known to Cisco as of the Last Updated date at the top of the advisory. Availability dates are subject to change based on a number of factors, including satisfactory testing results and delivery of other priority features and fixes. If no version or date is listed for an affected component (indicated by a blank field and/or an advisory designation of Interim), Cisco is continuing to evaluate the fix and will update the advisory as additional information becomes available. After the advisory is marked Final, customers should refer to the associated Cisco bug(s) for further details.
+                                Product              Cisco Bug ID              Fixed Release Availability                                  Network Management and Provisioning                                  Cisco Container Platform              CSCvo33929 ["https://tools.cisco.com/bugsearch/bug/CSCvo33929"]              3.1.0 (Mar 2019)                                  Routing and Switching - Enterprise and Service Provider                                  Viptela vContainer              CSCvo36349 ["https://tools.cisco.com/bugsearch/bug/CSCvo36349"]                                                Cisco Cloud Hosted Services                                  Cisco Cloudlock              CSCvo37511 ["https://tools.cisco.com/bugsearch/bug/CSCvo37511"]              Cisco will update affected systems in Sept 2019                                  Cisco Defense Orchestrator              CSCvo42107 ["https://tools.cisco.com/bugsearch/bug/CSCvo42107"]              Cisco updated affected systems
+On-prem: 19.8 (Available)
+                                  Cisco Smart Software Manager Satellite              CSCvo49760 ["https://tools.cisco.com/bugsearch/bug/CSCvo49760"]</cvrf:Note>
+    <cvrf:Note Title="Products Confirmed Not Vulnerable" Type="General" Ordinal="4">Only products and services listed in the Vulnerable Products ["#vp"] section of this advisory are known to be affected by this vulnerability.
+
+Cisco has confirmed that this vulnerability does not affect the following products and services:
+  Network Application, Service, and Acceleration
+
+Cisco Adaptive Security Appliance (ASA) Software
+Network and Content Security Devices
+
+Cisco ASA CX
+Cisco ASA Next-Generation Firewall Services
+Cisco Firepower 9000 Series - Integrated Management Controller
+Cisco Identity Services Engine (ISE)
+Network Management and Provisioning
+
+Cisco Data Center Network Manager
+Cisco Jasper Control Center
+Cisco Managed Services Accelerator
+Cisco Policy Suite
+Cisco Virtual Topology System (formerly Cisco Virtual Systems Operations Center) - VTSR VM
+Cisco Virtualized Infrastructure Manager
+Routing and Switching - Enterprise and Service Provider
+
+Cisco 4000 Series Integrated Services Routers - IOx feature
+Cisco Application Policy Infrastructure Controller (APIC)
+Cisco DNA Center
+Cisco IOS XR Software
+Cisco Industrial Ethernet 4000 Series Switches (IOx feature)
+Cisco Nexus 3000 Series Switches
+Cisco Nexus 9000 Series Fabric Switches in Application Centric Infrastructure (ACI) mode
+Cisco Nexus 9000 Series Switches in standalone NX-OS mode
+Cisco Virtual Application Policy Infrastructure Controller (APIC)
+Unified Computing
+
+Cisco Enterprise NFV Infrastructure Software (NFVIS)
+Cisco HyperFlex System
+Cisco Intersight
+Cisco UCS 6200 Series Fabric Interconnects
+Cisco UCS B-Series M3 Blade Servers
+Cisco UCS Fabric Interconnects
+Cisco UCS Manager
+Cisco Cloud Hosted Services
+
+Cisco Metacloud
+Cisco Umbrella
+Cisco Webex Teams (formerly Cisco Spark)</cvrf:Note>
+    <cvrf:Note Title="Workarounds" Type="General" Ordinal="5">Any workarounds for a specific Cisco product or service will be documented in the relevant Cisco bugs, which are identified in the Vulnerable Products ["#vp"] section of this advisory.</cvrf:Note>
+    <cvrf:Note Title="Fixed Software" Type="General" Ordinal="6">For information about fixed software releases ["https://tools.cisco.com/security/center/resources/security_vulnerability_policy.html#fixes"], consult the Cisco bugs identified in the Vulnerable Products ["#vp"] section of this advisory.
+
+When considering software upgrades, customers are advised to regularly consult the advisories for Cisco products, which are available from the Cisco Security Advisories and Alerts page ["https://www.cisco.com/go/psirt"], to determine exposure and a complete upgrade solution.
+
+In all cases, customers should ensure that the devices to be upgraded contain sufficient memory and confirm that current hardware and software configurations will continue to be supported properly by the new release. If the information is not clear, customers are advised to contact the Cisco TAC or their contracted maintenance providers.</cvrf:Note>
+    <cvrf:Note Title="Vulnerability Policy" Type="General" Ordinal="7">To learn about Cisco security vulnerability disclosure policies and publications, see the Security Vulnerability Policy ["http://www.cisco.com/web/about/security/psirt/security_vulnerability_policy.html"]. This document also contains instructions for obtaining fixed software and receiving security vulnerability information from Cisco.</cvrf:Note>
+    <cvrf:Note Title="Exploitation and Public Announcements" Type="General" Ordinal="8">The Cisco Product Security Incident Response Team (PSIRT) is not aware of any public announcements or malicious use of the vulnerability that is described in this advisory.</cvrf:Note>
+    <cvrf:Note Title="Source" Type="General" Ordinal="9">On February 12, 2019, the runc maintainers publicly disclosed this vulnerability on the oss-sec mailing list. This announcement is at the following link: https://seclists.org/oss-sec/2019/q1/119 ["https://seclists.org/oss-sec/2019/q1/119"].</cvrf:Note>
+    <cvrf:Note Title="Legal Disclaimer" Type="Legal Disclaimer" Ordinal="10">THIS DOCUMENT IS PROVIDED ON AN "AS IS" BASIS AND DOES NOT IMPLY ANY KIND OF GUARANTEE OR WARRANTY, INCLUDING THE WARRANTIES OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR USE. YOUR USE OF THE INFORMATION ON THE DOCUMENT OR MATERIALS LINKED FROM THE DOCUMENT IS AT YOUR OWN RISK. CISCO RESERVES THE RIGHT TO CHANGE OR UPDATE THIS DOCUMENT AT ANY TIME.
+
+A standalone copy or paraphrase of the text of this document that omits the distribution URL is an uncontrolled copy and may lack important information or contain factual errors. The information in this document is intended for end users of Cisco products.</cvrf:Note>
+  </cvrf:DocumentNotes>
+  <cvrf:DocumentReferences>
+    <cvrf:Reference Type="Self">
+      <cvrf:URL>https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20190215-runc</cvrf:URL>
+      <cvrf:Description>Container Privilege Escalation Vulnerability Affecting Cisco Products: February 2019</cvrf:Description>
+    </cvrf:Reference>
+  </cvrf:DocumentReferences>
+  <Vulnerability Ordinal="1" xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln">
+    <Title>runc System File Descriptors Handling Privilege Escalation Vulnerability</Title>
+    <Notes>
+      <Note Title="Summary" Type="Summary" Ordinal="1">A vulnerability in the Open Container Initiative runc CLI tool used by multiple products could allow an unauthenticated, remote attacker to escalate privileges on a targeted system.
+
+
+
+The vulnerability exists because the affected software improperly handles file descriptors related to /proc/self/exe. An attacker could exploit the vulnerability either by persuading a user to create a new container using an attacker-controlled image or by using the docker exec command to attach into an existing container that the attacker already has write access to. A successful exploit could allow the attacker to overwrite the host's runc binary file with a malicious file, escape the container, and execute arbitrary commands with root privileges on the host system.</Note>
+    </Notes>
+    <CVE>CVE-2019-5736</CVE>
+    <Remediations>
+      <Remediation Type="Workaround">
+        <Description>Any workarounds for a specific Cisco product or service will be documented in the relevant Cisco bugs, which are identified in the Vulnerable Products ["#vp"] section of this advisory.</Description>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference Type="Self">
+        <URL>https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20190215-runc</URL>
+        <Description>Container Privilege Escalation Vulnerability Affecting Cisco Products: February 2019</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+</cvrf:cvrfdoc>

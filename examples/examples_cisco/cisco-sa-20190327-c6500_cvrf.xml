@@ -1,0 +1,375 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cvrf:cvrfdoc xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:cvrf-common="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/common" xmlns:cvrf="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/cvrf">
+  <cvrf:DocumentTitle>Cisco IOS Software Catalyst 6500 Series 802.1x Authentication Bypass Vulnerability</cvrf:DocumentTitle>
+  <cvrf:DocumentType>Cisco Security Advisory</cvrf:DocumentType>
+  <cvrf:DocumentPublisher Type="Vendor">
+    <cvrf:ContactDetails>Emergency Support:
++1 877 228 7302 (toll-free within North America)
++1 408 525 6532 (International direct-dial)
+Non-emergency Support:
+Email: psirt@cisco.com
+Support requests that are received via e-mail are typically acknowledged within 48 hours.</cvrf:ContactDetails>
+    <cvrf:IssuingAuthority>Cisco product security incident response is the responsibility of the Cisco Product Security Incident Response Team (PSIRT). The Cisco PSIRT is a dedicated, global team that manages the receipt, investigation, and public reporting of security vulnerability information that is related to Cisco products and networks. The on-call Cisco PSIRT works 24x7 with Cisco customers, independent security researchers, consultants, industry organizations, and other vendors to identify possible security issues with Cisco products and networks.
+More information can be found in Cisco Security Vulnerability Policy available at http://www.cisco.com/web/about/security/psirt/security_vulnerability_policy.html</cvrf:IssuingAuthority>
+  </cvrf:DocumentPublisher>
+  <cvrf:DocumentTracking>
+    <cvrf:Identification>
+      <cvrf:ID>cisco-sa-20190327-c6500</cvrf:ID>
+    </cvrf:Identification>
+    <cvrf:Status>Final</cvrf:Status>
+    <cvrf:Version>1.0</cvrf:Version>
+    <cvrf:RevisionHistory>
+      <cvrf:Revision>
+        <cvrf:Number>1.0</cvrf:Number>
+        <cvrf:Date>2019-03-27T15:02:57</cvrf:Date>
+        <cvrf:Description>Initial public release.</cvrf:Description>
+      </cvrf:Revision>
+    </cvrf:RevisionHistory>
+    <cvrf:InitialReleaseDate>2019-03-27T16:00:00</cvrf:InitialReleaseDate>
+    <cvrf:CurrentReleaseDate>2019-03-27T15:02:57</cvrf:CurrentReleaseDate>
+    <cvrf:Generator>
+      <cvrf:Engine>TVCE</cvrf:Engine>
+    </cvrf:Generator>
+  </cvrf:DocumentTracking>
+  <cvrf:DocumentNotes>
+    <cvrf:Note Title="Summary" Type="Summary" Ordinal="1">A vulnerability in 802.1x function of Cisco IOS Software on the Catalyst 6500 Series Switches could allow an unauthenticated, adjacent attacker to access the network prior to authentication.
+
+The vulnerability is due to how the 802.1x packets are handled in the process path. An attacker could exploit this vulnerability by attempting to connect to the network on an 802.1x configured port. A successful exploit could allow the attacker to intermittently obtain access to the network.
+
+Cisco has released software updates that address this vulnerability. There are workarounds that address this vulnerability.
+
+This advisory is available at the following link:
+https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20190327-c6500 ["https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20190327-c6500"]</cvrf:Note>
+    <cvrf:Note Title="Vulnerable Products" Type="General" Ordinal="2">This vulnerability affects Cisco Catalyst 6500 Series Switches that are running a vulnerable release of Cisco IOS Software if the 802.1x feature is enabled with authentication host-mode being multi-domain, authentication violation being restrict, and in closed authentication mode on a given interface.
+
+For information about which software releases are vulnerable, see the Fixed Software ["#fs"] section of this advisory.
+
+Assessing the 802.1x Configuration
+
+To determine whether the 802.1x feature is configured in a manner that makes a device vulnerable, perform the following tasks:
+
+Administrators can log in to the device and use the show running-config | include multi-domain command in the CLI to check for the presence of the authentication host-mode multi-domain command in the interface configuration. If the command returns no output, the device is not vulnerable. If the command returns output, identify all the interfaces with the authentication host-mode multi-domain command present and proceed to the next step.
+For each interface identified in the previous step, administrators can use the show running-config command in the CLI to check for the presence of authentication open. For each interface where the authentication mode is configured as open, the device on that interface is not vulnerable. For all other interfaces, complete the next step.
+For each interface identified in the previous steps, administrators can use the show running-config command in the CLI to check for the presence of authentication violation restrict. If this command is present, the interface is vulnerable.
+
+The following shows an example of an AFFECTED configuration:
+
+
+interface GigabitEthernet1/4/1
+ switchport   switchport   switchport access vlan 100   switchport mode access   switchport voice vlan 101   authentication event fail action next-method   authentication event server dead action authorize voice   authentication event server alive action reinitialize  authentication host-mode multi-domain   authentication order dot1x mab   authentication priority dot1x mab   authentication port-control auto   authentication periodic   authentication timer reauthenticate server   authentication violation restrict   mab   dot1x pae authenticator   dot1x timeout tx-period 2   spanning-tree portfast edge   spanning-tree bpduguard enable
+
+The following shows an example of a NON-AFFECTED configuration:
+
+
+interface GigabitEthernet1/4/1
+ switchport   switchport   switchport access vlan 100   switchport mode access   switchport voice vlan 101   authentication event fail action next-method   authentication event server dead action authorize voice   authentication event server alive action reinitialize  authentication host-mode multi-domain   authentication open   authentication order dot1x mab   authentication priority dot1x mab   authentication port-control auto   authentication periodic   authentication timer reauthenticate server   authentication violation shutdown   mab   dot1x pae authenticator   dot1x timeout tx-period 2   spanning-tree portfast edge   spanning-tree bpduguard enable
+   Determining the Cisco IOS Software Release
+To determine which Cisco IOS Software release is running on a device, administrators can log in to the device, use the show version command in the CLI, and then refer to the system banner that appears. If the device is running Cisco IOS Software, the system banner displays text similar to Cisco Internetwork Operating System Software or Cisco IOS Software. The banner also displays the installed image name in parentheses, followed by the Cisco IOS Software release number and release name. Some Cisco devices do not support the show version command or may provide different output.
+
+The following example shows the output of the command for a device that is running Cisco IOS Software Release 15.5(2)T1 and has an installed image name of C2951-UNIVERSALK9-M:
+
+
+Router&gt; show version
+  Cisco IOS Software, C2951 Software (C2951-UNIVERSALK9-M), Version 15.5(2)T1, RELEASE SOFTWARE (fc1)  Technical Support: http://www.cisco.com/techsupport  Copyright (c) 1986-2015 by Cisco Systems, Inc.  Compiled Mon 22-Jun-15 09:32 by prod_rel_team  .  .  .
+
+For information about the naming and numbering conventions for Cisco IOS Software releases, see the Cisco IOS and NX-OS Software Reference Guide ["https://www.cisco.com/c/en/us/about/security-center/ios-nx-os-reference-guide.html"].</cvrf:Note>
+    <cvrf:Note Title="Products Confirmed Not Vulnerable" Type="General" Ordinal="3">Only products listed in the Vulnerable Products ["#vp"] section of this advisory are known to be affected by this vulnerability.
+
+Cisco has confirmed that this vulnerability does not affect Cisco IOS XE Software, Cisco IOS XR Software, or Cisco NX-OS Software.</cvrf:Note>
+    <cvrf:Note Title="Details" Type="General" Ordinal="4">This vulnerability could be exploited when a host has already authenticated on the affected configured port and a new host in unauthorized mode tries to connect. The impact is intermittent access to the network prior to authentication.</cvrf:Note>
+    <cvrf:Note Title="Workarounds" Type="General" Ordinal="5">If the port is also configured with either authentication violation shutdown|protect, this vulnerability would not be exploitable.</cvrf:Note>
+    <cvrf:Note Title="Fixed Software" Type="General" Ordinal="6">For detailed information about affected and fixed software releases, consult the Cisco IOS Software Checker.
+
+When considering software upgrades, customers are advised to regularly consult the advisories for Cisco products, which are available from the Cisco Security Advisories and Alerts page ["https://www.cisco.com/go/psirt"], to determine exposure and a complete upgrade solution.
+
+In all cases, customers should ensure that the devices to be upgraded contain sufficient memory and confirm that current hardware and software configurations will continue to be supported properly by the new release. If the information is not clear, customers are advised to contact the Cisco Technical Assistance Center (TAC) or their contracted maintenance providers.
+                          Cisco IOS Software
+To help customers determine their exposure to vulnerabilities in Cisco IOS Software, Cisco provides a tool, the Cisco IOS Software Checker ["https://tools.cisco.com/security/center/softwarechecker.x"], that identifies any Cisco Security Advisories that impact a specific Cisco IOS Software release and the earliest release that fixes the vulnerabilities described in each advisory (“First Fixed”). If applicable, the tool also returns the earliest release that fixes all the vulnerabilities described in all the advisories identified (“Combined First Fixed”).
+
+Customers can use this tool to perform the following tasks:
+
+Initiate a search by choosing one or more releases from a drop-down list or uploading a file from a local system for the tool to parse
+Enter the output of the show version command for the tool to parse
+Create a custom search by including all previously published Cisco Security Advisories, a specific advisory, or all advisories in the most recent bundled publication
+
+To determine whether a release is affected by any published Cisco Security Advisory, use the Cisco IOS Software Checker ["https://tools.cisco.com/security/center/softwarechecker.x"] on Cisco.com or enter a Cisco IOS Software release—for example, 15.1(4)M2—in the following field:
+
+
+
+By default, the Cisco IOS Software Checker includes results only for vulnerabilities that have a Critical or High Security Impact Rating (SIR). To include results for Medium SIR vulnerabilities, use the Cisco IOS Software Checker on Cisco.com and check the Medium check box in the Impact Rating drop-down list.</cvrf:Note>
+    <cvrf:Note Title="Vulnerability Policy" Type="General" Ordinal="7">To learn about Cisco security vulnerability disclosure policies and publications, see the Security Vulnerability Policy ["http://www.cisco.com/web/about/security/psirt/security_vulnerability_policy.html"]. This document also contains instructions for obtaining fixed software and receiving security vulnerability information from Cisco.</cvrf:Note>
+    <cvrf:Note Title="Exploitation and Public Announcements" Type="General" Ordinal="8">The Cisco Product Security Incident Response Team (PSIRT) is not aware of any public announcements or malicious use of the vulnerability that is described in this advisory.</cvrf:Note>
+    <cvrf:Note Title="Source" Type="General" Ordinal="9">This vulnerability was found during the resolution of a Cisco TAC support case.</cvrf:Note>
+    <cvrf:Note Title="Legal Disclaimer" Type="Legal Disclaimer" Ordinal="10">THIS DOCUMENT IS PROVIDED ON AN "AS IS" BASIS AND DOES NOT IMPLY ANY KIND OF GUARANTEE OR WARRANTY, INCLUDING THE WARRANTIES OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR USE. YOUR USE OF THE INFORMATION ON THE DOCUMENT OR MATERIALS LINKED FROM THE DOCUMENT IS AT YOUR OWN RISK. CISCO RESERVES THE RIGHT TO CHANGE OR UPDATE THIS DOCUMENT AT ANY TIME.
+
+A standalone copy or paraphrase of the text of this document that omits the distribution URL is an uncontrolled copy and may lack important information or contain factual errors. The information in this document is intended for end users of Cisco products.</cvrf:Note>
+  </cvrf:DocumentNotes>
+  <cvrf:DocumentReferences>
+    <cvrf:Reference Type="Self">
+      <cvrf:URL>https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20190327-c6500</cvrf:URL>
+      <cvrf:Description>Cisco IOS Software Catalyst 6500 Series 802.1x Authentication Bypass Vulnerability</cvrf:Description>
+    </cvrf:Reference>
+  </cvrf:DocumentReferences>
+  <ProductTree xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/prod">
+    <Branch Name="Cisco" Type="Vendor">
+      <Branch Name="IOS" Type="Product Name">
+        <Branch Name="12.2SXJ" Type="Product Version">
+          <Branch Name="12.2(33)SXJ6" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-189689">Cisco IOS 12.2(33)SXJ6</FullProductName>
+          </Branch>
+          <Branch Name="12.2(33)SXJ7" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-193314">Cisco IOS 12.2(33)SXJ7</FullProductName>
+          </Branch>
+          <Branch Name="12.2(33)SXJ8" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-198053">Cisco IOS 12.2(33)SXJ8</FullProductName>
+          </Branch>
+          <Branch Name="12.2(33)SXJ9" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-204098">Cisco IOS 12.2(33)SXJ9</FullProductName>
+          </Branch>
+          <Branch Name="12.2(33)SXJ10" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-209012">Cisco IOS 12.2(33)SXJ10</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="15.1SY" Type="Product Version">
+          <Branch Name="15.1(1)SY1" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-115285">Cisco IOS 15.1(1)SY1</FullProductName>
+          </Branch>
+          <Branch Name="15.1(2)SY" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-184932">Cisco IOS 15.1(2)SY</FullProductName>
+          </Branch>
+          <Branch Name="15.1(2)SY1" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-188061">Cisco IOS 15.1(2)SY1</FullProductName>
+          </Branch>
+          <Branch Name="15.1(2)SY2" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-189219">Cisco IOS 15.1(2)SY2</FullProductName>
+          </Branch>
+          <Branch Name="15.1(1)SY2" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-191635">Cisco IOS 15.1(1)SY2</FullProductName>
+          </Branch>
+          <Branch Name="15.1(1)SY3" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-194944">Cisco IOS 15.1(1)SY3</FullProductName>
+          </Branch>
+          <Branch Name="15.1(2)SY3" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-198059">Cisco IOS 15.1(2)SY3</FullProductName>
+          </Branch>
+          <Branch Name="15.1(1)SY4" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-198426">Cisco IOS 15.1(1)SY4</FullProductName>
+          </Branch>
+          <Branch Name="15.1(2)SY4" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-201019">Cisco IOS 15.1(2)SY4</FullProductName>
+          </Branch>
+          <Branch Name="15.1(1)SY5" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-204109">Cisco IOS 15.1(1)SY5</FullProductName>
+          </Branch>
+          <Branch Name="15.1(2)SY5" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-204110">Cisco IOS 15.1(2)SY5</FullProductName>
+          </Branch>
+          <Branch Name="15.1(2)SY4a" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-204832">Cisco IOS 15.1(2)SY4a</FullProductName>
+          </Branch>
+          <Branch Name="15.1(1)SY6" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-209043">Cisco IOS 15.1(1)SY6</FullProductName>
+          </Branch>
+          <Branch Name="15.1(2)SY6" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-209044">Cisco IOS 15.1(2)SY6</FullProductName>
+          </Branch>
+          <Branch Name="15.1(2)SY7" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-210406">Cisco IOS 15.1(2)SY7</FullProductName>
+          </Branch>
+          <Branch Name="15.1(2)SY8" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-214052">Cisco IOS 15.1(2)SY8</FullProductName>
+          </Branch>
+          <Branch Name="15.1(2)SY9" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-220440">Cisco IOS 15.1(2)SY9</FullProductName>
+          </Branch>
+          <Branch Name="15.1(2)SY10" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-222650">Cisco IOS 15.1(2)SY10</FullProductName>
+          </Branch>
+          <Branch Name="15.1(2)SY11" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-227307">Cisco IOS 15.1(2)SY11</FullProductName>
+          </Branch>
+          <Branch Name="15.1(2)SY12" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-229115">Cisco IOS 15.1(2)SY12</FullProductName>
+          </Branch>
+          <Branch Name="15.1(2)SY13" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-237634">Cisco IOS 15.1(2)SY13</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="15.2SY" Type="Product Version">
+          <Branch Name="15.2(1)SY" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-192726">Cisco IOS 15.2(1)SY</FullProductName>
+          </Branch>
+          <Branch Name="15.2(1)SY1" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-204828">Cisco IOS 15.2(1)SY1</FullProductName>
+          </Branch>
+          <Branch Name="15.2(1)SY0a" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-209063">Cisco IOS 15.2(1)SY0a</FullProductName>
+          </Branch>
+          <Branch Name="15.2(1)SY2" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-209064">Cisco IOS 15.2(1)SY2</FullProductName>
+          </Branch>
+          <Branch Name="15.2(2)SY" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-209065">Cisco IOS 15.2(2)SY</FullProductName>
+          </Branch>
+          <Branch Name="15.2(1)SY1a" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-209439">Cisco IOS 15.2(1)SY1a</FullProductName>
+          </Branch>
+          <Branch Name="15.2(2)SY1" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-211976">Cisco IOS 15.2(2)SY1</FullProductName>
+          </Branch>
+          <Branch Name="15.2(2)SY2" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-214053">Cisco IOS 15.2(2)SY2</FullProductName>
+          </Branch>
+          <Branch Name="15.2(1)SY3" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-216259">Cisco IOS 15.2(1)SY3</FullProductName>
+          </Branch>
+          <Branch Name="15.2(1)SY4" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-222651">Cisco IOS 15.2(1)SY4</FullProductName>
+          </Branch>
+          <Branch Name="15.2(2)SY3" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-227285">Cisco IOS 15.2(2)SY3</FullProductName>
+          </Branch>
+          <Branch Name="15.2(1)SY5" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-227308">Cisco IOS 15.2(1)SY5</FullProductName>
+          </Branch>
+          <Branch Name="15.2(1)SY6" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-229114">Cisco IOS 15.2(1)SY6</FullProductName>
+          </Branch>
+          <Branch Name="15.2(1)SY7" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-233437">Cisco IOS 15.2(1)SY7</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="15.3SY" Type="Product Version">
+          <Branch Name="15.3(1)SY" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-209532">Cisco IOS 15.3(1)SY</FullProductName>
+          </Branch>
+          <Branch Name="15.3(0)SY" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-212701">Cisco IOS 15.3(0)SY</FullProductName>
+          </Branch>
+          <Branch Name="15.3(1)SY1" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-216258">Cisco IOS 15.3(1)SY1</FullProductName>
+          </Branch>
+          <Branch Name="15.3(1)SY2" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-220444">Cisco IOS 15.3(1)SY2</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="15.4SY" Type="Product Version">
+          <Branch Name="15.4(1)SY" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-217807">Cisco IOS 15.4(1)SY</FullProductName>
+          </Branch>
+          <Branch Name="15.4(1)SY1" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-220594">Cisco IOS 15.4(1)SY1</FullProductName>
+          </Branch>
+          <Branch Name="15.4(1)SY2" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-224611">Cisco IOS 15.4(1)SY2</FullProductName>
+          </Branch>
+          <Branch Name="15.4(1)SY3" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-228056">Cisco IOS 15.4(1)SY3</FullProductName>
+          </Branch>
+          <Branch Name="15.4(1)SY4" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-230997">Cisco IOS 15.4(1)SY4</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="15.5SY" Type="Product Version">
+          <Branch Name="15.5(1)SY" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-225786">Cisco IOS 15.5(1)SY</FullProductName>
+          </Branch>
+          <Branch Name="15.5(1)SY1" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-227110">Cisco IOS 15.5(1)SY1</FullProductName>
+          </Branch>
+          <Branch Name="15.5(1)SY2" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-231862">Cisco IOS 15.5(1)SY2</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="15.3JK" Type="Product Version">
+          <Branch Name="15.3(3)JK6" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-282669">Cisco IOS 15.3(3)JK6</FullProductName>
+          </Branch>
+        </Branch>
+      </Branch>
+    </Branch>
+  </ProductTree>
+  <Vulnerability Ordinal="1" xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln">
+    <Title>Cisco Catalyst 6500 Series 802.1x Authentication Bypass Vulnerability</Title>
+    <ID SystemName="Cisco Bug ID">CSCvk25074</ID>
+    <Notes>
+      <Note Title="Cisco Bug IDs" Type="Other" Ordinal="1">CSCvk25074</Note>
+      <Note Title="Affected Product Comprehensiveness" Type="Other" Ordinal="2">Complete.</Note>
+    </Notes>
+    <CVE>CVE-2019-1758</CVE>
+    <ProductStatuses>
+      <Status Type="Known Affected">
+        <ProductID>CVRFPID-115285</ProductID>
+        <ProductID>CVRFPID-184932</ProductID>
+        <ProductID>CVRFPID-188061</ProductID>
+        <ProductID>CVRFPID-189219</ProductID>
+        <ProductID>CVRFPID-189689</ProductID>
+        <ProductID>CVRFPID-191635</ProductID>
+        <ProductID>CVRFPID-192726</ProductID>
+        <ProductID>CVRFPID-193314</ProductID>
+        <ProductID>CVRFPID-194944</ProductID>
+        <ProductID>CVRFPID-198053</ProductID>
+        <ProductID>CVRFPID-198059</ProductID>
+        <ProductID>CVRFPID-198426</ProductID>
+        <ProductID>CVRFPID-201019</ProductID>
+        <ProductID>CVRFPID-204098</ProductID>
+        <ProductID>CVRFPID-204109</ProductID>
+        <ProductID>CVRFPID-204110</ProductID>
+        <ProductID>CVRFPID-204828</ProductID>
+        <ProductID>CVRFPID-204832</ProductID>
+        <ProductID>CVRFPID-209012</ProductID>
+        <ProductID>CVRFPID-209043</ProductID>
+        <ProductID>CVRFPID-209044</ProductID>
+        <ProductID>CVRFPID-209063</ProductID>
+        <ProductID>CVRFPID-209064</ProductID>
+        <ProductID>CVRFPID-209065</ProductID>
+        <ProductID>CVRFPID-209439</ProductID>
+        <ProductID>CVRFPID-209532</ProductID>
+        <ProductID>CVRFPID-210406</ProductID>
+        <ProductID>CVRFPID-211976</ProductID>
+        <ProductID>CVRFPID-212701</ProductID>
+        <ProductID>CVRFPID-214052</ProductID>
+        <ProductID>CVRFPID-214053</ProductID>
+        <ProductID>CVRFPID-216258</ProductID>
+        <ProductID>CVRFPID-216259</ProductID>
+        <ProductID>CVRFPID-217807</ProductID>
+        <ProductID>CVRFPID-220440</ProductID>
+        <ProductID>CVRFPID-220444</ProductID>
+        <ProductID>CVRFPID-220594</ProductID>
+        <ProductID>CVRFPID-222650</ProductID>
+        <ProductID>CVRFPID-222651</ProductID>
+        <ProductID>CVRFPID-224611</ProductID>
+        <ProductID>CVRFPID-225786</ProductID>
+        <ProductID>CVRFPID-227110</ProductID>
+        <ProductID>CVRFPID-227285</ProductID>
+        <ProductID>CVRFPID-227307</ProductID>
+        <ProductID>CVRFPID-227308</ProductID>
+        <ProductID>CVRFPID-228056</ProductID>
+        <ProductID>CVRFPID-229114</ProductID>
+        <ProductID>CVRFPID-229115</ProductID>
+        <ProductID>CVRFPID-230997</ProductID>
+        <ProductID>CVRFPID-231862</ProductID>
+        <ProductID>CVRFPID-233437</ProductID>
+        <ProductID>CVRFPID-237634</ProductID>
+        <ProductID>CVRFPID-282669</ProductID>
+      </Status>
+    </ProductStatuses>
+    <CVSSScoreSets>
+      <ScoreSetV3>
+        <BaseScoreV3>4.7</BaseScoreV3>
+        <VectorV3>CVSS:3.0/AV:A/AC:L/PR:N/UI:N/S:C/C:N/I:L/A:N</VectorV3>
+      </ScoreSetV3>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Workaround">
+        <Description>If the port is also configured with either authentication violation shutdown|protect, this vulnerability would not be exploitable.</Description>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference Type="Self">
+        <URL>https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20190327-c6500</URL>
+        <Description>Cisco IOS Software Catalyst 6500 Series 802.1x Authentication Bypass Vulnerability</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+</cvrf:cvrfdoc>

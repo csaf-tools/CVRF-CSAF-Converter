@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cvrfdoc xmlns="http://www.icasi.org/CVRF/schema/cvrf/1.1" xmlns:cvrf="http://www.icasi.org/CVRF/schema/cvrf/1.1">
+  <DocumentTitle xml:lang="en">Red Hat Security Advisory: kernel-alt security and bug fix update</DocumentTitle>
+  <DocumentType>Security Advisory</DocumentType>
+  <DocumentPublisher Type="Vendor">
+    <ContactDetails>secalert@redhat.com</ContactDetails>
+    <IssuingAuthority>Red Hat Product Security</IssuingAuthority>
+  </DocumentPublisher>
+  <DocumentTracking>
+    <Identification><ID>RHSA-2018:1374</ID></Identification>
+    <Status>Final</Status>
+    <Version>1</Version>
+    <RevisionHistory>
+       <Revision>
+         <Number>1</Number>
+         <Date>2021-07-20T11:49:00Z</Date>
+         <Description>Current version</Description>
+       </Revision>
+    </RevisionHistory>
+    <InitialReleaseDate>2018-05-14T13:09:00Z</InitialReleaseDate>
+    <CurrentReleaseDate>2021-07-20T11:49:00Z</CurrentReleaseDate>
+    <Generator>
+      <Engine>Red Hat SDEngine 3.0.0</Engine>
+      <Date>2021-08-23T04:43:00Z</Date>
+    </Generator>
+  </DocumentTracking>
+  <DocumentNotes>
+    <Note Title="Topic" Type="Summary" Ordinal="1" xml:lang="en">
+An update for kernel-alt is now available for Red Hat Enterprise Linux 7.
+
+Red Hat Product Security has rated this update as having a security impact of Important. A Common Vulnerability Scoring System (CVSS) base score, which gives a detailed severity rating, is available for each vulnerability from the CVE link(s) in the References section.
+    </Note>
+    <Note Title="Details" Type="General" Ordinal="2" xml:lang="en">
+The kernel-alt packages provide the Linux kernel version 4.x.
+
+Security Fix(es):
+
+* kernel: ptrace() incorrect error handling leads to corruption and DoS (CVE-2018-1000199)
+
+For more details about the security issue(s), including the impact, a CVSS score, and other related information, refer to the CVE page(s) listed in the References section.
+
+Red Hat would like to thank Andy Lutomirski for reporting this issue.
+
+Bug Fix(es):
+
+* Previously, the nfs_commit_inode() function did not respect the FLUSH_SYNC argument and exited even if there were already the in-flight COMMIT requests. As a consequence, the mmap() system call occasionally returned the EBUSY error on NFS, and CPU soft lockups occurred during a writeback on NFS. This update fixes nfs_commit_inode() to respect FLUSH_SYNC. As a result, mmap() does not return EBUSY, and the CPU soft lockups no longer occur during NFS writebacks. (BZ#1559869)
+
+* Recent IBM z Systems hardware contains an extension to the time-of-day clock that ensures it will be operational after the year 2042 by avoiding an overflow that would happen without it. However, the KVM hypervisor was previously unable to handle the extension correctly, which lead to guests freezing if their kernel supported the time-of-day clock extension. This update adds support for the extension to the KVM hypervisor, and KVM guests which support it no longer freeze. (BZ#1559871)
+
+* This update provides the ability to disable the &quot;RFI Flush&quot; mitigation mechanism for the Meltdown vulnerability (CVE-2017-5754) in the kernel. The patches that mitigate the effect of Meltdown may have negative impact on performance when the mechanism they provide is enabled, and at the same time your systems may not need this mitigation if they are secured by other means. The vulnerability mitigation remains enabled by default and must be disabled manually; this restores system performance to original levels, but the system then also remains vulnerable to Meltdown. Instructions describing how to disable RFI Flush, as well as additional information, is provided in the following Red Hat Knowledgebase article: https://access.redhat.com/articles/3311301 (BZ#1561463)
+    </Note>
+    <Note Title="Terms of Use" Ordinal="3" Type="Legal Disclaimer" xml:lang="en">This content is licensed under the Creative Commons Attribution 4.0 International License (https://creativecommons.org/licenses/by/4.0/). If you distribute this content, or a modified version of it, you must provide attribution to Red Hat Inc. and provide a link to the original.</Note>
+  </DocumentNotes>
+  <DocumentDistribution xml:lang="en">Copyright © 2021 Red Hat, Inc. All rights reserved.</DocumentDistribution>
+  <AggregateSeverity Namespace="https://access.redhat.com/security/updates/classification/">Important</AggregateSeverity>
+  <DocumentReferences>
+    <Reference Type="Self">
+       <URL>https://access.redhat.com/errata/RHSA-2018:1374</URL>
+       <Description>https://access.redhat.com/errata/RHSA-2018:1374</Description>
+    </Reference>
+    <Reference Type="External">
+       <URL>https://access.redhat.com/security/updates/classification/#important</URL>
+       <Description>https://access.redhat.com/security/updates/classification/#important</Description>
+    </Reference>
+    <Reference Type="External">
+       <URL>https://access.redhat.com/security/cve/CVE-2018-1000199</URL>
+       <Description>https://access.redhat.com/security/cve/CVE-2018-1000199</Description>
+    </Reference>
+    <Reference Type="External">
+       <URL>https://access.redhat.com/articles/3311301</URL>
+       <Description>https://access.redhat.com/articles/3311301</Description>
+    </Reference>
+  </DocumentReferences>
+  <ProductTree xmlns="http://www.icasi.org/CVRF/schema/prod/1.1">
+    <Branch Type="Product Family" Name="Red Hat Enterprise Linux">
+      <Branch Type="Product Name" Name="Red Hat Enterprise Linux for ARM and IBM Power LE (POWER9) Server Optional (v. 7)">
+        <FullProductName ProductID="7Server-optional-RHELALT" CPE="cpe:/o:redhat:enterprise_linux:7::server">Red Hat Enterprise Linux for ARM and IBM Power LE (POWER9) Server Optional (v. 7)</FullProductName>
+      </Branch>
+      <Branch Type="Product Name" Name="Red Hat Enterprise Linux for ARM and IBM Power LE (POWER9) Server (v. 7)">
+        <FullProductName ProductID="7Server-RHELALT" CPE="cpe:/o:redhat:enterprise_linux:7::server">Red Hat Enterprise Linux for ARM and IBM Power LE (POWER9) Server (v. 7)</FullProductName>
+      </Branch>
+    </Branch>
+    <Branch Type="Product Version" Name="kernel-alt-0:4.14.0-49.2.2.el7a">
+      <FullProductName ProductID="kernel-alt-0:4.14.0-49.2.2.el7a" CPE="cpe:/o:redhat:enterprise_linux:7::server">kernel-alt-4.14.0-49.2.2.el7a.src.rpm</FullProductName>
+    </Branch>
+    <Relationship ProductReference="kernel-alt-0:4.14.0-49.2.2.el7a" RelationType="Default Component Of" RelatesToProductReference="7Server-RHELALT">
+      <FullProductName ProductID="7Server-RHELALT:kernel-alt-0:4.14.0-49.2.2.el7a" CPE="cpe:/o:redhat:enterprise_linux:7::server">kernel-alt-0:4.14.0-49.2.2.el7a as a component of Red Hat Enterprise Linux for ARM and IBM Power LE (POWER9) Server (v. 7)</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="kernel-alt-0:4.14.0-49.2.2.el7a" RelationType="Default Component Of" RelatesToProductReference="7Server-optional-RHELALT">
+      <FullProductName ProductID="7Server-optional-RHELALT:kernel-alt-0:4.14.0-49.2.2.el7a" CPE="cpe:/o:redhat:enterprise_linux:7::server">kernel-alt-0:4.14.0-49.2.2.el7a as a component of Red Hat Enterprise Linux for ARM and IBM Power LE (POWER9) Server Optional (v. 7)</FullProductName>
+    </Relationship>
+  </ProductTree>
+
+  <Vulnerability Ordinal="1" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">hw: cpu: speculative execution permission faults handling</Note></Notes>
+    <DiscoveryDate>2017-11-30T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2018-01-03T22:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2017-5754</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>7Server-RHELALT:kernel-alt-0:4.14.0-49.2.2.el7a</ProductID>
+      <ProductID>7Server-optional-RHELALT:kernel-alt-0:4.14.0-49.2.2.el7a</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Important</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+
+The system must be rebooted for this update to take effect.
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2018:1374</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://googleprojectzero.blogspot.com/2018/01/reading-privileged-memory-with-side.html</URL>
+        <Description>https://googleprojectzero.blogspot.com/2018/01/reading-privileged-memory-with-side.html</Description>
+      </Reference>
+      <Reference>
+        <URL>https://meltdownattack.com</URL>
+        <Description>https://meltdownattack.com</Description>
+      </Reference>
+      <Reference>
+        <URL>https://spectreattack.com/</URL>
+        <Description>https://spectreattack.com/</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2017-5754</URL>
+        <Description>CVE-2017-5754</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1519781</URL>
+        <Description>bz#1519781: CVE-2017-5754 hw: cpu: speculative execution permission faults handling</Description>
+      </Reference>
+    </References>
+    <Acknowledgments><Acknowledgment><Description>Red Hat would like to thank Google Project Zero for reporting this issue.</Description></Acknowledgment></Acknowledgments>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="2" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">kernel: ptrace() incorrect error handling leads to corruption and DoS</Note></Notes>
+    <DiscoveryDate>2018-04-17T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2018-05-01T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2018-1000199</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>7Server-RHELALT:kernel-alt-0:4.14.0-49.2.2.el7a</ProductID>
+      <ProductID>7Server-optional-RHELALT:kernel-alt-0:4.14.0-49.2.2.el7a</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Important</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+
+The system must be rebooted for this update to take effect.
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2018:1374</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2018-1000199</URL>
+        <Description>CVE-2018-1000199</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1568477</URL>
+        <Description>bz#1568477: CVE-2018-1000199 kernel: ptrace() incorrect error handling leads to corruption and DoS</Description>
+      </Reference>
+    </References>
+    <Acknowledgments><Acknowledgment><Description>Red Hat would like to thank Andy Lutomirski for reporting this issue.</Description></Acknowledgment></Acknowledgments>
+  </Vulnerability>
+</cvrfdoc>

@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cvrfdoc xmlns="http://www.icasi.org/CVRF/schema/cvrf/1.1" xmlns:cvrf="http://www.icasi.org/CVRF/schema/cvrf/1.1">
+  <DocumentTitle xml:lang="en">Red Hat Security Advisory: samba security, bug fix and enhancement update</DocumentTitle>
+  <DocumentType>Security Advisory</DocumentType>
+  <DocumentPublisher Type="Vendor">
+    <ContactDetails>secalert@redhat.com</ContactDetails>
+    <IssuingAuthority>Red Hat Product Security</IssuingAuthority>
+  </DocumentPublisher>
+  <DocumentTracking>
+    <Identification><ID>RHSA-2021:3723</ID></Identification>
+    <Status>Final</Status>
+    <Version>1</Version>
+    <RevisionHistory>
+       <Revision>
+         <Number>1</Number>
+         <Date>2021-10-05T05:19:00Z</Date>
+         <Description>Current version</Description>
+       </Revision>
+    </RevisionHistory>
+    <InitialReleaseDate>2021-10-05T05:19:00Z</InitialReleaseDate>
+    <CurrentReleaseDate>2021-10-05T05:19:00Z</CurrentReleaseDate>
+    <Generator>
+      <Engine>Red Hat SDEngine 3.1.1</Engine>
+      <Date>2021-10-05T10:37:00Z</Date>
+    </Generator>
+  </DocumentTracking>
+  <DocumentNotes>
+    <Note Title="Topic" Type="Summary" Ordinal="1" xml:lang="en">
+Updated samba packages that fix several bugs with added enhancement are now available for Red Hat Gluster Storage 3.5 on Red Hat Enterprise Linux 7.
+
+Red Hat Product Security has rated this update as having a security impact of Moderate. A Common Vulnerability Scoring System (CVSS) base score, which gives a detailed severity rating, is available for each vulnerability from the CVE link(s) in the References section.
+    </Note>
+    <Note Title="Details" Type="General" Ordinal="2" xml:lang="en">
+Red Hat Gluster Storage is a software only scale-out storage solution that
+provides flexible and affordable unstructured data storage. It unifies data
+storage and infrastructure, increases performance, and improves availability and manageability to meet enterprise-level storage challenges.
+
+Security Fix(es):
+
+* samba: Netlogon elevation of privilege vulnerability (Zerologon) (CVE-2020-1472)
+
+* samba: Missing handle permissions check in SMB1/2/3 ChangeNotify (CVE-2020-14318)
+
+* samba: Unprivileged user can crash winbind (CVE-2020-14323)
+
+* samba: Negative idmap cache entries can cause incorrect group entries in the Samba file server process token (CVE-2021-20254)
+
+For more details about the security issue(s), including the impact, a CVSS score, acknowledgments, and other related information, refer to the CVE page(s) listed in the References section.
+
+Users of samba with Red Hat Gluster Storage are advised to upgrade to these updated packages.
+    </Note>
+    <Note Title="Terms of Use" Ordinal="3" Type="Legal Disclaimer" xml:lang="en">This content is licensed under the Creative Commons Attribution 4.0 International License (https://creativecommons.org/licenses/by/4.0/). If you distribute this content, or a modified version of it, you must provide attribution to Red Hat Inc. and provide a link to the original.</Note>
+  </DocumentNotes>
+  <DocumentDistribution xml:lang="en">Copyright © 2021 Red Hat, Inc. All rights reserved.</DocumentDistribution>
+  <AggregateSeverity Namespace="https://access.redhat.com/security/updates/classification/">Moderate</AggregateSeverity>
+  <DocumentReferences>
+    <Reference Type="Self">
+       <URL>https://access.redhat.com/errata/RHSA-2021:3723</URL>
+       <Description>https://access.redhat.com/errata/RHSA-2021:3723</Description>
+    </Reference>
+    <Reference Type="External">
+       <URL>https://access.redhat.com/security/updates/classification/#moderate</URL>
+       <Description>https://access.redhat.com/security/updates/classification/#moderate</Description>
+    </Reference>
+  </DocumentReferences>
+  <ProductTree xmlns="http://www.icasi.org/CVRF/schema/prod/1.1">
+    <Branch Type="Product Family" Name="Red Hat Gluster Storage">
+      <Branch Type="Product Name" Name="Red Hat Gluster 3.5 Samba on RHEL-7">
+        <FullProductName ProductID="7Server-RH-Gluster-3.5-Samba" CPE="cpe:/a:redhat:storage:3.5:samba:el7">Red Hat Gluster 3.5 Samba on RHEL-7</FullProductName>
+      </Branch>
+    </Branch>
+    <Branch Type="Product Version" Name="samba-0:4.11.6-112.el7rhgs">
+      <FullProductName ProductID="samba-0:4.11.6-112.el7rhgs" CPE="cpe:/a:redhat:storage:3.5:samba:el7">samba-4.11.6-112.el7rhgs.src.rpm</FullProductName>
+    </Branch>
+    <Relationship ProductReference="samba-0:4.11.6-112.el7rhgs" RelationType="Default Component Of" RelatesToProductReference="7Server-RH-Gluster-3.5-Samba">
+      <FullProductName ProductID="7Server-RH-Gluster-3.5-Samba:samba-0:4.11.6-112.el7rhgs" CPE="cpe:/a:redhat:storage:3.5:samba:el7">samba-0:4.11.6-112.el7rhgs as a component of Red Hat Gluster 3.5 Samba on RHEL-7</FullProductName>
+    </Relationship>
+  </ProductTree>
+
+  <Vulnerability Ordinal="1" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">samba: Netlogon elevation of privilege vulnerability (Zerologon)</Note></Notes>
+    <DiscoveryDate>2020-09-17T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2020-09-11T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2020-1472</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>7Server-RH-Gluster-3.5-Samba:samba-0:4.11.6-112.el7rhgs</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Critical</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+Before applying this update, make sure all previously released errata
+relevant to your system have been applied.
+
+For details on how to apply this update, refer to:
+
+https://access.redhat.com/articles/11258
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:3723</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://kb.cert.org/vuls/id/490028#Samba</URL>
+        <Description>https://kb.cert.org/vuls/id/490028#Samba</Description>
+      </Reference>
+      <Reference>
+        <URL>https://portal.msrc.microsoft.com/en-US/security-guidance/advisory/CVE-2020-1472</URL>
+        <Description>https://portal.msrc.microsoft.com/en-US/security-guidance/advisory/CVE-2020-1472</Description>
+      </Reference>
+      <Reference>
+        <URL>https://www.samba.org/samba/security/CVE-2020-1472.html</URL>
+        <Description>https://www.samba.org/samba/security/CVE-2020-1472.html</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2020-1472</URL>
+        <Description>CVE-2020-1472</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1879822</URL>
+        <Description>bz#1879822: CVE-2020-1472 samba: Netlogon elevation of privilege vulnerability (Zerologon)</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="2" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">samba: Missing handle permissions check in SMB1/2/3 ChangeNotify</Note></Notes>
+    <DiscoveryDate>2020-10-29T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2020-10-29T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2020-14318</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>7Server-RH-Gluster-3.5-Samba:samba-0:4.11.6-112.el7rhgs</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+Before applying this update, make sure all previously released errata
+relevant to your system have been applied.
+
+For details on how to apply this update, refer to:
+
+https://access.redhat.com/articles/11258
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:3723</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.samba.org/samba/security/CVE-2020-14318.html</URL>
+        <Description>https://www.samba.org/samba/security/CVE-2020-14318.html</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2020-14318</URL>
+        <Description>CVE-2020-14318</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1892631</URL>
+        <Description>bz#1892631: CVE-2020-14318 samba: Missing handle permissions check in SMB1/2/3 ChangeNotify</Description>
+      </Reference>
+    </References>
+    <Acknowledgments><Acknowledgment><Description>Red Hat would like to thank the Samba project for reporting this issue. Upstream acknowledges Steven French (Microsoft and the Samba Team) as the original reporter.</Description></Acknowledgment></Acknowledgments>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="3" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">samba: Unprivileged user can crash winbind</Note></Notes>
+    <DiscoveryDate>2020-10-27T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2020-10-29T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2020-14323</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>7Server-RH-Gluster-3.5-Samba:samba-0:4.11.6-112.el7rhgs</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+Before applying this update, make sure all previously released errata
+relevant to your system have been applied.
+
+For details on how to apply this update, refer to:
+
+https://access.redhat.com/articles/11258
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:3723</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.samba.org/samba/security/CVE-2020-14323.html</URL>
+        <Description>https://www.samba.org/samba/security/CVE-2020-14323.html</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2020-14323</URL>
+        <Description>CVE-2020-14323</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1891685</URL>
+        <Description>bz#1891685: CVE-2020-14323 samba: Unprivileged user can crash winbind</Description>
+      </Reference>
+    </References>
+    <Acknowledgments><Acknowledgment><Description>Red Hat would like to thank the Samba project for reporting this issue. Upstream acknowledges Bas Alberts (GitHub Security Lab Team) as the original reporter.</Description></Acknowledgment></Acknowledgments>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="4" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">samba: Negative idmap cache entries can cause incorrect group entries in the Samba file server process token</Note></Notes>
+    <DiscoveryDate>2021-04-14T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-04-29T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-20254</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>7Server-RH-Gluster-3.5-Samba:samba-0:4.11.6-112.el7rhgs</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+Before applying this update, make sure all previously released errata
+relevant to your system have been applied.
+
+For details on how to apply this update, refer to:
+
+https://access.redhat.com/articles/11258
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:3723</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.samba.org/samba/security/CVE-2021-20254.html</URL>
+        <Description>https://www.samba.org/samba/security/CVE-2021-20254.html</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-20254</URL>
+        <Description>CVE-2021-20254</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1949442</URL>
+        <Description>bz#1949442: CVE-2021-20254 samba: Negative idmap cache entries can cause incorrect group entries in the Samba file server process token</Description>
+      </Reference>
+    </References>
+    <Acknowledgments><Acknowledgment><Description>Red Hat would like to thank the Samba project for reporting this issue. Upstream acknowledges Peter Eriksson (IT Department, Linköping University) as the original reporter.</Description></Acknowledgment></Acknowledgments>
+  </Vulnerability>
+</cvrfdoc>

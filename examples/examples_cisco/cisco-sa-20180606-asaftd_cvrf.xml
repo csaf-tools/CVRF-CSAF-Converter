@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cvrf:cvrfdoc xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:cvrf-common="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/common" xmlns:cvrf="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/cvrf">
+  <cvrf:DocumentTitle>Cisco Adaptive Security Appliance Web Services Denial of Service Vulnerability</cvrf:DocumentTitle>
+  <cvrf:DocumentType>Cisco Security Advisory</cvrf:DocumentType>
+  <cvrf:DocumentPublisher Type="Vendor">
+    <cvrf:ContactDetails>Emergency Support:
++1 877 228 7302 (toll-free within North America)
++1 408 525 6532 (International direct-dial)
+Non-emergency Support:
+Email: psirt@cisco.com
+Support requests that are received via e-mail are typically acknowledged within 48 hours.</cvrf:ContactDetails>
+    <cvrf:IssuingAuthority>Cisco product security incident response is the responsibility of the Cisco Product Security Incident Response Team (PSIRT). The Cisco PSIRT is a dedicated, global team that manages the receipt, investigation, and public reporting of security vulnerability information that is related to Cisco products and networks. The on-call Cisco PSIRT works 24x7 with Cisco customers, independent security researchers, consultants, industry organizations, and other vendors to identify possible security issues with Cisco products and networks.
+More information can be found in Cisco Security Vulnerability Policy available at http://www.cisco.com/web/about/security/psirt/security_vulnerability_policy.html</cvrf:IssuingAuthority>
+  </cvrf:DocumentPublisher>
+  <cvrf:DocumentTracking>
+    <cvrf:Identification>
+      <cvrf:ID>cisco-sa-20180606-asaftd</cvrf:ID>
+    </cvrf:Identification>
+    <cvrf:Status>Final</cvrf:Status>
+    <cvrf:Version>1.4</cvrf:Version>
+    <cvrf:RevisionHistory>
+      <cvrf:Revision>
+        <cvrf:Number>1.0</cvrf:Number>
+        <cvrf:Date>2018-06-06T15:16:49</cvrf:Date>
+        <cvrf:Description>Initial public release.</cvrf:Description>
+      </cvrf:Revision>
+      <cvrf:Revision>
+        <cvrf:Number>1.1</cvrf:Number>
+        <cvrf:Date>2018-06-22T17:44:00</cvrf:Date>
+        <cvrf:Description>Updated the Exploitation and Public Announcements section with up-to-date exploitation information.</cvrf:Description>
+      </cvrf:Revision>
+      <cvrf:Revision>
+        <cvrf:Number>1.1</cvrf:Number>
+        <cvrf:Date>2018-08-15T19:27:12</cvrf:Date>
+        <cvrf:Description>Updated the Exploitation and Public Announcements section with up-to-date exploitation information.</cvrf:Description>
+      </cvrf:Revision>
+      <cvrf:Revision>
+        <cvrf:Number>1.2</cvrf:Number>
+        <cvrf:Date>2018-10-05T15:28:40</cvrf:Date>
+        <cvrf:Description>Corrected advisory metadata to remove unaffected version 6.2.0.</cvrf:Description>
+      </cvrf:Revision>
+      <cvrf:Revision>
+        <cvrf:Number>1.3</cvrf:Number>
+        <cvrf:Date>2019-03-06T16:27:22</cvrf:Date>
+        <cvrf:Description>Updated the exploitation information in the Exploitation and Public Announcements section.</cvrf:Description>
+      </cvrf:Revision>
+      <cvrf:Revision>
+        <cvrf:Number>1.4</cvrf:Number>
+        <cvrf:Date>2019-09-24T17:49:53</cvrf:Date>
+        <cvrf:Description>Changed the SIR value to Critical, added a note about upgrading to the Summary, and updated the exploitation information in the Exploitation and Public Announcements section.</cvrf:Description>
+      </cvrf:Revision>
+    </cvrf:RevisionHistory>
+    <cvrf:InitialReleaseDate>2018-06-06T16:00:00</cvrf:InitialReleaseDate>
+    <cvrf:CurrentReleaseDate>2019-09-24T17:49:53</cvrf:CurrentReleaseDate>
+    <cvrf:Generator>
+      <cvrf:Engine>TVCE</cvrf:Engine>
+    </cvrf:Generator>
+  </cvrf:DocumentTracking>
+  <cvrf:DocumentNotes>
+    <cvrf:Note Title="Summary" Type="Summary" Ordinal="1">A vulnerability in the web interface of the Cisco Adaptive Security Appliance (ASA) could allow an unauthenticated, remote attacker to cause an affected device to reload unexpectedly, resulting in a denial of service (DoS) condition. It is also possible on certain software releases that the ASA will not reload, but an attacker could view sensitive system information without authentication by using directory traversal techniques.
+
+The vulnerability is due to lack of proper input validation of the HTTP URL. An attacker could exploit this vulnerability by sending a crafted HTTP request to an affected device. An exploit could allow the attacker to cause a DoS condition or unauthenticated disclosure of information. This vulnerability applies to IPv4 and IPv6 HTTP traffic.
+
+Cisco has released software updates that address this vulnerability. There are no workarounds that address this vulnerability.
+
+Note: Cisco continues to strongly recommend that customers upgrade to a fixed Cisco ASA Software release to remediate this vulnerability as there are continued attempts to exploit in the wild.
+
+This advisory is available at the following link:
+https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20180606-asaftd ["https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20180606-asaftd"]</cvrf:Note>
+    <cvrf:Note Title="Vulnerable Products" Type="General" Ordinal="2">This vulnerability affects Cisco ASA Software and Cisco Firepower Threat Defense (FTD) Software that is running on the following Cisco products:
+
+3000 Series Industrial Security Appliance (ISA)
+ASA 1000V Cloud Firewall
+ASA 5500 Series Adaptive Security Appliances
+ASA 5500-X Series Next-Generation Firewalls
+ASA Services Module for Cisco Catalyst 6500 Series Switches and Cisco 7600 Series Routers
+Adaptive Security Virtual Appliance (ASAv)
+Firepower 2100 Series Security Appliance
+Firepower 4100 Series Security Appliance
+Firepower 9300 ASA Security Module
+FTD Virtual (FTDv)
+  ASA Software
+
+In the following table, the left column lists the Cisco ASA features that are potentially vulnerable. The right column indicates the basic configuration for the feature from the show running-config CLI command, if it can be determined. If the device is configured for one of these features, follow the additional instructions to determine if the device is vulnerable.
+
+                              Cisco ASA Feature              Possible Vulnerable Configuration                                              Adaptive Security Device Manager (ASDM)1                                        http server enable &lt;port&gt;
+http &lt;remote_ip_address&gt; &lt;remote_subnet_mask&gt; &lt;interface_name&gt;                                   AnyConnect IKEv2 Remote Access (with client services)                          crypto ikev2 enable &lt;interface_name&gt; client-services port &lt;port #&gt;
+webvpn
+                anyconnect enable
+                                  AnyConnect IKEv2 Remote Access (without client services)                          crypto ikev2 enable &lt;interface_name&gt;
+webvpn
+                anyconnect enable
+                                  AnyConnect SSL VPN               webvpn
+                enable &lt;interface_name&gt;                                   Cisco Security Manager2                            http server enable &lt;port&gt;
+http &lt;remote_ip_address&gt; &lt;remote_subnet_mask&gt; &lt;interface_name&gt;
+                                  Clientless SSL VPN              webvpn
+   enable &lt;interface_name&gt;                                   Cut-Through Proxy (Not vulnerable unless used in conjunction with other vulnerable features on the same port)                            aaa authentication listener &lt;interface_name&gt; port &lt;number&gt;
+                                  Local Certificate Authority (CA)                            crypto ca server
+ no shutdown
+                                  Mobile Device Manager (MDM) Proxy3                            mdm-proxy
+  enable &lt;interface_name&gt;                                   Mobile User Security (MUS)               webvpn
+ mus password &lt;password&gt;
+ mus server enable port &lt;port #&gt;
+ mus &lt;address&gt; &lt;mask&gt; &lt;interface_name&gt;                                   Proxy Bypass
+              webvpn
+               proxy-bypass
+                                  REST API4              rest-api image disk0:/&lt;image name&gt;
+rest-api agent
+
+1ASDM is vulnerable only from an IP address in the configured http command range.
+2 Cisco Security Manager is vulnerable only from an IP address in the configured http command range.
+3The MDM Proxy is first supported as of Cisco ASA Software Release 9.3.1.
+4The REST API is first supported as of Cisco ASA Software Release 9.3.2. The REST API is vulnerable only from an IP address in the configured http command range.
+
+Determining Whether an ASA Configured with a Potentially Vulnerable Feature Is Vulnerable
+
+Step 1: Administrators can use the show asp table socket | include SSL|DTLS command and look for a Secure Sockets Layer (SSL) or a Datagram Transport Layer Security (DTLS) listen socket on any TCP port. If either socket is present in the output and the ASA device is configured for one or more of the ASA features in the preceding table, the device may be vulnerable. The following example shows an ASA device with SSL and DTLS listen sockets:
+
+
+ciscoasa# show asp table socket | include SSL|DTLS
+
+
+SSL       00185038  LISTEN     172.16.0.250:443    0.0.0.0:*
+SSL       00188638  LISTEN     10.0.0.250:443      0.0.0.0:*
+DTLS      0018f7a8  LISTEN     10.0.0.250:443      0.0.0.0:*
+  Step 2: Administrators can then use the show processes | include Unicorn command to see if the vulnerable process is running on the device. This means that one of the possible vulnerable features has created an instance of the internal web server, which is vulnerable. If Unicorn Proxy Thread is present, the device is considered vulnerable.
+
+
+ciscoasa# show processes | include Unicorn
+
+
+Mwe 0x0000557f9f5bafc0 0x00007f62de5a90a8 0x0000557fa52b50a0       3632 0x00007f62c8c87030 30704/32768 Unicorn Proxy Thread 218
+  Note: The Unicorn Proxy Thread identifier in the preceding example is 218 and can vary. A device must be considered vulnerable if the Unicorn Proxy Thread process is running, regardless of the actual thread identifier number.
+
+Determining the Running ASA Software Release
+
+To determine whether a vulnerable release of Cisco ASA Software is running on a device, administrators can use the show version | include Version command in the CLI. The following example shows the output of the command for a device that is running Cisco ASA Software Release 9.2(1):
+ciscoasa# show version | include Version
+
+
+Cisco Adaptive Security Appliance Software Version 9.2(1)
+Device Manager Version 7.4(1)
+  Administrators who use Cisco Adaptive Security Device Manager (ASDM) to manage devices can locate the software release in the table that appears in the login window or the upper-left corner of the Cisco ASDM window.
+
+FTD Software
+
+This vulnerability applies to all Cisco FTD Software releases except Release 6.2.0, which is not vulnerable. See the Fixed Releases ["#fs"] section for additional information about fixed releases of Cisco FTD Software. The Cisco FTD Software release contains both Firepower and ASA code. Review the “Firepower Threat Defense Devices” section of the Cisco Firepower Compatibility Guide ["https://www.cisco.com/c/en/us/td/docs/security/firepower/compatibility/firepower-compatibility.html#reference_070E1908889545BDB6CC564676202628"] for additional information.
+
+In the following table, the left column lists the Cisco FTD features  that are potentially vulnerable. The right column indicates the basic  configuration for the feature from the show running-config CLI command,  if it can be determined. If the device is configured for one of these  features, follow the additional instructions to determine if  the device is vulnerable.
+
+                              Cisco FTD Feature              Vulnerable Configuration                                                          HTTP Service enabled1                            http server enable &lt;port #&gt;
+http &lt;remote_ip_address&gt; &lt;remote_subnet_mask&gt; &lt;interface_name&gt;
+                                  AnyConnect IKEv2 Remote Access (with client services)2,3                            crypto ikev2 enable &lt;interface_name&gt; client-services port &lt;port #&gt;
+webvpn
+  anyconnect enable                                  AnyConnect IKEv2 Remote Access (without client services)2,3              crypto ikev2 enable &lt;interface_name&gt;
+webvpn
+  anyconnect enable                                  AnyConnect SSL VPN2,3              webvpn
+  enable &lt;interface_name&gt;
+1 The HTTP feature is enabled via Firepower Threat Defense Platform Settings &gt; HTTP in the Cisco Firepower Management Console (FMC).
+2 Remote Access VPN features are enabled via Devices &gt; VPN &gt; Remote Access in the Cisco FMC or via Device &gt; Remote Access VPN in Cisco Firepower Device Manager (FDM).
+3 Remote Access VPN features are first supported as of Cisco FTD Software Release 6.2.2.
+
+Determining Whether Cisco FTD Configured with a Potentially Vulnerable Feature Is Vulnerable
+
+Step 1: Administrators can use the show asp table socket | include SSL|DTLS command and  look for an SSL or a DTLS listen socket on any TCP port. If either  socket is present in the output and the FTD device is configured for one  or more of the features listed in the preceding table, the device may be vulnerable. The following example shows an FTD device with  SSL and DTLS listen sockets:
+
+
+firepower# show asp table socket | include SSL|DTLS
+
+
+SSL       01ffb648  LISTEN     1.1.1.1:443         0.0.0.0:*
+DTLS      00009438  LISTEN     1.1.1.1:443         0.0.0.0:*
+
+    Step 2: Administrators can then use the show processes | include Unicorn command to see if the vulnerable process is running on the device. This means that one of the possible vulnerable features has created an instance of the internal web server, which is vulnerable. If Unicorn Proxy Thread is present, the device is considered vulnerable.
+
+
+firepower# show processes | include Unicorn
+
+
+Mwe 0x0000557f9f5bafc0 0x00007f62de5a90a8 0x0000557fa52b50a0       3632 0x00007f62c8c87030 30704/32768 Unicorn Proxy Thread 218
+
+Notes:
+
+The Unicorn Proxy Thread identifier in the previous example is 218 and      can vary. A device must be considered vulnerable if the Unicorn Proxy      Thread process is running, regardless of the actual thread identifier      number.
+Although certain IKEv2 feature sets do not enable the underlying SSL TCP listening socket, they may still be vulnerable. Administrators can use the show running-config crypto ikev2 CLI command to check if the crypto ikev2 enable configuration command is present in the configuration, as shown in the following example:
+
+firepower# show running-config crypto ikev2 | include enable
+
+
+crypto ikev2 enable Outside
+    If a command like crypto ikev2 enable is present in the running configuration and the anyconnect enable command is part of the global webvpn configuration, the Cisco FTD device is also considered vulnerable.
+Determining the Running Cisco FTD Software Release
+
+Administrators can use the show version command in the CLI to determine the Cisco FTD Software release. In this example, the device is running Release 6.2.2:
+&gt; show version
+
+
+---------------------[ ftd ]---------------------
+Model : Cisco ASA5525-X Threat Defense (75) Version 6.2.2 (Build 362)
+UUID : 2849ba3c-ecb8-11e6-98ca-b9fc2975893c
+Rules update version : 2017-03-15-001-vrt
+VDB version : 279
+----------------------------------------------------</cvrf:Note>
+    <cvrf:Note Title="Products Confirmed Not Vulnerable" Type="General" Ordinal="3">Only products listed in the Vulnerable Products ["#vp"] section of this advisory are known to be affected by this vulnerability.
+
+Cisco has confirmed that Cisco AnyConnect Secure Mobility Client is not vulnerable.</cvrf:Note>
+    <cvrf:Note Title="Workarounds" Type="General" Ordinal="4">There are no workarounds that address this vulnerability.</cvrf:Note>
+    <cvrf:Note Title="Fixed Software" Type="General" Ordinal="5">Cisco has released free software updates that address the vulnerability described in this advisory. Customers may only install and expect support for software versions and feature sets for which they have purchased a license. By installing, downloading, accessing, or otherwise using such software upgrades, customers agree to follow the terms of the Cisco software license:
+https://www.cisco.com/c/en/us/products/end-user-license-agreement.html ["https://www.cisco.com/c/en/us/products/end-user-license-agreement.html"]
+
+Additionally, customers may only download software for which they have a valid license, procured from Cisco directly, or through a Cisco authorized reseller or partner. In most cases this will be a maintenance upgrade to software that was previously purchased. Free security software updates do not entitle customers to a new software license, additional software feature sets, or major revision upgrades.
+
+When considering software upgrades, customers are advised to regularly consult the advisories for Cisco products, which are available from the Cisco Security Advisories and Alerts page ["https://www.cisco.com/go/psirt"], to determine exposure and a complete upgrade solution.
+
+In all cases, customers should ensure that the devices to be upgraded contain sufficient memory and confirm that current hardware and software configurations will continue to be supported properly by the new release. If the information is not clear, customers are advised to contact the Cisco Technical Assistance Center (TAC) or their contracted maintenance providers.
+
+Customers Without Service Contracts
+
+Customers who purchase directly from Cisco but do not hold a Cisco service contract and customers who make purchases through third-party vendors but are unsuccessful in obtaining fixed software through their point of sale should obtain upgrades by contacting the Cisco TAC:
+https://www.cisco.com/c/en/us/support/web/tsd-cisco-worldwide-contacts.html ["https://www.cisco.com/c/en/us/support/web/tsd-cisco-worldwide-contacts.html"]
+
+Customers should have the product serial number available and be prepared to provide the URL of this advisory as evidence of entitlement to a free upgrade.
+
+Fixed Releases
+
+Customers should upgrade to an appropriate release as indicated in the following tables.
+
+Cisco ASA Software
+                                Cisco ASA Software Release              First Fixed Release for This Vulnerability                                              Prior to 9.11                             Migrate to 9.1.7.29                                  9.1                9.1.7.29                                  9.2                             9.2.4.33                                  9.31                             Migrate to 9.4.4.18                                  9.4                9.4.4.18                                  9.51                            Migrate to 9.6.4.8                                                9.6               9.6.4.8                                                9.7              9.7.1.24                                   9.8              9.8.2.28                                   9.9               9.9.2.1
+1Cisco ASA Software releases prior to Release 9.1 and Cisco ASA Software Releases 9.3 and 9.5 have reached end-of-software maintenance. Customers should migrate to a supported release.
+
+The software is available for download from the Software Center ["https://software.cisco.com/download/navigator.html"] on Cisco.com by navigating to Products &gt; Security &gt; Firewalls &gt; Adaptive Security Appliances (ASA) &gt; ASA 5500-X Series Firewalls, where there is a list of Cisco ASA hardware platforms. The majority of these software releases are listed under Interim.
+
+Cisco FTD Software
+                                Cisco FTD Software Release                            First Fixed Release for This Vulnerability                                              6.0               Migrate to 6.1.0 HotFix or later                                  6.0.1              Migrate to 6.1.0 HotFix or later                                                6.1.0                            Cisco_FTD_Hotfix_EI-6.1.0.7-2.sh (all FTD hardware platforms except 41xx and 9300)
+Cisco_FTD_SSP_Hotfix_EI-6.1.0.7-2.sh (41xx and 9300 FTD hardware platforms)                                                6.2.0                            Not vulnerable                                                6.2.1                            Migrate to 6.2.2.3                                  6.2.2                            6.2.2.3                                  6.2.3               6.2.3.1
+6.2.3-851
+6.2.3-85.02
+1Software image for FTD Virtual for the Microsoft Azure Cloud
+2Software image for FTD Virtual for the AWS Cloud
+
+The software is available for download from the Software Center ["https://software.cisco.com/download/navigator.html"] on Cisco.com by navigating to Products &gt; Security &gt; Firewalls &gt; Next-Generation Firewalls (NGFW), where there is a list of Cisco FTD hardware platforms.</cvrf:Note>
+    <cvrf:Note Title="Vulnerability Policy" Type="General" Ordinal="6">To learn about Cisco security vulnerability disclosure policies and publications, see the Security Vulnerability Policy ["http://www.cisco.com/web/about/security/psirt/security_vulnerability_policy.html"]. This document also contains instructions for obtaining fixed software and receiving security vulnerability information from Cisco.</cvrf:Note>
+    <cvrf:Note Title="Exploitation and Public Announcements" Type="General" Ordinal="7">In September 2019, the Cisco Product Security Incident Response Team (PSIRT) became aware of additional attempted exploitation of this vulnerability in the wild. Cisco continues to strongly recommend that customers upgrade to a fixed Cisco ASA Software release to remediate this vulnerability.</cvrf:Note>
+    <cvrf:Note Title="Source" Type="General" Ordinal="8">Cisco would like to thank security researcher  Michal Bentkowski from Securitum for reporting this vulnerability.</cvrf:Note>
+    <cvrf:Note Title="Legal Disclaimer" Type="Legal Disclaimer" Ordinal="9">THIS DOCUMENT IS PROVIDED ON AN "AS IS" BASIS AND DOES NOT IMPLY ANY KIND OF GUARANTEE OR WARRANTY, INCLUDING THE WARRANTIES OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR USE. YOUR USE OF THE INFORMATION ON THE DOCUMENT OR MATERIALS LINKED FROM THE DOCUMENT IS AT YOUR OWN RISK. CISCO RESERVES THE RIGHT TO CHANGE OR UPDATE THIS DOCUMENT AT ANY TIME.
+
+A standalone copy or paraphrase of the text of this document that omits the distribution URL is an uncontrolled copy and may lack important information or contain factual errors. The information in this document is intended for end users of Cisco products.</cvrf:Note>
+  </cvrf:DocumentNotes>
+  <cvrf:DocumentReferences>
+    <cvrf:Reference Type="Self">
+      <cvrf:URL>https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20180606-asaftd</cvrf:URL>
+      <cvrf:Description>Cisco Adaptive Security Appliance Web Services Denial of Service Vulnerability</cvrf:Description>
+    </cvrf:Reference>
+  </cvrf:DocumentReferences>
+  <ProductTree xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/prod">
+    <Branch Name="Cisco" Type="Vendor">
+      <Branch Name="Cisco Adaptive Security Appliance (ASA) Software" Type="Product Name">
+        <FullProductName ProductID="CVRFPID-6588">Cisco Adaptive Security Appliance (ASA) Software </FullProductName>
+      </Branch>
+      <Branch Name="Cisco Firepower Threat Defense Software" Type="Product Name">
+        <FullProductName ProductID="CVRFPID-220203">Cisco Firepower Threat Defense Software </FullProductName>
+      </Branch>
+    </Branch>
+  </ProductTree>
+  <Vulnerability Ordinal="1" xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln">
+    <Title>Cisco Adaptive Security Appliance Web Services Denial of Service Vulnerability</Title>
+    <ID SystemName="Cisco Bug ID">CSCvi16029</ID>
+    <Notes>
+      <Note Title="Summary" Type="Summary" Ordinal="1">A vulnerability in the web interface of the Cisco Adaptive Security Appliance (ASA) could allow an unauthenticated, remote attacker to cause an affected device to reload unexpectedly, resulting in a denial of service (DoS) condition. It is also possible on certain software releases that the ASA will not reload, but an attacker could view sensitive system information without authentication by using directory traversal techniques.
+
+
+
+The vulnerability is due to lack of proper input validation of the HTTP URL. An attacker could exploit this vulnerability by sending a crafted HTTP request to an affected device. An exploit could allow the attacker to cause a DoS condition or unauthenticated disclosure of information. This vulnerability applies to IPv4 and IPv6 HTTP traffic.</Note>
+      <Note Title="Cisco Bug IDs" Type="Other" Ordinal="2">CSCvi16029</Note>
+    </Notes>
+    <CVE>CVE-2018-0296</CVE>
+    <ProductStatuses>
+      <Status Type="Known Affected">
+        <ProductID>CVRFPID-6588</ProductID>
+        <ProductID>CVRFPID-220203</ProductID>
+      </Status>
+    </ProductStatuses>
+    <CVSSScoreSets>
+      <ScoreSetV3>
+        <BaseScoreV3>8.6</BaseScoreV3>
+        <VectorV3>CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:C/C:N/I:N/A:H</VectorV3>
+        <ProductID>CVRFPID-6588</ProductID>
+      </ScoreSetV3>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Workaround">
+        <Description>There are no workarounds that address this vulnerability.</Description>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference Type="Self">
+        <URL>https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20180606-asaftd</URL>
+        <Description>Cisco Adaptive Security Appliance Web Services Denial of Service Vulnerability</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+</cvrf:cvrfdoc>

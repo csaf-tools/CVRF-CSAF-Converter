@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cvrfdoc xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:cpe="http://cpe.mitre.org/language/2.0" xmlns:cvrf="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/cvrf" xmlns:cvrf-common="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/common" xmlns:cvssv2="http://scap.nist.gov/schema/cvss-v2/1.0" xmlns:cvssv3="https://www.first.org/cvss/cvss-v3.0.xsd" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:ns0="http://purl.org/dc/elements/1.1/" xmlns:prod="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/prod" xmlns:scap-core="http://scap.nist.gov/schema/scap-core/1.0" xmlns:sch="http://purl.oclc.org/dsdl/schematron" xmlns:vuln="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/cvrf">
+  <DocumentTitle xml:lang="en">Security update for librsvg</DocumentTitle>
+  <DocumentType>SUSE Patch</DocumentType>
+  <DocumentPublisher Type="Vendor">
+    <ContactDetails>security@suse.de</ContactDetails>
+    <IssuingAuthority>SUSE Security Team</IssuingAuthority>
+  </DocumentPublisher>
+  <DocumentTracking>
+    <Identification>
+      <ID>openSUSE-SU-2016:1333-1</ID>
+    </Identification>
+    <Status>Final</Status>
+    <Version>1</Version>
+    <RevisionHistory>
+      <Revision>
+        <Number>1</Number>
+        <Date>2016-05-18T09:10:44Z</Date>
+        <Description>current</Description>
+      </Revision>
+    </RevisionHistory>
+    <InitialReleaseDate>2016-05-18T09:10:44Z</InitialReleaseDate>
+    <CurrentReleaseDate>2016-05-18T09:10:44Z</CurrentReleaseDate>
+    <Generator>
+      <Engine>cve-database/bin/generate-cvrf.pl</Engine>
+      <Date>2017-02-24T01:00:00Z</Date>
+    </Generator>
+  </DocumentTracking>
+  <DocumentNotes>
+    <Note Title="Topic" Type="Summary" Ordinal="1" xml:lang="en">Security update for librsvg</Note>
+    <Note Title="Details" Type="General" Ordinal="2" xml:lang="en">
+This librsvg update to version 2.40.15 fixes the following issues:
+
+Security issues fixed:
+- CVE-2016-4348: DoS parsing SVGs with circular definitions _rsvg_css_normalize_font_size()
+  function (boo#977986)
+
+Bugs fixed:
+- Actually scale the image if required, regression fix from upstream git (bgo#760262).
+- Fixed bgo#759084: Don't crash when filters don't actually exist.
+- Updated our autogen.sh to use modern autotools.
+- Fixed bgo#761728: Memory leak in the PrimitiveComponentTransfer filter.
+- Added basic support for the 'baseline-shift' attribute in text objects (bgo#340047).
+- Fixed some duplicate logic when rendering paths (bgo#749415).
+- Rewrote the markers engine (bgo#685906, bgo#760180).
+- Refactoring of the test harness to use Glib's gtest
+  infrastructure, instead of using home-grown machinery.  Tests
+  can simply be put as SVG files in the tests/subdirectories; it
+  is not necessary to list them explicitly in some text file.
+- Gzipped SVGs now work if read from streams.
+- References to objects/filters/URIs/etc. are now handled lazily.
+  Also, there is a general-purpose cycle detector so malformed
+  SVGs don't cause infinite loops.
+- Removed parsing of Adobe blend modes; they were not
+  implemented, anyway.
+- Add project files for building on Visual Studio (bgo#753555).
+- Added an '--export-id' option to rsvg-convert(1). This lets you
+  select a single object to export, for example, to pick out a
+  group from a multi-part drawing.  Note that this is mostly
+  useful for PNG output right now; for SVG output we don't
+  preserve many attributes which could be useful in the extracted
+  version.  Doing this properly requires an internal 'output to
+  SVG' backend instead of just telling Cairo to render to SVG.</Note>
+    <Note Title="Terms of Use" Type="Legal Disclaimer" Ordinal="3" xml:lang="en">The CVRF data is provided by SUSE under the Creative Commons License 4.0 with Attribution for Non-Commercial usage (CC-BY-NC-4.0).</Note>
+  </DocumentNotes>
+  <DocumentDistribution xml:lang="en">Copyright SUSE LLC under the Creative Commons License 4.0 with Attribution for Non-Commercial usage (CC-BY-NC-4.0)</DocumentDistribution>
+  <DocumentReferences>
+    <Reference Type="Self">
+      <URL>https://lists.opensuse.org/opensuse-updates/2016-05/msg00079.html</URL>
+      <Description>E-Mail link for openSUSE-SU-2016:1333-1</Description>
+    </Reference>
+    <Reference Type="Self">
+      <URL>https://www.suse.com/support/security/rating/</URL>
+      <Description>SUSE Security Ratings</Description>
+    </Reference>
+  </DocumentReferences>
+  <ProductTree xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/prod">
+    <Branch Type="Product Family" Name="openSUSE Leap 42.1">
+      <Branch Type="Product Name" Name="openSUSE Leap 42.1">
+        <FullProductName ProductID="openSUSE Leap 42.1">openSUSE Leap 42.1</FullProductName>
+      </Branch>
+    </Branch>
+    <Branch Type="Product Version" Name="gdk-pixbuf-loader-rsvg-2.40.15-7.1">
+      <FullProductName ProductID="gdk-pixbuf-loader-rsvg-2.40.15-7.1">gdk-pixbuf-loader-rsvg-2.40.15-7.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="gdk-pixbuf-loader-rsvg-32bit-2.40.15-7.1">
+      <FullProductName ProductID="gdk-pixbuf-loader-rsvg-32bit-2.40.15-7.1">gdk-pixbuf-loader-rsvg-32bit-2.40.15-7.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="librsvg-2.40.15-7.1">
+      <FullProductName ProductID="librsvg-2.40.15-7.1">librsvg-2.40.15-7.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="librsvg-2-2-2.40.15-7.1">
+      <FullProductName ProductID="librsvg-2-2-2.40.15-7.1">librsvg-2-2-2.40.15-7.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="librsvg-2-2-32bit-2.40.15-7.1">
+      <FullProductName ProductID="librsvg-2-2-32bit-2.40.15-7.1">librsvg-2-2-32bit-2.40.15-7.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="librsvg-devel-2.40.15-7.1">
+      <FullProductName ProductID="librsvg-devel-2.40.15-7.1">librsvg-devel-2.40.15-7.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="rsvg-view-2.40.15-7.1">
+      <FullProductName ProductID="rsvg-view-2.40.15-7.1">rsvg-view-2.40.15-7.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="typelib-1_0-Rsvg-2_0-2.40.15-7.1">
+      <FullProductName ProductID="typelib-1_0-Rsvg-2_0-2.40.15-7.1">typelib-1_0-Rsvg-2_0-2.40.15-7.1</FullProductName>
+    </Branch>
+    <Relationship ProductReference="gdk-pixbuf-loader-rsvg-2.40.15-7.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:gdk-pixbuf-loader-rsvg-2.40.15-7.1">gdk-pixbuf-loader-rsvg-2.40.15-7.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="gdk-pixbuf-loader-rsvg-32bit-2.40.15-7.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:gdk-pixbuf-loader-rsvg-32bit-2.40.15-7.1">gdk-pixbuf-loader-rsvg-32bit-2.40.15-7.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="librsvg-2.40.15-7.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:librsvg-2.40.15-7.1">librsvg-2.40.15-7.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="librsvg-2-2-2.40.15-7.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:librsvg-2-2-2.40.15-7.1">librsvg-2-2-2.40.15-7.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="librsvg-2-2-32bit-2.40.15-7.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:librsvg-2-2-32bit-2.40.15-7.1">librsvg-2-2-32bit-2.40.15-7.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="librsvg-devel-2.40.15-7.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:librsvg-devel-2.40.15-7.1">librsvg-devel-2.40.15-7.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="rsvg-view-2.40.15-7.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:rsvg-view-2.40.15-7.1">rsvg-view-2.40.15-7.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="typelib-1_0-Rsvg-2_0-2.40.15-7.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:typelib-1_0-Rsvg-2_0-2.40.15-7.1">typelib-1_0-Rsvg-2_0-2.40.15-7.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+  </ProductTree>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="1">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">The _rsvg_css_normalize_font_size function in librsvg 2.40.2 allows context-dependent attackers to cause a denial of service (stack consumption and application crash) via circular definitions in an SVG document.</Note>
+    </Notes>
+    <CVE>CVE-2016-4348</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed">
+        <ProductID>openSUSE Leap 42.1:gdk-pixbuf-loader-rsvg-2.40.15-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:gdk-pixbuf-loader-rsvg-32bit-2.40.15-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:librsvg-2-2-2.40.15-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:librsvg-2-2-32bit-2.40.15-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:librsvg-2.40.15-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:librsvg-devel-2.40.15-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:rsvg-view-2.40.15-7.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:typelib-1_0-Rsvg-2_0-2.40.15-7.1</ProductID>
+      </Status>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>4.3</BaseScoreV2>
+        <VectorV2>AV:N/AC:M/Au:N/C:N/I:N/A:P</VectorV2>
+      </ScoreSetV2>
+      <ScoreSetV3>
+        <BaseScoreV3>7.5</BaseScoreV3>
+        <VectorV3>CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H</VectorV3>
+      </ScoreSetV3>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-updates/2016-05/msg00079.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2016-4348.html</URL>
+        <Description>CVE-2016-4348</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/977986</URL>
+        <Description>SUSE Bug 977986</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+</cvrfdoc>

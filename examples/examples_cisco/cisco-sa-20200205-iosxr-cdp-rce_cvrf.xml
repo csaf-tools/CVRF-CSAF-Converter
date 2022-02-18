@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cvrf:cvrfdoc xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:cvrf-common="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/common" xmlns:cvrf="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/cvrf">
+  <cvrf:DocumentTitle>Cisco IOS XR Software Cisco Discovery Protocol Format String Vulnerability</cvrf:DocumentTitle>
+  <cvrf:DocumentType>Cisco Security Advisory</cvrf:DocumentType>
+  <cvrf:DocumentPublisher Type="Vendor">
+    <cvrf:ContactDetails>Emergency Support:
++1 877 228 7302 (toll-free within North America)
++1 408 525 6532 (International direct-dial)
+Non-emergency Support:
+Email: psirt@cisco.com
+Support requests that are received via e-mail are typically acknowledged within 48 hours.</cvrf:ContactDetails>
+    <cvrf:IssuingAuthority>Cisco product security incident response is the responsibility of the Cisco Product Security Incident Response Team (PSIRT). The Cisco PSIRT is a dedicated, global team that manages the receipt, investigation, and public reporting of security vulnerability information that is related to Cisco products and networks. The on-call Cisco PSIRT works 24x7 with Cisco customers, independent security researchers, consultants, industry organizations, and other vendors to identify possible security issues with Cisco products and networks.
+More information can be found in Cisco Security Vulnerability Policy available at http://www.cisco.com/web/about/security/psirt/security_vulnerability_policy.html</cvrf:IssuingAuthority>
+  </cvrf:DocumentPublisher>
+  <cvrf:DocumentTracking>
+    <cvrf:Identification>
+      <cvrf:ID>cisco-sa-20200205-iosxr-cdp-rce</cvrf:ID>
+    </cvrf:Identification>
+    <cvrf:Status>Final</cvrf:Status>
+    <cvrf:Version>1.1</cvrf:Version>
+    <cvrf:RevisionHistory>
+      <cvrf:Revision>
+        <cvrf:Number>1.0</cvrf:Number>
+        <cvrf:Date>2020-02-05T15:18:31</cvrf:Date>
+        <cvrf:Description>Initial public release.</cvrf:Description>
+      </cvrf:Revision>
+      <cvrf:Revision>
+        <cvrf:Number>1.1</cvrf:Number>
+        <cvrf:Date>2020-10-20T18:23:29</cvrf:Date>
+        <cvrf:Description>Updated Exploitation and Public Announcements to indicate that exploitation in the wild has been observed. Fixed two typos in Vulnerable Products (no change to affected products).</cvrf:Description>
+      </cvrf:Revision>
+    </cvrf:RevisionHistory>
+    <cvrf:InitialReleaseDate>2020-02-05T16:00:00</cvrf:InitialReleaseDate>
+    <cvrf:CurrentReleaseDate>2020-10-20T18:23:29</cvrf:CurrentReleaseDate>
+    <cvrf:Generator>
+      <cvrf:Engine>TVCE</cvrf:Engine>
+    </cvrf:Generator>
+  </cvrf:DocumentTracking>
+  <cvrf:DocumentNotes>
+    <cvrf:Note Title="Summary" Type="Summary" Ordinal="1">A vulnerability in the Cisco Discovery Protocol implementation for Cisco IOS XR Software could allow an unauthenticated, adjacent attacker to execute arbitrary code or cause a reload on an affected device.
+
+The vulnerability is due to improper validation of string input from certain fields in Cisco Discovery Protocol messages. An attacker could exploit this vulnerability by sending a malicious Cisco Discovery Protocol packet to an affected device. A successful exploit could allow the attacker to cause a stack overflow, which could allow the attacker to execute arbitrary code with administrative privileges on an affected device.
+
+Note: Cisco Discovery Protocol is a Layer 2 protocol. To exploit this vulnerability, an attacker must be in the same broadcast domain as the affected device (Layer 2 adjacent).
+
+Cisco has released software updates that address this vulnerability. There are no workarounds that address this vulnerability.
+
+This advisory is available at the following link:
+https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20200205-iosxr-cdp-rce ["https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20200205-iosxr-cdp-rce"]</cvrf:Note>
+    <cvrf:Note Title="Vulnerable Products" Type="General" Ordinal="2">This vulnerability affects the following Cisco products if they have Cisco Discovery Protocol enabled both globally and on at least one interface and if they are running a vulnerable release of Cisco IOS XR Software (32-bit or 64-bit):
+
+ASR 9000 Series Aggregation Services Routers
+Carrier Routing System (CRS)
+IOS XRv 9000 Router
+Network Convergence System (NCS) 540 Series Routers
+Network Convergence System (NCS) 560 Series Routers
+Network Convergence System (NCS) 1000 Series Routers
+Network Convergence System (NCS) 5000 Series Routers
+Network Convergence System (NCS) 5500 Series Routers
+Network Convergence System (NCS) 6000 Series Routers
+
+This vulnerability also affects third-party white box routers if they have Cisco Discovery Protocol enabled both globally and on at least one interface and if they are running a vulnerable release of Cisco IOS XR Software.
+
+Note: Cisco Discovery Protocol is not enabled in Cisco IOS XR Software by default.
+
+For information about which Cisco IOS XR Software releases are vulnerable, see the Fixed Software ["#fs"] section of this advisory.
+  Determine the Status of Cisco Discovery Protocol
+Administrators can determine whether Cisco Discovery Protocol is enabled on a device by using the show running-config | include cdp command in the device CLI. If the command returns at least the following lines, Cisco Discovery Protocol is enabled globally and on at least one interface:
+
+
+RP/0/RP0/CPU0:ios##show running-config | include cdp
+Mon Dec  2 17:00:27.921 UTC  Building configuration...  cdp  cdp  .  .  .</cvrf:Note>
+    <cvrf:Note Title="Products Confirmed Not Vulnerable" Type="General" Ordinal="3">Only products listed in the Vulnerable Products ["#vp"] section of this advisory are known to be affected by this vulnerability.
+
+Cisco has confirmed that this vulnerability does not affect Cisco Network Convergence System (NCS) 520 Series Routers. Cisco has also confirmed that this vulnerability does not affect the following Cisco software:
+
+FXOS Software
+IOS Software
+IOS XE Software
+NX-OS Software
+UCS Software</cvrf:Note>
+    <cvrf:Note Title="Workarounds" Type="General" Ordinal="4">There are no workarounds that address this vulnerability.
+
+However, customers who do not use the Cisco Discovery Protocol feature can disable it either globally to fully close the attack vector or on individual interfaces to reduce the attack surface.
+  Disable Cisco Discovery Protocol Globally
+To disable Cisco Discovery Protocol globally on devices that are running Cisco IOS XR Software, administrators can use the no cdp  command in global configuration mode, as shown in the following example:
+
+
+RP/0/RP0/CPU0:ios#conf t
+Mon Dec  2 17:58:08.556 UTC  RP/0/RP0/CPU0:ios(config)#no cdp         RP/0/RP0/CPU0:ios(config)#exit
+Uncommitted changes found, commit them before exiting(yes/no/cancel)? [cancel]:yes
+    Disable Cisco Discovery Protocol on an Interface
+To disable Cisco Discovery Protocol on an interface on devices that are running Cisco IOS XR Software, administrators can use the no cdp  command in interface configuration mode, as shown in the following example:
+
+
+RP/0/RP0/CPU0:ios#conf t
+Mon Dec  2 18:00:08.622 UTC  RP/0/RP0/CPU0:ios(config)#interface GigabitEthernet0/0/0/0  RP/0/RP0/CPU0:ios(config-if)#no cdp  RP/0/RP0/CPU0:ios(config-if)#end  Uncommitted changes found, commit them before exiting(yes/no/cancel)? [cancel]:yes</cvrf:Note>
+    <cvrf:Note Title="Fixed Software" Type="General" Ordinal="5">Cisco has released free software updates that address the vulnerability described in this advisory. Customers may only install and expect support for software versions and feature sets for which they have purchased a license. By installing, downloading, accessing, or otherwise using such software upgrades, customers agree to follow the terms of the Cisco software license:
+https://www.cisco.com/c/en/us/products/end-user-license-agreement.html ["https://www.cisco.com/c/en/us/products/end-user-license-agreement.html"]
+
+Additionally, customers may only download software for which they have a valid license, procured from Cisco directly, or through a Cisco authorized reseller or partner. In most cases this will be a maintenance upgrade to software that was previously purchased. Free security software updates do not entitle customers to a new software license, additional software feature sets, or major revision upgrades.
+
+When considering software upgrades ["https://tools.cisco.com/security/center/resources/security_vulnerability_policy.html#fixes"], customers are advised to regularly consult the advisories for Cisco products, which are available from the Cisco Security Advisories and Alerts page ["https://www.cisco.com/go/psirt"], to determine exposure and a complete upgrade solution.
+
+In all cases, customers should ensure that the devices to be upgraded contain sufficient memory and confirm that current hardware and software configurations will continue to be supported properly by the new release. If the information is not clear, customers are advised to contact the Cisco Technical Assistance Center (TAC) or their contracted maintenance providers.
+  Customers Without Service Contracts
+Customers who purchase directly from Cisco but do not hold a Cisco service contract and customers who make purchases through third-party vendors but are unsuccessful in obtaining fixed software through their point of sale should obtain upgrades by contacting the Cisco TAC:
+https://www.cisco.com/c/en/us/support/web/tsd-cisco-worldwide-contacts.html ["https://www.cisco.com/c/en/us/support/web/tsd-cisco-worldwide-contacts.html"]
+
+Customers should have the product serial number available and be prepared to provide the URL of this advisory as evidence of entitlement to a free upgrade.
+      Fixed Releases
+In the following table, the left column lists Cisco software releases. The right column indicates whether a release is affected by the vulnerability described in this advisory and the first release that includes the fix for this vulnerability.
+        Cisco IOS XR Software Release  First Fixed Release for This Vulnerability          Earlier than 6.6  Appropriate SMU      6.61  6.6.3 or appropriate SMU      7.0  7.0.2 (Mar 2020) or appropriate SMU      7.1  Not vulnerable
+
+1. Customers who are running Cisco IOS XR Software Release 6.6 on white box routers are advised to upgrade to Release 6.6.12 and then install the software maintenance upgrade (SMU). Customers who are running Cisco IOS XR Software Release 6.6 on other platforms are advised to upgrade to Release 6.6.3.
+
+The following SMUs are also available for Cisco IOS XR Software:
+        Cisco IOS XR Software Release  Platform  SMU Name           5.2.5   NCS6K   ncs6k-5.2.5.CSCvr78185       6.4.2   ASR9K-PX   asr9k-px-6.4.2.CSCvr78185       CRS-PX   hfr-px-6.4.2.CSCvr78185       6.5.3   ASR9K-PX   asr9k-px-6.5.3.CSCvr78185       ASR9K-X64   asr9k-x64-6.5.3.CSCvr78185       NCS540   ncs540-6.5.3.CSCvr78185       NCS5K   ncs5k-6.5.3.CSCvr78185       NCS5500   ncs5500-6.5.3.CSCvr78185       XRV9K   xrv9k-6.5.3.CSCvr78185       6.6.12   White box   iosxrwbd-6.6.12.CSCvr78185       6.6.25   NCS560   ncs560-6.6.25.CSCvr78185       7.0.1   NCS540L   ncs540l-7.0.1.CSCvr78185
+For details on where to download and how to install SMUs in Cisco IOS XR Software, see the IOS XR Software Maintenance Updates (SMUs) ["https://www.cisco.com/c/en/us/support/docs/ios-nx-os-software/ios-xr-software/116332-maintain-ios-xr-smu-00.html"] guide.</cvrf:Note>
+    <cvrf:Note Title="Vulnerability Policy" Type="General" Ordinal="6">To learn about Cisco security vulnerability disclosure policies and publications, see the Security Vulnerability Policy ["http://www.cisco.com/web/about/security/psirt/security_vulnerability_policy.html"]. This document also contains instructions for obtaining fixed software and receiving security vulnerability information from Cisco.</cvrf:Note>
+    <cvrf:Note Title="Exploitation and Public Announcements" Type="General" Ordinal="7">In October 2020, the Cisco Product Security Incident Response Team (PSIRT) received reports of attempted exploitation of this vulnerability in the wild. Cisco recommends that customers upgrade to a fixed Cisco IOS XR Software release to remediate this vulnerability.</cvrf:Note>
+    <cvrf:Note Title="Source" Type="General" Ordinal="8">Cisco would like to thank Barak Hadad of Armis for reporting this vulnerability.</cvrf:Note>
+    <cvrf:Note Title="Legal Disclaimer" Type="Legal Disclaimer" Ordinal="9">THIS DOCUMENT IS PROVIDED ON AN "AS IS" BASIS AND DOES NOT IMPLY ANY KIND OF GUARANTEE OR WARRANTY, INCLUDING THE WARRANTIES OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR USE. YOUR USE OF THE INFORMATION ON THE DOCUMENT OR MATERIALS LINKED FROM THE DOCUMENT IS AT YOUR OWN RISK. CISCO RESERVES THE RIGHT TO CHANGE OR UPDATE THIS DOCUMENT AT ANY TIME.
+
+A standalone copy or paraphrase of the text of this document that omits the distribution URL is an uncontrolled copy and may lack important information or contain factual errors. The information in this document is intended for end users of Cisco products.</cvrf:Note>
+  </cvrf:DocumentNotes>
+  <cvrf:DocumentReferences>
+    <cvrf:Reference Type="Self">
+      <cvrf:URL>https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20200205-iosxr-cdp-rce</cvrf:URL>
+      <cvrf:Description>Cisco IOS XR Software Cisco Discovery Protocol Format String Vulnerability</cvrf:Description>
+    </cvrf:Reference>
+  </cvrf:DocumentReferences>
+  <ProductTree xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/prod">
+    <Branch Name="Cisco" Type="Vendor">
+      <Branch Name="Cisco IOS XR Software" Type="Product Name">
+        <FullProductName ProductID="CVRFPID-5834">Cisco IOS XR Software </FullProductName>
+      </Branch>
+    </Branch>
+  </ProductTree>
+  <Vulnerability Ordinal="1" xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln">
+    <Title>Cisco IOS XR Software Cisco Discovery Protocol Format String Vulnerability</Title>
+    <ID SystemName="Cisco Bug ID">CSCvr09190</ID>
+    <Notes>
+      <Note Title="Cisco Bug IDs" Type="Other" Ordinal="1">CSCvr09190</Note>
+    </Notes>
+    <CVE>CVE-2020-3118</CVE>
+    <ProductStatuses>
+      <Status Type="Known Affected">
+        <ProductID>CVRFPID-5834</ProductID>
+      </Status>
+    </ProductStatuses>
+    <CVSSScoreSets>
+      <ScoreSetV3>
+        <BaseScoreV3>8.8</BaseScoreV3>
+        <VectorV3>CVSS:3.0/AV:A/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H</VectorV3>
+      </ScoreSetV3>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Workaround">
+        <Description>There are no workarounds that address this vulnerability.
+
+However, customers who do not use the Cisco Discovery Protocol feature can disable it either globally to fully close the attack vector or on individual interfaces to reduce the attack surface.
+  Disable Cisco Discovery Protocol Globally
+To disable Cisco Discovery Protocol globally on devices that are running Cisco IOS XR Software, administrators can use the no cdp  command in global configuration mode, as shown in the following example:
+
+
+RP/0/RP0/CPU0:ios#conf t
+Mon Dec  2 17:58:08.556 UTC  RP/0/RP0/CPU0:ios(config)#no cdp         RP/0/RP0/CPU0:ios(config)#exit
+Uncommitted changes found, commit them before exiting(yes/no/cancel)? [cancel]:yes
+    Disable Cisco Discovery Protocol on an Interface
+To disable Cisco Discovery Protocol on an interface on devices that are running Cisco IOS XR Software, administrators can use the no cdp  command in interface configuration mode, as shown in the following example:
+
+
+RP/0/RP0/CPU0:ios#conf t
+Mon Dec  2 18:00:08.622 UTC  RP/0/RP0/CPU0:ios(config)#interface GigabitEthernet0/0/0/0  RP/0/RP0/CPU0:ios(config-if)#no cdp  RP/0/RP0/CPU0:ios(config-if)#end  Uncommitted changes found, commit them before exiting(yes/no/cancel)? [cancel]:yes</Description>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference Type="Self">
+        <URL>https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20200205-iosxr-cdp-rce</URL>
+        <Description>Cisco IOS XR Software Cisco Discovery Protocol Format String Vulnerability</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+</cvrf:cvrfdoc>

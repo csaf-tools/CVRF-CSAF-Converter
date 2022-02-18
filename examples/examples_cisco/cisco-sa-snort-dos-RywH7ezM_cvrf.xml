@@ -1,0 +1,346 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cvrf:cvrfdoc xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:cvrf-common="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/common" xmlns:cvrf="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/cvrf">
+  <cvrf:DocumentTitle>Multiple Cisco Products Snort Rule Denial of Service Vulnerability</cvrf:DocumentTitle>
+  <cvrf:DocumentType>Cisco Security Advisory</cvrf:DocumentType>
+  <cvrf:DocumentPublisher Type="Vendor">
+    <cvrf:ContactDetails>Emergency Support:
++1 877 228 7302 (toll-free within North America)
++1 408 525 6532 (International direct-dial)
+Non-emergency Support:
+Email: psirt@cisco.com
+Support requests that are received via e-mail are typically acknowledged within 48 hours.</cvrf:ContactDetails>
+    <cvrf:IssuingAuthority>Cisco product security incident response is the responsibility of the Cisco Product Security Incident Response Team (PSIRT). The Cisco PSIRT is a dedicated, global team that manages the receipt, investigation, and public reporting of security vulnerability information that is related to Cisco products and networks. The on-call Cisco PSIRT works 24x7 with Cisco customers, independent security researchers, consultants, industry organizations, and other vendors to identify possible security issues with Cisco products and networks.
+More information can be found in Cisco Security Vulnerability Policy available at http://www.cisco.com/web/about/security/psirt/security_vulnerability_policy.html</cvrf:IssuingAuthority>
+  </cvrf:DocumentPublisher>
+  <cvrf:DocumentTracking>
+    <cvrf:Identification>
+      <cvrf:ID>cisco-sa-snort-dos-RywH7ezM</cvrf:ID>
+    </cvrf:Identification>
+    <cvrf:Status>Final</cvrf:Status>
+    <cvrf:Version>1.0</cvrf:Version>
+    <cvrf:RevisionHistory>
+      <cvrf:Revision>
+        <cvrf:Number>1.0</cvrf:Number>
+        <cvrf:Date>2021-10-27T15:39:22</cvrf:Date>
+        <cvrf:Description>Initial public release.</cvrf:Description>
+      </cvrf:Revision>
+    </cvrf:RevisionHistory>
+    <cvrf:InitialReleaseDate>2021-10-27T16:00:00</cvrf:InitialReleaseDate>
+    <cvrf:CurrentReleaseDate>2021-10-27T16:00:00</cvrf:CurrentReleaseDate>
+    <cvrf:Generator>
+      <cvrf:Engine>TVCE</cvrf:Engine>
+    </cvrf:Generator>
+  </cvrf:DocumentTracking>
+  <cvrf:DocumentNotes>
+    <cvrf:Note Title="Summary" Type="Summary" Ordinal="1">Multiple Cisco products are affected by a vulnerability in Snort rules that could allow an unauthenticated, remote attacker to cause a denial of service (DoS) condition on an affected device.
+
+The vulnerability is due to improper handling of the Block with Reset or Interactive Block with Reset actions if a rule is configured without proper constraints. An attacker could exploit this vulnerability by sending a crafted IP packet to the affected device. A successful exploit could allow the attacker to cause through traffic to be dropped.
+
+Note: Only products with Snort3 configured and either a rule with Block with Reset or Interactive Block with Reset actions configured are vulnerable. Products configured with Snort2 are not vulnerable.
+
+Cisco has released software updates that address this vulnerability. There are workarounds that address this vulnerability.
+
+This advisory is available at the following link:
+https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-snort-dos-RywH7ezM ["https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-snort-dos-RywH7ezM"]
+
+This advisory is part of the October 2021 release of the Cisco ASA, FTD, and FMC Security Advisory Bundled publication. For a complete list of the advisories and links to them, see Cisco Event Response: October 2021 Cisco ASA, FMC, and FTD Software Security Advisory Bundled Publication ["https://tools.cisco.com/security/center/viewErp.x?alertId=ERP-74773"].</cvrf:Note>
+    <cvrf:Note Title="Vulnerable Products" Type="General" Ordinal="2">This vulnerability affects all open source Snort3 project releases earlier than Release 3.1.0.100. For more information on open source Snort, see the Snort website ["https://www.snort.org/"].
+  Impact to Cisco Products
+This vulnerability affects all platforms if they are running a vulnerable release of Cisco Firepower Threat Defense (FTD) Software and are configured in a vulnerable manner as indicated in the following sections.
+
+Firepower Threat Defense (FTD) devices managed by Firepower Device Management (FDM) Software are not vulnerable because they do not have Block with Reset or Interactive Block with Reset actions.
+
+Three conditions for Firewall Management Center (FMC) managed devices must be met for the device to be vulnerable:
+
+The device must be running Snort3.
+The device must have a rule configured with a Block with Reset or Interactive Block with Reset action.
+The rule configured with the Reset action does not specify an application or protocol (TCP or UDP) within the rule.
+
+For information about which Cisco software releases are vulnerable, see the Fixed Software ["#fs"] section of this advisory.
+  Determine FTD Configuration
+To determine if Snort3 is configured
+
+Go to the FMC web interface.
+Go to the Devices page and then the Device Management tab.
+Select the FTD device to check. Choose Edit.
+Go to the Device tab and look in the Inspection Engine area.
+This will list either Snort2 or Snort 3.
+If Snort2 is listed, the device is not vulnerable.
+If Snort3 is listed, the device could be vulnerable.
+
+
+To determine if a rule with a Block with Reset or Interactive Block with Reset action is configured
+
+Go to the FMC web interface.
+Go to the Policies page and then the Access Control tab.
+Select the Policy to review and choose Edit.
+Look under the Action column for each rule in that policy.
+If Block with Reset or Interactive Block with Reset is not listed under actions, the device is not vulnerable.
+If Block with Reset or Interactive Block with Reset is listed under actions, the device could be vulnerable.
+
+
+To determine if the rule with a Reset action has a vulnerable configuration
+
+If a device is running Snort3 and has a rule with Block with Reset or Interactive Block with Reset action configured, the following tables can be used to determine if the rule is configured in a vulnerable or non-vulnerable configuration.
+
+The tables show configuration information for an FTD device as viewed on an FMC.
+
+Vulnerable Configuration
+
+If the rule is configured without calling out either the application or the protocol (TCP or UDP), the device is configured in a vulnerable manner.
+
+Here are examples of a rule with a vulnerable configuration
+        Rule Name  Source Zone  Destination Zone  Source Network  Destination Network  VLAN Tags  Users  Applications  Source Ports  Destination Ports  URLs  Source SGT  Destination SGT  Actions          Ex1  any  any  any  any  any  any  any  any  any  any  any  any  Block with Reset      Ex2  any  any  any  any  any  any  any  any  any  any  any  any  Interactive Block with Reset
+Non-Vulnerable Configuration
+
+If the rule is configured by calling out either the application or the protocol (TCP or UDP), the device is configured in non-vulnerable manner.
+
+Application Template and Example
+
+The following are templates of non-vulnerable configurations calling out an application. The example shows the minimum configuration required.
+        Rule Name  Source Zone  Destination Zone  Source Network  Destination Network  VLAN Tags  Users  Applications  Source Ports  Destination Ports  URLs  Source SGT  Destination SGT  Actions          Ex1  any  any  any  any  any  any  {application specified here}  any  any  any  any  any  Block with Reset      Ex2  any  any  any  any  any  any  {application specified here}  any  any  any  any  any  Interactive Block with Reset
+The following are examples of non-vulnerable configurations calling out an application. The example shows the minimum configuration required.
+        Rule Name  Source Zone  Destination Zone  Source Network  Destination Network  VLAN Tags  Users  Applications  Source Ports  Destination Ports  URLs  Source SGT  Destination SGT  Actions          Ex1  any  any  any  any  any  any  Cisco Jabber  any  any  any  any  any  Block with Reset      Ex2  any  any  any  any  any  any  Cisco Jabber  any  any  any  any  any  Interactive Block with Reset
+Protocol Template and Example
+
+The following are templates of non-vulnerable configurations calling out the protocol (TCP or UDP). The example shows the minimum configuration required.
+        Rule Name  Source Zone  Destination Zone  Source Network  Destination Network  VLAN Tags  Users  Applications  Source Ports  Destination Ports  URLs  Source SGT  Destination SGT  Actions          Ex1  any  any  any  any  any  any  any  {tcp or upd  specified here}  {tcp or upd  specified here}  any  any  any  Block with Reset      Ex2  any  any  any  any  any  any  any  {tcp or upd  specified here}  {tcp or upd  specified here}  any  any  any  Interactive Block with Reset
+The following are examples of non-vulnerable configurations calling out the protocol (TCP or UDP). The example shows the minimum configuration required.
+        Rule Name  Source Zone  Destination Zone  Source Network  Destination Network  VLAN Tags  Users  Applications  Source Ports  Destination Ports  URLs  Source SGT  Destination SGT  Actions          Ex1  any  any  any  any  any  any  any  tcp  tcp  any  any  any  Block with Reset      Ex2  any  any  any  any  any  any  any  tcp  tcp  any  any  any  Interactive Block with Reset      Ex3  any  any  any  any  any  any  any  udp  udp  any  any  any  Block with Reset      Ex4  any  any  any  any  any  any  any  udp  udp  any  any  any  Interactive Block with Reset</cvrf:Note>
+    <cvrf:Note Title="Products Confirmed Not Vulnerable" Type="General" Ordinal="3">Only products listed in the Vulnerable Products ["#vp"] section of this advisory are known to be affected by this vulnerability.
+
+Cisco has confirmed that this vulnerability does not affect any open source Snort2 project releases.
+
+Cisco has confirmed that this vulnerability does not affect the following Cisco products:
+
+Adaptive Security Appliance (ASA) Software
+1000 Series Integrated Services Routers (ISRs)
+4000 Series Integrated Services Routers (ISRs)
+Catalyst 8000V Edge Software
+Catalyst 8200 Series Edge Platforms
+Catalyst 8300 Series Edge Platforms
+Catalyst 8500 Series Edge Platforms
+Catalyst 8500L Series Edge Platforms
+Cloud Services Router 1000V Series
+Firepower Management Center (FMC) Software
+Integrated Services Virtual Router (ISRv)
+Meraki Security Appliances</cvrf:Note>
+    <cvrf:Note Title="Workarounds" Type="General" Ordinal="4">There are workarounds that addresses this vulnerability.
+
+While these workarounds have been deployed and were proven successful in a test environment, customers should determine the applicability and effectiveness in their own environment and under their own use conditions. Customers should be aware that any workaround or mitigation that is implemented may negatively impact the functionality or performance of their network based on intrinsic customer deployment scenarios and limitations. Customers should not deploy any workarounds or mitigations before first evaluating the applicability to their own environment and any impact to such environment.
+
+Note: There are three workarounds for this issue. Implementing any of the workarounds is sufficient. Two or more workarounds do not need to be implemented.
+
+Workaround 1
+
+The first workaround is to change the Snort inspection engine from Snort3 to Snort2.  See the configuration guide or support team for potential impacts. The steps to revert to Snort2 are as follows:
+
+Go to the FMC web interface
+Go to the Devices page and then the Device Management tab.
+Select the FTD device to check. Choose Edit.
+Go to the Device tab and look in the Inspection Engine area.
+Choose the Revert to Snort2 option.
+
+Workaround 2
+
+The second workaround is to change all rule actions from Block with Reset or Interactive Block with Reset to another action. See the configuration guide or support team for potential impacts. The steps are as follows:
+
+Go to the FMC web interface
+Go to the Policies page and then the Access Control tab.
+Select the Policy to review and choose Edit.
+Find a rule that has a Reset action and choose Edit.
+Change the action from Block with Reset or Interactive Block with Reset to another action.
+
+Workaround 3
+
+The third workaround involves narrowing the firewall reset rule to block TCP and/or UDP directly or by specifying an application that runs over UDP or TCP. See the Vulnerable Products ["#vp"] section for examples of vulnerable and non-vulnerable configurations.</cvrf:Note>
+    <cvrf:Note Title="Fixed Software" Type="General" Ordinal="5">Cisco has released free software updates that address the vulnerability described in this advisory. Customers may only install and expect support for software versions and feature sets for which they have purchased a license. By installing, downloading, accessing, or otherwise using such software upgrades, customers agree to follow the terms of the Cisco software license:
+https://www.cisco.com/c/en/us/products/end-user-license-agreement.html ["https://www.cisco.com/c/en/us/products/end-user-license-agreement.html"]
+
+Additionally, customers may only download software for which they have a valid license, procured from Cisco directly, or through a Cisco authorized reseller or partner. In most cases this will be a maintenance upgrade to software that was previously purchased. Free security software updates do not entitle customers to a new software license, additional software feature sets, or major revision upgrades.
+
+When considering software upgrades ["https://tools.cisco.com/security/center/resources/security_vulnerability_policy.html#fixes"], customers are advised to regularly consult the advisories for Cisco products, which are available from the Cisco Security Advisories page ["https://www.cisco.com/go/psirt"], to determine exposure and a complete upgrade solution.
+
+In all cases, customers should ensure that the devices to be upgraded contain sufficient memory and confirm that current hardware and software configurations will continue to be supported properly by the new release. If the information is not clear, customers are advised to contact the Cisco Technical Assistance Center (TAC) or their contracted maintenance providers.
+  Customers Without Service Contracts
+Customers who purchase directly from Cisco but do not hold a Cisco service contract and customers who make purchases through third-party vendors but are unsuccessful in obtaining fixed software through their point of sale should obtain upgrades by contacting the Cisco TAC: https://www.cisco.com/c/en/us/support/web/tsd-cisco-worldwide-contacts.html ["https://www.cisco.com/c/en/us/support/web/tsd-cisco-worldwide-contacts.html"]
+
+Customers should have the product serial number available and be prepared to provide the URL of this advisory as evidence of entitlement to a free upgrade.
+      Fixed Releases
+Customers are advised to upgrade to an appropriate fixed software release as indicated in the following table(s):
+
+Cisco FTD Software
+
+In the following table(s), the left column lists Cisco software releases. The center column indicates whether a release is affected by the vulnerability described in this advisory and the first release that includes the fix for this vulnerability. The right column indicates whether a release is affected by any of the Critical or High SIR vulnerabilities described in this bundle and which release includes fixes for those vulnerabilities.
+
+        FTD Software Release  First Fixed Release for This Vulnerability  First Fixed Release for All Vulnerabilities Described in the Bundle of Advisories          6.2.2 and earlier1  Not vulnerable.  Migrate to a fixed release.      6.2.3  Not vulnerable.  Migrate to a fixed release.      6.3.01  Not vulnerable.  Migrate to a fixed release.      6.4.0  Not vulnerable.  6.4.0.13 (Nov 2021)      6.5.01  Not vulnerable.  Migrate to a fixed release.      6.6.0  Not vulnerable.  6.6.5.1 (Nov 2021)      6.7.02  Not vulnerable.  6.7.0.3 (Jan 2022)      7.0.0  7.0.1  7.0.1
+1. Cisco FMC and FTD Software releases 6.2.2 and earlier, as well as releases 6.3.0 and 6.5.0, have reached end of software maintenance ["https://www.cisco.com/c/en/us/products/eos-eol-listing.html"]. Customers are advised to migrate to a supported release that includes the fix for this vulnerability.
+2. The Snort3 Inspection Engine option was first available in FTD devices managed by FDM in 6.7.0. This option was not available for FMC managed devices until 7.0.0. Only FTD devices managed by FTD are vulnerable to this issue.
+
+For instructions on upgrading your FTD device, see Cisco Firepower Management Center Upgrade Guide ["https://www.cisco.com/c/en/us/td/docs/security/firepower/upgrade/fpmc-upgrade-guide/getting_started.html"].
+
+Open Source Snort
+
+For more information on open source Snort, see the Snort website ["https://www.snort.org/"].
+        Snort Release  First Fixed Release for This Vulnerability          2.x  Not vulnerable.      3.x  3.1.0.100
+The Cisco Product Security Incident Response Team (PSIRT) validates only the affected and fixed release information that is documented in this advisory.</cvrf:Note>
+    <cvrf:Note Title="Vulnerability Policy" Type="General" Ordinal="6">To learn about Cisco security vulnerability disclosure policies and publications, see the Security Vulnerability Policy ["http://www.cisco.com/web/about/security/psirt/security_vulnerability_policy.html"]. This document also contains instructions for obtaining fixed software and receiving security vulnerability information from Cisco.</cvrf:Note>
+    <cvrf:Note Title="Exploitation and Public Announcements" Type="General" Ordinal="7">The Cisco Product Security Incident Response Team (PSIRT) is not aware of any public announcements or malicious use of the vulnerability that is described in this advisory.</cvrf:Note>
+    <cvrf:Note Title="Source" Type="General" Ordinal="8">This vulnerability was found during the resolution of a Cisco TAC support case.</cvrf:Note>
+    <cvrf:Note Title="Legal Disclaimer" Type="Legal Disclaimer" Ordinal="9">THIS DOCUMENT IS PROVIDED ON AN "AS IS" BASIS AND DOES NOT IMPLY ANY KIND OF GUARANTEE OR WARRANTY, INCLUDING THE WARRANTIES OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR USE. YOUR USE OF THE INFORMATION ON THE DOCUMENT OR MATERIALS LINKED FROM THE DOCUMENT IS AT YOUR OWN RISK. CISCO RESERVES THE RIGHT TO CHANGE OR UPDATE THIS DOCUMENT AT ANY TIME.
+
+A standalone copy or paraphrase of the text of this document that omits the distribution URL is an uncontrolled copy and may lack important information or contain factual errors. The information in this document is intended for end users of Cisco products.</cvrf:Note>
+  </cvrf:DocumentNotes>
+  <cvrf:DocumentReferences>
+    <cvrf:Reference Type="Self">
+      <cvrf:URL>https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-snort-dos-RywH7ezM</cvrf:URL>
+      <cvrf:Description>Multiple Cisco Products Snort Rule Denial of Service Vulnerability</cvrf:Description>
+    </cvrf:Reference>
+    <cvrf:Reference>
+      <cvrf:URL>https://tools.cisco.com/security/center/viewErp.x?alertId=ERP-74773</cvrf:URL>
+      <cvrf:Description>Cisco Event Response: October 2021 Cisco ASA, FMC, and FTD Software Security Advisory Bundled Publication</cvrf:Description>
+    </cvrf:Reference>
+  </cvrf:DocumentReferences>
+  <ProductTree xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/prod">
+    <Branch Name="Cisco" Type="Vendor">
+      <Branch Name="Cisco Firepower Threat Defense Software" Type="Product Name">
+        <Branch Name="7.0" Type="Product Version">
+          <Branch Name="7.0.0" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-282695">Cisco Firepower Threat Defense Software 7.0.0</FullProductName>
+          </Branch>
+          <Branch Name="7.0.0.1" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-284277">Cisco Firepower Threat Defense Software 7.0.0.1</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="Cisco Firepower 2100 Series" Type="Product Name">
+          <FullProductName ProductID="CVRFPID-277392">Cisco Firepower Threat Defense Software Platform Cisco Firepower 2100 Series</FullProductName>
+        </Branch>
+        <Branch Name="Cisco Firepower 1000 Series" Type="Product Name">
+          <FullProductName ProductID="CVRFPID-277393">Cisco Firepower Threat Defense Software Platform Cisco Firepower 1000 Series</FullProductName>
+        </Branch>
+        <Branch Name="Cisco 3000 Series Industrial Security Appliances (ISA)" Type="Product Name">
+          <FullProductName ProductID="CVRFPID-277438">Cisco Firepower Threat Defense Software Platform Cisco 3000 Series Industrial Security Appliances (ISA)</FullProductName>
+        </Branch>
+        <Branch Name="Cisco Firepower 9000 Series" Type="Product Name">
+          <FullProductName ProductID="CVRFPID-277440">Cisco Firepower Threat Defense Software Platform Cisco Firepower 9000 Series</FullProductName>
+        </Branch>
+        <Branch Name="Cisco Firepower 4100 Series" Type="Product Name">
+          <FullProductName ProductID="CVRFPID-277441">Cisco Firepower Threat Defense Software Platform Cisco Firepower 4100 Series</FullProductName>
+        </Branch>
+        <Branch Name="Cisco Firepower NGFW Virtual" Type="Product Name">
+          <FullProductName ProductID="CVRFPID-277464">Cisco Firepower Threat Defense Software Platform Cisco Firepower NGFW Virtual</FullProductName>
+        </Branch>
+      </Branch>
+      <Branch Name="Cisco Firepower Threat Defense Software" Type="Product Name">
+        <FullProductName ProductID="CVRFPID-220203">Cisco Firepower Threat Defense Software </FullProductName>
+      </Branch>
+    </Branch>
+    <Relationship RelatesToProductReference="CVRFPID-277392" RelationType="Installed On" ProductReference="CVRFPID-282695">
+      <FullProductName ProductID="CVRFPID-282695:277392">Cisco Firepower Threat Defense Software 7.0.0 when installed on Cisco Firepower 2100 Series</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277393" RelationType="Installed On" ProductReference="CVRFPID-282695">
+      <FullProductName ProductID="CVRFPID-282695:277393">Cisco Firepower Threat Defense Software 7.0.0 when installed on Cisco Firepower 1000 Series</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277438" RelationType="Installed On" ProductReference="CVRFPID-282695">
+      <FullProductName ProductID="CVRFPID-282695:277438">Cisco Firepower Threat Defense Software 7.0.0 when installed on Cisco 3000 Series Industrial Security Appliances (ISA)</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277440" RelationType="Installed On" ProductReference="CVRFPID-282695">
+      <FullProductName ProductID="CVRFPID-282695:277440">Cisco Firepower Threat Defense Software 7.0.0 when installed on Cisco Firepower 9000 Series</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277441" RelationType="Installed On" ProductReference="CVRFPID-282695">
+      <FullProductName ProductID="CVRFPID-282695:277441">Cisco Firepower Threat Defense Software 7.0.0 when installed on Cisco Firepower 4100 Series</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277464" RelationType="Installed On" ProductReference="CVRFPID-282695">
+      <FullProductName ProductID="CVRFPID-282695:277464">Cisco Firepower Threat Defense Software 7.0.0 when installed on Cisco Firepower NGFW Virtual</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277392" RelationType="Installed On" ProductReference="CVRFPID-284277">
+      <FullProductName ProductID="CVRFPID-284277:277392">Cisco Firepower Threat Defense Software 7.0.0.1 when installed on Cisco Firepower 2100 Series</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277393" RelationType="Installed On" ProductReference="CVRFPID-284277">
+      <FullProductName ProductID="CVRFPID-284277:277393">Cisco Firepower Threat Defense Software 7.0.0.1 when installed on Cisco Firepower 1000 Series</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277438" RelationType="Installed On" ProductReference="CVRFPID-284277">
+      <FullProductName ProductID="CVRFPID-284277:277438">Cisco Firepower Threat Defense Software 7.0.0.1 when installed on Cisco 3000 Series Industrial Security Appliances (ISA)</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277440" RelationType="Installed On" ProductReference="CVRFPID-284277">
+      <FullProductName ProductID="CVRFPID-284277:277440">Cisco Firepower Threat Defense Software 7.0.0.1 when installed on Cisco Firepower 9000 Series</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277441" RelationType="Installed On" ProductReference="CVRFPID-284277">
+      <FullProductName ProductID="CVRFPID-284277:277441">Cisco Firepower Threat Defense Software 7.0.0.1 when installed on Cisco Firepower 4100 Series</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277464" RelationType="Installed On" ProductReference="CVRFPID-284277">
+      <FullProductName ProductID="CVRFPID-284277:277464">Cisco Firepower Threat Defense Software 7.0.0.1 when installed on Cisco Firepower NGFW Virtual</FullProductName>
+    </Relationship>
+  </ProductTree>
+  <Vulnerability Ordinal="1" xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln">
+    <Title>vuln-CVE-2021-40116</Title>
+    <ID SystemName="Cisco Bug ID">CSCvy66065</ID>
+    <Notes>
+      <Note Title="Cisco Bug IDs" Type="Other" Ordinal="1">CSCvy66065</Note>
+      <Note Title="Affected Product Comprehensiveness" Type="Other" Ordinal="2">Complete.</Note>
+    </Notes>
+    <CVE>CVE-2021-40116</CVE>
+    <ProductStatuses>
+      <Status Type="Known Affected">
+        <ProductID>CVRFPID-220203</ProductID>
+        <ProductID>CVRFPID-282695:277392</ProductID>
+        <ProductID>CVRFPID-282695:277393</ProductID>
+        <ProductID>CVRFPID-282695:277438</ProductID>
+        <ProductID>CVRFPID-282695:277440</ProductID>
+        <ProductID>CVRFPID-282695:277441</ProductID>
+        <ProductID>CVRFPID-282695:277464</ProductID>
+        <ProductID>CVRFPID-284277:277392</ProductID>
+        <ProductID>CVRFPID-284277:277393</ProductID>
+        <ProductID>CVRFPID-284277:277438</ProductID>
+        <ProductID>CVRFPID-284277:277440</ProductID>
+        <ProductID>CVRFPID-284277:277441</ProductID>
+        <ProductID>CVRFPID-284277:277464</ProductID>
+      </Status>
+    </ProductStatuses>
+    <CVSSScoreSets>
+      <ScoreSetV3>
+        <BaseScoreV3>8.6</BaseScoreV3>
+        <VectorV3>CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:N/I:N/A:H</VectorV3>
+      </ScoreSetV3>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Workaround">
+        <Description>There are workarounds that addresses this vulnerability.
+
+While these workarounds have been deployed and were proven successful in a test environment, customers should determine the applicability and effectiveness in their own environment and under their own use conditions. Customers should be aware that any workaround or mitigation that is implemented may negatively impact the functionality or performance of their network based on intrinsic customer deployment scenarios and limitations. Customers should not deploy any workarounds or mitigations before first evaluating the applicability to their own environment and any impact to such environment.
+
+Note: There are three workarounds for this issue. Implementing any of the workarounds is sufficient. Two or more workarounds do not need to be implemented.
+
+Workaround 1
+
+The first workaround is to change the Snort inspection engine from Snort3 to Snort2.  See the configuration guide or support team for potential impacts. The steps to revert to Snort2 are as follows:
+
+Go to the FMC web interface
+Go to the Devices page and then the Device Management tab.
+Select the FTD device to check. Choose Edit.
+Go to the Device tab and look in the Inspection Engine area.
+Choose the Revert to Snort2 option.
+
+Workaround 2
+
+The second workaround is to change all rule actions from Block with Reset or Interactive Block with Reset to another action. See the configuration guide or support team for potential impacts. The steps are as follows:
+
+Go to the FMC web interface
+Go to the Policies page and then the Access Control tab.
+Select the Policy to review and choose Edit.
+Find a rule that has a Reset action and choose Edit.
+Change the action from Block with Reset or Interactive Block with Reset to another action.
+
+Workaround 3
+
+The third workaround involves narrowing the firewall reset rule to block TCP and/or UDP directly or by specifying an application that runs over UDP or TCP. See the Vulnerable Products ["#vp"] section for examples of vulnerable and non-vulnerable configurations.</Description>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference Type="Self">
+        <URL>https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-snort-dos-RywH7ezM</URL>
+        <Description>Multiple Cisco Products Snort Rule Denial of Service Vulnerability</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+</cvrf:cvrfdoc>

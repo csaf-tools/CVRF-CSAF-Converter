@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cvrfdoc xmlns="http://www.icasi.org/CVRF/schema/cvrf/1.1" xmlns:cvrf="http://www.icasi.org/CVRF/schema/cvrf/1.1">
+  <DocumentTitle xml:lang="en">Security update for clamav</DocumentTitle>
+  <DocumentType>SUSE Patch</DocumentType>
+  <DocumentPublisher Type="Vendor">
+    <ContactDetails>security@suse.de</ContactDetails>
+    <IssuingAuthority>SUSE Security Team</IssuingAuthority>
+  </DocumentPublisher>
+  <DocumentTracking>
+    <Identification>
+      <ID>openSUSE-SU-2015:0906-1</ID>
+    </Identification>
+    <Status>Final</Status>
+    <Version>1</Version>
+    <RevisionHistory>
+      <Revision>
+        <Number>1</Number>
+        <Date>2015-05-11T15:59:23Z</Date>
+        <Description>current</Description>
+      </Revision>
+    </RevisionHistory>
+    <InitialReleaseDate>2015-05-11T15:59:23Z</InitialReleaseDate>
+    <CurrentReleaseDate>2015-05-11T15:59:23Z</CurrentReleaseDate>
+    <Generator>
+      <Engine>cve-database/bin/generate-cvrf.pl</Engine>
+      <Date>2017-02-24T01:00:00Z</Date>
+    </Generator>
+  </DocumentTracking>
+  <DocumentNotes>
+    <Note Title="Topic" Type="Summary" Ordinal="1" xml:lang="en">Security update for clamav</Note>
+    <Note Title="Details" Type="General" Ordinal="2" xml:lang="en">The ClamAV antivirus engine was updated to version 0.98.7 to fix several security and non-security issues.
+
+The following vulnerabilities were fixed (bsc#929192):
+* CVE-2015-2170: Fix crash in upx decoder with crafted file. Discovered and patch supplied by Sebastian Andrzej Siewior.
+* CVE-2015-2221: Fix infinite loop condition on crafted y0da cryptor file. Identified and patch suggested by Sebastian Andrzej Siewior.
+* CVE-2015-2222: Fix crash on crafted petite packed file. Reported and patch supplied by Sebastian Andrzej Siewior.
+* CVE-2015-2668: Fix an infinite loop condition on a crafted 'xz' archive file. This was reported by Dimitri Kirchner and Goulven Guiheux.
+* CVE-2015-2305: Apply upstream patch for possible heap overflow in Henry Spencer's regex library.
+
+The following bugfixes were applyed (bsc#929192):
+* Fix false negatives on files within iso9660 containers. This issue was reported by Minzhuan Gong.
+* Fix a couple crashes on crafted upack packed file. Identified and patches supplied by Sebastian Andrzej Siewior.
+* Fix a crash during algorithmic detection on crafted PE file. Identified and patch supplied by Sebastian Andrzej Siewior.
+* Fix compilation error after ./configure --disable-pthreads. Reported and fix suggested by John E. Krokes.
+* Fix segfault scanning certain HTML files. Reported with sample by Kai Risku.
+* Improve detections within xar/pkg files.
+* Improvements to PDF processing: decryption, escape sequence handling, and file property collection.
+* Scanning/analysis of additional Microsoft Office 2003 XML format.
+</Note>
+    <Note Title="Terms of Use" Type="Legal Disclaimer" Ordinal="3" xml:lang="en">The CVRF data is provided by SUSE under the Creative Commons License 4.0 with Attribution for Non-Commercial usage (CC-BY-NC-4.0).</Note>
+  </DocumentNotes>
+  <DocumentDistribution xml:lang="en">Copyright SUSE LLC under the Creative Commons License 4.0 with Attribution for Non-Commercial usage (CC-BY-NC-4.0)</DocumentDistribution>
+  <DocumentReferences>
+    <Reference Type="Self">
+      <URL>https://lists.opensuse.org/opensuse-updates/2015-05/msg00024.html</URL>
+      <Description>E-Mail link for openSUSE-SU-2015:0906-1</Description>
+    </Reference>
+    <Reference Type="Self">
+      <URL>https://www.suse.com/support/security/rating/</URL>
+      <Description>SUSE Security Ratings</Description>
+    </Reference>
+  </DocumentReferences>
+  <ProductTree xmlns="http://www.icasi.org/CVRF/schema/prod/1.1">
+    <Branch Type="Product Version" Name="clamav-0.98.7-33.1">
+      <FullProductName ProductID="clamav-0.98.7-33.1">clamav-0.98.7-33.1</FullProductName>
+    </Branch>
+  </ProductTree>
+  <Vulnerability xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1" Ordinal="1">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">The upx decoder in ClamAV before 0.98.7 allows remote attackers to cause a denial of service (crash) via a crafted file.</Note>
+    </Notes>
+    <CVE>CVE-2015-2170</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed"/>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-updates/2015-05/msg00024.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-2170.html</URL>
+        <Description>CVE-2015-2170</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/1040662</URL>
+        <Description>SUSE Bug 1040662</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/921950</URL>
+        <Description>SUSE Bug 921950</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/922560</URL>
+        <Description>SUSE Bug 922560</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/929192</URL>
+        <Description>SUSE Bug 929192</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+  <Vulnerability xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1" Ordinal="2">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">ClamAV before 0.98.7 allows remote attackers to cause a denial of service (infinite loop) via a crafted y0da cryptor file.</Note>
+    </Notes>
+    <CVE>CVE-2015-2221</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed"/>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-updates/2015-05/msg00024.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-2221.html</URL>
+        <Description>CVE-2015-2221</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/1040662</URL>
+        <Description>SUSE Bug 1040662</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/921950</URL>
+        <Description>SUSE Bug 921950</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/922560</URL>
+        <Description>SUSE Bug 922560</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/929192</URL>
+        <Description>SUSE Bug 929192</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+  <Vulnerability xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1" Ordinal="3">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">ClamAV before 0.98.7 allows remote attackers to cause a denial of service (crash) via a crafted petite packed file.</Note>
+    </Notes>
+    <CVE>CVE-2015-2222</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed"/>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-updates/2015-05/msg00024.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-2222.html</URL>
+        <Description>CVE-2015-2222</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/1040662</URL>
+        <Description>SUSE Bug 1040662</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/921950</URL>
+        <Description>SUSE Bug 921950</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/922560</URL>
+        <Description>SUSE Bug 922560</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/929192</URL>
+        <Description>SUSE Bug 929192</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+  <Vulnerability xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1" Ordinal="4">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">Integer overflow in the regcomp implementation in the Henry Spencer BSD regex library (aka rxspencer) alpha3.8.g5 on 32-bit platforms, as used in NetBSD through 6.1.5 and other products, might allow context-dependent attackers to execute arbitrary code via a large regular expression that leads to a heap-based buffer overflow.</Note>
+    </Notes>
+    <CVE>CVE-2015-2305</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed"/>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-updates/2015-05/msg00024.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-2305.html</URL>
+        <Description>CVE-2015-2305</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/1040662</URL>
+        <Description>SUSE Bug 1040662</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/921950</URL>
+        <Description>SUSE Bug 921950</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/922022</URL>
+        <Description>SUSE Bug 922022</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/922028</URL>
+        <Description>SUSE Bug 922028</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/922030</URL>
+        <Description>SUSE Bug 922030</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/922043</URL>
+        <Description>SUSE Bug 922043</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/922560</URL>
+        <Description>SUSE Bug 922560</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/922567</URL>
+        <Description>SUSE Bug 922567</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/929192</URL>
+        <Description>SUSE Bug 929192</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/980366</URL>
+        <Description>SUSE Bug 980366</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+  <Vulnerability xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1" Ordinal="5">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">ClamAV before 0.98.7 allows remote attackers to cause a denial of service (infinite loop) via a crafted xz archive file.</Note>
+    </Notes>
+    <CVE>CVE-2015-2668</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed"/>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-updates/2015-05/msg00024.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-2668.html</URL>
+        <Description>CVE-2015-2668</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/1040662</URL>
+        <Description>SUSE Bug 1040662</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/921950</URL>
+        <Description>SUSE Bug 921950</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/922560</URL>
+        <Description>SUSE Bug 922560</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/929192</URL>
+        <Description>SUSE Bug 929192</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+</cvrfdoc>

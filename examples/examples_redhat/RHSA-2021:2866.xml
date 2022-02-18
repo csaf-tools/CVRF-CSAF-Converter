@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cvrfdoc xmlns="http://www.icasi.org/CVRF/schema/cvrf/1.1" xmlns:cvrf="http://www.icasi.org/CVRF/schema/cvrf/1.1">
+  <DocumentTitle xml:lang="en">Red Hat Security Advisory: RHV Engine and Host Common Packages security update [ovirt-4.4.7]</DocumentTitle>
+  <DocumentType>Security Advisory</DocumentType>
+  <DocumentPublisher Type="Vendor">
+    <ContactDetails>secalert@redhat.com</ContactDetails>
+    <IssuingAuthority>Red Hat Product Security</IssuingAuthority>
+  </DocumentPublisher>
+  <DocumentTracking>
+    <Identification><ID>RHSA-2021:2866</ID></Identification>
+    <Status>Final</Status>
+    <Version>1</Version>
+    <RevisionHistory>
+       <Revision>
+         <Number>1</Number>
+         <Date>2021-07-22T15:29:00Z</Date>
+         <Description>Current version</Description>
+       </Revision>
+    </RevisionHistory>
+    <InitialReleaseDate>2021-07-22T15:29:00Z</InitialReleaseDate>
+    <CurrentReleaseDate>2021-07-22T15:29:00Z</CurrentReleaseDate>
+    <Generator>
+      <Engine>Red Hat SDEngine 3.0.0</Engine>
+      <Date>2021-08-23T04:57:00Z</Date>
+    </Generator>
+  </DocumentTracking>
+  <DocumentNotes>
+    <Note Title="Topic" Type="Summary" Ordinal="1" xml:lang="en">
+Updated dependency packages for ovirt-engine and ovirt-host that fix several bugs and add various enhancements are now available.
+
+Red Hat Product Security has rated this update as having a security impact of Low. A Common Vulnerability Scoring System (CVSS) base score, which gives a detailed severity rating, is available for each vulnerability from the CVE link(s) in the References section.
+    </Note>
+    <Note Title="Details" Type="General" Ordinal="2" xml:lang="en">
+The ovirt-engine package provides the Red Hat Virtualization Manager, a centralized management platform that allows system administrators to view and manage virtual machines. The Manager provides a comprehensive range of features including search capabilities, resource management, live migrations, and virtual infrastructure provisioning.
+
+The ovirt-ansible-hosted-engine-setup package provides an Ansible role for deploying Red Hat Virtualization Hosted-Engine.
+
+Security Fix(es):
+
+* ansible: multiple modules expose secured values (CVE-2021-3447)
+
+For more details about the security issue(s), including the impact, a CVSS score, acknowledgments, and other related information, refer to the CVE page(s) listed in the References section.
+
+Bug Fix(es):
+
+* Previously, using an Ansible playbook to fetch virtual machine disk information was slow and incomplete, while the REST API fetched the information faster and more completely.
+In this release, the Ansible playbook fetches the information completely and quickly. (BZ#1947902)
+
+* The ovirt-engine in RHV 4.4.7 requires an Ansible 2.9.z version later than Ansible 2.9.20. 
+In addition, in RHV 4.4.7 the version limitation for a specific Ansible version has been removed, the correct Ansible version is now shipped in the RHV subscription channels. (BZ#1966145)
+    </Note>
+    <Note Title="Terms of Use" Ordinal="3" Type="Legal Disclaimer" xml:lang="en">This content is licensed under the Creative Commons Attribution 4.0 International License (https://creativecommons.org/licenses/by/4.0/). If you distribute this content, or a modified version of it, you must provide attribution to Red Hat Inc. and provide a link to the original.</Note>
+  </DocumentNotes>
+  <DocumentDistribution xml:lang="en">Copyright © 2021 Red Hat, Inc. All rights reserved.</DocumentDistribution>
+  <AggregateSeverity Namespace="https://access.redhat.com/security/updates/classification/">Low</AggregateSeverity>
+  <DocumentReferences>
+    <Reference Type="Self">
+       <URL>https://access.redhat.com/errata/RHSA-2021:2866</URL>
+       <Description>https://access.redhat.com/errata/RHSA-2021:2866</Description>
+    </Reference>
+    <Reference Type="External">
+       <URL>https://access.redhat.com/security/updates/classification/#low</URL>
+       <Description>https://access.redhat.com/security/updates/classification/#low</Description>
+    </Reference>
+  </DocumentReferences>
+  <ProductTree xmlns="http://www.icasi.org/CVRF/schema/prod/1.1">
+    <Branch Type="Product Family" Name="Red Hat Virtualization">
+      <Branch Type="Product Name" Name="Red Hat Virtualization 4 Tools for Red Hat Enterprise Linux 8">
+        <FullProductName ProductID="8Base-RHV-4-Tools" CPE="cpe:/o:redhat:enterprise_linux:8::hypervisor">Red Hat Virtualization 4 Tools for Red Hat Enterprise Linux 8</FullProductName>
+      </Branch>
+      <Branch Type="Product Name" Name="Red Hat Virtualization 4 Management Agent for RHEL 7 Hosts">
+        <FullProductName ProductID="8Base-RHV-Agents-4" CPE="cpe:/o:redhat:enterprise_linux:8::hypervisor">Red Hat Virtualization 4 Management Agent for RHEL 7 Hosts</FullProductName>
+      </Branch>
+      <Branch Type="Product Name" Name="RHEL-8-RHEV-S-4.4 - Red Hat Virtualization Engine 4.4">
+        <FullProductName ProductID="8Base-RHV-S-4.4" CPE="cpe:/a:redhat:rhev_manager:4.4:el8">RHEL-8-RHEV-S-4.4 - Red Hat Virtualization Engine 4.4</FullProductName>
+      </Branch>
+    </Branch>
+    <Branch Type="Product Version" Name="ansible-0:2.9.21-1.el8ae">
+      <FullProductName ProductID="ansible-0:2.9.21-1.el8ae" CPE="cpe:/a:redhat:rhev_manager:4.4:el8">ansible-2.9.21-1.el8ae.src.rpm</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="ovirt-ansible-collection-0:1.5.3-1.el8ev">
+      <FullProductName ProductID="ovirt-ansible-collection-0:1.5.3-1.el8ev" CPE="cpe:/a:redhat:rhev_manager:4.4:el8">ovirt-ansible-collection-1.5.3-1.el8ev.src.rpm</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="ovirt-imageio-0:2.2.0-1.el8ev">
+      <FullProductName ProductID="ovirt-imageio-0:2.2.0-1.el8ev" CPE="cpe:/a:redhat:rhev_manager:4.4:el8">ovirt-imageio-2.2.0-1.el8ev.src.rpm</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="ovirt-openvswitch-0:2.11-1.el8ev">
+      <FullProductName ProductID="ovirt-openvswitch-0:2.11-1.el8ev" CPE="cpe:/a:redhat:rhev_manager:4.4:el8">ovirt-openvswitch-2.11-1.el8ev.src.rpm</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="python-ovirt-engine-sdk4-0:4.4.13-1.el8ev">
+      <FullProductName ProductID="python-ovirt-engine-sdk4-0:4.4.13-1.el8ev" CPE="cpe:/a:redhat:rhev_manager:4.4:el8">python-ovirt-engine-sdk4-4.4.13-1.el8ev.src.rpm</FullProductName>
+    </Branch>
+    <Relationship ProductReference="ovirt-ansible-collection-0:1.5.3-1.el8ev" RelationType="Default Component Of" RelatesToProductReference="8Base-RHV-4-Tools">
+      <FullProductName ProductID="8Base-RHV-4-Tools:ovirt-ansible-collection-0:1.5.3-1.el8ev" CPE="cpe:/o:redhat:enterprise_linux:8::hypervisor">ovirt-ansible-collection-0:1.5.3-1.el8ev as a component of Red Hat Virtualization 4 Tools for Red Hat Enterprise Linux 8</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="python-ovirt-engine-sdk4-0:4.4.13-1.el8ev" RelationType="Default Component Of" RelatesToProductReference="8Base-RHV-4-Tools">
+      <FullProductName ProductID="8Base-RHV-4-Tools:python-ovirt-engine-sdk4-0:4.4.13-1.el8ev" CPE="cpe:/o:redhat:enterprise_linux:8::hypervisor">python-ovirt-engine-sdk4-0:4.4.13-1.el8ev as a component of Red Hat Virtualization 4 Tools for Red Hat Enterprise Linux 8</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="ansible-0:2.9.21-1.el8ae" RelationType="Default Component Of" RelatesToProductReference="8Base-RHV-Agents-4">
+      <FullProductName ProductID="8Base-RHV-Agents-4:ansible-0:2.9.21-1.el8ae" CPE="cpe:/o:redhat:enterprise_linux:8::hypervisor">ansible-0:2.9.21-1.el8ae as a component of Red Hat Virtualization 4 Management Agent for RHEL 7 Hosts</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="ovirt-ansible-collection-0:1.5.3-1.el8ev" RelationType="Default Component Of" RelatesToProductReference="8Base-RHV-Agents-4">
+      <FullProductName ProductID="8Base-RHV-Agents-4:ovirt-ansible-collection-0:1.5.3-1.el8ev" CPE="cpe:/o:redhat:enterprise_linux:8::hypervisor">ovirt-ansible-collection-0:1.5.3-1.el8ev as a component of Red Hat Virtualization 4 Management Agent for RHEL 7 Hosts</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="ovirt-imageio-0:2.2.0-1.el8ev" RelationType="Default Component Of" RelatesToProductReference="8Base-RHV-Agents-4">
+      <FullProductName ProductID="8Base-RHV-Agents-4:ovirt-imageio-0:2.2.0-1.el8ev" CPE="cpe:/o:redhat:enterprise_linux:8::hypervisor">ovirt-imageio-0:2.2.0-1.el8ev as a component of Red Hat Virtualization 4 Management Agent for RHEL 7 Hosts</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="ovirt-openvswitch-0:2.11-1.el8ev" RelationType="Default Component Of" RelatesToProductReference="8Base-RHV-Agents-4">
+      <FullProductName ProductID="8Base-RHV-Agents-4:ovirt-openvswitch-0:2.11-1.el8ev" CPE="cpe:/o:redhat:enterprise_linux:8::hypervisor">ovirt-openvswitch-0:2.11-1.el8ev as a component of Red Hat Virtualization 4 Management Agent for RHEL 7 Hosts</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="python-ovirt-engine-sdk4-0:4.4.13-1.el8ev" RelationType="Default Component Of" RelatesToProductReference="8Base-RHV-Agents-4">
+      <FullProductName ProductID="8Base-RHV-Agents-4:python-ovirt-engine-sdk4-0:4.4.13-1.el8ev" CPE="cpe:/o:redhat:enterprise_linux:8::hypervisor">python-ovirt-engine-sdk4-0:4.4.13-1.el8ev as a component of Red Hat Virtualization 4 Management Agent for RHEL 7 Hosts</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="ansible-0:2.9.21-1.el8ae" RelationType="Default Component Of" RelatesToProductReference="8Base-RHV-S-4.4">
+      <FullProductName ProductID="8Base-RHV-S-4.4:ansible-0:2.9.21-1.el8ae" CPE="cpe:/a:redhat:rhev_manager:4.4:el8">ansible-0:2.9.21-1.el8ae as a component of RHEL-8-RHEV-S-4.4 - Red Hat Virtualization Engine 4.4</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="ovirt-ansible-collection-0:1.5.3-1.el8ev" RelationType="Default Component Of" RelatesToProductReference="8Base-RHV-S-4.4">
+      <FullProductName ProductID="8Base-RHV-S-4.4:ovirt-ansible-collection-0:1.5.3-1.el8ev" CPE="cpe:/a:redhat:rhev_manager:4.4:el8">ovirt-ansible-collection-0:1.5.3-1.el8ev as a component of RHEL-8-RHEV-S-4.4 - Red Hat Virtualization Engine 4.4</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="ovirt-imageio-0:2.2.0-1.el8ev" RelationType="Default Component Of" RelatesToProductReference="8Base-RHV-S-4.4">
+      <FullProductName ProductID="8Base-RHV-S-4.4:ovirt-imageio-0:2.2.0-1.el8ev" CPE="cpe:/a:redhat:rhev_manager:4.4:el8">ovirt-imageio-0:2.2.0-1.el8ev as a component of RHEL-8-RHEV-S-4.4 - Red Hat Virtualization Engine 4.4</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="ovirt-openvswitch-0:2.11-1.el8ev" RelationType="Default Component Of" RelatesToProductReference="8Base-RHV-S-4.4">
+      <FullProductName ProductID="8Base-RHV-S-4.4:ovirt-openvswitch-0:2.11-1.el8ev" CPE="cpe:/a:redhat:rhev_manager:4.4:el8">ovirt-openvswitch-0:2.11-1.el8ev as a component of RHEL-8-RHEV-S-4.4 - Red Hat Virtualization Engine 4.4</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="python-ovirt-engine-sdk4-0:4.4.13-1.el8ev" RelationType="Default Component Of" RelatesToProductReference="8Base-RHV-S-4.4">
+      <FullProductName ProductID="8Base-RHV-S-4.4:python-ovirt-engine-sdk4-0:4.4.13-1.el8ev" CPE="cpe:/a:redhat:rhev_manager:4.4:el8">python-ovirt-engine-sdk4-0:4.4.13-1.el8ev as a component of RHEL-8-RHEV-S-4.4 - Red Hat Virtualization Engine 4.4</FullProductName>
+    </Relationship>
+  </ProductTree>
+
+  <Vulnerability Ordinal="1" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">ansible: multiple modules expose secured values</Note></Notes>
+    <DiscoveryDate>2021-03-11T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-03-16T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-3447</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>8Base-RHV-4-Tools:ovirt-ansible-collection-0:1.5.3-1.el8ev</ProductID>
+      <ProductID>8Base-RHV-4-Tools:python-ovirt-engine-sdk4-0:4.4.13-1.el8ev</ProductID>
+      <ProductID>8Base-RHV-Agents-4:ansible-0:2.9.21-1.el8ae</ProductID>
+      <ProductID>8Base-RHV-Agents-4:ovirt-ansible-collection-0:1.5.3-1.el8ev</ProductID>
+      <ProductID>8Base-RHV-Agents-4:ovirt-imageio-0:2.2.0-1.el8ev</ProductID>
+      <ProductID>8Base-RHV-Agents-4:ovirt-openvswitch-0:2.11-1.el8ev</ProductID>
+      <ProductID>8Base-RHV-Agents-4:python-ovirt-engine-sdk4-0:4.4.13-1.el8ev</ProductID>
+      <ProductID>8Base-RHV-S-4.4:ansible-0:2.9.21-1.el8ae</ProductID>
+      <ProductID>8Base-RHV-S-4.4:ovirt-ansible-collection-0:1.5.3-1.el8ev</ProductID>
+      <ProductID>8Base-RHV-S-4.4:ovirt-imageio-0:2.2.0-1.el8ev</ProductID>
+      <ProductID>8Base-RHV-S-4.4:ovirt-openvswitch-0:2.11-1.el8ev</ProductID>
+      <ProductID>8Base-RHV-S-4.4:python-ovirt-engine-sdk4-0:4.4.13-1.el8ev</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/2974891
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:2866</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-3447</URL>
+        <Description>CVE-2021-3447</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1939349</URL>
+        <Description>bz#1939349: CVE-2021-3447 ansible: multiple modules expose secured values</Description>
+      </Reference>
+    </References>
+    <Acknowledgments><Acknowledgment><Description>This issue was discovered by Chen Zhi (Zhejiang University), Felix Fontein, and John Barker (Red Hat).</Description></Acknowledgment></Acknowledgments>
+  </Vulnerability>
+</cvrfdoc>

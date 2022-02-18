@@ -1,0 +1,552 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cvrf:cvrfdoc xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:cvrf-common="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/common" xmlns:cvrf="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/cvrf">
+  <cvrf:DocumentTitle>Multiple Cisco Products Snort TCP Fast Open File Policy Bypass Vulnerability</cvrf:DocumentTitle>
+  <cvrf:DocumentType>Cisco Security Advisory</cvrf:DocumentType>
+  <cvrf:DocumentPublisher Type="Vendor">
+    <cvrf:ContactDetails>Emergency Support:
++1 877 228 7302 (toll-free within North America)
++1 408 525 6532 (International direct-dial)
+Non-emergency Support:
+Email: psirt@cisco.com
+Support requests that are received via e-mail are typically acknowledged within 48 hours.</cvrf:ContactDetails>
+    <cvrf:IssuingAuthority>Cisco product security incident response is the responsibility of the Cisco Product Security Incident Response Team (PSIRT). The Cisco PSIRT is a dedicated, global team that manages the receipt, investigation, and public reporting of security vulnerability information that is related to Cisco products and networks. The on-call Cisco PSIRT works 24x7 with Cisco customers, independent security researchers, consultants, industry organizations, and other vendors to identify possible security issues with Cisco products and networks.
+More information can be found in Cisco Security Vulnerability Policy available at http://www.cisco.com/web/about/security/psirt/security_vulnerability_policy.html</cvrf:IssuingAuthority>
+  </cvrf:DocumentPublisher>
+  <cvrf:DocumentTracking>
+    <cvrf:Identification>
+      <cvrf:ID>cisco-sa-snort-tfo-bypass-MmzZrtes</cvrf:ID>
+    </cvrf:Identification>
+    <cvrf:Status>Final</cvrf:Status>
+    <cvrf:Version>1.2</cvrf:Version>
+    <cvrf:RevisionHistory>
+      <cvrf:Revision>
+        <cvrf:Number>1.0</cvrf:Number>
+        <cvrf:Date>2021-01-11T17:52:35</cvrf:Date>
+        <cvrf:Description>Initial public release.</cvrf:Description>
+      </cvrf:Revision>
+      <cvrf:Revision>
+        <cvrf:Number>1.1</cvrf:Number>
+        <cvrf:Date>2021-03-30T14:15:12</cvrf:Date>
+        <cvrf:Description>Added FTD and Snort 3 information. Added Catalyst products. Added Cisco FTD Release 6.7.0 workaround.</cvrf:Description>
+      </cvrf:Revision>
+      <cvrf:Revision>
+        <cvrf:Number>1.2</cvrf:Number>
+        <cvrf:Date>2021-05-20T13:27:19</cvrf:Date>
+        <cvrf:Description>Updated fixed release information for FTD.</cvrf:Description>
+      </cvrf:Revision>
+    </cvrf:RevisionHistory>
+    <cvrf:InitialReleaseDate>2021-01-13T16:00:00</cvrf:InitialReleaseDate>
+    <cvrf:CurrentReleaseDate>2021-05-20T13:27:19</cvrf:CurrentReleaseDate>
+    <cvrf:Generator>
+      <cvrf:Engine>TVCE</cvrf:Engine>
+    </cvrf:Generator>
+  </cvrf:DocumentTracking>
+  <cvrf:DocumentNotes>
+    <cvrf:Note Title="Summary" Type="Summary" Ordinal="1">Multiple Cisco products are affected by a vulnerability with TCP Fast Open (TFO) when used in conjunction with the Snort detection engine that could allow an unauthenticated, remote attacker to bypass a configured file policy for HTTP.
+
+The vulnerability is due to incorrect detection of the HTTP payload if it is contained at least partially within the TFO connection handshake. An attacker could exploit this vulnerability by sending crafted TFO packets with an HTTP payload through an affected device. A successful exploit could allow the attacker to bypass configured file policy for HTTP packets and deliver a malicious payload.
+
+Cisco has released software updates that address this vulnerability. There are workarounds that address this vulnerability.
+
+This advisory is available at the following link:
+https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-snort-tfo-bypass-MmzZrtes ["https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-snort-tfo-bypass-MmzZrtes"]</cvrf:Note>
+    <cvrf:Note Title="Vulnerable Products" Type="General" Ordinal="2">At the time of publication, this vulnerability affected the following Cisco products if they were running releases earlier than the first fixed release of Cisco software:
+
+3000 Series Industrial Security Appliances (ISAs)
+Firepower Threat Defense (FTD) Software
+Meraki MX64
+Meraki MX64W
+Meraki MX67
+Meraki MX67C
+Meraki MX67W
+Meraki MX68
+Meraki MX68CW
+Meraki MX68W
+Meraki MX84
+Meraki MX100
+Meraki MX250
+Meraki MX450
+
+At the time of publication, this vulnerability affected the following Cisco products if they were running releases earlier than the first fixed release of Cisco UTD Snort IPS Engine Software for IOS XE or Cisco UTD Engine for IOS XE SD-WAN Software:
+
+1000 Series Integrated Services Routers (ISRs)
+4000 Series ISRs
+Catalyst 8000V Edge Software
+Catalyst 8200 Series Edge Platforms
+Catalyst 8300 Series Edge Platforms
+Catalyst 8500L Edge Platforms
+Cloud Services Router 1000V (CSR 1000V)
+Integrated Services Virtual Router (ISRv)
+
+For information about which Cisco software releases are vulnerable, see the Fixed Software ["https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-snort_filepolbypass-m4X5DgOP#fs"] section of this advisory. See the Details section in the bug ID(s) at the top of this advisory for the most complete and current information.
+
+At the time of publication, this vulnerability also affected all open source Snort project releases earlier than Release 2.9.17. For more information about open source Snort project releases, see the Snort website ["https://www.snort.org/"].</cvrf:Note>
+    <cvrf:Note Title="Products Confirmed Not Vulnerable" Type="General" Ordinal="3">Only products listed in the Vulnerable Products ["#vp"] section of this advisory are known to be affected by this vulnerability.
+
+Cisco has confirmed that this vulnerability does not affect the following Cisco products:
+
+Adaptive Security Appliance (ASA) Software
+Catalyst 8500 Edge Platforms
+Firepower Management Center (FMC) Software
+Meraki vMX100 Virtual Appliances
+Meraki Z1 Appliances
+Meraki Z3 Series Appliances</cvrf:Note>
+    <cvrf:Note Title="Workarounds" Type="General" Ordinal="4">While this workaround has been deployed and was proven successful in a test environment, customers should determine the applicability and effectiveness in their own environment and under their own use conditions. Customers should be aware that any workaround or mitigation that is implemented may negatively impact the functionality or performance of their network based on intrinsic customer deployment scenarios and limitations. Customers should not deploy any workarounds or mitigations before first evaluating the applicability to their own environment and any impact to such environment.
+  Cisco FTD Software Release 6.7.0
+For Cisco FTD Software Release 6.7.0, as a workaround when the Snort 3 configuration option is enabled, an administrator may enable built-in rule 129:2 in the intrusion policy and set the action to Drop instead of Alert.
+
+Use the following steps to verify that the Snort 3 configuration option is enabled. For more details, see the Switching Between Snort 2 and Snort 3 ["https://www.cisco.com/c/en/us/td/docs/security/firepower/670/fdm/fptd-fdm-config-guide-670/fptd-fdm-intrusion.html#id_120089"] section of the Cisco Firepower Threat Defense Configuration Guide for Firepower Device Manager, Version 6.7.
+
+Log in to the Admin Portal for the FTD deployment.
+Navigate to Policies &gt; Intrusion.
+Look for the Snort Version line above the table. The current version is the first number in the complete version number. For example, 2.9.17-95 is a Snort 2 version.
+
+Use the following steps to enable rule 129:2. For more details, see the Changing Intrusion Rule Actions (Snort 3) ["https://www.cisco.com/c/en/us/td/docs/security/firepower/670/fdm/fptd-fdm-config-guide-670/fptd-fdm-intrusion.html#Cisco_Task_in_List_GUI.dita_54aef253-02ab-4044-88ea-cea05249686d"] section of the Cisco Firepower Threat Defense Configuration Guide for Firepower Device Manager, Version 6.7.
+
+Log in to the Admin Portal for the FTD deployment.
+Navigate to Policies &gt; Intrusion.
+Choose any system-provided policy, such as Balanced Security and Connectivity.
+Search for rule 129:2.
+Check the check box next to the rule to enable it.
+Choose Drop from the Action drop-down list.
+Add the intrusion policy to a rule in Access control policy.</cvrf:Note>
+    <cvrf:Note Title="Fixed Software" Type="General" Ordinal="5">When considering software upgrades ["https://tools.cisco.com/security/center/resources/security_vulnerability_policy.html#fixes"], customers are advised to regularly consult the advisories for Cisco products, which are available from the Cisco Security Advisories page ["https://www.cisco.com/go/psirt"], to determine exposure and a complete upgrade solution.
+
+In all cases, customers should ensure that the devices to be upgraded contain sufficient memory and confirm that current hardware and software configurations will continue to be supported properly by the new release. If the information is not clear, customers are advised to contact the Cisco Technical Assistance Center (TAC) or their contracted maintenance providers.
+      Fixed Releases
+At the time of publication, the following fixed release information was available for the products that were affected by this vulnerability. See the Details section in the bug ID(s) at the top of this advisory for the most complete and current information. For more information about open source Snort project releases, see the Snort website ["https://www.snort.org/"].
+
+Cisco FTD releases 6.4.0.12, 6.6.3, and 6.7.0 and later contained the fix for this vulnerability when the Snort 2 option is configured.
+Cisco FTD releases 6.7.0 and later were not vulnerable when the Snort 3 option is configured and rule 129:2 is enabled to drop traffic.
+Cisco UTD Snort IPS Engine Software for IOS XE 16.12.5, 17.3.3, and 17.4.11 contained the fix for this vulnerability.
+Cisco had not released software updates that address this vulnerability for Meraki MX Series Security Appliances.
+The open source Snort project releases 2.9.17 and later contained the fix for this vulnerability.
+The open source Snort project releases 3.0 and later were not vulnerable when rule 129:2 is enabled to drop traffic.
+
+1. Starting in 17.2.1, Cisco IOS XE and IOS XE SD-WAN use the same image file.</cvrf:Note>
+    <cvrf:Note Title="Vulnerability Policy" Type="General" Ordinal="6">To learn about Cisco security vulnerability disclosure policies and publications, see the Security Vulnerability Policy ["http://www.cisco.com/web/about/security/psirt/security_vulnerability_policy.html"]. This document also contains instructions for obtaining fixed software and receiving security vulnerability information from Cisco.</cvrf:Note>
+    <cvrf:Note Title="Exploitation and Public Announcements" Type="General" Ordinal="7">The Cisco Product Security Incident Response Team (PSIRT) is not aware of any public announcements or malicious use of the vulnerability that is described in this advisory.</cvrf:Note>
+    <cvrf:Note Title="Source" Type="General" Ordinal="8">Cisco would like to thank Guillermo Muñoz Mozos of BBVA for reporting this vulnerability.</cvrf:Note>
+    <cvrf:Note Title="Legal Disclaimer" Type="Legal Disclaimer" Ordinal="9">THIS DOCUMENT IS PROVIDED ON AN "AS IS" BASIS AND DOES NOT IMPLY ANY KIND OF GUARANTEE OR WARRANTY, INCLUDING THE WARRANTIES OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR USE. YOUR USE OF THE INFORMATION ON THE DOCUMENT OR MATERIALS LINKED FROM THE DOCUMENT IS AT YOUR OWN RISK. CISCO RESERVES THE RIGHT TO CHANGE OR UPDATE THIS DOCUMENT AT ANY TIME.
+
+A standalone copy or paraphrase of the text of this document that omits the distribution URL is an uncontrolled copy and may lack important information or contain factual errors. The information in this document is intended for end users of Cisco products.</cvrf:Note>
+  </cvrf:DocumentNotes>
+  <cvrf:DocumentReferences>
+    <cvrf:Reference Type="Self">
+      <cvrf:URL>https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-snort-tfo-bypass-MmzZrtes</cvrf:URL>
+      <cvrf:Description>Multiple Cisco Products Snort TCP Fast Open File Policy Bypass Vulnerability</cvrf:Description>
+    </cvrf:Reference>
+  </cvrf:DocumentReferences>
+  <ProductTree xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/prod">
+    <Branch Name="Cisco" Type="Vendor">
+      <Branch Name="Cisco Firepower Threat Defense Software" Type="Product Name">
+        <Branch Name="6.0" Type="Product Version">
+          <Branch Name="6.0.1.1" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-232931">Cisco Firepower Threat Defense Software 6.0.1.1</FullProductName>
+          </Branch>
+          <Branch Name="6.0.1.2" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-232932">Cisco Firepower Threat Defense Software 6.0.1.2</FullProductName>
+          </Branch>
+          <Branch Name="6.0.1.4" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-232933">Cisco Firepower Threat Defense Software 6.0.1.4</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="6.1" Type="Product Version">
+          <Branch Name="6.1.0.4" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-232922">Cisco Firepower Threat Defense Software 6.1.0.4</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="6.2" Type="Product Version">
+          <Branch Name="6.2.0" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-225827">Cisco Firepower Threat Defense Software 6.2.0</FullProductName>
+          </Branch>
+          <Branch Name="6.2.2.1" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-232929">Cisco Firepower Threat Defense Software 6.2.2.1</FullProductName>
+          </Branch>
+          <Branch Name="6.2.2.2" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-232930">Cisco Firepower Threat Defense Software 6.2.2.2</FullProductName>
+          </Branch>
+          <Branch Name="6.2.3" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-233334">Cisco Firepower Threat Defense Software 6.2.3</FullProductName>
+          </Branch>
+          <Branch Name="6.2.3.1" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-245396">Cisco Firepower Threat Defense Software 6.2.3.1</FullProductName>
+          </Branch>
+          <Branch Name="6.2.3.5" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-247894">Cisco Firepower Threat Defense Software 6.2.3.5</FullProductName>
+          </Branch>
+          <Branch Name="6.2.3.6" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-248816">Cisco Firepower Threat Defense Software 6.2.3.6</FullProductName>
+          </Branch>
+          <Branch Name="6.2.3.7" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-251756">Cisco Firepower Threat Defense Software 6.2.3.7</FullProductName>
+          </Branch>
+          <Branch Name="6.2.3.10" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-258063">Cisco Firepower Threat Defense Software 6.2.3.10</FullProductName>
+          </Branch>
+          <Branch Name="6.2.3.11" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-258064">Cisco Firepower Threat Defense Software 6.2.3.11</FullProductName>
+          </Branch>
+          <Branch Name="6.2.3.9" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-258915">Cisco Firepower Threat Defense Software 6.2.3.9</FullProductName>
+          </Branch>
+          <Branch Name="6.2.3.15" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-275475">Cisco Firepower Threat Defense Software 6.2.3.15</FullProductName>
+          </Branch>
+          <Branch Name="6.2.3.16" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-278503">Cisco Firepower Threat Defense Software 6.2.3.16</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="6.6" Type="Product Version">
+          <Branch Name="6.6.0" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-225862">Cisco Firepower Threat Defense Software 6.6.0</FullProductName>
+          </Branch>
+          <Branch Name="6.6.0.1" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-278885">Cisco Firepower Threat Defense Software 6.6.0.1</FullProductName>
+          </Branch>
+          <Branch Name="6.6.3" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-281981">Cisco Firepower Threat Defense Software 6.6.3</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="6.3" Type="Product Version">
+          <Branch Name="6.3.0" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-251759">Cisco Firepower Threat Defense Software 6.3.0</FullProductName>
+          </Branch>
+          <Branch Name="6.3.0.1" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-258065">Cisco Firepower Threat Defense Software 6.3.0.1</FullProductName>
+          </Branch>
+          <Branch Name="6.3.0.2" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-258066">Cisco Firepower Threat Defense Software 6.3.0.2</FullProductName>
+          </Branch>
+          <Branch Name="6.3.0.3" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-265012">Cisco Firepower Threat Defense Software 6.3.0.3</FullProductName>
+          </Branch>
+          <Branch Name="6.3.0.4" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-268603">Cisco Firepower Threat Defense Software 6.3.0.4</FullProductName>
+          </Branch>
+          <Branch Name="6.3.0.5" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-276932">Cisco Firepower Threat Defense Software 6.3.0.5</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="6.4" Type="Product Version">
+          <Branch Name="6.4.0.5" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-276373">Cisco Firepower Threat Defense Software 6.4.0.5</FullProductName>
+          </Branch>
+          <Branch Name="6.4.0.6" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-276933">Cisco Firepower Threat Defense Software 6.4.0.6</FullProductName>
+          </Branch>
+          <Branch Name="6.4.0.7" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-276934">Cisco Firepower Threat Defense Software 6.4.0.7</FullProductName>
+          </Branch>
+          <Branch Name="6.4.0.10" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-280662">Cisco Firepower Threat Defense Software 6.4.0.10</FullProductName>
+          </Branch>
+          <Branch Name="6.4.0.11" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-280999">Cisco Firepower Threat Defense Software 6.4.0.11</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="6.5" Type="Product Version">
+          <Branch Name="6.5.0" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-265566">Cisco Firepower Threat Defense Software 6.5.0</FullProductName>
+          </Branch>
+          <Branch Name="6.5.0.2" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-276936">Cisco Firepower Threat Defense Software 6.5.0.2</FullProductName>
+          </Branch>
+          <Branch Name="6.5.0.4" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-276937">Cisco Firepower Threat Defense Software 6.5.0.4</FullProductName>
+          </Branch>
+          <Branch Name="6.5.0.1" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-277327">Cisco Firepower Threat Defense Software 6.5.0.1</FullProductName>
+          </Branch>
+          <Branch Name="6.5.0.3" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-277328">Cisco Firepower Threat Defense Software 6.5.0.3</FullProductName>
+          </Branch>
+          <Branch Name="6.5.0.5" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-281578">Cisco Firepower Threat Defense Software 6.5.0.5</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="Cisco Firepower 2100 Series" Type="Product Name">
+          <FullProductName ProductID="CVRFPID-277392">Cisco Firepower Threat Defense Software Platform Cisco Firepower 2100 Series</FullProductName>
+        </Branch>
+        <Branch Name="Cisco Firepower 1000 Series" Type="Product Name">
+          <FullProductName ProductID="CVRFPID-277393">Cisco Firepower Threat Defense Software Platform Cisco Firepower 1000 Series</FullProductName>
+        </Branch>
+        <Branch Name="Cisco 3000 Series Industrial Security Appliances (ISA)" Type="Product Name">
+          <FullProductName ProductID="CVRFPID-277438">Cisco Firepower Threat Defense Software Platform Cisco 3000 Series Industrial Security Appliances (ISA)</FullProductName>
+        </Branch>
+        <Branch Name="Cisco Firepower 9000 Series" Type="Product Name">
+          <FullProductName ProductID="CVRFPID-277440">Cisco Firepower Threat Defense Software Platform Cisco Firepower 9000 Series</FullProductName>
+        </Branch>
+        <Branch Name="Cisco Firepower 4100 Series" Type="Product Name">
+          <FullProductName ProductID="CVRFPID-277441">Cisco Firepower Threat Defense Software Platform Cisco Firepower 4100 Series</FullProductName>
+        </Branch>
+        <Branch Name="Cisco Firepower NGFW Virtual" Type="Product Name">
+          <FullProductName ProductID="CVRFPID-277464">Cisco Firepower Threat Defense Software Platform Cisco Firepower NGFW Virtual</FullProductName>
+        </Branch>
+      </Branch>
+      <Branch Name="Cisco Firepower Threat Defense Software" Type="Product Name">
+        <FullProductName ProductID="CVRFPID-220203">Cisco Firepower Threat Defense Software </FullProductName>
+      </Branch>
+      <Branch Name="Cisco UTD SNORT IPS Engine Software" Type="Product Name">
+        <FullProductName ProductID="CVRFPID-279755">Cisco UTD SNORT IPS Engine Software </FullProductName>
+      </Branch>
+    </Branch>
+    <Relationship RelatesToProductReference="CVRFPID-277440" RelationType="Installed On" ProductReference="CVRFPID-232931">
+      <FullProductName ProductID="CVRFPID-232931:277440">Cisco Firepower Threat Defense Software 6.0.1.1 when installed on Cisco Firepower 9000 Series</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277464" RelationType="Installed On" ProductReference="CVRFPID-232932">
+      <FullProductName ProductID="CVRFPID-232932:277464">Cisco Firepower Threat Defense Software 6.0.1.2 when installed on Cisco Firepower NGFW Virtual</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277440" RelationType="Installed On" ProductReference="CVRFPID-232933">
+      <FullProductName ProductID="CVRFPID-232933:277440">Cisco Firepower Threat Defense Software 6.0.1.4 when installed on Cisco Firepower 9000 Series</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277464" RelationType="Installed On" ProductReference="CVRFPID-232933">
+      <FullProductName ProductID="CVRFPID-232933:277464">Cisco Firepower Threat Defense Software 6.0.1.4 when installed on Cisco Firepower NGFW Virtual</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277440" RelationType="Installed On" ProductReference="CVRFPID-232922">
+      <FullProductName ProductID="CVRFPID-232922:277440">Cisco Firepower Threat Defense Software 6.1.0.4 when installed on Cisco Firepower 9000 Series</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277464" RelationType="Installed On" ProductReference="CVRFPID-225827">
+      <FullProductName ProductID="CVRFPID-225827:277464">Cisco Firepower Threat Defense Software 6.2.0 when installed on Cisco Firepower NGFW Virtual</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277441" RelationType="Installed On" ProductReference="CVRFPID-232929">
+      <FullProductName ProductID="CVRFPID-232929:277441">Cisco Firepower Threat Defense Software 6.2.2.1 when installed on Cisco Firepower 4100 Series</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277464" RelationType="Installed On" ProductReference="CVRFPID-232929">
+      <FullProductName ProductID="CVRFPID-232929:277464">Cisco Firepower Threat Defense Software 6.2.2.1 when installed on Cisco Firepower NGFW Virtual</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277464" RelationType="Installed On" ProductReference="CVRFPID-232930">
+      <FullProductName ProductID="CVRFPID-232930:277464">Cisco Firepower Threat Defense Software 6.2.2.2 when installed on Cisco Firepower NGFW Virtual</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277441" RelationType="Installed On" ProductReference="CVRFPID-233334">
+      <FullProductName ProductID="CVRFPID-233334:277441">Cisco Firepower Threat Defense Software 6.2.3 when installed on Cisco Firepower 4100 Series</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277440" RelationType="Installed On" ProductReference="CVRFPID-245396">
+      <FullProductName ProductID="CVRFPID-245396:277440">Cisco Firepower Threat Defense Software 6.2.3.1 when installed on Cisco Firepower 9000 Series</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277464" RelationType="Installed On" ProductReference="CVRFPID-247894">
+      <FullProductName ProductID="CVRFPID-247894:277464">Cisco Firepower Threat Defense Software 6.2.3.5 when installed on Cisco Firepower NGFW Virtual</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277441" RelationType="Installed On" ProductReference="CVRFPID-248816">
+      <FullProductName ProductID="CVRFPID-248816:277441">Cisco Firepower Threat Defense Software 6.2.3.6 when installed on Cisco Firepower 4100 Series</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277464" RelationType="Installed On" ProductReference="CVRFPID-251756">
+      <FullProductName ProductID="CVRFPID-251756:277464">Cisco Firepower Threat Defense Software 6.2.3.7 when installed on Cisco Firepower NGFW Virtual</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277438" RelationType="Installed On" ProductReference="CVRFPID-258063">
+      <FullProductName ProductID="CVRFPID-258063:277438">Cisco Firepower Threat Defense Software 6.2.3.10 when installed on Cisco 3000 Series Industrial Security Appliances (ISA)</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277464" RelationType="Installed On" ProductReference="CVRFPID-258063">
+      <FullProductName ProductID="CVRFPID-258063:277464">Cisco Firepower Threat Defense Software 6.2.3.10 when installed on Cisco Firepower NGFW Virtual</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277440" RelationType="Installed On" ProductReference="CVRFPID-258064">
+      <FullProductName ProductID="CVRFPID-258064:277440">Cisco Firepower Threat Defense Software 6.2.3.11 when installed on Cisco Firepower 9000 Series</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277438" RelationType="Installed On" ProductReference="CVRFPID-258915">
+      <FullProductName ProductID="CVRFPID-258915:277438">Cisco Firepower Threat Defense Software 6.2.3.9 when installed on Cisco 3000 Series Industrial Security Appliances (ISA)</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277392" RelationType="Installed On" ProductReference="CVRFPID-275475">
+      <FullProductName ProductID="CVRFPID-275475:277392">Cisco Firepower Threat Defense Software 6.2.3.15 when installed on Cisco Firepower 2100 Series</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277464" RelationType="Installed On" ProductReference="CVRFPID-278503">
+      <FullProductName ProductID="CVRFPID-278503:277464">Cisco Firepower Threat Defense Software 6.2.3.16 when installed on Cisco Firepower NGFW Virtual</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277393" RelationType="Installed On" ProductReference="CVRFPID-225862">
+      <FullProductName ProductID="CVRFPID-225862:277393">Cisco Firepower Threat Defense Software 6.6.0 when installed on Cisco Firepower 1000 Series</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277441" RelationType="Installed On" ProductReference="CVRFPID-225862">
+      <FullProductName ProductID="CVRFPID-225862:277441">Cisco Firepower Threat Defense Software 6.6.0 when installed on Cisco Firepower 4100 Series</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277438" RelationType="Installed On" ProductReference="CVRFPID-278885">
+      <FullProductName ProductID="CVRFPID-278885:277438">Cisco Firepower Threat Defense Software 6.6.0.1 when installed on Cisco 3000 Series Industrial Security Appliances (ISA)</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277438" RelationType="Installed On" ProductReference="CVRFPID-281981">
+      <FullProductName ProductID="CVRFPID-281981:277438">Cisco Firepower Threat Defense Software 6.6.3 when installed on Cisco 3000 Series Industrial Security Appliances (ISA)</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277438" RelationType="Installed On" ProductReference="CVRFPID-251759">
+      <FullProductName ProductID="CVRFPID-251759:277438">Cisco Firepower Threat Defense Software 6.3.0 when installed on Cisco 3000 Series Industrial Security Appliances (ISA)</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277464" RelationType="Installed On" ProductReference="CVRFPID-251759">
+      <FullProductName ProductID="CVRFPID-251759:277464">Cisco Firepower Threat Defense Software 6.3.0 when installed on Cisco Firepower NGFW Virtual</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277441" RelationType="Installed On" ProductReference="CVRFPID-258065">
+      <FullProductName ProductID="CVRFPID-258065:277441">Cisco Firepower Threat Defense Software 6.3.0.1 when installed on Cisco Firepower 4100 Series</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277438" RelationType="Installed On" ProductReference="CVRFPID-258066">
+      <FullProductName ProductID="CVRFPID-258066:277438">Cisco Firepower Threat Defense Software 6.3.0.2 when installed on Cisco 3000 Series Industrial Security Appliances (ISA)</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277441" RelationType="Installed On" ProductReference="CVRFPID-258066">
+      <FullProductName ProductID="CVRFPID-258066:277441">Cisco Firepower Threat Defense Software 6.3.0.2 when installed on Cisco Firepower 4100 Series</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277438" RelationType="Installed On" ProductReference="CVRFPID-265012">
+      <FullProductName ProductID="CVRFPID-265012:277438">Cisco Firepower Threat Defense Software 6.3.0.3 when installed on Cisco 3000 Series Industrial Security Appliances (ISA)</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277440" RelationType="Installed On" ProductReference="CVRFPID-265012">
+      <FullProductName ProductID="CVRFPID-265012:277440">Cisco Firepower Threat Defense Software 6.3.0.3 when installed on Cisco Firepower 9000 Series</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277392" RelationType="Installed On" ProductReference="CVRFPID-268603">
+      <FullProductName ProductID="CVRFPID-268603:277392">Cisco Firepower Threat Defense Software 6.3.0.4 when installed on Cisco Firepower 2100 Series</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277464" RelationType="Installed On" ProductReference="CVRFPID-276932">
+      <FullProductName ProductID="CVRFPID-276932:277464">Cisco Firepower Threat Defense Software 6.3.0.5 when installed on Cisco Firepower NGFW Virtual</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277464" RelationType="Installed On" ProductReference="CVRFPID-276373">
+      <FullProductName ProductID="CVRFPID-276373:277464">Cisco Firepower Threat Defense Software 6.4.0.5 when installed on Cisco Firepower NGFW Virtual</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277438" RelationType="Installed On" ProductReference="CVRFPID-276933">
+      <FullProductName ProductID="CVRFPID-276933:277438">Cisco Firepower Threat Defense Software 6.4.0.6 when installed on Cisco 3000 Series Industrial Security Appliances (ISA)</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277438" RelationType="Installed On" ProductReference="CVRFPID-276934">
+      <FullProductName ProductID="CVRFPID-276934:277438">Cisco Firepower Threat Defense Software 6.4.0.7 when installed on Cisco 3000 Series Industrial Security Appliances (ISA)</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277464" RelationType="Installed On" ProductReference="CVRFPID-276934">
+      <FullProductName ProductID="CVRFPID-276934:277464">Cisco Firepower Threat Defense Software 6.4.0.7 when installed on Cisco Firepower NGFW Virtual</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277392" RelationType="Installed On" ProductReference="CVRFPID-280662">
+      <FullProductName ProductID="CVRFPID-280662:277392">Cisco Firepower Threat Defense Software 6.4.0.10 when installed on Cisco Firepower 2100 Series</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277393" RelationType="Installed On" ProductReference="CVRFPID-280662">
+      <FullProductName ProductID="CVRFPID-280662:277393">Cisco Firepower Threat Defense Software 6.4.0.10 when installed on Cisco Firepower 1000 Series</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277438" RelationType="Installed On" ProductReference="CVRFPID-280662">
+      <FullProductName ProductID="CVRFPID-280662:277438">Cisco Firepower Threat Defense Software 6.4.0.10 when installed on Cisco 3000 Series Industrial Security Appliances (ISA)</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277440" RelationType="Installed On" ProductReference="CVRFPID-280662">
+      <FullProductName ProductID="CVRFPID-280662:277440">Cisco Firepower Threat Defense Software 6.4.0.10 when installed on Cisco Firepower 9000 Series</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277441" RelationType="Installed On" ProductReference="CVRFPID-280662">
+      <FullProductName ProductID="CVRFPID-280662:277441">Cisco Firepower Threat Defense Software 6.4.0.10 when installed on Cisco Firepower 4100 Series</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277464" RelationType="Installed On" ProductReference="CVRFPID-280662">
+      <FullProductName ProductID="CVRFPID-280662:277464">Cisco Firepower Threat Defense Software 6.4.0.10 when installed on Cisco Firepower NGFW Virtual</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277438" RelationType="Installed On" ProductReference="CVRFPID-280999">
+      <FullProductName ProductID="CVRFPID-280999:277438">Cisco Firepower Threat Defense Software 6.4.0.11 when installed on Cisco 3000 Series Industrial Security Appliances (ISA)</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277438" RelationType="Installed On" ProductReference="CVRFPID-265566">
+      <FullProductName ProductID="CVRFPID-265566:277438">Cisco Firepower Threat Defense Software 6.5.0 when installed on Cisco 3000 Series Industrial Security Appliances (ISA)</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277438" RelationType="Installed On" ProductReference="CVRFPID-276936">
+      <FullProductName ProductID="CVRFPID-276936:277438">Cisco Firepower Threat Defense Software 6.5.0.2 when installed on Cisco 3000 Series Industrial Security Appliances (ISA)</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277392" RelationType="Installed On" ProductReference="CVRFPID-276937">
+      <FullProductName ProductID="CVRFPID-276937:277392">Cisco Firepower Threat Defense Software 6.5.0.4 when installed on Cisco Firepower 2100 Series</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277440" RelationType="Installed On" ProductReference="CVRFPID-276937">
+      <FullProductName ProductID="CVRFPID-276937:277440">Cisco Firepower Threat Defense Software 6.5.0.4 when installed on Cisco Firepower 9000 Series</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277464" RelationType="Installed On" ProductReference="CVRFPID-276937">
+      <FullProductName ProductID="CVRFPID-276937:277464">Cisco Firepower Threat Defense Software 6.5.0.4 when installed on Cisco Firepower NGFW Virtual</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277440" RelationType="Installed On" ProductReference="CVRFPID-277327">
+      <FullProductName ProductID="CVRFPID-277327:277440">Cisco Firepower Threat Defense Software 6.5.0.1 when installed on Cisco Firepower 9000 Series</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277464" RelationType="Installed On" ProductReference="CVRFPID-277328">
+      <FullProductName ProductID="CVRFPID-277328:277464">Cisco Firepower Threat Defense Software 6.5.0.3 when installed on Cisco Firepower NGFW Virtual</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277438" RelationType="Installed On" ProductReference="CVRFPID-281578">
+      <FullProductName ProductID="CVRFPID-281578:277438">Cisco Firepower Threat Defense Software 6.5.0.5 when installed on Cisco 3000 Series Industrial Security Appliances (ISA)</FullProductName>
+    </Relationship>
+  </ProductTree>
+  <Vulnerability Ordinal="1" xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln">
+    <Title>vuln-CVE-2021-1224</Title>
+    <ID SystemName="Cisco Bug ID">CSCvt43136</ID>
+    <Notes>
+      <Note Title="Cisco Bug IDs" Type="Other" Ordinal="1">CSCvt43136,CSCvu88532</Note>
+    </Notes>
+    <CVE>CVE-2021-1224</CVE>
+    <ProductStatuses>
+      <Status Type="Known Affected">
+        <ProductID>CVRFPID-220203</ProductID>
+        <ProductID>CVRFPID-225827:277464</ProductID>
+        <ProductID>CVRFPID-225862:277393</ProductID>
+        <ProductID>CVRFPID-225862:277441</ProductID>
+        <ProductID>CVRFPID-232922:277440</ProductID>
+        <ProductID>CVRFPID-232929:277441</ProductID>
+        <ProductID>CVRFPID-232929:277464</ProductID>
+        <ProductID>CVRFPID-232930:277464</ProductID>
+        <ProductID>CVRFPID-232931:277440</ProductID>
+        <ProductID>CVRFPID-232932:277464</ProductID>
+        <ProductID>CVRFPID-232933:277440</ProductID>
+        <ProductID>CVRFPID-232933:277464</ProductID>
+        <ProductID>CVRFPID-233334:277441</ProductID>
+        <ProductID>CVRFPID-245396:277440</ProductID>
+        <ProductID>CVRFPID-247894:277464</ProductID>
+        <ProductID>CVRFPID-248816:277441</ProductID>
+        <ProductID>CVRFPID-251756:277464</ProductID>
+        <ProductID>CVRFPID-251759:277438</ProductID>
+        <ProductID>CVRFPID-251759:277464</ProductID>
+        <ProductID>CVRFPID-258063:277438</ProductID>
+        <ProductID>CVRFPID-258063:277464</ProductID>
+        <ProductID>CVRFPID-258064:277440</ProductID>
+        <ProductID>CVRFPID-258065:277441</ProductID>
+        <ProductID>CVRFPID-258066:277438</ProductID>
+        <ProductID>CVRFPID-258066:277441</ProductID>
+        <ProductID>CVRFPID-258915:277438</ProductID>
+        <ProductID>CVRFPID-265012:277438</ProductID>
+        <ProductID>CVRFPID-265012:277440</ProductID>
+        <ProductID>CVRFPID-265566:277438</ProductID>
+        <ProductID>CVRFPID-268603:277392</ProductID>
+        <ProductID>CVRFPID-275475:277392</ProductID>
+        <ProductID>CVRFPID-276373:277464</ProductID>
+        <ProductID>CVRFPID-276932:277464</ProductID>
+        <ProductID>CVRFPID-276933:277438</ProductID>
+        <ProductID>CVRFPID-276934:277438</ProductID>
+        <ProductID>CVRFPID-276934:277464</ProductID>
+        <ProductID>CVRFPID-276936:277438</ProductID>
+        <ProductID>CVRFPID-276937:277392</ProductID>
+        <ProductID>CVRFPID-276937:277440</ProductID>
+        <ProductID>CVRFPID-276937:277464</ProductID>
+        <ProductID>CVRFPID-277327:277440</ProductID>
+        <ProductID>CVRFPID-277328:277464</ProductID>
+        <ProductID>CVRFPID-278503:277464</ProductID>
+        <ProductID>CVRFPID-278885:277438</ProductID>
+        <ProductID>CVRFPID-280662:277392</ProductID>
+        <ProductID>CVRFPID-280662:277393</ProductID>
+        <ProductID>CVRFPID-280662:277438</ProductID>
+        <ProductID>CVRFPID-280662:277440</ProductID>
+        <ProductID>CVRFPID-280662:277441</ProductID>
+        <ProductID>CVRFPID-280662:277464</ProductID>
+        <ProductID>CVRFPID-280999:277438</ProductID>
+        <ProductID>CVRFPID-281578:277438</ProductID>
+        <ProductID>CVRFPID-281981:277438</ProductID>
+        <ProductID>CVRFPID-279755</ProductID>
+      </Status>
+    </ProductStatuses>
+    <CVSSScoreSets>
+      <ScoreSetV3>
+        <BaseScoreV3>5.8</BaseScoreV3>
+        <VectorV3>CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:N/I:L/A:N</VectorV3>
+      </ScoreSetV3>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Workaround">
+        <Description>While this workaround has been deployed and was proven successful in a test environment, customers should determine the applicability and effectiveness in their own environment and under their own use conditions. Customers should be aware that any workaround or mitigation that is implemented may negatively impact the functionality or performance of their network based on intrinsic customer deployment scenarios and limitations. Customers should not deploy any workarounds or mitigations before first evaluating the applicability to their own environment and any impact to such environment.
+  Cisco FTD Software Release 6.7.0
+For Cisco FTD Software Release 6.7.0, as a workaround when the Snort 3 configuration option is enabled, an administrator may enable built-in rule 129:2 in the intrusion policy and set the action to Drop instead of Alert.
+
+Use the following steps to verify that the Snort 3 configuration option is enabled. For more details, see the Switching Between Snort 2 and Snort 3 ["https://www.cisco.com/c/en/us/td/docs/security/firepower/670/fdm/fptd-fdm-config-guide-670/fptd-fdm-intrusion.html#id_120089"] section of the Cisco Firepower Threat Defense Configuration Guide for Firepower Device Manager, Version 6.7.
+
+Log in to the Admin Portal for the FTD deployment.
+Navigate to Policies &gt; Intrusion.
+Look for the Snort Version line above the table. The current version is the first number in the complete version number. For example, 2.9.17-95 is a Snort 2 version.
+
+Use the following steps to enable rule 129:2. For more details, see the Changing Intrusion Rule Actions (Snort 3) ["https://www.cisco.com/c/en/us/td/docs/security/firepower/670/fdm/fptd-fdm-config-guide-670/fptd-fdm-intrusion.html#Cisco_Task_in_List_GUI.dita_54aef253-02ab-4044-88ea-cea05249686d"] section of the Cisco Firepower Threat Defense Configuration Guide for Firepower Device Manager, Version 6.7.
+
+Log in to the Admin Portal for the FTD deployment.
+Navigate to Policies &gt; Intrusion.
+Choose any system-provided policy, such as Balanced Security and Connectivity.
+Search for rule 129:2.
+Check the check box next to the rule to enable it.
+Choose Drop from the Action drop-down list.
+Add the intrusion policy to a rule in Access control policy.</Description>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference Type="Self">
+        <URL>https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-snort-tfo-bypass-MmzZrtes</URL>
+        <Description>Multiple Cisco Products Snort TCP Fast Open File Policy Bypass Vulnerability</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+</cvrf:cvrfdoc>

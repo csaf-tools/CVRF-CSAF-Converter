@@ -1,0 +1,742 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cvrfdoc xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:cpe="http://cpe.mitre.org/language/2.0" xmlns:cvrf="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/cvrf" xmlns:cvrf-common="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/common" xmlns:cvssv2="http://scap.nist.gov/schema/cvss-v2/1.0" xmlns:cvssv3="https://www.first.org/cvss/cvss-v3.0.xsd" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:ns0="http://purl.org/dc/elements/1.1/" xmlns:prod="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/prod" xmlns:scap-core="http://scap.nist.gov/schema/scap-core/1.0" xmlns:sch="http://purl.oclc.org/dsdl/schematron" xmlns:vuln="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/cvrf">
+  <DocumentTitle xml:lang="en">Security update for the Linux Kernel</DocumentTitle>
+  <DocumentType>SUSE Patch</DocumentType>
+  <DocumentPublisher Type="Vendor">
+    <ContactDetails>security@suse.de</ContactDetails>
+    <IssuingAuthority>SUSE Security Team</IssuingAuthority>
+  </DocumentPublisher>
+  <DocumentTracking>
+    <Identification>
+      <ID>openSUSE-SU-2015:2232-1</ID>
+    </Identification>
+    <Status>Final</Status>
+    <Version>1</Version>
+    <RevisionHistory>
+      <Revision>
+        <Number>1</Number>
+        <Date>2015-12-08T17:03:46Z</Date>
+        <Description>current</Description>
+      </Revision>
+    </RevisionHistory>
+    <InitialReleaseDate>2015-12-08T17:03:46Z</InitialReleaseDate>
+    <CurrentReleaseDate>2015-12-08T17:03:46Z</CurrentReleaseDate>
+    <Generator>
+      <Engine>cve-database/bin/generate-cvrf.pl</Engine>
+      <Date>2017-02-24T01:00:00Z</Date>
+    </Generator>
+  </DocumentTracking>
+  <DocumentNotes>
+    <Note Title="Topic" Type="Summary" Ordinal="1" xml:lang="en">Security update for the Linux Kernel</Note>
+    <Note Title="Details" Type="General" Ordinal="2" xml:lang="en">
+The Linux Kernel was updated to 4.1.13 and fixes the following issues: 
+
+Security issues fixed:
+- CVE-2015-8104: The KVM subsystem in the Linux kernel allowed guest OS
+  users to cause a denial of service (host OS panic or hang) by triggering
+  many #DB (aka Debug) exceptions, related to svm.c.
+- CVE-2015-5307: The KVM subsystem in the Linux kernel allowed guest OS
+  users to cause a denial of service (host OS panic or hang) by triggering
+  many #AC (aka Alignment Check) exceptions, related to svm.c and vmx.c.
+- CVE-2015-6937: The __rds_conn_create function in net/rds/connection.c
+  in the Linux kernel allowed local users to cause a denial of service
+  (NULL pointer dereference and system crash) or possibly have unspecified
+  other impact by using a socket that was not properly bound.
+- CVE-2015-7990: A local denial of service due to an incomplete fix of
+  CVE-2015-6937 could lead to crashes (local denial of service).
+- CVE-2015-7799: The slhc_init function in drivers/net/slip/slhc.c in
+  the Linux kernel did not ensure that certain slot numbers are valid,
+  which allowed local users to cause a denial of service (NULL pointer
+  dereference and system crash) via a crafted PPPIOCSMAXCID ioctl call.
+
+Bugs fixed:
+- alsa: hda - apply hp headphone fixups more generically (boo#954876).
+- alsa: hda - add fixup for acer aspire one cloudbook 14 (boo#954876).
+- alsa: hda - fix headphone noise after dell xps 13 resume back
+  from S3 (boo#954876).
+- alsa: hda - fix noise on dell latitude e6440 (boo#954876).
+- alsa: hda/hdmi - apply skylake fix-ups to broxton display codec
+  (boo#954647).
+- alsa: hda - add codec id for broxton display audio codec
+  (boo#954647).
+- alsa: hda/realtek - dell xps one alc3260 speaker no sound
+  after resume back (boo#954647).
+- alsa: hda - yet another fix for dell headset mic with alc3266
+  (boo#954647).
+- alsa: hda - fix dell laptop for internal mic/headset mic
+  (boo#954647).
+- alsa: hda - remove no physical connection pins from pin_quirk
+  table (boo#954647).
+- alsa: hda - add pin quirk for the headset mic jack detection
+  on Dell laptop (boo#954647).
+- alsa: hda - fix the headset mic that will not work on dell
+  desktop machine (boo#954647).
+- alsa: hda - remove one pin from alc292_standard_pins
+  (boo#954647).
+- alsa: hda - add dock support for thinkpad w541 (17aa:2211)
+  (boo#954647).
+- alsa: hda/realtek: enable hp amp and mute led on hp folio 9480m
+  [v3] (boo#954647).
+- alsa: hda/realtek - support dell headset mode for alc298
+  (boo#954647).
+- alsa: hda/realtek - support headset mode for alc298
+  (boo#954647).
+
+- x86/evtchn: make use of physdevop_map_pirq.
+- blktap: also call blkif_disconnect() when frontend switched to closed (boo#952976).
+- blktap: refine mm tracking (boo#952976).
+- update xen patches to linux 4.1.13.
+
+- Backport arm64 patches from sle12-sp1-arm.
+- Backport pci-ea patches
+- Enable drm_ast driver
+- Fix thunderx edac store function
+
+- Update arm64 config files.
+  Align arm64 vanilla configuration with default.
+
+- rtlwifi: rtl8821ae: fix lockups on boot (boo#944978).
+
+- ethernet/atheros/alx: add killer e2400 device id (boo#955363).
+
+- drm/i915: don't override output type for ddi hdmi (boo#955190).
+- drm/i915: set best_encoder field of connector_state also when
+  disabling (boo#955190).
+- drm/i915: add hotplug activation period to hotplug update mask
+  (boo#955365).
+- drm/i915: avoid race of intel_crt_detect_hotplug() with hpd
+  interrupt, v2 (boo#955365).
+- drm/i915: shut up gen8+ sde irq dmesg noise (boo#954757).
+
+- ipv6: fix tunnel error handling (boo#952579).
+
+- Update config files (boo#951533).
+
+- iwlwifi: add new pci ids for the 8260 series (boo#954421).
+- iwlwifi: edit the 3165 series and 8000 series pci ids
+  (boo#954421).
+
+- x86/efi-bgrt: switch pr_err() to pr_debug() for invalid bgrt
+  (boo#953559).
+
+- x86/tsc: let high latency pit fail fast in quick_pit_calibrate()
+  (boo#953717).
+
+- Backport arm64 patches from sle12-sp1-arm branch
+  Backports to fix Seattle xgbe driver.
+  Fix EL2 page table for systems with high amount of memory. Needed for KVM to work.
+  Convert WARN_ON in numa implementation to pr_warn.
+- input: elantech - add fujitsu lifebook u745 to force crc_enabled
+  (boo#883192).
+</Note>
+    <Note Title="Terms of Use" Type="Legal Disclaimer" Ordinal="3" xml:lang="en">The CVRF data is provided by SUSE under the Creative Commons License 4.0 with Attribution for Non-Commercial usage (CC-BY-NC-4.0).</Note>
+  </DocumentNotes>
+  <DocumentDistribution xml:lang="en">Copyright SUSE LLC under the Creative Commons License 4.0 with Attribution for Non-Commercial usage (CC-BY-NC-4.0)</DocumentDistribution>
+  <DocumentReferences>
+    <Reference Type="Self">
+      <URL>https://lists.opensuse.org/opensuse-updates/2015-12/msg00039.html</URL>
+      <Description>E-Mail link for openSUSE-SU-2015:2232-1</Description>
+    </Reference>
+    <Reference Type="Self">
+      <URL>https://www.suse.com/support/security/rating/</URL>
+      <Description>SUSE Security Ratings</Description>
+    </Reference>
+  </DocumentReferences>
+  <ProductTree xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/prod">
+    <Branch Type="Product Family" Name="openSUSE Leap 42.1">
+      <Branch Type="Product Name" Name="openSUSE Leap 42.1">
+        <FullProductName ProductID="openSUSE Leap 42.1">openSUSE Leap 42.1</FullProductName>
+      </Branch>
+    </Branch>
+    <Branch Type="Product Version" Name="kernel-debug-4.1.13-5.1">
+      <FullProductName ProductID="kernel-debug-4.1.13-5.1">kernel-debug-4.1.13-5.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="kernel-debug-base-4.1.13-5.1">
+      <FullProductName ProductID="kernel-debug-base-4.1.13-5.1">kernel-debug-base-4.1.13-5.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="kernel-debug-devel-4.1.13-5.1">
+      <FullProductName ProductID="kernel-debug-devel-4.1.13-5.1">kernel-debug-devel-4.1.13-5.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="kernel-default-4.1.13-5.1">
+      <FullProductName ProductID="kernel-default-4.1.13-5.1">kernel-default-4.1.13-5.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="kernel-default-base-4.1.13-5.1">
+      <FullProductName ProductID="kernel-default-base-4.1.13-5.1">kernel-default-base-4.1.13-5.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="kernel-default-devel-4.1.13-5.1">
+      <FullProductName ProductID="kernel-default-devel-4.1.13-5.1">kernel-default-devel-4.1.13-5.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="kernel-devel-4.1.13-5.1">
+      <FullProductName ProductID="kernel-devel-4.1.13-5.1">kernel-devel-4.1.13-5.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="kernel-docs-4.1.13-5.4">
+      <FullProductName ProductID="kernel-docs-4.1.13-5.4">kernel-docs-4.1.13-5.4</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="kernel-docs-html-4.1.13-5.4">
+      <FullProductName ProductID="kernel-docs-html-4.1.13-5.4">kernel-docs-html-4.1.13-5.4</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="kernel-docs-pdf-4.1.13-5.4">
+      <FullProductName ProductID="kernel-docs-pdf-4.1.13-5.4">kernel-docs-pdf-4.1.13-5.4</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="kernel-ec2-4.1.13-5.1">
+      <FullProductName ProductID="kernel-ec2-4.1.13-5.1">kernel-ec2-4.1.13-5.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="kernel-ec2-base-4.1.13-5.1">
+      <FullProductName ProductID="kernel-ec2-base-4.1.13-5.1">kernel-ec2-base-4.1.13-5.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="kernel-ec2-devel-4.1.13-5.1">
+      <FullProductName ProductID="kernel-ec2-devel-4.1.13-5.1">kernel-ec2-devel-4.1.13-5.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="kernel-macros-4.1.13-5.1">
+      <FullProductName ProductID="kernel-macros-4.1.13-5.1">kernel-macros-4.1.13-5.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="kernel-obs-build-4.1.13-5.2">
+      <FullProductName ProductID="kernel-obs-build-4.1.13-5.2">kernel-obs-build-4.1.13-5.2</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="kernel-obs-qa-4.1.13-5.1">
+      <FullProductName ProductID="kernel-obs-qa-4.1.13-5.1">kernel-obs-qa-4.1.13-5.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="kernel-obs-qa-xen-4.1.13-5.1">
+      <FullProductName ProductID="kernel-obs-qa-xen-4.1.13-5.1">kernel-obs-qa-xen-4.1.13-5.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="kernel-pae-4.1.13-5.1">
+      <FullProductName ProductID="kernel-pae-4.1.13-5.1">kernel-pae-4.1.13-5.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="kernel-pae-base-4.1.13-5.1">
+      <FullProductName ProductID="kernel-pae-base-4.1.13-5.1">kernel-pae-base-4.1.13-5.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="kernel-pae-devel-4.1.13-5.1">
+      <FullProductName ProductID="kernel-pae-devel-4.1.13-5.1">kernel-pae-devel-4.1.13-5.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="kernel-pv-4.1.13-5.1">
+      <FullProductName ProductID="kernel-pv-4.1.13-5.1">kernel-pv-4.1.13-5.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="kernel-pv-base-4.1.13-5.1">
+      <FullProductName ProductID="kernel-pv-base-4.1.13-5.1">kernel-pv-base-4.1.13-5.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="kernel-pv-devel-4.1.13-5.1">
+      <FullProductName ProductID="kernel-pv-devel-4.1.13-5.1">kernel-pv-devel-4.1.13-5.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="kernel-source-4.1.13-5.1">
+      <FullProductName ProductID="kernel-source-4.1.13-5.1">kernel-source-4.1.13-5.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="kernel-source-vanilla-4.1.13-5.1">
+      <FullProductName ProductID="kernel-source-vanilla-4.1.13-5.1">kernel-source-vanilla-4.1.13-5.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="kernel-syms-4.1.13-5.1">
+      <FullProductName ProductID="kernel-syms-4.1.13-5.1">kernel-syms-4.1.13-5.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="kernel-vanilla-4.1.13-5.1">
+      <FullProductName ProductID="kernel-vanilla-4.1.13-5.1">kernel-vanilla-4.1.13-5.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="kernel-vanilla-devel-4.1.13-5.1">
+      <FullProductName ProductID="kernel-vanilla-devel-4.1.13-5.1">kernel-vanilla-devel-4.1.13-5.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="kernel-xen-4.1.13-5.1">
+      <FullProductName ProductID="kernel-xen-4.1.13-5.1">kernel-xen-4.1.13-5.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="kernel-xen-base-4.1.13-5.1">
+      <FullProductName ProductID="kernel-xen-base-4.1.13-5.1">kernel-xen-base-4.1.13-5.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="kernel-xen-devel-4.1.13-5.1">
+      <FullProductName ProductID="kernel-xen-devel-4.1.13-5.1">kernel-xen-devel-4.1.13-5.1</FullProductName>
+    </Branch>
+    <Relationship ProductReference="kernel-debug-4.1.13-5.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:kernel-debug-4.1.13-5.1">kernel-debug-4.1.13-5.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="kernel-debug-base-4.1.13-5.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:kernel-debug-base-4.1.13-5.1">kernel-debug-base-4.1.13-5.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="kernel-debug-devel-4.1.13-5.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:kernel-debug-devel-4.1.13-5.1">kernel-debug-devel-4.1.13-5.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="kernel-default-4.1.13-5.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:kernel-default-4.1.13-5.1">kernel-default-4.1.13-5.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="kernel-default-base-4.1.13-5.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:kernel-default-base-4.1.13-5.1">kernel-default-base-4.1.13-5.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="kernel-default-devel-4.1.13-5.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:kernel-default-devel-4.1.13-5.1">kernel-default-devel-4.1.13-5.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="kernel-devel-4.1.13-5.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:kernel-devel-4.1.13-5.1">kernel-devel-4.1.13-5.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="kernel-docs-4.1.13-5.4" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:kernel-docs-4.1.13-5.4">kernel-docs-4.1.13-5.4 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="kernel-docs-html-4.1.13-5.4" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:kernel-docs-html-4.1.13-5.4">kernel-docs-html-4.1.13-5.4 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="kernel-docs-pdf-4.1.13-5.4" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:kernel-docs-pdf-4.1.13-5.4">kernel-docs-pdf-4.1.13-5.4 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="kernel-ec2-4.1.13-5.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:kernel-ec2-4.1.13-5.1">kernel-ec2-4.1.13-5.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="kernel-ec2-base-4.1.13-5.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:kernel-ec2-base-4.1.13-5.1">kernel-ec2-base-4.1.13-5.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="kernel-ec2-devel-4.1.13-5.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:kernel-ec2-devel-4.1.13-5.1">kernel-ec2-devel-4.1.13-5.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="kernel-macros-4.1.13-5.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:kernel-macros-4.1.13-5.1">kernel-macros-4.1.13-5.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="kernel-obs-build-4.1.13-5.2" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:kernel-obs-build-4.1.13-5.2">kernel-obs-build-4.1.13-5.2 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="kernel-obs-qa-4.1.13-5.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:kernel-obs-qa-4.1.13-5.1">kernel-obs-qa-4.1.13-5.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="kernel-obs-qa-xen-4.1.13-5.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:kernel-obs-qa-xen-4.1.13-5.1">kernel-obs-qa-xen-4.1.13-5.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="kernel-pae-4.1.13-5.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:kernel-pae-4.1.13-5.1">kernel-pae-4.1.13-5.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="kernel-pae-base-4.1.13-5.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:kernel-pae-base-4.1.13-5.1">kernel-pae-base-4.1.13-5.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="kernel-pae-devel-4.1.13-5.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:kernel-pae-devel-4.1.13-5.1">kernel-pae-devel-4.1.13-5.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="kernel-pv-4.1.13-5.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:kernel-pv-4.1.13-5.1">kernel-pv-4.1.13-5.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="kernel-pv-base-4.1.13-5.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:kernel-pv-base-4.1.13-5.1">kernel-pv-base-4.1.13-5.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="kernel-pv-devel-4.1.13-5.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:kernel-pv-devel-4.1.13-5.1">kernel-pv-devel-4.1.13-5.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="kernel-source-4.1.13-5.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:kernel-source-4.1.13-5.1">kernel-source-4.1.13-5.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="kernel-source-vanilla-4.1.13-5.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:kernel-source-vanilla-4.1.13-5.1">kernel-source-vanilla-4.1.13-5.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="kernel-syms-4.1.13-5.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:kernel-syms-4.1.13-5.1">kernel-syms-4.1.13-5.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="kernel-vanilla-4.1.13-5.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:kernel-vanilla-4.1.13-5.1">kernel-vanilla-4.1.13-5.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="kernel-vanilla-devel-4.1.13-5.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:kernel-vanilla-devel-4.1.13-5.1">kernel-vanilla-devel-4.1.13-5.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="kernel-xen-4.1.13-5.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:kernel-xen-4.1.13-5.1">kernel-xen-4.1.13-5.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="kernel-xen-base-4.1.13-5.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:kernel-xen-base-4.1.13-5.1">kernel-xen-base-4.1.13-5.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="kernel-xen-devel-4.1.13-5.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:kernel-xen-devel-4.1.13-5.1">kernel-xen-devel-4.1.13-5.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+  </ProductTree>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="1">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">The KVM subsystem in the Linux kernel through 4.2.6, and Xen 4.3.x through 4.6.x, allows guest OS users to cause a denial of service (host OS panic or hang) by triggering many #AC (aka Alignment Check) exceptions, related to svm.c and vmx.c.</Note>
+    </Notes>
+    <CVE>CVE-2015-5307</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed">
+        <ProductID>openSUSE Leap 42.1:kernel-debug-4.1.13-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-debug-base-4.1.13-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-debug-devel-4.1.13-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-default-4.1.13-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-default-base-4.1.13-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-default-devel-4.1.13-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-devel-4.1.13-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-docs-4.1.13-5.4</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-docs-html-4.1.13-5.4</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-docs-pdf-4.1.13-5.4</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-ec2-4.1.13-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-ec2-base-4.1.13-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-ec2-devel-4.1.13-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-macros-4.1.13-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-obs-build-4.1.13-5.2</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-obs-qa-4.1.13-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-obs-qa-xen-4.1.13-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-pae-4.1.13-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-pae-base-4.1.13-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-pae-devel-4.1.13-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-pv-4.1.13-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-pv-base-4.1.13-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-pv-devel-4.1.13-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-source-4.1.13-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-source-vanilla-4.1.13-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-syms-4.1.13-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-vanilla-4.1.13-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-vanilla-devel-4.1.13-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-xen-4.1.13-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-xen-base-4.1.13-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-xen-devel-4.1.13-5.1</ProductID>
+      </Status>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>4.7</BaseScoreV2>
+        <VectorV2>AV:L/AC:M/Au:N/C:N/I:N/A:C</VectorV2>
+      </ScoreSetV2>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-updates/2015-12/msg00039.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-5307.html</URL>
+        <Description>CVE-2015-5307</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/953527</URL>
+        <Description>SUSE Bug 953527</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/954018</URL>
+        <Description>SUSE Bug 954018</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/954404</URL>
+        <Description>SUSE Bug 954404</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/954405</URL>
+        <Description>SUSE Bug 954405</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/962977</URL>
+        <Description>SUSE Bug 962977</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="2">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">The __rds_conn_create function in net/rds/connection.c in the Linux kernel through 4.2.3 allows local users to cause a denial of service (NULL pointer dereference and system crash) or possibly have unspecified other impact by using a socket that was not properly bound.</Note>
+    </Notes>
+    <CVE>CVE-2015-6937</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed">
+        <ProductID>openSUSE Leap 42.1:kernel-debug-4.1.13-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-debug-base-4.1.13-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-debug-devel-4.1.13-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-default-4.1.13-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-default-base-4.1.13-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-default-devel-4.1.13-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-devel-4.1.13-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-docs-4.1.13-5.4</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-docs-html-4.1.13-5.4</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-docs-pdf-4.1.13-5.4</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-ec2-4.1.13-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-ec2-base-4.1.13-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-ec2-devel-4.1.13-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-macros-4.1.13-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-obs-build-4.1.13-5.2</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-obs-qa-4.1.13-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-obs-qa-xen-4.1.13-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-pae-4.1.13-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-pae-base-4.1.13-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-pae-devel-4.1.13-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-pv-4.1.13-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-pv-base-4.1.13-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-pv-devel-4.1.13-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-source-4.1.13-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-source-vanilla-4.1.13-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-syms-4.1.13-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-vanilla-4.1.13-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-vanilla-devel-4.1.13-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-xen-4.1.13-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-xen-base-4.1.13-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-xen-devel-4.1.13-5.1</ProductID>
+      </Status>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>4.9</BaseScoreV2>
+        <VectorV2>AV:L/AC:L/Au:N/C:N/I:N/A:C</VectorV2>
+      </ScoreSetV2>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-updates/2015-12/msg00039.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-6937.html</URL>
+        <Description>CVE-2015-6937</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/923755</URL>
+        <Description>SUSE Bug 923755</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/945825</URL>
+        <Description>SUSE Bug 945825</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/952384</URL>
+        <Description>SUSE Bug 952384</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/953052</URL>
+        <Description>SUSE Bug 953052</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/963994</URL>
+        <Description>SUSE Bug 963994</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="3">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">The slhc_init function in drivers/net/slip/slhc.c in the Linux kernel through 4.2.3 does not ensure that certain slot numbers are valid, which allows local users to cause a denial of service (NULL pointer dereference and system crash) via a crafted PPPIOCSMAXCID ioctl call.</Note>
+    </Notes>
+    <CVE>CVE-2015-7799</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed">
+        <ProductID>openSUSE Leap 42.1:kernel-debug-4.1.13-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-debug-base-4.1.13-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-debug-devel-4.1.13-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-default-4.1.13-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-default-base-4.1.13-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-default-devel-4.1.13-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-devel-4.1.13-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-docs-4.1.13-5.4</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-docs-html-4.1.13-5.4</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-docs-pdf-4.1.13-5.4</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-ec2-4.1.13-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-ec2-base-4.1.13-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-ec2-devel-4.1.13-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-macros-4.1.13-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-obs-build-4.1.13-5.2</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-obs-qa-4.1.13-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-obs-qa-xen-4.1.13-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-pae-4.1.13-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-pae-base-4.1.13-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-pae-devel-4.1.13-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-pv-4.1.13-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-pv-base-4.1.13-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-pv-devel-4.1.13-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-source-4.1.13-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-source-vanilla-4.1.13-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-syms-4.1.13-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-vanilla-4.1.13-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-vanilla-devel-4.1.13-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-xen-4.1.13-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-xen-base-4.1.13-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-xen-devel-4.1.13-5.1</ProductID>
+      </Status>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>low</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>4.9</BaseScoreV2>
+        <VectorV2>AV:L/AC:L/Au:N/C:N/I:N/A:C</VectorV2>
+      </ScoreSetV2>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-updates/2015-12/msg00039.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-7799.html</URL>
+        <Description>CVE-2015-7799</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/1052256</URL>
+        <Description>SUSE Bug 1052256</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/949936</URL>
+        <Description>SUSE Bug 949936</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/951638</URL>
+        <Description>SUSE Bug 951638</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="4">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">Race condition in the rds_sendmsg function in net/rds/sendmsg.c in the Linux kernel before 4.3.3 allows local users to cause a denial of service (NULL pointer dereference and system crash) or possibly have unspecified other impact by using a socket that was not properly bound.  NOTE: this vulnerability exists because of an incomplete fix for CVE-2015-6937.</Note>
+    </Notes>
+    <CVE>CVE-2015-7990</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed">
+        <ProductID>openSUSE Leap 42.1:kernel-debug-4.1.13-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-debug-base-4.1.13-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-debug-devel-4.1.13-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-default-4.1.13-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-default-base-4.1.13-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-default-devel-4.1.13-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-devel-4.1.13-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-docs-4.1.13-5.4</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-docs-html-4.1.13-5.4</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-docs-pdf-4.1.13-5.4</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-ec2-4.1.13-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-ec2-base-4.1.13-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-ec2-devel-4.1.13-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-macros-4.1.13-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-obs-build-4.1.13-5.2</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-obs-qa-4.1.13-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-obs-qa-xen-4.1.13-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-pae-4.1.13-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-pae-base-4.1.13-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-pae-devel-4.1.13-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-pv-4.1.13-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-pv-base-4.1.13-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-pv-devel-4.1.13-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-source-4.1.13-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-source-vanilla-4.1.13-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-syms-4.1.13-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-vanilla-4.1.13-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-vanilla-devel-4.1.13-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-xen-4.1.13-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-xen-base-4.1.13-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-xen-devel-4.1.13-5.1</ProductID>
+      </Status>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>low</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>5.9</BaseScoreV2>
+        <VectorV2>AV:L/AC:M/Au:N/C:P/I:P/A:C</VectorV2>
+      </ScoreSetV2>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-updates/2015-12/msg00039.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-7990.html</URL>
+        <Description>CVE-2015-7990</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/945825</URL>
+        <Description>SUSE Bug 945825</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/952384</URL>
+        <Description>SUSE Bug 952384</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/953052</URL>
+        <Description>SUSE Bug 953052</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="5">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">The KVM subsystem in the Linux kernel through 4.2.6, and Xen 4.3.x through 4.6.x, allows guest OS users to cause a denial of service (host OS panic or hang) by triggering many #DB (aka Debug) exceptions, related to svm.c.</Note>
+    </Notes>
+    <CVE>CVE-2015-8104</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed">
+        <ProductID>openSUSE Leap 42.1:kernel-debug-4.1.13-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-debug-base-4.1.13-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-debug-devel-4.1.13-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-default-4.1.13-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-default-base-4.1.13-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-default-devel-4.1.13-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-devel-4.1.13-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-docs-4.1.13-5.4</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-docs-html-4.1.13-5.4</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-docs-pdf-4.1.13-5.4</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-ec2-4.1.13-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-ec2-base-4.1.13-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-ec2-devel-4.1.13-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-macros-4.1.13-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-obs-build-4.1.13-5.2</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-obs-qa-4.1.13-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-obs-qa-xen-4.1.13-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-pae-4.1.13-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-pae-base-4.1.13-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-pae-devel-4.1.13-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-pv-4.1.13-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-pv-base-4.1.13-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-pv-devel-4.1.13-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-source-4.1.13-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-source-vanilla-4.1.13-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-syms-4.1.13-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-vanilla-4.1.13-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-vanilla-devel-4.1.13-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-xen-4.1.13-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-xen-base-4.1.13-5.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:kernel-xen-devel-4.1.13-5.1</ProductID>
+      </Status>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>4.7</BaseScoreV2>
+        <VectorV2>AV:L/AC:M/Au:N/C:N/I:N/A:C</VectorV2>
+      </ScoreSetV2>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-updates/2015-12/msg00039.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-8104.html</URL>
+        <Description>CVE-2015-8104</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/953527</URL>
+        <Description>SUSE Bug 953527</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/954018</URL>
+        <Description>SUSE Bug 954018</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/954404</URL>
+        <Description>SUSE Bug 954404</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/954405</URL>
+        <Description>SUSE Bug 954405</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/962977</URL>
+        <Description>SUSE Bug 962977</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+</cvrfdoc>

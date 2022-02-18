@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cvrfdoc xmlns="http://www.icasi.org/CVRF/schema/cvrf/1.1" xmlns:cvrf="http://www.icasi.org/CVRF/schema/cvrf/1.1">
+  <DocumentTitle xml:lang="en">Security update for net-snmp</DocumentTitle>
+  <DocumentType>SUSE Patch</DocumentType>
+  <DocumentPublisher Type="Vendor">
+    <ContactDetails>security@suse.de</ContactDetails>
+    <IssuingAuthority>SUSE Security Team</IssuingAuthority>
+  </DocumentPublisher>
+  <DocumentTracking>
+    <Identification>
+      <ID>openSUSE-SU-2015:1502-1</ID>
+    </Identification>
+    <Status>Final</Status>
+    <Version>1</Version>
+    <RevisionHistory>
+      <Revision>
+        <Number>1</Number>
+        <Date>2015-08-24T11:09:58Z</Date>
+        <Description>current</Description>
+      </Revision>
+    </RevisionHistory>
+    <InitialReleaseDate>2015-08-24T11:09:58Z</InitialReleaseDate>
+    <CurrentReleaseDate>2015-08-24T11:09:58Z</CurrentReleaseDate>
+    <Generator>
+      <Engine>cve-database/bin/generate-cvrf.pl</Engine>
+      <Date>2017-02-24T01:00:00Z</Date>
+    </Generator>
+  </DocumentTracking>
+  <DocumentNotes>
+    <Note Title="Topic" Type="Summary" Ordinal="1" xml:lang="en">Security update for net-snmp</Note>
+    <Note Title="Details" Type="General" Ordinal="2" xml:lang="en">net-snmp was updated to fix one secuirty vulnerability and 2 bugs.
+
+- Fix an incompletely initialized vulnerability within the snmp_pdu_parse() function of snmp_api.c. (bnc#940188, CVE-2015-5621)
+- Add build requirement 'procps' to fix a net-snmp-config error. (bsc#935863)
+- Stop snmptrapd on removal.
+</Note>
+    <Note Title="Terms of Use" Type="Legal Disclaimer" Ordinal="3" xml:lang="en">The CVRF data is provided by SUSE under the Creative Commons License 4.0 with Attribution for Non-Commercial usage (CC-BY-NC-4.0).</Note>
+  </DocumentNotes>
+  <DocumentDistribution xml:lang="en">Copyright SUSE LLC under the Creative Commons License 4.0 with Attribution for Non-Commercial usage (CC-BY-NC-4.0)</DocumentDistribution>
+  <DocumentReferences>
+    <Reference Type="Self">
+      <URL>https://lists.opensuse.org/opensuse-updates/2015-09/msg00004.html</URL>
+      <Description>E-Mail link for openSUSE-SU-2015:1502-1</Description>
+    </Reference>
+    <Reference Type="Self">
+      <URL>https://www.suse.com/support/security/rating/</URL>
+      <Description>SUSE Security Ratings</Description>
+    </Reference>
+  </DocumentReferences>
+  <ProductTree xmlns="http://www.icasi.org/CVRF/schema/prod/1.1">
+    <Branch Type="Product Version" Name="libsnmp30-5.7.2-9.11.1">
+      <FullProductName ProductID="libsnmp30-5.7.2-9.11.1">libsnmp30-5.7.2-9.11.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libsnmp30-32bit-5.7.2-9.11.1">
+      <FullProductName ProductID="libsnmp30-32bit-5.7.2-9.11.1">libsnmp30-32bit-5.7.2-9.11.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="net-snmp-5.7.2-9.11.1">
+      <FullProductName ProductID="net-snmp-5.7.2-9.11.1">net-snmp-5.7.2-9.11.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="net-snmp-devel-5.7.2-9.11.1">
+      <FullProductName ProductID="net-snmp-devel-5.7.2-9.11.1">net-snmp-devel-5.7.2-9.11.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="net-snmp-devel-32bit-5.7.2-9.11.1">
+      <FullProductName ProductID="net-snmp-devel-32bit-5.7.2-9.11.1">net-snmp-devel-32bit-5.7.2-9.11.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="net-snmp-python-5.7.2-9.11.1">
+      <FullProductName ProductID="net-snmp-python-5.7.2-9.11.1">net-snmp-python-5.7.2-9.11.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="perl-SNMP-5.7.2-9.11.1">
+      <FullProductName ProductID="perl-SNMP-5.7.2-9.11.1">perl-SNMP-5.7.2-9.11.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="snmp-mibs-5.7.2-9.11.1">
+      <FullProductName ProductID="snmp-mibs-5.7.2-9.11.1">snmp-mibs-5.7.2-9.11.1</FullProductName>
+    </Branch>
+  </ProductTree>
+  <Vulnerability xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1" Ordinal="1">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">The snmp_pdu_parse function in snmp_api.c in net-snmp 5.7.2 and earlier does not remove the varBind variable in a netsnmp_variable_list item when parsing of the SNMP PDU fails, which allows remote attackers to cause a denial of service (crash) and possibly execute arbitrary code via a crafted packet.</Note>
+    </Notes>
+    <CVE>CVE-2015-5621</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed"/>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-updates/2015-09/msg00004.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-5621.html</URL>
+        <Description>CVE-2015-5621</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/1111123</URL>
+        <Description>SUSE Bug 1111123</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/940188</URL>
+        <Description>SUSE Bug 940188</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+</cvrfdoc>

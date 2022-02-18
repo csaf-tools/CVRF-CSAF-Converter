@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cvrfdoc xmlns="http://www.icasi.org/CVRF/schema/cvrf/1.1" xmlns:cvrf="http://www.icasi.org/CVRF/schema/cvrf/1.1">
+  <DocumentTitle xml:lang="en">Red Hat Security Advisory: samba security update</DocumentTitle>
+  <DocumentType>Security Advisory</DocumentType>
+  <DocumentPublisher Type="Vendor">
+    <ContactDetails>secalert@redhat.com</ContactDetails>
+    <IssuingAuthority>Red Hat Product Security</IssuingAuthority>
+  </DocumentPublisher>
+  <DocumentTracking>
+    <Identification><ID>RHSA-2021:4843</ID></Identification>
+    <Status>Final</Status>
+    <Version>1</Version>
+    <RevisionHistory>
+       <Revision>
+         <Number>1</Number>
+         <Date>2021-11-29T12:38:00Z</Date>
+         <Description>Current version</Description>
+       </Revision>
+    </RevisionHistory>
+    <InitialReleaseDate>2021-11-29T12:38:00Z</InitialReleaseDate>
+    <CurrentReleaseDate>2021-11-29T12:38:00Z</CurrentReleaseDate>
+    <Generator>
+      <Engine>Red Hat SDEngine 3.3.0</Engine>
+      <Date>2021-11-29T15:01:00Z</Date>
+    </Generator>
+  </DocumentTracking>
+  <DocumentNotes>
+    <Note Title="Topic" Type="Summary" Ordinal="1" xml:lang="en">
+An update for samba is now available for Red Hat Gluster Storage 3.5 for Red Hat Enterprise Linux 8.
+
+Red Hat Product Security has rated this update as having a security impact of Important. A Common Vulnerability Scoring System (CVSS) base score, which gives a detailed severity rating, is available for each vulnerability from the CVE link(s) in the References section.
+    </Note>
+    <Note Title="Details" Type="General" Ordinal="2" xml:lang="en">
+Samba is an open-source implementation of the Server Message Block (SMB) protocol and the related Common Internet File System (CIFS) protocol, which allow PC-compatible machines to share files, printers, and various information.
+
+Security Fix(es):
+
+* samba: SMB1 client connections can be downgraded to plaintext authentication (CVE-2016-2124)
+
+* samba: Subsequent DCE/RPC fragment injection vulnerability (CVE-2021-23192)
+
+* samba: A user in an AD Domain could become root on domain members (CVE-2020-25717)
+
+For more details about the security issue(s), including the impact, a CVSS score, acknowledgments, and other related information, refer to the CVE page(s) listed in the References section.
+
+All users of Samba with Red Hat Gluster Storage are advised to upgrade to these updated packages.
+    </Note>
+    <Note Title="Terms of Use" Ordinal="3" Type="Legal Disclaimer" xml:lang="en">This content is licensed under the Creative Commons Attribution 4.0 International License (https://creativecommons.org/licenses/by/4.0/). If you distribute this content, or a modified version of it, you must provide attribution to Red Hat Inc. and provide a link to the original.</Note>
+  </DocumentNotes>
+  <DocumentDistribution xml:lang="en">Copyright © 2021 Red Hat, Inc. All rights reserved.</DocumentDistribution>
+  <AggregateSeverity Namespace="https://access.redhat.com/security/updates/classification/">Important</AggregateSeverity>
+  <DocumentReferences>
+    <Reference Type="Self">
+       <URL>https://access.redhat.com/errata/RHSA-2021:4843</URL>
+       <Description>https://access.redhat.com/errata/RHSA-2021:4843</Description>
+    </Reference>
+    <Reference Type="External">
+       <URL>https://access.redhat.com/security/updates/classification/#important</URL>
+       <Description>https://access.redhat.com/security/updates/classification/#important</Description>
+    </Reference>
+  </DocumentReferences>
+  <ProductTree xmlns="http://www.icasi.org/CVRF/schema/prod/1.1">
+    <Branch Type="Product Family" Name="Red Hat Gluster Storage">
+      <Branch Type="Product Name" Name="Red Hat Gluster 3.5 Samba on RHEL-8">
+        <FullProductName ProductID="8Base-RH-Gluster-3.5-Samba" CPE="cpe:/a:redhat:storage:3.5:samba:el8">Red Hat Gluster 3.5 Samba on RHEL-8</FullProductName>
+      </Branch>
+    </Branch>
+    <Branch Type="Product Version" Name="samba-0:4.14.5-204.el8rhgs">
+      <FullProductName ProductID="samba-0:4.14.5-204.el8rhgs" CPE="cpe:/a:redhat:storage:3.5:samba:el8">samba-4.14.5-204.el8rhgs.src.rpm</FullProductName>
+    </Branch>
+    <Relationship ProductReference="samba-0:4.14.5-204.el8rhgs" RelationType="Default Component Of" RelatesToProductReference="8Base-RH-Gluster-3.5-Samba">
+      <FullProductName ProductID="8Base-RH-Gluster-3.5-Samba:samba-0:4.14.5-204.el8rhgs" CPE="cpe:/a:redhat:storage:3.5:samba:el8">samba-0:4.14.5-204.el8rhgs as a component of Red Hat Gluster 3.5 Samba on RHEL-8</FullProductName>
+    </Relationship>
+  </ProductTree>
+
+  <Vulnerability Ordinal="1" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">samba: SMB1 client connections can be downgraded to plaintext authentication</Note></Notes>
+    <DiscoveryDate>2021-11-03T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-11-09T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2016-2124</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>8Base-RH-Gluster-3.5-Samba:samba-0:4.14.5-204.el8rhgs</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+
+After installing this update, the smb service will be restarted automatically.
+
+For details on migrating Samba/CTDB configuration files, refer to: 
+
+https://access.redhat.com/solutions/4311261
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:4843</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.samba.org/samba/security/CVE-2016-2124.html</URL>
+        <Description>https://www.samba.org/samba/security/CVE-2016-2124.html</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2016-2124</URL>
+        <Description>CVE-2016-2124</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=2019660</URL>
+        <Description>bz#2019660: CVE-2016-2124 samba: SMB1 client connections can be downgraded to plaintext authentication</Description>
+      </Reference>
+    </References>
+    <Acknowledgments><Acknowledgment><Description>Red Hat would like to thank Stefan Metzmacher (SerNet) for reporting this issue. Upstream acknowledges the Samba project as the original reporter.</Description></Acknowledgment></Acknowledgments>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="2" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">samba: A user in an AD Domain could become root on domain members</Note></Notes>
+    <DiscoveryDate>2021-11-03T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-11-09T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2020-25717</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>8Base-RH-Gluster-3.5-Samba:samba-0:4.14.5-204.el8rhgs</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Important</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+
+After installing this update, the smb service will be restarted automatically.
+
+For details on migrating Samba/CTDB configuration files, refer to: 
+
+https://access.redhat.com/solutions/4311261
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:4843</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.samba.org/samba/security/CVE-2020-25717.html</URL>
+        <Description>https://www.samba.org/samba/security/CVE-2020-25717.html</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2020-25717</URL>
+        <Description>CVE-2020-25717</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=2019672</URL>
+        <Description>bz#2019672: CVE-2020-25717 samba: A user in an AD Domain could become root on domain members</Description>
+      </Reference>
+    </References>
+    <Acknowledgments><Acknowledgment><Description>Red Hat would like to thank Andrew Bartlett (Catalyst and the Samba Team) and the Samba project for reporting this issue.</Description></Acknowledgment></Acknowledgments>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="3" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">samba: Subsequent DCE/RPC fragment injection vulnerability</Note></Notes>
+    <DiscoveryDate>2021-11-03T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-11-09T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-23192</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>8Base-RH-Gluster-3.5-Samba:samba-0:4.14.5-204.el8rhgs</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+
+After installing this update, the smb service will be restarted automatically.
+
+For details on migrating Samba/CTDB configuration files, refer to: 
+
+https://access.redhat.com/solutions/4311261
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:4843</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.samba.org/samba/security/CVE-2021-23192.html</URL>
+        <Description>https://www.samba.org/samba/security/CVE-2021-23192.html</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-23192</URL>
+        <Description>CVE-2021-23192</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=2019666</URL>
+        <Description>bz#2019666: CVE-2021-23192 samba: Subsequent DCE/RPC fragment injection vulnerability</Description>
+      </Reference>
+    </References>
+    <Acknowledgments><Acknowledgment><Description>Red Hat would like to thank Stefan Metzmacher (SerNet) for reporting this issue. Upstream acknowledges the Samba project as the original reporter.</Description></Acknowledgment></Acknowledgments>
+  </Vulnerability>
+</cvrfdoc>

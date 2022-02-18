@@ -1,0 +1,1347 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cvrfdoc xmlns="http://www.icasi.org/CVRF/schema/cvrf/1.1" xmlns:cvrf="http://www.icasi.org/CVRF/schema/cvrf/1.1">
+  <DocumentTitle xml:lang="en">Red Hat Bug Fix Advisory: Migration Toolkit for Containers (MTC) 1.4.6 release advisory</DocumentTitle>
+  <DocumentType>Security Advisory</DocumentType>
+  <DocumentPublisher Type="Vendor">
+    <ContactDetails>secalert@redhat.com</ContactDetails>
+    <IssuingAuthority>Red Hat Product Security</IssuingAuthority>
+  </DocumentPublisher>
+  <DocumentTracking>
+    <Identification><ID>RHBA-2021:2854</ID></Identification>
+    <Status>Final</Status>
+    <Version>1</Version>
+    <RevisionHistory>
+       <Revision>
+         <Number>1</Number>
+         <Date>2021-08-17T09:31:00Z</Date>
+         <Description>Current version</Description>
+       </Revision>
+    </RevisionHistory>
+    <InitialReleaseDate>2021-07-21T17:05:00Z</InitialReleaseDate>
+    <CurrentReleaseDate>2021-08-17T09:31:00Z</CurrentReleaseDate>
+    <Generator>
+      <Engine>Red Hat SDEngine 3.3.0</Engine>
+      <Date>2022-01-11T20:25:00Z</Date>
+    </Generator>
+  </DocumentTracking>
+  <DocumentNotes>
+    <Note Title="Topic" Type="Summary" Ordinal="1" xml:lang="en">
+The Migration Toolkit for Containers (MTC) 1.4.6 is now available.
+    </Note>
+    <Note Title="Details" Type="General" Ordinal="2" xml:lang="en">
+The Migration Toolkit for Containers (MTC) enables you to migrate
+Kubernetes resources, persistent volume data, and internal container images
+between OpenShift Container Platform clusters, using the MTC web console or the Kubernetes API.
+    </Note>
+    <Note Title="Terms of Use" Ordinal="3" Type="Legal Disclaimer" xml:lang="en">This content is licensed under the Creative Commons Attribution 4.0 International License (https://creativecommons.org/licenses/by/4.0/). If you distribute this content, or a modified version of it, you must provide attribution to Red Hat Inc. and provide a link to the original.</Note>
+  </DocumentNotes>
+  <DocumentDistribution xml:lang="en">Copyright © 2022 Red Hat, Inc. All rights reserved.</DocumentDistribution>
+  <AggregateSeverity Namespace="https://access.redhat.com/security/updates/classification/">Important</AggregateSeverity>
+  <DocumentReferences>
+    <Reference Type="Self">
+       <URL>https://access.redhat.com/errata/RHBA-2021:2854</URL>
+       <Description>https://access.redhat.com/errata/RHBA-2021:2854</Description>
+    </Reference>
+    <Reference Type="External">
+       <URL></URL>
+       <Description></Description>
+    </Reference>
+  </DocumentReferences>
+  <ProductTree xmlns="http://www.icasi.org/CVRF/schema/prod/1.1">
+    <Branch Type="Product Family" Name="Red Hat Migration Toolkit">
+      <Branch Type="Product Name" Name="7Server-RHMTC-1.4">
+        <FullProductName ProductID="7Server-RHMTC-1.4" CPE="cpe:/a:redhat:rhmt:1.4::el7">7Server-RHMTC-1.4</FullProductName>
+      </Branch>
+      <Branch Type="Product Name" Name="8Base-RHMTC-1.4">
+        <FullProductName ProductID="8Base-RHMTC-1.4" CPE="cpe:/a:redhat:rhmt:1.4::el8">8Base-RHMTC-1.4</FullProductName>
+      </Branch>
+    </Branch>
+    <Branch Type="Product Version" Name="rhmtc/openshift-migration-controller-rhel8:v1.4.6-4">
+      <FullProductName ProductID="rhmtc/openshift-migration-controller-rhel8:v1.4.6-4" CPE="cpe:/a:redhat:rhmt:1.4::el8">rhmtc/openshift-migration-controller-rhel8:v1.4.6-4</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="rhmtc/openshift-migration-hook-runner-rhel7:v1.4.6-5">
+      <FullProductName ProductID="rhmtc/openshift-migration-hook-runner-rhel7:v1.4.6-5" CPE="cpe:/a:redhat:rhmt:1.4::el7">rhmtc/openshift-migration-hook-runner-rhel7:v1.4.6-5</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="rhmtc/openshift-migration-log-reader-rhel8:v1.4.6-4">
+      <FullProductName ProductID="rhmtc/openshift-migration-log-reader-rhel8:v1.4.6-4" CPE="cpe:/a:redhat:rhmt:1.4::el8">rhmtc/openshift-migration-log-reader-rhel8:v1.4.6-4</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="rhmtc/openshift-migration-must-gather-rhel8:v1.4.6-4">
+      <FullProductName ProductID="rhmtc/openshift-migration-must-gather-rhel8:v1.4.6-4" CPE="cpe:/a:redhat:rhmt:1.4::el8">rhmtc/openshift-migration-must-gather-rhel8:v1.4.6-4</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="rhmtc/openshift-migration-operator-bundle:v1.4.6-5">
+      <FullProductName ProductID="rhmtc/openshift-migration-operator-bundle:v1.4.6-5" CPE="cpe:/a:redhat:rhmt:1.4::el7">rhmtc/openshift-migration-operator-bundle:v1.4.6-5</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="rhmtc/openshift-migration-registry-rhel8:v1.4.6-4">
+      <FullProductName ProductID="rhmtc/openshift-migration-registry-rhel8:v1.4.6-4" CPE="cpe:/a:redhat:rhmt:1.4::el8">rhmtc/openshift-migration-registry-rhel8:v1.4.6-4</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="rhmtc/openshift-migration-rhel7-operator:v1.4.6-6">
+      <FullProductName ProductID="rhmtc/openshift-migration-rhel7-operator:v1.4.6-6" CPE="cpe:/a:redhat:rhmt:1.4::el7">rhmtc/openshift-migration-rhel7-operator:v1.4.6-6</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="rhmtc/openshift-migration-rsync-transfer-rhel8:v1.4.6-4">
+      <FullProductName ProductID="rhmtc/openshift-migration-rsync-transfer-rhel8:v1.4.6-4" CPE="cpe:/a:redhat:rhmt:1.4::el8">rhmtc/openshift-migration-rsync-transfer-rhel8:v1.4.6-4</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="rhmtc/openshift-migration-ui-rhel8:v1.4.6-4">
+      <FullProductName ProductID="rhmtc/openshift-migration-ui-rhel8:v1.4.6-4" CPE="cpe:/a:redhat:rhmt:1.4::el8">rhmtc/openshift-migration-ui-rhel8:v1.4.6-4</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="rhmtc/openshift-migration-velero-plugin-for-aws-rhel8:v1.4.6-4">
+      <FullProductName ProductID="rhmtc/openshift-migration-velero-plugin-for-aws-rhel8:v1.4.6-4" CPE="cpe:/a:redhat:rhmt:1.4::el8">rhmtc/openshift-migration-velero-plugin-for-aws-rhel8:v1.4.6-4</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="rhmtc/openshift-migration-velero-plugin-for-gcp-rhel8:v1.4.6-3">
+      <FullProductName ProductID="rhmtc/openshift-migration-velero-plugin-for-gcp-rhel8:v1.4.6-3" CPE="cpe:/a:redhat:rhmt:1.4::el8">rhmtc/openshift-migration-velero-plugin-for-gcp-rhel8:v1.4.6-3</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="rhmtc/openshift-migration-velero-plugin-for-microsoft-azure-rhel8:v1.4.6-4">
+      <FullProductName ProductID="rhmtc/openshift-migration-velero-plugin-for-microsoft-azure-rhel8:v1.4.6-4" CPE="cpe:/a:redhat:rhmt:1.4::el8">rhmtc/openshift-migration-velero-plugin-for-microsoft-azure-rhel8:v1.4.6-4</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="rhmtc/openshift-migration-velero-restic-restore-helper-rhel8:v1.4.6-5">
+      <FullProductName ProductID="rhmtc/openshift-migration-velero-restic-restore-helper-rhel8:v1.4.6-5" CPE="cpe:/a:redhat:rhmt:1.4::el8">rhmtc/openshift-migration-velero-restic-restore-helper-rhel8:v1.4.6-5</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="rhmtc/openshift-migration-velero-rhel8:v1.4.6-5">
+      <FullProductName ProductID="rhmtc/openshift-migration-velero-rhel8:v1.4.6-5" CPE="cpe:/a:redhat:rhmt:1.4::el8">rhmtc/openshift-migration-velero-rhel8:v1.4.6-5</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="rhmtc/openshift-velero-plugin-rhel8:v1.4.6-4">
+      <FullProductName ProductID="rhmtc/openshift-velero-plugin-rhel8:v1.4.6-4" CPE="cpe:/a:redhat:rhmt:1.4::el8">rhmtc/openshift-velero-plugin-rhel8:v1.4.6-4</FullProductName>
+    </Branch>
+    <Relationship ProductReference="openshift-migration-hook-runner-container-v1.4.6-5" RelationType="Default Component Of" RelatesToProductReference="7Server-RHMTC-1.4">
+      <FullProductName ProductID="7Server-RHMTC-1.4:openshift-migration-hook-runner-container-v1.4.6-5" CPE="cpe:/a:redhat:rhmt:1.4::el7">openshift-migration-hook-runner-container-v1.4.6-5 as a component of 7Server-RHMTC-1.4</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="openshift-migration-operator-container-v1.4.6-6" RelationType="Default Component Of" RelatesToProductReference="7Server-RHMTC-1.4">
+      <FullProductName ProductID="7Server-RHMTC-1.4:openshift-migration-operator-container-v1.4.6-6" CPE="cpe:/a:redhat:rhmt:1.4::el7">openshift-migration-operator-container-v1.4.6-6 as a component of 7Server-RHMTC-1.4</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="openshift-migration-operator-metadata-container-v1.4.6-5" RelationType="Default Component Of" RelatesToProductReference="7Server-RHMTC-1.4">
+      <FullProductName ProductID="7Server-RHMTC-1.4:openshift-migration-operator-metadata-container-v1.4.6-5" CPE="cpe:/a:redhat:rhmt:1.4::el7">openshift-migration-operator-metadata-container-v1.4.6-5 as a component of 7Server-RHMTC-1.4</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="openshift-migration-controller-container-v1.4.6-4" RelationType="Default Component Of" RelatesToProductReference="8Base-RHMTC-1.4">
+      <FullProductName ProductID="8Base-RHMTC-1.4:openshift-migration-controller-container-v1.4.6-4" CPE="cpe:/a:redhat:rhmt:1.4::el8">openshift-migration-controller-container-v1.4.6-4 as a component of 8Base-RHMTC-1.4</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="openshift-migration-log-reader-container-v1.4.6-4" RelationType="Default Component Of" RelatesToProductReference="8Base-RHMTC-1.4">
+      <FullProductName ProductID="8Base-RHMTC-1.4:openshift-migration-log-reader-container-v1.4.6-4" CPE="cpe:/a:redhat:rhmt:1.4::el8">openshift-migration-log-reader-container-v1.4.6-4 as a component of 8Base-RHMTC-1.4</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="openshift-migration-must-gather-container-v1.4.6-4" RelationType="Default Component Of" RelatesToProductReference="8Base-RHMTC-1.4">
+      <FullProductName ProductID="8Base-RHMTC-1.4:openshift-migration-must-gather-container-v1.4.6-4" CPE="cpe:/a:redhat:rhmt:1.4::el8">openshift-migration-must-gather-container-v1.4.6-4 as a component of 8Base-RHMTC-1.4</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="openshift-migration-registry-container-v1.4.6-4" RelationType="Default Component Of" RelatesToProductReference="8Base-RHMTC-1.4">
+      <FullProductName ProductID="8Base-RHMTC-1.4:openshift-migration-registry-container-v1.4.6-4" CPE="cpe:/a:redhat:rhmt:1.4::el8">openshift-migration-registry-container-v1.4.6-4 as a component of 8Base-RHMTC-1.4</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="openshift-migration-rsync-transfer-container-v1.4.6-4" RelationType="Default Component Of" RelatesToProductReference="8Base-RHMTC-1.4">
+      <FullProductName ProductID="8Base-RHMTC-1.4:openshift-migration-rsync-transfer-container-v1.4.6-4" CPE="cpe:/a:redhat:rhmt:1.4::el8">openshift-migration-rsync-transfer-container-v1.4.6-4 as a component of 8Base-RHMTC-1.4</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="openshift-migration-ui-container-v1.4.6-4" RelationType="Default Component Of" RelatesToProductReference="8Base-RHMTC-1.4">
+      <FullProductName ProductID="8Base-RHMTC-1.4:openshift-migration-ui-container-v1.4.6-4" CPE="cpe:/a:redhat:rhmt:1.4::el8">openshift-migration-ui-container-v1.4.6-4 as a component of 8Base-RHMTC-1.4</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="openshift-migration-velero-container-v1.4.6-5" RelationType="Default Component Of" RelatesToProductReference="8Base-RHMTC-1.4">
+      <FullProductName ProductID="8Base-RHMTC-1.4:openshift-migration-velero-container-v1.4.6-5" CPE="cpe:/a:redhat:rhmt:1.4::el8">openshift-migration-velero-container-v1.4.6-5 as a component of 8Base-RHMTC-1.4</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="openshift-migration-velero-plugin-for-aws-container-v1.4.6-4" RelationType="Default Component Of" RelatesToProductReference="8Base-RHMTC-1.4">
+      <FullProductName ProductID="8Base-RHMTC-1.4:openshift-migration-velero-plugin-for-aws-container-v1.4.6-4" CPE="cpe:/a:redhat:rhmt:1.4::el8">openshift-migration-velero-plugin-for-aws-container-v1.4.6-4 as a component of 8Base-RHMTC-1.4</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="openshift-migration-velero-plugin-for-gcp-container-v1.4.6-3" RelationType="Default Component Of" RelatesToProductReference="8Base-RHMTC-1.4">
+      <FullProductName ProductID="8Base-RHMTC-1.4:openshift-migration-velero-plugin-for-gcp-container-v1.4.6-3" CPE="cpe:/a:redhat:rhmt:1.4::el8">openshift-migration-velero-plugin-for-gcp-container-v1.4.6-3 as a component of 8Base-RHMTC-1.4</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="openshift-migration-velero-plugin-for-microsoft-azure-container-v1.4.6-4" RelationType="Default Component Of" RelatesToProductReference="8Base-RHMTC-1.4">
+      <FullProductName ProductID="8Base-RHMTC-1.4:openshift-migration-velero-plugin-for-microsoft-azure-container-v1.4.6-4" CPE="cpe:/a:redhat:rhmt:1.4::el8">openshift-migration-velero-plugin-for-microsoft-azure-container-v1.4.6-4 as a component of 8Base-RHMTC-1.4</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="openshift-migration-velero-restic-restore-helper-container-v1.4.6-5" RelationType="Default Component Of" RelatesToProductReference="8Base-RHMTC-1.4">
+      <FullProductName ProductID="8Base-RHMTC-1.4:openshift-migration-velero-restic-restore-helper-container-v1.4.6-5" CPE="cpe:/a:redhat:rhmt:1.4::el8">openshift-migration-velero-restic-restore-helper-container-v1.4.6-5 as a component of 8Base-RHMTC-1.4</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="openshift-velero-plugin-container-v1.4.6-4" RelationType="Default Component Of" RelatesToProductReference="8Base-RHMTC-1.4">
+      <FullProductName ProductID="8Base-RHMTC-1.4:openshift-velero-plugin-container-v1.4.6-4" CPE="cpe:/a:redhat:rhmt:1.4::el8">openshift-velero-plugin-container-v1.4.6-4 as a component of 8Base-RHMTC-1.4</FullProductName>
+    </Relationship>
+  </ProductTree>
+
+  <Vulnerability Ordinal="1" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">libwebp: heap-based buffer overflow in PutLE16()</Note></Notes>
+    <DiscoveryDate>2021-03-16T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2018-07-30T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2018-25011</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>7Server-RHMTC-1.4:openshift-migration-hook-runner-container-v1.4.6-5</ProductID>
+      <ProductID>7Server-RHMTC-1.4:openshift-migration-operator-container-v1.4.6-6</ProductID>
+      <ProductID>7Server-RHMTC-1.4:openshift-migration-operator-metadata-container-v1.4.6-5</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-controller-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-log-reader-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-must-gather-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-registry-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-rsync-transfer-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-ui-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-velero-container-v1.4.6-5</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-velero-plugin-for-aws-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-velero-plugin-for-gcp-container-v1.4.6-3</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-velero-plugin-for-microsoft-azure-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-velero-restic-restore-helper-container-v1.4.6-5</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-velero-plugin-container-v1.4.6-4</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Important</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+Before applying this update, ensure all previously released errata relevant to your system have been applied.
+
+For details on how to apply this update, refer to:
+
+https://access.redhat.com/articles/11258
+
+For details on how to install and use MTC, refer to:
+
+https://docs.openshift.com/container-platform/4.7/migration-toolkit-for-containers/installing-mtc.html
+    </Description>
+      <URL>https://access.redhat.com/errata/RHBA-2021:2854</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2018-25011</URL>
+        <Description>CVE-2018-25011</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1956919</URL>
+        <Description>bz#1956919: CVE-2018-25011 libwebp: heap-based buffer overflow in PutLE16()</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="2" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">nss: TLS 1.3 CCS flood remote DoS Attack</Note></Notes>
+    <DiscoveryDate>2020-10-12T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2020-10-19T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2020-25648</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>7Server-RHMTC-1.4:openshift-migration-hook-runner-container-v1.4.6-5</ProductID>
+      <ProductID>7Server-RHMTC-1.4:openshift-migration-operator-container-v1.4.6-6</ProductID>
+      <ProductID>7Server-RHMTC-1.4:openshift-migration-operator-metadata-container-v1.4.6-5</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-controller-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-log-reader-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-must-gather-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-registry-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-rsync-transfer-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-ui-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-velero-container-v1.4.6-5</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-velero-plugin-for-aws-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-velero-plugin-for-gcp-container-v1.4.6-3</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-velero-plugin-for-microsoft-azure-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-velero-restic-restore-helper-container-v1.4.6-5</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-velero-plugin-container-v1.4.6-4</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+Before applying this update, ensure all previously released errata relevant to your system have been applied.
+
+For details on how to apply this update, refer to:
+
+https://access.redhat.com/articles/11258
+
+For details on how to install and use MTC, refer to:
+
+https://docs.openshift.com/container-platform/4.7/migration-toolkit-for-containers/installing-mtc.html
+    </Description>
+      <URL>https://access.redhat.com/errata/RHBA-2021:2854</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://developer.mozilla.org/en-US/docs/Mozilla/Projects/NSS/NSS_3.58_release_notes</URL>
+        <Description>https://developer.mozilla.org/en-US/docs/Mozilla/Projects/NSS/NSS_3.58_release_notes</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2020-25648</URL>
+        <Description>CVE-2020-25648</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1887319</URL>
+        <Description>bz#1887319: CVE-2020-25648 nss: TLS 1.3 CCS flood remote DoS Attack</Description>
+      </Reference>
+    </References>
+    <Acknowledgments><Acknowledgment><Description>Red Hat would like to thank the Mozilla project for reporting this issue.</Description></Acknowledgment></Acknowledgments>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="3" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">openldap: NULL pointer dereference for unauthenticated packet in slapd</Note></Notes>
+    <DiscoveryDate>2020-11-03T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2020-10-19T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2020-25692</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>7Server-RHMTC-1.4:openshift-migration-hook-runner-container-v1.4.6-5</ProductID>
+      <ProductID>7Server-RHMTC-1.4:openshift-migration-operator-container-v1.4.6-6</ProductID>
+      <ProductID>7Server-RHMTC-1.4:openshift-migration-operator-metadata-container-v1.4.6-5</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-controller-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-log-reader-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-must-gather-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-registry-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-rsync-transfer-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-ui-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-velero-container-v1.4.6-5</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-velero-plugin-for-aws-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-velero-plugin-for-gcp-container-v1.4.6-3</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-velero-plugin-for-microsoft-azure-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-velero-restic-restore-helper-container-v1.4.6-5</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-velero-plugin-container-v1.4.6-4</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+Before applying this update, ensure all previously released errata relevant to your system have been applied.
+
+For details on how to apply this update, refer to:
+
+https://access.redhat.com/articles/11258
+
+For details on how to install and use MTC, refer to:
+
+https://docs.openshift.com/container-platform/4.7/migration-toolkit-for-containers/installing-mtc.html
+    </Description>
+      <URL>https://access.redhat.com/errata/RHBA-2021:2854</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2020-25692</URL>
+        <Description>CVE-2020-25692</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1894567</URL>
+        <Description>bz#1894567: CVE-2020-25692 openldap: NULL pointer dereference for unauthenticated packet in slapd</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="4" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">kernel: security bypass in certs/blacklist.c and certs/system_keyring.c</Note></Notes>
+    <DiscoveryDate>2020-10-03T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2020-09-15T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2020-26541</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>7Server-RHMTC-1.4:openshift-migration-hook-runner-container-v1.4.6-5</ProductID>
+      <ProductID>7Server-RHMTC-1.4:openshift-migration-operator-container-v1.4.6-6</ProductID>
+      <ProductID>7Server-RHMTC-1.4:openshift-migration-operator-metadata-container-v1.4.6-5</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-controller-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-log-reader-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-must-gather-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-registry-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-rsync-transfer-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-ui-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-velero-container-v1.4.6-5</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-velero-plugin-for-aws-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-velero-plugin-for-gcp-container-v1.4.6-3</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-velero-plugin-for-microsoft-azure-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-velero-restic-restore-helper-container-v1.4.6-5</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-velero-plugin-container-v1.4.6-4</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+Before applying this update, ensure all previously released errata relevant to your system have been applied.
+
+For details on how to apply this update, refer to:
+
+https://access.redhat.com/articles/11258
+
+For details on how to install and use MTC, refer to:
+
+https://docs.openshift.com/container-platform/4.7/migration-toolkit-for-containers/installing-mtc.html
+    </Description>
+      <URL>https://access.redhat.com/errata/RHBA-2021:2854</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2020-26541</URL>
+        <Description>CVE-2020-26541</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1886285</URL>
+        <Description>bz#1886285: CVE-2020-26541 kernel: security bypass in certs/blacklist.c and certs/system_keyring.c</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="5" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">jetty: local temporary directory hijacking vulnerability</Note></Notes>
+    <DiscoveryDate>2020-10-23T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2020-10-22T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2020-27216</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>7Server-RHMTC-1.4:openshift-migration-hook-runner-container-v1.4.6-5</ProductID>
+      <ProductID>7Server-RHMTC-1.4:openshift-migration-operator-container-v1.4.6-6</ProductID>
+      <ProductID>7Server-RHMTC-1.4:openshift-migration-operator-metadata-container-v1.4.6-5</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-controller-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-log-reader-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-must-gather-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-registry-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-rsync-transfer-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-ui-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-velero-container-v1.4.6-5</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-velero-plugin-for-aws-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-velero-plugin-for-gcp-container-v1.4.6-3</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-velero-plugin-for-microsoft-azure-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-velero-restic-restore-helper-container-v1.4.6-5</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-velero-plugin-container-v1.4.6-4</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+Before applying this update, ensure all previously released errata relevant to your system have been applied.
+
+For details on how to apply this update, refer to:
+
+https://access.redhat.com/articles/11258
+
+For details on how to install and use MTC, refer to:
+
+https://docs.openshift.com/container-platform/4.7/migration-toolkit-for-containers/installing-mtc.html
+    </Description>
+      <URL>https://access.redhat.com/errata/RHBA-2021:2854</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://github.com/eclipse/jetty.project/security/advisories/GHSA-g3wg-6mcf-8jj6#advisory-comment-63053</URL>
+        <Description>https://github.com/eclipse/jetty.project/security/advisories/GHSA-g3wg-6mcf-8jj6#advisory-comment-63053</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2020-27216</URL>
+        <Description>CVE-2020-27216</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1891132</URL>
+        <Description>bz#1891132: CVE-2020-27216 jetty: local temporary directory hijacking vulnerability</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="6" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">jetty: buffer not correctly recycled in Gzip Request inflation</Note></Notes>
+    <DiscoveryDate>2020-11-28T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2020-11-27T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2020-27218</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>7Server-RHMTC-1.4:openshift-migration-hook-runner-container-v1.4.6-5</ProductID>
+      <ProductID>7Server-RHMTC-1.4:openshift-migration-operator-container-v1.4.6-6</ProductID>
+      <ProductID>7Server-RHMTC-1.4:openshift-migration-operator-metadata-container-v1.4.6-5</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-controller-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-log-reader-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-must-gather-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-registry-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-rsync-transfer-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-ui-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-velero-container-v1.4.6-5</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-velero-plugin-for-aws-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-velero-plugin-for-gcp-container-v1.4.6-3</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-velero-plugin-for-microsoft-azure-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-velero-restic-restore-helper-container-v1.4.6-5</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-velero-plugin-container-v1.4.6-4</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+Before applying this update, ensure all previously released errata relevant to your system have been applied.
+
+For details on how to apply this update, refer to:
+
+https://access.redhat.com/articles/11258
+
+For details on how to install and use MTC, refer to:
+
+https://docs.openshift.com/container-platform/4.7/migration-toolkit-for-containers/installing-mtc.html
+    </Description>
+      <URL>https://access.redhat.com/errata/RHBA-2021:2854</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://github.com/eclipse/jetty.project/security/advisories/GHSA-86wm-rrjm-8wh8</URL>
+        <Description>https://github.com/eclipse/jetty.project/security/advisories/GHSA-86wm-rrjm-8wh8</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2020-27218</URL>
+        <Description>CVE-2020-27218</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1902826</URL>
+        <Description>bz#1902826: CVE-2020-27218 jetty: buffer not correctly recycled in Gzip Request inflation</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="7" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">jetty: request containing multiple Accept headers with a large number of &quot;quality&quot; parameters may lead to DoS</Note></Notes>
+    <DiscoveryDate>2021-02-26T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-02-26T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2020-27223</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>7Server-RHMTC-1.4:openshift-migration-hook-runner-container-v1.4.6-5</ProductID>
+      <ProductID>7Server-RHMTC-1.4:openshift-migration-operator-container-v1.4.6-6</ProductID>
+      <ProductID>7Server-RHMTC-1.4:openshift-migration-operator-metadata-container-v1.4.6-5</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-controller-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-log-reader-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-must-gather-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-registry-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-rsync-transfer-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-ui-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-velero-container-v1.4.6-5</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-velero-plugin-for-aws-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-velero-plugin-for-gcp-container-v1.4.6-3</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-velero-plugin-for-microsoft-azure-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-velero-restic-restore-helper-container-v1.4.6-5</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-velero-plugin-container-v1.4.6-4</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+Before applying this update, ensure all previously released errata relevant to your system have been applied.
+
+For details on how to apply this update, refer to:
+
+https://access.redhat.com/articles/11258
+
+For details on how to install and use MTC, refer to:
+
+https://docs.openshift.com/container-platform/4.7/migration-toolkit-for-containers/installing-mtc.html
+    </Description>
+      <URL>https://access.redhat.com/errata/RHBA-2021:2854</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://github.com/eclipse/jetty.project/security/advisories/GHSA-m394-8rww-3jr7</URL>
+        <Description>https://github.com/eclipse/jetty.project/security/advisories/GHSA-m394-8rww-3jr7</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2020-27223</URL>
+        <Description>CVE-2020-27223</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1934116</URL>
+        <Description>bz#1934116: CVE-2020-27223 jetty: request containing multiple Accept headers with a large number of &quot;quality&quot; parameters may lead to DoS</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="8" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">libwebp: heap-based buffer overflow in WebPDecode*Into functions</Note></Notes>
+    <DiscoveryDate>2021-03-16T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2020-02-25T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2020-36328</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>7Server-RHMTC-1.4:openshift-migration-hook-runner-container-v1.4.6-5</ProductID>
+      <ProductID>7Server-RHMTC-1.4:openshift-migration-operator-container-v1.4.6-6</ProductID>
+      <ProductID>7Server-RHMTC-1.4:openshift-migration-operator-metadata-container-v1.4.6-5</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-controller-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-log-reader-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-must-gather-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-registry-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-rsync-transfer-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-ui-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-velero-container-v1.4.6-5</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-velero-plugin-for-aws-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-velero-plugin-for-gcp-container-v1.4.6-3</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-velero-plugin-for-microsoft-azure-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-velero-restic-restore-helper-container-v1.4.6-5</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-velero-plugin-container-v1.4.6-4</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Important</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+Before applying this update, ensure all previously released errata relevant to your system have been applied.
+
+For details on how to apply this update, refer to:
+
+https://access.redhat.com/articles/11258
+
+For details on how to install and use MTC, refer to:
+
+https://docs.openshift.com/container-platform/4.7/migration-toolkit-for-containers/installing-mtc.html
+    </Description>
+      <URL>https://access.redhat.com/errata/RHBA-2021:2854</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2020-36328</URL>
+        <Description>CVE-2020-36328</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1956829</URL>
+        <Description>bz#1956829: CVE-2020-36328 libwebp: heap-based buffer overflow in WebPDecode*Into functions</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="9" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">libwebp: use-after-free in EmitFancyRGB() in dec/io_dec.c</Note></Notes>
+    <DiscoveryDate>2021-03-16T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2020-02-25T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2020-36329</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>7Server-RHMTC-1.4:openshift-migration-hook-runner-container-v1.4.6-5</ProductID>
+      <ProductID>7Server-RHMTC-1.4:openshift-migration-operator-container-v1.4.6-6</ProductID>
+      <ProductID>7Server-RHMTC-1.4:openshift-migration-operator-metadata-container-v1.4.6-5</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-controller-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-log-reader-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-must-gather-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-registry-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-rsync-transfer-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-ui-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-velero-container-v1.4.6-5</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-velero-plugin-for-aws-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-velero-plugin-for-gcp-container-v1.4.6-3</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-velero-plugin-for-microsoft-azure-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-velero-restic-restore-helper-container-v1.4.6-5</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-velero-plugin-container-v1.4.6-4</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Important</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+Before applying this update, ensure all previously released errata relevant to your system have been applied.
+
+For details on how to apply this update, refer to:
+
+https://access.redhat.com/articles/11258
+
+For details on how to install and use MTC, refer to:
+
+https://docs.openshift.com/container-platform/4.7/migration-toolkit-for-containers/installing-mtc.html
+    </Description>
+      <URL>https://access.redhat.com/errata/RHBA-2021:2854</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2020-36329</URL>
+        <Description>CVE-2020-36329</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1956843</URL>
+        <Description>bz#1956843: CVE-2020-36329 libwebp: use-after-free in EmitFancyRGB() in dec/io_dec.c</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="10" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">libxml2: Use-after-free in xmlEncodeEntitiesInternal() in entities.c</Note></Notes>
+    <DiscoveryDate>2021-04-21T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-04-21T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-3516</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>7Server-RHMTC-1.4:openshift-migration-hook-runner-container-v1.4.6-5</ProductID>
+      <ProductID>7Server-RHMTC-1.4:openshift-migration-operator-container-v1.4.6-6</ProductID>
+      <ProductID>7Server-RHMTC-1.4:openshift-migration-operator-metadata-container-v1.4.6-5</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-controller-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-log-reader-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-must-gather-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-registry-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-rsync-transfer-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-ui-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-velero-container-v1.4.6-5</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-velero-plugin-for-aws-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-velero-plugin-for-gcp-container-v1.4.6-3</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-velero-plugin-for-microsoft-azure-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-velero-restic-restore-helper-container-v1.4.6-5</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-velero-plugin-container-v1.4.6-4</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+Before applying this update, ensure all previously released errata relevant to your system have been applied.
+
+For details on how to apply this update, refer to:
+
+https://access.redhat.com/articles/11258
+
+For details on how to install and use MTC, refer to:
+
+https://docs.openshift.com/container-platform/4.7/migration-toolkit-for-containers/installing-mtc.html
+    </Description>
+      <URL>https://access.redhat.com/errata/RHBA-2021:2854</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-3516</URL>
+        <Description>CVE-2021-3516</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1954225</URL>
+        <Description>bz#1954225: CVE-2021-3516 libxml2: Use-after-free in xmlEncodeEntitiesInternal() in entities.c</Description>
+      </Reference>
+    </References>
+    <Acknowledgments><Acknowledgment><Description>Red Hat would like to thank zodf0055980 (SQLab NCTU Taiwan) for reporting this issue.</Description></Acknowledgment></Acknowledgments>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="11" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">libxml2: Heap-based buffer overflow in xmlEncodeEntitiesInternal() in entities.c</Note></Notes>
+    <DiscoveryDate>2021-04-21T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-04-22T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-3517</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>7Server-RHMTC-1.4:openshift-migration-hook-runner-container-v1.4.6-5</ProductID>
+      <ProductID>7Server-RHMTC-1.4:openshift-migration-operator-container-v1.4.6-6</ProductID>
+      <ProductID>7Server-RHMTC-1.4:openshift-migration-operator-metadata-container-v1.4.6-5</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-controller-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-log-reader-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-must-gather-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-registry-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-rsync-transfer-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-ui-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-velero-container-v1.4.6-5</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-velero-plugin-for-aws-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-velero-plugin-for-gcp-container-v1.4.6-3</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-velero-plugin-for-microsoft-azure-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-velero-restic-restore-helper-container-v1.4.6-5</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-velero-plugin-container-v1.4.6-4</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+Before applying this update, ensure all previously released errata relevant to your system have been applied.
+
+For details on how to apply this update, refer to:
+
+https://access.redhat.com/articles/11258
+
+For details on how to install and use MTC, refer to:
+
+https://docs.openshift.com/container-platform/4.7/migration-toolkit-for-containers/installing-mtc.html
+    </Description>
+      <URL>https://access.redhat.com/errata/RHBA-2021:2854</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-3517</URL>
+        <Description>CVE-2021-3517</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1954232</URL>
+        <Description>bz#1954232: CVE-2021-3517 libxml2: Heap-based buffer overflow in xmlEncodeEntitiesInternal() in entities.c</Description>
+      </Reference>
+    </References>
+    <Acknowledgments><Acknowledgment><Description>Red Hat would like to thank zodf0055980 (SQLab NCTU Taiwan) for reporting this issue.</Description></Acknowledgment></Acknowledgments>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="12" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">libxml2: Use-after-free in xmlXIncludeDoProcess() in xinclude.c</Note></Notes>
+    <DiscoveryDate>2021-04-21T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-04-22T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-3518</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>7Server-RHMTC-1.4:openshift-migration-hook-runner-container-v1.4.6-5</ProductID>
+      <ProductID>7Server-RHMTC-1.4:openshift-migration-operator-container-v1.4.6-6</ProductID>
+      <ProductID>7Server-RHMTC-1.4:openshift-migration-operator-metadata-container-v1.4.6-5</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-controller-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-log-reader-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-must-gather-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-registry-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-rsync-transfer-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-ui-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-velero-container-v1.4.6-5</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-velero-plugin-for-aws-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-velero-plugin-for-gcp-container-v1.4.6-3</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-velero-plugin-for-microsoft-azure-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-velero-restic-restore-helper-container-v1.4.6-5</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-velero-plugin-container-v1.4.6-4</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+Before applying this update, ensure all previously released errata relevant to your system have been applied.
+
+For details on how to apply this update, refer to:
+
+https://access.redhat.com/articles/11258
+
+For details on how to install and use MTC, refer to:
+
+https://docs.openshift.com/container-platform/4.7/migration-toolkit-for-containers/installing-mtc.html
+    </Description>
+      <URL>https://access.redhat.com/errata/RHBA-2021:2854</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-3518</URL>
+        <Description>CVE-2021-3518</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1954242</URL>
+        <Description>bz#1954242: CVE-2021-3518 libxml2: Use-after-free in xmlXIncludeDoProcess() in xinclude.c</Description>
+      </Reference>
+    </References>
+    <Acknowledgments><Acknowledgment><Description>Red Hat would like to thank zodf0055980 (SQLab NCTU Taiwan) for reporting this issue.</Description></Acknowledgment></Acknowledgments>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="13" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">lz4: memory corruption due to an integer overflow bug caused by memmove argument</Note></Notes>
+    <DiscoveryDate>2021-03-21T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-04-28T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-3520</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>7Server-RHMTC-1.4:openshift-migration-hook-runner-container-v1.4.6-5</ProductID>
+      <ProductID>7Server-RHMTC-1.4:openshift-migration-operator-container-v1.4.6-6</ProductID>
+      <ProductID>7Server-RHMTC-1.4:openshift-migration-operator-metadata-container-v1.4.6-5</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-controller-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-log-reader-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-must-gather-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-registry-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-rsync-transfer-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-ui-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-velero-container-v1.4.6-5</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-velero-plugin-for-aws-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-velero-plugin-for-gcp-container-v1.4.6-3</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-velero-plugin-for-microsoft-azure-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-velero-restic-restore-helper-container-v1.4.6-5</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-velero-plugin-container-v1.4.6-4</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+Before applying this update, ensure all previously released errata relevant to your system have been applied.
+
+For details on how to apply this update, refer to:
+
+https://access.redhat.com/articles/11258
+
+For details on how to install and use MTC, refer to:
+
+https://docs.openshift.com/container-platform/4.7/migration-toolkit-for-containers/installing-mtc.html
+    </Description>
+      <URL>https://access.redhat.com/errata/RHBA-2021:2854</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-3520</URL>
+        <Description>CVE-2021-3520</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1954559</URL>
+        <Description>bz#1954559: CVE-2021-3520 lz4: memory corruption due to an integer overflow bug caused by memmove argument</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="14" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">libxml2: NULL pointer dereference when post-validating mixed content parsed in recovery mode</Note></Notes>
+    <DiscoveryDate>2021-05-01T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-05-01T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-3537</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>7Server-RHMTC-1.4:openshift-migration-hook-runner-container-v1.4.6-5</ProductID>
+      <ProductID>7Server-RHMTC-1.4:openshift-migration-operator-container-v1.4.6-6</ProductID>
+      <ProductID>7Server-RHMTC-1.4:openshift-migration-operator-metadata-container-v1.4.6-5</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-controller-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-log-reader-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-must-gather-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-registry-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-rsync-transfer-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-ui-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-velero-container-v1.4.6-5</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-velero-plugin-for-aws-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-velero-plugin-for-gcp-container-v1.4.6-3</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-velero-plugin-for-microsoft-azure-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-velero-restic-restore-helper-container-v1.4.6-5</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-velero-plugin-container-v1.4.6-4</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+Before applying this update, ensure all previously released errata relevant to your system have been applied.
+
+For details on how to apply this update, refer to:
+
+https://access.redhat.com/articles/11258
+
+For details on how to install and use MTC, refer to:
+
+https://docs.openshift.com/container-platform/4.7/migration-toolkit-for-containers/installing-mtc.html
+    </Description>
+      <URL>https://access.redhat.com/errata/RHBA-2021:2854</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-3537</URL>
+        <Description>CVE-2021-3537</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1956522</URL>
+        <Description>bz#1956522: CVE-2021-3537 libxml2: NULL pointer dereference when post-validating mixed content parsed in recovery mode</Description>
+      </Reference>
+    </References>
+    <Acknowledgments><Acknowledgment><Description>Red Hat would like to thank yuawn (NSLab NTU Taiwan) for reporting this issue.</Description></Acknowledgment></Acknowledgments>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="15" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">libxml2: Exponential entity expansion attack bypasses all existing protection mechanisms</Note></Notes>
+    <DiscoveryDate>2021-04-16T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-05-13T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-3541</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>7Server-RHMTC-1.4:openshift-migration-hook-runner-container-v1.4.6-5</ProductID>
+      <ProductID>7Server-RHMTC-1.4:openshift-migration-operator-container-v1.4.6-6</ProductID>
+      <ProductID>7Server-RHMTC-1.4:openshift-migration-operator-metadata-container-v1.4.6-5</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-controller-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-log-reader-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-must-gather-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-registry-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-rsync-transfer-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-ui-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-velero-container-v1.4.6-5</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-velero-plugin-for-aws-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-velero-plugin-for-gcp-container-v1.4.6-3</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-velero-plugin-for-microsoft-azure-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-velero-restic-restore-helper-container-v1.4.6-5</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-velero-plugin-container-v1.4.6-4</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+Before applying this update, ensure all previously released errata relevant to your system have been applied.
+
+For details on how to apply this update, refer to:
+
+https://access.redhat.com/articles/11258
+
+For details on how to install and use MTC, refer to:
+
+https://docs.openshift.com/container-platform/4.7/migration-toolkit-for-containers/installing-mtc.html
+    </Description>
+      <URL>https://access.redhat.com/errata/RHBA-2021:2854</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-3541</URL>
+        <Description>CVE-2021-3541</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1950515</URL>
+        <Description>bz#1950515: CVE-2021-3541 libxml2: Exponential entity expansion attack bypasses all existing protection mechanisms</Description>
+      </Reference>
+    </References>
+    <Acknowledgments><Acknowledgment><Description>Red Hat would like to thank Sebastian Pipping for reporting this issue.</Description></Acknowledgment></Acknowledgments>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="16" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">rpm: Signature checks bypass via corrupted rpm package</Note></Notes>
+    <DiscoveryDate>2021-03-01T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-03-11T22:53:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-20271</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>7Server-RHMTC-1.4:openshift-migration-hook-runner-container-v1.4.6-5</ProductID>
+      <ProductID>7Server-RHMTC-1.4:openshift-migration-operator-container-v1.4.6-6</ProductID>
+      <ProductID>7Server-RHMTC-1.4:openshift-migration-operator-metadata-container-v1.4.6-5</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-controller-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-log-reader-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-must-gather-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-registry-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-rsync-transfer-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-ui-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-velero-container-v1.4.6-5</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-velero-plugin-for-aws-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-velero-plugin-for-gcp-container-v1.4.6-3</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-velero-plugin-for-microsoft-azure-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-velero-restic-restore-helper-container-v1.4.6-5</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-velero-plugin-container-v1.4.6-4</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+Before applying this update, ensure all previously released errata relevant to your system have been applied.
+
+For details on how to apply this update, refer to:
+
+https://access.redhat.com/articles/11258
+
+For details on how to install and use MTC, refer to:
+
+https://docs.openshift.com/container-platform/4.7/migration-toolkit-for-containers/installing-mtc.html
+    </Description>
+      <URL>https://access.redhat.com/errata/RHBA-2021:2854</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-20271</URL>
+        <Description>CVE-2021-20271</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1934125</URL>
+        <Description>bz#1934125: CVE-2021-20271 rpm: Signature checks bypass via corrupted rpm package</Description>
+      </Reference>
+    </References>
+    <Acknowledgments><Acknowledgment><Description>Red Hat would like to thank Demi M. Obenour for reporting this issue.</Description></Acknowledgment></Acknowledgments>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="17" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">jenkins-2-plugins/config-file-provider: Does not configure its XML parser to prevent XML external entity (XXE) attacks.</Note></Notes>
+    <DiscoveryDate>2021-04-21T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-04-21T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-21642</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>7Server-RHMTC-1.4:openshift-migration-hook-runner-container-v1.4.6-5</ProductID>
+      <ProductID>7Server-RHMTC-1.4:openshift-migration-operator-container-v1.4.6-6</ProductID>
+      <ProductID>7Server-RHMTC-1.4:openshift-migration-operator-metadata-container-v1.4.6-5</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-controller-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-log-reader-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-must-gather-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-registry-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-rsync-transfer-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-ui-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-velero-container-v1.4.6-5</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-velero-plugin-for-aws-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-velero-plugin-for-gcp-container-v1.4.6-3</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-velero-plugin-for-microsoft-azure-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-velero-restic-restore-helper-container-v1.4.6-5</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-velero-plugin-container-v1.4.6-4</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Important</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+Before applying this update, ensure all previously released errata relevant to your system have been applied.
+
+For details on how to apply this update, refer to:
+
+https://access.redhat.com/articles/11258
+
+For details on how to install and use MTC, refer to:
+
+https://docs.openshift.com/container-platform/4.7/migration-toolkit-for-containers/installing-mtc.html
+    </Description>
+      <URL>https://access.redhat.com/errata/RHBA-2021:2854</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.jenkins.io/security/advisory/2021-04-21/#SECURITY-2204</URL>
+        <Description>https://www.jenkins.io/security/advisory/2021-04-21/#SECURITY-2204</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-21642</URL>
+        <Description>CVE-2021-21642</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1952146</URL>
+        <Description>bz#1952146: CVE-2021-21642 jenkins-2-plugins/config-file-provider: Does not configure its XML parser to prevent XML external entity (XXE) attacks.</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="18" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">jenkins-2-plugins/config-file-provider: Does not correctly perform permission checks in several HTTP endpoints.</Note></Notes>
+    <DiscoveryDate>2021-04-21T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-04-21T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-21643</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>7Server-RHMTC-1.4:openshift-migration-hook-runner-container-v1.4.6-5</ProductID>
+      <ProductID>7Server-RHMTC-1.4:openshift-migration-operator-container-v1.4.6-6</ProductID>
+      <ProductID>7Server-RHMTC-1.4:openshift-migration-operator-metadata-container-v1.4.6-5</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-controller-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-log-reader-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-must-gather-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-registry-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-rsync-transfer-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-ui-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-velero-container-v1.4.6-5</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-velero-plugin-for-aws-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-velero-plugin-for-gcp-container-v1.4.6-3</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-velero-plugin-for-microsoft-azure-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-velero-restic-restore-helper-container-v1.4.6-5</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-velero-plugin-container-v1.4.6-4</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+Before applying this update, ensure all previously released errata relevant to your system have been applied.
+
+For details on how to apply this update, refer to:
+
+https://access.redhat.com/articles/11258
+
+For details on how to install and use MTC, refer to:
+
+https://docs.openshift.com/container-platform/4.7/migration-toolkit-for-containers/installing-mtc.html
+    </Description>
+      <URL>https://access.redhat.com/errata/RHBA-2021:2854</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.jenkins.io/security/advisory/2021-04-21/#SECURITY-2254</URL>
+        <Description>https://www.jenkins.io/security/advisory/2021-04-21/#SECURITY-2254</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-21643</URL>
+        <Description>CVE-2021-21643</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1952148</URL>
+        <Description>bz#1952148: CVE-2021-21643 jenkins-2-plugins/config-file-provider: Does not correctly perform permission checks in several HTTP endpoints.</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="19" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">jenkins-2-plugins/config-file-provider: does not require POST requests for an HTTP endpoint, resulting in a cross-site request forgery (CSRF) vulnerability.</Note></Notes>
+    <DiscoveryDate>2021-04-21T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-04-21T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-21644</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>7Server-RHMTC-1.4:openshift-migration-hook-runner-container-v1.4.6-5</ProductID>
+      <ProductID>7Server-RHMTC-1.4:openshift-migration-operator-container-v1.4.6-6</ProductID>
+      <ProductID>7Server-RHMTC-1.4:openshift-migration-operator-metadata-container-v1.4.6-5</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-controller-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-log-reader-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-must-gather-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-registry-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-rsync-transfer-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-ui-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-velero-container-v1.4.6-5</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-velero-plugin-for-aws-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-velero-plugin-for-gcp-container-v1.4.6-3</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-velero-plugin-for-microsoft-azure-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-velero-restic-restore-helper-container-v1.4.6-5</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-velero-plugin-container-v1.4.6-4</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+Before applying this update, ensure all previously released errata relevant to your system have been applied.
+
+For details on how to apply this update, refer to:
+
+https://access.redhat.com/articles/11258
+
+For details on how to install and use MTC, refer to:
+
+https://docs.openshift.com/container-platform/4.7/migration-toolkit-for-containers/installing-mtc.html
+    </Description>
+      <URL>https://access.redhat.com/errata/RHBA-2021:2854</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-21644</URL>
+        <Description>CVE-2021-21644</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1952151</URL>
+        <Description>bz#1952151: CVE-2021-21644 jenkins-2-plugins/config-file-provider: does not require POST requests for an HTTP endpoint, resulting in a cross-site request forgery (CSRF) vulnerability.</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="20" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">jenkins-2-plugins/config-file-provider: Does not perform permission checks in several HTTP endpoints.</Note></Notes>
+    <DiscoveryDate>2021-04-21T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-04-21T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-21645</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>7Server-RHMTC-1.4:openshift-migration-hook-runner-container-v1.4.6-5</ProductID>
+      <ProductID>7Server-RHMTC-1.4:openshift-migration-operator-container-v1.4.6-6</ProductID>
+      <ProductID>7Server-RHMTC-1.4:openshift-migration-operator-metadata-container-v1.4.6-5</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-controller-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-log-reader-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-must-gather-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-registry-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-rsync-transfer-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-ui-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-velero-container-v1.4.6-5</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-velero-plugin-for-aws-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-velero-plugin-for-gcp-container-v1.4.6-3</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-velero-plugin-for-microsoft-azure-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-velero-restic-restore-helper-container-v1.4.6-5</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-velero-plugin-container-v1.4.6-4</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+Before applying this update, ensure all previously released errata relevant to your system have been applied.
+
+For details on how to apply this update, refer to:
+
+https://access.redhat.com/articles/11258
+
+For details on how to install and use MTC, refer to:
+
+https://docs.openshift.com/container-platform/4.7/migration-toolkit-for-containers/installing-mtc.html
+    </Description>
+      <URL>https://access.redhat.com/errata/RHBA-2021:2854</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-21645</URL>
+        <Description>CVE-2021-21645</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1952152</URL>
+        <Description>bz#1952152: CVE-2021-21645 jenkins-2-plugins/config-file-provider: Does not perform permission checks in several HTTP endpoints.</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="21" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">glib: integer overflow in g_bytes_new function on 64-bit platforms due to an implicit cast from 64 bits to 32 bits</Note></Notes>
+    <DiscoveryDate>2021-02-14T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-02-04T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-27219</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>7Server-RHMTC-1.4:openshift-migration-hook-runner-container-v1.4.6-5</ProductID>
+      <ProductID>7Server-RHMTC-1.4:openshift-migration-operator-container-v1.4.6-6</ProductID>
+      <ProductID>7Server-RHMTC-1.4:openshift-migration-operator-metadata-container-v1.4.6-5</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-controller-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-log-reader-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-must-gather-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-registry-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-rsync-transfer-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-ui-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-velero-container-v1.4.6-5</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-velero-plugin-for-aws-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-velero-plugin-for-gcp-container-v1.4.6-3</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-velero-plugin-for-microsoft-azure-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-velero-restic-restore-helper-container-v1.4.6-5</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-velero-plugin-container-v1.4.6-4</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Important</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+Before applying this update, ensure all previously released errata relevant to your system have been applied.
+
+For details on how to apply this update, refer to:
+
+https://access.redhat.com/articles/11258
+
+For details on how to install and use MTC, refer to:
+
+https://docs.openshift.com/container-platform/4.7/migration-toolkit-for-containers/installing-mtc.html
+    </Description>
+      <URL>https://access.redhat.com/errata/RHBA-2021:2854</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-27219</URL>
+        <Description>CVE-2021-27219</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1929858</URL>
+        <Description>bz#1929858: CVE-2021-27219 glib: integer overflow in g_bytes_new function on 64-bit platforms due to an implicit cast from 64 bits to 32 bits</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="22" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">golang: net/http: panic in ReadRequest and ReadResponse when reading a very large header</Note></Notes>
+    <DiscoveryDate>2021-05-06T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-04-22T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-31525</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>7Server-RHMTC-1.4:openshift-migration-hook-runner-container-v1.4.6-5</ProductID>
+      <ProductID>7Server-RHMTC-1.4:openshift-migration-operator-container-v1.4.6-6</ProductID>
+      <ProductID>7Server-RHMTC-1.4:openshift-migration-operator-metadata-container-v1.4.6-5</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-controller-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-log-reader-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-must-gather-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-registry-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-rsync-transfer-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-ui-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-velero-container-v1.4.6-5</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-velero-plugin-for-aws-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-velero-plugin-for-gcp-container-v1.4.6-3</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-velero-plugin-for-microsoft-azure-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-velero-restic-restore-helper-container-v1.4.6-5</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-velero-plugin-container-v1.4.6-4</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+Before applying this update, ensure all previously released errata relevant to your system have been applied.
+
+For details on how to apply this update, refer to:
+
+https://access.redhat.com/articles/11258
+
+For details on how to install and use MTC, refer to:
+
+https://docs.openshift.com/container-platform/4.7/migration-toolkit-for-containers/installing-mtc.html
+    </Description>
+      <URL>https://access.redhat.com/errata/RHBA-2021:2854</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://groups.google.com/g/golang-announce/c/cu9SP4eSXMc</URL>
+        <Description>https://groups.google.com/g/golang-announce/c/cu9SP4eSXMc</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-31525</URL>
+        <Description>CVE-2021-31525</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1958341</URL>
+        <Description>bz#1958341: CVE-2021-31525 golang: net/http: panic in ReadRequest and ReadResponse when reading a very large header</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="23" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">kernel: use-after-free in net/bluetooth/hci_event.c when destroying an hci_chan</Note></Notes>
+    <DiscoveryDate>2021-05-14T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-03-22T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-33034</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>7Server-RHMTC-1.4:openshift-migration-hook-runner-container-v1.4.6-5</ProductID>
+      <ProductID>7Server-RHMTC-1.4:openshift-migration-operator-container-v1.4.6-6</ProductID>
+      <ProductID>7Server-RHMTC-1.4:openshift-migration-operator-metadata-container-v1.4.6-5</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-controller-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-log-reader-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-must-gather-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-registry-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-rsync-transfer-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-ui-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-velero-container-v1.4.6-5</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-velero-plugin-for-aws-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-velero-plugin-for-gcp-container-v1.4.6-3</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-velero-plugin-for-microsoft-azure-container-v1.4.6-4</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-migration-velero-restic-restore-helper-container-v1.4.6-5</ProductID>
+      <ProductID>8Base-RHMTC-1.4:openshift-velero-plugin-container-v1.4.6-4</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Important</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+Before applying this update, ensure all previously released errata relevant to your system have been applied.
+
+For details on how to apply this update, refer to:
+
+https://access.redhat.com/articles/11258
+
+For details on how to install and use MTC, refer to:
+
+https://docs.openshift.com/container-platform/4.7/migration-toolkit-for-containers/installing-mtc.html
+    </Description>
+      <URL>https://access.redhat.com/errata/RHBA-2021:2854</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=5c4c8c9544099bb9043a10a5318130a943e32fc3</URL>
+        <Description>https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=5c4c8c9544099bb9043a10a5318130a943e32fc3</Description>
+      </Reference>
+      <Reference>
+        <URL>https://sites.google.com/view/syzscope/kasan-use-after-free-read-in-hci_send_acl</URL>
+        <Description>https://sites.google.com/view/syzscope/kasan-use-after-free-read-in-hci_send_acl</Description>
+      </Reference>
+      <Reference>
+        <URL>https://syzkaller.appspot.com/bug?id=2e1943a94647f7732dd6fc60368642d6e8dc91b1</URL>
+        <Description>https://syzkaller.appspot.com/bug?id=2e1943a94647f7732dd6fc60368642d6e8dc91b1</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-33034</URL>
+        <Description>CVE-2021-33034</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1961305</URL>
+        <Description>bz#1961305: CVE-2021-33034 kernel: use-after-free in net/bluetooth/hci_event.c when destroying an hci_chan</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+</cvrfdoc>

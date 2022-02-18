@@ -1,0 +1,1963 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cvrfdoc xmlns="http://www.icasi.org/CVRF/schema/cvrf/1.1" xmlns:cvrf="http://www.icasi.org/CVRF/schema/cvrf/1.1">
+  <DocumentTitle xml:lang="en">Red Hat Security Advisory: kernel-rt security and bug fix update</DocumentTitle>
+  <DocumentType>Security Advisory</DocumentType>
+  <DocumentPublisher Type="Vendor">
+    <ContactDetails>secalert@redhat.com</ContactDetails>
+    <IssuingAuthority>Red Hat Product Security</IssuingAuthority>
+  </DocumentPublisher>
+  <DocumentTracking>
+    <Identification><ID>RHSA-2021:4140</ID></Identification>
+    <Status>Final</Status>
+    <Version>1</Version>
+    <RevisionHistory>
+       <Revision>
+         <Number>1</Number>
+         <Date>2021-11-10T11:08:00Z</Date>
+         <Description>Current version</Description>
+       </Revision>
+    </RevisionHistory>
+    <InitialReleaseDate>2021-11-09T17:26:00Z</InitialReleaseDate>
+    <CurrentReleaseDate>2021-11-10T11:08:00Z</CurrentReleaseDate>
+    <Generator>
+      <Engine>Red Hat SDEngine 3.3.0</Engine>
+      <Date>2021-11-13T05:17:00Z</Date>
+    </Generator>
+  </DocumentTracking>
+  <DocumentNotes>
+    <Note Title="Topic" Type="Summary" Ordinal="1" xml:lang="en">
+An update for kernel-rt is now available for Red Hat Enterprise Linux 8.
+
+Red Hat Product Security has rated this update as having a security impact of Moderate. A Common Vulnerability Scoring System (CVSS) base score, which gives a detailed severity rating, is available for each vulnerability from the CVE link(s) in the References section.
+    </Note>
+    <Note Title="Details" Type="General" Ordinal="2" xml:lang="en">
+The kernel-rt packages provide the Real Time Linux Kernel, which enables fine-tuning for systems with extremely high determinism requirements.
+
+Security Fix(es):
+* kernel: out-of-bounds reads in pinctrl subsystem. (CVE-2020-0427)
+* kernel: Improper input validation in some Intel(R) Ethernet E810 Adapter drivers (CVE-2020-24502)
+* kernel: Insufficient access control in some Intel(R) Ethernet E810 Adapter drivers (CVE-2020-24503)
+* kernel: Uncontrolled resource consumption in some Intel(R) Ethernet E810 Adapter drivers (CVE-2020-24504)
+* kernel: Fragmentation cache not cleared on reconnection (CVE-2020-24586)
+* kernel: Reassembling fragments encrypted under different keys (CVE-2020-24587)
+* kernel: wifi frame payload being parsed incorrectly as an L2 frame (CVE-2020-24588)
+* kernel: Forwarding EAPOL from unauthenticated wifi client (CVE-2020-26139)
+* kernel: accepting plaintext data frames in protected networks (CVE-2020-26140)
+* kernel: not verifying TKIP MIC of fragmented frames (CVE-2020-26141)
+* kernel: accepting fragmented plaintext frames in protected networks (CVE-2020-26143)
+* kernel: accepting unencrypted A-MSDU frames that start with RFC1042 header (CVE-2020-26144)
+* kernel: accepting plaintext broadcast fragments as full frames (CVE-2020-26145)
+* kernel: locking inconsistency in tty_io.c and tty_jobctrl.c can lead to a read-after-free (CVE-2020-29660)
+* kernel: buffer overflow in mwifiex_cmd_802_11_ad_hoc_start function via a long SSID value (CVE-2020-36158)
+* kernel: slab out-of-bounds read in hci_extended_inquiry_result_evt() (CVE-2020-36386)
+* kernel: Improper access control in BlueZ may allow information disclosure vulnerability. (CVE-2021-0129)
+* kernel: Use-after-free in ndb_queue_rq() (CVE-2021-3348)
+* kernel: Linux kernel eBPF RINGBUF map oversized allocation (CVE-2021-3489)
+* kernel: double free in bluetooth subsystem when the HCI device initialization fails (CVE-2021-3564)
+* kernel: use-after-free in function hci_sock_bound_ioctl() (CVE-2021-3573)
+* kernel: eBPF 32-bit source register truncation on div/mod (CVE-2021-3600)
+* kernel: DoS in rb_per_cpu_empty() (CVE-2021-3679)
+* kernel: overlayfs: Mounting overlayfs inside an unprivileged user namespace can reveal files (CVE-2021-3732)
+* kernel: heap overflow in __cgroup_bpf_run_filter_getsockopt() (CVE-2021-20194)
+* kernel: Race condition in sctp_destroy_sock list_del (CVE-2021-23133)
+* kernel: fuse: stall on CPU can occur because a retry loop continually finds the same bad inode (CVE-2021-28950)
+* kernel: System crash in intel_pmu_drain_pebs_nhm (CVE-2021-28971)
+* kernel: protection for sequences of pointer arithmetic operations against speculatively out-of-bounds loads can be bypassed to leak content of kernel memory (CVE-2021-29155)
+* kernel: improper input validation in tipc_nl_retrieve_key function (CVE-2021-29646)
+* kernel: lack a full memory barrier upon the assignment of a new table value in x_tables.h may lead to DoS (CVE-2021-29650)
+* kernel: local escalation of privileges in handling of eBPF programs (CVE-2021-31440)
+* kernel: protection of stack pointer against speculative pointer arithmetic can be bypassed to leak content of kernel memory (CVE-2021-31829)
+* kernel: out-of-bounds reads and writes due to enforcing incorrect limits for pointer arithmetic operations by BPF verifier (CVE-2021-33200)
+* kernel: reassembling encrypted fragments with non-consecutive packet numbers (CVE-2020-26146)
+* kernel: reassembling mixed encrypted/plaintext fragments (CVE-2020-26147)
+* kernel: the copy-on-write implementation can grant unintended write access because of a race condition in a THP mapcount check (CVE-2020-29368)
+* kernel: flowtable list del corruption with kernel BUG (CVE-2021-3635)
+* kernel: NULL pointer dereference in llsec_key_alloc()  (CVE-2021-3659)
+* kernel: setsockopt System Call Untrusted Pointer Dereference Information Disclosure (CVE-2021-20239)
+* kernel: out of bounds array access in drivers/md/dm-ioctl.c (CVE-2021-31916)
+    </Note>
+    <Note Title="Terms of Use" Ordinal="3" Type="Legal Disclaimer" xml:lang="en">This content is licensed under the Creative Commons Attribution 4.0 International License (https://creativecommons.org/licenses/by/4.0/). If you distribute this content, or a modified version of it, you must provide attribution to Red Hat Inc. and provide a link to the original.</Note>
+  </DocumentNotes>
+  <DocumentDistribution xml:lang="en">Copyright © 2021 Red Hat, Inc. All rights reserved.</DocumentDistribution>
+  <AggregateSeverity Namespace="https://access.redhat.com/security/updates/classification/">Moderate</AggregateSeverity>
+  <DocumentReferences>
+    <Reference Type="Self">
+       <URL>https://access.redhat.com/errata/RHSA-2021:4140</URL>
+       <Description>https://access.redhat.com/errata/RHSA-2021:4140</Description>
+    </Reference>
+    <Reference Type="External">
+       <URL>https://access.redhat.com/security/updates/classification/#moderate</URL>
+       <Description>https://access.redhat.com/security/updates/classification/#moderate</Description>
+    </Reference>
+    <Reference Type="External">
+       <URL>https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/8.5_release_notes/</URL>
+       <Description>https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/8.5_release_notes/</Description>
+    </Reference>
+  </DocumentReferences>
+  <ProductTree xmlns="http://www.icasi.org/CVRF/schema/prod/1.1">
+    <Branch Type="Product Family" Name="Red Hat Enterprise Linux">
+      <Branch Type="Product Name" Name="Red Hat Enterprise Linux Real Time for NFV (v. 8)">
+        <FullProductName ProductID="NFV-8.5.0.GA" CPE="cpe:/a:redhat:enterprise_linux:8::nfv">Red Hat Enterprise Linux Real Time for NFV (v. 8)</FullProductName>
+      </Branch>
+      <Branch Type="Product Name" Name="Red Hat Enterprise Linux Real Time (v. 8)">
+        <FullProductName ProductID="RT-8.5.0.GA" CPE="cpe:/a:redhat:enterprise_linux:8::realtime">Red Hat Enterprise Linux Real Time (v. 8)</FullProductName>
+      </Branch>
+    </Branch>
+    <Branch Type="Product Version" Name="kernel-rt-0:4.18.0-348.rt7.130.el8">
+      <FullProductName ProductID="kernel-rt-0:4.18.0-348.rt7.130.el8" CPE="cpe:/a:redhat:enterprise_linux:8::nfv">kernel-rt-4.18.0-348.rt7.130.el8.src.rpm</FullProductName>
+    </Branch>
+    <Relationship ProductReference="kernel-rt-0:4.18.0-348.rt7.130.el8" RelationType="Default Component Of" RelatesToProductReference="NFV-8.5.0.GA">
+      <FullProductName ProductID="NFV-8.5.0.GA:kernel-rt-0:4.18.0-348.rt7.130.el8" CPE="cpe:/a:redhat:enterprise_linux:8::nfv">kernel-rt-0:4.18.0-348.rt7.130.el8 as a component of Red Hat Enterprise Linux Real Time for NFV (v. 8)</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="kernel-rt-0:4.18.0-348.rt7.130.el8" RelationType="Default Component Of" RelatesToProductReference="RT-8.5.0.GA">
+      <FullProductName ProductID="RT-8.5.0.GA:kernel-rt-0:4.18.0-348.rt7.130.el8" CPE="cpe:/a:redhat:enterprise_linux:8::realtime">kernel-rt-0:4.18.0-348.rt7.130.el8 as a component of Red Hat Enterprise Linux Real Time (v. 8)</FullProductName>
+    </Relationship>
+  </ProductTree>
+
+  <Vulnerability Ordinal="1" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">kernel: Intel graphics card information leak.</Note></Notes>
+    <DiscoveryDate>2020-01-09T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2020-01-14T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2019-14615</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>NFV-8.5.0.GA:kernel-rt-0:4.18.0-348.rt7.130.el8</ProductID>
+      <ProductID>RT-8.5.0.GA:kernel-rt-0:4.18.0-348.rt7.130.el8</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For more details about the security issue(s), including the impact, a CVSS score, acknowledgments, and other related information, refer to the CVE page(s) listed in the References section.
+
+Additional Changes:
+
+For detailed information on changes in this release, see the Red Hat Enterprise Linux 8.5 Release Notes linked from the References section.
+
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+
+The system must be rebooted for this update to take effect.
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:4140</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2019-14615</URL>
+        <Description>CVE-2019-14615</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1789209</URL>
+        <Description>bz#1789209: CVE-2019-14615 kernel: Intel graphics card information leak.</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="2" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">kernel: out-of-bounds reads in pinctrl subsystem.</Note></Notes>
+    <DiscoveryDate>2021-01-24T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2020-11-22T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2020-0427</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>NFV-8.5.0.GA:kernel-rt-0:4.18.0-348.rt7.130.el8</ProductID>
+      <ProductID>RT-8.5.0.GA:kernel-rt-0:4.18.0-348.rt7.130.el8</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For more details about the security issue(s), including the impact, a CVSS score, acknowledgments, and other related information, refer to the CVE page(s) listed in the References section.
+
+Additional Changes:
+
+For detailed information on changes in this release, see the Red Hat Enterprise Linux 8.5 Release Notes linked from the References section.
+
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+
+The system must be rebooted for this update to take effect.
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:4140</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2020-0427</URL>
+        <Description>CVE-2020-0427</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1919893</URL>
+        <Description>bz#1919893: CVE-2020-0427 kernel: out-of-bounds reads in pinctrl subsystem.</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="3" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">kernel: Improper input validation in some Intel(R) Ethernet E810 Adapter drivers</Note></Notes>
+    <DiscoveryDate>2021-02-17T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-02-17T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2020-24502</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>NFV-8.5.0.GA:kernel-rt-0:4.18.0-348.rt7.130.el8</ProductID>
+      <ProductID>RT-8.5.0.GA:kernel-rt-0:4.18.0-348.rt7.130.el8</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For more details about the security issue(s), including the impact, a CVSS score, acknowledgments, and other related information, refer to the CVE page(s) listed in the References section.
+
+Additional Changes:
+
+For detailed information on changes in this release, see the Red Hat Enterprise Linux 8.5 Release Notes linked from the References section.
+
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+
+The system must be rebooted for this update to take effect.
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:4140</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2020-24502</URL>
+        <Description>CVE-2020-24502</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1930379</URL>
+        <Description>bz#1930379: CVE-2020-24502 kernel: Improper input validation in some Intel(R) Ethernet E810 Adapter drivers</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="4" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">kernel: Insufficient access control in some Intel(R) Ethernet E810 Adapter drivers</Note></Notes>
+    <DiscoveryDate>2021-02-17T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-02-17T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2020-24503</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>NFV-8.5.0.GA:kernel-rt-0:4.18.0-348.rt7.130.el8</ProductID>
+      <ProductID>RT-8.5.0.GA:kernel-rt-0:4.18.0-348.rt7.130.el8</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For more details about the security issue(s), including the impact, a CVSS score, acknowledgments, and other related information, refer to the CVE page(s) listed in the References section.
+
+Additional Changes:
+
+For detailed information on changes in this release, see the Red Hat Enterprise Linux 8.5 Release Notes linked from the References section.
+
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+
+The system must be rebooted for this update to take effect.
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:4140</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2020-24503</URL>
+        <Description>CVE-2020-24503</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1930381</URL>
+        <Description>bz#1930381: CVE-2020-24503 kernel: Insufficient access control in some Intel(R) Ethernet E810 Adapter drivers</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="5" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">kernel: Uncontrolled resource consumption in some Intel(R) Ethernet E810 Adapter drivers</Note></Notes>
+    <DiscoveryDate>2021-02-17T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-02-17T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2020-24504</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>NFV-8.5.0.GA:kernel-rt-0:4.18.0-348.rt7.130.el8</ProductID>
+      <ProductID>RT-8.5.0.GA:kernel-rt-0:4.18.0-348.rt7.130.el8</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For more details about the security issue(s), including the impact, a CVSS score, acknowledgments, and other related information, refer to the CVE page(s) listed in the References section.
+
+Additional Changes:
+
+For detailed information on changes in this release, see the Red Hat Enterprise Linux 8.5 Release Notes linked from the References section.
+
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+
+The system must be rebooted for this update to take effect.
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:4140</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.intel.com/content/www/us/en/security-center/advisory/intel-sa-00462.html</URL>
+        <Description>https://www.intel.com/content/www/us/en/security-center/advisory/intel-sa-00462.html</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2020-24504</URL>
+        <Description>CVE-2020-24504</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1930376</URL>
+        <Description>bz#1930376: CVE-2020-24504 kernel: Uncontrolled resource consumption in some Intel(R) Ethernet E810 Adapter drivers</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="6" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">kernel: Fragmentation cache not cleared on reconnection</Note></Notes>
+    <DiscoveryDate>2021-05-12T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-05-12T01:20:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2020-24586</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>NFV-8.5.0.GA:kernel-rt-0:4.18.0-348.rt7.130.el8</ProductID>
+      <ProductID>RT-8.5.0.GA:kernel-rt-0:4.18.0-348.rt7.130.el8</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For more details about the security issue(s), including the impact, a CVSS score, acknowledgments, and other related information, refer to the CVE page(s) listed in the References section.
+
+Additional Changes:
+
+For detailed information on changes in this release, see the Red Hat Enterprise Linux 8.5 Release Notes linked from the References section.
+
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+
+The system must be rebooted for this update to take effect.
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:4140</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://lore.kernel.org/linux-wireless/20210511200110.3f8290e59823.I622a67769ed39257327a362cfc09c812320eb979@changeid/</URL>
+        <Description>https://lore.kernel.org/linux-wireless/20210511200110.3f8290e59823.I622a67769ed39257327a362cfc09c812320eb979@changeid/</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2020-24586</URL>
+        <Description>CVE-2020-24586</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1959642</URL>
+        <Description>bz#1959642: CVE-2020-24586 kernel: Fragmentation cache not cleared on reconnection</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="7" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">kernel: Reassembling fragments encrypted under different keys</Note></Notes>
+    <DiscoveryDate>2021-05-12T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-05-11T14:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2020-24587</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>NFV-8.5.0.GA:kernel-rt-0:4.18.0-348.rt7.130.el8</ProductID>
+      <ProductID>RT-8.5.0.GA:kernel-rt-0:4.18.0-348.rt7.130.el8</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For more details about the security issue(s), including the impact, a CVSS score, acknowledgments, and other related information, refer to the CVE page(s) listed in the References section.
+
+Additional Changes:
+
+For detailed information on changes in this release, see the Red Hat Enterprise Linux 8.5 Release Notes linked from the References section.
+
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+
+The system must be rebooted for this update to take effect.
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:4140</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://lore.kernel.org/linux-wireless/20210511200110.3f8290e59823.I622a67769ed39257327a362cfc09c812320eb979@changeid/</URL>
+        <Description>https://lore.kernel.org/linux-wireless/20210511200110.3f8290e59823.I622a67769ed39257327a362cfc09c812320eb979@changeid/</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2020-24587</URL>
+        <Description>CVE-2020-24587</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1959654</URL>
+        <Description>bz#1959654: CVE-2020-24587 kernel: Reassembling fragments encrypted under different keys</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="8" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">kernel: wifi frame payload being parsed incorrectly as an L2 frame</Note></Notes>
+    <DiscoveryDate>2021-05-12T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-05-12T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2020-24588</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>NFV-8.5.0.GA:kernel-rt-0:4.18.0-348.rt7.130.el8</ProductID>
+      <ProductID>RT-8.5.0.GA:kernel-rt-0:4.18.0-348.rt7.130.el8</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For more details about the security issue(s), including the impact, a CVSS score, acknowledgments, and other related information, refer to the CVE page(s) listed in the References section.
+
+Additional Changes:
+
+For detailed information on changes in this release, see the Red Hat Enterprise Linux 8.5 Release Notes linked from the References section.
+
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+
+The system must be rebooted for this update to take effect.
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:4140</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://lore.kernel.org/linux-wireless/20210511200110.25d93176ddaf.I9e265b597f2cd23eb44573f35b625947b386a9de@changeid/</URL>
+        <Description>https://lore.kernel.org/linux-wireless/20210511200110.25d93176ddaf.I9e265b597f2cd23eb44573f35b625947b386a9de@changeid/</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2020-24588</URL>
+        <Description>CVE-2020-24588</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1959657</URL>
+        <Description>bz#1959657: CVE-2020-24588 kernel: wifi frame payload being parsed incorrectly as an L2 frame</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="9" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">kernel: Forwarding EAPOL from unauthenticated wifi client</Note></Notes>
+    <DiscoveryDate>2021-05-12T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-05-12T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2020-26139</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>NFV-8.5.0.GA:kernel-rt-0:4.18.0-348.rt7.130.el8</ProductID>
+      <ProductID>RT-8.5.0.GA:kernel-rt-0:4.18.0-348.rt7.130.el8</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For more details about the security issue(s), including the impact, a CVSS score, acknowledgments, and other related information, refer to the CVE page(s) listed in the References section.
+
+Additional Changes:
+
+For detailed information on changes in this release, see the Red Hat Enterprise Linux 8.5 Release Notes linked from the References section.
+
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+
+The system must be rebooted for this update to take effect.
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:4140</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://lore.kernel.org/linux-wireless/20210511200110.cb327ed0cabe.Ib7dcffa2a31f0913d660de65ba3c8aca75b1d10f@changeid/</URL>
+        <Description>https://lore.kernel.org/linux-wireless/20210511200110.cb327ed0cabe.Ib7dcffa2a31f0913d660de65ba3c8aca75b1d10f@changeid/</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2020-26139</URL>
+        <Description>CVE-2020-26139</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1959663</URL>
+        <Description>bz#1959663: CVE-2020-26139 kernel: Forwarding EAPOL from unauthenticated wifi client</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="10" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">kernel: accepting plaintext data frames in protected networks</Note></Notes>
+    <DiscoveryDate>2021-05-07T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-05-11T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2020-26140</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>NFV-8.5.0.GA:kernel-rt-0:4.18.0-348.rt7.130.el8</ProductID>
+      <ProductID>RT-8.5.0.GA:kernel-rt-0:4.18.0-348.rt7.130.el8</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For more details about the security issue(s), including the impact, a CVSS score, acknowledgments, and other related information, refer to the CVE page(s) listed in the References section.
+
+Additional Changes:
+
+For detailed information on changes in this release, see the Red Hat Enterprise Linux 8.5 Release Notes linked from the References section.
+
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+
+The system must be rebooted for this update to take effect.
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:4140</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2020-26140</URL>
+        <Description>CVE-2020-26140</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1960490</URL>
+        <Description>bz#1960490: CVE-2020-26140 kernel: accepting plaintext data frames in protected networks</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="11" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">kernel: not verifying TKIP MIC of fragmented frames</Note></Notes>
+    <DiscoveryDate>2021-05-07T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-05-11T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2020-26141</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>NFV-8.5.0.GA:kernel-rt-0:4.18.0-348.rt7.130.el8</ProductID>
+      <ProductID>RT-8.5.0.GA:kernel-rt-0:4.18.0-348.rt7.130.el8</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For more details about the security issue(s), including the impact, a CVSS score, acknowledgments, and other related information, refer to the CVE page(s) listed in the References section.
+
+Additional Changes:
+
+For detailed information on changes in this release, see the Red Hat Enterprise Linux 8.5 Release Notes linked from the References section.
+
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+
+The system must be rebooted for this update to take effect.
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:4140</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://lore.kernel.org/linux-wireless/20210511200110.c3f1d42c6746.I795593fcaae941c471425b8c7d5f7bb185d29142@changeid/</URL>
+        <Description>https://lore.kernel.org/linux-wireless/20210511200110.c3f1d42c6746.I795593fcaae941c471425b8c7d5f7bb185d29142@changeid/</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2020-26141</URL>
+        <Description>CVE-2020-26141</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1960492</URL>
+        <Description>bz#1960492: CVE-2020-26141 kernel: not verifying TKIP MIC of fragmented frames</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="12" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">kernel: accepting fragmented plaintext frames in protected networks</Note></Notes>
+    <DiscoveryDate>2021-05-07T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-05-11T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2020-26143</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>NFV-8.5.0.GA:kernel-rt-0:4.18.0-348.rt7.130.el8</ProductID>
+      <ProductID>RT-8.5.0.GA:kernel-rt-0:4.18.0-348.rt7.130.el8</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For more details about the security issue(s), including the impact, a CVSS score, acknowledgments, and other related information, refer to the CVE page(s) listed in the References section.
+
+Additional Changes:
+
+For detailed information on changes in this release, see the Red Hat Enterprise Linux 8.5 Release Notes linked from the References section.
+
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+
+The system must be rebooted for this update to take effect.
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:4140</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2020-26143</URL>
+        <Description>CVE-2020-26143</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1960496</URL>
+        <Description>bz#1960496: CVE-2020-26143 kernel: accepting fragmented plaintext frames in protected networks</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="13" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">kernel: accepting unencrypted A-MSDU frames that start with RFC1042 header</Note></Notes>
+    <DiscoveryDate>2021-05-07T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-05-11T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2020-26144</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>NFV-8.5.0.GA:kernel-rt-0:4.18.0-348.rt7.130.el8</ProductID>
+      <ProductID>RT-8.5.0.GA:kernel-rt-0:4.18.0-348.rt7.130.el8</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For more details about the security issue(s), including the impact, a CVSS score, acknowledgments, and other related information, refer to the CVE page(s) listed in the References section.
+
+Additional Changes:
+
+For detailed information on changes in this release, see the Red Hat Enterprise Linux 8.5 Release Notes linked from the References section.
+
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+
+The system must be rebooted for this update to take effect.
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:4140</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2020-26144</URL>
+        <Description>CVE-2020-26144</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1960498</URL>
+        <Description>bz#1960498: CVE-2020-26144 kernel: accepting unencrypted A-MSDU frames that start with RFC1042 header</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="14" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">kernel: accepting plaintext broadcast fragments as full frames</Note></Notes>
+    <DiscoveryDate>2021-05-07T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-05-11T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2020-26145</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>NFV-8.5.0.GA:kernel-rt-0:4.18.0-348.rt7.130.el8</ProductID>
+      <ProductID>RT-8.5.0.GA:kernel-rt-0:4.18.0-348.rt7.130.el8</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For more details about the security issue(s), including the impact, a CVSS score, acknowledgments, and other related information, refer to the CVE page(s) listed in the References section.
+
+Additional Changes:
+
+For detailed information on changes in this release, see the Red Hat Enterprise Linux 8.5 Release Notes linked from the References section.
+
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+
+The system must be rebooted for this update to take effect.
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:4140</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://lore.kernel.org/linux-wireless/20210511200110.9ca6ca7945a9.I1e18b514590af17c155bda86699bc3a971a8dcf4@changeid/</URL>
+        <Description>https://lore.kernel.org/linux-wireless/20210511200110.9ca6ca7945a9.I1e18b514590af17c155bda86699bc3a971a8dcf4@changeid/</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2020-26145</URL>
+        <Description>CVE-2020-26145</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1960500</URL>
+        <Description>bz#1960500: CVE-2020-26145 kernel: accepting plaintext broadcast fragments as full frames</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="15" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">kernel: reassembling encrypted fragments with non-consecutive packet numbers</Note></Notes>
+    <DiscoveryDate>2021-05-07T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-05-11T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2020-26146</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>NFV-8.5.0.GA:kernel-rt-0:4.18.0-348.rt7.130.el8</ProductID>
+      <ProductID>RT-8.5.0.GA:kernel-rt-0:4.18.0-348.rt7.130.el8</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Low</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For more details about the security issue(s), including the impact, a CVSS score, acknowledgments, and other related information, refer to the CVE page(s) listed in the References section.
+
+Additional Changes:
+
+For detailed information on changes in this release, see the Red Hat Enterprise Linux 8.5 Release Notes linked from the References section.
+
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+
+The system must be rebooted for this update to take effect.
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:4140</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2020-26146</URL>
+        <Description>CVE-2020-26146</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1960502</URL>
+        <Description>bz#1960502: CVE-2020-26146 kernel: reassembling encrypted fragments with non-consecutive packet numbers</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="16" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">kernel: reassembling mixed encrypted/plaintext fragments</Note></Notes>
+    <DiscoveryDate>2021-05-07T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-05-11T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2020-26147</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>NFV-8.5.0.GA:kernel-rt-0:4.18.0-348.rt7.130.el8</ProductID>
+      <ProductID>RT-8.5.0.GA:kernel-rt-0:4.18.0-348.rt7.130.el8</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Low</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For more details about the security issue(s), including the impact, a CVSS score, acknowledgments, and other related information, refer to the CVE page(s) listed in the References section.
+
+Additional Changes:
+
+For detailed information on changes in this release, see the Red Hat Enterprise Linux 8.5 Release Notes linked from the References section.
+
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+
+The system must be rebooted for this update to take effect.
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:4140</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://lore.kernel.org/linux-wireless/20210511200110.30c4394bb835.I5acfdb552cc1d20c339c262315950b3eac491397@changeid/</URL>
+        <Description>https://lore.kernel.org/linux-wireless/20210511200110.30c4394bb835.I5acfdb552cc1d20c339c262315950b3eac491397@changeid/</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2020-26147</URL>
+        <Description>CVE-2020-26147</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1960504</URL>
+        <Description>bz#1960504: CVE-2020-26147 kernel: reassembling mixed encrypted/plaintext fragments</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="17" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">kernel: the copy-on-write implementation can grant unintended write access because of a race condition in a THP mapcount check</Note></Notes>
+    <DiscoveryDate>2020-12-01T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2020-06-03T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2020-29368</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>NFV-8.5.0.GA:kernel-rt-0:4.18.0-348.rt7.130.el8</ProductID>
+      <ProductID>RT-8.5.0.GA:kernel-rt-0:4.18.0-348.rt7.130.el8</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Low</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For more details about the security issue(s), including the impact, a CVSS score, acknowledgments, and other related information, refer to the CVE page(s) listed in the References section.
+
+Additional Changes:
+
+For detailed information on changes in this release, see the Red Hat Enterprise Linux 8.5 Release Notes linked from the References section.
+
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+
+The system must be rebooted for this update to take effect.
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:4140</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2020-29368</URL>
+        <Description>CVE-2020-29368</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1903244</URL>
+        <Description>bz#1903244: CVE-2020-29368 kernel: the copy-on-write implementation can grant unintended write access because of a race condition in a THP mapcount check</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="18" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">kernel: locking inconsistency in drivers/tty/tty_io.c and drivers/tty/tty_jobctrl.c can lead to a read-after-free</Note></Notes>
+    <DiscoveryDate>2020-12-09T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2020-12-04T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2020-29660</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>NFV-8.5.0.GA:kernel-rt-0:4.18.0-348.rt7.130.el8</ProductID>
+      <ProductID>RT-8.5.0.GA:kernel-rt-0:4.18.0-348.rt7.130.el8</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For more details about the security issue(s), including the impact, a CVSS score, acknowledgments, and other related information, refer to the CVE page(s) listed in the References section.
+
+Additional Changes:
+
+For detailed information on changes in this release, see the Red Hat Enterprise Linux 8.5 Release Notes linked from the References section.
+
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+
+The system must be rebooted for this update to take effect.
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:4140</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2020-29660</URL>
+        <Description>CVE-2020-29660</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1906522</URL>
+        <Description>bz#1906522: CVE-2020-29660 kernel: locking inconsistency in drivers/tty/tty_io.c and drivers/tty/tty_jobctrl.c can lead to a read-after-free</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="19" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">kernel: buffer overflow in mwifiex_cmd_802_11_ad_hoc_start function in drivers/net/wireless/marvell/mwifiex/join.c via a long SSID value</Note></Notes>
+    <DiscoveryDate>2021-01-05T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2020-12-08T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2020-36158</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>NFV-8.5.0.GA:kernel-rt-0:4.18.0-348.rt7.130.el8</ProductID>
+      <ProductID>RT-8.5.0.GA:kernel-rt-0:4.18.0-348.rt7.130.el8</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For more details about the security issue(s), including the impact, a CVSS score, acknowledgments, and other related information, refer to the CVE page(s) listed in the References section.
+
+Additional Changes:
+
+For detailed information on changes in this release, see the Red Hat Enterprise Linux 8.5 Release Notes linked from the References section.
+
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+
+The system must be rebooted for this update to take effect.
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:4140</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2020-36158</URL>
+        <Description>CVE-2020-36158</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1913348</URL>
+        <Description>bz#1913348: CVE-2020-36158 kernel: buffer overflow in mwifiex_cmd_802_11_ad_hoc_start function in drivers/net/wireless/marvell/mwifiex/join.c via a long SSID value</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="20" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">kernel: memory leak upon a kmalloc failure in kvm_io_bus_unregister_dev function in virt/kvm/kvm_main.c</Note></Notes>
+    <DiscoveryDate>2021-04-07T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2020-09-11T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2020-36312</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>NFV-8.5.0.GA:kernel-rt-0:4.18.0-348.rt7.130.el8</ProductID>
+      <ProductID>RT-8.5.0.GA:kernel-rt-0:4.18.0-348.rt7.130.el8</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Low</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For more details about the security issue(s), including the impact, a CVSS score, acknowledgments, and other related information, refer to the CVE page(s) listed in the References section.
+
+Additional Changes:
+
+For detailed information on changes in this release, see the Red Hat Enterprise Linux 8.5 Release Notes linked from the References section.
+
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+
+The system must be rebooted for this update to take effect.
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:4140</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2020-36312</URL>
+        <Description>CVE-2020-36312</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1947991</URL>
+        <Description>bz#1947991: CVE-2020-36312 kernel: memory leak upon a kmalloc failure in kvm_io_bus_unregister_dev function in virt/kvm/kvm_main.c</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="21" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">kernel: slab out-of-bounds read in hci_extended_inquiry_result_evt() in net/bluetooth/hci_event.c</Note></Notes>
+    <DiscoveryDate>2021-06-07T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2020-07-10T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2020-36386</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>NFV-8.5.0.GA:kernel-rt-0:4.18.0-348.rt7.130.el8</ProductID>
+      <ProductID>RT-8.5.0.GA:kernel-rt-0:4.18.0-348.rt7.130.el8</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For more details about the security issue(s), including the impact, a CVSS score, acknowledgments, and other related information, refer to the CVE page(s) listed in the References section.
+
+Additional Changes:
+
+For detailed information on changes in this release, see the Red Hat Enterprise Linux 8.5 Release Notes linked from the References section.
+
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+
+The system must be rebooted for this update to take effect.
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:4140</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=51c19bf3d5cfaa66571e4b88ba2a6f6295311101</URL>
+        <Description>https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=51c19bf3d5cfaa66571e4b88ba2a6f6295311101</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2020-36386</URL>
+        <Description>CVE-2020-36386</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1969489</URL>
+        <Description>bz#1969489: CVE-2020-36386 kernel: slab out-of-bounds read in hci_extended_inquiry_result_evt() in net/bluetooth/hci_event.c</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="22" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">kernel: Improper access control in BlueZ may allow information disclosure vulnerability.</Note></Notes>
+    <DiscoveryDate>2021-05-26T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-06-08T03:30:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-0129</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>NFV-8.5.0.GA:kernel-rt-0:4.18.0-348.rt7.130.el8</ProductID>
+      <ProductID>RT-8.5.0.GA:kernel-rt-0:4.18.0-348.rt7.130.el8</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For more details about the security issue(s), including the impact, a CVSS score, acknowledgments, and other related information, refer to the CVE page(s) listed in the References section.
+
+Additional Changes:
+
+For detailed information on changes in this release, see the Red Hat Enterprise Linux 8.5 Release Notes linked from the References section.
+
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+
+The system must be rebooted for this update to take effect.
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:4140</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-0129</URL>
+        <Description>CVE-2021-0129</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1965038</URL>
+        <Description>bz#1965038: CVE-2021-0129 kernel: Improper access control in BlueZ may allow information disclosure vulnerability.</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="23" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">kernel: Use-after-free in ndb_queue_rq() in drivers/block/nbd.c</Note></Notes>
+    <DiscoveryDate>2021-01-28T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-01-28T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-3348</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>NFV-8.5.0.GA:kernel-rt-0:4.18.0-348.rt7.130.el8</ProductID>
+      <ProductID>RT-8.5.0.GA:kernel-rt-0:4.18.0-348.rt7.130.el8</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For more details about the security issue(s), including the impact, a CVSS score, acknowledgments, and other related information, refer to the CVE page(s) listed in the References section.
+
+Additional Changes:
+
+For detailed information on changes in this release, see the Red Hat Enterprise Linux 8.5 Release Notes linked from the References section.
+
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+
+The system must be rebooted for this update to take effect.
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:4140</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://lore.kernel.org/linux-block/24dff677353e2e30a71d8b66c4dffdbdf77c4dbd.1611595239.git.josef@toxicpanda.com/</URL>
+        <Description>https://lore.kernel.org/linux-block/24dff677353e2e30a71d8b66c4dffdbdf77c4dbd.1611595239.git.josef@toxicpanda.com/</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-3348</URL>
+        <Description>CVE-2021-3348</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1921958</URL>
+        <Description>bz#1921958: CVE-2021-3348 kernel: Use-after-free in ndb_queue_rq() in drivers/block/nbd.c</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="24" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">kernel: Linux kernel eBPF RINGBUF map oversized allocation</Note></Notes>
+    <DiscoveryDate>2021-05-11T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-05-11T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-3489</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>NFV-8.5.0.GA:kernel-rt-0:4.18.0-348.rt7.130.el8</ProductID>
+      <ProductID>RT-8.5.0.GA:kernel-rt-0:4.18.0-348.rt7.130.el8</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For more details about the security issue(s), including the impact, a CVSS score, acknowledgments, and other related information, refer to the CVE page(s) listed in the References section.
+
+Additional Changes:
+
+For detailed information on changes in this release, see the Red Hat Enterprise Linux 8.5 Release Notes linked from the References section.
+
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+
+The system must be rebooted for this update to take effect.
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:4140</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://git.kernel.org/pub/scm/linux/kernel/git/bpf/bpf.git/commit/?id=4b81ccebaeee885ab1aa1438133f2991e3a2b6ea</URL>
+        <Description>https://git.kernel.org/pub/scm/linux/kernel/git/bpf/bpf.git/commit/?id=4b81ccebaeee885ab1aa1438133f2991e3a2b6ea</Description>
+      </Reference>
+      <Reference>
+        <URL>https://www.openwall.com/lists/oss-security/2021/05/11/10</URL>
+        <Description>https://www.openwall.com/lists/oss-security/2021/05/11/10</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-3489</URL>
+        <Description>CVE-2021-3489</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1959559</URL>
+        <Description>bz#1959559: CVE-2021-3489 kernel: Linux kernel eBPF RINGBUF map oversized allocation</Description>
+      </Reference>
+    </References>
+    <Acknowledgments><Acknowledgment><Description>Red Hat would like to thank Ryota Shiga for reporting this issue.</Description></Acknowledgment></Acknowledgments>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="25" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">kernel: double free in bluetooth subsystem when the HCI device initialization fails</Note></Notes>
+    <DiscoveryDate>2021-05-19T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-05-25T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-3564</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>NFV-8.5.0.GA:kernel-rt-0:4.18.0-348.rt7.130.el8</ProductID>
+      <ProductID>RT-8.5.0.GA:kernel-rt-0:4.18.0-348.rt7.130.el8</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For more details about the security issue(s), including the impact, a CVSS score, acknowledgments, and other related information, refer to the CVE page(s) listed in the References section.
+
+Additional Changes:
+
+For detailed information on changes in this release, see the Red Hat Enterprise Linux 8.5 Release Notes linked from the References section.
+
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+
+The system must be rebooted for this update to take effect.
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:4140</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.openwall.com/lists/oss-security/2021/05/25/1</URL>
+        <Description>https://www.openwall.com/lists/oss-security/2021/05/25/1</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-3564</URL>
+        <Description>CVE-2021-3564</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1964139</URL>
+        <Description>bz#1964139: CVE-2021-3564 kernel: double free in bluetooth subsystem when the HCI device initialization fails</Description>
+      </Reference>
+    </References>
+    <Acknowledgments><Acknowledgment><Description>Red Hat would like to thank HaoXiong,  LinMa (ckSec) for reporting this issue.</Description></Acknowledgment></Acknowledgments>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="26" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">kernel: use-after-free in function hci_sock_bound_ioctl()</Note></Notes>
+    <DiscoveryDate>2021-05-31T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-06-08T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-3573</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>NFV-8.5.0.GA:kernel-rt-0:4.18.0-348.rt7.130.el8</ProductID>
+      <ProductID>RT-8.5.0.GA:kernel-rt-0:4.18.0-348.rt7.130.el8</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For more details about the security issue(s), including the impact, a CVSS score, acknowledgments, and other related information, refer to the CVE page(s) listed in the References section.
+
+Additional Changes:
+
+For detailed information on changes in this release, see the Red Hat Enterprise Linux 8.5 Release Notes linked from the References section.
+
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+
+The system must be rebooted for this update to take effect.
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:4140</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://git.kernel.org/pub/scm/linux/kernel/git/bluetooth/bluetooth.git/commit/?id=e305509e678b3a4af2b3cfd410f409f7cdaabb52</URL>
+        <Description>https://git.kernel.org/pub/scm/linux/kernel/git/bluetooth/bluetooth.git/commit/?id=e305509e678b3a4af2b3cfd410f409f7cdaabb52</Description>
+      </Reference>
+      <Reference>
+        <URL>https://www.openwall.com/lists/oss-security/2021/06/08/2</URL>
+        <Description>https://www.openwall.com/lists/oss-security/2021/06/08/2</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-3573</URL>
+        <Description>CVE-2021-3573</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1966578</URL>
+        <Description>bz#1966578: CVE-2021-3573 kernel: use-after-free in function hci_sock_bound_ioctl()</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="27" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">kernel: eBPF 32-bit source register truncation on div/mod</Note></Notes>
+    <DiscoveryDate>2021-06-23T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-06-23T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-3600</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>NFV-8.5.0.GA:kernel-rt-0:4.18.0-348.rt7.130.el8</ProductID>
+      <ProductID>RT-8.5.0.GA:kernel-rt-0:4.18.0-348.rt7.130.el8</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For more details about the security issue(s), including the impact, a CVSS score, acknowledgments, and other related information, refer to the CVE page(s) listed in the References section.
+
+Additional Changes:
+
+For detailed information on changes in this release, see the Red Hat Enterprise Linux 8.5 Release Notes linked from the References section.
+
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+
+The system must be rebooted for this update to take effect.
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:4140</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://lore.kernel.org/patchwork/patch/1379497/</URL>
+        <Description>https://lore.kernel.org/patchwork/patch/1379497/</Description>
+      </Reference>
+      <Reference>
+        <URL>https://www.openwall.com/lists/oss-security/2021/06/23/1</URL>
+        <Description>https://www.openwall.com/lists/oss-security/2021/06/23/1</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-3600</URL>
+        <Description>CVE-2021-3600</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1981954</URL>
+        <Description>bz#1981954: CVE-2021-3600 kernel: eBPF 32-bit source register truncation on div/mod</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="28" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">kernel: flowtable list del corruption with kernel BUG at lib/list_debug.c:50</Note></Notes>
+    <DiscoveryDate>2021-06-22T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-08-06T04:47:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-3635</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>NFV-8.5.0.GA:kernel-rt-0:4.18.0-348.rt7.130.el8</ProductID>
+      <ProductID>RT-8.5.0.GA:kernel-rt-0:4.18.0-348.rt7.130.el8</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Low</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For more details about the security issue(s), including the impact, a CVSS score, acknowledgments, and other related information, refer to the CVE page(s) listed in the References section.
+
+Additional Changes:
+
+For detailed information on changes in this release, see the Red Hat Enterprise Linux 8.5 Release Notes linked from the References section.
+
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+
+The system must be rebooted for this update to take effect.
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:4140</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-3635</URL>
+        <Description>CVE-2021-3635</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1976946</URL>
+        <Description>bz#1976946: CVE-2021-3635 kernel: flowtable list del corruption with kernel BUG at lib/list_debug.c:50</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="29" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">kernel: NULL pointer dereference in llsec_key_alloc() in net/mac802154/llsec.c</Note></Notes>
+    <DiscoveryDate>2021-05-14T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-04-06T19:22:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-3659</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>NFV-8.5.0.GA:kernel-rt-0:4.18.0-348.rt7.130.el8</ProductID>
+      <ProductID>RT-8.5.0.GA:kernel-rt-0:4.18.0-348.rt7.130.el8</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Low</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For more details about the security issue(s), including the impact, a CVSS score, acknowledgments, and other related information, refer to the CVE page(s) listed in the References section.
+
+Additional Changes:
+
+For detailed information on changes in this release, see the Red Hat Enterprise Linux 8.5 Release Notes linked from the References section.
+
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+
+The system must be rebooted for this update to take effect.
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:4140</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=1165affd484889d4986cf3b724318935a0b120d8</URL>
+        <Description>https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=1165affd484889d4986cf3b724318935a0b120d8</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-3659</URL>
+        <Description>CVE-2021-3659</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1975949</URL>
+        <Description>bz#1975949: CVE-2021-3659 kernel: NULL pointer dereference in llsec_key_alloc() in net/mac802154/llsec.c</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="30" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">kernel: DoS in rb_per_cpu_empty()</Note></Notes>
+    <DiscoveryDate>2021-07-25T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-07-20T09:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-3679</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>NFV-8.5.0.GA:kernel-rt-0:4.18.0-348.rt7.130.el8</ProductID>
+      <ProductID>RT-8.5.0.GA:kernel-rt-0:4.18.0-348.rt7.130.el8</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For more details about the security issue(s), including the impact, a CVSS score, acknowledgments, and other related information, refer to the CVE page(s) listed in the References section.
+
+Additional Changes:
+
+For detailed information on changes in this release, see the Red Hat Enterprise Linux 8.5 Release Notes linked from the References section.
+
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+
+The system must be rebooted for this update to take effect.
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:4140</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://lore.kernel.org/lkml/20210723125527.767d1c18@oasis.local.home/</URL>
+        <Description>https://lore.kernel.org/lkml/20210723125527.767d1c18@oasis.local.home/</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-3679</URL>
+        <Description>CVE-2021-3679</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1989165</URL>
+        <Description>bz#1989165: CVE-2021-3679 kernel: DoS in rb_per_cpu_empty()</Description>
+      </Reference>
+    </References>
+    <Acknowledgments><Acknowledgment><Description>Red Hat would like to thank Haoran Luo (Chaitin Tech) for reporting this issue.</Description></Acknowledgment></Acknowledgments>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="31" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">kernel: overlayfs: Mounting overlayfs inside an unprivileged user namespace can reveal files</Note></Notes>
+    <DiscoveryDate>2021-08-12T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-08-12T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-3732</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>NFV-8.5.0.GA:kernel-rt-0:4.18.0-348.rt7.130.el8</ProductID>
+      <ProductID>RT-8.5.0.GA:kernel-rt-0:4.18.0-348.rt7.130.el8</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For more details about the security issue(s), including the impact, a CVSS score, acknowledgments, and other related information, refer to the CVE page(s) listed in the References section.
+
+Additional Changes:
+
+For detailed information on changes in this release, see the Red Hat Enterprise Linux 8.5 Release Notes linked from the References section.
+
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+
+The system must be rebooted for this update to take effect.
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:4140</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=427215d85e8d</URL>
+        <Description>https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=427215d85e8d</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-3732</URL>
+        <Description>CVE-2021-3732</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1995249</URL>
+        <Description>bz#1995249: CVE-2021-3732 kernel: overlayfs: Mounting overlayfs inside an unprivileged user namespace can reveal files</Description>
+      </Reference>
+    </References>
+    <Acknowledgments><Acknowledgment><Description>This issue was discovered by Miklos Szeredi (Red Hat).</Description></Acknowledgment></Acknowledgments>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="32" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">kernel: heap overflow in __cgroup_bpf_run_filter_getsockopt()</Note></Notes>
+    <DiscoveryDate>2020-12-30T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-01-22T10:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-20194</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>NFV-8.5.0.GA:kernel-rt-0:4.18.0-348.rt7.130.el8</ProductID>
+      <ProductID>RT-8.5.0.GA:kernel-rt-0:4.18.0-348.rt7.130.el8</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For more details about the security issue(s), including the impact, a CVSS score, acknowledgments, and other related information, refer to the CVE page(s) listed in the References section.
+
+Additional Changes:
+
+For detailed information on changes in this release, see the Red Hat Enterprise Linux 8.5 Release Notes linked from the References section.
+
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+
+The system must be rebooted for this update to take effect.
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:4140</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-20194</URL>
+        <Description>CVE-2021-20194</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1912683</URL>
+        <Description>bz#1912683: CVE-2021-20194 kernel: heap overflow in __cgroup_bpf_run_filter_getsockopt()</Description>
+      </Reference>
+    </References>
+    <Acknowledgments><Acknowledgment><Description>Red Hat would like to thank Loris Reiff for reporting this issue.</Description></Acknowledgment></Acknowledgments>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="33" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">kernel: setsockopt System Call Untrusted Pointer Dereference Information Disclosure</Note></Notes>
+    <DiscoveryDate>2021-02-01T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-02-01T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-20239</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>NFV-8.5.0.GA:kernel-rt-0:4.18.0-348.rt7.130.el8</ProductID>
+      <ProductID>RT-8.5.0.GA:kernel-rt-0:4.18.0-348.rt7.130.el8</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Low</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For more details about the security issue(s), including the impact, a CVSS score, acknowledgments, and other related information, refer to the CVE page(s) listed in the References section.
+
+Additional Changes:
+
+For detailed information on changes in this release, see the Red Hat Enterprise Linux 8.5 Release Notes linked from the References section.
+
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+
+The system must be rebooted for this update to take effect.
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:4140</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-20239</URL>
+        <Description>CVE-2021-20239</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1923636</URL>
+        <Description>bz#1923636: CVE-2021-20239 kernel: setsockopt System Call Untrusted Pointer Dereference Information Disclosure</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="34" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">kernel: Race condition in sctp_destroy_sock list_del</Note></Notes>
+    <DiscoveryDate>2021-04-09T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-04-18T09:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-23133</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>NFV-8.5.0.GA:kernel-rt-0:4.18.0-348.rt7.130.el8</ProductID>
+      <ProductID>RT-8.5.0.GA:kernel-rt-0:4.18.0-348.rt7.130.el8</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For more details about the security issue(s), including the impact, a CVSS score, acknowledgments, and other related information, refer to the CVE page(s) listed in the References section.
+
+Additional Changes:
+
+For detailed information on changes in this release, see the Red Hat Enterprise Linux 8.5 Release Notes linked from the References section.
+
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+
+The system must be rebooted for this update to take effect.
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:4140</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=b166a20b07382b8bc1dcee2a448715c9c2c81b5b</URL>
+        <Description>https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=b166a20b07382b8bc1dcee2a448715c9c2c81b5b</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-23133</URL>
+        <Description>CVE-2021-23133</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1948772</URL>
+        <Description>bz#1948772: CVE-2021-23133 kernel: Race condition in sctp_destroy_sock list_del</Description>
+      </Reference>
+    </References>
+    <Acknowledgments><Acknowledgment><Description>Red Hat would like to thank Or Cohen (Palo Alto Networks) for reporting this issue.</Description></Acknowledgment></Acknowledgments>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="35" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">kernel: fuse: stall on CPU can occur because a retry loop continually finds the same bad inode</Note></Notes>
+    <DiscoveryDate>2021-03-22T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-03-04T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-28950</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>NFV-8.5.0.GA:kernel-rt-0:4.18.0-348.rt7.130.el8</ProductID>
+      <ProductID>RT-8.5.0.GA:kernel-rt-0:4.18.0-348.rt7.130.el8</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For more details about the security issue(s), including the impact, a CVSS score, acknowledgments, and other related information, refer to the CVE page(s) listed in the References section.
+
+Additional Changes:
+
+For detailed information on changes in this release, see the Red Hat Enterprise Linux 8.5 Release Notes linked from the References section.
+
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+
+The system must be rebooted for this update to take effect.
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:4140</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-28950</URL>
+        <Description>CVE-2021-28950</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1941762</URL>
+        <Description>bz#1941762: CVE-2021-28950 kernel: fuse: stall on CPU can occur because a retry loop continually finds the same bad inode</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="36" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">kernel: System crash in intel_pmu_drain_pebs_nhm in arch/x86/events/intel/ds.c</Note></Notes>
+    <DiscoveryDate>2021-03-22T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-03-22T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-28971</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>NFV-8.5.0.GA:kernel-rt-0:4.18.0-348.rt7.130.el8</ProductID>
+      <ProductID>RT-8.5.0.GA:kernel-rt-0:4.18.0-348.rt7.130.el8</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For more details about the security issue(s), including the impact, a CVSS score, acknowledgments, and other related information, refer to the CVE page(s) listed in the References section.
+
+Additional Changes:
+
+For detailed information on changes in this release, see the Red Hat Enterprise Linux 8.5 Release Notes linked from the References section.
+
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+
+The system must be rebooted for this update to take effect.
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:4140</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-28971</URL>
+        <Description>CVE-2021-28971</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1941784</URL>
+        <Description>bz#1941784: CVE-2021-28971 kernel: System crash in intel_pmu_drain_pebs_nhm in arch/x86/events/intel/ds.c</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="37" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">kernel: protection for sequences of pointer arithmetic operations against speculatively out-of-bounds loads can be bypassed to leak content of kernel memory</Note></Notes>
+    <DiscoveryDate>2021-04-18T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-04-18T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-29155</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>NFV-8.5.0.GA:kernel-rt-0:4.18.0-348.rt7.130.el8</ProductID>
+      <ProductID>RT-8.5.0.GA:kernel-rt-0:4.18.0-348.rt7.130.el8</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For more details about the security issue(s), including the impact, a CVSS score, acknowledgments, and other related information, refer to the CVE page(s) listed in the References section.
+
+Additional Changes:
+
+For detailed information on changes in this release, see the Red Hat Enterprise Linux 8.5 Release Notes linked from the References section.
+
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+
+The system must be rebooted for this update to take effect.
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:4140</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.openwall.com/lists/oss-security/2021/04/18/4</URL>
+        <Description>https://www.openwall.com/lists/oss-security/2021/04/18/4</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-29155</URL>
+        <Description>CVE-2021-29155</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1951595</URL>
+        <Description>bz#1951595: CVE-2021-29155 kernel: protection for sequences of pointer arithmetic operations against speculatively out-of-bounds loads can be bypassed to leak content of kernel memory</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="38" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">kernel: improper input validation in tipc_nl_retrieve_key function in net/tipc/node.c</Note></Notes>
+    <DiscoveryDate>2021-03-30T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-03-15T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-29646</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>NFV-8.5.0.GA:kernel-rt-0:4.18.0-348.rt7.130.el8</ProductID>
+      <ProductID>RT-8.5.0.GA:kernel-rt-0:4.18.0-348.rt7.130.el8</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For more details about the security issue(s), including the impact, a CVSS score, acknowledgments, and other related information, refer to the CVE page(s) listed in the References section.
+
+Additional Changes:
+
+For detailed information on changes in this release, see the Red Hat Enterprise Linux 8.5 Release Notes linked from the References section.
+
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+
+The system must be rebooted for this update to take effect.
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:4140</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-29646</URL>
+        <Description>CVE-2021-29646</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1945345</URL>
+        <Description>bz#1945345: CVE-2021-29646 kernel: improper input validation in tipc_nl_retrieve_key function in net/tipc/node.c</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="39" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">kernel: lack a full memory barrier upon the assignment of a new table value in net/netfilter/x_tables.c and include/linux/netfilter/x_tables.h may lead to DoS</Note></Notes>
+    <DiscoveryDate>2021-03-30T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-03-15T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-29650</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>NFV-8.5.0.GA:kernel-rt-0:4.18.0-348.rt7.130.el8</ProductID>
+      <ProductID>RT-8.5.0.GA:kernel-rt-0:4.18.0-348.rt7.130.el8</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For more details about the security issue(s), including the impact, a CVSS score, acknowledgments, and other related information, refer to the CVE page(s) listed in the References section.
+
+Additional Changes:
+
+For detailed information on changes in this release, see the Red Hat Enterprise Linux 8.5 Release Notes linked from the References section.
+
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+
+The system must be rebooted for this update to take effect.
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:4140</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit?id=175e476b8cdf2a4de7432583b49c871345e4f8a1</URL>
+        <Description>https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit?id=175e476b8cdf2a4de7432583b49c871345e4f8a1</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-29650</URL>
+        <Description>CVE-2021-29650</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1945388</URL>
+        <Description>bz#1945388: CVE-2021-29650 kernel: lack a full memory barrier upon the assignment of a new table value in net/netfilter/x_tables.c and include/linux/netfilter/x_tables.h may lead to DoS</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="40" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">kernel: local escalation of privileges in handling of eBPF programs</Note></Notes>
+    <DiscoveryDate>2021-05-21T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-05-21T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-31440</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>NFV-8.5.0.GA:kernel-rt-0:4.18.0-348.rt7.130.el8</ProductID>
+      <ProductID>RT-8.5.0.GA:kernel-rt-0:4.18.0-348.rt7.130.el8</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For more details about the security issue(s), including the impact, a CVSS score, acknowledgments, and other related information, refer to the CVE page(s) listed in the References section.
+
+Additional Changes:
+
+For detailed information on changes in this release, see the Red Hat Enterprise Linux 8.5 Release Notes linked from the References section.
+
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+
+The system must be rebooted for this update to take effect.
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:4140</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=10bf4e83167cc68595b85fd73bb91e8f2c086e36</URL>
+        <Description>https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=10bf4e83167cc68595b85fd73bb91e8f2c086e36</Description>
+      </Reference>
+      <Reference>
+        <URL>https://www.zerodayinitiative.com/blog/2021/5/26/cve-2021-31440-an-incorrect-bounds-calculation-in-the-linux-kernel-ebpf-verifier</URL>
+        <Description>https://www.zerodayinitiative.com/blog/2021/5/26/cve-2021-31440-an-incorrect-bounds-calculation-in-the-linux-kernel-ebpf-verifier</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-31440</URL>
+        <Description>CVE-2021-31440</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1964028</URL>
+        <Description>bz#1964028: CVE-2021-31440 kernel: local escalation of privileges in handling of eBPF programs</Description>
+      </Reference>
+    </References>
+    <Acknowledgments><Acknowledgment><Description>Red Hat would like to thank Manfred Paul (RedRocket CTF team) for reporting this issue.</Description></Acknowledgment></Acknowledgments>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="41" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">kernel: protection of stack pointer against speculative pointer arithmetic can be bypassed to leak content of kernel memory</Note></Notes>
+    <DiscoveryDate>2021-05-04T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-04-30T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-31829</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>NFV-8.5.0.GA:kernel-rt-0:4.18.0-348.rt7.130.el8</ProductID>
+      <ProductID>RT-8.5.0.GA:kernel-rt-0:4.18.0-348.rt7.130.el8</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For more details about the security issue(s), including the impact, a CVSS score, acknowledgments, and other related information, refer to the CVE page(s) listed in the References section.
+
+Additional Changes:
+
+For detailed information on changes in this release, see the Red Hat Enterprise Linux 8.5 Release Notes linked from the References section.
+
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+
+The system must be rebooted for this update to take effect.
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:4140</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-31829</URL>
+        <Description>CVE-2021-31829</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1957788</URL>
+        <Description>bz#1957788: CVE-2021-31829 kernel: protection of stack pointer against speculative pointer arithmetic can be bypassed to leak content of kernel memory</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="42" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">kernel: out of bounds array access in drivers/md/dm-ioctl.c</Note></Notes>
+    <DiscoveryDate>2021-03-29T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-03-29T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-31916</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>NFV-8.5.0.GA:kernel-rt-0:4.18.0-348.rt7.130.el8</ProductID>
+      <ProductID>RT-8.5.0.GA:kernel-rt-0:4.18.0-348.rt7.130.el8</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Low</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For more details about the security issue(s), including the impact, a CVSS score, acknowledgments, and other related information, refer to the CVE page(s) listed in the References section.
+
+Additional Changes:
+
+For detailed information on changes in this release, see the Red Hat Enterprise Linux 8.5 Release Notes linked from the References section.
+
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+
+The system must be rebooted for this update to take effect.
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:4140</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://github.com/torvalds/linux/commit/4edbe1d7bcffcd6269f3b5eb63f710393ff2ec7a</URL>
+        <Description>https://github.com/torvalds/linux/commit/4edbe1d7bcffcd6269f3b5eb63f710393ff2ec7a</Description>
+      </Reference>
+      <Reference>
+        <URL>https://seclists.org/oss-sec/2021/q1/268</URL>
+        <Description>https://seclists.org/oss-sec/2021/q1/268</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-31916</URL>
+        <Description>CVE-2021-31916</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1946965</URL>
+        <Description>bz#1946965: CVE-2021-31916 kernel: out of bounds array access in drivers/md/dm-ioctl.c</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="43" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">kernel: use-after-free in cipso_v4_genopt in net/ipv4/cipso_ipv4.c</Note></Notes>
+    <DiscoveryDate>2021-05-14T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-03-04T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-33033</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>NFV-8.5.0.GA:kernel-rt-0:4.18.0-348.rt7.130.el8</ProductID>
+      <ProductID>RT-8.5.0.GA:kernel-rt-0:4.18.0-348.rt7.130.el8</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For more details about the security issue(s), including the impact, a CVSS score, acknowledgments, and other related information, refer to the CVE page(s) listed in the References section.
+
+Additional Changes:
+
+For detailed information on changes in this release, see the Red Hat Enterprise Linux 8.5 Release Notes linked from the References section.
+
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+
+The system must be rebooted for this update to take effect.
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:4140</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-33033</URL>
+        <Description>CVE-2021-33033</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1961300</URL>
+        <Description>bz#1961300: CVE-2021-33033 kernel: use-after-free in cipso_v4_genopt in net/ipv4/cipso_ipv4.c</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="44" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">kernel: out-of-bounds reads and writes due to enforcing incorrect limits for pointer arithmetic operations by BPF verifier</Note></Notes>
+    <DiscoveryDate>2021-05-27T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-05-26T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-33200</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>NFV-8.5.0.GA:kernel-rt-0:4.18.0-348.rt7.130.el8</ProductID>
+      <ProductID>RT-8.5.0.GA:kernel-rt-0:4.18.0-348.rt7.130.el8</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For more details about the security issue(s), including the impact, a CVSS score, acknowledgments, and other related information, refer to the CVE page(s) listed in the References section.
+
+Additional Changes:
+
+For detailed information on changes in this release, see the Red Hat Enterprise Linux 8.5 Release Notes linked from the References section.
+
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+
+The system must be rebooted for this update to take effect.
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:4140</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://git.kernel.org/pub/scm/linux/kernel/git/bpf/bpf.git/patch/?id=3d0220f6861d713213b015b582e9f21e5b28d2e0</URL>
+        <Description>https://git.kernel.org/pub/scm/linux/kernel/git/bpf/bpf.git/patch/?id=3d0220f6861d713213b015b582e9f21e5b28d2e0</Description>
+      </Reference>
+      <Reference>
+        <URL>https://git.kernel.org/pub/scm/linux/kernel/git/bpf/bpf.git/patch/?id=a7036191277f9fa68d92f2071ddc38c09b1e5ee5</URL>
+        <Description>https://git.kernel.org/pub/scm/linux/kernel/git/bpf/bpf.git/patch/?id=a7036191277f9fa68d92f2071ddc38c09b1e5ee5</Description>
+      </Reference>
+      <Reference>
+        <URL>https://git.kernel.org/pub/scm/linux/kernel/git/bpf/bpf.git/patch/?id=bb01a1bba579b4b1c5566af24d95f1767859771e</URL>
+        <Description>https://git.kernel.org/pub/scm/linux/kernel/git/bpf/bpf.git/patch/?id=bb01a1bba579b4b1c5566af24d95f1767859771e</Description>
+      </Reference>
+      <Reference>
+        <URL>https://www.openwall.com/lists/oss-security/2021/05/27/1</URL>
+        <Description>https://www.openwall.com/lists/oss-security/2021/05/27/1</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-33200</URL>
+        <Description>CVE-2021-33200</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1965458</URL>
+        <Description>bz#1965458: CVE-2021-33200 kernel: out-of-bounds reads and writes due to enforcing incorrect limits for pointer arithmetic operations by BPF verifier</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+</cvrfdoc>

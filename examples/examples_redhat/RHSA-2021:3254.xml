@@ -1,0 +1,999 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cvrfdoc xmlns="http://www.icasi.org/CVRF/schema/cvrf/1.1" xmlns:cvrf="http://www.icasi.org/CVRF/schema/cvrf/1.1">
+  <DocumentTitle xml:lang="en">Red Hat Security Advisory: rh-python38 security, bug fix, and enhancement update</DocumentTitle>
+  <DocumentType>Security Advisory</DocumentType>
+  <DocumentPublisher Type="Vendor">
+    <ContactDetails>secalert@redhat.com</ContactDetails>
+    <IssuingAuthority>Red Hat Product Security</IssuingAuthority>
+  </DocumentPublisher>
+  <DocumentTracking>
+    <Identification><ID>RHSA-2021:3254</ID></Identification>
+    <Status>Final</Status>
+    <Version>1</Version>
+    <RevisionHistory>
+       <Revision>
+         <Number>1</Number>
+         <Date>2021-11-10T21:21:00Z</Date>
+         <Description>Current version</Description>
+       </Revision>
+    </RevisionHistory>
+    <InitialReleaseDate>2021-08-24T12:50:00Z</InitialReleaseDate>
+    <CurrentReleaseDate>2021-11-10T21:21:00Z</CurrentReleaseDate>
+    <Generator>
+      <Engine>Red Hat SDEngine 3.3.0</Engine>
+      <Date>2021-11-13T21:15:00Z</Date>
+    </Generator>
+  </DocumentTracking>
+  <DocumentNotes>
+    <Note Title="Topic" Type="Summary" Ordinal="1" xml:lang="en">
+An update for rh-python38-babel, rh-python38-python, rh-python38-python-cryptography, rh-python38-python-jinja2, rh-python38-python-lxml, rh-python38-python-pip, and rh-python38-python-urllib3 is now available for Red Hat Software Collections.
+
+Red Hat Product Security has rated this update as having a security impact of Moderate. A Common Vulnerability Scoring System (CVSS) base score, which gives a detailed severity rating, is available for each vulnerability from the CVE link(s) in the References section.
+    </Note>
+    <Note Title="Details" Type="General" Ordinal="2" xml:lang="en">
+Python is an interpreted, interactive, object-oriented programming language, which includes modules, classes, exceptions, very high level dynamic data types and dynamic typing. Python supports interfaces to many system calls and libraries, as well as to various windowing systems.
+
+The following packages have been upgraded to a later upstream version: rh-python38-python (3.8.11). (BZ#1969523)
+
+Security Fix(es):
+
+* python-cryptography: Bleichenbacher timing oracle attack against RSA decryption (CVE-2020-25659)
+
+* python: Unsafe use of eval() on data retrieved via HTTP in the test suite (CVE-2020-27619)
+
+* python-lxml: mXSS due to the use of improper parser (CVE-2020-27783)
+
+* python-jinja2: ReDoS vulnerability due to the sub-pattern (CVE-2020-28493)
+
+* python-cryptography: Large inputs for symmetric encryption can trigger integer overflow leading to buffer overflow (CVE-2020-36242)
+
+* python: Stack-based buffer overflow in PyCArg_repr in _ctypes/callproc.c (CVE-2021-3177)
+
+* python: Information disclosure via pydoc (CVE-2021-3426)
+
+* python-babel: Relative path traversal allows attacker to load arbitrary locale files and execute arbitrary code (CVE-2021-20095)
+
+* python: Web cache poisoning via urllib.parse.parse_qsl and urllib.parse.parse_qs by using a semicolon in query parameters (CVE-2021-23336)
+
+* python-lxml: Missing input sanitization for formaction HTML5 attributes may lead to XSS (CVE-2021-28957)
+
+* python-ipaddress: Improper input validation of octal strings (CVE-2021-29921)
+
+* python-urllib3: ReDoS in the parsing of authority part of URL (CVE-2021-33503)
+
+* python-pip: Incorrect handling of unicode separators in git references (CVE-2021-3572)
+
+For more details about the security issue(s), including the impact, a CVSS score, acknowledgments, and other related information, refer to the CVE page(s) listed in the References section.
+
+Additional information
+
+* Changes in the default separator for the Python urllib parsing functions
+
+To mitigate the Web Cache Poisoning CVE-2021-23336 in the Python urllib library, the default separator for the urllib.parse.parse_qsl and urllib.parse.parse_qs functions is being changed from both ampersand (&amp;) and semicolon (;) to only an ampersand.
+
+The change of the default separator is potentially backwards incompatible, therefore Red Hat provides a way to configure the behavior in Python packages where the default separator has been changed. In addition, the affected urllib parsing functions issue a warning if they detect that a customer’s application has been affected by the change.
+
+For more information, see the Knowledgebase article &quot;Mitigation of Web Cache Poisoning in the Python urllib library (CVE-2021-23336)&quot; linked from the References section.
+
+* The Python &quot;ipaddress&quot; module no longer allows leading zeros in IPv4 addresses
+
+To mitigate CVE-2021-29921, the Python &quot;ipaddress&quot; module now rejects IPv4 addresses with leading zeros with an &quot;AddressValueError: Leading zeros are not permitted&quot; error.
+
+Customers who rely on the previous behavior can pre-process their IPv4 address inputs to strip the leading zeros off. For details, see the Red Hat Software Collections 3.7 Release Notes.
+    </Note>
+    <Note Title="Terms of Use" Ordinal="3" Type="Legal Disclaimer" xml:lang="en">This content is licensed under the Creative Commons Attribution 4.0 International License (https://creativecommons.org/licenses/by/4.0/). If you distribute this content, or a modified version of it, you must provide attribution to Red Hat Inc. and provide a link to the original.</Note>
+  </DocumentNotes>
+  <DocumentDistribution xml:lang="en">Copyright © 2021 Red Hat, Inc. All rights reserved.</DocumentDistribution>
+  <AggregateSeverity Namespace="https://access.redhat.com/security/updates/classification/">Moderate</AggregateSeverity>
+  <DocumentReferences>
+    <Reference Type="Self">
+       <URL>https://access.redhat.com/errata/RHSA-2021:3254</URL>
+       <Description>https://access.redhat.com/errata/RHSA-2021:3254</Description>
+    </Reference>
+    <Reference Type="External">
+       <URL>https://access.redhat.com/security/updates/classification/#moderate</URL>
+       <Description>https://access.redhat.com/security/updates/classification/#moderate</Description>
+    </Reference>
+    <Reference Type="External">
+       <URL>https://access.redhat.com/articles/5860431</URL>
+       <Description>https://access.redhat.com/articles/5860431</Description>
+    </Reference>
+    <Reference Type="External">
+       <URL>https://access.redhat.com/documentation/en-us/red_hat_software_collections/3/html-single/3.7_release_notes/index#sect-RHSCL-Other-notes</URL>
+       <Description>https://access.redhat.com/documentation/en-us/red_hat_software_collections/3/html-single/3.7_release_notes/index#sect-RHSCL-Other-notes</Description>
+    </Reference>
+  </DocumentReferences>
+  <ProductTree xmlns="http://www.icasi.org/CVRF/schema/prod/1.1">
+    <Branch Type="Product Family" Name="Red Hat Software Collections">
+      <Branch Type="Product Name" Name="Red Hat Software Collections for Red Hat Enterprise Linux Server (v. 7)">
+        <FullProductName ProductID="7Server-RHSCL-3.7" CPE="cpe:/a:redhat:rhel_software_collections:3::el7">Red Hat Software Collections for Red Hat Enterprise Linux Server (v. 7)</FullProductName>
+      </Branch>
+      <Branch Type="Product Name" Name="Red Hat Software Collections for Red Hat Enterprise Linux Server EUS (v. 7.7)">
+        <FullProductName ProductID="7Server-RHSCL-3.7-7.7.Z" CPE="cpe:/a:redhat:rhel_software_collections:3::el7">Red Hat Software Collections for Red Hat Enterprise Linux Server EUS (v. 7.7)</FullProductName>
+      </Branch>
+      <Branch Type="Product Name" Name="Red Hat Software Collections for Red Hat Enterprise Linux Workstation (v. 7)">
+        <FullProductName ProductID="7Workstation-RHSCL-3.7" CPE="cpe:/a:redhat:rhel_software_collections:3::el7">Red Hat Software Collections for Red Hat Enterprise Linux Workstation (v. 7)</FullProductName>
+      </Branch>
+    </Branch>
+    <Branch Type="Product Version" Name="rh-python38-babel-0:2.7.0-12.el7">
+      <FullProductName ProductID="rh-python38-babel-0:2.7.0-12.el7" CPE="cpe:/a:redhat:rhel_software_collections:3::el7">rh-python38-babel-2.7.0-12.el7.src.rpm</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="rh-python38-python-0:3.8.11-2.el7">
+      <FullProductName ProductID="rh-python38-python-0:3.8.11-2.el7" CPE="cpe:/a:redhat:rhel_software_collections:3::el7">rh-python38-python-3.8.11-2.el7.src.rpm</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="rh-python38-python-cryptography-0:2.8-5.el7">
+      <FullProductName ProductID="rh-python38-python-cryptography-0:2.8-5.el7" CPE="cpe:/a:redhat:rhel_software_collections:3::el7">rh-python38-python-cryptography-2.8-5.el7.src.rpm</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="rh-python38-python-jinja2-0:2.10.3-6.el7">
+      <FullProductName ProductID="rh-python38-python-jinja2-0:2.10.3-6.el7" CPE="cpe:/a:redhat:rhel_software_collections:3::el7">rh-python38-python-jinja2-2.10.3-6.el7.src.rpm</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="rh-python38-python-lxml-0:4.4.1-7.el7">
+      <FullProductName ProductID="rh-python38-python-lxml-0:4.4.1-7.el7" CPE="cpe:/a:redhat:rhel_software_collections:3::el7">rh-python38-python-lxml-4.4.1-7.el7.src.rpm</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="rh-python38-python-pip-0:19.3.1-2.el7">
+      <FullProductName ProductID="rh-python38-python-pip-0:19.3.1-2.el7" CPE="cpe:/a:redhat:rhel_software_collections:3::el7">rh-python38-python-pip-19.3.1-2.el7.src.rpm</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="rh-python38-python-urllib3-0:1.25.7-7.el7">
+      <FullProductName ProductID="rh-python38-python-urllib3-0:1.25.7-7.el7" CPE="cpe:/a:redhat:rhel_software_collections:3::el7">rh-python38-python-urllib3-1.25.7-7.el7.src.rpm</FullProductName>
+    </Branch>
+    <Relationship ProductReference="rh-python38-babel-0:2.7.0-12.el7" RelationType="Default Component Of" RelatesToProductReference="7Server-RHSCL-3.7">
+      <FullProductName ProductID="7Server-RHSCL-3.7:rh-python38-babel-0:2.7.0-12.el7" CPE="cpe:/a:redhat:rhel_software_collections:3::el7">rh-python38-babel-0:2.7.0-12.el7 as a component of Red Hat Software Collections for Red Hat Enterprise Linux Server (v. 7)</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="rh-python38-python-0:3.8.11-2.el7" RelationType="Default Component Of" RelatesToProductReference="7Server-RHSCL-3.7">
+      <FullProductName ProductID="7Server-RHSCL-3.7:rh-python38-python-0:3.8.11-2.el7" CPE="cpe:/a:redhat:rhel_software_collections:3::el7">rh-python38-python-0:3.8.11-2.el7 as a component of Red Hat Software Collections for Red Hat Enterprise Linux Server (v. 7)</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="rh-python38-python-cryptography-0:2.8-5.el7" RelationType="Default Component Of" RelatesToProductReference="7Server-RHSCL-3.7">
+      <FullProductName ProductID="7Server-RHSCL-3.7:rh-python38-python-cryptography-0:2.8-5.el7" CPE="cpe:/a:redhat:rhel_software_collections:3::el7">rh-python38-python-cryptography-0:2.8-5.el7 as a component of Red Hat Software Collections for Red Hat Enterprise Linux Server (v. 7)</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="rh-python38-python-jinja2-0:2.10.3-6.el7" RelationType="Default Component Of" RelatesToProductReference="7Server-RHSCL-3.7">
+      <FullProductName ProductID="7Server-RHSCL-3.7:rh-python38-python-jinja2-0:2.10.3-6.el7" CPE="cpe:/a:redhat:rhel_software_collections:3::el7">rh-python38-python-jinja2-0:2.10.3-6.el7 as a component of Red Hat Software Collections for Red Hat Enterprise Linux Server (v. 7)</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="rh-python38-python-lxml-0:4.4.1-7.el7" RelationType="Default Component Of" RelatesToProductReference="7Server-RHSCL-3.7">
+      <FullProductName ProductID="7Server-RHSCL-3.7:rh-python38-python-lxml-0:4.4.1-7.el7" CPE="cpe:/a:redhat:rhel_software_collections:3::el7">rh-python38-python-lxml-0:4.4.1-7.el7 as a component of Red Hat Software Collections for Red Hat Enterprise Linux Server (v. 7)</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="rh-python38-python-pip-0:19.3.1-2.el7" RelationType="Default Component Of" RelatesToProductReference="7Server-RHSCL-3.7">
+      <FullProductName ProductID="7Server-RHSCL-3.7:rh-python38-python-pip-0:19.3.1-2.el7" CPE="cpe:/a:redhat:rhel_software_collections:3::el7">rh-python38-python-pip-0:19.3.1-2.el7 as a component of Red Hat Software Collections for Red Hat Enterprise Linux Server (v. 7)</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="rh-python38-python-urllib3-0:1.25.7-7.el7" RelationType="Default Component Of" RelatesToProductReference="7Server-RHSCL-3.7">
+      <FullProductName ProductID="7Server-RHSCL-3.7:rh-python38-python-urllib3-0:1.25.7-7.el7" CPE="cpe:/a:redhat:rhel_software_collections:3::el7">rh-python38-python-urllib3-0:1.25.7-7.el7 as a component of Red Hat Software Collections for Red Hat Enterprise Linux Server (v. 7)</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="rh-python38-babel-0:2.7.0-12.el7" RelationType="Default Component Of" RelatesToProductReference="7Server-RHSCL-3.7-7.7.Z">
+      <FullProductName ProductID="7Server-RHSCL-3.7-7.7.Z:rh-python38-babel-0:2.7.0-12.el7" CPE="cpe:/a:redhat:rhel_software_collections:3::el7">rh-python38-babel-0:2.7.0-12.el7 as a component of Red Hat Software Collections for Red Hat Enterprise Linux Server EUS (v. 7.7)</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="rh-python38-python-0:3.8.11-2.el7" RelationType="Default Component Of" RelatesToProductReference="7Server-RHSCL-3.7-7.7.Z">
+      <FullProductName ProductID="7Server-RHSCL-3.7-7.7.Z:rh-python38-python-0:3.8.11-2.el7" CPE="cpe:/a:redhat:rhel_software_collections:3::el7">rh-python38-python-0:3.8.11-2.el7 as a component of Red Hat Software Collections for Red Hat Enterprise Linux Server EUS (v. 7.7)</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="rh-python38-python-cryptography-0:2.8-5.el7" RelationType="Default Component Of" RelatesToProductReference="7Server-RHSCL-3.7-7.7.Z">
+      <FullProductName ProductID="7Server-RHSCL-3.7-7.7.Z:rh-python38-python-cryptography-0:2.8-5.el7" CPE="cpe:/a:redhat:rhel_software_collections:3::el7">rh-python38-python-cryptography-0:2.8-5.el7 as a component of Red Hat Software Collections for Red Hat Enterprise Linux Server EUS (v. 7.7)</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="rh-python38-python-jinja2-0:2.10.3-6.el7" RelationType="Default Component Of" RelatesToProductReference="7Server-RHSCL-3.7-7.7.Z">
+      <FullProductName ProductID="7Server-RHSCL-3.7-7.7.Z:rh-python38-python-jinja2-0:2.10.3-6.el7" CPE="cpe:/a:redhat:rhel_software_collections:3::el7">rh-python38-python-jinja2-0:2.10.3-6.el7 as a component of Red Hat Software Collections for Red Hat Enterprise Linux Server EUS (v. 7.7)</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="rh-python38-python-lxml-0:4.4.1-7.el7" RelationType="Default Component Of" RelatesToProductReference="7Server-RHSCL-3.7-7.7.Z">
+      <FullProductName ProductID="7Server-RHSCL-3.7-7.7.Z:rh-python38-python-lxml-0:4.4.1-7.el7" CPE="cpe:/a:redhat:rhel_software_collections:3::el7">rh-python38-python-lxml-0:4.4.1-7.el7 as a component of Red Hat Software Collections for Red Hat Enterprise Linux Server EUS (v. 7.7)</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="rh-python38-python-pip-0:19.3.1-2.el7" RelationType="Default Component Of" RelatesToProductReference="7Server-RHSCL-3.7-7.7.Z">
+      <FullProductName ProductID="7Server-RHSCL-3.7-7.7.Z:rh-python38-python-pip-0:19.3.1-2.el7" CPE="cpe:/a:redhat:rhel_software_collections:3::el7">rh-python38-python-pip-0:19.3.1-2.el7 as a component of Red Hat Software Collections for Red Hat Enterprise Linux Server EUS (v. 7.7)</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="rh-python38-python-urllib3-0:1.25.7-7.el7" RelationType="Default Component Of" RelatesToProductReference="7Server-RHSCL-3.7-7.7.Z">
+      <FullProductName ProductID="7Server-RHSCL-3.7-7.7.Z:rh-python38-python-urllib3-0:1.25.7-7.el7" CPE="cpe:/a:redhat:rhel_software_collections:3::el7">rh-python38-python-urllib3-0:1.25.7-7.el7 as a component of Red Hat Software Collections for Red Hat Enterprise Linux Server EUS (v. 7.7)</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="rh-python38-babel-0:2.7.0-12.el7" RelationType="Default Component Of" RelatesToProductReference="7Workstation-RHSCL-3.7">
+      <FullProductName ProductID="7Workstation-RHSCL-3.7:rh-python38-babel-0:2.7.0-12.el7" CPE="cpe:/a:redhat:rhel_software_collections:3::el7">rh-python38-babel-0:2.7.0-12.el7 as a component of Red Hat Software Collections for Red Hat Enterprise Linux Workstation (v. 7)</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="rh-python38-python-0:3.8.11-2.el7" RelationType="Default Component Of" RelatesToProductReference="7Workstation-RHSCL-3.7">
+      <FullProductName ProductID="7Workstation-RHSCL-3.7:rh-python38-python-0:3.8.11-2.el7" CPE="cpe:/a:redhat:rhel_software_collections:3::el7">rh-python38-python-0:3.8.11-2.el7 as a component of Red Hat Software Collections for Red Hat Enterprise Linux Workstation (v. 7)</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="rh-python38-python-cryptography-0:2.8-5.el7" RelationType="Default Component Of" RelatesToProductReference="7Workstation-RHSCL-3.7">
+      <FullProductName ProductID="7Workstation-RHSCL-3.7:rh-python38-python-cryptography-0:2.8-5.el7" CPE="cpe:/a:redhat:rhel_software_collections:3::el7">rh-python38-python-cryptography-0:2.8-5.el7 as a component of Red Hat Software Collections for Red Hat Enterprise Linux Workstation (v. 7)</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="rh-python38-python-jinja2-0:2.10.3-6.el7" RelationType="Default Component Of" RelatesToProductReference="7Workstation-RHSCL-3.7">
+      <FullProductName ProductID="7Workstation-RHSCL-3.7:rh-python38-python-jinja2-0:2.10.3-6.el7" CPE="cpe:/a:redhat:rhel_software_collections:3::el7">rh-python38-python-jinja2-0:2.10.3-6.el7 as a component of Red Hat Software Collections for Red Hat Enterprise Linux Workstation (v. 7)</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="rh-python38-python-lxml-0:4.4.1-7.el7" RelationType="Default Component Of" RelatesToProductReference="7Workstation-RHSCL-3.7">
+      <FullProductName ProductID="7Workstation-RHSCL-3.7:rh-python38-python-lxml-0:4.4.1-7.el7" CPE="cpe:/a:redhat:rhel_software_collections:3::el7">rh-python38-python-lxml-0:4.4.1-7.el7 as a component of Red Hat Software Collections for Red Hat Enterprise Linux Workstation (v. 7)</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="rh-python38-python-pip-0:19.3.1-2.el7" RelationType="Default Component Of" RelatesToProductReference="7Workstation-RHSCL-3.7">
+      <FullProductName ProductID="7Workstation-RHSCL-3.7:rh-python38-python-pip-0:19.3.1-2.el7" CPE="cpe:/a:redhat:rhel_software_collections:3::el7">rh-python38-python-pip-0:19.3.1-2.el7 as a component of Red Hat Software Collections for Red Hat Enterprise Linux Workstation (v. 7)</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="rh-python38-python-urllib3-0:1.25.7-7.el7" RelationType="Default Component Of" RelatesToProductReference="7Workstation-RHSCL-3.7">
+      <FullProductName ProductID="7Workstation-RHSCL-3.7:rh-python38-python-urllib3-0:1.25.7-7.el7" CPE="cpe:/a:redhat:rhel_software_collections:3::el7">rh-python38-python-urllib3-0:1.25.7-7.el7 as a component of Red Hat Software Collections for Red Hat Enterprise Linux Workstation (v. 7)</FullProductName>
+    </Relationship>
+  </ProductTree>
+
+  <Vulnerability Ordinal="1" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">python-cryptography: Bleichenbacher timing oracle attack against RSA decryption</Note></Notes>
+    <DiscoveryDate>2020-10-21T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2020-10-25T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2020-25659</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>7Server-RHSCL-3.7-7.7.Z:rh-python38-babel-0:2.7.0-12.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7-7.7.Z:rh-python38-python-0:3.8.11-2.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7-7.7.Z:rh-python38-python-cryptography-0:2.8-5.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7-7.7.Z:rh-python38-python-jinja2-0:2.10.3-6.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7-7.7.Z:rh-python38-python-lxml-0:4.4.1-7.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7-7.7.Z:rh-python38-python-pip-0:19.3.1-2.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7-7.7.Z:rh-python38-python-urllib3-0:1.25.7-7.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7:rh-python38-babel-0:2.7.0-12.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7:rh-python38-python-0:3.8.11-2.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7:rh-python38-python-cryptography-0:2.8-5.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7:rh-python38-python-jinja2-0:2.10.3-6.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7:rh-python38-python-lxml-0:4.4.1-7.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7:rh-python38-python-pip-0:19.3.1-2.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7:rh-python38-python-urllib3-0:1.25.7-7.el7</ProductID>
+      <ProductID>7Workstation-RHSCL-3.7:rh-python38-babel-0:2.7.0-12.el7</ProductID>
+      <ProductID>7Workstation-RHSCL-3.7:rh-python38-python-0:3.8.11-2.el7</ProductID>
+      <ProductID>7Workstation-RHSCL-3.7:rh-python38-python-cryptography-0:2.8-5.el7</ProductID>
+      <ProductID>7Workstation-RHSCL-3.7:rh-python38-python-jinja2-0:2.10.3-6.el7</ProductID>
+      <ProductID>7Workstation-RHSCL-3.7:rh-python38-python-lxml-0:4.4.1-7.el7</ProductID>
+      <ProductID>7Workstation-RHSCL-3.7:rh-python38-python-pip-0:19.3.1-2.el7</ProductID>
+      <ProductID>7Workstation-RHSCL-3.7:rh-python38-python-urllib3-0:1.25.7-7.el7</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:3254</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://cryptography.io/en/latest/changelog.html#v3-2</URL>
+        <Description>https://cryptography.io/en/latest/changelog.html#v3-2</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2020-25659</URL>
+        <Description>CVE-2020-25659</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1889988</URL>
+        <Description>bz#1889988: CVE-2020-25659 python-cryptography: Bleichenbacher timing oracle attack against RSA decryption</Description>
+      </Reference>
+    </References>
+    <Acknowledgments><Acknowledgment><Description>This issue was discovered by Hubert Kario (Red Hat).</Description></Acknowledgment></Acknowledgments>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="2" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">python: Unsafe use of eval() on data retrieved via HTTP in the test suite</Note></Notes>
+    <DiscoveryDate>2020-10-08T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2020-10-05T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2020-27619</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>7Server-RHSCL-3.7-7.7.Z:rh-python38-babel-0:2.7.0-12.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7-7.7.Z:rh-python38-python-0:3.8.11-2.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7-7.7.Z:rh-python38-python-cryptography-0:2.8-5.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7-7.7.Z:rh-python38-python-jinja2-0:2.10.3-6.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7-7.7.Z:rh-python38-python-lxml-0:4.4.1-7.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7-7.7.Z:rh-python38-python-pip-0:19.3.1-2.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7-7.7.Z:rh-python38-python-urllib3-0:1.25.7-7.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7:rh-python38-babel-0:2.7.0-12.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7:rh-python38-python-0:3.8.11-2.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7:rh-python38-python-cryptography-0:2.8-5.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7:rh-python38-python-jinja2-0:2.10.3-6.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7:rh-python38-python-lxml-0:4.4.1-7.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7:rh-python38-python-pip-0:19.3.1-2.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7:rh-python38-python-urllib3-0:1.25.7-7.el7</ProductID>
+      <ProductID>7Workstation-RHSCL-3.7:rh-python38-babel-0:2.7.0-12.el7</ProductID>
+      <ProductID>7Workstation-RHSCL-3.7:rh-python38-python-0:3.8.11-2.el7</ProductID>
+      <ProductID>7Workstation-RHSCL-3.7:rh-python38-python-cryptography-0:2.8-5.el7</ProductID>
+      <ProductID>7Workstation-RHSCL-3.7:rh-python38-python-jinja2-0:2.10.3-6.el7</ProductID>
+      <ProductID>7Workstation-RHSCL-3.7:rh-python38-python-lxml-0:4.4.1-7.el7</ProductID>
+      <ProductID>7Workstation-RHSCL-3.7:rh-python38-python-pip-0:19.3.1-2.el7</ProductID>
+      <ProductID>7Workstation-RHSCL-3.7:rh-python38-python-urllib3-0:1.25.7-7.el7</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:3254</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2020-27619</URL>
+        <Description>CVE-2020-27619</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1889886</URL>
+        <Description>bz#1889886: CVE-2020-27619 python: Unsafe use of eval() on data retrieved via HTTP in the test suite</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="3" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">python-lxml: mXSS due to the use of improper parser</Note></Notes>
+    <DiscoveryDate>2020-11-25T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2020-10-18T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2020-27783</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>7Server-RHSCL-3.7-7.7.Z:rh-python38-babel-0:2.7.0-12.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7-7.7.Z:rh-python38-python-0:3.8.11-2.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7-7.7.Z:rh-python38-python-cryptography-0:2.8-5.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7-7.7.Z:rh-python38-python-jinja2-0:2.10.3-6.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7-7.7.Z:rh-python38-python-lxml-0:4.4.1-7.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7-7.7.Z:rh-python38-python-pip-0:19.3.1-2.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7-7.7.Z:rh-python38-python-urllib3-0:1.25.7-7.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7:rh-python38-babel-0:2.7.0-12.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7:rh-python38-python-0:3.8.11-2.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7:rh-python38-python-cryptography-0:2.8-5.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7:rh-python38-python-jinja2-0:2.10.3-6.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7:rh-python38-python-lxml-0:4.4.1-7.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7:rh-python38-python-pip-0:19.3.1-2.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7:rh-python38-python-urllib3-0:1.25.7-7.el7</ProductID>
+      <ProductID>7Workstation-RHSCL-3.7:rh-python38-babel-0:2.7.0-12.el7</ProductID>
+      <ProductID>7Workstation-RHSCL-3.7:rh-python38-python-0:3.8.11-2.el7</ProductID>
+      <ProductID>7Workstation-RHSCL-3.7:rh-python38-python-cryptography-0:2.8-5.el7</ProductID>
+      <ProductID>7Workstation-RHSCL-3.7:rh-python38-python-jinja2-0:2.10.3-6.el7</ProductID>
+      <ProductID>7Workstation-RHSCL-3.7:rh-python38-python-lxml-0:4.4.1-7.el7</ProductID>
+      <ProductID>7Workstation-RHSCL-3.7:rh-python38-python-pip-0:19.3.1-2.el7</ProductID>
+      <ProductID>7Workstation-RHSCL-3.7:rh-python38-python-urllib3-0:1.25.7-7.el7</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:3254</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2020-27783</URL>
+        <Description>CVE-2020-27783</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1901633</URL>
+        <Description>bz#1901633: CVE-2020-27783 python-lxml: mXSS due to the use of improper parser</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="4" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">python-jinja2: ReDoS vulnerability in the urlize filter</Note></Notes>
+    <DiscoveryDate>2021-02-15T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-02-01T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2020-28493</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>7Server-RHSCL-3.7-7.7.Z:rh-python38-babel-0:2.7.0-12.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7-7.7.Z:rh-python38-python-0:3.8.11-2.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7-7.7.Z:rh-python38-python-cryptography-0:2.8-5.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7-7.7.Z:rh-python38-python-jinja2-0:2.10.3-6.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7-7.7.Z:rh-python38-python-lxml-0:4.4.1-7.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7-7.7.Z:rh-python38-python-pip-0:19.3.1-2.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7-7.7.Z:rh-python38-python-urllib3-0:1.25.7-7.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7:rh-python38-babel-0:2.7.0-12.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7:rh-python38-python-0:3.8.11-2.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7:rh-python38-python-cryptography-0:2.8-5.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7:rh-python38-python-jinja2-0:2.10.3-6.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7:rh-python38-python-lxml-0:4.4.1-7.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7:rh-python38-python-pip-0:19.3.1-2.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7:rh-python38-python-urllib3-0:1.25.7-7.el7</ProductID>
+      <ProductID>7Workstation-RHSCL-3.7:rh-python38-babel-0:2.7.0-12.el7</ProductID>
+      <ProductID>7Workstation-RHSCL-3.7:rh-python38-python-0:3.8.11-2.el7</ProductID>
+      <ProductID>7Workstation-RHSCL-3.7:rh-python38-python-cryptography-0:2.8-5.el7</ProductID>
+      <ProductID>7Workstation-RHSCL-3.7:rh-python38-python-jinja2-0:2.10.3-6.el7</ProductID>
+      <ProductID>7Workstation-RHSCL-3.7:rh-python38-python-lxml-0:4.4.1-7.el7</ProductID>
+      <ProductID>7Workstation-RHSCL-3.7:rh-python38-python-pip-0:19.3.1-2.el7</ProductID>
+      <ProductID>7Workstation-RHSCL-3.7:rh-python38-python-urllib3-0:1.25.7-7.el7</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:3254</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2020-28493</URL>
+        <Description>CVE-2020-28493</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1928707</URL>
+        <Description>bz#1928707: CVE-2020-28493 python-jinja2: ReDoS vulnerability in the urlize filter</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="5" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">python-cryptography: Large inputs for symmetric encryption can trigger integer overflow leading to buffer overflow</Note></Notes>
+    <DiscoveryDate>2021-02-07T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2020-12-09T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2020-36242</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>7Server-RHSCL-3.7-7.7.Z:rh-python38-babel-0:2.7.0-12.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7-7.7.Z:rh-python38-python-0:3.8.11-2.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7-7.7.Z:rh-python38-python-cryptography-0:2.8-5.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7-7.7.Z:rh-python38-python-jinja2-0:2.10.3-6.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7-7.7.Z:rh-python38-python-lxml-0:4.4.1-7.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7-7.7.Z:rh-python38-python-pip-0:19.3.1-2.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7-7.7.Z:rh-python38-python-urllib3-0:1.25.7-7.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7:rh-python38-babel-0:2.7.0-12.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7:rh-python38-python-0:3.8.11-2.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7:rh-python38-python-cryptography-0:2.8-5.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7:rh-python38-python-jinja2-0:2.10.3-6.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7:rh-python38-python-lxml-0:4.4.1-7.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7:rh-python38-python-pip-0:19.3.1-2.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7:rh-python38-python-urllib3-0:1.25.7-7.el7</ProductID>
+      <ProductID>7Workstation-RHSCL-3.7:rh-python38-babel-0:2.7.0-12.el7</ProductID>
+      <ProductID>7Workstation-RHSCL-3.7:rh-python38-python-0:3.8.11-2.el7</ProductID>
+      <ProductID>7Workstation-RHSCL-3.7:rh-python38-python-cryptography-0:2.8-5.el7</ProductID>
+      <ProductID>7Workstation-RHSCL-3.7:rh-python38-python-jinja2-0:2.10.3-6.el7</ProductID>
+      <ProductID>7Workstation-RHSCL-3.7:rh-python38-python-lxml-0:4.4.1-7.el7</ProductID>
+      <ProductID>7Workstation-RHSCL-3.7:rh-python38-python-pip-0:19.3.1-2.el7</ProductID>
+      <ProductID>7Workstation-RHSCL-3.7:rh-python38-python-urllib3-0:1.25.7-7.el7</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:3254</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://cryptography.io/en/latest/changelog.html#v3-3-2</URL>
+        <Description>https://cryptography.io/en/latest/changelog.html#v3-3-2</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2020-36242</URL>
+        <Description>CVE-2020-36242</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1926226</URL>
+        <Description>bz#1926226: CVE-2020-36242 python-cryptography: Large inputs for symmetric encryption can trigger integer overflow leading to buffer overflow</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="6" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">python: Stack-based buffer overflow in PyCArg_repr in _ctypes/callproc.c</Note></Notes>
+    <DiscoveryDate>2021-01-20T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-01-19T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-3177</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>7Server-RHSCL-3.7-7.7.Z:rh-python38-babel-0:2.7.0-12.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7-7.7.Z:rh-python38-python-0:3.8.11-2.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7-7.7.Z:rh-python38-python-cryptography-0:2.8-5.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7-7.7.Z:rh-python38-python-jinja2-0:2.10.3-6.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7-7.7.Z:rh-python38-python-lxml-0:4.4.1-7.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7-7.7.Z:rh-python38-python-pip-0:19.3.1-2.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7-7.7.Z:rh-python38-python-urllib3-0:1.25.7-7.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7:rh-python38-babel-0:2.7.0-12.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7:rh-python38-python-0:3.8.11-2.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7:rh-python38-python-cryptography-0:2.8-5.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7:rh-python38-python-jinja2-0:2.10.3-6.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7:rh-python38-python-lxml-0:4.4.1-7.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7:rh-python38-python-pip-0:19.3.1-2.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7:rh-python38-python-urllib3-0:1.25.7-7.el7</ProductID>
+      <ProductID>7Workstation-RHSCL-3.7:rh-python38-babel-0:2.7.0-12.el7</ProductID>
+      <ProductID>7Workstation-RHSCL-3.7:rh-python38-python-0:3.8.11-2.el7</ProductID>
+      <ProductID>7Workstation-RHSCL-3.7:rh-python38-python-cryptography-0:2.8-5.el7</ProductID>
+      <ProductID>7Workstation-RHSCL-3.7:rh-python38-python-jinja2-0:2.10.3-6.el7</ProductID>
+      <ProductID>7Workstation-RHSCL-3.7:rh-python38-python-lxml-0:4.4.1-7.el7</ProductID>
+      <ProductID>7Workstation-RHSCL-3.7:rh-python38-python-pip-0:19.3.1-2.el7</ProductID>
+      <ProductID>7Workstation-RHSCL-3.7:rh-python38-python-urllib3-0:1.25.7-7.el7</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:3254</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-3177</URL>
+        <Description>CVE-2021-3177</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1918168</URL>
+        <Description>bz#1918168: CVE-2021-3177 python: Stack-based buffer overflow in PyCArg_repr in _ctypes/callproc.c</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="7" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">python: Information disclosure via pydoc</Note></Notes>
+    <DiscoveryDate>2021-01-19T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-03-10T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-3426</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>7Server-RHSCL-3.7-7.7.Z:rh-python38-babel-0:2.7.0-12.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7-7.7.Z:rh-python38-python-0:3.8.11-2.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7-7.7.Z:rh-python38-python-cryptography-0:2.8-5.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7-7.7.Z:rh-python38-python-jinja2-0:2.10.3-6.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7-7.7.Z:rh-python38-python-lxml-0:4.4.1-7.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7-7.7.Z:rh-python38-python-pip-0:19.3.1-2.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7-7.7.Z:rh-python38-python-urllib3-0:1.25.7-7.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7:rh-python38-babel-0:2.7.0-12.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7:rh-python38-python-0:3.8.11-2.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7:rh-python38-python-cryptography-0:2.8-5.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7:rh-python38-python-jinja2-0:2.10.3-6.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7:rh-python38-python-lxml-0:4.4.1-7.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7:rh-python38-python-pip-0:19.3.1-2.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7:rh-python38-python-urllib3-0:1.25.7-7.el7</ProductID>
+      <ProductID>7Workstation-RHSCL-3.7:rh-python38-babel-0:2.7.0-12.el7</ProductID>
+      <ProductID>7Workstation-RHSCL-3.7:rh-python38-python-0:3.8.11-2.el7</ProductID>
+      <ProductID>7Workstation-RHSCL-3.7:rh-python38-python-cryptography-0:2.8-5.el7</ProductID>
+      <ProductID>7Workstation-RHSCL-3.7:rh-python38-python-jinja2-0:2.10.3-6.el7</ProductID>
+      <ProductID>7Workstation-RHSCL-3.7:rh-python38-python-lxml-0:4.4.1-7.el7</ProductID>
+      <ProductID>7Workstation-RHSCL-3.7:rh-python38-python-pip-0:19.3.1-2.el7</ProductID>
+      <ProductID>7Workstation-RHSCL-3.7:rh-python38-python-urllib3-0:1.25.7-7.el7</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:3254</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-3426</URL>
+        <Description>CVE-2021-3426</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1935913</URL>
+        <Description>bz#1935913: CVE-2021-3426 python: Information disclosure via pydoc</Description>
+      </Reference>
+    </References>
+    <Acknowledgments><Acknowledgment><Description>Red Hat would like to thank David Schwörer (Fedora) for reporting this issue.</Description></Acknowledgment></Acknowledgments>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="8" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">python-pip: Incorrect handling of unicode separators in git references</Note></Notes>
+    <DiscoveryDate>2021-05-19T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-04-24T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-3572</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>7Server-RHSCL-3.7-7.7.Z:rh-python38-babel-0:2.7.0-12.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7-7.7.Z:rh-python38-python-0:3.8.11-2.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7-7.7.Z:rh-python38-python-cryptography-0:2.8-5.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7-7.7.Z:rh-python38-python-jinja2-0:2.10.3-6.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7-7.7.Z:rh-python38-python-lxml-0:4.4.1-7.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7-7.7.Z:rh-python38-python-pip-0:19.3.1-2.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7-7.7.Z:rh-python38-python-urllib3-0:1.25.7-7.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7:rh-python38-babel-0:2.7.0-12.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7:rh-python38-python-0:3.8.11-2.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7:rh-python38-python-cryptography-0:2.8-5.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7:rh-python38-python-jinja2-0:2.10.3-6.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7:rh-python38-python-lxml-0:4.4.1-7.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7:rh-python38-python-pip-0:19.3.1-2.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7:rh-python38-python-urllib3-0:1.25.7-7.el7</ProductID>
+      <ProductID>7Workstation-RHSCL-3.7:rh-python38-babel-0:2.7.0-12.el7</ProductID>
+      <ProductID>7Workstation-RHSCL-3.7:rh-python38-python-0:3.8.11-2.el7</ProductID>
+      <ProductID>7Workstation-RHSCL-3.7:rh-python38-python-cryptography-0:2.8-5.el7</ProductID>
+      <ProductID>7Workstation-RHSCL-3.7:rh-python38-python-jinja2-0:2.10.3-6.el7</ProductID>
+      <ProductID>7Workstation-RHSCL-3.7:rh-python38-python-lxml-0:4.4.1-7.el7</ProductID>
+      <ProductID>7Workstation-RHSCL-3.7:rh-python38-python-pip-0:19.3.1-2.el7</ProductID>
+      <ProductID>7Workstation-RHSCL-3.7:rh-python38-python-urllib3-0:1.25.7-7.el7</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Low</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:3254</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-3572</URL>
+        <Description>CVE-2021-3572</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1962856</URL>
+        <Description>bz#1962856: CVE-2021-3572 python-pip: Incorrect handling of unicode separators in git references</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="9" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">python: urllib: Regular expression DoS in AbstractBasicAuthHandler</Note></Notes>
+    <DiscoveryDate>2021-08-10T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-08-10T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-3733</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>7Server-RHSCL-3.7-7.7.Z:rh-python38-babel-0:2.7.0-12.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7-7.7.Z:rh-python38-python-0:3.8.11-2.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7-7.7.Z:rh-python38-python-cryptography-0:2.8-5.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7-7.7.Z:rh-python38-python-jinja2-0:2.10.3-6.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7-7.7.Z:rh-python38-python-lxml-0:4.4.1-7.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7-7.7.Z:rh-python38-python-pip-0:19.3.1-2.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7-7.7.Z:rh-python38-python-urllib3-0:1.25.7-7.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7:rh-python38-babel-0:2.7.0-12.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7:rh-python38-python-0:3.8.11-2.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7:rh-python38-python-cryptography-0:2.8-5.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7:rh-python38-python-jinja2-0:2.10.3-6.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7:rh-python38-python-lxml-0:4.4.1-7.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7:rh-python38-python-pip-0:19.3.1-2.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7:rh-python38-python-urllib3-0:1.25.7-7.el7</ProductID>
+      <ProductID>7Workstation-RHSCL-3.7:rh-python38-babel-0:2.7.0-12.el7</ProductID>
+      <ProductID>7Workstation-RHSCL-3.7:rh-python38-python-0:3.8.11-2.el7</ProductID>
+      <ProductID>7Workstation-RHSCL-3.7:rh-python38-python-cryptography-0:2.8-5.el7</ProductID>
+      <ProductID>7Workstation-RHSCL-3.7:rh-python38-python-jinja2-0:2.10.3-6.el7</ProductID>
+      <ProductID>7Workstation-RHSCL-3.7:rh-python38-python-lxml-0:4.4.1-7.el7</ProductID>
+      <ProductID>7Workstation-RHSCL-3.7:rh-python38-python-pip-0:19.3.1-2.el7</ProductID>
+      <ProductID>7Workstation-RHSCL-3.7:rh-python38-python-urllib3-0:1.25.7-7.el7</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:3254</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://docs.python.org/3.6/whatsnew/changelog.html#python-3-6-14-final</URL>
+        <Description>https://docs.python.org/3.6/whatsnew/changelog.html#python-3-6-14-final</Description>
+      </Reference>
+      <Reference>
+        <URL>https://docs.python.org/3.7/whatsnew/changelog.html#python-3-7-11-final</URL>
+        <Description>https://docs.python.org/3.7/whatsnew/changelog.html#python-3-7-11-final</Description>
+      </Reference>
+      <Reference>
+        <URL>https://docs.python.org/3.8/whatsnew/changelog.html#python-3-8-10-final</URL>
+        <Description>https://docs.python.org/3.8/whatsnew/changelog.html#python-3-8-10-final</Description>
+      </Reference>
+      <Reference>
+        <URL>https://docs.python.org/3.9/whatsnew/changelog.html#python-3-9-5-final</URL>
+        <Description>https://docs.python.org/3.9/whatsnew/changelog.html#python-3-9-5-final</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-3733</URL>
+        <Description>CVE-2021-3733</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1995234</URL>
+        <Description>bz#1995234: CVE-2021-3733 python: urllib: Regular expression DoS in AbstractBasicAuthHandler</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="10" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">python-babel: Relative path traversal allows attacker to load arbitrary locale files and execute arbitrary code</Note></Notes>
+    <DiscoveryDate>2021-04-29T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-04-28T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-20095</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>7Server-RHSCL-3.7-7.7.Z:rh-python38-babel-0:2.7.0-12.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7-7.7.Z:rh-python38-python-0:3.8.11-2.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7-7.7.Z:rh-python38-python-cryptography-0:2.8-5.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7-7.7.Z:rh-python38-python-jinja2-0:2.10.3-6.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7-7.7.Z:rh-python38-python-lxml-0:4.4.1-7.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7-7.7.Z:rh-python38-python-pip-0:19.3.1-2.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7-7.7.Z:rh-python38-python-urllib3-0:1.25.7-7.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7:rh-python38-babel-0:2.7.0-12.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7:rh-python38-python-0:3.8.11-2.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7:rh-python38-python-cryptography-0:2.8-5.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7:rh-python38-python-jinja2-0:2.10.3-6.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7:rh-python38-python-lxml-0:4.4.1-7.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7:rh-python38-python-pip-0:19.3.1-2.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7:rh-python38-python-urllib3-0:1.25.7-7.el7</ProductID>
+      <ProductID>7Workstation-RHSCL-3.7:rh-python38-babel-0:2.7.0-12.el7</ProductID>
+      <ProductID>7Workstation-RHSCL-3.7:rh-python38-python-0:3.8.11-2.el7</ProductID>
+      <ProductID>7Workstation-RHSCL-3.7:rh-python38-python-cryptography-0:2.8-5.el7</ProductID>
+      <ProductID>7Workstation-RHSCL-3.7:rh-python38-python-jinja2-0:2.10.3-6.el7</ProductID>
+      <ProductID>7Workstation-RHSCL-3.7:rh-python38-python-lxml-0:4.4.1-7.el7</ProductID>
+      <ProductID>7Workstation-RHSCL-3.7:rh-python38-python-pip-0:19.3.1-2.el7</ProductID>
+      <ProductID>7Workstation-RHSCL-3.7:rh-python38-python-urllib3-0:1.25.7-7.el7</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:3254</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.tenable.com/security/research/tra-2021-14</URL>
+        <Description>https://www.tenable.com/security/research/tra-2021-14</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-20095</URL>
+        <Description>CVE-2021-20095</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1955615</URL>
+        <Description>bz#1955615: CVE-2021-20095 CVE-2021-42771 python-babel: Relative path traversal allows attacker to load arbitrary locale files and execute arbitrary code</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="11" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">python: Web cache poisoning via urllib.parse.parse_qsl and urllib.parse.parse_qs by using a semicolon in query parameters</Note></Notes>
+    <DiscoveryDate>2021-02-15T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-02-13T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-23336</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>7Server-RHSCL-3.7-7.7.Z:rh-python38-babel-0:2.7.0-12.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7-7.7.Z:rh-python38-python-0:3.8.11-2.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7-7.7.Z:rh-python38-python-cryptography-0:2.8-5.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7-7.7.Z:rh-python38-python-jinja2-0:2.10.3-6.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7-7.7.Z:rh-python38-python-lxml-0:4.4.1-7.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7-7.7.Z:rh-python38-python-pip-0:19.3.1-2.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7-7.7.Z:rh-python38-python-urllib3-0:1.25.7-7.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7:rh-python38-babel-0:2.7.0-12.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7:rh-python38-python-0:3.8.11-2.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7:rh-python38-python-cryptography-0:2.8-5.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7:rh-python38-python-jinja2-0:2.10.3-6.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7:rh-python38-python-lxml-0:4.4.1-7.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7:rh-python38-python-pip-0:19.3.1-2.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7:rh-python38-python-urllib3-0:1.25.7-7.el7</ProductID>
+      <ProductID>7Workstation-RHSCL-3.7:rh-python38-babel-0:2.7.0-12.el7</ProductID>
+      <ProductID>7Workstation-RHSCL-3.7:rh-python38-python-0:3.8.11-2.el7</ProductID>
+      <ProductID>7Workstation-RHSCL-3.7:rh-python38-python-cryptography-0:2.8-5.el7</ProductID>
+      <ProductID>7Workstation-RHSCL-3.7:rh-python38-python-jinja2-0:2.10.3-6.el7</ProductID>
+      <ProductID>7Workstation-RHSCL-3.7:rh-python38-python-lxml-0:4.4.1-7.el7</ProductID>
+      <ProductID>7Workstation-RHSCL-3.7:rh-python38-python-pip-0:19.3.1-2.el7</ProductID>
+      <ProductID>7Workstation-RHSCL-3.7:rh-python38-python-urllib3-0:1.25.7-7.el7</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:3254</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://snyk.io/vuln/SNYK-UPSTREAM-PYTHONCPYTHON-1074933</URL>
+        <Description>https://snyk.io/vuln/SNYK-UPSTREAM-PYTHONCPYTHON-1074933</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-23336</URL>
+        <Description>CVE-2021-23336</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1928904</URL>
+        <Description>bz#1928904: CVE-2021-23336 python: Web cache poisoning via urllib.parse.parse_qsl and urllib.parse.parse_qs by using a semicolon in query parameters</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="12" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">python-lxml: Missing input sanitization for formaction HTML5 attributes may lead to XSS</Note></Notes>
+    <DiscoveryDate>2021-03-21T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-03-21T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-28957</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>7Server-RHSCL-3.7-7.7.Z:rh-python38-babel-0:2.7.0-12.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7-7.7.Z:rh-python38-python-0:3.8.11-2.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7-7.7.Z:rh-python38-python-cryptography-0:2.8-5.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7-7.7.Z:rh-python38-python-jinja2-0:2.10.3-6.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7-7.7.Z:rh-python38-python-lxml-0:4.4.1-7.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7-7.7.Z:rh-python38-python-pip-0:19.3.1-2.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7-7.7.Z:rh-python38-python-urllib3-0:1.25.7-7.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7:rh-python38-babel-0:2.7.0-12.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7:rh-python38-python-0:3.8.11-2.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7:rh-python38-python-cryptography-0:2.8-5.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7:rh-python38-python-jinja2-0:2.10.3-6.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7:rh-python38-python-lxml-0:4.4.1-7.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7:rh-python38-python-pip-0:19.3.1-2.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7:rh-python38-python-urllib3-0:1.25.7-7.el7</ProductID>
+      <ProductID>7Workstation-RHSCL-3.7:rh-python38-babel-0:2.7.0-12.el7</ProductID>
+      <ProductID>7Workstation-RHSCL-3.7:rh-python38-python-0:3.8.11-2.el7</ProductID>
+      <ProductID>7Workstation-RHSCL-3.7:rh-python38-python-cryptography-0:2.8-5.el7</ProductID>
+      <ProductID>7Workstation-RHSCL-3.7:rh-python38-python-jinja2-0:2.10.3-6.el7</ProductID>
+      <ProductID>7Workstation-RHSCL-3.7:rh-python38-python-lxml-0:4.4.1-7.el7</ProductID>
+      <ProductID>7Workstation-RHSCL-3.7:rh-python38-python-pip-0:19.3.1-2.el7</ProductID>
+      <ProductID>7Workstation-RHSCL-3.7:rh-python38-python-urllib3-0:1.25.7-7.el7</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:3254</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-28957</URL>
+        <Description>CVE-2021-28957</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1941534</URL>
+        <Description>bz#1941534: CVE-2021-28957 python-lxml: Missing input sanitization for formaction HTML5 attributes may lead to XSS</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="13" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">python-ipaddress: Improper input validation of octal strings</Note></Notes>
+    <DiscoveryDate>2021-04-30T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-04-30T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-29921</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>7Server-RHSCL-3.7-7.7.Z:rh-python38-babel-0:2.7.0-12.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7-7.7.Z:rh-python38-python-0:3.8.11-2.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7-7.7.Z:rh-python38-python-cryptography-0:2.8-5.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7-7.7.Z:rh-python38-python-jinja2-0:2.10.3-6.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7-7.7.Z:rh-python38-python-lxml-0:4.4.1-7.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7-7.7.Z:rh-python38-python-pip-0:19.3.1-2.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7-7.7.Z:rh-python38-python-urllib3-0:1.25.7-7.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7:rh-python38-babel-0:2.7.0-12.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7:rh-python38-python-0:3.8.11-2.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7:rh-python38-python-cryptography-0:2.8-5.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7:rh-python38-python-jinja2-0:2.10.3-6.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7:rh-python38-python-lxml-0:4.4.1-7.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7:rh-python38-python-pip-0:19.3.1-2.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7:rh-python38-python-urllib3-0:1.25.7-7.el7</ProductID>
+      <ProductID>7Workstation-RHSCL-3.7:rh-python38-babel-0:2.7.0-12.el7</ProductID>
+      <ProductID>7Workstation-RHSCL-3.7:rh-python38-python-0:3.8.11-2.el7</ProductID>
+      <ProductID>7Workstation-RHSCL-3.7:rh-python38-python-cryptography-0:2.8-5.el7</ProductID>
+      <ProductID>7Workstation-RHSCL-3.7:rh-python38-python-jinja2-0:2.10.3-6.el7</ProductID>
+      <ProductID>7Workstation-RHSCL-3.7:rh-python38-python-lxml-0:4.4.1-7.el7</ProductID>
+      <ProductID>7Workstation-RHSCL-3.7:rh-python38-python-pip-0:19.3.1-2.el7</ProductID>
+      <ProductID>7Workstation-RHSCL-3.7:rh-python38-python-urllib3-0:1.25.7-7.el7</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:3254</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://python-security.readthedocs.io/vuln/ipaddress-ipv4-leading-zeros.html</URL>
+        <Description>https://python-security.readthedocs.io/vuln/ipaddress-ipv4-leading-zeros.html</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-29921</URL>
+        <Description>CVE-2021-29921</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1957458</URL>
+        <Description>bz#1957458: CVE-2021-29921 python-ipaddress: Improper input validation of octal strings</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="14" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">python-urllib3: ReDoS in the parsing of authority part of URL</Note></Notes>
+    <DiscoveryDate>2021-06-01T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-06-01T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-33503</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>7Server-RHSCL-3.7-7.7.Z:rh-python38-babel-0:2.7.0-12.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7-7.7.Z:rh-python38-python-0:3.8.11-2.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7-7.7.Z:rh-python38-python-cryptography-0:2.8-5.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7-7.7.Z:rh-python38-python-jinja2-0:2.10.3-6.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7-7.7.Z:rh-python38-python-lxml-0:4.4.1-7.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7-7.7.Z:rh-python38-python-pip-0:19.3.1-2.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7-7.7.Z:rh-python38-python-urllib3-0:1.25.7-7.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7:rh-python38-babel-0:2.7.0-12.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7:rh-python38-python-0:3.8.11-2.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7:rh-python38-python-cryptography-0:2.8-5.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7:rh-python38-python-jinja2-0:2.10.3-6.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7:rh-python38-python-lxml-0:4.4.1-7.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7:rh-python38-python-pip-0:19.3.1-2.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7:rh-python38-python-urllib3-0:1.25.7-7.el7</ProductID>
+      <ProductID>7Workstation-RHSCL-3.7:rh-python38-babel-0:2.7.0-12.el7</ProductID>
+      <ProductID>7Workstation-RHSCL-3.7:rh-python38-python-0:3.8.11-2.el7</ProductID>
+      <ProductID>7Workstation-RHSCL-3.7:rh-python38-python-cryptography-0:2.8-5.el7</ProductID>
+      <ProductID>7Workstation-RHSCL-3.7:rh-python38-python-jinja2-0:2.10.3-6.el7</ProductID>
+      <ProductID>7Workstation-RHSCL-3.7:rh-python38-python-lxml-0:4.4.1-7.el7</ProductID>
+      <ProductID>7Workstation-RHSCL-3.7:rh-python38-python-pip-0:19.3.1-2.el7</ProductID>
+      <ProductID>7Workstation-RHSCL-3.7:rh-python38-python-urllib3-0:1.25.7-7.el7</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:3254</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://github.com/advisories/GHSA-q2q7-5pp4-w6pg</URL>
+        <Description>https://github.com/advisories/GHSA-q2q7-5pp4-w6pg</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-33503</URL>
+        <Description>CVE-2021-33503</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1968074</URL>
+        <Description>bz#1968074: CVE-2021-33503 python-urllib3: ReDoS in the parsing of authority part of URL</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="15" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">python-babel: Relative path traversal allows attacker to load arbitrary locale files and execute arbitrary code</Note></Notes>
+    <DiscoveryDate>2021-04-29T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-04-28T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-42771</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>7Server-RHSCL-3.7-7.7.Z:rh-python38-babel-0:2.7.0-12.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7-7.7.Z:rh-python38-python-0:3.8.11-2.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7-7.7.Z:rh-python38-python-cryptography-0:2.8-5.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7-7.7.Z:rh-python38-python-jinja2-0:2.10.3-6.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7-7.7.Z:rh-python38-python-lxml-0:4.4.1-7.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7-7.7.Z:rh-python38-python-pip-0:19.3.1-2.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7-7.7.Z:rh-python38-python-urllib3-0:1.25.7-7.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7:rh-python38-babel-0:2.7.0-12.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7:rh-python38-python-0:3.8.11-2.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7:rh-python38-python-cryptography-0:2.8-5.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7:rh-python38-python-jinja2-0:2.10.3-6.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7:rh-python38-python-lxml-0:4.4.1-7.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7:rh-python38-python-pip-0:19.3.1-2.el7</ProductID>
+      <ProductID>7Server-RHSCL-3.7:rh-python38-python-urllib3-0:1.25.7-7.el7</ProductID>
+      <ProductID>7Workstation-RHSCL-3.7:rh-python38-babel-0:2.7.0-12.el7</ProductID>
+      <ProductID>7Workstation-RHSCL-3.7:rh-python38-python-0:3.8.11-2.el7</ProductID>
+      <ProductID>7Workstation-RHSCL-3.7:rh-python38-python-cryptography-0:2.8-5.el7</ProductID>
+      <ProductID>7Workstation-RHSCL-3.7:rh-python38-python-jinja2-0:2.10.3-6.el7</ProductID>
+      <ProductID>7Workstation-RHSCL-3.7:rh-python38-python-lxml-0:4.4.1-7.el7</ProductID>
+      <ProductID>7Workstation-RHSCL-3.7:rh-python38-python-pip-0:19.3.1-2.el7</ProductID>
+      <ProductID>7Workstation-RHSCL-3.7:rh-python38-python-urllib3-0:1.25.7-7.el7</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:3254</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.tenable.com/security/research/tra-2021-14</URL>
+        <Description>https://www.tenable.com/security/research/tra-2021-14</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-42771</URL>
+        <Description>CVE-2021-42771</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1955615</URL>
+        <Description>bz#1955615: CVE-2021-20095 CVE-2021-42771 python-babel: Relative path traversal allows attacker to load arbitrary locale files and execute arbitrary code</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+</cvrfdoc>

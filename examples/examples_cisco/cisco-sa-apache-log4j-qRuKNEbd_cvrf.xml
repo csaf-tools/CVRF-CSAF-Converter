@@ -1,0 +1,720 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cvrf:cvrfdoc xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:cvrf-common="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/common" xmlns:cvrf="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/cvrf">
+  <cvrf:DocumentTitle>Vulnerabilities in Apache Log4j Library Affecting Cisco Products: December 2021</cvrf:DocumentTitle>
+  <cvrf:DocumentType>Cisco Security Advisory</cvrf:DocumentType>
+  <cvrf:DocumentPublisher Type="Vendor">
+    <cvrf:ContactDetails>Emergency Support:
++1 877 228 7302 (toll-free within North America)
++1 408 525 6532 (International direct-dial)
+Non-emergency Support:
+Email: psirt@cisco.com
+Support requests that are received via e-mail are typically acknowledged within 48 hours.</cvrf:ContactDetails>
+    <cvrf:IssuingAuthority>Cisco product security incident response is the responsibility of the Cisco Product Security Incident Response Team (PSIRT). The Cisco PSIRT is a dedicated, global team that manages the receipt, investigation, and public reporting of security vulnerability information that is related to Cisco products and networks. The on-call Cisco PSIRT works 24x7 with Cisco customers, independent security researchers, consultants, industry organizations, and other vendors to identify possible security issues with Cisco products and networks.
+More information can be found in Cisco Security Vulnerability Policy available at http://www.cisco.com/web/about/security/psirt/security_vulnerability_policy.html</cvrf:IssuingAuthority>
+  </cvrf:DocumentPublisher>
+  <cvrf:DocumentTracking>
+    <cvrf:Identification>
+      <cvrf:ID>cisco-sa-apache-log4j-qRuKNEbd</cvrf:ID>
+    </cvrf:Identification>
+    <cvrf:Status>Interim</cvrf:Status>
+    <cvrf:Version>1.31</cvrf:Version>
+    <cvrf:RevisionHistory>
+      <cvrf:Revision>
+        <cvrf:Number>1.0</cvrf:Number>
+        <cvrf:Date>2021-12-10T18:49:19</cvrf:Date>
+        <cvrf:Description>Initial public release.</cvrf:Description>
+      </cvrf:Revision>
+      <cvrf:Revision>
+        <cvrf:Number>1.1</cvrf:Number>
+        <cvrf:Date>2021-12-10T20:58:15</cvrf:Date>
+        <cvrf:Description>Added Snort rule link.</cvrf:Description>
+      </cvrf:Revision>
+      <cvrf:Revision>
+        <cvrf:Number>1.2</cvrf:Number>
+        <cvrf:Date>2021-12-11T00:58:43</cvrf:Date>
+        <cvrf:Description>Added Products Under Investigation.</cvrf:Description>
+      </cvrf:Revision>
+      <cvrf:Revision>
+        <cvrf:Number>1.3</cvrf:Number>
+        <cvrf:Date>2021-12-11T19:15:38</cvrf:Date>
+        <cvrf:Description>Indicated advisory update schedule. Updated the vulnerable products and products confirmed not vulnerable.</cvrf:Description>
+      </cvrf:Revision>
+      <cvrf:Revision>
+        <cvrf:Number>1.4</cvrf:Number>
+        <cvrf:Date>2021-12-11T23:12:24</cvrf:Date>
+        <cvrf:Description>Updated the products under investigation, vulnerable products, and products confirmed not vulnerable.</cvrf:Description>
+      </cvrf:Revision>
+      <cvrf:Revision>
+        <cvrf:Number>1.5</cvrf:Number>
+        <cvrf:Date>2021-12-12T15:01:39</cvrf:Date>
+        <cvrf:Description>Updated the products under investigation, vulnerable products, and products confirmed not vulnerable.</cvrf:Description>
+      </cvrf:Revision>
+      <cvrf:Revision>
+        <cvrf:Number>1.6</cvrf:Number>
+        <cvrf:Date>2021-12-12T18:11:59</cvrf:Date>
+        <cvrf:Description>Updated the products under investigation, vulnerable products, and products confirmed not vulnerable.</cvrf:Description>
+      </cvrf:Revision>
+      <cvrf:Revision>
+        <cvrf:Number>1.7</cvrf:Number>
+        <cvrf:Date>2021-12-12T19:02:40</cvrf:Date>
+        <cvrf:Description>Updated the products under investigation, vulnerable products, and products confirmed not vulnerable.</cvrf:Description>
+      </cvrf:Revision>
+      <cvrf:Revision>
+        <cvrf:Number>1.8</cvrf:Number>
+        <cvrf:Date>2021-12-12T23:05:52</cvrf:Date>
+        <cvrf:Description>Updated the products under investigation, vulnerable products, and products confirmed not vulnerable.</cvrf:Description>
+      </cvrf:Revision>
+      <cvrf:Revision>
+        <cvrf:Number>1.9</cvrf:Number>
+        <cvrf:Date>2021-12-13T15:31:38</cvrf:Date>
+        <cvrf:Description>Updated the products under investigation, vulnerable products, and products confirmed not vulnerable.</cvrf:Description>
+      </cvrf:Revision>
+      <cvrf:Revision>
+        <cvrf:Number>1.10</cvrf:Number>
+        <cvrf:Date>2021-12-13T20:34:26</cvrf:Date>
+        <cvrf:Description>Updated the products under investigation, vulnerable products, and products confirmed not vulnerable.</cvrf:Description>
+      </cvrf:Revision>
+      <cvrf:Revision>
+        <cvrf:Number>1.11</cvrf:Number>
+        <cvrf:Date>2021-12-13T23:43:56</cvrf:Date>
+        <cvrf:Description>Updated the products under investigation, vulnerable products, and products confirmed not vulnerable.</cvrf:Description>
+      </cvrf:Revision>
+      <cvrf:Revision>
+        <cvrf:Number>1.12</cvrf:Number>
+        <cvrf:Date>2021-12-14T15:42:33</cvrf:Date>
+        <cvrf:Description>Updated the products under investigation, vulnerable products, and products confirmed not vulnerable.</cvrf:Description>
+      </cvrf:Revision>
+      <cvrf:Revision>
+        <cvrf:Number>1.13</cvrf:Number>
+        <cvrf:Date>2021-12-14T19:36:34</cvrf:Date>
+        <cvrf:Description>Updated the products under investigation, vulnerable products, and products confirmed not vulnerable.</cvrf:Description>
+      </cvrf:Revision>
+      <cvrf:Revision>
+        <cvrf:Number>1.14</cvrf:Number>
+        <cvrf:Date>2021-12-14T23:57:07</cvrf:Date>
+        <cvrf:Description>Updated the products under investigation, vulnerable products, and products confirmed not vulnerable.</cvrf:Description>
+      </cvrf:Revision>
+      <cvrf:Revision>
+        <cvrf:Number>1.15</cvrf:Number>
+        <cvrf:Date>2021-12-15T15:08:09</cvrf:Date>
+        <cvrf:Description>Updated the products under investigation, vulnerable products, and products confirmed not vulnerable.</cvrf:Description>
+      </cvrf:Revision>
+      <cvrf:Revision>
+        <cvrf:Number>1.16</cvrf:Number>
+        <cvrf:Date>2021-12-15T19:27:33</cvrf:Date>
+        <cvrf:Description>Updated the summary, products under investigation, vulnerable products, and products confirmed not vulnerable.</cvrf:Description>
+      </cvrf:Revision>
+      <cvrf:Revision>
+        <cvrf:Number>1.17</cvrf:Number>
+        <cvrf:Date>2021-12-15T23:51:35</cvrf:Date>
+        <cvrf:Description>Updated the products under investigation, vulnerable products, and products confirmed not vulnerable.</cvrf:Description>
+      </cvrf:Revision>
+      <cvrf:Revision>
+        <cvrf:Number>1.18</cvrf:Number>
+        <cvrf:Date>2021-12-16T15:22:33</cvrf:Date>
+        <cvrf:Description>Updated the products under investigation, vulnerable products, and products confirmed not vulnerable.</cvrf:Description>
+      </cvrf:Revision>
+      <cvrf:Revision>
+        <cvrf:Number>1.19</cvrf:Number>
+        <cvrf:Date>2021-12-16T19:07:05</cvrf:Date>
+        <cvrf:Description>Updated the products under investigation, vulnerable products, and products confirmed not vulnerable.</cvrf:Description>
+      </cvrf:Revision>
+      <cvrf:Revision>
+        <cvrf:Number>1.20</cvrf:Number>
+        <cvrf:Date>2021-12-16T23:12:10</cvrf:Date>
+        <cvrf:Description>Updated the products under investigation, vulnerable products, and products confirmed not vulnerable.</cvrf:Description>
+      </cvrf:Revision>
+      <cvrf:Revision>
+        <cvrf:Number>1.21</cvrf:Number>
+        <cvrf:Date>2021-12-17T19:02:40</cvrf:Date>
+        <cvrf:Description>Updated the summary, products under investigation, vulnerable products, and products confirmed not vulnerable.</cvrf:Description>
+      </cvrf:Revision>
+      <cvrf:Revision>
+        <cvrf:Number>1.22</cvrf:Number>
+        <cvrf:Date>2021-12-18T00:07:30</cvrf:Date>
+        <cvrf:Description>Updated the products under investigation, vulnerable products, and products confirmed not vulnerable.</cvrf:Description>
+      </cvrf:Revision>
+      <cvrf:Revision>
+        <cvrf:Number>1.23</cvrf:Number>
+        <cvrf:Date>2021-12-19T16:29:55</cvrf:Date>
+        <cvrf:Description>Updated summary and products under investigation.</cvrf:Description>
+      </cvrf:Revision>
+      <cvrf:Revision>
+        <cvrf:Number>1.24</cvrf:Number>
+        <cvrf:Date>2021-12-20T20:29:03</cvrf:Date>
+        <cvrf:Description>Updated vulnerable products and products confirmed not vulnerable.</cvrf:Description>
+      </cvrf:Revision>
+      <cvrf:Revision>
+        <cvrf:Number>1.25</cvrf:Number>
+        <cvrf:Date>2021-12-21T20:55:00</cvrf:Date>
+        <cvrf:Description>Updated vulnerable products and products confirmed not vulnerable.</cvrf:Description>
+      </cvrf:Revision>
+      <cvrf:Revision>
+        <cvrf:Number>1.26</cvrf:Number>
+        <cvrf:Date>2021-12-22T20:47:44</cvrf:Date>
+        <cvrf:Description>Updated vulnerable products and products confirmed not vulnerable. Updated the summary to indicate that no Cisco products are affected by CVE-2021-45105.</cvrf:Description>
+      </cvrf:Revision>
+      <cvrf:Revision>
+        <cvrf:Number>1.27</cvrf:Number>
+        <cvrf:Date>2021-12-22T22:58:15</cvrf:Date>
+        <cvrf:Description>Updated vulnerable products.</cvrf:Description>
+      </cvrf:Revision>
+      <cvrf:Revision>
+        <cvrf:Number>1.28</cvrf:Number>
+        <cvrf:Date>2022-01-06T23:16:04</cvrf:Date>
+        <cvrf:Description>Updated summary and vulnerable products.</cvrf:Description>
+      </cvrf:Revision>
+      <cvrf:Revision>
+        <cvrf:Number>1.29</cvrf:Number>
+        <cvrf:Date>2022-01-07T18:00:53</cvrf:Date>
+        <cvrf:Description>Updated vulnerable products.</cvrf:Description>
+      </cvrf:Revision>
+      <cvrf:Revision>
+        <cvrf:Number>1.30</cvrf:Number>
+        <cvrf:Date>2022-01-10T18:01:02</cvrf:Date>
+        <cvrf:Description>Updated vulnerable products.</cvrf:Description>
+      </cvrf:Revision>
+      <cvrf:Revision>
+        <cvrf:Number>1.31</cvrf:Number>
+        <cvrf:Date>2022-01-11T20:28:32</cvrf:Date>
+        <cvrf:Description>Updated products confirmed not vulnerable.</cvrf:Description>
+      </cvrf:Revision>
+    </cvrf:RevisionHistory>
+    <cvrf:InitialReleaseDate>2021-12-10T18:45:00</cvrf:InitialReleaseDate>
+    <cvrf:CurrentReleaseDate>2022-01-11T20:28:32</cvrf:CurrentReleaseDate>
+    <cvrf:Generator>
+      <cvrf:Engine>TVCE</cvrf:Engine>
+    </cvrf:Generator>
+  </cvrf:DocumentTracking>
+  <cvrf:DocumentNotes>
+    <cvrf:Note Title="Summary" Type="Summary" Ordinal="1">Critical Vulnerabilities in Apache Log4j Java Logging Library
+
+On December 9, 2021, the following critical vulnerability in the Apache Log4j Java logging library affecting all Log4j2 versions earlier than 2.15.0 was disclosed:
+
+CVE-2021-44228: Apache Log4j2 JNDI features do not protect against attacker controlled LDAP and other JNDI related endpoints
+
+On December 14, 2021, the following critical vulnerability, which affects certain Apache Log4j use cases in versions 2.15.0 and earlier, was disclosed:
+
+CVE-2021-45046: Apache Log4j2 Thread Context Message Pattern and Context Lookup Pattern vulnerable to a denial of service attack
+
+On December 18, 2021, a vulnerability in the Apache Log4j component affecting versions 2.16 and earlier was disclosed:
+
+CVE-2021-45105: Apache Log4j2 does not always protect from infinite recursion in lookup evaluation
+
+On December 28, 2021, a vulnerability in the Apache Log4j component affecting versions 2.17 and earlier was disclosed:
+
+CVE-2021-44832: Apache Log4j2 vulnerable to RCE via JDBC Appender when attacker controls configuration
+
+For a description of these vulnerabilities, see the Apache Log4j Security Vulnerabilities ["https://logging.apache.org/log4j/2.x/security.html"] page.
+
+Cisco's Response to These Vulnerabilities
+
+Cisco continues to assess all products and services for impact from both CVE-2021-44228 and CVE-2021-45046. To help detect exploitation of these vulnerabilities, Cisco has released Snort rules at the following location: Talos Rules 2021-12-21 ["https://www.snort.org/advisories/talos-rules-2021-12-21"]
+
+Product fixes that are listed in this advisory will address both CVE-2021-44228 and CVE-2021-45046 unless otherwise noted.
+
+Cisco has reviewed CVE-2021-45105 and CVE-2021-44832 and has determined that no Cisco products or cloud offerings are impacted by these vulnerabilities.
+
+Cisco's standard practice is to update integrated third-party software components to later versions as they become available.
+
+This advisory is available at the following link:
+https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-apache-log4j-qRuKNEbd ["https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-apache-log4j-qRuKNEbd"]</cvrf:Note>
+    <cvrf:Note Title="Affected Products" Type="General" Ordinal="2">Cisco is investigating its product line to determine which products may be affected by these vulnerabilities. As the investigation progresses, Cisco will update this advisory with information about affected products.
+
+This advisory only lists Cisco products and services that are known to include the impacted software component and thus may be vulnerable. Products and services that do not contain the impacted software component are not vulnerable and therefore are not listed in this advisory. Any Cisco product or service that is not explicitly listed in the Affected Products section of this advisory is not affected by the vulnerability or vulnerabilities described. Because this is an ongoing investigation, be aware that products that are currently considered not vulnerable may subsequently be considered vulnerable as additional information becomes available.
+
+The Vulnerable Products ["#vp"] section includes Cisco bug IDs for each affected product. The bugs are accessible through the Cisco Bug Search Tool and contain additional platform-specific information, including workarounds (if available) and fixed software releases.
+
+  Products Under Investigation
+At this time, there are no products under active investigation. Cisco continues to monitor this situation and will update this document as information becomes available.</cvrf:Note>
+    <cvrf:Note Title="Vulnerable Products" Type="General" Ordinal="3">Cisco is investigating its product line to determine which products may be affected by these vulnerabilities. This section will be updated as information is available.
+
+The following table lists Cisco products that are affected by one or both of the vulnerabilities that are described in this advisory. If a future release date is indicated for software, the date provided represents an estimate based on all information known to Cisco as of the Last Updated date at the top of the advisory. Availability dates are subject to change based on a number of factors, including satisfactory testing results and delivery of other priority features and fixes. If no version or date is listed for an affected component (indicated by a blank field and/or an advisory designation of Interim), Cisco is continuing to evaluate the fix and will update the advisory as additional information becomes available. After the advisory is marked Final, customers should refer to the associated Cisco bug(s) for further details.
+        Product  Cisco Bug ID  Fixed Release Availability ["https://tools.cisco.com/security/center/resources/security_vulnerability_policy.html#fixes"]      Collaboration and Social Media      Cisco Webex Meetings Server  CSCwa47283 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCwa47283"]  CWMS-3.0MR4SP3 patch (21 Dec 2021)
+CWMS-4.0MR4SP3 patch (21 Dec 2021)
+CWMS-3.0MR4SP2 patch (14 Dec 2021)
+CWMS-4.0MR4SP2 patch (14 Dec 2021)      Endpoint Clients and Client Software      Cisco CX Cloud Agent Software  CSCwa47272 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCwa47272"]  1.12.2 (17 Dec 2021)      Network Application, Service, and Acceleration      Cisco Call Studio  CSCwa54008 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCwa54008"]  11.6(2) (23 Dec 2021)
+12.0(1) (23 Dec 2021)
+12.5(1) (23 Dec 2021)
+12.6(1) (23 Dec 2021)      Cisco Nexus Insights  CSCwa47284 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCwa47284"]  6.0.2 (17 Dec 2021)      Network and Content Security Devices      Cisco Firepower Threat Defense (FTD) managed by Firepower Device Manager (FDM)  CSCwa46963 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCwa46963"]  6.2.3 hotfix (Available)
+6.4.0 hotfix (Available)
+6.6.5 hotfix (Available)
+6.7.0 hotfix (Available)
+7.0.1 hotfix (Available)
+7.1.0 hotfix (Available)      Cisco Identity Services Engine (ISE)  CSCwa47133 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCwa47133"]  2.4 hotfix (15 Dec 2021)
+2.6 hotfix (15 Dec 2021)
+2.7 hotfix (15 Dec 2021)
+3.0 hotfix (15 Dec 2021)
+3.1 hotfix (17 Dec 2021)      Network Management and Provisioning      Cisco Application Policy Infrastructure Controller (APIC) - Network Insights Base App  CSCwa47295 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCwa47295"]  4.2(7r) (Available)
+5.2(3g) (Available)      Cisco Automated Subsea Tuning  CSCwa48806 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCwa48806"]  2.1.0.4 (22 Dec 2021)      Cisco Business Process Automation  CSCwa47269 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCwa47269"]  3.0.000.115 (patch) (17 Dec 2021)
+3.1.000.044 (patch) (17 Dec 2021)
+3.2.000.009 (patch) (17 Dec 2021)      Cisco CloudCenter Cost Optimizer  CSCwa48074 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCwa48074"]  5.5.2 (Available)      Cisco CloudCenter Suite Admin  CSCwa47349 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCwa47349"]  5.3.1 (Available)      Cisco CloudCenter Workload Manager  CSCwa47350 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCwa47350"]  5.5.2 (Available)      Cisco CloudCenter  CSCwa48832 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCwa48832"]  4.10.0.16 (22 Dec 2021)      Cisco Common Services Platform Collector (CSPC)  CSCwa47271 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCwa47271"]  2.10.0.1 hotfix (Available)
+2.9.1.3 hotfix (Available)      Cisco Crosswork Data Gateway  CSCwa47257 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCwa47257"]  2.0.2 patch (21 Dec 2021)
+3.0.1 patch (21 Dec 2021)      Cisco Crosswork Network Controller  CSCwa49936 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCwa49936"]  2.0.1 patch (22 Dec 2021)
+3.0.1 patch (22 Dec 2021)      Cisco Crosswork Optimization Engine  CSCwa49939 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCwa49939"]  2.0.1 patch (21 Dec 2021)
+3.0.1 patch (21 Dec 2021)      Cisco Crosswork Platform Infrastructure  CSCwa47367 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCwa47367"]  4.0.1 patch (22 Dec 2021)
+4.1.1 patch (22 Dec 2021)      Cisco Crosswork Situation Manager  CSCwa51878 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCwa51878"]  8.0.0.8 patch (21 Dec 2021)      Cisco Crosswork Zero Touch Provisioning (ZTP)  CSCwa47259 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCwa47259"]  2.0.1 patch (21 Dec 2021)
+3.0.1 patch (21 Dec 2021)      Cisco Cyber Vision Sensor Management Extension  CSCwa49482 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCwa49482"]  4.0.3 (22 Dec 2021)      Cisco DNA Spaces Connector  CSCwa47320 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCwa47320"]  v2.0.588 (Available)
+v2.2.12 (Available)      Cisco Data Center Network Manager (DCNM)  CSCwa47291 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCwa47291"]  12.0(2f) (Available)
+11.5(3) patch (Available)
+11.5(2) patch (Available)
+11.5(1) patch (Available)
+11.4(1) patch (Available)
+11.3(1) patch (Available)      Cisco Evolved Programmable Network Manager  CSCwa47310 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCwa47310"]  5.1.3.1 patch (22 Dec 2021)
+5.0.2.1 patch (13 Jan 2022)
+4.1.1.1 patch (13 Jan 2022)      Cisco Intersight Virtual Appliance  CSCwa47304 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCwa47304"]  1.0.9-361 (20 Dec 2021)      Cisco Network Services Orchestrator (NSO)  CSCwa47342 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCwa47342"]  nso-5.3.5.1 (17 Dec 2021)
+nso-5.4.5.2 (17 Dec 2021)
+nso-5.5.4.1 (17 Dec 2021)
+nso-5.6.3.1 (17 Dec 2021)      Cisco Nexus Dashboard, formerly Cisco Application Services Engine  CSCwa47299 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCwa47299"]  2.1.2 (23 Dec 2021)      Cisco Prime Service Catalog  CSCwa47347 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCwa47347"]  12.1 patch (20 Dec 2021)      Cisco Secure Agile Exchange (SAE) Core Function Pack  CSCwa52921 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCwa52921"]  2.4.1 (14 Jan 2022)      Cisco Smart PHY  CSCwa50021 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCwa50021"]  3.1.4 patch (Available)
+3.2.0 patch (Available)
+3.2.1 patch (Available)
+21.3 patch (21 Jan 2022)      Cisco Virtual Topology System (VTS)  CSCwa47334 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCwa47334"]  2.6.7 (22 Dec 2021)      Cisco Virtualized Infrastructure Manager  CSCwa49924 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCwa49924"]  3.2.x patch (17 Dec 2021)
+3.4.4 patch (17 Dec 2021)
+3.4.6 patch (17 Dec 2021)
+4.2.0 patch (17 Dec 2021)
+4.2.1 patch (17 Dec 2021)      Cisco WAN Automation Engine (WAE)  CSCwa47369 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCwa47369"]  7.5.0.1 (22 Dec 2021)
+7.4.0.1 (21 Jan 2022)
+7.3.0.2 (21 Jan 2022)      Routing and Switching - Enterprise and Service Provider      Cisco DNA Center  CSCwa47322 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCwa47322"]  2.2.2.8 patch (Available)
+2.1.2.8 patch (14 Jan 2022)
+2.2.3.4 patch (Available)      Cisco IOx Fog Director  CSCwa47370 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCwa47370"]  1.14.5 patch (16 Dec 2021)
+1.16.4 patch (Available)      Cisco Network Assurance Engine  CSCwa47285 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCwa47285"]  6.0.2 (23 Dec 2021)      Cisco Network Convergence System 1004  CSCwa52235 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCwa52235"]  7.3.2 SMU/GISO (14 Jan 2022)
+7.3.1 SMU (21 Jan 2022)      Cisco Optical Network Controller  CSCwa48793 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCwa48793"]  1.1.0 (22 Dec 2021)      Cisco SD-WAN vManage  CSCwa47745 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCwa47745"]  20.3.4.1 (Available)
+20.6.2.1 (Available)
+20.5.1.1 (Available)
+20.4.2.1 (Available)      Unified Computing      Cisco Integrated Management Controller (IMC) Supervisor  CSCwa47307 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCwa47307"]  2.3.2.1 (23 Dec 2021)      Cisco UCS Central Software  CSCwa47303 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCwa47303"]  2.0(1p) (22 Dec 2021)      Cisco UCS Director  CSCwa47288 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCwa47288"]  6.8.2.0 (23 Dec 2021)      Cisco Workload Optimization Manager  CSCwa50220 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCwa50220"]  3.2.1 patch (Available)      Voice and Unified Communications Devices      Cisco BroadWorks  CSCwa47315 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCwa47315"]  2021.11_1.162 (13 Dec 2021)
+ap381882 (15 Dec 2021)      Cisco Cloud Connect  CSCwa51545 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCwa51545"]  12.6(1) (Available)      Cisco Contact Center Domain Manager (CCDM)  CSCwa47383 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCwa47383"]  12.5(1) ES6 (Available)
+12.6(1) ES3 (Available)      Cisco Contact Center Management Portal (CCMP)  CSCwa47383 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCwa47383"]  12.5(1) ES6 (Available)
+12.6(1) ES3 (Available)      Cisco Emergency Responder  CSCwa47391 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCwa47391"]  11.5(4)SU9 patch (16 Dec 2021)
+11.5(4)SU10 patch (16 Dec 2021)      Cisco Enterprise Chat and Email  CSCwa47392 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCwa47392"]  12.0(1) patch (Available)
+12.5 (1) patch (Available)
+12.6(1) patch (Available)      Cisco Finesse  CSCwa46459 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCwa46459"]  12.6(1)ES03 (23 Dec 2021)      Cisco Packaged Contact Center Enterprise  CSCwa47274 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCwa47274"]  11.6(2) (Available)
+12.0(1) (Available)
+12.5(1) (Available)
+12.6(1) (Available)      Cisco Paging Server  CSCwa47395 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCwa47395"]  14.4.2 (21 Dec 2021)      Cisco Unified Communications Manager / Cisco Unified Communications Manager Session Management Edition  CSCwa47249 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCwa47249"]  11.5(1)SU7 patch (16 Dec 2021)
+11.5(1)SU8 patch (16 Dec 2021)
+11.5(1)SU9 patch (16 Dec 2021)
+11.5(1)SU10 patch (16 Dec 2021)
+11.5(1.18119-2) through 11.5(1.23162-1) patch (16 Dec 2021)      Cisco Unified Communications Manager IM &amp;Presence Service  CSCwa47393 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCwa47393"]  11.5(1)SU7 patch (16 Dec 2021)
+11.5(1)SU8 patch (16 Dec 2021)
+11.5(1)SU9 patch (16 Dec 2021)
+11.5(1)SU10 patch (16 Dec 2021)
+11.5(1.18900-16) patch (16 Dec 2021)
+11.5(1.18901-3) patch (16 Dec 2021)      Cisco Unified Contact Center Enterprise - Live Data server  CSCwa46810 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCwa46810"]  11.6(1)ES23 (23 Dec 2021)
+12.0(1)ES18 (23 Dec 2021)
+12.5(1)ES13 (23 Dec 2021)
+12.6(1)ES03 (23 Dec 2021)      Cisco Unified Contact Center Enterprise  CSCwa47273 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCwa47273"]  11.6(2) (Available)
+12.0(1) (Available)
+12.5(1) (Available)
+12.6(1) (Available)      Cisco Unified Contact Center Express  CSCwa47388 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCwa47388"]  12.5(1)SU1 (23 Dec 2021)      Cisco Unified Customer Voice Portal  CSCwa47275 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCwa47275"]  11.6(2) (Available)
+12.0(1) (Available)
+12.5(1) (Available)
+12.6(1) (23 Dec 2021)      Cisco Unified Intelligence Center  CSCwa46525 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCwa46525"]  12.6(1) (23 Dec 2021)      Cisco Unified SIP Proxy Software  CSCwa47265 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCwa47265"]  10.2.1v2 patch (23 Dec 2021)      Cisco Unity Connection  CSCwa47387 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCwa47387"]  11.5(1)SU7 patch (16 Dec 2021)
+11.5(1)SU8 patch (16 Dec 2021)
+11.5(1)SU9 patch (16 Dec 2021)
+11.5(1)SU10 patch (16 Dec 2021)
+11.5(1.18119-2) through 11.5(1.23162-1) patch (16 Dec 2021)      Cisco Virtualized Voice Browser  CSCwa47397 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCwa47397"]  12.5(1) (Available)
+12.6(1) (23 Dec 2021)      Cisco Webex Workforce Optimization  CSCwa51476 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCwa51476"]  Product is End of Software Maintenance - No Fixes Planned      Video, Streaming, TelePresence, and Transcoding Devices      Cisco Video Surveillance Operations Manager  CSCwa47360 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCwa47360"]  7.14.4 patch (Available)      Cisco Vision Dynamic Signage Director  CSCwa47351 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCwa47351"]  Contact Cisco TAC for a patch
+6.4 SP3 (17 Jan 2021)      Wireless      Cisco Connected Mobile Experiences (CMX)  CSCwa47312 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCwa47312"]  10.6.3-70 patch (Available)
+10.6.3-105 patch (Available)
+10.6.2-89 patch (Available)
+10.4.1 patch (Available)</cvrf:Note>
+    <cvrf:Note Title="Products Confirmed Not Vulnerable" Type="General" Ordinal="4">Cisco is investigating its product line to determine which products may be affected by these vulnerabilities. This section will be updated as information becomes available.
+
+Any product not listed in the Products Under Investigation or Vulnerable Products section of this advisory is to be considered not vulnerable. Because this is an ongoing investigation, be aware that products that are currently considered not vulnerable may subsequently be considered vulnerable as additional information becomes available.
+
+Cisco has confirmed that these vulnerabilities do not affect the following Cisco products:
+
+Cable Devices
+
+Cisco GS7000 Nodes
+Cisco RF Gateway Series
+Cisco Remote PHY 120
+
+Collaboration and Social Media
+
+Cisco SocialMiner
+
+Endpoint Clients and Client Software
+
+Cisco AnyConnect Secure Mobility Client
+Cisco Jabber Guest
+Cisco Jabber
+Cisco Secure Endpoint, formerly Cisco Advanced Malware Protection for Endpoints
+Cisco Webex App
+
+Meraki Products
+
+Cisco Meraki Go Series
+Cisco Meraki MR Series Cloud-Managed Wireless Access Points
+Cisco Meraki MS Series Switches
+Cisco Meraki MT Series Sensors
+Cisco Meraki MV Series Cloud-Managed Smart Cameras
+Cisco Meraki MX Series Cloud-Managed Security and SD-WAN
+Cisco Meraki Systems Manager (SM)
+Cisco Meraki Z-Series Cloud-Managed Teleworker Gateway
+
+Network Application, Service, and Acceleration
+
+Cisco Cloud Services Platform 2100
+Cisco Cloud Services Platform 5000 Series
+Cisco Nexus Dashboard Data Broker
+Cisco Tetration Analytics
+Cisco Wide Area Application Services (WAAS)
+ConfD
+
+Network and Content Security Devices
+
+Cisco AMP Virtual Private Cloud Appliance
+Cisco Adaptive Security Appliance (ASA) Software
+Cisco Adaptive Security Device Manager
+Cisco Adaptive Security Virtual Appliance (ASAv)
+Cisco Advanced Web Security Reporting Application
+Cisco Email Security Appliance (ESA)
+Cisco FXOS Firepower Chassis Manager
+Cisco Firepower Management Center
+Cisco Firepower Next-Generation Intrusion Prevention System (NGIPS)
+Cisco Firepower Threat Defense (FTD) managed by Cisco Firepower Management Center
+Cisco Secure Email Encryption Add-in
+Cisco Secure Email Encryption Plugin for Outlook
+Cisco Secure Email Security Plugin for Outlook
+Cisco Secure Email and Web Manager, formerly Cisco Content Security Management Appliance (SMA)
+Cisco Secure Network Analytics, formerly Stealthwatch Enterprise, Advanced Host Group Automation (AHGA)
+Cisco Secure Network Analytics, formerly Stealthwatch Enterprise, Flow Adapter
+Cisco Secure Network Analytics, formerly Stealthwatch Enterprise, Network Forensics Automation (NFA)
+Cisco Secure Network Analytics, formerly Stealthwatch Enterprise, Proxy Adapter
+Cisco Secure Network Analytics, formerly Stealthwatch
+Cisco Secure Services Proxy (CSSP)
+Cisco Security Malware Analytics Appliance, formerly Cisco Threat Grid Appliance
+Cisco Security Manager
+Cisco Web Security Appliance (WSA)
+
+Network Management and Provisioning
+
+Cisco ACI Multi-Site Orchestrator
+Cisco CloudCenter Action Orchestrator
+Cisco Connected Grid Device Manager
+Cisco Container Platform
+Cisco Crosswork Change Automation
+Cisco Crosswork Health Insights
+Cisco Crosswork Service Health
+Cisco Elastic Services Controller (ESC)
+Cisco Intelligent Node (iNode) Manager
+Cisco Intersight Mobile App
+Cisco IoT Field Network Director, formerly Cisco Connected Grid Network Management System
+Cisco Modeling Labs
+Cisco NCS 2000 Shelf Virtualization Orchestrator
+Cisco Optical Network Planner
+Cisco Policy Suite
+Cisco Prime Access Registrar
+Cisco Prime Cable Provisioning
+Cisco Prime Central for Service Providers
+Cisco Prime Collaboration Assurance
+Cisco Prime Collaboration Deployment
+Cisco Prime Collaboration Provisioning
+Cisco Prime IP Express
+Cisco Prime Infrastructure
+Cisco Prime License Manager
+Cisco Prime Network Registrar
+Cisco Prime Network
+Cisco Prime Optical for Service Providers
+Cisco Prime Performance Manager
+Cisco Prime Provisioning
+Cisco Process Orchestrator
+Cisco Smart Software Manager On-Prem
+Cisco Telemetry Broker
+
+Routing and Switching - Enterprise and Service Provider
+
+Cisco ACI Virtual Edge
+Cisco ASR 5000 Series Routers
+Cisco Application Policy Infrastructure Controller Enterprise Module (APIC-EM)
+Cisco Enterprise NFV Infrastructure Software (NFVIS)
+Cisco GGSN Gateway GPRS Support Node
+Cisco IOS XR Software
+Cisco IOS and IOS XE Software
+Cisco IP Services Gateway (IPSG)
+Cisco MDS 9000 Series Multilayer Switches
+Cisco MME Mobility Management Entity
+Cisco Mobility Unified Reporting and Analytics System
+Cisco Network Convergence System 2000 Series
+Cisco Nexus 3000 Series Switches
+Cisco Nexus 5500 Platform Switches
+Cisco Nexus 5600 Platform Switches
+Cisco Nexus 6000 Series Switches
+Cisco Nexus 7000 Series Switches
+Cisco Nexus 9000 Series Fabric Switches in Application Centric Infrastructure (ACI) mode
+Cisco Nexus 9000 Series Switches in standalone NX-OS mode
+Cisco ONS 15454 Series Multiservice Provisioning Platforms
+Cisco PDSN/HA Packet Data Serving Node and Home Agent
+Cisco PGW Packet Data Network Gateway
+Cisco SD-WAN vBond Controller Software
+Cisco SD-WAN vEdge 100 Series Routers
+Cisco SD-WAN vEdge 1000 Series Routers
+Cisco SD-WAN vEdge 2000 Series Routers
+Cisco SD-WAN vEdge 5000 Series Routers
+Cisco SD-WAN vEdge Cloud Router Platform
+Cisco SD-WAN vSmart Controller Software
+Cisco System Architecture Evolution Gateway (SAEGW)
+Cisco Ultra Cloud Core - Access and Mobility Management Function
+Cisco Ultra Cloud Core - Policy Control Function
+Cisco Ultra Cloud Core - Redundancy Configuration Manager
+Cisco Ultra Cloud Core - Session Management Function
+Cisco Ultra Cloud Core - Subscriber Microservices Infrastructure
+Cisco Ultra Packet Core
+Cisco Ultra Services Platform
+
+Routing and Switching - Small Business
+
+Cisco 220 Series Smart Plus Switches
+Cisco 250 Series Smart Switches
+Cisco 350 Series Managed Switches
+Cisco 550 Series Stackable Managed Switches
+Cisco Business 220 Series Smart Switches
+Cisco Business 250 Series Smart Switches
+Cisco Business 350 Series Managed Switches
+Cisco Business Dashboard
+Cisco RV110W Wireless-N VPN Firewall
+Cisco RV130 VPN Router
+Cisco RV130W Wireless-N Multifunction VPN Router
+Cisco RV132W ADSL2+ Wireless-N VPN Router
+Cisco RV134W VDSL2 Wireless-AC VPN Router
+Cisco RV160 VPN Router
+Cisco RV160W Wireless-AC VPN Router
+Cisco RV215W Wireless-N VPN Router
+Cisco RV260 VPN Routers
+Cisco RV260P VPN Router with PoE
+Cisco RV260W Wireless-AC VPN Router
+Cisco RV320 Dual Gigabit WAN VPN Router
+Cisco RV325 Dual Gigabit WAN VPN Router
+Cisco RV340 Dual WAN Gigabit VPN Router
+Cisco RV340W Dual WAN Gigabit Wireless-AC VPN Router
+Cisco RV345 Dual WAN Gigabit VPN Router
+Cisco RV345P Dual WAN Gigabit POE VPN Router
+Cisco Small Business 200 Series Smart Switches
+Cisco Small Business 300 Series Managed Switches
+Cisco Small Business 500 Series Stackable Managed Switches
+Cisco WAP125 Wireless-AC Dual Band Desktop Access Point with PoE
+Cisco WAP150 Wireless-AC/N Dual Radio Access Point with PoE
+Cisco WAP361 Wireless-AC/N Dual Radio Wall Plate Access Point with PoE
+Cisco WAP371 Wireless-AC/N Radio Access Point with Single Point Setup
+Cisco WAP571 Wireless-AC/N Premium Dual Radio Access Point with PoE
+Cisco WAP571E Wireless-AC/N Premium Dual Radio Outdoor Access Point
+Cisco WAP581 Wireless-AC Dual Radio Wave 2 Access Point with 2.5GbE LAN
+
+Unified Computing
+
+Cisco 5000 Series Enterprise Network Compute System (ENCS)
+Cisco HyperFlex System
+Cisco Hyperflex Storage Replication Adapter
+Cisco UCS C-Series Rack Servers and S-Series Storage Servers - Integrated Management Controller (CIMC)
+Cisco UCS E-Series Servers
+Cisco UCS Manager
+
+Voice and Unified Communications Devices
+
+Cisco Headset 500 and 700 Series
+Cisco Hosted Collaboration Mediation Fulfillment
+Cisco IP Phones with Multiplatform Firmware
+Cisco IP Phones
+Cisco TelePresence Endpoints
+Cisco Unified Attendant Console Advanced
+Cisco Unified Attendant Console Business Edition
+Cisco Unified Attendant Console Department Edition
+Cisco Unified Attendant Console Enterprise Edition
+Cisco Unified Attendant Console Premium Edition
+Cisco Unified Communications Domain Manager
+Cisco Unity Express
+Cisco Webex Devices
+Cisco Webex Hybrid Data Security Node
+Cisco Webex Video Mesh
+
+Video, Streaming, TelePresence, and Transcoding Devices
+
+Cisco Expressway Series
+Cisco Meeting Management (CMM)
+Cisco Meeting Server
+Cisco TelePresence Management Suite
+Cisco TelePresence Video Communication Server (VCS)
+Cisco Video Surveillance Media Server
+
+Wireless
+
+Cisco AireOS Wireless LAN Controllers
+Cisco Aironet Access Points
+Cisco Business 100 and 200 Series Access Points
+Cisco Business Wireless
+Cisco Catalyst 9100 Series Access Points
+Cisco Catalyst 9800 Series Wireless Controllers
+Cisco IOS Access Points
+Cisco Mobility Services Engine
+Cisco Ultra-Reliable Wireless Backhaul
+     Cisco Cloud Offerings
+Cisco is investigating its cloud offerings to determine which products may be affected by these vulnerabilities. The following table lists Cisco cloud offerings that are part of this investigation. This table will be updated as information is available.
+
+        Product  CVE-2021-44228  CVE-2021-45046      AppDynamics  Remediated - service-specific details ["https://docs.appdynamics.com/display/PAA/Security+Advisory%3A+Apache+Log4j+Vulnerability"]  Remediated - service-specific details ["https://docs.appdynamics.com/display/PAA/Security+Advisory%3A+Apache+Log4j+Vulnerability"]      AppDynamics with Cisco Secure Application  Remediated - service-specific details ["https://docs.appdynamics.com/display/PAA/Security+Advisory%3A+Apache+Log4j+Vulnerability"]  Remediated - service-specific details ["https://docs.appdynamics.com/display/PAA/Security+Advisory%3A+Apache+Log4j+Vulnerability"]      Cisco Cloud Email Security  Not vulnerable  Not vulnerable      Cisco Cloudlock  Remediated  Remediated      Cisco Cloudlock for Government  Remediated  Remediated      Cisco Cognitive Intelligence  Not vulnerable  Not vulnerable      Cisco Collaboration Experience Service (CES)  Not vulnerable  Not vulnerable      Cisco Collaboration Experience Service Management (CESM)  Not vulnerable  Not vulnerable      Cisco Crosswork Cloud  Not vulnerable  Not vulnerable      Cisco CX Cloud  Remediated  Remediated      Cisco Defense Orchestrator  Not vulnerable  Not vulnerable      Cisco DNA Spaces  Remediated  Remediated      Cisco Intersight  Remediated  Remediated      Cisco IoT Control Center  Remediated  Remediated      Cisco IoT Operations Dashboard  Remediated  Remediated      Cisco Kinetic for Cities  Remediated  Remediated      Cisco Kinetic Gateway Management Module  Remediated  Remediated      Cisco Managed Services Accelerator (MSX)  Remediated  Under investigation      Cisco Placetel  Not vulnerable  Not vulnerable      Cisco PX Cloud  Remediated  Remediated      Cisco SD-WAN Cloud  Remediated  Remediated      Cisco SD-WAN vAnalytics  Not vulnerable  Not vulnerable      Cisco Secure Application (integrated with AppDynamics)  Not vulnerable ["https://docs.appdynamics.com/display/PAA/Security+Advisory%3A+Apache+Log4j+Vulnerability"]  Not vulnerable ["https://docs.appdynamics.com/display/PAA/Security+Advisory%3A+Apache+Log4j+Vulnerability"]      Cisco Secure Cloud Analytics, formerly Cisco Stealthwatch Cloud  Not vulnerable  Not vulnerable      Cisco Secure Cloud Insights  Not vulnerable  Not vulnerable      Cisco Secure Email Cloud Mailbox, formerly Cisco Cloud Mailbox Defense  Not vulnerable  Not vulnerable      Cisco Secure Email Encryption Service, formerly Cisco Registered Envelope Service  Not vulnerable  Not vulnerable      Cisco Secure Endpoint, formerly Cisco Advanced Malware Protection for Endpoints  Not vulnerable  Not vulnerable      Cisco Secure Malware Analytics, formerly Cisco Threat Grid  Not vulnerable  Not vulnerable      Cisco SecureX  Not vulnerable  Not vulnerable      Cisco ServiceGrid  Not vulnerable  Not vulnerable      Cisco Smart Net Total Care  Remediated  Remediated      Cisco Umbrella DNS  Remediated  Remediated      Cisco Umbrella SIG  Remediated  Remediated      Cisco Unified Communications Management Cloud - UC Management  Remediated  Remediated      Cisco Unified Communications Manager Cloud Commercial  Remediated  Remediated      Cisco Unified Communications Manager Cloud for Government  Remediated  Remediated      Cisco Webex Calling  Remediated  Remediated      Cisco Webex Calling Carrier  Remediated  Remediated      Cisco Webex Cloud Registered Endpoints  Not vulnerable  Not vulnerable      Cisco Webex Cloud-Connected UC  Remediated  Remediated      Cisco Webex Contact Center  Remediated  Remediated      Cisco Webex Contact Center Enterprise  Remediated  Remediated      Cisco Webex Control Hub  Remediated  Remediated      Cisco Webex Experience Management  Not vulnerable  Not vulnerable      Cisco Webex FedRAMP  Remediated  Remediated      Cisco Webex for Government FedRAMP  Remediated  Remediated      Cisco Webex Meetings  Remediated  Remediated      Cisco Webex Meetings Slow Channel  Remediated  Remediated      Cisco Webex Messaging  Remediated  Remediated      Cisco Webex Site Admin webpage  Remediated  Remediated      Duo Security  Remediated  Remediated      Duo Security for Government  Remediated  Remediated      eSIM Flex  Remediated  Remediated      IMIassist  Not vulnerable  Not vulnerable      IMIcampaign  Not vulnerable  Not vulnerable      IMIconnect  Remediated  Remediated      IMIengage  Not vulnerable  Not vulnerable      IMImessenger/TextLocal Messenger  Not vulnerable  Not vulnerable      IMImobile - Webex Contact Center Integration  Remediated  Remediated      IMInotify  Not vulnerable  Not vulnerable      IMIsocial  Not vulnerable  Not vulnerable      Kenna.AppSec  Remediated  Remediated      Kenna.VI/VI+  Remediated  Remediated      Kenna.VM  Remediated  Remediated      Meraki  Not vulnerable  Not vulnerable      Partner Supporting Service(PSS)  Remediated  Remediated      Slido  Not vulnerable  Not vulnerable      Smart Call Home(SCH)  Remediated  Remediated      Socio  Not vulnerable  Not vulnerable      ThousandEyes  Remediated  Remediated      UC-One - UMS  Not vulnerable  Not vulnerable</cvrf:Note>
+    <cvrf:Note Title="Workarounds" Type="General" Ordinal="5">Any workarounds are documented in the product-specific Cisco bugs, which are identified in the Vulnerable Products ["#vp"] section of this advisory.</cvrf:Note>
+    <cvrf:Note Title="Fixed Software" Type="General" Ordinal="6">For information about fixed software releases, consult the Cisco bugs identified in the Vulnerable Products ["#vp"] section of this advisory.
+
+When considering software upgrades, customers are advised to regularly consult the advisories for Cisco products, which are available from the Cisco Security Advisories page, to determine exposure and a complete upgrade solution.
+
+In all cases, customers should ensure that the devices to be upgraded contain sufficient memory and confirm that current hardware and software configurations will continue to be supported properly by the new release. If the information is not clear, customers are advised to contact the Cisco Technical Assistance Center (TAC) or their contracted maintenance providers.</cvrf:Note>
+    <cvrf:Note Title="Vulnerability Policy" Type="General" Ordinal="7">To learn about Cisco security vulnerability disclosure policies and publications, see the Security Vulnerability Policy ["http://www.cisco.com/web/about/security/psirt/security_vulnerability_policy.html"]. This document also contains instructions for obtaining fixed software and receiving security vulnerability information from Cisco.</cvrf:Note>
+    <cvrf:Note Title="Exploitation and Public Announcements" Type="General" Ordinal="8">The Cisco Product Security Incident Response Team (PSIRT) is aware that proof-of-concept exploit code is available for the vulnerabilities described in this advisory.</cvrf:Note>
+    <cvrf:Note Title="Source" Type="General" Ordinal="9">These vulnerabilities were disclosed by the Apache Software Foundation.</cvrf:Note>
+    <cvrf:Note Title="Legal Disclaimer" Type="Legal Disclaimer" Ordinal="10">THIS DOCUMENT IS PROVIDED ON AN "AS IS" BASIS AND DOES NOT IMPLY ANY KIND OF GUARANTEE OR WARRANTY, INCLUDING THE WARRANTIES OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR USE. YOUR USE OF THE INFORMATION ON THE DOCUMENT OR MATERIALS LINKED FROM THE DOCUMENT IS AT YOUR OWN RISK. CISCO RESERVES THE RIGHT TO CHANGE OR UPDATE THIS DOCUMENT AT ANY TIME. CISCO EXPECTS TO UPDATE THIS DOCUMENT AS NEW INFORMATION BECOMES AVAILABLE.
+
+A standalone copy or paraphrase of the text of this document that omits the distribution URL is an uncontrolled copy and may lack important information or contain factual errors. The information in this document is intended for end users of Cisco products.</cvrf:Note>
+  </cvrf:DocumentNotes>
+  <cvrf:DocumentReferences>
+    <cvrf:Reference Type="Self">
+      <cvrf:URL>https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-apache-log4j-qRuKNEbd</cvrf:URL>
+      <cvrf:Description>Vulnerabilities in Apache Log4j Library Affecting Cisco Products: December 2021</cvrf:Description>
+    </cvrf:Reference>
+  </cvrf:DocumentReferences>
+  <ProductTree xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/prod">
+    <Branch Name="Cisco" Type="Vendor">
+      <Branch Name="Cisco Unified Communications Manager IM and Presence Service" Type="Product Name">
+        <FullProductName ProductID="CVRFPID-189784">Cisco Unified Communications Manager IM and Presence Service </FullProductName>
+      </Branch>
+      <Branch Name="Cisco Evolved Programmable Network Manager (EPNM)" Type="Product Name">
+        <FullProductName ProductID="CVRFPID-213688">Cisco Evolved Programmable Network Manager (EPNM) </FullProductName>
+      </Branch>
+      <Branch Name="Cisco Network Services Orchestrator" Type="Product Name">
+        <FullProductName ProductID="CVRFPID-227765">Cisco Network Services Orchestrator </FullProductName>
+      </Branch>
+      <Branch Name="Cisco Unified Communications Manager / Cisco Unity Connection" Type="Product Name">
+        <FullProductName ProductID="CVRFPID-277610">Cisco Unified Communications Manager / Cisco Unity Connection </FullProductName>
+      </Branch>
+    </Branch>
+  </ProductTree>
+  <Vulnerability Ordinal="1" xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln">
+    <Title>vuln-CVE-2021-44832</Title>
+    <Notes>
+      <Note Title="Affected Product Comprehensiveness" Type="Other" Ordinal="1">Complete.</Note>
+    </Notes>
+    <CVE>CVE-2021-44832</CVE>
+    <ProductStatuses>
+      <Status Type="Known Affected">
+        <ProductID>CVRFPID-213688</ProductID>
+        <ProductID>CVRFPID-227765</ProductID>
+        <ProductID>CVRFPID-277610</ProductID>
+        <ProductID>CVRFPID-189784</ProductID>
+      </Status>
+    </ProductStatuses>
+    <CVSSScoreSets>
+      <ScoreSetV3>
+        <BaseScoreV3>6.6</BaseScoreV3>
+        <VectorV3>CVSS:3.1/AV:N/AC:H/PR:H/UI:N/S:U/C:H/I:H/A:H</VectorV3>
+      </ScoreSetV3>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Workaround">
+        <Description>Any workarounds are documented in the product-specific Cisco bugs, which are identified in the Vulnerable Products ["#vp"] section of this advisory.</Description>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference Type="Self">
+        <URL>https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-apache-log4j-qRuKNEbd</URL>
+        <Description>Vulnerabilities in Apache Log4j Library Affecting Cisco Products: December 2021</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+  <Vulnerability Ordinal="2" xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln">
+    <Title>vuln-CVE-2021-45046</Title>
+    <ID SystemName="Cisco Bug ID">CSCwa47310</ID>
+    <Notes>
+      <Note Title="Cisco Bug IDs" Type="Other" Ordinal="1">CSCwa47310,CSCwa56230</Note>
+      <Note Title="Affected Product Comprehensiveness" Type="Other" Ordinal="2">Complete.</Note>
+    </Notes>
+    <CVE>CVE-2021-45046</CVE>
+    <ProductStatuses>
+      <Status Type="Known Affected">
+        <ProductID>CVRFPID-227765</ProductID>
+        <ProductID>CVRFPID-277610</ProductID>
+        <ProductID>CVRFPID-213688</ProductID>
+        <ProductID>CVRFPID-189784</ProductID>
+      </Status>
+    </ProductStatuses>
+    <CVSSScoreSets>
+      <ScoreSetV3>
+        <BaseScoreV3>9.0</BaseScoreV3>
+        <VectorV3>CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:C/C:H/I:H/A:H</VectorV3>
+      </ScoreSetV3>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Workaround">
+        <Description>Any workarounds are documented in the product-specific Cisco bugs, which are identified in the Vulnerable Products ["#vp"] section of this advisory.</Description>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference Type="Self">
+        <URL>https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-apache-log4j-qRuKNEbd</URL>
+        <Description>Vulnerabilities in Apache Log4j Library Affecting Cisco Products: December 2021</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+  <Vulnerability Ordinal="3" xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln">
+    <Title>vuln-CVE-2021-44228</Title>
+    <ID SystemName="Cisco Bug ID">CSCwa56230</ID>
+    <Notes>
+      <Note Title="Cisco Bug IDs" Type="Other" Ordinal="1">CSCwa56230</Note>
+      <Note Title="Affected Product Comprehensiveness" Type="Other" Ordinal="2">Complete.</Note>
+    </Notes>
+    <CVE>CVE-2021-44228</CVE>
+    <ProductStatuses>
+      <Status Type="Known Affected">
+        <ProductID>CVRFPID-277610</ProductID>
+        <ProductID>CVRFPID-189784</ProductID>
+      </Status>
+    </ProductStatuses>
+    <CVSSScoreSets>
+      <ScoreSetV3>
+        <BaseScoreV3>10.0</BaseScoreV3>
+        <VectorV3>CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:H</VectorV3>
+      </ScoreSetV3>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Workaround">
+        <Description>Any workarounds are documented in the product-specific Cisco bugs, which are identified in the Vulnerable Products ["#vp"] section of this advisory.</Description>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference Type="Self">
+        <URL>https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-apache-log4j-qRuKNEbd</URL>
+        <Description>Vulnerabilities in Apache Log4j Library Affecting Cisco Products: December 2021</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+  <Vulnerability Ordinal="4" xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln">
+    <Title>vuln-CVE-2021-45105</Title>
+    <ID SystemName="Cisco Bug ID">CSCwa56230</ID>
+    <Notes>
+      <Note Title="Cisco Bug IDs" Type="Other" Ordinal="1">CSCwa56230,CSCwa54650,CSCwa47310</Note>
+      <Note Title="Affected Product Comprehensiveness" Type="Other" Ordinal="2">Complete.</Note>
+    </Notes>
+    <CVE>CVE-2021-45105</CVE>
+    <ProductStatuses>
+      <Status Type="Known Affected">
+        <ProductID>CVRFPID-189784</ProductID>
+        <ProductID>CVRFPID-213688</ProductID>
+      </Status>
+    </ProductStatuses>
+    <CVSSScoreSets>
+      <ScoreSetV3>
+        <BaseScoreV3>5.9</BaseScoreV3>
+        <VectorV3>CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H</VectorV3>
+      </ScoreSetV3>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Workaround">
+        <Description>Any workarounds are documented in the product-specific Cisco bugs, which are identified in the Vulnerable Products ["#vp"] section of this advisory.</Description>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference Type="Self">
+        <URL>https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-apache-log4j-qRuKNEbd</URL>
+        <Description>Vulnerabilities in Apache Log4j Library Affecting Cisco Products: December 2021</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+</cvrf:cvrfdoc>

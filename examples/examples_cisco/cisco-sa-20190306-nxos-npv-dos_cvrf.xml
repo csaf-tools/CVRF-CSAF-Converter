@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cvrf:cvrfdoc xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:cvrf-common="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/common" xmlns:cvrf="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/cvrf">
+  <cvrf:DocumentTitle>Cisco Nexus 9000 Series Switches Standalone NX-OS Mode Fibre Channel over Ethernet NPV Denial of Service Vulnerability</cvrf:DocumentTitle>
+  <cvrf:DocumentType>Cisco Security Advisory</cvrf:DocumentType>
+  <cvrf:DocumentPublisher Type="Vendor">
+    <cvrf:ContactDetails>Emergency Support:
++1 877 228 7302 (toll-free within North America)
++1 408 525 6532 (International direct-dial)
+Non-emergency Support:
+Email: psirt@cisco.com
+Support requests that are received via e-mail are typically acknowledged within 48 hours.</cvrf:ContactDetails>
+    <cvrf:IssuingAuthority>Cisco product security incident response is the responsibility of the Cisco Product Security Incident Response Team (PSIRT). The Cisco PSIRT is a dedicated, global team that manages the receipt, investigation, and public reporting of security vulnerability information that is related to Cisco products and networks. The on-call Cisco PSIRT works 24x7 with Cisco customers, independent security researchers, consultants, industry organizations, and other vendors to identify possible security issues with Cisco products and networks.
+More information can be found in Cisco Security Vulnerability Policy available at http://www.cisco.com/web/about/security/psirt/security_vulnerability_policy.html</cvrf:IssuingAuthority>
+  </cvrf:DocumentPublisher>
+  <cvrf:DocumentTracking>
+    <cvrf:Identification>
+      <cvrf:ID>cisco-sa-20190306-nxos-npv-dos</cvrf:ID>
+    </cvrf:Identification>
+    <cvrf:Status>Final</cvrf:Status>
+    <cvrf:Version>1.0</cvrf:Version>
+    <cvrf:RevisionHistory>
+      <cvrf:Revision>
+        <cvrf:Number>1.0</cvrf:Number>
+        <cvrf:Date>2019-03-06T15:31:41</cvrf:Date>
+        <cvrf:Description>Initial public release.</cvrf:Description>
+      </cvrf:Revision>
+    </cvrf:RevisionHistory>
+    <cvrf:InitialReleaseDate>2019-03-06T16:00:00</cvrf:InitialReleaseDate>
+    <cvrf:CurrentReleaseDate>2019-03-06T15:31:41</cvrf:CurrentReleaseDate>
+    <cvrf:Generator>
+      <cvrf:Engine>TVCE</cvrf:Engine>
+    </cvrf:Generator>
+  </cvrf:DocumentTracking>
+  <cvrf:DocumentNotes>
+    <cvrf:Note Title="Summary" Type="Summary" Ordinal="1">A vulnerability in the Fibre Channel over Ethernet (FCoE) N-port Virtualization (NPV) protocol implementation in Cisco NX-OS Software could allow an unauthenticated, adjacent attacker to cause a denial of service (DoS) condition.
+
+The vulnerability is due to an incorrect processing of FCoE packets when the fcoe-npv feature is uninstalled.  An attacker could exploit this vulnerability by sending a stream of FCoE frames from an adjacent host to an affected device. An exploit could allow the attacker to cause packet amplification to occur, resulting in the saturation of interfaces and a DoS condition.
+
+Cisco has released software updates that address this vulnerability. There are no workarounds that address this vulnerability.
+
+This advisory is available at the following link:
+https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20190306-nxos-npv-dos ["https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20190306-nxos-npv-dos"]
+ This advisory is part of the March 2019 Cisco FXOS and NX-OS Software Security Advisory Bundled Publication, which includes 25 Cisco Security Advisories that describe 26 vulnerabilities. For a complete list of the advisories and links to them, see Cisco Event Response: March 2019 Cisco FXOS and NX-OS Software Security Advisory Bundled Publication ["http://tools.cisco.com/security/center/viewErp.x?alertId=ERP-70757"].</cvrf:Note>
+    <cvrf:Note Title="Vulnerable Products" Type="General" Ordinal="2">This vulnerability affects the following Cisco products if they are running a vulnerable release of Cisco NX-OS Software:
+
+Nexus 9000 Series Switches in standalone NX-OS mode
+
+Only the following Nexus 9000 Series PIDs are vulnerable:
+
+N9K-C92160YC-X
+N9K-C9272Q
+N9K-C9236C
+N9K-C93180YC-EX
+N9K-X9732C-EX
+N9K-C93180LC-EX
+N9K-C93180YC-FX
+N9K-X9736C-FX
+
+To view the PIDs of the system, use the show inventory CLI command:
+
+
+
+
+9K-A# show inventory
+NAME: "Chassis",  DESCR: "Nexus9000 C93128TX Chassis"
+PID: N9K-C93128TX        ,  VID: V02 ,  SN: SAL1822TF13
+
+NAME: "Slot 1",  DESCR: "1/10G-T Ethernet Module"
+PID: N9K-C93128TX        ,  VID: V02 ,  SN: SAL1822TF13
+
+NAME: "Slot 2",  DESCR: "40G Ethernet Expansion Module"
+PID: N9K-M12PQ           ,  VID: V01 ,  SN: SAL1910AMHD
+
+
+
+
+Note: For this vulnerability to occur, all of the following conditions must be met:
+
+The affected devices are configured as vPC peer switches.
+The fcoe-npv feature must be uninstalled.
+
+ See Details ["#det"] for more information.
+
+For information about which Cisco NX-OS Software releases are vulnerable, see the Fixed Software ["#fs"] section of this advisory.
+ Determining the Cisco NX-OS Software Release
+Administrators can check the release of Cisco NX-OS Software that is running on a device by using the show version command in the device CLI. The following example shows the output of this command on a device that is running Cisco NX-OS Software Release 7.0(3)I5(1):
+
+
+nxos-switch# show version
+Cisco Nexus Operating System (NX-OS) Software  TAC support: http://www.cisco.com/tac  Copyright (C) 2002-2016, Cisco and/or its affiliates.  All rights reserved.  The copyrights to certain works contained in this software are  owned by other third parties and used and distributed under their own  licenses, such as open source.  This software is provided "as is," and  unless otherwise stated, there is no warranty, express or implied,   including but not limited to warranties of merchantability and fitness   for a particular purpose. Certain components of this software are   licensed under the GNU General Public License (GPL) version 2.0 or   GNU General Public License (GPL) version 3.0  or the GNU  Lesser General Public License (LGPL) Version 2.1 or   Lesser General Public License (LGPL) Version 2.0.   A copy of each such license is available at  http://www.opensource.org/licenses/gpl-2.0.php and  http://opensource.org/licenses/gpl-3.0.html and  http://www.opensource.org/licenses/lgpl-2.1.php and  http://www.gnu.org/licenses/old-licenses/library.txt.  Software    BIOS: version 07.57    NXOS: version 7.0(3)I5(1) [build 7.0(3)I5(0.9)]    BIOS compile time:  06/29/2016    NXOS image file is: bootflash:///nxos.7.0.3.I5.0.9.bin    NXOS compile time:  8/1/2016 23:00:00 [08/02/2016 00:30:32]    .    .    .</cvrf:Note>
+    <cvrf:Note Title="Products Confirmed Not Vulnerable" Type="General" Ordinal="3">Only products listed in the Vulnerable Products ["#vp"] section of this advisory are known to be affected by this vulnerability.
+ Cisco has confirmed that this vulnerability does not affect the following Cisco products:
+Firepower 2100 Series
+Firepower 4100 Series Next-Generation Firewall
+Firepower 9300 Security Appliance
+MDS 9000 Series Multilayer Switches
+Nexus 1000V Switch for Microsoft Hyper-V
+Nexus 1000V Switch for VMware vSphere
+Nexus 2000 Series Fabric Extenders
+Nexus 3000 Series Switches
+Nexus 3500 Platform Switches
+Nexus 3600 Platform Switches
+Nexus 5500 Platform Switches
+Nexus 5600 Platform Switches
+Nexus 6000 Series Switches
+Nexus 7000 Series Switches
+Nexus 7700 Series Switches
+Nexus 9000 Series Fabric Switches in Application Centric Infrastructure (ACI) mode
+Nexus 9500 R-Series Line Cards and Fabric Modules
+UCS 6200 Series Fabric Interconnects
+UCS 6300 Series Fabric Interconnects
+UCS 6400 Series Fabric Interconnects</cvrf:Note>
+    <cvrf:Note Title="Details" Type="General" Ordinal="4">The affected devices are vulnerable when configured as outlined in the Vulnerable Products ["#vp"] section. The following commands will help identify these conditions:
+To verify the status of a vPC configuration, use the show vpc brief CLI command:
+
+
+9K-A# show vpc brief
+Legend:
+(*) - local vPC is down, forwarding via vPC peer-link
+
+vPC domain id                     : 10
+Peer status                       : peer adjacency formed ok
+vPC keep-alive status             : peer is alive
+Configuration consistency status  : success
+Per-vlan consistency status       : success
+Type-2 inconsistency reason       : Consistency Check Not Performed
+vPC role                          : primary
+Number of vPCs configured         : 1
+Peer Gateway                      : Enabled
+Dual-active excluded VLANs        : -
+Graceful Consistency Check        : Enabled
+Auto-recovery status              : Disabled
+Delay-restore status              : Timer is off.(timeout = 30s)
+Delay-restore SVI status          : Timer is off.(timeout = 10s)
+
+vPC Peer-link status
+---------------------------------------------------------------------
+id   Port   Status Active vlans
+--   ----   ------ --------------------------------------------------
+1    Po1    up     1
+
+vPC status
+----------------------------------------------------------------------
+id   Port   Status Consistency Reason                     Active vlans
+--   ----   ------ ----------- ------                     ------------
+10   Po10   up     success     success                    1
+
+
+To verify the status of the fcoe-npv feature, use the show feature-set CLI command:
+
+
+9K-A# show feature-set
+Feature Set Name      ID        State   --------------------  --------  -------- fex                    3          uninstalled mpls                   4          uninstalled
+fabric                 7          uninstalled
+fcoe-npv               8          uninstalled</cvrf:Note>
+    <cvrf:Note Title="Indicators of Compromise" Type="General" Ordinal="5">If the devices are configured as outlined in the Vulnerable Products ["#vp"] section, a possible indicator of compromise would be a relativity low Rx input rate, except for the vPC peer link, coupled with a high Tx rate for all enabled interfaces on the vPC pair of affected Nexus 9000 Series Switches.
+
+To see interface throughput statistics, use the show interface counter table CLI command:  (egrep -v "0.0  0.0%  0.0  0.0%", excludes interfaces with zero statistics for Rx and Tx columns)
+
+
+
+9K-A# sh int counter table | egrep -v "0.0      0.0%     0.0      0.0%"
+
+
+Collecting and processing interface statistics ...
+
+
+------------------------------------------------------------------------
+Port            Description     Intvl    Rx Mbps  Rx %    Tx Mbps  Tx %
+------------------------------------------------------------------------
+Ethernet1/49    vPC_Peer_Link   30/30    36078.7  90.2%   36078.7  90.2%
+Ethernet1/50/1  N/A             30/30    2.5      0.0%    9019.6   90.2%
+Ethernet1/50/2  N/A             30/30    0.0      0.0%    9019.6   90.2%
+port-channel36  N/A             30/30    2.5      0.0%    9019.6   90.2%
+port-channel100 vPC_Peer_Link   30/30    36078.7  90.2%   36078.7  90.2%
+9K-B# sh int counter table | egrep -v "0.0      0.0%     0.0      0.0%"
+  Collecting and processing interface statistics ...
+
+
+
+
+-------------------------------------------------------------------------
+Port            Description      Intvl    Rx Mbps  Rx %    Tx Mbps  Tx %
+-------------------------------------------------------------------------
+Ethernet1/49    vPC_Peer_Link    30/30    36078.3  90.2%   36078.3  90.2%
+Ethernet1/50/1  N/A              30/30    0.0      0.0%    9019.6   90.2%
+port-channel36  N/A              30/30    0.0      0.0%    9019.6   90.2%
+port-channel100 vPC_Peer_Link    30/30    36078.3  90.2%   36078.3  90.2%
+
+
+
+Another potential indication would be output discards. To check for output discards, use the show interface counter errors non-zero CLI command:
+
+
+
+    9K-A# sh int counter errors non-zero
+
+-------------------------------------------------------------------------
+Port        Align-Err   FCS-Err  Xmit-Err  Rcv-Err  UnderSize OutDiscards
+-------------------------------------------------------------------------
+Eth1/49             0         0         0        0          0      426242
+Eth1/50/1           0         0         0        0          0  9916163951
+Eth1/50/2           0         0         0        0          0  9934560747
+Po36                0         0         0        0          0  9916163951
+Po100               0         0         0        0          0      426242
+
+9K-B# sh int counter errors non-zero
+
+-------------------------------------------------------------------------
+Port        Align-Err   FCS-Err  Xmit-Err  Rcv-Err  UnderSize OutDiscards
+-------------------------------------------------------------------------
+Eth1/50/1           0         0         0        0          0  9915689573
+Po36                0         0         0        0          0  9915689573
+
+
+
+
+If there are any questions regarding the output of your device or the information above, please contact Cisco TAC:
+https://www.cisco.com/c/en/us/support/web/tsd-cisco-worldwide-contacts.html ["https://www.cisco.com/c/en/us/support/web/tsd-cisco-worldwide-contacts.html"]</cvrf:Note>
+    <cvrf:Note Title="Workarounds" Type="General" Ordinal="6">There are no workarounds that address this vulnerability.</cvrf:Note>
+    <cvrf:Note Title="Fixed Software" Type="General" Ordinal="7">Cisco has released free software updates that address the vulnerability described in this advisory. Customers may only install and expect support for software versions and feature sets for which they have purchased a license. By installing, downloading, accessing, or otherwise using such software upgrades, customers agree to follow the terms of the Cisco software license:
+https://www.cisco.com/c/en/us/products/end-user-license-agreement.html ["https://www.cisco.com/c/en/us/products/end-user-license-agreement.html"]
+
+Additionally, customers may only download software for which they have a valid license, procured from Cisco directly, or through a Cisco authorized reseller or partner. In most cases this will be a maintenance upgrade to software that was previously purchased. Free security software updates do not entitle customers to a new software license, additional software feature sets, or major revision upgrades.
+
+When considering software upgrades, customers are advised to regularly consult the advisories for Cisco products, which are available from the Cisco Security Advisories and Alerts page ["https://www.cisco.com/go/psirt"], to determine exposure and a complete upgrade solution.
+
+In all cases, customers should ensure that the devices to be upgraded contain sufficient memory and confirm that current hardware and software configurations will continue to be supported properly by the new release. If the information is not clear, customers are advised to contact the Cisco Technical Assistance Center (TAC) or their contracted maintenance providers.
+ Customers Without Service Contracts
+Customers who purchase directly from Cisco but do not hold a Cisco service contract and customers who make purchases through third-party vendors but are unsuccessful in obtaining fixed software through their point of sale should obtain upgrades by contacting the Cisco TAC:
+https://www.cisco.com/c/en/us/support/web/tsd-cisco-worldwide-contacts.html ["https://www.cisco.com/c/en/us/support/web/tsd-cisco-worldwide-contacts.html"]
+
+Customers should have the product serial number available and be prepared to provide the URL of this advisory as evidence of entitlement to a free upgrade.
+ Fixed Releases
+
+Customers are advised to upgrade to an appropriate release ["https://tools.cisco.com/security/center/resources/security_vulnerability_policy.html#fixes"] as indicated in the applicable table in this section. To help ensure a complete upgrade solution, customers should consider that this advisory is part of a bundled publication. The following page provides a complete list of bundle advisories: Cisco Event Response: March 2019 Cisco FXOS and NX-OS Software Security Advisory Bundled Publication ["http://tools.cisco.com/security/center/viewErp.x?alertId=ERP-70757"].
+
+In the following tables, the left column lists releases of Cisco FXOS Software or Cisco NX-OS Software. The center column indicates whether a release is affected by the vulnerability described in this advisory and the first release that includes the fix for this vulnerability. The right column indicates whether a release is affected by all the vulnerabilities described in this bundle and which release includes fixes for those vulnerabilities.
+
+
+
+Although the releases listed in the right column of each table include fixes for the vulnerabilities, the fix related to the Cisco NX-OS Software Image Signature Verification Vulnerability ["https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20190306-nxos-sig-verif"] requires a BIOS upgrade as part of the software upgrade. Customers who are upgrading the software for any of the following products are advised to refer to this advisory for further details about the BIOS upgrade and affected product IDs and BIOS versions:
+
+Nexus 3000 Series Switches
+Nexus 9000 Series Fabric Switches in ACI mode
+Nexus 9000 Series Switches in standalone NX-OS mode
+Nexus 9500 R-Series Line Cards and Fabric Modules
+
+ Nexus 9000 Series Switches in Standalone NX-OS Mode: CSCvk44504 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCvk44504"]
+
+                           Cisco NX-OS Software Release             First Fixed Release for This Vulnerability             First Fixed Release for All Vulnerabilities Described in the Bundle of Advisories                                         Prior to 7.0(3)I4
+             Not vulnerable             7.0(3)I7(6)
+                               7.0(3)I4             Not vulnerable             7.0(3)I7(6)
+                               7.0(3)I5             7.0(3)I7(5)              7.0(3)I7(6)
+                               7.0(3)I6             7.0(3)I7(5)             7.0(3)I7(6)                               7.0(3)I7             7.0(3)I7(5)              7.0(3)I7(6)
+                               9.2             9.2(2)
+             9.2(2)
+Additional Resources
+For help determining the best Cisco NX-OS Software release for a Cisco Nexus Switch, administrators can refer to the following Recommended Releases documents. If a security advisory recommends a later release, Cisco recommends following the advisory guidance.
+
+
+Cisco MDS Series Switches ["https://www.cisco.com/c/en/us/td/docs/switches/datacenter/mds9000/sw/b_MDS_NX-OS_Recommended_Releases.html"]
+Cisco Nexus 1000V for VMware Switch ["http://www.cisco.com/c/en/us/td/docs/switches/datacenter/nexus1000/sw/recommended_releases/b_Cisco_N1KV_VMware_MinRecommendedReleases.html"]
+Cisco Nexus 3000 Series and 3500 Series Switches ["http://www.cisco.com/c/en/us/td/docs/switches/datacenter/nexus3000/sw/recommended_release/b_Minimum_and_Recommended_Cisco_NX-OS_Releases_for_Cisco_Nexus_3000_Series_Switches.html"]
+Cisco Nexus 5000 Series Switches ["http://www.cisco.com/c/en/us/td/docs/switches/datacenter/nexus5000/sw/release/recommended_releases/recommended_nx-os_releases.html"]
+Cisco Nexus 5500 Platform Switches ["http://www.cisco.com/c/en/us/td/docs/switches/datacenter/nexus5500/sw/release/recommended_releases/n5500_recommended_nx-os_releases.html"]
+Cisco Nexus 6000 Series Switches ["http://www.cisco.com/c/en/us/td/docs/switches/datacenter/nexus6000/sw/release/recommended_releases/recommended_nx-os_releases.html"]
+Cisco Nexus 7000 Series Switches ["http://www.cisco.com/c/en/us/td/docs/switches/datacenter/sw/nx-os/recommended_releases/recommended_nx-os_releases.html"]
+Cisco Nexus 9000 Series Switches ["http://www.cisco.com/c/en/us/td/docs/switches/datacenter/nexus9000/sw/recommended_release/b_Minimum_and_Recommended_Cisco_NX-OS_Releases_for_Cisco_Nexus_9000_Series_Switches.html"]
+Cisco Nexus 9000 Series ACI-Mode Switches ["https://www.cisco.com/c/en/us/td/docs/switches/datacenter/aci/apic/sw/recommended-release/b_Recommended_Cisco_ACI_Releases.html"]
+  For help determining the best Cisco NX-OS Software release for Cisco UCS, refer to the Recommended Releases documents in the release notes for the device.</cvrf:Note>
+    <cvrf:Note Title="Vulnerability Policy" Type="General" Ordinal="8">To learn about Cisco security vulnerability disclosure policies and publications, see the Security Vulnerability Policy ["http://www.cisco.com/web/about/security/psirt/security_vulnerability_policy.html"]. This document also contains instructions for obtaining fixed software and receiving security vulnerability information from Cisco.</cvrf:Note>
+    <cvrf:Note Title="Exploitation and Public Announcements" Type="General" Ordinal="9">The Cisco Product Security Incident Response Team (PSIRT) is not aware of any public announcements or malicious use of the vulnerability that is described in this advisory.</cvrf:Note>
+    <cvrf:Note Title="Source" Type="General" Ordinal="10">This vulnerability was found during the resolution of a Cisco TAC support case.</cvrf:Note>
+    <cvrf:Note Title="Legal Disclaimer" Type="Legal Disclaimer" Ordinal="11">THIS DOCUMENT IS PROVIDED ON AN "AS IS" BASIS AND DOES NOT IMPLY ANY KIND OF GUARANTEE OR WARRANTY, INCLUDING THE WARRANTIES OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR USE. YOUR USE OF THE INFORMATION ON THE DOCUMENT OR MATERIALS LINKED FROM THE DOCUMENT IS AT YOUR OWN RISK. CISCO RESERVES THE RIGHT TO CHANGE OR UPDATE THIS DOCUMENT AT ANY TIME.
+
+A standalone copy or paraphrase of the text of this document that omits the distribution URL is an uncontrolled copy and may lack important information or contain factual errors. The information in this document is intended for end users of Cisco products.</cvrf:Note>
+  </cvrf:DocumentNotes>
+  <cvrf:DocumentReferences>
+    <cvrf:Reference Type="Self">
+      <cvrf:URL>https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20190306-nxos-npv-dos</cvrf:URL>
+      <cvrf:Description>Cisco Nexus 9000 Series Switches Standalone NX-OS Mode Fibre Channel over Ethernet NPV Denial of Service Vulnerability</cvrf:Description>
+    </cvrf:Reference>
+    <cvrf:Reference>
+      <cvrf:URL>http://tools.cisco.com/security/center/viewErp.x?alertId=ERP-70757</cvrf:URL>
+      <cvrf:Description>Cisco Event Response: March 2019 Cisco FXOS and NX-OS Software Security Advisory Bundled Publication</cvrf:Description>
+    </cvrf:Reference>
+  </cvrf:DocumentReferences>
+  <ProductTree xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/prod">
+    <Branch Name="Cisco" Type="Vendor">
+      <Branch Name="Cisco NX-OS Software" Type="Product Name">
+        <Branch Name="7.0(3)I5" Type="Product Version">
+          <Branch Name="7.0(3)I5(1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-230535">Cisco NX-OS Software 7.0(3)I5(1)</FullProductName>
+          </Branch>
+          <Branch Name="7.0(3)I5(2)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-230536">Cisco NX-OS Software 7.0(3)I5(2)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="7.0(3)I6" Type="Product Version">
+          <Branch Name="7.0(3)I6(1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-230541">Cisco NX-OS Software 7.0(3)I6(1)</FullProductName>
+          </Branch>
+          <Branch Name="7.0(3)I6(2)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-239476">Cisco NX-OS Software 7.0(3)I6(2)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="7.0(3)I7" Type="Product Version">
+          <Branch Name="7.0(3)I7(1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-230542">Cisco NX-OS Software 7.0(3)I7(1)</FullProductName>
+          </Branch>
+          <Branch Name="7.0(3)I7(2)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-239478">Cisco NX-OS Software 7.0(3)I7(2)</FullProductName>
+          </Branch>
+          <Branch Name="7.0(3)I7(3)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-239479">Cisco NX-OS Software 7.0(3)I7(3)</FullProductName>
+          </Branch>
+          <Branch Name="7.0(3)I7(4)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-248792">Cisco NX-OS Software 7.0(3)I7(4)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="7.0(3)IX1" Type="Product Version">
+          <Branch Name="7.0(3)IX1(2)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-239480">Cisco NX-OS Software 7.0(3)IX1(2)</FullProductName>
+          </Branch>
+          <Branch Name="7.0(3)IX1(2a)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-239481">Cisco NX-OS Software 7.0(3)IX1(2a)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="9.2" Type="Product Version">
+          <Branch Name="9.2(1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-248793">Cisco NX-OS Software 9.2(1)</FullProductName>
+          </Branch>
+        </Branch>
+      </Branch>
+      <Branch Name="Cisco NX-OS Software" Type="Product Name">
+        <FullProductName ProductID="CVRFPID-80720">Cisco NX-OS Software </FullProductName>
+      </Branch>
+    </Branch>
+  </ProductTree>
+  <Vulnerability Ordinal="1" xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln">
+    <Title>Nexus 9000 Series Switches Standalone Fibre Channel over Ethernet NPV Denial of Service Vulnerability</Title>
+    <ID SystemName="Cisco Bug ID">CSCvk44504</ID>
+    <Notes>
+      <Note Title="Summary" Type="Summary" Ordinal="1">A vulnerability in the Fibre Channel over Ethernet (FCoE) N-port Virtualization (NPV) protocol implementation in Cisco NX-OS Software could allow an unauthenticated, adjacent attacker to cause a denial of service (DoS) condition.
+
+The vulnerability is due to an incorrect processing of FCoE packets when the fcoe-npv feature is uninstalled.  An attacker could exploit this vulnerability by sending a stream of FCoE frames from an adjacent host to an affected device. An exploit could allow the attacker to cause packet amplification to occur, resulting in the saturation of interfaces and a DoS condition.
+</Note>
+      <Note Title="Cisco Bug IDs" Type="Other" Ordinal="2">CSCvk44504</Note>
+    </Notes>
+    <CVE>CVE-2019-1617</CVE>
+    <ProductStatuses>
+      <Status Type="Known Affected">
+        <ProductID>CVRFPID-230535</ProductID>
+        <ProductID>CVRFPID-230536</ProductID>
+        <ProductID>CVRFPID-230541</ProductID>
+        <ProductID>CVRFPID-230542</ProductID>
+        <ProductID>CVRFPID-239476</ProductID>
+        <ProductID>CVRFPID-239478</ProductID>
+        <ProductID>CVRFPID-239479</ProductID>
+        <ProductID>CVRFPID-239480</ProductID>
+        <ProductID>CVRFPID-239481</ProductID>
+        <ProductID>CVRFPID-248792</ProductID>
+        <ProductID>CVRFPID-248793</ProductID>
+        <ProductID>CVRFPID-80720</ProductID>
+      </Status>
+    </ProductStatuses>
+    <CVSSScoreSets>
+      <ScoreSetV3>
+        <BaseScoreV3>7.4</BaseScoreV3>
+        <VectorV3>CVSS:3.0/AV:A/AC:L/PR:N/UI:N/S:C/C:N/I:N/A:H</VectorV3>
+      </ScoreSetV3>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Workaround">
+        <Description>There are no workarounds that address this vulnerability.</Description>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference Type="Self">
+        <URL>https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20190306-nxos-npv-dos</URL>
+        <Description>Cisco Nexus 9000 Series Switches Standalone NX-OS Mode Fibre Channel over Ethernet NPV Denial of Service Vulnerability</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+</cvrf:cvrfdoc>

@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cvrfdoc xmlns="http://www.icasi.org/CVRF/schema/cvrf/1.1" xmlns:cvrf="http://www.icasi.org/CVRF/schema/cvrf/1.1">
+  <DocumentTitle xml:lang="en">Red Hat Security Advisory: binutils security update</DocumentTitle>
+  <DocumentType>Security Advisory</DocumentType>
+  <DocumentPublisher Type="Vendor">
+    <ContactDetails>secalert@redhat.com</ContactDetails>
+    <IssuingAuthority>Red Hat Product Security</IssuingAuthority>
+  </DocumentPublisher>
+  <DocumentTracking>
+    <Identification><ID>RHSA-2021:4036</ID></Identification>
+    <Status>Final</Status>
+    <Version>1</Version>
+    <RevisionHistory>
+       <Revision>
+         <Number>1</Number>
+         <Date>2021-11-01T07:47:00Z</Date>
+         <Description>Current version</Description>
+       </Revision>
+    </RevisionHistory>
+    <InitialReleaseDate>2021-11-01T07:47:00Z</InitialReleaseDate>
+    <CurrentReleaseDate>2021-11-01T07:47:00Z</CurrentReleaseDate>
+    <Generator>
+      <Engine>Red Hat SDEngine 3.2.1</Engine>
+      <Date>2021-11-01T10:56:00Z</Date>
+    </Generator>
+  </DocumentTracking>
+  <DocumentNotes>
+    <Note Title="Topic" Type="Summary" Ordinal="1" xml:lang="en">
+An update for binutils is now available for Red Hat Enterprise Linux 7.4 Advanced Update Support.
+
+Red Hat Product Security has rated this update as having a security impact of Moderate. A Common Vulnerability Scoring System (CVSS) base score, which gives a detailed severity rating, is available for each vulnerability from the CVE link(s) in the References section.
+    </Note>
+    <Note Title="Details" Type="General" Ordinal="2" xml:lang="en">
+The binutils packages provide a collection of binary utilities for the manipulation of object code in various object file formats. It includes the ar, as, gprof, ld, nm, objcopy, objdump, ranlib, readelf, size, strings, strip, and addr2line utilities.
+
+Security Fix(es):
+
+* Developer environment: Unicode's bidirectional (BiDi) override characters can cause trojan source attacks (CVE-2021-42574)
+
+The following changes were introduced in binutils in order to facilitate detection of BiDi Unicode characters:
+
+Tools which display names or strings (readelf, strings, nm, objdump) have a new command line option --unicode / -U which controls how Unicode characters are handled.
+
+Using &quot;--unicode=default&quot; will treat them as normal for the tool. This is the default behaviour when --unicode option is not used.
+Using &quot;--unicode=locale&quot; will display them according to the current locale.
+Using &quot;--unicode=hex&quot; will display them as hex byte values.
+Using &quot;--unicode=escape&quot; will display them as Unicode escape sequences.
+Using &quot;--unicode=highlight&quot; will display them as Unicode escape sequences highlighted in red, if supported by the output device.
+
+For more details about the security issue(s), including the impact, a CVSS score, acknowledgments, and other related information, refer to the CVE page(s) listed in the References section.
+    </Note>
+    <Note Title="Terms of Use" Ordinal="3" Type="Legal Disclaimer" xml:lang="en">This content is licensed under the Creative Commons Attribution 4.0 International License (https://creativecommons.org/licenses/by/4.0/). If you distribute this content, or a modified version of it, you must provide attribution to Red Hat Inc. and provide a link to the original.</Note>
+  </DocumentNotes>
+  <DocumentDistribution xml:lang="en">Copyright © 2021 Red Hat, Inc. All rights reserved.</DocumentDistribution>
+  <AggregateSeverity Namespace="https://access.redhat.com/security/updates/classification/">Moderate</AggregateSeverity>
+  <DocumentReferences>
+    <Reference Type="Self">
+       <URL>https://access.redhat.com/errata/RHSA-2021:4036</URL>
+       <Description>https://access.redhat.com/errata/RHSA-2021:4036</Description>
+    </Reference>
+    <Reference Type="External">
+       <URL>https://access.redhat.com/security/updates/classification/#moderate</URL>
+       <Description>https://access.redhat.com/security/updates/classification/#moderate</Description>
+    </Reference>
+    <Reference Type="External">
+       <URL>https://access.redhat.com/security/vulnerabilities/RHSB-2021-007</URL>
+       <Description>https://access.redhat.com/security/vulnerabilities/RHSB-2021-007</Description>
+    </Reference>
+  </DocumentReferences>
+  <ProductTree xmlns="http://www.icasi.org/CVRF/schema/prod/1.1">
+    <Branch Type="Product Family" Name="Red Hat Enterprise Linux">
+      <Branch Type="Product Name" Name="Red Hat Enterprise Linux Server AUS (v. 7.4)">
+        <FullProductName ProductID="7Server-7.4.AUS" CPE="cpe:/o:redhat:rhel_aus:7.4::server">Red Hat Enterprise Linux Server AUS (v. 7.4)</FullProductName>
+      </Branch>
+    </Branch>
+    <Branch Type="Product Version" Name="binutils-0:2.25.1-32.base.el7_4.5">
+      <FullProductName ProductID="binutils-0:2.25.1-32.base.el7_4.5" CPE="cpe:/o:redhat:rhel_aus:7.4::server">binutils-2.25.1-32.base.el7_4.5.src.rpm</FullProductName>
+    </Branch>
+    <Relationship ProductReference="binutils-0:2.25.1-32.base.el7_4.5" RelationType="Default Component Of" RelatesToProductReference="7Server-7.4.AUS">
+      <FullProductName ProductID="7Server-7.4.AUS:binutils-0:2.25.1-32.base.el7_4.5" CPE="cpe:/o:redhat:rhel_aus:7.4::server">binutils-0:2.25.1-32.base.el7_4.5 as a component of Red Hat Enterprise Linux Server AUS (v. 7.4)</FullProductName>
+    </Relationship>
+  </ProductTree>
+
+  <Vulnerability Ordinal="1" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">Developer environment: Unicode's bidirectional (BiDi) override characters can cause trojan source attacks</Note></Notes>
+    <DiscoveryDate>2021-09-20T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-11-01T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-42574</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>7Server-7.4.AUS:binutils-0:2.25.1-32.base.el7_4.5</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:4036</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://trojansource.codes/</URL>
+        <Description>https://trojansource.codes/</Description>
+      </Reference>
+      <Reference>
+        <URL>https://www.lightbluetouchpaper.org/2021/11/01/trojan-source-invisible-vulnerabilities/</URL>
+        <Description>https://www.lightbluetouchpaper.org/2021/11/01/trojan-source-invisible-vulnerabilities/</Description>
+      </Reference>
+      <Reference>
+        <URL>https://www.unicode.org/reports/tr36/#Bidirectional_Text_Spoofing</URL>
+        <Description>https://www.unicode.org/reports/tr36/#Bidirectional_Text_Spoofing</Description>
+      </Reference>
+      <Reference>
+        <URL>https://www.unicode.org/reports/tr39/</URL>
+        <Description>https://www.unicode.org/reports/tr39/</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-42574</URL>
+        <Description>CVE-2021-42574</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=2005819</URL>
+        <Description>bz#2005819: CVE-2021-42574 Developer environment: Unicode's bidirectional (BiDi) override characters can cause trojan source attacks</Description>
+      </Reference>
+    </References>
+    <Acknowledgments><Acknowledgment><Description>Red Hat would like to thank Nicholas Boucher and Ross Anderson (University of Cambridge) for reporting this issue.</Description></Acknowledgment></Acknowledgments>
+  </Vulnerability>
+</cvrfdoc>

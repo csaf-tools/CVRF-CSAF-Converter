@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cvrfdoc xmlns="http://www.icasi.org/CVRF/schema/cvrf/1.1" xmlns:cvrf="http://www.icasi.org/CVRF/schema/cvrf/1.1">
+  <DocumentTitle xml:lang="en">Red Hat Enhancement Advisory: ACS 3.62 enhancement update</DocumentTitle>
+  <DocumentType>Security Advisory</DocumentType>
+  <DocumentPublisher Type="Vendor">
+    <ContactDetails>secalert@redhat.com</ContactDetails>
+    <IssuingAuthority>Red Hat Product Security</IssuingAuthority>
+  </DocumentPublisher>
+  <DocumentTracking>
+    <Identification><ID>RHEA-2021:2679</ID></Identification>
+    <Status>Final</Status>
+    <Version>1</Version>
+    <RevisionHistory>
+       <Revision>
+         <Number>1</Number>
+         <Date>2021-08-11T17:15:00Z</Date>
+         <Description>Current version</Description>
+       </Revision>
+    </RevisionHistory>
+    <InitialReleaseDate>2021-07-08T18:40:00Z</InitialReleaseDate>
+    <CurrentReleaseDate>2021-08-11T17:15:00Z</CurrentReleaseDate>
+    <Generator>
+      <Engine>Red Hat SDEngine 3.3.0</Engine>
+      <Date>2022-01-11T20:24:00Z</Date>
+    </Generator>
+  </DocumentTracking>
+  <DocumentNotes>
+    <Note Title="Topic" Type="Summary" Ordinal="1" xml:lang="en">
+Red Hat Advanced Cluster security releases a new Operator to simplify installation and accelerate security use cases.
+    </Note>
+    <Note Title="Details" Type="General" Ordinal="2" xml:lang="en">
+To accelerate implementation of security use cases the Red Hat Advanced Cluster security team has released a new Operator as the primary source of installation on OpenShift 4.6 and above. This will simplify operational the experience by standardizing installation methods through the Operator Framework.
+    </Note>
+    <Note Title="Terms of Use" Ordinal="3" Type="Legal Disclaimer" xml:lang="en">This content is licensed under the Creative Commons Attribution 4.0 International License (https://creativecommons.org/licenses/by/4.0/). If you distribute this content, or a modified version of it, you must provide attribution to Red Hat Inc. and provide a link to the original.</Note>
+  </DocumentNotes>
+  <DocumentDistribution xml:lang="en">Copyright © 2022 Red Hat, Inc. All rights reserved.</DocumentDistribution>
+  <AggregateSeverity Namespace="https://access.redhat.com/security/updates/classification/">Moderate</AggregateSeverity>
+  <DocumentReferences>
+    <Reference Type="Self">
+       <URL>https://access.redhat.com/errata/RHEA-2021:2679</URL>
+       <Description>https://access.redhat.com/errata/RHEA-2021:2679</Description>
+    </Reference>
+    <Reference Type="External">
+       <URL>http://docs.openshift.com/acs/welcome/</URL>
+       <Description>http://docs.openshift.com/acs/welcome/</Description>
+    </Reference>
+  </DocumentReferences>
+  <ProductTree xmlns="http://www.icasi.org/CVRF/schema/prod/1.1">
+    <Branch Type="Product Family" Name="RHACS">
+      <Branch Type="Product Name" Name="RHACS 3.62 for RHEL 8">
+        <FullProductName ProductID="8Base-RHACS-3.62" CPE="cpe:/a:redhat:advanced_cluster_security:3.62::el8">RHACS 3.62 for RHEL 8</FullProductName>
+      </Branch>
+    </Branch>
+    <Branch Type="Product Version" Name="advanced-cluster-security/rhacs-operator-bundle:3.62.0-4">
+      <FullProductName ProductID="advanced-cluster-security/rhacs-operator-bundle:3.62.0-4" CPE="cpe:/a:redhat:advanced_cluster_security:3.62::el8">advanced-cluster-security/rhacs-operator-bundle:3.62.0-4</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="advanced-cluster-security/rhacs-rhel8-operator:3.62.0-4">
+      <FullProductName ProductID="advanced-cluster-security/rhacs-rhel8-operator:3.62.0-4" CPE="cpe:/a:redhat:advanced_cluster_security:3.62::el8">advanced-cluster-security/rhacs-rhel8-operator:3.62.0-4</FullProductName>
+    </Branch>
+    <Relationship ProductReference="rhacs-operator-bundle-container-3.62.0-4" RelationType="Default Component Of" RelatesToProductReference="8Base-RHACS-3.62">
+      <FullProductName ProductID="8Base-RHACS-3.62:rhacs-operator-bundle-container-3.62.0-4" CPE="cpe:/a:redhat:advanced_cluster_security:3.62::el8">rhacs-operator-bundle-container-3.62.0-4 as a component of RHACS 3.62 for RHEL 8</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="rhacs-operator-container-3.62.0-4" RelationType="Default Component Of" RelatesToProductReference="8Base-RHACS-3.62">
+      <FullProductName ProductID="8Base-RHACS-3.62:rhacs-operator-container-3.62.0-4" CPE="cpe:/a:redhat:advanced_cluster_security:3.62::el8">rhacs-operator-container-3.62.0-4 as a component of RHACS 3.62 for RHEL 8</FullProductName>
+    </Relationship>
+  </ProductTree>
+
+  <Vulnerability Ordinal="1" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">golang: net/http: panic in ReadRequest and ReadResponse when reading a very large header</Note></Notes>
+    <DiscoveryDate>2021-05-06T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-04-22T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-31525</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>8Base-RHACS-3.62:rhacs-operator-bundle-container-3.62.0-4</ProductID>
+      <ProductID>8Base-RHACS-3.62:rhacs-operator-container-3.62.0-4</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+The RHACS Operator will enable teams to:
+
+1. Speed up the time to show security value using one-click installation procedures in the OpenShift console
+2. Reduce the need for complex configuration procedures
+3. Embrace GitOps practices by using simplified configuration as yaml
+    </Description>
+      <URL>https://access.redhat.com/errata/RHEA-2021:2679</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://groups.google.com/g/golang-announce/c/cu9SP4eSXMc</URL>
+        <Description>https://groups.google.com/g/golang-announce/c/cu9SP4eSXMc</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-31525</URL>
+        <Description>CVE-2021-31525</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1958341</URL>
+        <Description>bz#1958341: CVE-2021-31525 golang: net/http: panic in ReadRequest and ReadResponse when reading a very large header</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+</cvrfdoc>

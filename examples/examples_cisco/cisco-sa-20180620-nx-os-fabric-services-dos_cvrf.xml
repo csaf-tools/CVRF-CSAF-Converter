@@ -1,0 +1,1401 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cvrf:cvrfdoc xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:cvrf-common="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/common" xmlns:cvrf="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/cvrf">
+  <cvrf:DocumentTitle>Cisco FXOS and NX-OS Software Cisco Fabric Services Denial of Service Vulnerability</cvrf:DocumentTitle>
+  <cvrf:DocumentType>Cisco Security Advisory</cvrf:DocumentType>
+  <cvrf:DocumentPublisher Type="Vendor">
+    <cvrf:ContactDetails>Emergency Support:
++1 877 228 7302 (toll-free within North America)
++1 408 525 6532 (International direct-dial)
+Non-emergency Support:
+Email: psirt@cisco.com
+Support requests that are received via e-mail are typically acknowledged within 48 hours.</cvrf:ContactDetails>
+    <cvrf:IssuingAuthority>Cisco product security incident response is the responsibility of the Cisco Product Security Incident Response Team (PSIRT). The Cisco PSIRT is a dedicated, global team that manages the receipt, investigation, and public reporting of security vulnerability information that is related to Cisco products and networks. The on-call Cisco PSIRT works 24x7 with Cisco customers, independent security researchers, consultants, industry organizations, and other vendors to identify possible security issues with Cisco products and networks.
+More information can be found in Cisco Security Vulnerability Policy available at http://www.cisco.com/web/about/security/psirt/security_vulnerability_policy.html</cvrf:IssuingAuthority>
+  </cvrf:DocumentPublisher>
+  <cvrf:DocumentTracking>
+    <cvrf:Identification>
+      <cvrf:ID>cisco-sa-20180620-nx-os-fabric-services-dos</cvrf:ID>
+    </cvrf:Identification>
+    <cvrf:Status>Final</cvrf:Status>
+    <cvrf:Version>1.2</cvrf:Version>
+    <cvrf:RevisionHistory>
+      <cvrf:Revision>
+        <cvrf:Number>1.0</cvrf:Number>
+        <cvrf:Date>2018-06-19T23:15:09</cvrf:Date>
+        <cvrf:Description>Initial public release.</cvrf:Description>
+      </cvrf:Revision>
+      <cvrf:Revision>
+        <cvrf:Number>1.1</cvrf:Number>
+        <cvrf:Date>2018-07-05T21:11:49</cvrf:Date>
+        <cvrf:Description>Updated Fixed Releases for FXOS and MDS platforms.</cvrf:Description>
+      </cvrf:Revision>
+      <cvrf:Revision>
+        <cvrf:Number>1.2</cvrf:Number>
+        <cvrf:Date>2020-03-27T17:35:38</cvrf:Date>
+        <cvrf:Description>Updated fixed releases for UCS 6100, 6200, and 6300 Series Fabric Interconnects.</cvrf:Description>
+      </cvrf:Revision>
+    </cvrf:RevisionHistory>
+    <cvrf:InitialReleaseDate>2018-06-20T16:00:00</cvrf:InitialReleaseDate>
+    <cvrf:CurrentReleaseDate>2020-03-27T17:35:38</cvrf:CurrentReleaseDate>
+    <cvrf:Generator>
+      <cvrf:Engine>TVCE</cvrf:Engine>
+    </cvrf:Generator>
+  </cvrf:DocumentTracking>
+  <cvrf:DocumentNotes>
+    <cvrf:Note Title="Summary" Type="Summary" Ordinal="1">A vulnerability in the Cisco Fabric Services component of Cisco FXOS Software and Cisco NX-OS Software could allow an unauthenticated, remote attacker to cause a denial of service (DoS) condition on an affected device.
+
+The vulnerability exists because the affected software insufficiently validates Cisco Fabric Services packets when the software processes packet data. An attacker could exploit this vulnerability by sending a maliciously crafted Cisco Fabric Services packet to an affected device. A successful exploit could allow the attacker to cause a buffer overflow condition on the device, which could cause process crashes and result in a DoS condition on the device.
+
+
+Cisco has released software updates that address this vulnerability. There are no workarounds that address this vulnerability.
+
+This advisory is available at the following link:
+https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20180620-nx-os-fabric-services-dos ["https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20180620-nx-os-fabric-services-dos"]
+
+
+This advisory is part of the June 2018 Cisco FXOS and NX-OS Software Security Advisory Collection, which includes 24 Cisco Security Advisories that describe 24 vulnerabilities. For a complete list of the advisories and links to them, see Cisco Event Response: June 2018 Cisco FXOS and NX-OS Software Security Advisory Collection ["https://tools.cisco.com/security/center/viewErp.x?alertId=ERP-67770"].</cvrf:Note>
+    <cvrf:Note Title="Vulnerable Products" Type="General" Ordinal="2">This vulnerability affects the following Cisco products if they are running a vulnerable release of Cisco FXOS Software or Cisco NX-OS Software and are configured to use Cisco Fabric Services:
+
+Firepower 4100 Series Next-Generation Firewalls
+Firepower 9300 Security Appliance
+MDS 9000 Series Multilayer Switches
+Nexus 2000 Series Fabric Extenders
+Nexus 3000 Series Switches
+Nexus 3500 Platform Switches
+Nexus 5500 Platform Switches
+Nexus 5600 Platform Switches
+Nexus 6000 Series Switches
+Nexus 7000 Series Switches
+Nexus 7700 Series Switches
+Nexus 9000 Series Switches in standalone NX-OS mode
+Nexus 9500 R-Series Line Cards and Fabric Modules
+UCS 6100 Series Fabric Interconnects
+UCS 6200 Series Fabric Interconnects
+UCS 6300 Series Fabric Interconnects
+
+For information about which Cisco FXOS and NX-OS Software releases are vulnerable, see the Fixed Software ["#fs"] section of this advisory.
+
+For information about determining whether a device is configured to use Cisco Fabric Services, see the Details ["#details"] section of this advisory.
+
+Determining the Cisco FXOS Software Release
+Administrators can check the release of Cisco FXOS Software that is running on a device by using the following commands in the device CLI or by navigating to the Overview tab in the Admin portal. The following example shows the output of the show version CLI command on a device that is running Cisco FXOS Software Release 2.2(2.14), as identified in the Package-Vers field of the command output:
+
+
+QP4120B1 # scope system
+QP4120B1 /system # show version  FPRM:  Running-Vers: 4.2(2.15)  Package-Vers: 2.2(2.14)  Activate-Status: Ready
+   Determining the Cisco NX-OS Software Release
+Administrators can check the release of Cisco NX-OS Software that is running on a device by using the show version command in the device CLI. The following example shows the output of this command on a device that is running Cisco NX-OS Software Release 7.3(2)D1(1):
+
+
+nxos-switch# show version
+
+
+Cisco Nexus Operating System (NX-OS) Software
+TAC support: http://www.cisco.com/tac  Documents: http://www.cisco.com/en/US/products/ps9372/tsd_products_support_series_home.html  Copyright (c) 2002-2017, Cisco Systems, Inc. All rights reserved.  The copyrights to certain works contained in this software are  owned by other third parties and used and distributed under  license. Certain components of this software are licensed under  the GNU General Public License (GPL) version 2.0 or the GNU  Lesser General Public License (LGPL) Version 2.1. A copy of each  such license is available at  http://www.opensource.org/licenses/gpl-2.0.php and  http://www.opensource.org/licenses/lgpl-2.1.php  Software    BIOS:      version 2.12.0    kickstart: version 7.3(2)D1(1)    system:    version 7.3(2)D1(1)  .  .  .</cvrf:Note>
+    <cvrf:Note Title="Products Confirmed Not Vulnerable" Type="General" Ordinal="3">Only products listed in the Vulnerable Products ["#vp"] section of this advisory are known to be affected by this vulnerability.
+
+Cisco has confirmed that this vulnerability does not affect the following Cisco products:
+
+Firepower 2100 Series Firewalls
+Nexus 1000V Series Switches
+Nexus 1100 Series Cloud Services Platforms
+Nexus 3600 Platform Switches
+Nexus 9000 Series Fabric Switches in Application Centric Infrastructure (ACI) mode
+
+
+Cisco has not investigated whether this vulnerability affects Cisco Nexus 4000 Series Switches, Cisco Nexus 5010 Switches, or Cisco Nexus 5020 Switches because those products have reached end-of-life status. For more information, refer to the End-of-Sale and End-of-Life Announcement for the Cisco Nexus 4000 Series Switch Modules for IBM BladeCenter ["https://www.cisco.com/c/en/us/products/collateral/switches/nexus-4000-series-switches/eos-eol-notice-c51-733205.html"] and the End-of-Sale and End-of-Life Announcement for the Cisco Nexus 5010 and Nexus 5020 Switches ["https://www.cisco.com/c/en/us/products/collateral/switches/nexus-5000-series-switches/eol_c51-709037.html"].</cvrf:Note>
+    <cvrf:Note Title="Details" Type="General" Ordinal="4">Cisco Fabric Services provides a common infrastructure for distributing and synchronizing configuration data between Cisco devices that are on the same network and with virtual port channels (vPCs). This includes configuration data for applications and features that are compatible with and enabled to use Cisco Fabric Services—for example, Distributed Device Alias Services, Network Time Protocol (NTP), and user and administrator roles.
+
+To distribute and synchronize data, Cisco Fabric Services can be configured to use any of the following distribution types:
+
+Cisco Fabric Services over Fibre Channel (CFSoFC)—Distributes data over a Fibre Channel (FC), such as a virtual storage area network (VSAN). CFSoFC distribution is enabled by default.
+Cisco Fabric Services over Ethernet (CFSoE)—Distributes data over an Ethernet network. For vPC support, Cisco Fabric Services must be configured to use this distribution type. CFSoE distribution is disabled by default.
+Cisco Fabric Services over IP (CFSoIP)—Distributes data over an IPv4 or IPv6 network. CFSoIP distribution is disabled by default.
+
+The vulnerability described in this advisory is due to insufficient input validation that could occur when the affected software processes Cisco Fabric Services packets that it receives during distribution and synchronization operations. Exploitation of the vulnerability does not require any applications to be enabled to use Cisco Fabric Services. Instead, exploitation depends on which Cisco Fabric Services distribution types are configured for a device. In addition, the attack vectors vary based on which distribution types are configured, as follows:
+
+CFSoFC—An attack could occur via Fibre Channel over Ethernet (FCoE) or Fibre Channel over IP (FCIP), if FC ports are configured for a device. In this scenario, an attack could succeed in the data plane, not the management plane, of any FC port. If no FC ports are configured for a device, this distribution type cannot be used to exploit the vulnerability.
+CFSoE—An attack is possible from only a vPC peer or an attacker who has access to a vPC peer link. No other peer, neighbor, or network node can be used to exploit the vulnerability.
+CFSoIP—An attack is possible from any node that has IP network connectivity to the management interface of a device. In this scenario, an attack cannot succeed from the data plane.
+
+If a device is enabled to use more than one distribution type, the applicable attack vectors for all those distribution types exist for the device.
+
+Administrators can display configuration information and check the distribution status of Cisco Fabric Services for a device by using the show cfs status command in the device CLI, as shown in the following example:
+
+
+switch# show cfs status
+Distribution : Enabled  Distribution over IP : Disabled  IPv4 multicast address : 239.255.70.83  IPv6 multicast address : ff15::efff:4653  Distribution over Ethernet : Disabled
+
+In the preceding example, the Enabled value in the Distribution field of the command output indicates that Cisco Fabric Services is enabled for the device and the device is configured to use the default Cisco Fabric Services distribution type, which is CFSoFC. The Disabled value in the Distribution over IP field and the Distribution over Ethernet field indicates that the device is not additionally configured to use the CFSoIP and CFSoE distribution types.</cvrf:Note>
+    <cvrf:Note Title="Workarounds" Type="General" Ordinal="5">There are no workarounds that address this vulnerability.</cvrf:Note>
+    <cvrf:Note Title="Fixed Software" Type="General" Ordinal="6">Cisco has released free software updates that address the vulnerability described in this advisory. Customers may only install and expect support for software versions and feature sets for which they have purchased a license. By installing, downloading, accessing, or otherwise using such software upgrades, customers agree to follow the terms of the Cisco software license:
+https://www.cisco.com/c/en/us/products/end-user-license-agreement.html ["https://www.cisco.com/c/en/us/products/end-user-license-agreement.html"]
+
+Additionally, customers may only download software for which they have a valid license, procured from Cisco directly, or through a Cisco authorized reseller or partner. In most cases this will be a maintenance upgrade to software that was previously purchased. Free security software updates do not entitle customers to a new software license, additional software feature sets, or major revision upgrades.
+
+When considering software upgrades, customers are advised to regularly consult the advisories for Cisco products, which are available from the Cisco Security Advisories and Alerts page ["https://www.cisco.com/go/psirt"], to determine exposure and a complete upgrade solution.
+
+In all cases, customers should ensure that the devices to be upgraded contain sufficient memory and confirm that current hardware and software configurations will continue to be supported properly by the new release. If the information is not clear, customers are advised to contact the Cisco Technical Assistance Center (TAC) or their contracted maintenance providers.
+  Customers Without Service Contracts
+Customers who purchase directly from Cisco but do not hold a Cisco service contract and customers who make purchases through third-party vendors but are unsuccessful in obtaining fixed software through their point of sale should obtain upgrades by contacting the Cisco TAC:
+https://www.cisco.com/c/en/us/support/web/tsd-cisco-worldwide-contacts.html ["https://www.cisco.com/c/en/us/support/web/tsd-cisco-worldwide-contacts.html"]
+
+Customers should have the product serial number available and be prepared to provide the URL of this advisory as evidence of entitlement to a free upgrade.
+      Fixed Releases
+
+Customers are advised to upgrade to an appropriate release as indicated in the applicable table in this section. To help ensure a complete upgrade solution, consider that this advisory is part of a collection. For a complete list of the advisories in the collection and links to them, see Cisco Event Response: June 2018 Cisco FXOS and NX-OS Software Security Advisory Collection ["http://tools.cisco.com/security/center/viewErp.x?alertId=ERP-67770"].
+
+In the following tables, the left column lists releases of Cisco FXOS or NX-OS Software. The center column indicates whether a release is affected by the vulnerability described in this advisory and the first release that includes the fix for this vulnerability. The right column indicates whether a release is affected by all the vulnerabilities described in this collection of advisories and which release includes fixes for those vulnerabilities.
+
+
+Firepower 4100 Series Next-Generation Firewalls: CSCve04859 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCve04859"]
+        Cisco FXOS Software Release  First Fixed Release for This Vulnerability  First Fixed Release for All Vulnerabilities Described in the Collection of Advisories          1.1  1.1.4.179  2.0.1.159      2.0  2.0.1.153  2.0.1.159      2.1.1  2.1.1.86  2.1.1.86 or 2.3.1.58      2.2.1  2.2.1.70  2.2.2.17 or 2.3.1.58      2.2.2  2.2.2.17  2.2.2.17 or 2.3.1.58      2.3  Not vulnerable  Not vulnerable
+Firepower 9300 Security Appliance: CSCve04859 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCve04859"]
+        Cisco FXOS Software Release  First Fixed Release for This Vulnerability  First Fixed Release for All Vulnerabilities Described in the Collection of Advisories          1.1  1.1.4.179  2.0.1.159      2.0  2.0.1.153  2.0.1.159      2.1.1  2.1.1.86  2.1.1.86 or 2.3.1.58      2.2.1  2.2.1.70  2.2.2.17 or 2.3.1.58      2.2.2  2.2.2.17  2.2.2.17 or 2.3.1.58      2.3  Not vulnerable  Not vulnerable
+MDS 9000 Series Multilayer Switches: CSCvd69960 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCvd69960"]
+        Cisco NX-OS Software Release  First Fixed Release for This Vulnerability  First Fixed Release for All Vulnerabilities Described in the Collection of Advisories          5.2  6.2(21)  8.1(1a) or 8.2(1)      6.2  6.2(21)  8.1(1a) or 8.2(1)      7.3  8.1(1a)  8.1(1a) or 8.2(1)      8.1  8.1(1a)  8.1(1a) or 8.2(1)      8.2  Not vulnerable  Not vulnerable
+Nexus 3000 Series Switches: CSCve41537 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCve41537"]
+        Cisco NX-OS Software Release  First Fixed Release for This Vulnerability  First Fixed Release for All Vulnerabilities Described in the Collection of Advisories          Prior to 7.0(3)I4  7.0(3)I4(7)  7.0(3)I7(4)      7.0(3)I4  7.0(3)I4(7)  7.0(3)I7(4)      7.0(3)I5  7.0(3)I6(2)  7.0(3)I7(4)      7.0(3)I6  7.0(3)I6(2)  7.0(3)I7(4)      7.0(3)I7  Not vulnerable  7.0(3)I7(4)
+Nexus 3500 Platform Switches: CSCve41530 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCve41530"]
+        Cisco NX-OS Software Release  First Fixed Release for This Vulnerability  First Fixed Release for All Vulnerabilities Described in the Collection of Advisories          6.0  6.0(2)A8(9)  7.0(3)I7(4)      7.0.3  Not vulnerable  7.0(3)I7(4)
+Nexus 2000 Series Fabric Extenders and Nexus 5500, 5600, and 6000 Series Switches: CSCve02463 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCve02463"]
+        Cisco NX-OS Software Release  First Fixed Release for This Vulnerability  First Fixed Release for All Vulnerabilities Described in the Collection of Advisories          6.0  7.3(3)N1(1)  7.3(3)N1(1)      7.0  7.3(3)N1(1)  7.3(3)N1(1)      7.1  7.3(3)N1(1)  7.3(3)N1(1)      7.2  7.3(3)N1(1)  7.3(3)N1(1)      7.3  7.3(3)N1(1)  7.3(3)N1(1)
+Nexus 7000 Series and 7700 Series Switches: CSCvd69960 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCvd69960"]
+        Cisco NX-OS Software Release  First Fixed Release for This Vulnerability  First Fixed Release for All Vulnerabilities Described in the Collection of Advisories          6.2  6.2(20)  8.1(2) or 8.2(1)      7.2  7.3(2)D1(1)  8.1(2) or 8.2(1)      7.3  7.3(2)D1(1)  8.1(2) or 8.2(1)      8.0  8.1(2)  8.1(2) or 8.2(1)      8.1  8.1(2)  8.1(2) or 8.2(1)      8.2  Not vulnerable  Not vulnerable
+Nexus 9000 Series Switches in standalone NX-OS mode: CSCve41537 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCve41537"]
+        Cisco NX-OS Software Release  First Fixed Release for This Vulnerability  First Fixed Release for All Vulnerabilities Described in the Collection of Advisories          Prior to 7.0(3)I4  7.0(3)I4(7)  7.0(3)I7(4)      7.0(3)I4  7.0(3)I4(7)  7.0(3)I7(4)      7.0(3)I5  7.0(3)I6(2)  7.0(3)I7(4)      7.0(3)I6  7.0(3)I6(2)  7.0(3)I7(4)      7.0(3)I7  Not vulnerable  7.0(3)I7(4)
+Nexus 9500 R-Series Line Cards and Fabric Modules: CSCve41557 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCve41557"]
+        Cisco NX-OS Software Release  First Fixed Release for This Vulnerability  First Fixed Release for All Vulnerabilities Described in the Collection of Advisories          7.0  7.0(3)F3(1)  7.0(3)F3(3a)
+ UCS 6100, 6200, and 6300 Series Fabric Interconnects: CSCve41541 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCve41541"]
+        Cisco NX-OS Software Release  First Fixed Release for This Vulnerability  First Fixed Release for All Vulnerabilities Described in the Collection of Advisories          Prior to 2.2  2.2(8m)  3.2(2b)      2.2  2.2(8m)  3.2(2b)      2.5  3.2(2b)  3.2(2b)      3.0  3.2(2b)  3.2(2b)      3.1  3.2(2b)  3.2(2b)      3.2  3.2(2b)  3.2(2b)</cvrf:Note>
+    <cvrf:Note Title="Vulnerability Policy" Type="General" Ordinal="7">To learn about Cisco security vulnerability disclosure policies and publications, see the Security Vulnerability Policy ["http://www.cisco.com/web/about/security/psirt/security_vulnerability_policy.html"]. This document also contains instructions for obtaining fixed software and receiving security vulnerability information from Cisco.</cvrf:Note>
+    <cvrf:Note Title="Exploitation and Public Announcements" Type="General" Ordinal="8">The Cisco Product Security Incident Response Team (PSIRT) is not aware of any public announcements or malicious use of the vulnerability that is described in this advisory.</cvrf:Note>
+    <cvrf:Note Title="Source" Type="General" Ordinal="9">This vulnerability was found during internal security testing.</cvrf:Note>
+    <cvrf:Note Title="Legal Disclaimer" Type="Legal Disclaimer" Ordinal="10">THIS DOCUMENT IS PROVIDED ON AN "AS IS" BASIS AND DOES NOT IMPLY ANY KIND OF GUARANTEE OR WARRANTY, INCLUDING THE WARRANTIES OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR USE. YOUR USE OF THE INFORMATION ON THE DOCUMENT OR MATERIALS LINKED FROM THE DOCUMENT IS AT YOUR OWN RISK. CISCO RESERVES THE RIGHT TO CHANGE OR UPDATE THIS DOCUMENT AT ANY TIME.
+
+A standalone copy or paraphrase of the text of this document that omits the distribution URL is an uncontrolled copy and may lack important information or contain factual errors. The information in this document is intended for end users of Cisco products.</cvrf:Note>
+  </cvrf:DocumentNotes>
+  <cvrf:DocumentReferences>
+    <cvrf:Reference Type="Self">
+      <cvrf:URL>https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20180620-nx-os-fabric-services-dos</cvrf:URL>
+      <cvrf:Description>Cisco FXOS and NX-OS Software Cisco Fabric Services Denial of Service Vulnerability</cvrf:Description>
+    </cvrf:Reference>
+    <cvrf:Reference>
+      <cvrf:URL>http://tools.cisco.com/security/center/viewErp.x?alertId=ERP-67770</cvrf:URL>
+      <cvrf:Description>Cisco Event Response: June 2018 Cisco FXOS and NX-OS Software Security Advisory Collection</cvrf:Description>
+    </cvrf:Reference>
+  </cvrf:DocumentReferences>
+  <ProductTree xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/prod">
+    <Branch Name="Cisco" Type="Vendor">
+      <Branch Name="Cisco NX-OS Software" Type="Product Name">
+        <Branch Name="5.0(3)U1" Type="Product Version">
+          <Branch Name="5.0(3)U1(1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-191391">Cisco NX-OS Software 5.0(3)U1(1)</FullProductName>
+          </Branch>
+          <Branch Name="5.0(3)U1(1a)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-191392">Cisco NX-OS Software 5.0(3)U1(1a)</FullProductName>
+          </Branch>
+          <Branch Name="5.0(3)U1(1b)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-191393">Cisco NX-OS Software 5.0(3)U1(1b)</FullProductName>
+          </Branch>
+          <Branch Name="5.0(3)U1(1d)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-191466">Cisco NX-OS Software 5.0(3)U1(1d)</FullProductName>
+          </Branch>
+          <Branch Name="5.0(3)U1(2)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-191467">Cisco NX-OS Software 5.0(3)U1(2)</FullProductName>
+          </Branch>
+          <Branch Name="5.0(3)U1(2a)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-191468">Cisco NX-OS Software 5.0(3)U1(2a)</FullProductName>
+          </Branch>
+          <Branch Name="5.0(3)U1(1c)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-239513">Cisco NX-OS Software 5.0(3)U1(1c)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="5.0(3)U2" Type="Product Version">
+          <Branch Name="5.0(3)U2(1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-191469">Cisco NX-OS Software 5.0(3)U2(1)</FullProductName>
+          </Branch>
+          <Branch Name="5.0(3)U2(2)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-191470">Cisco NX-OS Software 5.0(3)U2(2)</FullProductName>
+          </Branch>
+          <Branch Name="5.0(3)U2(2a)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-191471">Cisco NX-OS Software 5.0(3)U2(2a)</FullProductName>
+          </Branch>
+          <Branch Name="5.0(3)U2(2b)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-191472">Cisco NX-OS Software 5.0(3)U2(2b)</FullProductName>
+          </Branch>
+          <Branch Name="5.0(3)U2(2c)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-191473">Cisco NX-OS Software 5.0(3)U2(2c)</FullProductName>
+          </Branch>
+          <Branch Name="5.0(3)U2(2d)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-191474">Cisco NX-OS Software 5.0(3)U2(2d)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="5.0(3)U3" Type="Product Version">
+          <Branch Name="5.0(3)U3(1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-191475">Cisco NX-OS Software 5.0(3)U3(1)</FullProductName>
+          </Branch>
+          <Branch Name="5.0(3)U3(2)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-191476">Cisco NX-OS Software 5.0(3)U3(2)</FullProductName>
+          </Branch>
+          <Branch Name="5.0(3)U3(2a)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-191477">Cisco NX-OS Software 5.0(3)U3(2a)</FullProductName>
+          </Branch>
+          <Branch Name="5.0(3)U3(2b)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-191478">Cisco NX-OS Software 5.0(3)U3(2b)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="5.0(3)U4" Type="Product Version">
+          <Branch Name="5.0(3)U4(1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-191479">Cisco NX-OS Software 5.0(3)U4(1)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="5.0(3)U5" Type="Product Version">
+          <Branch Name="5.0(3)U5(1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-191480">Cisco NX-OS Software 5.0(3)U5(1)</FullProductName>
+          </Branch>
+          <Branch Name="5.0(3)U5(1a)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-191481">Cisco NX-OS Software 5.0(3)U5(1a)</FullProductName>
+          </Branch>
+          <Branch Name="5.0(3)U5(1b)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-191482">Cisco NX-OS Software 5.0(3)U5(1b)</FullProductName>
+          </Branch>
+          <Branch Name="5.0(3)U5(1c)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-191483">Cisco NX-OS Software 5.0(3)U5(1c)</FullProductName>
+          </Branch>
+          <Branch Name="5.0(3)U5(1d)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-191484">Cisco NX-OS Software 5.0(3)U5(1d)</FullProductName>
+          </Branch>
+          <Branch Name="5.0(3)U5(1e)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-191485">Cisco NX-OS Software 5.0(3)U5(1e)</FullProductName>
+          </Branch>
+          <Branch Name="5.0(3)U5(1f)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-196613">Cisco NX-OS Software 5.0(3)U5(1f)</FullProductName>
+          </Branch>
+          <Branch Name="5.0(3)U5(1g)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-196614">Cisco NX-OS Software 5.0(3)U5(1g)</FullProductName>
+          </Branch>
+          <Branch Name="5.0(3)U5(1h)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-196615">Cisco NX-OS Software 5.0(3)U5(1h)</FullProductName>
+          </Branch>
+          <Branch Name="5.0(3)U5(1i)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-239530">Cisco NX-OS Software 5.0(3)U5(1i)</FullProductName>
+          </Branch>
+          <Branch Name="5.0(3)U5(1j)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-239531">Cisco NX-OS Software 5.0(3)U5(1j)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="6.0(2)A1" Type="Product Version">
+          <Branch Name="6.0(2)A1(1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-239582">Cisco NX-OS Software 6.0(2)A1(1)</FullProductName>
+          </Branch>
+          <Branch Name="6.0(2)A1(1a)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-239583">Cisco NX-OS Software 6.0(2)A1(1a)</FullProductName>
+          </Branch>
+          <Branch Name="6.0(2)A1(1b)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-239584">Cisco NX-OS Software 6.0(2)A1(1b)</FullProductName>
+          </Branch>
+          <Branch Name="6.0(2)A1(1c)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-239585">Cisco NX-OS Software 6.0(2)A1(1c)</FullProductName>
+          </Branch>
+          <Branch Name="6.0(2)A1(1d)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-239586">Cisco NX-OS Software 6.0(2)A1(1d)</FullProductName>
+          </Branch>
+          <Branch Name="6.0(2)A1(1e)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-239587">Cisco NX-OS Software 6.0(2)A1(1e)</FullProductName>
+          </Branch>
+          <Branch Name="6.0(2)A1(1f)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-239588">Cisco NX-OS Software 6.0(2)A1(1f)</FullProductName>
+          </Branch>
+          <Branch Name="6.0(2)A1(2d)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-239589">Cisco NX-OS Software 6.0(2)A1(2d)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="6.0(2)A3" Type="Product Version">
+          <Branch Name="6.0(2)A3(1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-239590">Cisco NX-OS Software 6.0(2)A3(1)</FullProductName>
+          </Branch>
+          <Branch Name="6.0(2)A3(2)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-239591">Cisco NX-OS Software 6.0(2)A3(2)</FullProductName>
+          </Branch>
+          <Branch Name="6.0(2)A3(4)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-239592">Cisco NX-OS Software 6.0(2)A3(4)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="6.0(2)A4" Type="Product Version">
+          <Branch Name="6.0(2)A4(1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-239593">Cisco NX-OS Software 6.0(2)A4(1)</FullProductName>
+          </Branch>
+          <Branch Name="6.0(2)A4(2)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-239594">Cisco NX-OS Software 6.0(2)A4(2)</FullProductName>
+          </Branch>
+          <Branch Name="6.0(2)A4(3)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-239595">Cisco NX-OS Software 6.0(2)A4(3)</FullProductName>
+          </Branch>
+          <Branch Name="6.0(2)A4(4)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-239596">Cisco NX-OS Software 6.0(2)A4(4)</FullProductName>
+          </Branch>
+          <Branch Name="6.0(2)A4(5)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-239597">Cisco NX-OS Software 6.0(2)A4(5)</FullProductName>
+          </Branch>
+          <Branch Name="6.0(2)A4(6)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-239598">Cisco NX-OS Software 6.0(2)A4(6)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="6.0(2)A6" Type="Product Version">
+          <Branch Name="6.0(2)A6(1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-239599">Cisco NX-OS Software 6.0(2)A6(1)</FullProductName>
+          </Branch>
+          <Branch Name="6.0(2)A6(1a)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-239600">Cisco NX-OS Software 6.0(2)A6(1a)</FullProductName>
+          </Branch>
+          <Branch Name="6.0(2)A6(2)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-239601">Cisco NX-OS Software 6.0(2)A6(2)</FullProductName>
+          </Branch>
+          <Branch Name="6.0(2)A6(2a)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-239602">Cisco NX-OS Software 6.0(2)A6(2a)</FullProductName>
+          </Branch>
+          <Branch Name="6.0(2)A6(3)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-239603">Cisco NX-OS Software 6.0(2)A6(3)</FullProductName>
+          </Branch>
+          <Branch Name="6.0(2)A6(3a)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-239604">Cisco NX-OS Software 6.0(2)A6(3a)</FullProductName>
+          </Branch>
+          <Branch Name="6.0(2)A6(4)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-239605">Cisco NX-OS Software 6.0(2)A6(4)</FullProductName>
+          </Branch>
+          <Branch Name="6.0(2)A6(4a)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-239606">Cisco NX-OS Software 6.0(2)A6(4a)</FullProductName>
+          </Branch>
+          <Branch Name="6.0(2)A6(5)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-239607">Cisco NX-OS Software 6.0(2)A6(5)</FullProductName>
+          </Branch>
+          <Branch Name="6.0(2)A6(5a)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-239608">Cisco NX-OS Software 6.0(2)A6(5a)</FullProductName>
+          </Branch>
+          <Branch Name="6.0(2)A6(5b)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-239609">Cisco NX-OS Software 6.0(2)A6(5b)</FullProductName>
+          </Branch>
+          <Branch Name="6.0(2)A6(6)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-239610">Cisco NX-OS Software 6.0(2)A6(6)</FullProductName>
+          </Branch>
+          <Branch Name="6.0(2)A6(7)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-239611">Cisco NX-OS Software 6.0(2)A6(7)</FullProductName>
+          </Branch>
+          <Branch Name="6.0(2)A6(8)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-239612">Cisco NX-OS Software 6.0(2)A6(8)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="6.0(2)A7" Type="Product Version">
+          <Branch Name="6.0(2)A7(1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-239613">Cisco NX-OS Software 6.0(2)A7(1)</FullProductName>
+          </Branch>
+          <Branch Name="6.0(2)A7(1a)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-239614">Cisco NX-OS Software 6.0(2)A7(1a)</FullProductName>
+          </Branch>
+          <Branch Name="6.0(2)A7(2)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-239615">Cisco NX-OS Software 6.0(2)A7(2)</FullProductName>
+          </Branch>
+          <Branch Name="6.0(2)A7(2a)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-239616">Cisco NX-OS Software 6.0(2)A7(2a)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="6.0(2)A8" Type="Product Version">
+          <Branch Name="6.0(2)A8(1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-239617">Cisco NX-OS Software 6.0(2)A8(1)</FullProductName>
+          </Branch>
+          <Branch Name="6.0(2)A8(2)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-239618">Cisco NX-OS Software 6.0(2)A8(2)</FullProductName>
+          </Branch>
+          <Branch Name="6.0(2)A8(3)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-239619">Cisco NX-OS Software 6.0(2)A8(3)</FullProductName>
+          </Branch>
+          <Branch Name="6.0(2)A8(4)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-239620">Cisco NX-OS Software 6.0(2)A8(4)</FullProductName>
+          </Branch>
+          <Branch Name="6.0(2)A8(4a)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-239621">Cisco NX-OS Software 6.0(2)A8(4a)</FullProductName>
+          </Branch>
+          <Branch Name="6.0(2)A8(5)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-239622">Cisco NX-OS Software 6.0(2)A8(5)</FullProductName>
+          </Branch>
+          <Branch Name="6.0(2)A8(6)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-239623">Cisco NX-OS Software 6.0(2)A8(6)</FullProductName>
+          </Branch>
+          <Branch Name="6.0(2)A8(7)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-239624">Cisco NX-OS Software 6.0(2)A8(7)</FullProductName>
+          </Branch>
+          <Branch Name="6.0(2)A8(7a)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-239625">Cisco NX-OS Software 6.0(2)A8(7a)</FullProductName>
+          </Branch>
+          <Branch Name="6.0(2)A8(7b)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-239626">Cisco NX-OS Software 6.0(2)A8(7b)</FullProductName>
+          </Branch>
+          <Branch Name="6.0(2)A8(8)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-239627">Cisco NX-OS Software 6.0(2)A8(8)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="6.0(2)N1" Type="Product Version">
+          <Branch Name="6.0(2)N1(1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-201875">Cisco NX-OS Software 6.0(2)N1(1)</FullProductName>
+          </Branch>
+          <Branch Name="6.0(2)N1(2)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-201876">Cisco NX-OS Software 6.0(2)N1(2)</FullProductName>
+          </Branch>
+          <Branch Name="6.0(2)N1(2a)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-201877">Cisco NX-OS Software 6.0(2)N1(2a)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="6.0(2)N2" Type="Product Version">
+          <Branch Name="6.0(2)N2(1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-201878">Cisco NX-OS Software 6.0(2)N2(1)</FullProductName>
+          </Branch>
+          <Branch Name="6.0(2)N2(1b)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-201879">Cisco NX-OS Software 6.0(2)N2(1b)</FullProductName>
+          </Branch>
+          <Branch Name="6.0(2)N2(2)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-201880">Cisco NX-OS Software 6.0(2)N2(2)</FullProductName>
+          </Branch>
+          <Branch Name="6.0(2)N2(3)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-201881">Cisco NX-OS Software 6.0(2)N2(3)</FullProductName>
+          </Branch>
+          <Branch Name="6.0(2)N2(4)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-201882">Cisco NX-OS Software 6.0(2)N2(4)</FullProductName>
+          </Branch>
+          <Branch Name="6.0(2)N2(5)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-201883">Cisco NX-OS Software 6.0(2)N2(5)</FullProductName>
+          </Branch>
+          <Branch Name="6.0(2)N2(5a)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-212034">Cisco NX-OS Software 6.0(2)N2(5a)</FullProductName>
+          </Branch>
+          <Branch Name="6.0(2)N2(6)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-212035">Cisco NX-OS Software 6.0(2)N2(6)</FullProductName>
+          </Branch>
+          <Branch Name="6.0(2)N2(7)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-212036">Cisco NX-OS Software 6.0(2)N2(7)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="6.0(2)U1" Type="Product Version">
+          <Branch Name="6.0(2)U1(1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-194693">Cisco NX-OS Software 6.0(2)U1(1)</FullProductName>
+          </Branch>
+          <Branch Name="6.0(2)U1(2)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-194694">Cisco NX-OS Software 6.0(2)U1(2)</FullProductName>
+          </Branch>
+          <Branch Name="6.0(2)U1(1a)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-196616">Cisco NX-OS Software 6.0(2)U1(1a)</FullProductName>
+          </Branch>
+          <Branch Name="6.0(2)U1(3)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-196617">Cisco NX-OS Software 6.0(2)U1(3)</FullProductName>
+          </Branch>
+          <Branch Name="6.0(2)U1(4)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-205076">Cisco NX-OS Software 6.0(2)U1(4)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="6.0(2)U2" Type="Product Version">
+          <Branch Name="6.0(2)U2(1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-205077">Cisco NX-OS Software 6.0(2)U2(1)</FullProductName>
+          </Branch>
+          <Branch Name="6.0(2)U2(2)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-205078">Cisco NX-OS Software 6.0(2)U2(2)</FullProductName>
+          </Branch>
+          <Branch Name="6.0(2)U2(3)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-205079">Cisco NX-OS Software 6.0(2)U2(3)</FullProductName>
+          </Branch>
+          <Branch Name="6.0(2)U2(4)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-205080">Cisco NX-OS Software 6.0(2)U2(4)</FullProductName>
+          </Branch>
+          <Branch Name="6.0(2)U2(5)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-205081">Cisco NX-OS Software 6.0(2)U2(5)</FullProductName>
+          </Branch>
+          <Branch Name="6.0(2)U2(6)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-205082">Cisco NX-OS Software 6.0(2)U2(6)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="6.0(2)U3" Type="Product Version">
+          <Branch Name="6.0(2)U3(1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-205083">Cisco NX-OS Software 6.0(2)U3(1)</FullProductName>
+          </Branch>
+          <Branch Name="6.0(2)U3(2)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-205084">Cisco NX-OS Software 6.0(2)U3(2)</FullProductName>
+          </Branch>
+          <Branch Name="6.0(2)U3(3)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-205085">Cisco NX-OS Software 6.0(2)U3(3)</FullProductName>
+          </Branch>
+          <Branch Name="6.0(2)U3(4)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-205086">Cisco NX-OS Software 6.0(2)U3(4)</FullProductName>
+          </Branch>
+          <Branch Name="6.0(2)U3(5)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-205087">Cisco NX-OS Software 6.0(2)U3(5)</FullProductName>
+          </Branch>
+          <Branch Name="6.0(2)U3(6)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-239536">Cisco NX-OS Software 6.0(2)U3(6)</FullProductName>
+          </Branch>
+          <Branch Name="6.0(2)U3(7)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-239537">Cisco NX-OS Software 6.0(2)U3(7)</FullProductName>
+          </Branch>
+          <Branch Name="6.0(2)U3(8)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-239538">Cisco NX-OS Software 6.0(2)U3(8)</FullProductName>
+          </Branch>
+          <Branch Name="6.0(2)U3(9)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-239539">Cisco NX-OS Software 6.0(2)U3(9)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="6.0(2)U4" Type="Product Version">
+          <Branch Name="6.0(2)U4(1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-203349">Cisco NX-OS Software 6.0(2)U4(1)</FullProductName>
+          </Branch>
+          <Branch Name="6.0(2)U4(2)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-205088">Cisco NX-OS Software 6.0(2)U4(2)</FullProductName>
+          </Branch>
+          <Branch Name="6.0(2)U4(3)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-205089">Cisco NX-OS Software 6.0(2)U4(3)</FullProductName>
+          </Branch>
+          <Branch Name="6.0(2)U4(4)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-239545">Cisco NX-OS Software 6.0(2)U4(4)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="6.0(2)U5" Type="Product Version">
+          <Branch Name="6.0(2)U5(1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-205090">Cisco NX-OS Software 6.0(2)U5(1)</FullProductName>
+          </Branch>
+          <Branch Name="6.0(2)U5(2)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-220702">Cisco NX-OS Software 6.0(2)U5(2)</FullProductName>
+          </Branch>
+          <Branch Name="6.0(2)U5(3)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-220703">Cisco NX-OS Software 6.0(2)U5(3)</FullProductName>
+          </Branch>
+          <Branch Name="6.0(2)U5(4)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-220704">Cisco NX-OS Software 6.0(2)U5(4)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="6.0(2)U6" Type="Product Version">
+          <Branch Name="6.0(2)U6(1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-213569">Cisco NX-OS Software 6.0(2)U6(1)</FullProductName>
+          </Branch>
+          <Branch Name="6.0(2)U6(2)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-213570">Cisco NX-OS Software 6.0(2)U6(2)</FullProductName>
+          </Branch>
+          <Branch Name="6.0(2)U6(3)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-213571">Cisco NX-OS Software 6.0(2)U6(3)</FullProductName>
+          </Branch>
+          <Branch Name="6.0(2)U6(4)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-213572">Cisco NX-OS Software 6.0(2)U6(4)</FullProductName>
+          </Branch>
+          <Branch Name="6.0(2)U6(5)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-213573">Cisco NX-OS Software 6.0(2)U6(5)</FullProductName>
+          </Branch>
+          <Branch Name="6.0(2)U6(6)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-220699">Cisco NX-OS Software 6.0(2)U6(6)</FullProductName>
+          </Branch>
+          <Branch Name="6.0(2)U6(7)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-220700">Cisco NX-OS Software 6.0(2)U6(7)</FullProductName>
+          </Branch>
+          <Branch Name="6.0(2)U6(8)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-220701">Cisco NX-OS Software 6.0(2)U6(8)</FullProductName>
+          </Branch>
+          <Branch Name="6.0(2)U6(1a)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-239546">Cisco NX-OS Software 6.0(2)U6(1a)</FullProductName>
+          </Branch>
+          <Branch Name="6.0(2)U6(2a)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-239547">Cisco NX-OS Software 6.0(2)U6(2a)</FullProductName>
+          </Branch>
+          <Branch Name="6.0(2)U6(3a)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-239548">Cisco NX-OS Software 6.0(2)U6(3a)</FullProductName>
+          </Branch>
+          <Branch Name="6.0(2)U6(4a)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-239549">Cisco NX-OS Software 6.0(2)U6(4a)</FullProductName>
+          </Branch>
+          <Branch Name="6.0(2)U6(5a)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-239550">Cisco NX-OS Software 6.0(2)U6(5a)</FullProductName>
+          </Branch>
+          <Branch Name="6.0(2)U6(5b)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-239551">Cisco NX-OS Software 6.0(2)U6(5b)</FullProductName>
+          </Branch>
+          <Branch Name="6.0(2)U6(5c)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-239552">Cisco NX-OS Software 6.0(2)U6(5c)</FullProductName>
+          </Branch>
+          <Branch Name="6.0(2)U6(9)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-239553">Cisco NX-OS Software 6.0(2)U6(9)</FullProductName>
+          </Branch>
+          <Branch Name="6.0(2)U6(10)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-239554">Cisco NX-OS Software 6.0(2)U6(10)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="6.1(2)I1" Type="Product Version">
+          <Branch Name="6.1(2)I1(3)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-239450">Cisco NX-OS Software 6.1(2)I1(3)</FullProductName>
+          </Branch>
+          <Branch Name="6.1(2)I1(1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-240152">Cisco NX-OS Software 6.1(2)I1(1)</FullProductName>
+          </Branch>
+          <Branch Name="6.1(2)I1(2)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-240153">Cisco NX-OS Software 6.1(2)I1(2)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="6.1(2)I2" Type="Product Version">
+          <Branch Name="6.1(2)I2(1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-201604">Cisco NX-OS Software 6.1(2)I2(1)</FullProductName>
+          </Branch>
+          <Branch Name="6.1(2)I2(2)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-201605">Cisco NX-OS Software 6.1(2)I2(2)</FullProductName>
+          </Branch>
+          <Branch Name="6.1(2)I2(2a)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-201606">Cisco NX-OS Software 6.1(2)I2(2a)</FullProductName>
+          </Branch>
+          <Branch Name="6.1(2)I2(3)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-201607">Cisco NX-OS Software 6.1(2)I2(3)</FullProductName>
+          </Branch>
+          <Branch Name="6.1(2)I2(2b)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-202737">Cisco NX-OS Software 6.1(2)I2(2b)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="6.1(2)I3" Type="Product Version">
+          <Branch Name="6.1(2)I3(1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-205091">Cisco NX-OS Software 6.1(2)I3(1)</FullProductName>
+          </Branch>
+          <Branch Name="6.1(2)I3(2)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-205092">Cisco NX-OS Software 6.1(2)I3(2)</FullProductName>
+          </Branch>
+          <Branch Name="6.1(2)I3(3)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-205093">Cisco NX-OS Software 6.1(2)I3(3)</FullProductName>
+          </Branch>
+          <Branch Name="6.1(2)I3(3.78)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-208867">Cisco NX-OS Software 6.1(2)I3(3.78)</FullProductName>
+          </Branch>
+          <Branch Name="6.1(2)I3(4)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-210263">Cisco NX-OS Software 6.1(2)I3(4)</FullProductName>
+          </Branch>
+          <Branch Name="6.1(2)I3(3a)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-239451">Cisco NX-OS Software 6.1(2)I3(3a)</FullProductName>
+          </Branch>
+          <Branch Name="6.1(2)I3(4a)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-239452">Cisco NX-OS Software 6.1(2)I3(4a)</FullProductName>
+          </Branch>
+          <Branch Name="6.1(2)I3(4b)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-239453">Cisco NX-OS Software 6.1(2)I3(4b)</FullProductName>
+          </Branch>
+          <Branch Name="6.1(2)I3(4c)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-239454">Cisco NX-OS Software 6.1(2)I3(4c)</FullProductName>
+          </Branch>
+          <Branch Name="6.1(2)I3(4d)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-239455">Cisco NX-OS Software 6.1(2)I3(4d)</FullProductName>
+          </Branch>
+          <Branch Name="6.1(2)I3(4e)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-239456">Cisco NX-OS Software 6.1(2)I3(4e)</FullProductName>
+          </Branch>
+          <Branch Name="6.1(2)I3(5)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-239457">Cisco NX-OS Software 6.1(2)I3(5)</FullProductName>
+          </Branch>
+          <Branch Name="6.1(2)I3(5a)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-239458">Cisco NX-OS Software 6.1(2)I3(5a)</FullProductName>
+          </Branch>
+          <Branch Name="6.1(2)I3(5b)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-239459">Cisco NX-OS Software 6.1(2)I3(5b)</FullProductName>
+          </Branch>
+          <Branch Name="6.1(2)I3(3b)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-240154">Cisco NX-OS Software 6.1(2)I3(3b)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="6.2" Type="Product Version">
+          <Branch Name="6.2(2)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-196609">Cisco NX-OS Software 6.2(2)</FullProductName>
+          </Branch>
+          <Branch Name="6.2(2a)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-196610">Cisco NX-OS Software 6.2(2a)</FullProductName>
+          </Branch>
+          <Branch Name="6.2(6)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-202738">Cisco NX-OS Software 6.2(6)</FullProductName>
+          </Branch>
+          <Branch Name="6.2(6b)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-205071">Cisco NX-OS Software 6.2(6b)</FullProductName>
+          </Branch>
+          <Branch Name="6.2(8)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-205072">Cisco NX-OS Software 6.2(8)</FullProductName>
+          </Branch>
+          <Branch Name="6.2(8a)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-205073">Cisco NX-OS Software 6.2(8a)</FullProductName>
+          </Branch>
+          <Branch Name="6.2(8b)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-205074">Cisco NX-OS Software 6.2(8b)</FullProductName>
+          </Branch>
+          <Branch Name="6.2(10)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-205075">Cisco NX-OS Software 6.2(10)</FullProductName>
+          </Branch>
+          <Branch Name="6.2(12)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-208194">Cisco NX-OS Software 6.2(12)</FullProductName>
+          </Branch>
+          <Branch Name="6.2(18)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-230441">Cisco NX-OS Software 6.2(18)</FullProductName>
+          </Branch>
+          <Branch Name="6.2(16)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-230442">Cisco NX-OS Software 6.2(16)</FullProductName>
+          </Branch>
+          <Branch Name="6.2(14b)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-230443">Cisco NX-OS Software 6.2(14b)</FullProductName>
+          </Branch>
+          <Branch Name="6.2(14)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-230527">Cisco NX-OS Software 6.2(14)</FullProductName>
+          </Branch>
+          <Branch Name="6.2(14a)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-230528">Cisco NX-OS Software 6.2(14a)</FullProductName>
+          </Branch>
+          <Branch Name="6.2(6a)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-239437">Cisco NX-OS Software 6.2(6a)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="7.0" Type="Product Version">
+          <Branch Name="7.0(3)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-208195">Cisco NX-OS Software 7.0(3)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="7.0(0)N1" Type="Product Version">
+          <Branch Name="7.0(0)N1(1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-201884">Cisco NX-OS Software 7.0(0)N1(1)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="7.0(1)N1" Type="Product Version">
+          <Branch Name="7.0(1)N1(1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-201885">Cisco NX-OS Software 7.0(1)N1(1)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="7.0(2)I2" Type="Product Version">
+          <Branch Name="7.0(2)I2(2c)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-239460">Cisco NX-OS Software 7.0(2)I2(2c)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="7.0(2)N1" Type="Product Version">
+          <Branch Name="7.0(2)N1(1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-201886">Cisco NX-OS Software 7.0(2)N1(1)</FullProductName>
+          </Branch>
+          <Branch Name="7.0(2)N1(1a)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-230508">Cisco NX-OS Software 7.0(2)N1(1a)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="7.0(3)F1" Type="Product Version">
+          <Branch Name="7.0(3)F1(1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-239805">Cisco NX-OS Software 7.0(3)F1(1)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="7.0(3)F2" Type="Product Version">
+          <Branch Name="7.0(3)F2(1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-239806">Cisco NX-OS Software 7.0(3)F2(1)</FullProductName>
+          </Branch>
+          <Branch Name="7.0(3)F2(2)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-239807">Cisco NX-OS Software 7.0(3)F2(2)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="7.0(3)I1" Type="Product Version">
+          <Branch Name="7.0(3)I1(1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-208580">Cisco NX-OS Software 7.0(3)I1(1)</FullProductName>
+          </Branch>
+          <Branch Name="7.0(3)I1(1a)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-208581">Cisco NX-OS Software 7.0(3)I1(1a)</FullProductName>
+          </Branch>
+          <Branch Name="7.0(3)I1(1b)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-208582">Cisco NX-OS Software 7.0(3)I1(1b)</FullProductName>
+          </Branch>
+          <Branch Name="7.0(3)I1(2)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-208583">Cisco NX-OS Software 7.0(3)I1(2)</FullProductName>
+          </Branch>
+          <Branch Name="7.0(3)I1(3)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-220738">Cisco NX-OS Software 7.0(3)I1(3)</FullProductName>
+          </Branch>
+          <Branch Name="7.0(3)I1(3a)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-220739">Cisco NX-OS Software 7.0(3)I1(3a)</FullProductName>
+          </Branch>
+          <Branch Name="7.0(3)I1(3b)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-220740">Cisco NX-OS Software 7.0(3)I1(3b)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="7.0(3)I2" Type="Product Version">
+          <Branch Name="7.0(3)I2(2a)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-220741">Cisco NX-OS Software 7.0(3)I2(2a)</FullProductName>
+          </Branch>
+          <Branch Name="7.0(3)I2(2b)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-220742">Cisco NX-OS Software 7.0(3)I2(2b)</FullProductName>
+          </Branch>
+          <Branch Name="7.0(3)I2(2c)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-220743">Cisco NX-OS Software 7.0(3)I2(2c)</FullProductName>
+          </Branch>
+          <Branch Name="7.0(3)I2(2d)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-220744">Cisco NX-OS Software 7.0(3)I2(2d)</FullProductName>
+          </Branch>
+          <Branch Name="7.0(3)I2(2e)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-220745">Cisco NX-OS Software 7.0(3)I2(2e)</FullProductName>
+          </Branch>
+          <Branch Name="7.0(3)I2(3)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-220746">Cisco NX-OS Software 7.0(3)I2(3)</FullProductName>
+          </Branch>
+          <Branch Name="7.0(3)I2(4)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-220747">Cisco NX-OS Software 7.0(3)I2(4)</FullProductName>
+          </Branch>
+          <Branch Name="7.0(3)I2(5)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-230554">Cisco NX-OS Software 7.0(3)I2(5)</FullProductName>
+          </Branch>
+          <Branch Name="7.0(3)I2(1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-230567">Cisco NX-OS Software 7.0(3)I2(1)</FullProductName>
+          </Branch>
+          <Branch Name="7.0(3)I2(1a)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-230568">Cisco NX-OS Software 7.0(3)I2(1a)</FullProductName>
+          </Branch>
+          <Branch Name="7.0(3)I2(2)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-230569">Cisco NX-OS Software 7.0(3)I2(2)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="7.0(3)I3" Type="Product Version">
+          <Branch Name="7.0(3)I3(1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-220748">Cisco NX-OS Software 7.0(3)I3(1)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="7.0(3)I4" Type="Product Version">
+          <Branch Name="7.0(3)I4(1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-220749">Cisco NX-OS Software 7.0(3)I4(1)</FullProductName>
+          </Branch>
+          <Branch Name="7.0(3)I4(2)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-220750">Cisco NX-OS Software 7.0(3)I4(2)</FullProductName>
+          </Branch>
+          <Branch Name="7.0(3)I4(3)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-220751">Cisco NX-OS Software 7.0(3)I4(3)</FullProductName>
+          </Branch>
+          <Branch Name="7.0(3)I4(4)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-230530">Cisco NX-OS Software 7.0(3)I4(4)</FullProductName>
+          </Branch>
+          <Branch Name="7.0(3)I4(5)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-230531">Cisco NX-OS Software 7.0(3)I4(5)</FullProductName>
+          </Branch>
+          <Branch Name="7.0(3)I4(6)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-230532">Cisco NX-OS Software 7.0(3)I4(6)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="7.0(3)I5" Type="Product Version">
+          <Branch Name="7.0(3)I5(1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-230535">Cisco NX-OS Software 7.0(3)I5(1)</FullProductName>
+          </Branch>
+          <Branch Name="7.0(3)I5(2)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-230536">Cisco NX-OS Software 7.0(3)I5(2)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="7.0(3)I6" Type="Product Version">
+          <Branch Name="7.0(3)I6(1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-230541">Cisco NX-OS Software 7.0(3)I6(1)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="7.0(3)N1" Type="Product Version">
+          <Branch Name="7.0(3)N1(1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-201887">Cisco NX-OS Software 7.0(3)N1(1)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="7.0(4)N1" Type="Product Version">
+          <Branch Name="7.0(4)N1(1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-212037">Cisco NX-OS Software 7.0(4)N1(1)</FullProductName>
+          </Branch>
+          <Branch Name="7.0(4)N1(1a)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-230505">Cisco NX-OS Software 7.0(4)N1(1a)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="7.0(5)N1" Type="Product Version">
+          <Branch Name="7.0(5)N1(1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-212038">Cisco NX-OS Software 7.0(5)N1(1)</FullProductName>
+          </Branch>
+          <Branch Name="7.0(5)N1(1a)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-212039">Cisco NX-OS Software 7.0(5)N1(1a)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="7.0(6)N1" Type="Product Version">
+          <Branch Name="7.0(6)N1(1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-208805">Cisco NX-OS Software 7.0(6)N1(1)</FullProductName>
+          </Branch>
+          <Branch Name="7.0(6)N1(4s)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-230498">Cisco NX-OS Software 7.0(6)N1(4s)</FullProductName>
+          </Branch>
+          <Branch Name="7.0(6)N1(3s)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-230499">Cisco NX-OS Software 7.0(6)N1(3s)</FullProductName>
+          </Branch>
+          <Branch Name="7.0(6)N1(2s)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-230500">Cisco NX-OS Software 7.0(6)N1(2s)</FullProductName>
+          </Branch>
+          <Branch Name="7.0(6)N1(1c)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-230501">Cisco NX-OS Software 7.0(6)N1(1c)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="7.0(7)N1" Type="Product Version">
+          <Branch Name="7.0(7)N1(1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-212040">Cisco NX-OS Software 7.0(7)N1(1)</FullProductName>
+          </Branch>
+          <Branch Name="7.0(7)N1(1b)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-230495">Cisco NX-OS Software 7.0(7)N1(1b)</FullProductName>
+          </Branch>
+          <Branch Name="7.0(7)N1(1a)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-230496">Cisco NX-OS Software 7.0(7)N1(1a)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="7.0(8)N1" Type="Product Version">
+          <Branch Name="7.0(8)N1(1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-220727">Cisco NX-OS Software 7.0(8)N1(1)</FullProductName>
+          </Branch>
+          <Branch Name="7.0(8)N1(1a)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-230493">Cisco NX-OS Software 7.0(8)N1(1a)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="7.1(0)N1" Type="Product Version">
+          <Branch Name="7.1(0)N1(1a)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-212041">Cisco NX-OS Software 7.1(0)N1(1a)</FullProductName>
+          </Branch>
+          <Branch Name="7.1(0)N1(1b)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-212042">Cisco NX-OS Software 7.1(0)N1(1b)</FullProductName>
+          </Branch>
+          <Branch Name="7.1(0)N1(2)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-230489">Cisco NX-OS Software 7.1(0)N1(2)</FullProductName>
+          </Branch>
+          <Branch Name="7.1(0)N1(1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-230492">Cisco NX-OS Software 7.1(0)N1(1)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="7.1(1)N1" Type="Product Version">
+          <Branch Name="7.1(1)N1(1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-208806">Cisco NX-OS Software 7.1(1)N1(1)</FullProductName>
+          </Branch>
+          <Branch Name="7.1(1)N1(1a)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-230487">Cisco NX-OS Software 7.1(1)N1(1a)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="7.1(2)N1" Type="Product Version">
+          <Branch Name="7.1(2)N1(1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-212043">Cisco NX-OS Software 7.1(2)N1(1)</FullProductName>
+          </Branch>
+          <Branch Name="7.1(2)N1(1a)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-230485">Cisco NX-OS Software 7.1(2)N1(1a)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="7.1(3)N1" Type="Product Version">
+          <Branch Name="7.1(3)N1(1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-212044">Cisco NX-OS Software 7.1(3)N1(1)</FullProductName>
+          </Branch>
+          <Branch Name="7.1(3)N1(2)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-220733">Cisco NX-OS Software 7.1(3)N1(2)</FullProductName>
+          </Branch>
+          <Branch Name="7.1(3)N1(5)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-230478">Cisco NX-OS Software 7.1(3)N1(5)</FullProductName>
+          </Branch>
+          <Branch Name="7.1(3)N1(4)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-230479">Cisco NX-OS Software 7.1(3)N1(4)</FullProductName>
+          </Branch>
+          <Branch Name="7.1(3)N1(3)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-230480">Cisco NX-OS Software 7.1(3)N1(3)</FullProductName>
+          </Branch>
+          <Branch Name="7.1(3)N1(2a)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-230481">Cisco NX-OS Software 7.1(3)N1(2a)</FullProductName>
+          </Branch>
+          <Branch Name="7.1(3)N1(1b)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-230483">Cisco NX-OS Software 7.1(3)N1(1b)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="7.1(4)N1" Type="Product Version">
+          <Branch Name="7.1(4)N1(1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-220734">Cisco NX-OS Software 7.1(4)N1(1)</FullProductName>
+          </Branch>
+          <Branch Name="7.1(4)N1(1d)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-230474">Cisco NX-OS Software 7.1(4)N1(1d)</FullProductName>
+          </Branch>
+          <Branch Name="7.1(4)N1(1c)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-230475">Cisco NX-OS Software 7.1(4)N1(1c)</FullProductName>
+          </Branch>
+          <Branch Name="7.1(4)N1(1a)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-230476">Cisco NX-OS Software 7.1(4)N1(1a)</FullProductName>
+          </Branch>
+          <Branch Name="7.1(4)N1(1e)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-240151">Cisco NX-OS Software 7.1(4)N1(1e)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="7.1(5)N1" Type="Product Version">
+          <Branch Name="7.1(5)N1(1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-230473">Cisco NX-OS Software 7.1(5)N1(1)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="7.2(0)D1" Type="Product Version">
+          <Branch Name="7.2(0)D1(1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-230440">Cisco NX-OS Software 7.2(0)D1(1)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="7.2(0)N1" Type="Product Version">
+          <Branch Name="7.2(0)N1(1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-212045">Cisco NX-OS Software 7.2(0)N1(1)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="7.2(1)D1" Type="Product Version">
+          <Branch Name="7.2(1)D1(1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-225659">Cisco NX-OS Software 7.2(1)D1(1)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="7.2(1)N1" Type="Product Version">
+          <Branch Name="7.2(1)N1(1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-212046">Cisco NX-OS Software 7.2(1)N1(1)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="7.2(2)D1" Type="Product Version">
+          <Branch Name="7.2(2)D1(2)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-230438">Cisco NX-OS Software 7.2(2)D1(2)</FullProductName>
+          </Branch>
+          <Branch Name="7.2(2)D1(1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-230439">Cisco NX-OS Software 7.2(2)D1(1)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="7.3(0)D1" Type="Product Version">
+          <Branch Name="7.3(0)D1(1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-230437">Cisco NX-OS Software 7.3(0)D1(1)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="7.3(0)DX" Type="Product Version">
+          <Branch Name="7.3(0)DX(1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-230436">Cisco NX-OS Software 7.3(0)DX(1)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="7.3(0)N1" Type="Product Version">
+          <Branch Name="7.3(0)N1(1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-220737">Cisco NX-OS Software 7.3(0)N1(1)</FullProductName>
+          </Branch>
+          <Branch Name="7.3(0)N1(1b)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-230468">Cisco NX-OS Software 7.3(0)N1(1b)</FullProductName>
+          </Branch>
+          <Branch Name="7.3(0)N1(1a)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-230469">Cisco NX-OS Software 7.3(0)N1(1a)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="7.3(1)D1" Type="Product Version">
+          <Branch Name="7.3(1)D1(1B)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-230434">Cisco NX-OS Software 7.3(1)D1(1B)</FullProductName>
+          </Branch>
+          <Branch Name="7.3(1)D1(1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-230435">Cisco NX-OS Software 7.3(1)D1(1)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="7.3(1)N1" Type="Product Version">
+          <Branch Name="7.3(1)N1(0.1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-225661">Cisco NX-OS Software 7.3(1)N1(0.1)</FullProductName>
+          </Branch>
+          <Branch Name="7.3(1)N1(1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-227352">Cisco NX-OS Software 7.3(1)N1(1)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="7.3(2)N1" Type="Product Version">
+          <Branch Name="7.3(2)N1(1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-230467">Cisco NX-OS Software 7.3(2)N1(1)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="8.0" Type="Product Version">
+          <Branch Name="8.0(1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-227357">Cisco NX-OS Software 8.0(1)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="8.1" Type="Product Version">
+          <Branch Name="8.1(1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-227356">Cisco NX-OS Software 8.1(1)</FullProductName>
+          </Branch>
+        </Branch>
+      </Branch>
+      <Branch Name="Cisco Unified Computing System (Managed)" Type="Product Name">
+        <FullProductName ProductID="CVRFPID-112776">Cisco Unified Computing System (Managed) </FullProductName>
+      </Branch>
+      <Branch Name="Cisco Firepower Extensible Operating System (FXOS)" Type="Product Name">
+        <FullProductName ProductID="CVRFPID-225888">Cisco Firepower Extensible Operating System (FXOS) </FullProductName>
+      </Branch>
+    </Branch>
+  </ProductTree>
+  <Vulnerability Ordinal="1" xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln">
+    <Title>Cisco FXOS and NX-OS Software Cisco Fabric Services Denial of Service Vulnerability</Title>
+    <ID SystemName="Cisco Bug ID">CSCve04859</ID>
+    <Notes>
+      <Note Title="Summary" Type="Summary" Ordinal="1">A vulnerability in the Cisco Fabric Services component of Cisco FXOS Software and Cisco NX-OS Software could allow an unauthenticated, remote attacker to cause a denial of service (DoS) condition on an affected device.
+
+The vulnerability exists because the affected software insufficiently validates Cisco Fabric Services packets when the software processes packet data. An attacker could exploit this vulnerability by sending a maliciously crafted Cisco Fabric Services packet to an affected device. A successful exploit could allow the attacker to cause a buffer overflow condition on the device, which could cause process crashes and result in a DoS condition on the device.
+</Note>
+      <Note Title="Cisco Bug IDs" Type="Other" Ordinal="2">CSCve04859,CSCve41541,CSCve02463,CSCve41530,CSCve41557,CSCvd69960,CSCve41537</Note>
+    </Notes>
+    <CVE>CVE-2018-0311</CVE>
+    <ProductStatuses>
+      <Status Type="Known Affected">
+        <ProductID>CVRFPID-225888</ProductID>
+        <ProductID>CVRFPID-112776</ProductID>
+        <ProductID>CVRFPID-191391</ProductID>
+        <ProductID>CVRFPID-191392</ProductID>
+        <ProductID>CVRFPID-191393</ProductID>
+        <ProductID>CVRFPID-191466</ProductID>
+        <ProductID>CVRFPID-191467</ProductID>
+        <ProductID>CVRFPID-191468</ProductID>
+        <ProductID>CVRFPID-191469</ProductID>
+        <ProductID>CVRFPID-191470</ProductID>
+        <ProductID>CVRFPID-191471</ProductID>
+        <ProductID>CVRFPID-191472</ProductID>
+        <ProductID>CVRFPID-191473</ProductID>
+        <ProductID>CVRFPID-191474</ProductID>
+        <ProductID>CVRFPID-191475</ProductID>
+        <ProductID>CVRFPID-191476</ProductID>
+        <ProductID>CVRFPID-191477</ProductID>
+        <ProductID>CVRFPID-191478</ProductID>
+        <ProductID>CVRFPID-191479</ProductID>
+        <ProductID>CVRFPID-191480</ProductID>
+        <ProductID>CVRFPID-191481</ProductID>
+        <ProductID>CVRFPID-191482</ProductID>
+        <ProductID>CVRFPID-191483</ProductID>
+        <ProductID>CVRFPID-191484</ProductID>
+        <ProductID>CVRFPID-191485</ProductID>
+        <ProductID>CVRFPID-194693</ProductID>
+        <ProductID>CVRFPID-194694</ProductID>
+        <ProductID>CVRFPID-196609</ProductID>
+        <ProductID>CVRFPID-196610</ProductID>
+        <ProductID>CVRFPID-196613</ProductID>
+        <ProductID>CVRFPID-196614</ProductID>
+        <ProductID>CVRFPID-196615</ProductID>
+        <ProductID>CVRFPID-196616</ProductID>
+        <ProductID>CVRFPID-196617</ProductID>
+        <ProductID>CVRFPID-201604</ProductID>
+        <ProductID>CVRFPID-201605</ProductID>
+        <ProductID>CVRFPID-201606</ProductID>
+        <ProductID>CVRFPID-201607</ProductID>
+        <ProductID>CVRFPID-201875</ProductID>
+        <ProductID>CVRFPID-201876</ProductID>
+        <ProductID>CVRFPID-201877</ProductID>
+        <ProductID>CVRFPID-201878</ProductID>
+        <ProductID>CVRFPID-201879</ProductID>
+        <ProductID>CVRFPID-201880</ProductID>
+        <ProductID>CVRFPID-201881</ProductID>
+        <ProductID>CVRFPID-201882</ProductID>
+        <ProductID>CVRFPID-201883</ProductID>
+        <ProductID>CVRFPID-201884</ProductID>
+        <ProductID>CVRFPID-201885</ProductID>
+        <ProductID>CVRFPID-201886</ProductID>
+        <ProductID>CVRFPID-201887</ProductID>
+        <ProductID>CVRFPID-202737</ProductID>
+        <ProductID>CVRFPID-202738</ProductID>
+        <ProductID>CVRFPID-203349</ProductID>
+        <ProductID>CVRFPID-205071</ProductID>
+        <ProductID>CVRFPID-205072</ProductID>
+        <ProductID>CVRFPID-205073</ProductID>
+        <ProductID>CVRFPID-205074</ProductID>
+        <ProductID>CVRFPID-205075</ProductID>
+        <ProductID>CVRFPID-205076</ProductID>
+        <ProductID>CVRFPID-205077</ProductID>
+        <ProductID>CVRFPID-205078</ProductID>
+        <ProductID>CVRFPID-205079</ProductID>
+        <ProductID>CVRFPID-205080</ProductID>
+        <ProductID>CVRFPID-205081</ProductID>
+        <ProductID>CVRFPID-205082</ProductID>
+        <ProductID>CVRFPID-205083</ProductID>
+        <ProductID>CVRFPID-205084</ProductID>
+        <ProductID>CVRFPID-205085</ProductID>
+        <ProductID>CVRFPID-205086</ProductID>
+        <ProductID>CVRFPID-205087</ProductID>
+        <ProductID>CVRFPID-205088</ProductID>
+        <ProductID>CVRFPID-205089</ProductID>
+        <ProductID>CVRFPID-205090</ProductID>
+        <ProductID>CVRFPID-205091</ProductID>
+        <ProductID>CVRFPID-205092</ProductID>
+        <ProductID>CVRFPID-205093</ProductID>
+        <ProductID>CVRFPID-208194</ProductID>
+        <ProductID>CVRFPID-208195</ProductID>
+        <ProductID>CVRFPID-208580</ProductID>
+        <ProductID>CVRFPID-208581</ProductID>
+        <ProductID>CVRFPID-208582</ProductID>
+        <ProductID>CVRFPID-208583</ProductID>
+        <ProductID>CVRFPID-208805</ProductID>
+        <ProductID>CVRFPID-208806</ProductID>
+        <ProductID>CVRFPID-208867</ProductID>
+        <ProductID>CVRFPID-210263</ProductID>
+        <ProductID>CVRFPID-212034</ProductID>
+        <ProductID>CVRFPID-212035</ProductID>
+        <ProductID>CVRFPID-212036</ProductID>
+        <ProductID>CVRFPID-212037</ProductID>
+        <ProductID>CVRFPID-212038</ProductID>
+        <ProductID>CVRFPID-212039</ProductID>
+        <ProductID>CVRFPID-212040</ProductID>
+        <ProductID>CVRFPID-212041</ProductID>
+        <ProductID>CVRFPID-212042</ProductID>
+        <ProductID>CVRFPID-212043</ProductID>
+        <ProductID>CVRFPID-212044</ProductID>
+        <ProductID>CVRFPID-212045</ProductID>
+        <ProductID>CVRFPID-212046</ProductID>
+        <ProductID>CVRFPID-213569</ProductID>
+        <ProductID>CVRFPID-213570</ProductID>
+        <ProductID>CVRFPID-213571</ProductID>
+        <ProductID>CVRFPID-213572</ProductID>
+        <ProductID>CVRFPID-213573</ProductID>
+        <ProductID>CVRFPID-220699</ProductID>
+        <ProductID>CVRFPID-220700</ProductID>
+        <ProductID>CVRFPID-220701</ProductID>
+        <ProductID>CVRFPID-220702</ProductID>
+        <ProductID>CVRFPID-220703</ProductID>
+        <ProductID>CVRFPID-220704</ProductID>
+        <ProductID>CVRFPID-220727</ProductID>
+        <ProductID>CVRFPID-220733</ProductID>
+        <ProductID>CVRFPID-220734</ProductID>
+        <ProductID>CVRFPID-220737</ProductID>
+        <ProductID>CVRFPID-220738</ProductID>
+        <ProductID>CVRFPID-220739</ProductID>
+        <ProductID>CVRFPID-220740</ProductID>
+        <ProductID>CVRFPID-220741</ProductID>
+        <ProductID>CVRFPID-220742</ProductID>
+        <ProductID>CVRFPID-220743</ProductID>
+        <ProductID>CVRFPID-220744</ProductID>
+        <ProductID>CVRFPID-220745</ProductID>
+        <ProductID>CVRFPID-220746</ProductID>
+        <ProductID>CVRFPID-220747</ProductID>
+        <ProductID>CVRFPID-220748</ProductID>
+        <ProductID>CVRFPID-220749</ProductID>
+        <ProductID>CVRFPID-220750</ProductID>
+        <ProductID>CVRFPID-220751</ProductID>
+        <ProductID>CVRFPID-225659</ProductID>
+        <ProductID>CVRFPID-225661</ProductID>
+        <ProductID>CVRFPID-227352</ProductID>
+        <ProductID>CVRFPID-227356</ProductID>
+        <ProductID>CVRFPID-227357</ProductID>
+        <ProductID>CVRFPID-230434</ProductID>
+        <ProductID>CVRFPID-230435</ProductID>
+        <ProductID>CVRFPID-230436</ProductID>
+        <ProductID>CVRFPID-230437</ProductID>
+        <ProductID>CVRFPID-230438</ProductID>
+        <ProductID>CVRFPID-230439</ProductID>
+        <ProductID>CVRFPID-230440</ProductID>
+        <ProductID>CVRFPID-230441</ProductID>
+        <ProductID>CVRFPID-230442</ProductID>
+        <ProductID>CVRFPID-230443</ProductID>
+        <ProductID>CVRFPID-230467</ProductID>
+        <ProductID>CVRFPID-230468</ProductID>
+        <ProductID>CVRFPID-230469</ProductID>
+        <ProductID>CVRFPID-230473</ProductID>
+        <ProductID>CVRFPID-230474</ProductID>
+        <ProductID>CVRFPID-230475</ProductID>
+        <ProductID>CVRFPID-230476</ProductID>
+        <ProductID>CVRFPID-230478</ProductID>
+        <ProductID>CVRFPID-230479</ProductID>
+        <ProductID>CVRFPID-230480</ProductID>
+        <ProductID>CVRFPID-230481</ProductID>
+        <ProductID>CVRFPID-230483</ProductID>
+        <ProductID>CVRFPID-230485</ProductID>
+        <ProductID>CVRFPID-230487</ProductID>
+        <ProductID>CVRFPID-230489</ProductID>
+        <ProductID>CVRFPID-230492</ProductID>
+        <ProductID>CVRFPID-230493</ProductID>
+        <ProductID>CVRFPID-230495</ProductID>
+        <ProductID>CVRFPID-230496</ProductID>
+        <ProductID>CVRFPID-230498</ProductID>
+        <ProductID>CVRFPID-230499</ProductID>
+        <ProductID>CVRFPID-230500</ProductID>
+        <ProductID>CVRFPID-230501</ProductID>
+        <ProductID>CVRFPID-230505</ProductID>
+        <ProductID>CVRFPID-230508</ProductID>
+        <ProductID>CVRFPID-230527</ProductID>
+        <ProductID>CVRFPID-230528</ProductID>
+        <ProductID>CVRFPID-230530</ProductID>
+        <ProductID>CVRFPID-230531</ProductID>
+        <ProductID>CVRFPID-230532</ProductID>
+        <ProductID>CVRFPID-230535</ProductID>
+        <ProductID>CVRFPID-230536</ProductID>
+        <ProductID>CVRFPID-230541</ProductID>
+        <ProductID>CVRFPID-230554</ProductID>
+        <ProductID>CVRFPID-230567</ProductID>
+        <ProductID>CVRFPID-230568</ProductID>
+        <ProductID>CVRFPID-230569</ProductID>
+        <ProductID>CVRFPID-239437</ProductID>
+        <ProductID>CVRFPID-239450</ProductID>
+        <ProductID>CVRFPID-239451</ProductID>
+        <ProductID>CVRFPID-239452</ProductID>
+        <ProductID>CVRFPID-239453</ProductID>
+        <ProductID>CVRFPID-239454</ProductID>
+        <ProductID>CVRFPID-239455</ProductID>
+        <ProductID>CVRFPID-239456</ProductID>
+        <ProductID>CVRFPID-239457</ProductID>
+        <ProductID>CVRFPID-239458</ProductID>
+        <ProductID>CVRFPID-239459</ProductID>
+        <ProductID>CVRFPID-239460</ProductID>
+        <ProductID>CVRFPID-239513</ProductID>
+        <ProductID>CVRFPID-239530</ProductID>
+        <ProductID>CVRFPID-239531</ProductID>
+        <ProductID>CVRFPID-239536</ProductID>
+        <ProductID>CVRFPID-239537</ProductID>
+        <ProductID>CVRFPID-239538</ProductID>
+        <ProductID>CVRFPID-239539</ProductID>
+        <ProductID>CVRFPID-239545</ProductID>
+        <ProductID>CVRFPID-239546</ProductID>
+        <ProductID>CVRFPID-239547</ProductID>
+        <ProductID>CVRFPID-239548</ProductID>
+        <ProductID>CVRFPID-239549</ProductID>
+        <ProductID>CVRFPID-239550</ProductID>
+        <ProductID>CVRFPID-239551</ProductID>
+        <ProductID>CVRFPID-239552</ProductID>
+        <ProductID>CVRFPID-239553</ProductID>
+        <ProductID>CVRFPID-239554</ProductID>
+        <ProductID>CVRFPID-239582</ProductID>
+        <ProductID>CVRFPID-239583</ProductID>
+        <ProductID>CVRFPID-239584</ProductID>
+        <ProductID>CVRFPID-239585</ProductID>
+        <ProductID>CVRFPID-239586</ProductID>
+        <ProductID>CVRFPID-239587</ProductID>
+        <ProductID>CVRFPID-239588</ProductID>
+        <ProductID>CVRFPID-239589</ProductID>
+        <ProductID>CVRFPID-239590</ProductID>
+        <ProductID>CVRFPID-239591</ProductID>
+        <ProductID>CVRFPID-239592</ProductID>
+        <ProductID>CVRFPID-239593</ProductID>
+        <ProductID>CVRFPID-239594</ProductID>
+        <ProductID>CVRFPID-239595</ProductID>
+        <ProductID>CVRFPID-239596</ProductID>
+        <ProductID>CVRFPID-239597</ProductID>
+        <ProductID>CVRFPID-239598</ProductID>
+        <ProductID>CVRFPID-239599</ProductID>
+        <ProductID>CVRFPID-239600</ProductID>
+        <ProductID>CVRFPID-239601</ProductID>
+        <ProductID>CVRFPID-239602</ProductID>
+        <ProductID>CVRFPID-239603</ProductID>
+        <ProductID>CVRFPID-239604</ProductID>
+        <ProductID>CVRFPID-239605</ProductID>
+        <ProductID>CVRFPID-239606</ProductID>
+        <ProductID>CVRFPID-239607</ProductID>
+        <ProductID>CVRFPID-239608</ProductID>
+        <ProductID>CVRFPID-239609</ProductID>
+        <ProductID>CVRFPID-239610</ProductID>
+        <ProductID>CVRFPID-239611</ProductID>
+        <ProductID>CVRFPID-239612</ProductID>
+        <ProductID>CVRFPID-239613</ProductID>
+        <ProductID>CVRFPID-239614</ProductID>
+        <ProductID>CVRFPID-239615</ProductID>
+        <ProductID>CVRFPID-239616</ProductID>
+        <ProductID>CVRFPID-239617</ProductID>
+        <ProductID>CVRFPID-239618</ProductID>
+        <ProductID>CVRFPID-239619</ProductID>
+        <ProductID>CVRFPID-239620</ProductID>
+        <ProductID>CVRFPID-239621</ProductID>
+        <ProductID>CVRFPID-239622</ProductID>
+        <ProductID>CVRFPID-239623</ProductID>
+        <ProductID>CVRFPID-239624</ProductID>
+        <ProductID>CVRFPID-239625</ProductID>
+        <ProductID>CVRFPID-239626</ProductID>
+        <ProductID>CVRFPID-239627</ProductID>
+        <ProductID>CVRFPID-239805</ProductID>
+        <ProductID>CVRFPID-239806</ProductID>
+        <ProductID>CVRFPID-239807</ProductID>
+        <ProductID>CVRFPID-240151</ProductID>
+        <ProductID>CVRFPID-240152</ProductID>
+        <ProductID>CVRFPID-240153</ProductID>
+        <ProductID>CVRFPID-240154</ProductID>
+      </Status>
+    </ProductStatuses>
+    <CVSSScoreSets>
+      <ScoreSetV3>
+        <BaseScoreV3>8.6</BaseScoreV3>
+        <VectorV3>CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:C/C:N/I:N/A:H</VectorV3>
+      </ScoreSetV3>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Workaround">
+        <Description>There are no workarounds that address this vulnerability.</Description>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference Type="Self">
+        <URL>https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20180620-nx-os-fabric-services-dos</URL>
+        <Description>Cisco FXOS and NX-OS Software Cisco Fabric Services Denial of Service Vulnerability</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+</cvrf:cvrfdoc>

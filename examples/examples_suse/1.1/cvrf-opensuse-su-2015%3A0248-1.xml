@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cvrfdoc xmlns="http://www.icasi.org/CVRF/schema/cvrf/1.1" xmlns:cvrf="http://www.icasi.org/CVRF/schema/cvrf/1.1">
+  <DocumentTitle xml:lang="en">Security update for curl</DocumentTitle>
+  <DocumentType>SUSE Patch</DocumentType>
+  <DocumentPublisher Type="Vendor">
+    <ContactDetails>security@suse.de</ContactDetails>
+    <IssuingAuthority>SUSE Security Team</IssuingAuthority>
+  </DocumentPublisher>
+  <DocumentTracking>
+    <Identification>
+      <ID>openSUSE-SU-2015:0248-1</ID>
+    </Identification>
+    <Status>Final</Status>
+    <Version>1</Version>
+    <RevisionHistory>
+      <Revision>
+        <Number>1</Number>
+        <Date>2015-02-03T12:38:43Z</Date>
+        <Description>current</Description>
+      </Revision>
+    </RevisionHistory>
+    <InitialReleaseDate>2015-02-03T12:38:43Z</InitialReleaseDate>
+    <CurrentReleaseDate>2015-02-03T12:38:43Z</CurrentReleaseDate>
+    <Generator>
+      <Engine>cve-database/bin/generate-cvrf.pl</Engine>
+      <Date>2017-02-24T01:00:00Z</Date>
+    </Generator>
+  </DocumentTracking>
+  <DocumentNotes>
+    <Note Title="Topic" Type="Summary" Ordinal="1" xml:lang="en">Security update for curl</Note>
+    <Note Title="Details" Type="General" Ordinal="2" xml:lang="en">was updated to version 7.40.0 to fix two security issues.
+
+These security issues were fixed:
+- CVE-2014-8150: CRLF injection vulnerability in libcurl 6.0 through 7.x before 7.40.0, when using an HTTP proxy,
+  allowed remote attackers to inject arbitrary HTTP headers and conduct HTTP response splitting attacks via CRLF
+  sequences in a URL (bnc#911363).
+- CVE-2014-3707: The curl_easy_duphandle function in libcurl 7.17.1 through 7.38.0, when running with the
+  CURLOPT_COPYPOSTFIELDS option, did not properly copy HTTP POST data for an easy handle, which triggered an
+  out-of-bounds read that allowed remote web servers to read sensitive memory information (bnc#901924).
+
+These non-security issues were fixed:
+- http_digest: Added support for Windows SSPI based authentication
+- version info: Added Kerberos V5 to the supported features
+- Makefile: Added VC targets for WinIDN
+- SSL: Add PEM format support for public key pinning
+- smtp: Added support for the conversion of Unix newlines during mail send
+- smb: Added initial support for the SMB/CIFS protocol
+- Added support for HTTP over unix domain sockets,
+- via CURLOPT_UNIX_SOCKET_PATH and --unix-socket
+- sasl: Added support for GSS-API based Kerberos V5 authentication
+</Note>
+    <Note Title="Terms of Use" Type="Legal Disclaimer" Ordinal="3" xml:lang="en">The CVRF data is provided by SUSE under the Creative Commons License 4.0 with Attribution for Non-Commercial usage (CC-BY-NC-4.0).</Note>
+  </DocumentNotes>
+  <DocumentDistribution xml:lang="en">Copyright SUSE LLC under the Creative Commons License 4.0 with Attribution for Non-Commercial usage (CC-BY-NC-4.0)</DocumentDistribution>
+  <DocumentReferences>
+    <Reference Type="Self">
+      <URL>https://lists.opensuse.org/opensuse-updates/2015-02/msg00040.html</URL>
+      <Description>E-Mail link for openSUSE-SU-2015:0248-1</Description>
+    </Reference>
+    <Reference Type="Self">
+      <URL>https://www.suse.com/support/security/rating/</URL>
+      <Description>SUSE Security Ratings</Description>
+    </Reference>
+  </DocumentReferences>
+  <ProductTree xmlns="http://www.icasi.org/CVRF/schema/prod/1.1">
+    <Branch Type="Product Version" Name="curl-7.40.0-2.35.1">
+      <FullProductName ProductID="curl-7.40.0-2.35.1">curl-7.40.0-2.35.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libcurl-devel-7.40.0-2.35.1">
+      <FullProductName ProductID="libcurl-devel-7.40.0-2.35.1">libcurl-devel-7.40.0-2.35.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libcurl4-7.40.0-2.35.1">
+      <FullProductName ProductID="libcurl4-7.40.0-2.35.1">libcurl4-7.40.0-2.35.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libcurl4-32bit-7.40.0-2.35.1">
+      <FullProductName ProductID="libcurl4-32bit-7.40.0-2.35.1">libcurl4-32bit-7.40.0-2.35.1</FullProductName>
+    </Branch>
+  </ProductTree>
+  <Vulnerability xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1" Ordinal="1">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">The curl_easy_duphandle function in libcurl 7.17.1 through 7.38.0, when running with the CURLOPT_COPYPOSTFIELDS option, does not properly copy HTTP POST data for an easy handle, which triggers an out-of-bounds read that allows remote web servers to read sensitive memory information.</Note>
+    </Notes>
+    <CVE>CVE-2014-3707</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed"/>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-updates/2015-02/msg00040.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2014-3707.html</URL>
+        <Description>CVE-2014-3707</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/901924</URL>
+        <Description>SUSE Bug 901924</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/951391</URL>
+        <Description>SUSE Bug 951391</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+  <Vulnerability xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1" Ordinal="2">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">CRLF injection vulnerability in libcurl 6.0 through 7.x before 7.40.0, when using an HTTP proxy, allows remote attackers to inject arbitrary HTTP headers and conduct HTTP response splitting attacks via CRLF sequences in a URL.</Note>
+    </Notes>
+    <CVE>CVE-2014-8150</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed"/>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-updates/2015-02/msg00040.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2014-8150.html</URL>
+        <Description>CVE-2014-8150</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/911363</URL>
+        <Description>SUSE Bug 911363</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/951391</URL>
+        <Description>SUSE Bug 951391</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+</cvrfdoc>

@@ -1,0 +1,410 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cvrfdoc xmlns="http://www.icasi.org/CVRF/schema/cvrf/1.1" xmlns:cvrf="http://www.icasi.org/CVRF/schema/cvrf/1.1">
+  <DocumentTitle xml:lang="en">Red Hat Security Advisory: Red Hat JBoss Core Services Apache HTTP Server 2.4.37 SP10 security update</DocumentTitle>
+  <DocumentType>Security Advisory</DocumentType>
+  <DocumentPublisher Type="Vendor">
+    <ContactDetails>secalert@redhat.com</ContactDetails>
+    <IssuingAuthority>Red Hat Product Security</IssuingAuthority>
+  </DocumentPublisher>
+  <DocumentTracking>
+    <Identification><ID>RHSA-2021:4613</ID></Identification>
+    <Status>Final</Status>
+    <Version>1</Version>
+    <RevisionHistory>
+       <Revision>
+         <Number>1</Number>
+         <Date>2021-11-10T17:14:00Z</Date>
+         <Description>Current version</Description>
+       </Revision>
+    </RevisionHistory>
+    <InitialReleaseDate>2021-11-10T17:14:00Z</InitialReleaseDate>
+    <CurrentReleaseDate>2021-11-10T17:14:00Z</CurrentReleaseDate>
+    <Generator>
+      <Engine>Red Hat SDEngine 3.3.0</Engine>
+      <Date>2021-11-10T21:59:00Z</Date>
+    </Generator>
+  </DocumentTracking>
+  <DocumentNotes>
+    <Note Title="Topic" Type="Summary" Ordinal="1" xml:lang="en">
+Red Hat JBoss Core Services Apache HTTP Server 2.4.37 Service Pack 10 zip release for Red Hat Enterprise Linux 7, Red Hat Enterprise Linux 8, and Microsoft Windows is available.
+
+Red Hat Product Security has rated this update as having a security impact of Moderate. A Common Vulnerability Scoring System (CVSS) base score, which gives a detailed severity rating, is available for each vulnerability from the CVE link(s) in the References section.
+    </Note>
+    <Note Title="Details" Type="General" Ordinal="2" xml:lang="en">
+Red Hat JBoss Core Services is a set of supplementary software for Red Hat JBoss middleware products. This software, such as Apache HTTP Server, is common to multiple JBoss middleware products, and is packaged under Red Hat JBoss Core Services to allow for faster distribution of updates, and for a more consistent update experience.
+
+This release adds the new Apache HTTP Server 2.4.37 Service Pack 10 packages that are part of the JBoss Core Services offering.
+
+This release serves as a replacement for Red Hat JBoss Core Services Apache HTTP Server 2.4.37 Service Pack 9 and includes bug fixes and enhancements. Refer to the Release Notes for information on the most significant bug fixes and enhancements included in this release.
+
+Security Fix(es):
+
+* httpd: Single zero byte stack overflow in mod_auth_digest (CVE-2020-35452)
+* httpd: mod_session NULL pointer dereference in parser (CVE-2021-26690)
+* httpd: Heap overflow in mod_session (CVE-2021-26691)
+* httpd: mod_proxy_wstunnel tunneling of non Upgraded connection (CVE-2019-17567)
+* httpd: MergeSlashes regression (CVE-2021-30641)
+* httpd: mod_proxy NULL pointer dereference (CVE-2020-13950)
+* jbcs-httpd24-openssl: openssl: NULL pointer dereference in X509_issuer_and_serial_hash() (CVE-2021-23841)
+* openssl: Read buffer overruns processing ASN.1 strings (CVE-2021-3712)
+* openssl: integer overflow in CipherUpdate (CVE-2021-23840)
+* pcre: buffer over-read in JIT when UTF is disabled (CVE-2019-20838)
+* pcre: integer overflow in libpcre (CVE-2020-14155)
+
+For more details about the security issue(s), including the impact, a CVSS score, acknowledgments, and other related information, refer to the CVE page(s) listed in the References section.
+    </Note>
+    <Note Title="Terms of Use" Ordinal="3" Type="Legal Disclaimer" xml:lang="en">This content is licensed under the Creative Commons Attribution 4.0 International License (https://creativecommons.org/licenses/by/4.0/). If you distribute this content, or a modified version of it, you must provide attribution to Red Hat Inc. and provide a link to the original.</Note>
+  </DocumentNotes>
+  <DocumentDistribution xml:lang="en">Copyright © 2021 Red Hat, Inc. All rights reserved.</DocumentDistribution>
+  <AggregateSeverity Namespace="https://access.redhat.com/security/updates/classification/">Moderate</AggregateSeverity>
+  <DocumentReferences>
+    <Reference Type="Self">
+       <URL>https://access.redhat.com/errata/RHSA-2021:4613</URL>
+       <Description>https://access.redhat.com/errata/RHSA-2021:4613</Description>
+    </Reference>
+    <Reference Type="External">
+       <URL>https://access.redhat.com/security/updates/classification/#moderate</URL>
+       <Description>https://access.redhat.com/security/updates/classification/#moderate</Description>
+    </Reference>
+  </DocumentReferences>
+
+  <Vulnerability Ordinal="1" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">httpd:  mod_proxy_wstunnel tunneling of non Upgraded connection</Note></Notes>
+    <DiscoveryDate>2021-05-27T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-06-04T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2019-17567</CVE>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+Before applying the update, back up your existing installation, including all applications, configuration files, databases and database settings, and so on.
+
+The References section of this erratum contains a download link for the update. You must be logged in to download the update.
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:4613</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://httpd.apache.org/security/vulnerabilities_24.html</URL>
+        <Description>https://httpd.apache.org/security/vulnerabilities_24.html</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2019-17567</URL>
+        <Description>CVE-2019-17567</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1966740</URL>
+        <Description>bz#1966740: CVE-2019-17567 httpd:  mod_proxy_wstunnel tunneling of non Upgraded connection</Description>
+      </Reference>
+    </References>
+    <Acknowledgments><Acknowledgment><Description>Red Hat would like to thank Mikhail Egorov and the Apache project for reporting this issue.</Description></Acknowledgment></Acknowledgments>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="2" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">pcre: Buffer over-read in JIT when UTF is disabled and \X or \R has fixed quantifier greater than 1</Note></Notes>
+    <DiscoveryDate>2020-06-16T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2020-06-15T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2019-20838</CVE>
+    <Threats><Threat Type="Impact"><Description>Low</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+Before applying the update, back up your existing installation, including all applications, configuration files, databases and database settings, and so on.
+
+The References section of this erratum contains a download link for the update. You must be logged in to download the update.
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:4613</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2019-20838</URL>
+        <Description>CVE-2019-20838</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1848444</URL>
+        <Description>bz#1848444: CVE-2019-20838 pcre: Buffer over-read in JIT when UTF is disabled and \X or \R has fixed quantifier greater than 1</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="3" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">httpd: mod_proxy NULL pointer dereference</Note></Notes>
+    <DiscoveryDate>2021-05-27T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-06-04T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2020-13950</CVE>
+    <Threats><Threat Type="Impact"><Description>Low</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+Before applying the update, back up your existing installation, including all applications, configuration files, databases and database settings, and so on.
+
+The References section of this erratum contains a download link for the update. You must be logged in to download the update.
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:4613</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://httpd.apache.org/security/vulnerabilities_24.html</URL>
+        <Description>https://httpd.apache.org/security/vulnerabilities_24.html</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2020-13950</URL>
+        <Description>CVE-2020-13950</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1966738</URL>
+        <Description>bz#1966738: CVE-2020-13950 httpd: mod_proxy NULL pointer dereference</Description>
+      </Reference>
+    </References>
+    <Acknowledgments><Acknowledgment><Description>Red Hat would like to thank Marc Stern and the Apache project for reporting this issue.</Description></Acknowledgment></Acknowledgments>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="4" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">pcre: Integer overflow when parsing callout numeric arguments</Note></Notes>
+    <DiscoveryDate>2020-06-16T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2020-06-15T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2020-14155</CVE>
+    <Threats><Threat Type="Impact"><Description>Low</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+Before applying the update, back up your existing installation, including all applications, configuration files, databases and database settings, and so on.
+
+The References section of this erratum contains a download link for the update. You must be logged in to download the update.
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:4613</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2020-14155</URL>
+        <Description>CVE-2020-14155</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1848436</URL>
+        <Description>bz#1848436: CVE-2020-14155 pcre: Integer overflow when parsing callout numeric arguments</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="5" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">httpd: Single zero byte stack overflow in mod_auth_digest</Note></Notes>
+    <DiscoveryDate>2021-05-27T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-06-04T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2020-35452</CVE>
+    <Threats><Threat Type="Impact"><Description>Low</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+Before applying the update, back up your existing installation, including all applications, configuration files, databases and database settings, and so on.
+
+The References section of this erratum contains a download link for the update. You must be logged in to download the update.
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:4613</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://httpd.apache.org/security/vulnerabilities_24.html</URL>
+        <Description>https://httpd.apache.org/security/vulnerabilities_24.html</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2020-35452</URL>
+        <Description>CVE-2020-35452</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1966724</URL>
+        <Description>bz#1966724: CVE-2020-35452 httpd: Single zero byte stack overflow in mod_auth_digest</Description>
+      </Reference>
+    </References>
+    <Acknowledgments><Acknowledgment><Description>Red Hat would like to thank Antonio Morales (GHSL) and the Apache project for reporting this issue.</Description></Acknowledgment></Acknowledgments>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="6" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">openssl: Read buffer overruns processing ASN.1 strings</Note></Notes>
+    <DiscoveryDate>2021-08-19T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-08-24T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-3712</CVE>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+Before applying the update, back up your existing installation, including all applications, configuration files, databases and database settings, and so on.
+
+The References section of this erratum contains a download link for the update. You must be logged in to download the update.
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:4613</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.openssl.org/news/secadv/20210824.txt</URL>
+        <Description>https://www.openssl.org/news/secadv/20210824.txt</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-3712</URL>
+        <Description>CVE-2021-3712</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1995634</URL>
+        <Description>bz#1995634: CVE-2021-3712 openssl: Read buffer overruns processing ASN.1 strings</Description>
+      </Reference>
+    </References>
+    <Acknowledgments><Acknowledgment><Description>Upstream acknowledges the OpenSSL project (Ingo Schwarze) as the original reporter.</Description></Acknowledgment></Acknowledgments>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="7" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">openssl: integer overflow in CipherUpdate</Note></Notes>
+    <DiscoveryDate>2021-02-09T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-02-16T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-23840</CVE>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+Before applying the update, back up your existing installation, including all applications, configuration files, databases and database settings, and so on.
+
+The References section of this erratum contains a download link for the update. You must be logged in to download the update.
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:4613</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.openssl.org/news/secadv/20210216.txt</URL>
+        <Description>https://www.openssl.org/news/secadv/20210216.txt</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-23840</URL>
+        <Description>CVE-2021-23840</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1930324</URL>
+        <Description>bz#1930324: CVE-2021-23840 openssl: integer overflow in CipherUpdate</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="8" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">openssl: NULL pointer dereference in X509_issuer_and_serial_hash()</Note></Notes>
+    <DiscoveryDate>2021-02-16T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-02-16T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-23841</CVE>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+Before applying the update, back up your existing installation, including all applications, configuration files, databases and database settings, and so on.
+
+The References section of this erratum contains a download link for the update. You must be logged in to download the update.
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:4613</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.openssl.org/news/secadv/20210216.txt</URL>
+        <Description>https://www.openssl.org/news/secadv/20210216.txt</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-23841</URL>
+        <Description>CVE-2021-23841</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1930310</URL>
+        <Description>bz#1930310: CVE-2021-23841 openssl: NULL pointer dereference in X509_issuer_and_serial_hash()</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="9" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">httpd: mod_session: NULL pointer dereference when parsing Cookie header</Note></Notes>
+    <DiscoveryDate>2021-05-27T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-06-04T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-26690</CVE>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+Before applying the update, back up your existing installation, including all applications, configuration files, databases and database settings, and so on.
+
+The References section of this erratum contains a download link for the update. You must be logged in to download the update.
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:4613</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://httpd.apache.org/security/vulnerabilities_24.html</URL>
+        <Description>https://httpd.apache.org/security/vulnerabilities_24.html</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-26690</URL>
+        <Description>CVE-2021-26690</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1966729</URL>
+        <Description>bz#1966729: CVE-2021-26690 httpd: mod_session: NULL pointer dereference when parsing Cookie header</Description>
+      </Reference>
+    </References>
+    <Acknowledgments><Acknowledgment><Description>Red Hat would like to thank Antonio Morales (GHSL) and the Apache project for reporting this issue.</Description></Acknowledgment></Acknowledgments>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="10" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">httpd: mod_session: Heap overflow via a crafted SessionHeader value</Note></Notes>
+    <DiscoveryDate>2021-05-27T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-06-04T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-26691</CVE>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+Before applying the update, back up your existing installation, including all applications, configuration files, databases and database settings, and so on.
+
+The References section of this erratum contains a download link for the update. You must be logged in to download the update.
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:4613</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://httpd.apache.org/security/vulnerabilities_24.html</URL>
+        <Description>https://httpd.apache.org/security/vulnerabilities_24.html</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-26691</URL>
+        <Description>CVE-2021-26691</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1966732</URL>
+        <Description>bz#1966732: CVE-2021-26691 httpd: mod_session: Heap overflow via a crafted SessionHeader value</Description>
+      </Reference>
+    </References>
+    <Acknowledgments><Acknowledgment><Description>Red Hat would like to thank Christophe Jaillet and the Apache project for reporting this issue.</Description></Acknowledgment></Acknowledgments>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="11" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">httpd: Unexpected URL matching with 'MergeSlashes OFF'</Note></Notes>
+    <DiscoveryDate>2021-05-27T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-06-04T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-30641</CVE>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+Before applying the update, back up your existing installation, including all applications, configuration files, databases and database settings, and so on.
+
+The References section of this erratum contains a download link for the update. You must be logged in to download the update.
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:4613</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://httpd.apache.org/security/vulnerabilities_24.html</URL>
+        <Description>https://httpd.apache.org/security/vulnerabilities_24.html</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-30641</URL>
+        <Description>CVE-2021-30641</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1966743</URL>
+        <Description>bz#1966743: CVE-2021-30641 httpd: Unexpected URL matching with 'MergeSlashes OFF'</Description>
+      </Reference>
+    </References>
+    <Acknowledgments><Acknowledgment><Description>Red Hat would like to thank Christoph Anton Mitterer and the Apache project for reporting this issue.</Description></Acknowledgment></Acknowledgments>
+  </Vulnerability>
+</cvrfdoc>

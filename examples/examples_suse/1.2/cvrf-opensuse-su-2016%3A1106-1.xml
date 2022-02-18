@@ -1,0 +1,1038 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cvrfdoc xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:cpe="http://cpe.mitre.org/language/2.0" xmlns:cvrf="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/cvrf" xmlns:cvrf-common="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/common" xmlns:cvssv2="http://scap.nist.gov/schema/cvss-v2/1.0" xmlns:cvssv3="https://www.first.org/cvss/cvss-v3.0.xsd" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:ns0="http://purl.org/dc/elements/1.1/" xmlns:prod="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/prod" xmlns:scap-core="http://scap.nist.gov/schema/scap-core/1.0" xmlns:sch="http://purl.oclc.org/dsdl/schematron" xmlns:vuln="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/cvrf">
+  <DocumentTitle xml:lang="en">Security update for samba</DocumentTitle>
+  <DocumentType>SUSE Patch</DocumentType>
+  <DocumentPublisher Type="Vendor">
+    <ContactDetails>security@suse.de</ContactDetails>
+    <IssuingAuthority>SUSE Security Team</IssuingAuthority>
+  </DocumentPublisher>
+  <DocumentTracking>
+    <Identification>
+      <ID>openSUSE-SU-2016:1106-1</ID>
+    </Identification>
+    <Status>Final</Status>
+    <Version>1</Version>
+    <RevisionHistory>
+      <Revision>
+        <Number>1</Number>
+        <Date>2016-04-20T06:12:18Z</Date>
+        <Description>current</Description>
+      </Revision>
+    </RevisionHistory>
+    <InitialReleaseDate>2016-04-20T06:12:18Z</InitialReleaseDate>
+    <CurrentReleaseDate>2016-04-20T06:12:18Z</CurrentReleaseDate>
+    <Generator>
+      <Engine>cve-database/bin/generate-cvrf.pl</Engine>
+      <Date>2017-02-24T01:00:00Z</Date>
+    </Generator>
+  </DocumentTracking>
+  <DocumentNotes>
+    <Note Title="Topic" Type="Summary" Ordinal="1" xml:lang="en">Security update for samba</Note>
+    <Note Title="Details" Type="General" Ordinal="2" xml:lang="en">This update fixes these security vulnerabilities:
+- CVE-2015-5370: DCERPC server and client were vulnerable to DOS and MITM attacks (bsc#936862).
+- CVE-2016-2110: A man-in-the-middle could have downgraded NTLMSSP authentication (bsc#973031).
+- CVE-2016-2111: Domain controller netlogon member computer could have been spoofed (bsc#973032).
+- CVE-2016-2112: LDAP conenctions were vulnerable to downgrade and MITM attack (bsc#973033).
+- CVE-2016-2113: TLS certificate validation were missing (bsc#973034).
+- CVE-2016-2114: 'server signing = mandatory' not enforced (bsc#973035).
+- CVE-2016-2115: Named pipe IPC were vulnerable to MITM attacks (bsc#973036).
+- CVE-2016-2118: 'Badlock' DCERPC impersonation of authenticated account were possible (bsc#971965).
+
+The openSUSE 13.1 update also upgrades to samba 4.2.4 as 4.1.x versions
+are no longer supported by upstream. As a side effect, libpdb0 package
+was replaced by libsamba-passdb0.
+</Note>
+    <Note Title="Terms of Use" Type="Legal Disclaimer" Ordinal="3" xml:lang="en">The CVRF data is provided by SUSE under the Creative Commons License 4.0 with Attribution for Non-Commercial usage (CC-BY-NC-4.0).</Note>
+  </DocumentNotes>
+  <DocumentDistribution xml:lang="en">Copyright SUSE LLC under the Creative Commons License 4.0 with Attribution for Non-Commercial usage (CC-BY-NC-4.0)</DocumentDistribution>
+  <DocumentReferences>
+    <Reference Type="Self">
+      <URL>https://lists.opensuse.org/opensuse-security-announce/2016-04/msg00047.html</URL>
+      <Description>E-Mail link for openSUSE-SU-2016:1106-1</Description>
+    </Reference>
+    <Reference Type="Self">
+      <URL>https://www.suse.com/support/security/rating/</URL>
+      <Description>SUSE Security Ratings</Description>
+    </Reference>
+  </DocumentReferences>
+  <ProductTree xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/prod">
+    <Branch Type="Product Version" Name="ctdb-4.2.4-3.54.2">
+      <FullProductName ProductID="ctdb-4.2.4-3.54.2">ctdb-4.2.4-3.54.2</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="ctdb-devel-4.2.4-3.54.2">
+      <FullProductName ProductID="ctdb-devel-4.2.4-3.54.2">ctdb-devel-4.2.4-3.54.2</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="ctdb-pcp-pmda-4.2.4-3.54.2">
+      <FullProductName ProductID="ctdb-pcp-pmda-4.2.4-3.54.2">ctdb-pcp-pmda-4.2.4-3.54.2</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="ctdb-tests-4.2.4-3.54.2">
+      <FullProductName ProductID="ctdb-tests-4.2.4-3.54.2">ctdb-tests-4.2.4-3.54.2</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libdcerpc-atsvc-devel-4.2.4-3.54.2">
+      <FullProductName ProductID="libdcerpc-atsvc-devel-4.2.4-3.54.2">libdcerpc-atsvc-devel-4.2.4-3.54.2</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libdcerpc-atsvc0-4.2.4-3.54.2">
+      <FullProductName ProductID="libdcerpc-atsvc0-4.2.4-3.54.2">libdcerpc-atsvc0-4.2.4-3.54.2</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libdcerpc-atsvc0-32bit-4.2.4-3.54.2">
+      <FullProductName ProductID="libdcerpc-atsvc0-32bit-4.2.4-3.54.2">libdcerpc-atsvc0-32bit-4.2.4-3.54.2</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libdcerpc-binding0-4.2.4-3.54.2">
+      <FullProductName ProductID="libdcerpc-binding0-4.2.4-3.54.2">libdcerpc-binding0-4.2.4-3.54.2</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libdcerpc-binding0-32bit-4.2.4-3.54.2">
+      <FullProductName ProductID="libdcerpc-binding0-32bit-4.2.4-3.54.2">libdcerpc-binding0-32bit-4.2.4-3.54.2</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libdcerpc-devel-4.2.4-3.54.2">
+      <FullProductName ProductID="libdcerpc-devel-4.2.4-3.54.2">libdcerpc-devel-4.2.4-3.54.2</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libdcerpc-samr-devel-4.2.4-3.54.2">
+      <FullProductName ProductID="libdcerpc-samr-devel-4.2.4-3.54.2">libdcerpc-samr-devel-4.2.4-3.54.2</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libdcerpc-samr0-4.2.4-3.54.2">
+      <FullProductName ProductID="libdcerpc-samr0-4.2.4-3.54.2">libdcerpc-samr0-4.2.4-3.54.2</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libdcerpc-samr0-32bit-4.2.4-3.54.2">
+      <FullProductName ProductID="libdcerpc-samr0-32bit-4.2.4-3.54.2">libdcerpc-samr0-32bit-4.2.4-3.54.2</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libdcerpc0-4.2.4-3.54.2">
+      <FullProductName ProductID="libdcerpc0-4.2.4-3.54.2">libdcerpc0-4.2.4-3.54.2</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libdcerpc0-32bit-4.2.4-3.54.2">
+      <FullProductName ProductID="libdcerpc0-32bit-4.2.4-3.54.2">libdcerpc0-32bit-4.2.4-3.54.2</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libgensec-devel-4.2.4-3.54.2">
+      <FullProductName ProductID="libgensec-devel-4.2.4-3.54.2">libgensec-devel-4.2.4-3.54.2</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libgensec0-4.2.4-3.54.2">
+      <FullProductName ProductID="libgensec0-4.2.4-3.54.2">libgensec0-4.2.4-3.54.2</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libgensec0-32bit-4.2.4-3.54.2">
+      <FullProductName ProductID="libgensec0-32bit-4.2.4-3.54.2">libgensec0-32bit-4.2.4-3.54.2</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libndr-devel-4.2.4-3.54.2">
+      <FullProductName ProductID="libndr-devel-4.2.4-3.54.2">libndr-devel-4.2.4-3.54.2</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libndr-krb5pac-devel-4.2.4-3.54.2">
+      <FullProductName ProductID="libndr-krb5pac-devel-4.2.4-3.54.2">libndr-krb5pac-devel-4.2.4-3.54.2</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libndr-krb5pac0-4.2.4-3.54.2">
+      <FullProductName ProductID="libndr-krb5pac0-4.2.4-3.54.2">libndr-krb5pac0-4.2.4-3.54.2</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libndr-krb5pac0-32bit-4.2.4-3.54.2">
+      <FullProductName ProductID="libndr-krb5pac0-32bit-4.2.4-3.54.2">libndr-krb5pac0-32bit-4.2.4-3.54.2</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libndr-nbt-devel-4.2.4-3.54.2">
+      <FullProductName ProductID="libndr-nbt-devel-4.2.4-3.54.2">libndr-nbt-devel-4.2.4-3.54.2</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libndr-nbt0-4.2.4-3.54.2">
+      <FullProductName ProductID="libndr-nbt0-4.2.4-3.54.2">libndr-nbt0-4.2.4-3.54.2</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libndr-nbt0-32bit-4.2.4-3.54.2">
+      <FullProductName ProductID="libndr-nbt0-32bit-4.2.4-3.54.2">libndr-nbt0-32bit-4.2.4-3.54.2</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libndr-standard-devel-4.2.4-3.54.2">
+      <FullProductName ProductID="libndr-standard-devel-4.2.4-3.54.2">libndr-standard-devel-4.2.4-3.54.2</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libndr-standard0-4.2.4-3.54.2">
+      <FullProductName ProductID="libndr-standard0-4.2.4-3.54.2">libndr-standard0-4.2.4-3.54.2</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libndr-standard0-32bit-4.2.4-3.54.2">
+      <FullProductName ProductID="libndr-standard0-32bit-4.2.4-3.54.2">libndr-standard0-32bit-4.2.4-3.54.2</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libndr0-4.2.4-3.54.2">
+      <FullProductName ProductID="libndr0-4.2.4-3.54.2">libndr0-4.2.4-3.54.2</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libndr0-32bit-4.2.4-3.54.2">
+      <FullProductName ProductID="libndr0-32bit-4.2.4-3.54.2">libndr0-32bit-4.2.4-3.54.2</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libnetapi-devel-4.2.4-3.54.2">
+      <FullProductName ProductID="libnetapi-devel-4.2.4-3.54.2">libnetapi-devel-4.2.4-3.54.2</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libnetapi0-4.2.4-3.54.2">
+      <FullProductName ProductID="libnetapi0-4.2.4-3.54.2">libnetapi0-4.2.4-3.54.2</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libnetapi0-32bit-4.2.4-3.54.2">
+      <FullProductName ProductID="libnetapi0-32bit-4.2.4-3.54.2">libnetapi0-32bit-4.2.4-3.54.2</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libregistry-devel-4.2.4-3.54.2">
+      <FullProductName ProductID="libregistry-devel-4.2.4-3.54.2">libregistry-devel-4.2.4-3.54.2</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libregistry0-4.2.4-3.54.2">
+      <FullProductName ProductID="libregistry0-4.2.4-3.54.2">libregistry0-4.2.4-3.54.2</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libregistry0-32bit-4.2.4-3.54.2">
+      <FullProductName ProductID="libregistry0-32bit-4.2.4-3.54.2">libregistry0-32bit-4.2.4-3.54.2</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libsamba-credentials-devel-4.2.4-3.54.2">
+      <FullProductName ProductID="libsamba-credentials-devel-4.2.4-3.54.2">libsamba-credentials-devel-4.2.4-3.54.2</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libsamba-credentials0-4.2.4-3.54.2">
+      <FullProductName ProductID="libsamba-credentials0-4.2.4-3.54.2">libsamba-credentials0-4.2.4-3.54.2</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libsamba-credentials0-32bit-4.2.4-3.54.2">
+      <FullProductName ProductID="libsamba-credentials0-32bit-4.2.4-3.54.2">libsamba-credentials0-32bit-4.2.4-3.54.2</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libsamba-hostconfig-devel-4.2.4-3.54.2">
+      <FullProductName ProductID="libsamba-hostconfig-devel-4.2.4-3.54.2">libsamba-hostconfig-devel-4.2.4-3.54.2</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libsamba-hostconfig0-4.2.4-3.54.2">
+      <FullProductName ProductID="libsamba-hostconfig0-4.2.4-3.54.2">libsamba-hostconfig0-4.2.4-3.54.2</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libsamba-hostconfig0-32bit-4.2.4-3.54.2">
+      <FullProductName ProductID="libsamba-hostconfig0-32bit-4.2.4-3.54.2">libsamba-hostconfig0-32bit-4.2.4-3.54.2</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libsamba-passdb-devel-4.2.4-3.54.2">
+      <FullProductName ProductID="libsamba-passdb-devel-4.2.4-3.54.2">libsamba-passdb-devel-4.2.4-3.54.2</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libsamba-passdb0-4.2.4-3.54.2">
+      <FullProductName ProductID="libsamba-passdb0-4.2.4-3.54.2">libsamba-passdb0-4.2.4-3.54.2</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libsamba-passdb0-32bit-4.2.4-3.54.2">
+      <FullProductName ProductID="libsamba-passdb0-32bit-4.2.4-3.54.2">libsamba-passdb0-32bit-4.2.4-3.54.2</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libsamba-policy-devel-4.2.4-3.54.2">
+      <FullProductName ProductID="libsamba-policy-devel-4.2.4-3.54.2">libsamba-policy-devel-4.2.4-3.54.2</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libsamba-policy0-4.2.4-3.54.2">
+      <FullProductName ProductID="libsamba-policy0-4.2.4-3.54.2">libsamba-policy0-4.2.4-3.54.2</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libsamba-policy0-32bit-4.2.4-3.54.2">
+      <FullProductName ProductID="libsamba-policy0-32bit-4.2.4-3.54.2">libsamba-policy0-32bit-4.2.4-3.54.2</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libsamba-util-devel-4.2.4-3.54.2">
+      <FullProductName ProductID="libsamba-util-devel-4.2.4-3.54.2">libsamba-util-devel-4.2.4-3.54.2</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libsamba-util0-4.2.4-3.54.2">
+      <FullProductName ProductID="libsamba-util0-4.2.4-3.54.2">libsamba-util0-4.2.4-3.54.2</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libsamba-util0-32bit-4.2.4-3.54.2">
+      <FullProductName ProductID="libsamba-util0-32bit-4.2.4-3.54.2">libsamba-util0-32bit-4.2.4-3.54.2</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libsamdb-devel-4.2.4-3.54.2">
+      <FullProductName ProductID="libsamdb-devel-4.2.4-3.54.2">libsamdb-devel-4.2.4-3.54.2</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libsamdb0-4.2.4-3.54.2">
+      <FullProductName ProductID="libsamdb0-4.2.4-3.54.2">libsamdb0-4.2.4-3.54.2</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libsamdb0-32bit-4.2.4-3.54.2">
+      <FullProductName ProductID="libsamdb0-32bit-4.2.4-3.54.2">libsamdb0-32bit-4.2.4-3.54.2</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libsmbclient-devel-4.2.4-3.54.2">
+      <FullProductName ProductID="libsmbclient-devel-4.2.4-3.54.2">libsmbclient-devel-4.2.4-3.54.2</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libsmbclient-raw-devel-4.2.4-3.54.2">
+      <FullProductName ProductID="libsmbclient-raw-devel-4.2.4-3.54.2">libsmbclient-raw-devel-4.2.4-3.54.2</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libsmbclient-raw0-4.2.4-3.54.2">
+      <FullProductName ProductID="libsmbclient-raw0-4.2.4-3.54.2">libsmbclient-raw0-4.2.4-3.54.2</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libsmbclient-raw0-32bit-4.2.4-3.54.2">
+      <FullProductName ProductID="libsmbclient-raw0-32bit-4.2.4-3.54.2">libsmbclient-raw0-32bit-4.2.4-3.54.2</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libsmbclient0-4.2.4-3.54.2">
+      <FullProductName ProductID="libsmbclient0-4.2.4-3.54.2">libsmbclient0-4.2.4-3.54.2</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libsmbclient0-32bit-4.2.4-3.54.2">
+      <FullProductName ProductID="libsmbclient0-32bit-4.2.4-3.54.2">libsmbclient0-32bit-4.2.4-3.54.2</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libsmbconf-devel-4.2.4-3.54.2">
+      <FullProductName ProductID="libsmbconf-devel-4.2.4-3.54.2">libsmbconf-devel-4.2.4-3.54.2</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libsmbconf0-4.2.4-3.54.2">
+      <FullProductName ProductID="libsmbconf0-4.2.4-3.54.2">libsmbconf0-4.2.4-3.54.2</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libsmbconf0-32bit-4.2.4-3.54.2">
+      <FullProductName ProductID="libsmbconf0-32bit-4.2.4-3.54.2">libsmbconf0-32bit-4.2.4-3.54.2</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libsmbldap-devel-4.2.4-3.54.2">
+      <FullProductName ProductID="libsmbldap-devel-4.2.4-3.54.2">libsmbldap-devel-4.2.4-3.54.2</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libsmbldap0-4.2.4-3.54.2">
+      <FullProductName ProductID="libsmbldap0-4.2.4-3.54.2">libsmbldap0-4.2.4-3.54.2</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libsmbldap0-32bit-4.2.4-3.54.2">
+      <FullProductName ProductID="libsmbldap0-32bit-4.2.4-3.54.2">libsmbldap0-32bit-4.2.4-3.54.2</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libtevent-util-devel-4.2.4-3.54.2">
+      <FullProductName ProductID="libtevent-util-devel-4.2.4-3.54.2">libtevent-util-devel-4.2.4-3.54.2</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libtevent-util0-4.2.4-3.54.2">
+      <FullProductName ProductID="libtevent-util0-4.2.4-3.54.2">libtevent-util0-4.2.4-3.54.2</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libtevent-util0-32bit-4.2.4-3.54.2">
+      <FullProductName ProductID="libtevent-util0-32bit-4.2.4-3.54.2">libtevent-util0-32bit-4.2.4-3.54.2</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libwbclient-devel-4.2.4-3.54.2">
+      <FullProductName ProductID="libwbclient-devel-4.2.4-3.54.2">libwbclient-devel-4.2.4-3.54.2</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libwbclient0-4.2.4-3.54.2">
+      <FullProductName ProductID="libwbclient0-4.2.4-3.54.2">libwbclient0-4.2.4-3.54.2</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libwbclient0-32bit-4.2.4-3.54.2">
+      <FullProductName ProductID="libwbclient0-32bit-4.2.4-3.54.2">libwbclient0-32bit-4.2.4-3.54.2</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="samba-4.2.4-3.54.2">
+      <FullProductName ProductID="samba-4.2.4-3.54.2">samba-4.2.4-3.54.2</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="samba-32bit-4.2.4-3.54.2">
+      <FullProductName ProductID="samba-32bit-4.2.4-3.54.2">samba-32bit-4.2.4-3.54.2</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="samba-client-4.2.4-3.54.2">
+      <FullProductName ProductID="samba-client-4.2.4-3.54.2">samba-client-4.2.4-3.54.2</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="samba-client-32bit-4.2.4-3.54.2">
+      <FullProductName ProductID="samba-client-32bit-4.2.4-3.54.2">samba-client-32bit-4.2.4-3.54.2</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="samba-core-devel-4.2.4-3.54.2">
+      <FullProductName ProductID="samba-core-devel-4.2.4-3.54.2">samba-core-devel-4.2.4-3.54.2</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="samba-doc-4.2.4-3.54.2">
+      <FullProductName ProductID="samba-doc-4.2.4-3.54.2">samba-doc-4.2.4-3.54.2</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="samba-libs-4.2.4-3.54.2">
+      <FullProductName ProductID="samba-libs-4.2.4-3.54.2">samba-libs-4.2.4-3.54.2</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="samba-libs-32bit-4.2.4-3.54.2">
+      <FullProductName ProductID="samba-libs-32bit-4.2.4-3.54.2">samba-libs-32bit-4.2.4-3.54.2</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="samba-pidl-4.2.4-3.54.2">
+      <FullProductName ProductID="samba-pidl-4.2.4-3.54.2">samba-pidl-4.2.4-3.54.2</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="samba-python-4.2.4-3.54.2">
+      <FullProductName ProductID="samba-python-4.2.4-3.54.2">samba-python-4.2.4-3.54.2</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="samba-test-4.2.4-3.54.2">
+      <FullProductName ProductID="samba-test-4.2.4-3.54.2">samba-test-4.2.4-3.54.2</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="samba-test-devel-4.2.4-3.54.2">
+      <FullProductName ProductID="samba-test-devel-4.2.4-3.54.2">samba-test-devel-4.2.4-3.54.2</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="samba-winbind-4.2.4-3.54.2">
+      <FullProductName ProductID="samba-winbind-4.2.4-3.54.2">samba-winbind-4.2.4-3.54.2</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="samba-winbind-32bit-4.2.4-3.54.2">
+      <FullProductName ProductID="samba-winbind-32bit-4.2.4-3.54.2">samba-winbind-32bit-4.2.4-3.54.2</FullProductName>
+    </Branch>
+  </ProductTree>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="1">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">The winbind_name_list_to_sid_string_list function in nsswitch/pam_winbind.c in Samba through 4.1.2 handles invalid require_membership_of group names by accepting authentication by any user, which allows remote authenticated users to bypass intended access restrictions in opportunistic circumstances by leveraging an administrator's pam_winbind configuration-file mistake.</Note>
+    </Notes>
+    <CVE>CVE-2012-6150</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed"/>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>low</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>3.6</BaseScoreV2>
+        <VectorV2>AV:N/AC:H/Au:S/C:P/I:P/A:N</VectorV2>
+      </ScoreSetV2>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-security-announce/2016-04/msg00047.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2012-6150.html</URL>
+        <Description>CVE-2012-6150</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/844720</URL>
+        <Description>SUSE Bug 844720</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/853347</URL>
+        <Description>SUSE Bug 853347</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="2">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">Heap-based buffer overflow in the dcerpc_read_ncacn_packet_done function in librpc/rpc/dcerpc_util.c in winbindd in Samba 3.x before 3.6.22, 4.0.x before 4.0.13, and 4.1.x before 4.1.3 allows remote AD domain controllers to execute arbitrary code via an invalid fragment length in a DCE-RPC packet.</Note>
+    </Notes>
+    <CVE>CVE-2013-4408</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed"/>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>important</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>6.8</BaseScoreV2>
+        <VectorV2>AV:A/AC:H/Au:N/C:C/I:C/A:C</VectorV2>
+      </ScoreSetV2>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-security-announce/2016-04/msg00047.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2013-4408.html</URL>
+        <Description>CVE-2013-4408</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/844720</URL>
+        <Description>SUSE Bug 844720</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/848101</URL>
+        <Description>SUSE Bug 848101</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/882906</URL>
+        <Description>SUSE Bug 882906</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="3">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">Samba 3.x before 3.6.23, 4.0.x before 4.0.16, and 4.1.x before 4.1.6 does not enforce the password-guessing protection mechanism for all interfaces, which makes it easier for remote attackers to obtain access via brute-force ChangePasswordUser2 (1) SAMR or (2) RAP attempts.</Note>
+    </Notes>
+    <CVE>CVE-2013-4496</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed"/>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>5</BaseScoreV2>
+        <VectorV2>AV:N/AC:L/Au:N/C:P/I:N/A:N</VectorV2>
+      </ScoreSetV2>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-security-announce/2016-04/msg00047.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2013-4496.html</URL>
+        <Description>CVE-2013-4496</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/849224</URL>
+        <Description>SUSE Bug 849224</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/866844</URL>
+        <Description>SUSE Bug 866844</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="4">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">The Netlogon server implementation in smbd in Samba 3.5.x and 3.6.x before 3.6.25, 4.0.x before 4.0.25, 4.1.x before 4.1.17, and 4.2.x before 4.2.0rc5 performs a free operation on an uninitialized stack pointer, which allows remote attackers to execute arbitrary code via crafted Netlogon packets that use the ServerPasswordSet RPC API, as demonstrated by packets reaching the _netr_ServerPasswordSet function in rpc_server/netlogon/srv_netlog_nt.c.</Note>
+    </Notes>
+    <CVE>CVE-2015-0240</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed"/>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>important</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>10</BaseScoreV2>
+        <VectorV2>AV:N/AC:L/Au:N/C:C/I:C/A:C</VectorV2>
+      </ScoreSetV2>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-security-announce/2016-04/msg00047.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-0240.html</URL>
+        <Description>CVE-2015-0240</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/917376</URL>
+        <Description>SUSE Bug 917376</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="5">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">vfs.c in smbd in Samba 3.x and 4.x before 4.1.22, 4.2.x before 4.2.7, and 4.3.x before 4.3.3, when share names with certain substring relationships exist, allows remote attackers to bypass intended file-access restrictions via a symlink that points outside of a share.</Note>
+    </Notes>
+    <CVE>CVE-2015-5252</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed"/>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>6.8</BaseScoreV2>
+        <VectorV2>AV:N/AC:L/Au:S/C:C/I:N/A:N</VectorV2>
+      </ScoreSetV2>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-security-announce/2016-04/msg00047.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-5252.html</URL>
+        <Description>CVE-2015-5252</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/958582</URL>
+        <Description>SUSE Bug 958582</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="6">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">Samba 3.x and 4.x before 4.1.22, 4.2.x before 4.2.7, and 4.3.x before 4.3.3 supports connections that are encrypted but unsigned, which allows man-in-the-middle attackers to conduct encrypted-to-unencrypted downgrade attacks by modifying the client-server data stream, related to clidfs.c, libsmb_server.c, and smbXcli_base.c.</Note>
+    </Notes>
+    <CVE>CVE-2015-5296</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed"/>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>3.2</BaseScoreV2>
+        <VectorV2>AV:A/AC:H/Au:N/C:P/I:P/A:N</VectorV2>
+      </ScoreSetV2>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-security-announce/2016-04/msg00047.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-5296.html</URL>
+        <Description>CVE-2015-5296</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/1058622</URL>
+        <Description>SUSE Bug 1058622</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/958584</URL>
+        <Description>SUSE Bug 958584</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/973031</URL>
+        <Description>SUSE Bug 973031</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="7">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">The shadow_copy2_get_shadow_copy_data function in modules/vfs_shadow_copy2.c in Samba 3.x and 4.x before 4.1.22, 4.2.x before 4.2.7, and 4.3.x before 4.3.3 does not verify that the DIRECTORY_LIST access right has been granted, which allows remote attackers to access snapshots by visiting a shadow copy directory.</Note>
+    </Notes>
+    <CVE>CVE-2015-5299</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed"/>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>3.5</BaseScoreV2>
+        <VectorV2>AV:N/AC:M/Au:S/C:P/I:N/A:N</VectorV2>
+      </ScoreSetV2>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-security-announce/2016-04/msg00047.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-5299.html</URL>
+        <Description>CVE-2015-5299</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/958583</URL>
+        <Description>SUSE Bug 958583</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="8">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">ldb before 1.1.24, as used in the AD LDAP server in Samba 4.x before 4.1.22, 4.2.x before 4.2.7, and 4.3.x before 4.3.3, mishandles string lengths, which allows remote attackers to obtain sensitive information from daemon heap memory by sending crafted packets and then reading (1) an error message or (2) a database value.</Note>
+    </Notes>
+    <CVE>CVE-2015-5330</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed"/>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>4</BaseScoreV2>
+        <VectorV2>AV:N/AC:L/Au:S/C:P/I:N/A:N</VectorV2>
+      </ScoreSetV2>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-security-announce/2016-04/msg00047.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-5330.html</URL>
+        <Description>CVE-2015-5330</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/958581</URL>
+        <Description>SUSE Bug 958581</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/958586</URL>
+        <Description>SUSE Bug 958586</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="9">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">Samba 3.x and 4.x before 4.2.11, 4.3.x before 4.3.8, and 4.4.x before 4.4.2 does not properly implement the DCE-RPC layer, which allows remote attackers to perform protocol-downgrade attacks, cause a denial of service (application crash or CPU consumption), or possibly execute arbitrary code on a client system via unspecified vectors.</Note>
+    </Notes>
+    <CVE>CVE-2015-5370</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed"/>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>important</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>8.5</BaseScoreV2>
+        <VectorV2>AV:N/AC:M/Au:S/C:C/I:C/A:C</VectorV2>
+      </ScoreSetV2>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-security-announce/2016-04/msg00047.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-5370.html</URL>
+        <Description>CVE-2015-5370</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/936862</URL>
+        <Description>SUSE Bug 936862</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/975276</URL>
+        <Description>SUSE Bug 975276</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="10">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">The SMB1 implementation in smbd in Samba 3.x and 4.x before 4.1.23, 4.2.x before 4.2.9, 4.3.x before 4.3.6, and 4.4.x before 4.4.0rc4 allows remote authenticated users to modify arbitrary ACLs by using a UNIX SMB1 call to create a symlink, and then using a non-UNIX SMB1 call to write to the ACL content.</Note>
+    </Notes>
+    <CVE>CVE-2015-7560</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed"/>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>4.9</BaseScoreV2>
+        <VectorV2>AV:A/AC:M/Au:S/C:P/I:P/A:P</VectorV2>
+      </ScoreSetV2>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-security-announce/2016-04/msg00047.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-7560.html</URL>
+        <Description>CVE-2015-7560</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/968222</URL>
+        <Description>SUSE Bug 968222</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="11">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">The NTLMSSP authentication implementation in Samba 3.x and 4.x before 4.2.11, 4.3.x before 4.3.8, and 4.4.x before 4.4.2 allows man-in-the-middle attackers to perform protocol-downgrade attacks by modifying the client-server data stream to remove application-layer flags or encryption settings, as demonstrated by clearing the NTLMSSP_NEGOTIATE_SEAL or NTLMSSP_NEGOTIATE_SIGN option to disrupt LDAP security.</Note>
+    </Notes>
+    <CVE>CVE-2016-2110</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed"/>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>5.8</BaseScoreV2>
+        <VectorV2>AV:N/AC:M/Au:N/C:P/I:P/A:N</VectorV2>
+      </ScoreSetV2>
+      <ScoreSetV3>
+        <BaseScoreV3>5.9</BaseScoreV3>
+        <VectorV3>CVSS:3.0/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:H/A:N</VectorV3>
+      </ScoreSetV3>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-security-announce/2016-04/msg00047.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2016-2110.html</URL>
+        <Description>CVE-2016-2110</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/1009711</URL>
+        <Description>SUSE Bug 1009711</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/973031</URL>
+        <Description>SUSE Bug 973031</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/973033</URL>
+        <Description>SUSE Bug 973033</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/973036</URL>
+        <Description>SUSE Bug 973036</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/975276</URL>
+        <Description>SUSE Bug 975276</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="12">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">The NETLOGON service in Samba 3.x and 4.x before 4.2.11, 4.3.x before 4.3.8, and 4.4.x before 4.4.2, when a domain controller is configured, allows remote attackers to spoof the computer name of a secure channel's endpoint, and obtain sensitive session information, by running a crafted application and leveraging the ability to sniff network traffic, a related issue to CVE-2015-0005.</Note>
+    </Notes>
+    <CVE>CVE-2016-2111</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed"/>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>4.3</BaseScoreV2>
+        <VectorV2>AV:N/AC:M/Au:N/C:P/I:N/A:N</VectorV2>
+      </ScoreSetV2>
+      <ScoreSetV3>
+        <BaseScoreV3>6.3</BaseScoreV3>
+        <VectorV3>CVSS:3.0/AV:L/AC:H/PR:N/UI:R/S:U/C:H/I:H/A:N</VectorV3>
+      </ScoreSetV3>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-security-announce/2016-04/msg00047.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2016-2111.html</URL>
+        <Description>CVE-2016-2111</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/973032</URL>
+        <Description>SUSE Bug 973032</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/975276</URL>
+        <Description>SUSE Bug 975276</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="13">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">The bundled LDAP client library in Samba 3.x and 4.x before 4.2.11, 4.3.x before 4.3.8, and 4.4.x before 4.4.2 does not recognize the "client ldap sasl wrapping" setting, which allows man-in-the-middle attackers to perform LDAP protocol-downgrade attacks by modifying the client-server data stream.</Note>
+    </Notes>
+    <CVE>CVE-2016-2112</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed"/>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>4.3</BaseScoreV2>
+        <VectorV2>AV:A/AC:M/Au:N/C:P/I:P/A:N</VectorV2>
+      </ScoreSetV2>
+      <ScoreSetV3>
+        <BaseScoreV3>5.9</BaseScoreV3>
+        <VectorV3>CVSS:3.0/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:H/A:N</VectorV3>
+      </ScoreSetV3>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-security-announce/2016-04/msg00047.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2016-2112.html</URL>
+        <Description>CVE-2016-2112</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/973031</URL>
+        <Description>SUSE Bug 973031</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/973033</URL>
+        <Description>SUSE Bug 973033</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/975276</URL>
+        <Description>SUSE Bug 975276</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="14">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">Samba 4.x before 4.2.11, 4.3.x before 4.3.8, and 4.4.x before 4.4.2 does not verify X.509 certificates from TLS servers, which allows man-in-the-middle attackers to spoof LDAPS and HTTPS servers and obtain sensitive information via a crafted certificate.</Note>
+    </Notes>
+    <CVE>CVE-2016-2113</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed"/>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>4.3</BaseScoreV2>
+        <VectorV2>AV:A/AC:M/Au:N/C:P/I:P/A:N</VectorV2>
+      </ScoreSetV2>
+      <ScoreSetV3>
+        <BaseScoreV3>7.4</BaseScoreV3>
+        <VectorV3>CVSS:3.0/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:N</VectorV3>
+      </ScoreSetV3>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-security-announce/2016-04/msg00047.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2016-2113.html</URL>
+        <Description>CVE-2016-2113</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/973031</URL>
+        <Description>SUSE Bug 973031</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/973033</URL>
+        <Description>SUSE Bug 973033</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/973034</URL>
+        <Description>SUSE Bug 973034</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/975276</URL>
+        <Description>SUSE Bug 975276</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="15">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">The SMB1 protocol implementation in Samba 4.x before 4.2.11, 4.3.x before 4.3.8, and 4.4.x before 4.4.2 does not recognize the "server signing = mandatory" setting, which allows man-in-the-middle attackers to spoof SMB servers by modifying the client-server data stream.</Note>
+    </Notes>
+    <CVE>CVE-2016-2114</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed"/>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>5.8</BaseScoreV2>
+        <VectorV2>AV:N/AC:M/Au:N/C:P/I:P/A:N</VectorV2>
+      </ScoreSetV2>
+      <ScoreSetV3>
+        <BaseScoreV3>5.9</BaseScoreV3>
+        <VectorV3>CVSS:3.0/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:H/A:N</VectorV3>
+      </ScoreSetV3>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-security-announce/2016-04/msg00047.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2016-2114.html</URL>
+        <Description>CVE-2016-2114</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/973035</URL>
+        <Description>SUSE Bug 973035</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="16">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">Samba 3.x and 4.x before 4.2.11, 4.3.x before 4.3.8, and 4.4.x before 4.4.2 does not require SMB signing within a DCERPC session over ncacn_np, which allows man-in-the-middle attackers to spoof SMB clients by modifying the client-server data stream.</Note>
+    </Notes>
+    <CVE>CVE-2016-2115</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed"/>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>6.8</BaseScoreV2>
+        <VectorV2>AV:N/AC:M/Au:N/C:P/I:P/A:P</VectorV2>
+      </ScoreSetV2>
+      <ScoreSetV3>
+        <BaseScoreV3>5.9</BaseScoreV3>
+        <VectorV3>CVSS:3.0/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:H/A:N</VectorV3>
+      </ScoreSetV3>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-security-announce/2016-04/msg00047.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2016-2115.html</URL>
+        <Description>CVE-2016-2115</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/973036</URL>
+        <Description>SUSE Bug 973036</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/975276</URL>
+        <Description>SUSE Bug 975276</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="17">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">The MS-SAMR and MS-LSAD protocol implementations in Samba 3.x and 4.x before 4.2.11, 4.3.x before 4.3.8, and 4.4.x before 4.4.2 mishandle DCERPC connections, which allows man-in-the-middle attackers to perform protocol-downgrade attacks and impersonate users by modifying the client-server data stream, aka "BADLOCK."</Note>
+    </Notes>
+    <CVE>CVE-2016-2118</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed"/>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>6.8</BaseScoreV2>
+        <VectorV2>AV:N/AC:M/Au:N/C:P/I:P/A:P</VectorV2>
+      </ScoreSetV2>
+      <ScoreSetV3>
+        <BaseScoreV3>7.5</BaseScoreV3>
+        <VectorV3>CVSS:3.0/AV:N/AC:H/PR:N/UI:R/S:U/C:H/I:H/A:H</VectorV3>
+      </ScoreSetV3>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-security-announce/2016-04/msg00047.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2016-2118.html</URL>
+        <Description>CVE-2016-2118</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/971965</URL>
+        <Description>SUSE Bug 971965</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/975276</URL>
+        <Description>SUSE Bug 975276</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+</cvrfdoc>

@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cvrfdoc xmlns="http://www.icasi.org/CVRF/schema/cvrf/1.1" xmlns:cvrf="http://www.icasi.org/CVRF/schema/cvrf/1.1">
+  <DocumentTitle xml:lang="en">Security update for curl</DocumentTitle>
+  <DocumentType>SUSE Patch</DocumentType>
+  <DocumentPublisher Type="Vendor">
+    <ContactDetails>security@suse.de</ContactDetails>
+    <IssuingAuthority>SUSE Security Team</IssuingAuthority>
+  </DocumentPublisher>
+  <DocumentTracking>
+    <Identification>
+      <ID>openSUSE-SU-2015:1135-1</ID>
+    </Identification>
+    <Status>Final</Status>
+    <Version>1</Version>
+    <RevisionHistory>
+      <Revision>
+        <Number>1</Number>
+        <Date>2015-06-17T16:39:43Z</Date>
+        <Description>current</Description>
+      </Revision>
+    </RevisionHistory>
+    <InitialReleaseDate>2015-06-17T16:39:43Z</InitialReleaseDate>
+    <CurrentReleaseDate>2015-06-17T16:39:43Z</CurrentReleaseDate>
+    <Generator>
+      <Engine>cve-database/bin/generate-cvrf.pl</Engine>
+      <Date>2017-02-24T01:00:00Z</Date>
+    </Generator>
+  </DocumentTracking>
+  <DocumentNotes>
+    <Note Title="Topic" Type="Summary" Ordinal="1" xml:lang="en">Security update for curl</Note>
+    <Note Title="Details" Type="General" Ordinal="2" xml:lang="en">Curl was updated to fix two security issues and enable metalink support
+
+The following vulnerabilities were fixed:
+
+* CVE-2015-3236: libcurl could have wrongly send HTTP credentials when re-using connections (boo#934501)
+* CVE-2015-3237: libcurl could have been tricked by a malicious SMB server to send off data it did not intend to (boo#934502)
+
+The following feature was enabled:
+
+* boo#851126: enable metalink support.</Note>
+    <Note Title="Terms of Use" Type="Legal Disclaimer" Ordinal="3" xml:lang="en">The CVRF data is provided by SUSE under the Creative Commons License 4.0 with Attribution for Non-Commercial usage (CC-BY-NC-4.0).</Note>
+  </DocumentNotes>
+  <DocumentDistribution xml:lang="en">Copyright SUSE LLC under the Creative Commons License 4.0 with Attribution for Non-Commercial usage (CC-BY-NC-4.0)</DocumentDistribution>
+  <DocumentReferences>
+    <Reference Type="Self">
+      <URL>https://lists.opensuse.org/opensuse-updates/2015-06/msg00054.html</URL>
+      <Description>E-Mail link for openSUSE-SU-2015:1135-1</Description>
+    </Reference>
+    <Reference Type="Self">
+      <URL>https://www.suse.com/support/security/rating/</URL>
+      <Description>SUSE Security Ratings</Description>
+    </Reference>
+  </DocumentReferences>
+  <ProductTree xmlns="http://www.icasi.org/CVRF/schema/prod/1.1">
+    <Branch Type="Product Version" Name="curl-7.42.1-2.47.1">
+      <FullProductName ProductID="curl-7.42.1-2.47.1">curl-7.42.1-2.47.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libcurl-devel-7.42.1-2.47.1">
+      <FullProductName ProductID="libcurl-devel-7.42.1-2.47.1">libcurl-devel-7.42.1-2.47.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libcurl-devel-32bit-7.42.1-2.47.1">
+      <FullProductName ProductID="libcurl-devel-32bit-7.42.1-2.47.1">libcurl-devel-32bit-7.42.1-2.47.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libcurl4-7.42.1-2.47.1">
+      <FullProductName ProductID="libcurl4-7.42.1-2.47.1">libcurl4-7.42.1-2.47.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libcurl4-32bit-7.42.1-2.47.1">
+      <FullProductName ProductID="libcurl4-32bit-7.42.1-2.47.1">libcurl4-32bit-7.42.1-2.47.1</FullProductName>
+    </Branch>
+  </ProductTree>
+  <Vulnerability xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1" Ordinal="1">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">cURL and libcurl 7.40.0 through 7.42.1 send the HTTP Basic authentication credentials for a previous connection when reusing a reset (curl_easy_reset) connection handle to send a request to the same host name, which allows remote attackers to obtain sensitive information via unspecified vectors.</Note>
+    </Notes>
+    <CVE>CVE-2015-3236</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed"/>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-updates/2015-06/msg00054.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-3236.html</URL>
+        <Description>CVE-2015-3236</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/934501</URL>
+        <Description>SUSE Bug 934501</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/951391</URL>
+        <Description>SUSE Bug 951391</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+  <Vulnerability xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1" Ordinal="2">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">The smb_request_state function in cURL and libcurl 7.40.0 through 7.42.1 allows remote SMB servers to obtain sensitive information from memory or cause a denial of service (out-of-bounds read and crash) via crafted length and offset values.</Note>
+    </Notes>
+    <CVE>CVE-2015-3237</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed"/>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-updates/2015-06/msg00054.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-3237.html</URL>
+        <Description>CVE-2015-3237</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/934502</URL>
+        <Description>SUSE Bug 934502</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+</cvrfdoc>

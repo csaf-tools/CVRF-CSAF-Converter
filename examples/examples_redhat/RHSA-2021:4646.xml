@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cvrfdoc xmlns="http://www.icasi.org/CVRF/schema/cvrf/1.1" xmlns:cvrf="http://www.icasi.org/CVRF/schema/cvrf/1.1">
+  <DocumentTitle xml:lang="en">Red Hat Security Advisory: kernel-rt security and bug fix update</DocumentTitle>
+  <DocumentType>Security Advisory</DocumentType>
+  <DocumentPublisher Type="Vendor">
+    <ContactDetails>secalert@redhat.com</ContactDetails>
+    <IssuingAuthority>Red Hat Product Security</IssuingAuthority>
+  </DocumentPublisher>
+  <DocumentTracking>
+    <Identification><ID>RHSA-2021:4646</ID></Identification>
+    <Status>Final</Status>
+    <Version>1</Version>
+    <RevisionHistory>
+       <Revision>
+         <Number>1</Number>
+         <Date>2021-11-15T10:14:00Z</Date>
+         <Description>Current version</Description>
+       </Revision>
+    </RevisionHistory>
+    <InitialReleaseDate>2021-11-15T10:14:00Z</InitialReleaseDate>
+    <CurrentReleaseDate>2021-11-15T10:14:00Z</CurrentReleaseDate>
+    <Generator>
+      <Engine>Red Hat SDEngine 3.3.0</Engine>
+      <Date>2021-11-15T15:21:00Z</Date>
+    </Generator>
+  </DocumentTracking>
+  <DocumentNotes>
+    <Note Title="Topic" Type="Summary" Ordinal="1" xml:lang="en">
+An update for kernel-rt is now available for Red Hat Enterprise Linux 8.
+
+Red Hat Product Security has rated this update as having a security impact of Important. A Common Vulnerability Scoring System (CVSS) base score, which gives a detailed severity rating, is available for each vulnerability from the CVE link(s) in the References section.
+    </Note>
+    <Note Title="Details" Type="General" Ordinal="2" xml:lang="en">
+The kernel-rt packages provide the Real Time Linux Kernel, which enables fine-tuning for systems with extremely high determinism requirements.
+
+Security Fix(es):
+
+* kernel: Insufficient validation of user-supplied sizes for the MSG_CRYPTO message type (CVE-2021-43267)
+
+* kernel: timer tree corruption leads to missing wakeup and system freeze (CVE-2021-20317)
+
+For more details about the security issue(s), including the impact, a CVSS score, acknowledgments, and other related information, refer to the CVE page(s) listed in the References section.
+
+Bug Fix(es):
+
+* kernel-rt: update RT source tree to the RHEL-8.5.z source tree (BZ#2020036)
+    </Note>
+    <Note Title="Terms of Use" Ordinal="3" Type="Legal Disclaimer" xml:lang="en">This content is licensed under the Creative Commons Attribution 4.0 International License (https://creativecommons.org/licenses/by/4.0/). If you distribute this content, or a modified version of it, you must provide attribution to Red Hat Inc. and provide a link to the original.</Note>
+  </DocumentNotes>
+  <DocumentDistribution xml:lang="en">Copyright © 2021 Red Hat, Inc. All rights reserved.</DocumentDistribution>
+  <AggregateSeverity Namespace="https://access.redhat.com/security/updates/classification/">Important</AggregateSeverity>
+  <DocumentReferences>
+    <Reference Type="Self">
+       <URL>https://access.redhat.com/errata/RHSA-2021:4646</URL>
+       <Description>https://access.redhat.com/errata/RHSA-2021:4646</Description>
+    </Reference>
+    <Reference Type="External">
+       <URL>https://access.redhat.com/security/updates/classification/#important</URL>
+       <Description>https://access.redhat.com/security/updates/classification/#important</Description>
+    </Reference>
+  </DocumentReferences>
+  <ProductTree xmlns="http://www.icasi.org/CVRF/schema/prod/1.1">
+    <Branch Type="Product Family" Name="Red Hat Enterprise Linux">
+      <Branch Type="Product Name" Name="Red Hat Enterprise Linux Real Time for NFV (v. 8)">
+        <FullProductName ProductID="NFV-8.5.0.Z.MAIN" CPE="cpe:/a:redhat:enterprise_linux:8::nfv">Red Hat Enterprise Linux Real Time for NFV (v. 8)</FullProductName>
+      </Branch>
+      <Branch Type="Product Name" Name="Red Hat Enterprise Linux for Real Time (v. 8)">
+        <FullProductName ProductID="RT-8.5.0.Z.MAIN" CPE="cpe:/a:redhat:enterprise_linux:8::realtime">Red Hat Enterprise Linux for Real Time (v. 8)</FullProductName>
+      </Branch>
+    </Branch>
+    <Branch Type="Product Version" Name="kernel-rt-0:4.18.0-348.2.1.rt7.132.el8_5">
+      <FullProductName ProductID="kernel-rt-0:4.18.0-348.2.1.rt7.132.el8_5" CPE="cpe:/a:redhat:enterprise_linux:8::nfv">kernel-rt-4.18.0-348.2.1.rt7.132.el8_5.src.rpm</FullProductName>
+    </Branch>
+    <Relationship ProductReference="kernel-rt-0:4.18.0-348.2.1.rt7.132.el8_5" RelationType="Default Component Of" RelatesToProductReference="NFV-8.5.0.Z.MAIN">
+      <FullProductName ProductID="NFV-8.5.0.Z.MAIN:kernel-rt-0:4.18.0-348.2.1.rt7.132.el8_5" CPE="cpe:/a:redhat:enterprise_linux:8::nfv">kernel-rt-0:4.18.0-348.2.1.rt7.132.el8_5 as a component of Red Hat Enterprise Linux Real Time for NFV (v. 8)</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="kernel-rt-0:4.18.0-348.2.1.rt7.132.el8_5" RelationType="Default Component Of" RelatesToProductReference="RT-8.5.0.Z.MAIN">
+      <FullProductName ProductID="RT-8.5.0.Z.MAIN:kernel-rt-0:4.18.0-348.2.1.rt7.132.el8_5" CPE="cpe:/a:redhat:enterprise_linux:8::realtime">kernel-rt-0:4.18.0-348.2.1.rt7.132.el8_5 as a component of Red Hat Enterprise Linux for Real Time (v. 8)</FullProductName>
+    </Relationship>
+  </ProductTree>
+
+  <Vulnerability Ordinal="1" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">kernel: timer tree corruption leads to missing wakeup and system freeze</Note></Notes>
+    <DiscoveryDate>2021-09-06T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-09-23T16:20:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-20317</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>NFV-8.5.0.Z.MAIN:kernel-rt-0:4.18.0-348.2.1.rt7.132.el8_5</ProductID>
+      <ProductID>RT-8.5.0.Z.MAIN:kernel-rt-0:4.18.0-348.2.1.rt7.132.el8_5</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+
+The system must be rebooted for this update to take effect.
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:4646</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://git.kernel.org/pub/scm/linux/kernel/git/tip/tip.git/commit/?id=511885d7061eda3eb1faf3f57dcc936ff75863f1</URL>
+        <Description>https://git.kernel.org/pub/scm/linux/kernel/git/tip/tip.git/commit/?id=511885d7061eda3eb1faf3f57dcc936ff75863f1</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-20317</URL>
+        <Description>CVE-2021-20317</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=2005258</URL>
+        <Description>bz#2005258: CVE-2021-20317 kernel: timer tree corruption leads to missing wakeup and system freeze</Description>
+      </Reference>
+    </References>
+    <Acknowledgments><Acknowledgment><Description>This issue was discovered by Jay Shin (Red Hat).</Description></Acknowledgment></Acknowledgments>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="2" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">kernel: Insufficient validation of user-supplied sizes for the MSG_CRYPTO message type</Note></Notes>
+    <DiscoveryDate>2021-11-02T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-11-02T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-43267</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>NFV-8.5.0.Z.MAIN:kernel-rt-0:4.18.0-348.2.1.rt7.132.el8_5</ProductID>
+      <ProductID>RT-8.5.0.Z.MAIN:kernel-rt-0:4.18.0-348.2.1.rt7.132.el8_5</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Important</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+
+The system must be rebooted for this update to take effect.
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:4646</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-43267</URL>
+        <Description>CVE-2021-43267</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=2020362</URL>
+        <Description>bz#2020362: CVE-2021-43267 kernel: Insufficient validation of user-supplied sizes for the MSG_CRYPTO message type</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+</cvrfdoc>

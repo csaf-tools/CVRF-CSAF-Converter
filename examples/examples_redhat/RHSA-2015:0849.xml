@@ -1,0 +1,380 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cvrfdoc xmlns="http://www.icasi.org/CVRF/schema/cvrf/1.1" xmlns:cvrf="http://www.icasi.org/CVRF/schema/cvrf/1.1">
+  <DocumentTitle xml:lang="en">Red Hat Security Advisory: Red Hat JBoss Enterprise Application Platform 6.4.0 update</DocumentTitle>
+  <DocumentType>Security Advisory</DocumentType>
+  <DocumentPublisher Type="Vendor">
+    <ContactDetails>secalert@redhat.com</ContactDetails>
+    <IssuingAuthority>Red Hat Product Security</IssuingAuthority>
+  </DocumentPublisher>
+  <DocumentTracking>
+    <Identification><ID>RHSA-2015:0849</ID></Identification>
+    <Status>Final</Status>
+    <Version>1</Version>
+    <RevisionHistory>
+       <Revision>
+         <Number>1</Number>
+         <Date>2021-06-21T13:56:00Z</Date>
+         <Description>Current version</Description>
+       </Revision>
+    </RevisionHistory>
+    <InitialReleaseDate>2015-04-16T15:39:00Z</InitialReleaseDate>
+    <CurrentReleaseDate>2021-06-21T13:56:00Z</CurrentReleaseDate>
+    <Generator>
+      <Engine>Red Hat SDEngine 3.0.0</Engine>
+      <Date>2021-08-23T04:35:00Z</Date>
+    </Generator>
+  </DocumentTracking>
+  <DocumentNotes>
+    <Note Title="Topic" Type="Summary" Ordinal="1" xml:lang="en">
+Updated packages that provide Red Hat JBoss Enterprise Application Platform
+6.4.0, and fix multiple security issues, several bugs, and add various
+enhancements, are now available from the Red Hat Customer Portal.
+
+Red Hat Product Security has rated this update as having Important security
+impact. Common Vulnerability Scoring System (CVSS) base scores, which give
+detailed severity ratings, are available for each vulnerability from the
+CVE links in the References section.
+    </Note>
+    <Note Title="Details" Type="General" Ordinal="2" xml:lang="en">
+Red Hat JBoss Enterprise Application Platform 6 is a platform for Java
+applications based on JBoss Application Server 7.
+
+It was found that a prior countermeasure in Apache WSS4J for
+Bleichenbacher's attack on XML Encryption (CVE-2011-2487) threw an
+exception that permitted an attacker to determine the failure of the
+attempted attack, thereby leaving WSS4J vulnerable to the attack.
+The original flaw allowed a remote attacker to recover the entire plain
+text form of a symmetric key. (CVE-2015-0226)
+
+A flaw was found in the way PicketLink's Service Provider and Identity
+Provider handled certain requests. A remote attacker could use this flaw to
+log to a victim's account via PicketLink. (CVE-2015-0277)
+
+It was discovered that a JkUnmount rule for a subtree of a previous JkMount
+rule could be ignored. This could allow a remote attacker to potentially
+access a private artifact in a tree that would otherwise not be accessible
+to them. (CVE-2014-8111)
+
+It was discovered that OpenSSL would accept ephemeral RSA keys when using
+non-export RSA cipher suites. A malicious server could make a TLS/SSL
+client using OpenSSL use a weaker key exchange method. (CVE-2015-0204)
+
+It was found that Apache WSS4J permitted bypass of the
+requireSignedEncryptedDataElements configuration property via XML Signature
+wrapping attacks. A remote attacker could use this flaw to modify the
+contents of a signed request. (CVE-2015-0227)
+
+It was found that OpenSSL's BigNumber Squaring implementation could produce
+incorrect results under certain special conditions. This flaw could
+possibly affect certain OpenSSL library functionality, such as RSA
+blinding. Note that this issue occurred rarely and with a low probability,
+and there is currently no known way of exploiting it. (CVE-2014-3570)
+
+It was found that the Command Line Interface, as provided by Red Hat
+Enterprise Application Platform, created a history file named
+.jboss-cli-history in the user's home directory with insecure default file
+permissions. This could allow a malicious local user to gain information
+otherwise not accessible to them. (CVE-2014-3586)
+
+The CVE-2015-0277 issue was discovered by Ondrej Kotek of Red Hat.
+
+This release of JBoss Enterprise Application Platform also includes bug
+fixes and enhancements. Documentation for these changes will be available
+shortly from the JBoss Enterprise Application Platform 6.4.0 Release Notes,
+linked to in the References.
+
+All users of Red Hat JBoss Enterprise Application Platform 6.3 as provided
+from the Red Hat Customer Portal are advised to apply this update.
+The JBoss server process must be restarted for the update to take effect.
+    </Note>
+    <Note Title="Terms of Use" Ordinal="3" Type="Legal Disclaimer" xml:lang="en">This content is licensed under the Creative Commons Attribution 4.0 International License (https://creativecommons.org/licenses/by/4.0/). If you distribute this content, or a modified version of it, you must provide attribution to Red Hat Inc. and provide a link to the original.</Note>
+  </DocumentNotes>
+  <DocumentDistribution xml:lang="en">Copyright © 2021 Red Hat, Inc. All rights reserved.</DocumentDistribution>
+  <AggregateSeverity Namespace="https://access.redhat.com/security/updates/classification/">Important</AggregateSeverity>
+  <DocumentReferences>
+    <Reference Type="Self">
+       <URL>https://access.redhat.com/errata/RHSA-2015:0849</URL>
+       <Description>https://access.redhat.com/errata/RHSA-2015:0849</Description>
+    </Reference>
+    <Reference Type="External">
+       <URL>https://access.redhat.com/security/updates/classification/#important</URL>
+       <Description>https://access.redhat.com/security/updates/classification/#important</Description>
+    </Reference>
+    <Reference Type="External">
+       <URL>https://access.redhat.com/jbossnetwork/restricted/listSoftware.html?downloadType=distributions&amp;product=appplatform&amp;version=6.4</URL>
+       <Description>https://access.redhat.com/jbossnetwork/restricted/listSoftware.html?downloadType=distributions&amp;product=appplatform&amp;version=6.4</Description>
+    </Reference>
+    <Reference Type="External">
+       <URL>https://access.redhat.com/documentation/en-US/JBoss_Enterprise_Application_Platform/</URL>
+       <Description>https://access.redhat.com/documentation/en-US/JBoss_Enterprise_Application_Platform/</Description>
+    </Reference>
+  </DocumentReferences>
+
+  <Vulnerability Ordinal="1" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">openssl: Bignum squaring may produce incorrect results</Note></Notes>
+    <DiscoveryDate>2015-01-08T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2015-01-08T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2014-3570</CVE>
+    <Threats><Threat Type="Impact"><Description>Low</Description></Threat></Threats>
+    <CVSSScoreSets><ScoreSet>
+      <BaseScore>2.6</BaseScore>
+      <Vector>AV:N/AC:H/Au:N/C:P/I:N/A:N</Vector>
+    </ScoreSet></CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+The References section of this erratum contains a download link (you must
+log in to download the update). Before applying this update, back up your
+existing Red Hat JBoss Enterprise Application Platform installation and
+deployed applications.
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2015:0849</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.openssl.org/news/secadv_20150108.txt</URL>
+        <Description>https://www.openssl.org/news/secadv_20150108.txt</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2014-3570</URL>
+        <Description>CVE-2014-3570</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1180240</URL>
+        <Description>bz#1180240: CVE-2014-3570 openssl: Bignum squaring may produce incorrect results</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="2" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">JBoss AS CLI: Insecure default permissions on history file</Note></Notes>
+    <DiscoveryDate>2014-07-31T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2015-03-10T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2014-3586</CVE>
+    <Threats><Threat Type="Impact"><Description>Low</Description></Threat></Threats>
+    <CVSSScoreSets><ScoreSet>
+      <BaseScore>2.1</BaseScore>
+      <Vector>AV:L/AC:L/Au:N/C:P/I:N/A:N</Vector>
+    </ScoreSet></CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+The References section of this erratum contains a download link (you must
+log in to download the update). Before applying this update, back up your
+existing Red Hat JBoss Enterprise Application Platform installation and
+deployed applications.
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2015:0849</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2014-3586</URL>
+        <Description>CVE-2014-3586</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1126687</URL>
+        <Description>bz#1126687: CVE-2014-3586 JBoss AS CLI: Insecure default permissions on history file</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="3" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">Tomcat mod_jk: information leak due to incorrect JkMount/JkUnmount directives processing</Note></Notes>
+    <DiscoveryDate>2015-01-15T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2015-04-14T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2014-8111</CVE>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <CVSSScoreSets><ScoreSet>
+      <BaseScore>5.0</BaseScore>
+      <Vector>AV:N/AC:L/Au:N/C:P/I:N/A:N</Vector>
+    </ScoreSet></CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+The References section of this erratum contains a download link (you must
+log in to download the update). Before applying this update, back up your
+existing Red Hat JBoss Enterprise Application Platform installation and
+deployed applications.
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2015:0849</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2014-8111</URL>
+        <Description>CVE-2014-8111</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1182591</URL>
+        <Description>bz#1182591: CVE-2014-8111 Tomcat mod_jk: information leak due to incorrect JkMount/JkUnmount directives processing</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="4" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">openssl: only allow ephemeral RSA keys in export ciphersuites (FREAK)</Note></Notes>
+    <DiscoveryDate>2015-01-08T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2015-01-06T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2015-0204</CVE>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <CVSSScoreSets><ScoreSet>
+      <BaseScore>4.3</BaseScore>
+      <Vector>AV:N/AC:M/Au:N/C:P/I:N/A:N</Vector>
+    </ScoreSet></CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+The References section of this erratum contains a download link (you must
+log in to download the update). Before applying this update, back up your
+existing Red Hat JBoss Enterprise Application Platform installation and
+deployed applications.
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2015:0849</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://securityblog.redhat.com/2015/03/04/factoring-rsa-export-keys-freak-cve-2015-0204/</URL>
+        <Description>https://securityblog.redhat.com/2015/03/04/factoring-rsa-export-keys-freak-cve-2015-0204/</Description>
+      </Reference>
+      <Reference>
+        <URL>https://www.openssl.org/news/secadv_20150108.txt</URL>
+        <Description>https://www.openssl.org/news/secadv_20150108.txt</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2015-0204</URL>
+        <Description>CVE-2015-0204</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1180184</URL>
+        <Description>bz#1180184: CVE-2015-0204 openssl: only allow ephemeral RSA keys in export ciphersuites (FREAK)</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="5" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">wss4j: Apache WSS4J is vulnerable to Bleichenbacher's attack (incomplete fix for CVE-2011-2487)</Note></Notes>
+    <DiscoveryDate>2015-02-11T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2015-02-10T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2015-0226</CVE>
+    <Threats><Threat Type="Impact"><Description>Important</Description></Threat></Threats>
+    <CVSSScoreSets><ScoreSet>
+      <BaseScore>7.8</BaseScore>
+      <Vector>AV:N/AC:L/Au:N/C:C/I:N/A:N</Vector>
+    </ScoreSet></CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+The References section of this erratum contains a download link (you must
+log in to download the update). Before applying this update, back up your
+existing Red Hat JBoss Enterprise Application Platform installation and
+deployed applications.
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2015:0849</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2015-0226</URL>
+        <Description>CVE-2015-0226</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1191446</URL>
+        <Description>bz#1191446: CVE-2015-0226 wss4j: Apache WSS4J is vulnerable to Bleichenbacher's attack (incomplete fix for CVE-2011-2487)</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="6" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">wss4j: Apache WSS4J doesn't correctly enforce the requireSignedEncryptedDataElements property</Note></Notes>
+    <DiscoveryDate>2015-02-11T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2015-02-10T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2015-0227</CVE>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <CVSSScoreSets><ScoreSet>
+      <BaseScore>4.0</BaseScore>
+      <Vector>AV:N/AC:H/Au:N/C:P/I:P/A:N</Vector>
+    </ScoreSet></CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+The References section of this erratum contains a download link (you must
+log in to download the update). Before applying this update, back up your
+existing Red Hat JBoss Enterprise Application Platform installation and
+deployed applications.
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2015:0849</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2015-0227</URL>
+        <Description>CVE-2015-0227</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1191451</URL>
+        <Description>bz#1191451: CVE-2015-0227 wss4j: Apache WSS4J doesn't correctly enforce the requireSignedEncryptedDataElements property</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="7" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">PicketLink: SP does not take Audience condition of a SAML assertion into account</Note></Notes>
+    <DiscoveryDate>2015-02-18T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2015-04-14T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2015-0277</CVE>
+    <Threats><Threat Type="Impact"><Description>Important</Description></Threat></Threats>
+    <CVSSScoreSets><ScoreSet>
+      <BaseScore>6.0</BaseScore>
+      <Vector>AV:N/AC:M/Au:S/C:P/I:P/A:P</Vector>
+    </ScoreSet></CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+The References section of this erratum contains a download link (you must
+log in to download the update). Before applying this update, back up your
+existing Red Hat JBoss Enterprise Application Platform installation and
+deployed applications.
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2015:0849</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2015-0277</URL>
+        <Description>CVE-2015-0277</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1194832</URL>
+        <Description>bz#1194832: CVE-2015-0277 PicketLink: SP does not take Audience condition of a SAML assertion into account</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="8" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">PicketLink: Lack of validation for the Destination attribute in a Response element in a SAML assertion</Note></Notes>
+    <DiscoveryDate>2015-02-18T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2015-04-14T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2015-6254</CVE>
+    <Threats><Threat Type="Impact"><Description>Important</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+The References section of this erratum contains a download link (you must
+log in to download the update). Before applying this update, back up your
+existing Red Hat JBoss Enterprise Application Platform installation and
+deployed applications.
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2015:0849</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://issues.jboss.org/browse/PLINK-680</URL>
+        <Description>https://issues.jboss.org/browse/PLINK-680</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2015-6254</URL>
+        <Description>CVE-2015-6254</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1974359</URL>
+        <Description>bz#1974359: CVE-2015-6254 PicketLink: Lack of validation for the Destination attribute in a Response element in a SAML assertion</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+</cvrfdoc>

@@ -1,0 +1,807 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cvrfdoc xmlns="http://www.icasi.org/CVRF/schema/cvrf/1.1" xmlns:cvrf="http://www.icasi.org/CVRF/schema/cvrf/1.1">
+  <DocumentTitle xml:lang="en">Security update for the Linux Kernel</DocumentTitle>
+  <DocumentType>SUSE Patch</DocumentType>
+  <DocumentPublisher Type="Vendor">
+    <ContactDetails>security@suse.de</ContactDetails>
+    <IssuingAuthority>SUSE Security Team</IssuingAuthority>
+  </DocumentPublisher>
+  <DocumentTracking>
+    <Identification>
+      <ID>openSUSE-SU-2015:0714-1</ID>
+    </Identification>
+    <Status>Final</Status>
+    <Version>1</Version>
+    <RevisionHistory>
+      <Revision>
+        <Number>1</Number>
+        <Date>2015-03-20T12:57:19Z</Date>
+        <Description>current</Description>
+      </Revision>
+    </RevisionHistory>
+    <InitialReleaseDate>2015-03-20T12:57:19Z</InitialReleaseDate>
+    <CurrentReleaseDate>2015-03-20T12:57:19Z</CurrentReleaseDate>
+    <Generator>
+      <Engine>cve-database/bin/generate-cvrf.pl</Engine>
+      <Date>2017-02-24T01:00:00Z</Date>
+    </Generator>
+  </DocumentTracking>
+  <DocumentNotes>
+    <Note Title="Topic" Type="Summary" Ordinal="1" xml:lang="en">Security update for the Linux Kernel</Note>
+    <Note Title="Details" Type="General" Ordinal="2" xml:lang="en">
+The Linux kernel was updated to fix various bugs and security issues.
+
+Following security issues were fixed:
+- CVE-2014-8173: A NULL pointer dereference flaw was found in the way the
+  Linux kernels madvise MADV_WILLNEED functionality handled page table
+  locking. A local, unprivileged user could have used this flaw to crash
+  the system.
+
+- CVE-2015-1593: A integer overflow reduced the effectiveness of the
+  stack randomization on 64-bit systems.
+
+- CVE-2014-7822: A flaw was found in the way the Linux kernels splice()
+  system call validated its parameters. On certain file systems, a local,
+  unprivileged user could have used this flaw to write past the maximum
+  file size, and thus crash the system.
+
+- CVE-2014-9419: The __switch_to function in arch/x86/kernel/process_64.c
+  in the Linux kernel did not ensure that Thread Local Storage (TLS)
+  descriptors are loaded before proceeding with other steps, which made
+  it easier for local users to bypass the ASLR protection mechanism via
+  a crafted application that reads a TLS base address.
+
+- CVE-2014-8134: The paravirt_ops_setup function in arch/x86/kernel/kvm.c
+  in the Linux kernel used an improper paravirt_enabled setting for KVM
+  guest kernels, which made it easier for guest OS users to bypass the ASLR
+  protection mechanism via a crafted application that reads a 16-bit value.
+
+- CVE-2014-8160: net/netfilter/nf_conntrack_proto_generic.c in the Linux
+  kernel generated incorrect conntrack entries during handling of certain
+  iptables rule sets for the SCTP, DCCP, GRE, and UDP-Lite protocols,
+  which allowed remote attackers to bypass intended access restrictions
+  via packets with disallowed port numbers.
+
+- CVE-2014-9529: Race condition in the key_gc_unused_keys function in
+  security/keys/gc.c in the Linux kernel allowed local users to cause
+  a denial of service (memory corruption or panic) or possibly have
+  unspecified other impact via keyctl commands that trigger access to a
+  key structure member during garbage collection of a key.
+
+- CVE-2014-8559: The d_walk function in fs/dcache.c in the Linux kernel
+  through did not properly maintain the semantics of rename_lock,
+  which allowed local users to cause a denial of service (deadlock and
+  system hang) via a crafted application.
+
+- CVE-2014-9420: The rock_continue function in fs/isofs/rock.c in the
+  Linux kernel did not restrict the number of Rock Ridge continuation
+  entries, which allowed local users to cause a denial of service (infinite
+  loop, and system crash or hang) via a crafted iso9660 image.
+
+- CVE-2014-9584: The parse_rock_ridge_inode_internal function in
+  fs/isofs/rock.c in the Linux kernel did not validate a length value
+  in the Extensions Reference (ER) System Use Field, which allowed local
+  users to obtain sensitive information from kernel memory via a crafted
+  iso9660 image.
+
+- CVE-2014-9585: The vdso_addr function in arch/x86/vdso/vma.c in the
+  Linux kernel did not properly choose memory locations for the vDSO area,
+  which made it easier for local users to bypass the ASLR protection
+  mechanism by guessing a location at the end of a PMD.
+
+Following bugs were fixed:
+- HID: usbhid: enable always-poll quirk for Elan Touchscreen 0103 (bnc#920901).
+- HID: usbhid: enable always-poll quirk for Elan Touchscreen 016f (bnc#920901).
+- HID: usbhid: enable always-poll quirk for Elan Touchscreen 009b (bnc#920901).
+- HID: usbhid: add another mouse that needs QUIRK_ALWAYS_POLL (bnc#920901).
+- HID: usbhid: fix PIXART optical mouse (bnc#920901).
+- HID: usbhid: enable always-poll quirk for Elan Touchscreen (bnc#920901).
+- HID: usbhid: add always-poll quirk (bnc#920901).
+
+- storvsc: ring buffer failures may result in I/O freeze (bnc#914175).
+
+- mm, vmscan: prevent kswapd livelock due to pfmemalloc-throttled
+  process being killed (VM Functionality bnc#910150).
+
+- Input: evdev - fix EVIOCG{type} ioctl (bnc#904899).
+
+- mnt: Implicitly add MNT_NODEV on remount when it was implicitly
+  added by mount (bsc#907988).
+
+- DocBook: Do not exceed argument list limit.
+- DocBook: Make mandocs parallel-safe.
+
+- mm: free compound page with correct order (bnc#913695).
+
+- udf: Check component length before reading it.
+- udf: Check path length when reading symlink.
+- udf: Verify symlink size before loading it.
+- udf: Verify i_size when loading inode.
+
+- xfs: remote attribute overwrite causes transaction overrun.
+</Note>
+    <Note Title="Terms of Use" Type="Legal Disclaimer" Ordinal="3" xml:lang="en">The CVRF data is provided by SUSE under the Creative Commons License 4.0 with Attribution for Non-Commercial usage (CC-BY-NC-4.0).</Note>
+  </DocumentNotes>
+  <DocumentDistribution xml:lang="en">Copyright SUSE LLC under the Creative Commons License 4.0 with Attribution for Non-Commercial usage (CC-BY-NC-4.0)</DocumentDistribution>
+  <DocumentReferences>
+    <Reference Type="Self">
+      <URL>https://lists.opensuse.org/opensuse-security-announce/2015-04/msg00009.html</URL>
+      <Description>E-Mail link for openSUSE-SU-2015:0714-1</Description>
+    </Reference>
+    <Reference Type="Self">
+      <URL>https://www.suse.com/support/security/rating/</URL>
+      <Description>SUSE Security Ratings</Description>
+    </Reference>
+  </DocumentReferences>
+  <ProductTree xmlns="http://www.icasi.org/CVRF/schema/prod/1.1">
+    <Branch Type="Product Version" Name="cloop-2.639-11.19.1">
+      <FullProductName ProductID="cloop-2.639-11.19.1">cloop-2.639-11.19.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="cloop-kmp-default-2.639_k3.11.10_29-11.19.1">
+      <FullProductName ProductID="cloop-kmp-default-2.639_k3.11.10_29-11.19.1">cloop-kmp-default-2.639_k3.11.10_29-11.19.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="cloop-kmp-desktop-2.639_k3.11.10_29-11.19.1">
+      <FullProductName ProductID="cloop-kmp-desktop-2.639_k3.11.10_29-11.19.1">cloop-kmp-desktop-2.639_k3.11.10_29-11.19.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="cloop-kmp-pae-2.639_k3.11.10_29-11.19.1">
+      <FullProductName ProductID="cloop-kmp-pae-2.639_k3.11.10_29-11.19.1">cloop-kmp-pae-2.639_k3.11.10_29-11.19.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="cloop-kmp-xen-2.639_k3.11.10_29-11.19.1">
+      <FullProductName ProductID="cloop-kmp-xen-2.639_k3.11.10_29-11.19.1">cloop-kmp-xen-2.639_k3.11.10_29-11.19.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="crash-7.0.2-2.19.1">
+      <FullProductName ProductID="crash-7.0.2-2.19.1">crash-7.0.2-2.19.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="crash-devel-7.0.2-2.19.1">
+      <FullProductName ProductID="crash-devel-7.0.2-2.19.1">crash-devel-7.0.2-2.19.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="crash-doc-7.0.2-2.19.1">
+      <FullProductName ProductID="crash-doc-7.0.2-2.19.1">crash-doc-7.0.2-2.19.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="crash-eppic-7.0.2-2.19.1">
+      <FullProductName ProductID="crash-eppic-7.0.2-2.19.1">crash-eppic-7.0.2-2.19.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="crash-gcore-7.0.2-2.19.1">
+      <FullProductName ProductID="crash-gcore-7.0.2-2.19.1">crash-gcore-7.0.2-2.19.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="crash-kmp-default-7.0.2_k3.11.10_29-2.19.1">
+      <FullProductName ProductID="crash-kmp-default-7.0.2_k3.11.10_29-2.19.1">crash-kmp-default-7.0.2_k3.11.10_29-2.19.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="crash-kmp-desktop-7.0.2_k3.11.10_29-2.19.1">
+      <FullProductName ProductID="crash-kmp-desktop-7.0.2_k3.11.10_29-2.19.1">crash-kmp-desktop-7.0.2_k3.11.10_29-2.19.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="crash-kmp-pae-7.0.2_k3.11.10_29-2.19.1">
+      <FullProductName ProductID="crash-kmp-pae-7.0.2_k3.11.10_29-2.19.1">crash-kmp-pae-7.0.2_k3.11.10_29-2.19.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="crash-kmp-xen-7.0.2_k3.11.10_29-2.19.1">
+      <FullProductName ProductID="crash-kmp-xen-7.0.2_k3.11.10_29-2.19.1">crash-kmp-xen-7.0.2_k3.11.10_29-2.19.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="hdjmod-1.28-16.19.1">
+      <FullProductName ProductID="hdjmod-1.28-16.19.1">hdjmod-1.28-16.19.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="hdjmod-kmp-default-1.28_k3.11.10_29-16.19.1">
+      <FullProductName ProductID="hdjmod-kmp-default-1.28_k3.11.10_29-16.19.1">hdjmod-kmp-default-1.28_k3.11.10_29-16.19.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="hdjmod-kmp-desktop-1.28_k3.11.10_29-16.19.1">
+      <FullProductName ProductID="hdjmod-kmp-desktop-1.28_k3.11.10_29-16.19.1">hdjmod-kmp-desktop-1.28_k3.11.10_29-16.19.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="hdjmod-kmp-pae-1.28_k3.11.10_29-16.19.1">
+      <FullProductName ProductID="hdjmod-kmp-pae-1.28_k3.11.10_29-16.19.1">hdjmod-kmp-pae-1.28_k3.11.10_29-16.19.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="hdjmod-kmp-xen-1.28_k3.11.10_29-16.19.1">
+      <FullProductName ProductID="hdjmod-kmp-xen-1.28_k3.11.10_29-16.19.1">hdjmod-kmp-xen-1.28_k3.11.10_29-16.19.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="ipset-6.21.1-2.23.1">
+      <FullProductName ProductID="ipset-6.21.1-2.23.1">ipset-6.21.1-2.23.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="ipset-devel-6.21.1-2.23.1">
+      <FullProductName ProductID="ipset-devel-6.21.1-2.23.1">ipset-devel-6.21.1-2.23.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="ipset-kmp-default-6.21.1_k3.11.10_29-2.23.1">
+      <FullProductName ProductID="ipset-kmp-default-6.21.1_k3.11.10_29-2.23.1">ipset-kmp-default-6.21.1_k3.11.10_29-2.23.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="ipset-kmp-desktop-6.21.1_k3.11.10_29-2.23.1">
+      <FullProductName ProductID="ipset-kmp-desktop-6.21.1_k3.11.10_29-2.23.1">ipset-kmp-desktop-6.21.1_k3.11.10_29-2.23.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="ipset-kmp-pae-6.21.1_k3.11.10_29-2.23.1">
+      <FullProductName ProductID="ipset-kmp-pae-6.21.1_k3.11.10_29-2.23.1">ipset-kmp-pae-6.21.1_k3.11.10_29-2.23.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="ipset-kmp-xen-6.21.1_k3.11.10_29-2.23.1">
+      <FullProductName ProductID="ipset-kmp-xen-6.21.1_k3.11.10_29-2.23.1">ipset-kmp-xen-6.21.1_k3.11.10_29-2.23.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="iscsitarget-1.4.20.3-13.19.1">
+      <FullProductName ProductID="iscsitarget-1.4.20.3-13.19.1">iscsitarget-1.4.20.3-13.19.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="iscsitarget-kmp-default-1.4.20.3_k3.11.10_29-13.19.1">
+      <FullProductName ProductID="iscsitarget-kmp-default-1.4.20.3_k3.11.10_29-13.19.1">iscsitarget-kmp-default-1.4.20.3_k3.11.10_29-13.19.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="iscsitarget-kmp-desktop-1.4.20.3_k3.11.10_29-13.19.1">
+      <FullProductName ProductID="iscsitarget-kmp-desktop-1.4.20.3_k3.11.10_29-13.19.1">iscsitarget-kmp-desktop-1.4.20.3_k3.11.10_29-13.19.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="iscsitarget-kmp-pae-1.4.20.3_k3.11.10_29-13.19.1">
+      <FullProductName ProductID="iscsitarget-kmp-pae-1.4.20.3_k3.11.10_29-13.19.1">iscsitarget-kmp-pae-1.4.20.3_k3.11.10_29-13.19.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="iscsitarget-kmp-xen-1.4.20.3_k3.11.10_29-13.19.1">
+      <FullProductName ProductID="iscsitarget-kmp-xen-1.4.20.3_k3.11.10_29-13.19.1">iscsitarget-kmp-xen-1.4.20.3_k3.11.10_29-13.19.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="kernel-debug-3.11.10-29.1">
+      <FullProductName ProductID="kernel-debug-3.11.10-29.1">kernel-debug-3.11.10-29.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="kernel-debug-base-3.11.10-29.1">
+      <FullProductName ProductID="kernel-debug-base-3.11.10-29.1">kernel-debug-base-3.11.10-29.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="kernel-debug-devel-3.11.10-29.1">
+      <FullProductName ProductID="kernel-debug-devel-3.11.10-29.1">kernel-debug-devel-3.11.10-29.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="kernel-default-3.11.10-29.1">
+      <FullProductName ProductID="kernel-default-3.11.10-29.1">kernel-default-3.11.10-29.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="kernel-default-base-3.11.10-29.1">
+      <FullProductName ProductID="kernel-default-base-3.11.10-29.1">kernel-default-base-3.11.10-29.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="kernel-default-devel-3.11.10-29.1">
+      <FullProductName ProductID="kernel-default-devel-3.11.10-29.1">kernel-default-devel-3.11.10-29.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="kernel-desktop-3.11.10-29.1">
+      <FullProductName ProductID="kernel-desktop-3.11.10-29.1">kernel-desktop-3.11.10-29.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="kernel-desktop-base-3.11.10-29.1">
+      <FullProductName ProductID="kernel-desktop-base-3.11.10-29.1">kernel-desktop-base-3.11.10-29.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="kernel-desktop-devel-3.11.10-29.1">
+      <FullProductName ProductID="kernel-desktop-devel-3.11.10-29.1">kernel-desktop-devel-3.11.10-29.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="kernel-devel-3.11.10-29.1">
+      <FullProductName ProductID="kernel-devel-3.11.10-29.1">kernel-devel-3.11.10-29.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="kernel-docs-3.11.10-29.2">
+      <FullProductName ProductID="kernel-docs-3.11.10-29.2">kernel-docs-3.11.10-29.2</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="kernel-ec2-3.11.10-29.1">
+      <FullProductName ProductID="kernel-ec2-3.11.10-29.1">kernel-ec2-3.11.10-29.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="kernel-ec2-base-3.11.10-29.1">
+      <FullProductName ProductID="kernel-ec2-base-3.11.10-29.1">kernel-ec2-base-3.11.10-29.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="kernel-ec2-devel-3.11.10-29.1">
+      <FullProductName ProductID="kernel-ec2-devel-3.11.10-29.1">kernel-ec2-devel-3.11.10-29.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="kernel-pae-3.11.10-29.1">
+      <FullProductName ProductID="kernel-pae-3.11.10-29.1">kernel-pae-3.11.10-29.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="kernel-pae-base-3.11.10-29.1">
+      <FullProductName ProductID="kernel-pae-base-3.11.10-29.1">kernel-pae-base-3.11.10-29.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="kernel-pae-devel-3.11.10-29.1">
+      <FullProductName ProductID="kernel-pae-devel-3.11.10-29.1">kernel-pae-devel-3.11.10-29.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="kernel-source-3.11.10-29.1">
+      <FullProductName ProductID="kernel-source-3.11.10-29.1">kernel-source-3.11.10-29.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="kernel-source-vanilla-3.11.10-29.1">
+      <FullProductName ProductID="kernel-source-vanilla-3.11.10-29.1">kernel-source-vanilla-3.11.10-29.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="kernel-syms-3.11.10-29.1">
+      <FullProductName ProductID="kernel-syms-3.11.10-29.1">kernel-syms-3.11.10-29.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="kernel-trace-3.11.10-29.1">
+      <FullProductName ProductID="kernel-trace-3.11.10-29.1">kernel-trace-3.11.10-29.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="kernel-trace-base-3.11.10-29.1">
+      <FullProductName ProductID="kernel-trace-base-3.11.10-29.1">kernel-trace-base-3.11.10-29.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="kernel-trace-devel-3.11.10-29.1">
+      <FullProductName ProductID="kernel-trace-devel-3.11.10-29.1">kernel-trace-devel-3.11.10-29.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="kernel-vanilla-3.11.10-29.1">
+      <FullProductName ProductID="kernel-vanilla-3.11.10-29.1">kernel-vanilla-3.11.10-29.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="kernel-vanilla-devel-3.11.10-29.1">
+      <FullProductName ProductID="kernel-vanilla-devel-3.11.10-29.1">kernel-vanilla-devel-3.11.10-29.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="kernel-xen-3.11.10-29.1">
+      <FullProductName ProductID="kernel-xen-3.11.10-29.1">kernel-xen-3.11.10-29.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="kernel-xen-base-3.11.10-29.1">
+      <FullProductName ProductID="kernel-xen-base-3.11.10-29.1">kernel-xen-base-3.11.10-29.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="kernel-xen-devel-3.11.10-29.1">
+      <FullProductName ProductID="kernel-xen-devel-3.11.10-29.1">kernel-xen-devel-3.11.10-29.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libipset3-6.21.1-2.23.1">
+      <FullProductName ProductID="libipset3-6.21.1-2.23.1">libipset3-6.21.1-2.23.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="ndiswrapper-1.58-19.1">
+      <FullProductName ProductID="ndiswrapper-1.58-19.1">ndiswrapper-1.58-19.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="ndiswrapper-kmp-default-1.58_k3.11.10_29-19.1">
+      <FullProductName ProductID="ndiswrapper-kmp-default-1.58_k3.11.10_29-19.1">ndiswrapper-kmp-default-1.58_k3.11.10_29-19.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="ndiswrapper-kmp-desktop-1.58_k3.11.10_29-19.1">
+      <FullProductName ProductID="ndiswrapper-kmp-desktop-1.58_k3.11.10_29-19.1">ndiswrapper-kmp-desktop-1.58_k3.11.10_29-19.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="ndiswrapper-kmp-pae-1.58_k3.11.10_29-19.1">
+      <FullProductName ProductID="ndiswrapper-kmp-pae-1.58_k3.11.10_29-19.1">ndiswrapper-kmp-pae-1.58_k3.11.10_29-19.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="pcfclock-0.44-258.19.1">
+      <FullProductName ProductID="pcfclock-0.44-258.19.1">pcfclock-0.44-258.19.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="pcfclock-kmp-default-0.44_k3.11.10_29-258.19.1">
+      <FullProductName ProductID="pcfclock-kmp-default-0.44_k3.11.10_29-258.19.1">pcfclock-kmp-default-0.44_k3.11.10_29-258.19.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="pcfclock-kmp-desktop-0.44_k3.11.10_29-258.19.1">
+      <FullProductName ProductID="pcfclock-kmp-desktop-0.44_k3.11.10_29-258.19.1">pcfclock-kmp-desktop-0.44_k3.11.10_29-258.19.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="pcfclock-kmp-pae-0.44_k3.11.10_29-258.19.1">
+      <FullProductName ProductID="pcfclock-kmp-pae-0.44_k3.11.10_29-258.19.1">pcfclock-kmp-pae-0.44_k3.11.10_29-258.19.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="python-virtualbox-4.2.28-2.28.1">
+      <FullProductName ProductID="python-virtualbox-4.2.28-2.28.1">python-virtualbox-4.2.28-2.28.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="vhba-kmp-20130607-2.20.1">
+      <FullProductName ProductID="vhba-kmp-20130607-2.20.1">vhba-kmp-20130607-2.20.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="vhba-kmp-default-20130607_k3.11.10_29-2.20.1">
+      <FullProductName ProductID="vhba-kmp-default-20130607_k3.11.10_29-2.20.1">vhba-kmp-default-20130607_k3.11.10_29-2.20.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="vhba-kmp-desktop-20130607_k3.11.10_29-2.20.1">
+      <FullProductName ProductID="vhba-kmp-desktop-20130607_k3.11.10_29-2.20.1">vhba-kmp-desktop-20130607_k3.11.10_29-2.20.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="vhba-kmp-pae-20130607_k3.11.10_29-2.20.1">
+      <FullProductName ProductID="vhba-kmp-pae-20130607_k3.11.10_29-2.20.1">vhba-kmp-pae-20130607_k3.11.10_29-2.20.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="vhba-kmp-xen-20130607_k3.11.10_29-2.20.1">
+      <FullProductName ProductID="vhba-kmp-xen-20130607_k3.11.10_29-2.20.1">vhba-kmp-xen-20130607_k3.11.10_29-2.20.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="virtualbox-4.2.28-2.28.1">
+      <FullProductName ProductID="virtualbox-4.2.28-2.28.1">virtualbox-4.2.28-2.28.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="virtualbox-devel-4.2.28-2.28.1">
+      <FullProductName ProductID="virtualbox-devel-4.2.28-2.28.1">virtualbox-devel-4.2.28-2.28.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="virtualbox-guest-kmp-default-4.2.28_k3.11.10_29-2.28.1">
+      <FullProductName ProductID="virtualbox-guest-kmp-default-4.2.28_k3.11.10_29-2.28.1">virtualbox-guest-kmp-default-4.2.28_k3.11.10_29-2.28.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="virtualbox-guest-kmp-desktop-4.2.28_k3.11.10_29-2.28.1">
+      <FullProductName ProductID="virtualbox-guest-kmp-desktop-4.2.28_k3.11.10_29-2.28.1">virtualbox-guest-kmp-desktop-4.2.28_k3.11.10_29-2.28.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="virtualbox-guest-kmp-pae-4.2.28_k3.11.10_29-2.28.1">
+      <FullProductName ProductID="virtualbox-guest-kmp-pae-4.2.28_k3.11.10_29-2.28.1">virtualbox-guest-kmp-pae-4.2.28_k3.11.10_29-2.28.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="virtualbox-guest-tools-4.2.28-2.28.1">
+      <FullProductName ProductID="virtualbox-guest-tools-4.2.28-2.28.1">virtualbox-guest-tools-4.2.28-2.28.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="virtualbox-guest-x11-4.2.28-2.28.1">
+      <FullProductName ProductID="virtualbox-guest-x11-4.2.28-2.28.1">virtualbox-guest-x11-4.2.28-2.28.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="virtualbox-host-kmp-default-4.2.28_k3.11.10_29-2.28.1">
+      <FullProductName ProductID="virtualbox-host-kmp-default-4.2.28_k3.11.10_29-2.28.1">virtualbox-host-kmp-default-4.2.28_k3.11.10_29-2.28.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="virtualbox-host-kmp-desktop-4.2.28_k3.11.10_29-2.28.1">
+      <FullProductName ProductID="virtualbox-host-kmp-desktop-4.2.28_k3.11.10_29-2.28.1">virtualbox-host-kmp-desktop-4.2.28_k3.11.10_29-2.28.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="virtualbox-host-kmp-pae-4.2.28_k3.11.10_29-2.28.1">
+      <FullProductName ProductID="virtualbox-host-kmp-pae-4.2.28_k3.11.10_29-2.28.1">virtualbox-host-kmp-pae-4.2.28_k3.11.10_29-2.28.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="virtualbox-qt-4.2.28-2.28.1">
+      <FullProductName ProductID="virtualbox-qt-4.2.28-2.28.1">virtualbox-qt-4.2.28-2.28.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="virtualbox-websrv-4.2.28-2.28.1">
+      <FullProductName ProductID="virtualbox-websrv-4.2.28-2.28.1">virtualbox-websrv-4.2.28-2.28.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="xen-4.3.3_04-37.1">
+      <FullProductName ProductID="xen-4.3.3_04-37.1">xen-4.3.3_04-37.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="xen-devel-4.3.3_04-37.1">
+      <FullProductName ProductID="xen-devel-4.3.3_04-37.1">xen-devel-4.3.3_04-37.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="xen-doc-html-4.3.3_04-37.1">
+      <FullProductName ProductID="xen-doc-html-4.3.3_04-37.1">xen-doc-html-4.3.3_04-37.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="xen-kmp-default-4.3.3_04_k3.11.10_29-37.1">
+      <FullProductName ProductID="xen-kmp-default-4.3.3_04_k3.11.10_29-37.1">xen-kmp-default-4.3.3_04_k3.11.10_29-37.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="xen-kmp-desktop-4.3.3_04_k3.11.10_29-37.1">
+      <FullProductName ProductID="xen-kmp-desktop-4.3.3_04_k3.11.10_29-37.1">xen-kmp-desktop-4.3.3_04_k3.11.10_29-37.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="xen-kmp-pae-4.3.3_04_k3.11.10_29-37.1">
+      <FullProductName ProductID="xen-kmp-pae-4.3.3_04_k3.11.10_29-37.1">xen-kmp-pae-4.3.3_04_k3.11.10_29-37.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="xen-libs-4.3.3_04-37.1">
+      <FullProductName ProductID="xen-libs-4.3.3_04-37.1">xen-libs-4.3.3_04-37.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="xen-libs-32bit-4.3.3_04-37.1">
+      <FullProductName ProductID="xen-libs-32bit-4.3.3_04-37.1">xen-libs-32bit-4.3.3_04-37.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="xen-tools-4.3.3_04-37.1">
+      <FullProductName ProductID="xen-tools-4.3.3_04-37.1">xen-tools-4.3.3_04-37.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="xen-tools-domU-4.3.3_04-37.1">
+      <FullProductName ProductID="xen-tools-domU-4.3.3_04-37.1">xen-tools-domU-4.3.3_04-37.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="xen-xend-tools-4.3.3_04-37.1">
+      <FullProductName ProductID="xen-xend-tools-4.3.3_04-37.1">xen-xend-tools-4.3.3_04-37.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="xtables-addons-2.3-2.19.1">
+      <FullProductName ProductID="xtables-addons-2.3-2.19.1">xtables-addons-2.3-2.19.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="xtables-addons-kmp-default-2.3_k3.11.10_29-2.19.1">
+      <FullProductName ProductID="xtables-addons-kmp-default-2.3_k3.11.10_29-2.19.1">xtables-addons-kmp-default-2.3_k3.11.10_29-2.19.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="xtables-addons-kmp-desktop-2.3_k3.11.10_29-2.19.1">
+      <FullProductName ProductID="xtables-addons-kmp-desktop-2.3_k3.11.10_29-2.19.1">xtables-addons-kmp-desktop-2.3_k3.11.10_29-2.19.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="xtables-addons-kmp-pae-2.3_k3.11.10_29-2.19.1">
+      <FullProductName ProductID="xtables-addons-kmp-pae-2.3_k3.11.10_29-2.19.1">xtables-addons-kmp-pae-2.3_k3.11.10_29-2.19.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="xtables-addons-kmp-xen-2.3_k3.11.10_29-2.19.1">
+      <FullProductName ProductID="xtables-addons-kmp-xen-2.3_k3.11.10_29-2.19.1">xtables-addons-kmp-xen-2.3_k3.11.10_29-2.19.1</FullProductName>
+    </Branch>
+  </ProductTree>
+  <Vulnerability xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1" Ordinal="1">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">The implementation of certain splice_write file operations in the Linux kernel before 3.16 does not enforce a restriction on the maximum size of a single file, which allows local users to cause a denial of service (system crash) or possibly have unspecified other impact via a crafted splice system call, as demonstrated by use of a file descriptor associated with an ext4 filesystem.</Note>
+    </Notes>
+    <CVE>CVE-2014-7822</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed"/>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-security-announce/2015-04/msg00009.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2014-7822.html</URL>
+        <Description>CVE-2014-7822</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/915322</URL>
+        <Description>SUSE Bug 915322</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/915517</URL>
+        <Description>SUSE Bug 915517</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/939240</URL>
+        <Description>SUSE Bug 939240</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+  <Vulnerability xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1" Ordinal="2">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">The paravirt_ops_setup function in arch/x86/kernel/kvm.c in the Linux kernel through 3.18 uses an improper paravirt_enabled setting for KVM guest kernels, which makes it easier for guest OS users to bypass the ASLR protection mechanism via a crafted application that reads a 16-bit value.</Note>
+    </Notes>
+    <CVE>CVE-2014-8134</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed"/>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>important</Description>
+      </Threat>
+    </Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-security-announce/2015-04/msg00009.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2014-8134.html</URL>
+        <Description>CVE-2014-8134</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/907818</URL>
+        <Description>SUSE Bug 907818</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/909077</URL>
+        <Description>SUSE Bug 909077</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/909078</URL>
+        <Description>SUSE Bug 909078</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+  <Vulnerability xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1" Ordinal="3">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">net/netfilter/nf_conntrack_proto_generic.c in the Linux kernel before 3.18 generates incorrect conntrack entries during handling of certain iptables rule sets for the SCTP, DCCP, GRE, and UDP-Lite protocols, which allows remote attackers to bypass intended access restrictions via packets with disallowed port numbers.</Note>
+    </Notes>
+    <CVE>CVE-2014-8160</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed"/>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-security-announce/2015-04/msg00009.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2014-8160.html</URL>
+        <Description>CVE-2014-8160</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/857643</URL>
+        <Description>SUSE Bug 857643</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/913059</URL>
+        <Description>SUSE Bug 913059</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+  <Vulnerability xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1" Ordinal="4">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">The pmd_none_or_trans_huge_or_clear_bad function in include/asm-generic/pgtable.h in the Linux kernel before 3.13 on NUMA systems does not properly determine whether a Page Middle Directory (PMD) entry is a transparent huge-table entry, which allows local users to cause a denial of service (NULL pointer dereference and system crash) or possibly have unspecified other impact via a crafted MADV_WILLNEED madvise system call that leverages the absence of a page-table lock.</Note>
+    </Notes>
+    <CVE>CVE-2014-8173</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed"/>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>important</Description>
+      </Threat>
+    </Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-security-announce/2015-04/msg00009.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2014-8173.html</URL>
+        <Description>CVE-2014-8173</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/920583</URL>
+        <Description>SUSE Bug 920583</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+  <Vulnerability xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1" Ordinal="5">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">The d_walk function in fs/dcache.c in the Linux kernel through 3.17.2 does not properly maintain the semantics of rename_lock, which allows local users to cause a denial of service (deadlock and system hang) via a crafted application.</Note>
+    </Notes>
+    <CVE>CVE-2014-8559</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed"/>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-security-announce/2015-04/msg00009.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2014-8559.html</URL>
+        <Description>CVE-2014-8559</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/903640</URL>
+        <Description>SUSE Bug 903640</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/915517</URL>
+        <Description>SUSE Bug 915517</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+  <Vulnerability xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1" Ordinal="6">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">The __switch_to function in arch/x86/kernel/process_64.c in the Linux kernel through 3.18.1 does not ensure that Thread Local Storage (TLS) descriptors are loaded before proceeding with other steps, which makes it easier for local users to bypass the ASLR protection mechanism via a crafted application that reads a TLS base address.</Note>
+    </Notes>
+    <CVE>CVE-2014-9419</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed"/>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>low</Description>
+      </Threat>
+    </Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-security-announce/2015-04/msg00009.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2014-9419.html</URL>
+        <Description>CVE-2014-9419</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/911326</URL>
+        <Description>SUSE Bug 911326</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+  <Vulnerability xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1" Ordinal="7">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">The rock_continue function in fs/isofs/rock.c in the Linux kernel through 3.18.1 does not restrict the number of Rock Ridge continuation entries, which allows local users to cause a denial of service (infinite loop, and system crash or hang) via a crafted iso9660 image.</Note>
+    </Notes>
+    <CVE>CVE-2014-9420</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed"/>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>important</Description>
+      </Threat>
+    </Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-security-announce/2015-04/msg00009.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2014-9420.html</URL>
+        <Description>CVE-2014-9420</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/906545</URL>
+        <Description>SUSE Bug 906545</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/911325</URL>
+        <Description>SUSE Bug 911325</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+  <Vulnerability xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1" Ordinal="8">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">Race condition in the key_gc_unused_keys function in security/keys/gc.c in the Linux kernel through 3.18.2 allows local users to cause a denial of service (memory corruption or panic) or possibly have unspecified other impact via keyctl commands that trigger access to a key structure member during garbage collection of a key.</Note>
+    </Notes>
+    <CVE>CVE-2014-9529</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed"/>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>important</Description>
+      </Threat>
+    </Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-security-announce/2015-04/msg00009.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2014-9529.html</URL>
+        <Description>CVE-2014-9529</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/912202</URL>
+        <Description>SUSE Bug 912202</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+  <Vulnerability xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1" Ordinal="9">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">The parse_rock_ridge_inode_internal function in fs/isofs/rock.c in the Linux kernel before 3.18.2 does not validate a length value in the Extensions Reference (ER) System Use Field, which allows local users to obtain sensitive information from kernel memory via a crafted iso9660 image.</Note>
+    </Notes>
+    <CVE>CVE-2014-9584</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed"/>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-security-announce/2015-04/msg00009.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2014-9584.html</URL>
+        <Description>CVE-2014-9584</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/912654</URL>
+        <Description>SUSE Bug 912654</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+  <Vulnerability xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1" Ordinal="10">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">The vdso_addr function in arch/x86/vdso/vma.c in the Linux kernel through 3.18.2 does not properly choose memory locations for the vDSO area, which makes it easier for local users to bypass the ASLR protection mechanism by guessing a location at the end of a PMD.</Note>
+    </Notes>
+    <CVE>CVE-2014-9585</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed"/>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>important</Description>
+      </Threat>
+    </Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-security-announce/2015-04/msg00009.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2014-9585.html</URL>
+        <Description>CVE-2014-9585</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/912705</URL>
+        <Description>SUSE Bug 912705</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+  <Vulnerability xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1" Ordinal="11">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">The stack randomization feature in the Linux kernel before 3.19.1 on 64-bit platforms uses incorrect data types for the results of bitwise left-shift operations, which makes it easier for attackers to bypass the ASLR protection mechanism by predicting the address of the top of the stack, related to the randomize_stack_top function in fs/binfmt_elf.c and the stack_maxrandom_size function in arch/x86/mm/mmap.c.</Note>
+    </Notes>
+    <CVE>CVE-2015-1593</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed"/>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>important</Description>
+      </Threat>
+    </Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-security-announce/2015-04/msg00009.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-1593.html</URL>
+        <Description>CVE-2015-1593</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/1044934</URL>
+        <Description>SUSE Bug 1044934</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/917839</URL>
+        <Description>SUSE Bug 917839</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/942663</URL>
+        <Description>SUSE Bug 942663</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+</cvrfdoc>

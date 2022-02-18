@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cvrfdoc xmlns="http://www.icasi.org/CVRF/schema/cvrf/1.1" xmlns:cvrf="http://www.icasi.org/CVRF/schema/cvrf/1.1">
+  <DocumentTitle xml:lang="en">Red Hat Security Advisory: Red Hat Virtualization Host security and bug fix update [ovirt-4.4.7]</DocumentTitle>
+  <DocumentType>Security Advisory</DocumentType>
+  <DocumentPublisher Type="Vendor">
+    <ContactDetails>secalert@redhat.com</ContactDetails>
+    <IssuingAuthority>Red Hat Product Security</IssuingAuthority>
+  </DocumentPublisher>
+  <DocumentTracking>
+    <Identification><ID>RHSA-2021:2736</ID></Identification>
+    <Status>Final</Status>
+    <Version>1</Version>
+    <RevisionHistory>
+       <Revision>
+         <Number>1</Number>
+         <Date>2021-07-26T10:40:00Z</Date>
+         <Description>Current version</Description>
+       </Revision>
+    </RevisionHistory>
+    <InitialReleaseDate>2021-07-22T15:09:00Z</InitialReleaseDate>
+    <CurrentReleaseDate>2021-07-26T10:40:00Z</CurrentReleaseDate>
+    <Generator>
+      <Engine>Red Hat SDEngine 3.0.0</Engine>
+      <Date>2021-08-23T04:57:00Z</Date>
+    </Generator>
+  </DocumentTracking>
+  <DocumentNotes>
+    <Note Title="Topic" Type="Summary" Ordinal="1" xml:lang="en">
+An update for imgbased, redhat-release-virtualization-host, and redhat-virtualization-host is now available for Red Hat Virtualization 4 for Red Hat Enterprise Linux 8.
+
+Red Hat Product Security has rated this update as having a security impact of Important. A Common Vulnerability Scoring System (CVSS) base score, which gives a detailed severity rating, is available for each vulnerability from the CVE link(s) in the References section.
+    </Note>
+    <Note Title="Details" Type="General" Ordinal="2" xml:lang="en">
+The redhat-virtualization-host packages provide the Red Hat Virtualization Host. These packages include redhat-release-virtualization-host, ovirt-node, and rhev-hypervisor. Red Hat Virtualization Hosts (RHVH) are installed using a special build of Red Hat Enterprise Linux with only the packages required to host virtual machines. RHVH features a Cockpit user interface for monitoring the host's resources and performing administrative tasks.
+
+The redhat-virtualization-host packages provide the Red Hat Virtualization Host. These packages include redhat-release-virtualization-host, ovirt-node, and rhev-hypervisor. Red Hat Virtualization Hosts (RHVH) are installed using a special build of Red Hat Enterprise Linux with only the packages required to host virtual machines. RHVH features a Cockpit user interface for monitoring the host's resources and performing administrative tasks. 
+
+The ovirt-node-ng packages provide the Red Hat Virtualization Host. These packages include redhat-release-virtualization-host, ovirt-node, and rhev-hypervisor. Red Hat Virtualization Hosts (RHVH) are installed using a special build of Red Hat Enterprise Linux with only the packages required to host virtual machines. RHVH features a Cockpit user interface for monitoring the host's resources and performing administrative tasks.
+
+Security Fix(es):
+
+* kernel: size_t-to-int conversion vulnerability in the filesystem layer (CVE-2021-33909)
+
+* systemd: uncontrolled allocation on the stack in function unit_name_path_escape leads to crash (CVE-2021-33910)
+
+* kernel: use-after-free in net/bluetooth/hci_event.c when destroying an hci_chan (CVE-2021-33034)
+
+* ansible: multiple modules expose secured values (CVE-2021-3447)
+
+For more details about the security issue(s), including the impact, a CVSS score, acknowledgments, and other related information, refer to the CVE page(s) listed in the References section.
+
+Bug Fix(es):
+
+* The redhat-release-virtualization-host package no longer requires vdsm-hooks. In this release, the installation of vdsm-hooks is not mandatory for the Red Hat Virtualization Host. (BZ#1976095)
+
+* Previously, rhsmcertd was not enabled by default on the Red Hat Virtualization Host. As a result, the systems did not regularly report to RHSM while the subscription-manager reported no obvious issues and repositories were properly enabled.
+In this release, rhsmcertd is enabled by default in RHVH, and as a result, RHSM now receives reports regularly. (BZ#1958145)
+
+* In this release, the Red Hat Virtualization Host has been rebased on top of the RHEL 8.4.0 Batch #1 update. For more information, see the RHEL release notes. (BZ#1957242)
+
+* Red Hat Virtualization Host now includes an updated scap-security-guide-rhv which allows you to apply a PCI DSS security profile to the system during installation, (BZ#1883793)
+    </Note>
+    <Note Title="Terms of Use" Ordinal="3" Type="Legal Disclaimer" xml:lang="en">This content is licensed under the Creative Commons Attribution 4.0 International License (https://creativecommons.org/licenses/by/4.0/). If you distribute this content, or a modified version of it, you must provide attribution to Red Hat Inc. and provide a link to the original.</Note>
+  </DocumentNotes>
+  <DocumentDistribution xml:lang="en">Copyright © 2021 Red Hat, Inc. All rights reserved.</DocumentDistribution>
+  <AggregateSeverity Namespace="https://access.redhat.com/security/updates/classification/">Important</AggregateSeverity>
+  <DocumentReferences>
+    <Reference Type="Self">
+       <URL>https://access.redhat.com/errata/RHSA-2021:2736</URL>
+       <Description>https://access.redhat.com/errata/RHSA-2021:2736</Description>
+    </Reference>
+    <Reference Type="External">
+       <URL>https://access.redhat.com/security/updates/classification/#important</URL>
+       <Description>https://access.redhat.com/security/updates/classification/#important</Description>
+    </Reference>
+    <Reference Type="External">
+       <URL>https://access.redhat.com/security/vulnerabilities/RHSB-2021-006</URL>
+       <Description>https://access.redhat.com/security/vulnerabilities/RHSB-2021-006</Description>
+    </Reference>
+  </DocumentReferences>
+  <ProductTree xmlns="http://www.icasi.org/CVRF/schema/prod/1.1">
+    <Branch Type="Product Family" Name="Red Hat Virtualization">
+      <Branch Type="Product Name" Name="Red Hat Virtualization 4 Hypervisor for RHEL 8">
+        <FullProductName ProductID="8Base-RHV-Hypervisor-4" CPE="cpe:/o:redhat:enterprise_linux:8::hypervisor">Red Hat Virtualization 4 Hypervisor for RHEL 8</FullProductName>
+      </Branch>
+      <Branch Type="Product Name" Name="RHEL 8-based RHEV-H for RHEV 4 (build requirements)">
+        <FullProductName ProductID="8Base-RHV-HypervisorBuild-4" CPE="cpe:/o:redhat:enterprise_linux:8::hypervisor">RHEL 8-based RHEV-H for RHEV 4 (build requirements)</FullProductName>
+      </Branch>
+    </Branch>
+    <Branch Type="Product Version" Name="fcoe-utils-0:1.0.33-3.git848bcc6.el8">
+      <FullProductName ProductID="fcoe-utils-0:1.0.33-3.git848bcc6.el8" CPE="cpe:/o:redhat:enterprise_linux:8::hypervisor">fcoe-utils-1.0.33-3.git848bcc6.el8.src.rpm</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="imgbased-0:1.2.21-1.el8ev">
+      <FullProductName ProductID="imgbased-0:1.2.21-1.el8ev" CPE="cpe:/o:redhat:enterprise_linux:8::hypervisor">imgbased-1.2.21-1.el8ev.src.rpm</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="redhat-release-virtualization-host-0:4.4.7-3.el8ev">
+      <FullProductName ProductID="redhat-release-virtualization-host-0:4.4.7-3.el8ev" CPE="cpe:/o:redhat:enterprise_linux:8::hypervisor">redhat-release-virtualization-host-4.4.7-3.el8ev.src.rpm</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="redhat-virtualization-host-0:4.4.7-20210715.1.el8_4">
+      <FullProductName ProductID="redhat-virtualization-host-0:4.4.7-20210715.1.el8_4" CPE="cpe:/o:redhat:enterprise_linux:8::hypervisor">redhat-virtualization-host-4.4.7-20210715.1.el8_4.src.rpm</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="scap-security-guide-0:0.1.54-2.el8ev">
+      <FullProductName ProductID="scap-security-guide-0:0.1.54-2.el8ev" CPE="cpe:/o:redhat:enterprise_linux:8::hypervisor">scap-security-guide-0.1.54-2.el8ev.src.rpm</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="vhostmd-0:1.1-5.el8">
+      <FullProductName ProductID="vhostmd-0:1.1-5.el8" CPE="cpe:/o:redhat:enterprise_linux:8::hypervisor">vhostmd-1.1-5.el8.src.rpm</FullProductName>
+    </Branch>
+    <Relationship ProductReference="fcoe-utils-0:1.0.33-3.git848bcc6.el8" RelationType="Default Component Of" RelatesToProductReference="8Base-RHV-Hypervisor-4">
+      <FullProductName ProductID="8Base-RHV-Hypervisor-4:fcoe-utils-0:1.0.33-3.git848bcc6.el8" CPE="cpe:/o:redhat:enterprise_linux:8::hypervisor">fcoe-utils-0:1.0.33-3.git848bcc6.el8 as a component of Red Hat Virtualization 4 Hypervisor for RHEL 8</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="redhat-virtualization-host-0:4.4.7-20210715.1.el8_4" RelationType="Default Component Of" RelatesToProductReference="8Base-RHV-Hypervisor-4">
+      <FullProductName ProductID="8Base-RHV-Hypervisor-4:redhat-virtualization-host-0:4.4.7-20210715.1.el8_4" CPE="cpe:/o:redhat:enterprise_linux:8::hypervisor">redhat-virtualization-host-0:4.4.7-20210715.1.el8_4 as a component of Red Hat Virtualization 4 Hypervisor for RHEL 8</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="vhostmd-0:1.1-5.el8" RelationType="Default Component Of" RelatesToProductReference="8Base-RHV-Hypervisor-4">
+      <FullProductName ProductID="8Base-RHV-Hypervisor-4:vhostmd-0:1.1-5.el8" CPE="cpe:/o:redhat:enterprise_linux:8::hypervisor">vhostmd-0:1.1-5.el8 as a component of Red Hat Virtualization 4 Hypervisor for RHEL 8</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="imgbased-0:1.2.21-1.el8ev" RelationType="Default Component Of" RelatesToProductReference="8Base-RHV-HypervisorBuild-4">
+      <FullProductName ProductID="8Base-RHV-HypervisorBuild-4:imgbased-0:1.2.21-1.el8ev" CPE="cpe:/o:redhat:enterprise_linux:8::hypervisor">imgbased-0:1.2.21-1.el8ev as a component of RHEL 8-based RHEV-H for RHEV 4 (build requirements)</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="redhat-release-virtualization-host-0:4.4.7-3.el8ev" RelationType="Default Component Of" RelatesToProductReference="8Base-RHV-HypervisorBuild-4">
+      <FullProductName ProductID="8Base-RHV-HypervisorBuild-4:redhat-release-virtualization-host-0:4.4.7-3.el8ev" CPE="cpe:/o:redhat:enterprise_linux:8::hypervisor">redhat-release-virtualization-host-0:4.4.7-3.el8ev as a component of RHEL 8-based RHEV-H for RHEV 4 (build requirements)</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="scap-security-guide-0:0.1.54-2.el8ev" RelationType="Default Component Of" RelatesToProductReference="8Base-RHV-HypervisorBuild-4">
+      <FullProductName ProductID="8Base-RHV-HypervisorBuild-4:scap-security-guide-0:0.1.54-2.el8ev" CPE="cpe:/o:redhat:enterprise_linux:8::hypervisor">scap-security-guide-0:0.1.54-2.el8ev as a component of RHEL 8-based RHEV-H for RHEV 4 (build requirements)</FullProductName>
+    </Relationship>
+  </ProductTree>
+
+  <Vulnerability Ordinal="1" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">ansible: multiple modules expose secured values</Note></Notes>
+    <DiscoveryDate>2021-03-11T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-03-16T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-3447</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>8Base-RHV-Hypervisor-4:fcoe-utils-0:1.0.33-3.git848bcc6.el8</ProductID>
+      <ProductID>8Base-RHV-Hypervisor-4:redhat-virtualization-host-0:4.4.7-20210715.1.el8_4</ProductID>
+      <ProductID>8Base-RHV-Hypervisor-4:vhostmd-0:1.1-5.el8</ProductID>
+      <ProductID>8Base-RHV-HypervisorBuild-4:imgbased-0:1.2.21-1.el8ev</ProductID>
+      <ProductID>8Base-RHV-HypervisorBuild-4:redhat-release-virtualization-host-0:4.4.7-3.el8ev</ProductID>
+      <ProductID>8Base-RHV-HypervisorBuild-4:scap-security-guide-0:0.1.54-2.el8ev</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/2974891
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:2736</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-3447</URL>
+        <Description>CVE-2021-3447</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1939349</URL>
+        <Description>bz#1939349: CVE-2021-3447 ansible: multiple modules expose secured values</Description>
+      </Reference>
+    </References>
+    <Acknowledgments><Acknowledgment><Description>This issue was discovered by Chen Zhi (Zhejiang University), Felix Fontein, and John Barker (Red Hat).</Description></Acknowledgment></Acknowledgments>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="2" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">kernel: race condition for removal of the HCI controller</Note></Notes>
+    <DiscoveryDate>2021-05-11T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-05-11T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-32399</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>8Base-RHV-Hypervisor-4:fcoe-utils-0:1.0.33-3.git848bcc6.el8</ProductID>
+      <ProductID>8Base-RHV-Hypervisor-4:redhat-virtualization-host-0:4.4.7-20210715.1.el8_4</ProductID>
+      <ProductID>8Base-RHV-Hypervisor-4:vhostmd-0:1.1-5.el8</ProductID>
+      <ProductID>8Base-RHV-HypervisorBuild-4:imgbased-0:1.2.21-1.el8ev</ProductID>
+      <ProductID>8Base-RHV-HypervisorBuild-4:redhat-release-virtualization-host-0:4.4.7-3.el8ev</ProductID>
+      <ProductID>8Base-RHV-HypervisorBuild-4:scap-security-guide-0:0.1.54-2.el8ev</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Important</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/2974891
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:2736</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-32399</URL>
+        <Description>CVE-2021-32399</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1970807</URL>
+        <Description>bz#1970807: CVE-2021-32399 kernel: race condition for removal of the HCI controller</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="3" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">kernel: use-after-free in net/bluetooth/hci_event.c when destroying an hci_chan</Note></Notes>
+    <DiscoveryDate>2021-05-14T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-03-22T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-33034</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>8Base-RHV-Hypervisor-4:fcoe-utils-0:1.0.33-3.git848bcc6.el8</ProductID>
+      <ProductID>8Base-RHV-Hypervisor-4:redhat-virtualization-host-0:4.4.7-20210715.1.el8_4</ProductID>
+      <ProductID>8Base-RHV-Hypervisor-4:vhostmd-0:1.1-5.el8</ProductID>
+      <ProductID>8Base-RHV-HypervisorBuild-4:imgbased-0:1.2.21-1.el8ev</ProductID>
+      <ProductID>8Base-RHV-HypervisorBuild-4:redhat-release-virtualization-host-0:4.4.7-3.el8ev</ProductID>
+      <ProductID>8Base-RHV-HypervisorBuild-4:scap-security-guide-0:0.1.54-2.el8ev</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Important</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/2974891
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:2736</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=5c4c8c9544099bb9043a10a5318130a943e32fc3</URL>
+        <Description>https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=5c4c8c9544099bb9043a10a5318130a943e32fc3</Description>
+      </Reference>
+      <Reference>
+        <URL>https://sites.google.com/view/syzscope/kasan-use-after-free-read-in-hci_send_acl</URL>
+        <Description>https://sites.google.com/view/syzscope/kasan-use-after-free-read-in-hci_send_acl</Description>
+      </Reference>
+      <Reference>
+        <URL>https://syzkaller.appspot.com/bug?id=2e1943a94647f7732dd6fc60368642d6e8dc91b1</URL>
+        <Description>https://syzkaller.appspot.com/bug?id=2e1943a94647f7732dd6fc60368642d6e8dc91b1</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-33034</URL>
+        <Description>CVE-2021-33034</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1961305</URL>
+        <Description>bz#1961305: CVE-2021-33034 kernel: use-after-free in net/bluetooth/hci_event.c when destroying an hci_chan</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="4" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">kernel: size_t-to-int conversion vulnerability in the filesystem layer</Note></Notes>
+    <DiscoveryDate>2021-06-10T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-07-20T12:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-33909</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>8Base-RHV-Hypervisor-4:fcoe-utils-0:1.0.33-3.git848bcc6.el8</ProductID>
+      <ProductID>8Base-RHV-Hypervisor-4:redhat-virtualization-host-0:4.4.7-20210715.1.el8_4</ProductID>
+      <ProductID>8Base-RHV-Hypervisor-4:vhostmd-0:1.1-5.el8</ProductID>
+      <ProductID>8Base-RHV-HypervisorBuild-4:imgbased-0:1.2.21-1.el8ev</ProductID>
+      <ProductID>8Base-RHV-HypervisorBuild-4:redhat-release-virtualization-host-0:4.4.7-3.el8ev</ProductID>
+      <ProductID>8Base-RHV-HypervisorBuild-4:scap-security-guide-0:0.1.54-2.el8ev</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Important</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/2974891
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:2736</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=8cae8cd89f05f6de223d63e6d15e31c8ba9cf53b</URL>
+        <Description>https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=8cae8cd89f05f6de223d63e6d15e31c8ba9cf53b</Description>
+      </Reference>
+      <Reference>
+        <URL>https://www.openwall.com/lists/oss-security/2021/07/20/1</URL>
+        <Description>https://www.openwall.com/lists/oss-security/2021/07/20/1</Description>
+      </Reference>
+      <Reference>
+        <URL>https://www.qualys.com/2021/07/20/cve-2021-33909/sequoia-local-privilege-escalation-linux.txt</URL>
+        <Description>https://www.qualys.com/2021/07/20/cve-2021-33909/sequoia-local-privilege-escalation-linux.txt</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-33909</URL>
+        <Description>CVE-2021-33909</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1970273</URL>
+        <Description>bz#1970273: CVE-2021-33909 kernel: size_t-to-int conversion vulnerability in the filesystem layer</Description>
+      </Reference>
+    </References>
+    <Acknowledgments><Acknowledgment><Description>Red Hat would like to thank Qualys Research Team for reporting this issue.</Description></Acknowledgment></Acknowledgments>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="5" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">systemd: uncontrolled allocation on the stack in function unit_name_path_escape leads to crash</Note></Notes>
+    <DiscoveryDate>2021-06-10T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-07-20T12:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-33910</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>8Base-RHV-Hypervisor-4:fcoe-utils-0:1.0.33-3.git848bcc6.el8</ProductID>
+      <ProductID>8Base-RHV-Hypervisor-4:redhat-virtualization-host-0:4.4.7-20210715.1.el8_4</ProductID>
+      <ProductID>8Base-RHV-Hypervisor-4:vhostmd-0:1.1-5.el8</ProductID>
+      <ProductID>8Base-RHV-HypervisorBuild-4:imgbased-0:1.2.21-1.el8ev</ProductID>
+      <ProductID>8Base-RHV-HypervisorBuild-4:redhat-release-virtualization-host-0:4.4.7-3.el8ev</ProductID>
+      <ProductID>8Base-RHV-HypervisorBuild-4:scap-security-guide-0:0.1.54-2.el8ev</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Important</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/2974891
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:2736</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.qualys.com/2021/07/20/cve-2021-33910/denial-of-service-systemd.txt</URL>
+        <Description>https://www.qualys.com/2021/07/20/cve-2021-33910/denial-of-service-systemd.txt</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-33910</URL>
+        <Description>CVE-2021-33910</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1970887</URL>
+        <Description>bz#1970887: CVE-2021-33910 systemd: uncontrolled allocation on the stack in function unit_name_path_escape leads to crash</Description>
+      </Reference>
+    </References>
+    <Acknowledgments><Acknowledgment><Description>Red Hat would like to thank Qualys Research Team for reporting this issue.</Description></Acknowledgment></Acknowledgments>
+  </Vulnerability>
+</cvrfdoc>

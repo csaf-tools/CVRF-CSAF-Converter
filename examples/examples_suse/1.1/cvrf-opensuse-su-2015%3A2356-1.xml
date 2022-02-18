@@ -1,0 +1,771 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cvrfdoc xmlns="http://www.icasi.org/CVRF/schema/cvrf/1.1" xmlns:cvrf="http://www.icasi.org/CVRF/schema/cvrf/1.1">
+  <DocumentTitle xml:lang="en">Security update for samba, ldb, talloc, tdb, tevent</DocumentTitle>
+  <DocumentType>SUSE Patch</DocumentType>
+  <DocumentPublisher Type="Vendor">
+    <ContactDetails>security@suse.de</ContactDetails>
+    <IssuingAuthority>SUSE Security Team</IssuingAuthority>
+  </DocumentPublisher>
+  <DocumentTracking>
+    <Identification>
+      <ID>openSUSE-SU-2015:2356-1</ID>
+    </Identification>
+    <Status>Final</Status>
+    <Version>1</Version>
+    <RevisionHistory>
+      <Revision>
+        <Number>1</Number>
+        <Date>2015-12-24T11:14:41Z</Date>
+        <Description>current</Description>
+      </Revision>
+    </RevisionHistory>
+    <InitialReleaseDate>2015-12-24T11:14:41Z</InitialReleaseDate>
+    <CurrentReleaseDate>2015-12-24T11:14:41Z</CurrentReleaseDate>
+    <Generator>
+      <Engine>cve-database/bin/generate-cvrf.pl</Engine>
+      <Date>2017-02-24T01:00:00Z</Date>
+    </Generator>
+  </DocumentTracking>
+  <DocumentNotes>
+    <Note Title="Topic" Type="Summary" Ordinal="1" xml:lang="en">Security update for samba, ldb, talloc, tdb, tevent</Note>
+    <Note Title="Details" Type="General" Ordinal="2" xml:lang="en">
+This update for ldb, samba, talloc, tdb, tevent fixes the following issues: 
+
+ldb was updated to 1.1.24.
+
++ Fix ldap \00 search expression attack dos; cve-2015-3223; (bso#11325)
++ Fix remote read memory exploit in ldb; cve-2015-5330; (bso#11599)
++ Move ldb_(un)pack_data into ldb_module.h for testing
++ Fix installation of _ldb_text.py
++ Fix propagation of ldb errors through tdb
++ Fix bug triggered by having an empty message in database during search
++ Test improvements
++ Improved python bindings
++ Validate_ldb of string(generalized-time) does not accept millisecond format '.000Z'; (bso#9810)
++ Fix logic in ldb_val_to_time()
++ Allow to register extended match rules
++ Fixes for segfaults in pyldb
++ Documentation fixes
++ Build system improvements
++ Fix a typo in the comment, ldb_flags_mod_xxx -&gt; ldb_flag_mod_xxx
++ Fix check for third_party
++ Make the successful ldb_transaction_start() message clearer
++ Ldb-samba: fix a memory leak in ldif_canonicalise_objectcategory()
++ Ldb-samba: move pyldb-utils dependency to python_samba__ldb
++ Build: improve detection of srcdir
+
+Samba was updated to 4.1.22.
++ Malicious request can cause samba ldap server to hang, spinning using cpu;
+  CVE-2015-3223; (bso#11325); (boo#958581).
++ Remote read memory exploit in ldb; cve-2015-5330; (bso#11599);
+  (boo#958586).
++ Insufficient symlink verification (file access outside the share);
+  CVE-2015-5252; (bso#11395); (boo#958582).
++ No man in the middle protection when forcing smb encryption on the client
+  side; CVE-2015-5296; (bso#11536); (boo#958584).
++ Currently the snapshot browsing is not secure thru windows previous version
+  (shadow_copy2); CVE-2015-5299; (bso#11529); (boo#958583).
++ Fix microsoft ms15-096 to prevent machine accounts from being changed into
+  user accounts; CVE-2015-8467; (bso#11552); (boo#958585).
++ Fix remote dos in samba (ad) ldap server; cve-2015-7540; (bso#9187);
+  (boo#958580).
++ Ensure attempt to ssh into locked account  triggers
+  'Your account is disabled.....' to the console; (boo#953382).
++ Prevent null pointer access in samlogon fallback when security
+  credentials are null; (boo#949022).
+
+talloc was updated to 2.1.5; (boo#954658).
++ Minor build fixes
++ Point ld_library_path to the just-built libraries while calling make test.
++ Disable rpath-install and silent-rules while configure.
++ Update to 2.1.4; (boo#951660).
++ Test that talloc magic differs between processes.
++ Increment minor version due to added talloc_test_get_magic.
++ Provide tests access to talloc_magic.
++ Test magic protection measures.
++ Update the samba library distribution key file 'talloc.keyring'; (bso#945116).
++ Update to 2.1.3; (boo#939051).
++ Improved python3 bindings
++ Documentation fixes regarding talloc_reference() and talloc_unlink()
+
+tdb was updated to version 1.3.8; (boo#954658).
++ Fix broken build with --disable-python
++ Minor build fixes
++ Disable rpath-install and silent-rules while configure.
++ Update the samba library distribution key file 'tdb.keyring'; (bso#945116).
++ Update to version 1.3.7.
++ First fix deadlock in the interaction between fcntl and mutex locking; (bso#11381)
++ Improved python3 bindings
++ Update to version 1.3.6.
++ Fix runtime detection for robust mutexes in the standalone build; (bso#11326).
++ Possible fix for the build with robust mutexes on solaris 11; (bso#11319).
++ Update to version 1.3.5.
++ Abi change: tdb_chainlock_read_nonblock() has been added, a nonblock
+  variant of tdb_chainlock_read()
++ Do not build test binaries if it's not a standalone build
++ Fix cid 1034842 resource leak
++ Fix cid 1034841 resource leak
++ Don't let tdb_wrap_open() segfault with name==null
++ Update to version 1.3.4.
++ Toos: allow transactions with tdb_mutex_locking
++ Test: add tdb1-run-mutex-transaction1 test
++ Allow transactions on on tdb's with tdb_mutex_locking
++ Update to version 1.3.3.
++ Test: tdb_clear_if_first | tdb_mutex_locking, o_rdonly is a valid
+  combination
++ Update to version 1.3.2.
++ Allow tdb_open_ex() with o_rdonly of tdb_feature_flag_mutex tdbs.
++ Fix a comment
++ Fix tdb_runtime_check_for_robust_mutexes()
++ Improve wording in a comment
++ Tdb.h needs bool type; obsoletes include_stdbool_bso10625.patch
++ Tdb_wrap: make mutexes easier to use
++ Tdb_wrap: only pull in samba-debug
++ Tdb_wrap: standalone compile without includes.h
++ Tdb_wrap: tdb_wrap.h doesn't need struct loadparm_context
+- Update to version 1.3.1.
++ Tools: fix a compiler warning
++ Defragment the freelist in tdb_allocate_from_freelist()
++ Add 'freelist_size' sub-command to tdbtool
++ Use tdb_freelist_merge_adjacent in tdb_freelist_size()
++ Add tdb_freelist_merge_adjacent()
++ Add utility function check_merge_ptr_with_left_record()
++ Simplify tdb_free() using check_merge_with_left_record()
++ Add utility function check_merge_with_left_record()
++ Improve comments for tdb_free().
++ Factor merge_with_left_record() out of tdb_free()
++ Fix debug message in tdb_free()
++ Reduce indentation in tdb_free() for merging left
++ Increase readability of read_record_on_left()
++ Factor read_record_on_left() out of tdb_free()
++ Build: improve detection of srcdir.
+
+tevent was update to version 0.9.26; (boo#954658).
++ New tevent_thread_proxy api
++ Minor build fixes
++ Update the samba library distribution key file 'tevent.keyring'; (bso#945116).
++ Update to 0.9.25.
++ Fix compile error in solaris ports backend.
++ Fix access after free in tevent_common_check_signal(); (bso#11308).
++ Improve pytevent bindings.
++ Testsuite fixes.
++ Improve the documentation of the tevent_add_fd() assumtions. it must be
+  talloc_free'ed before closing the fd! (bso##11141); (bso#11316).
++ Update to 0.9.24.
++ Ignore unexpected signal events in the same way the epoll backend does.
++ Update to 0.9.23.
++ Update the tevent_data.dox tutrial stuff to fix some errors, including
+  white space problems.
++ Use tevent_req_simple_recv_unix in a few places.
++ Update to 0.9.22.
++ Remove unused exit_code in tevent_select.c
++ Remove unused exit_code in tevent_poll.c
++ Build: improve detection of srcdir
++ Lib: tevent: make tevent_sig_increment atomic.
++ Update flags in tevent pkgconfig file
++ Utilize doxygen to generate the api documentation and package it.
+</Note>
+    <Note Title="Terms of Use" Type="Legal Disclaimer" Ordinal="3" xml:lang="en">The CVRF data is provided by SUSE under the Creative Commons License 4.0 with Attribution for Non-Commercial usage (CC-BY-NC-4.0).</Note>
+  </DocumentNotes>
+  <DocumentDistribution xml:lang="en">Copyright SUSE LLC under the Creative Commons License 4.0 with Attribution for Non-Commercial usage (CC-BY-NC-4.0)</DocumentDistribution>
+  <DocumentReferences>
+    <Reference Type="Self">
+      <URL>https://lists.opensuse.org/opensuse-security-announce/2015-12/msg00033.html</URL>
+      <Description>E-Mail link for openSUSE-SU-2015:2356-1</Description>
+    </Reference>
+    <Reference Type="Self">
+      <URL>https://www.suse.com/support/security/rating/</URL>
+      <Description>SUSE Security Ratings</Description>
+    </Reference>
+  </DocumentReferences>
+  <ProductTree xmlns="http://www.icasi.org/CVRF/schema/prod/1.1">
+    <Branch Type="Product Version" Name="ldb-1.1.24-3.7.1">
+      <FullProductName ProductID="ldb-1.1.24-3.7.1">ldb-1.1.24-3.7.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="ldb-tools-1.1.24-3.7.1">
+      <FullProductName ProductID="ldb-tools-1.1.24-3.7.1">ldb-tools-1.1.24-3.7.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libdcerpc-atsvc-devel-4.1.22-3.46.1">
+      <FullProductName ProductID="libdcerpc-atsvc-devel-4.1.22-3.46.1">libdcerpc-atsvc-devel-4.1.22-3.46.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libdcerpc-atsvc0-4.1.22-3.46.1">
+      <FullProductName ProductID="libdcerpc-atsvc0-4.1.22-3.46.1">libdcerpc-atsvc0-4.1.22-3.46.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libdcerpc-atsvc0-32bit-4.1.22-3.46.1">
+      <FullProductName ProductID="libdcerpc-atsvc0-32bit-4.1.22-3.46.1">libdcerpc-atsvc0-32bit-4.1.22-3.46.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libdcerpc-binding0-4.1.22-3.46.1">
+      <FullProductName ProductID="libdcerpc-binding0-4.1.22-3.46.1">libdcerpc-binding0-4.1.22-3.46.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libdcerpc-binding0-32bit-4.1.22-3.46.1">
+      <FullProductName ProductID="libdcerpc-binding0-32bit-4.1.22-3.46.1">libdcerpc-binding0-32bit-4.1.22-3.46.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libdcerpc-devel-4.1.22-3.46.1">
+      <FullProductName ProductID="libdcerpc-devel-4.1.22-3.46.1">libdcerpc-devel-4.1.22-3.46.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libdcerpc-samr-devel-4.1.22-3.46.1">
+      <FullProductName ProductID="libdcerpc-samr-devel-4.1.22-3.46.1">libdcerpc-samr-devel-4.1.22-3.46.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libdcerpc-samr0-4.1.22-3.46.1">
+      <FullProductName ProductID="libdcerpc-samr0-4.1.22-3.46.1">libdcerpc-samr0-4.1.22-3.46.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libdcerpc-samr0-32bit-4.1.22-3.46.1">
+      <FullProductName ProductID="libdcerpc-samr0-32bit-4.1.22-3.46.1">libdcerpc-samr0-32bit-4.1.22-3.46.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libdcerpc0-4.1.22-3.46.1">
+      <FullProductName ProductID="libdcerpc0-4.1.22-3.46.1">libdcerpc0-4.1.22-3.46.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libdcerpc0-32bit-4.1.22-3.46.1">
+      <FullProductName ProductID="libdcerpc0-32bit-4.1.22-3.46.1">libdcerpc0-32bit-4.1.22-3.46.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libgensec-devel-4.1.22-3.46.1">
+      <FullProductName ProductID="libgensec-devel-4.1.22-3.46.1">libgensec-devel-4.1.22-3.46.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libgensec0-4.1.22-3.46.1">
+      <FullProductName ProductID="libgensec0-4.1.22-3.46.1">libgensec0-4.1.22-3.46.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libgensec0-32bit-4.1.22-3.46.1">
+      <FullProductName ProductID="libgensec0-32bit-4.1.22-3.46.1">libgensec0-32bit-4.1.22-3.46.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libldb-devel-1.1.24-3.7.1">
+      <FullProductName ProductID="libldb-devel-1.1.24-3.7.1">libldb-devel-1.1.24-3.7.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libldb1-1.1.24-3.7.1">
+      <FullProductName ProductID="libldb1-1.1.24-3.7.1">libldb1-1.1.24-3.7.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libldb1-32bit-1.1.24-3.7.1">
+      <FullProductName ProductID="libldb1-32bit-1.1.24-3.7.1">libldb1-32bit-1.1.24-3.7.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libndr-devel-4.1.22-3.46.1">
+      <FullProductName ProductID="libndr-devel-4.1.22-3.46.1">libndr-devel-4.1.22-3.46.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libndr-krb5pac-devel-4.1.22-3.46.1">
+      <FullProductName ProductID="libndr-krb5pac-devel-4.1.22-3.46.1">libndr-krb5pac-devel-4.1.22-3.46.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libndr-krb5pac0-4.1.22-3.46.1">
+      <FullProductName ProductID="libndr-krb5pac0-4.1.22-3.46.1">libndr-krb5pac0-4.1.22-3.46.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libndr-krb5pac0-32bit-4.1.22-3.46.1">
+      <FullProductName ProductID="libndr-krb5pac0-32bit-4.1.22-3.46.1">libndr-krb5pac0-32bit-4.1.22-3.46.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libndr-nbt-devel-4.1.22-3.46.1">
+      <FullProductName ProductID="libndr-nbt-devel-4.1.22-3.46.1">libndr-nbt-devel-4.1.22-3.46.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libndr-nbt0-4.1.22-3.46.1">
+      <FullProductName ProductID="libndr-nbt0-4.1.22-3.46.1">libndr-nbt0-4.1.22-3.46.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libndr-nbt0-32bit-4.1.22-3.46.1">
+      <FullProductName ProductID="libndr-nbt0-32bit-4.1.22-3.46.1">libndr-nbt0-32bit-4.1.22-3.46.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libndr-standard-devel-4.1.22-3.46.1">
+      <FullProductName ProductID="libndr-standard-devel-4.1.22-3.46.1">libndr-standard-devel-4.1.22-3.46.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libndr-standard0-4.1.22-3.46.1">
+      <FullProductName ProductID="libndr-standard0-4.1.22-3.46.1">libndr-standard0-4.1.22-3.46.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libndr-standard0-32bit-4.1.22-3.46.1">
+      <FullProductName ProductID="libndr-standard0-32bit-4.1.22-3.46.1">libndr-standard0-32bit-4.1.22-3.46.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libndr0-4.1.22-3.46.1">
+      <FullProductName ProductID="libndr0-4.1.22-3.46.1">libndr0-4.1.22-3.46.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libndr0-32bit-4.1.22-3.46.1">
+      <FullProductName ProductID="libndr0-32bit-4.1.22-3.46.1">libndr0-32bit-4.1.22-3.46.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libnetapi-devel-4.1.22-3.46.1">
+      <FullProductName ProductID="libnetapi-devel-4.1.22-3.46.1">libnetapi-devel-4.1.22-3.46.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libnetapi0-4.1.22-3.46.1">
+      <FullProductName ProductID="libnetapi0-4.1.22-3.46.1">libnetapi0-4.1.22-3.46.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libnetapi0-32bit-4.1.22-3.46.1">
+      <FullProductName ProductID="libnetapi0-32bit-4.1.22-3.46.1">libnetapi0-32bit-4.1.22-3.46.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libpdb-devel-4.1.22-3.46.1">
+      <FullProductName ProductID="libpdb-devel-4.1.22-3.46.1">libpdb-devel-4.1.22-3.46.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libpdb0-4.1.22-3.46.1">
+      <FullProductName ProductID="libpdb0-4.1.22-3.46.1">libpdb0-4.1.22-3.46.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libpdb0-32bit-4.1.22-3.46.1">
+      <FullProductName ProductID="libpdb0-32bit-4.1.22-3.46.1">libpdb0-32bit-4.1.22-3.46.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libregistry-devel-4.1.22-3.46.1">
+      <FullProductName ProductID="libregistry-devel-4.1.22-3.46.1">libregistry-devel-4.1.22-3.46.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libregistry0-4.1.22-3.46.1">
+      <FullProductName ProductID="libregistry0-4.1.22-3.46.1">libregistry0-4.1.22-3.46.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libregistry0-32bit-4.1.22-3.46.1">
+      <FullProductName ProductID="libregistry0-32bit-4.1.22-3.46.1">libregistry0-32bit-4.1.22-3.46.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libsamba-credentials-devel-4.1.22-3.46.1">
+      <FullProductName ProductID="libsamba-credentials-devel-4.1.22-3.46.1">libsamba-credentials-devel-4.1.22-3.46.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libsamba-credentials0-4.1.22-3.46.1">
+      <FullProductName ProductID="libsamba-credentials0-4.1.22-3.46.1">libsamba-credentials0-4.1.22-3.46.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libsamba-credentials0-32bit-4.1.22-3.46.1">
+      <FullProductName ProductID="libsamba-credentials0-32bit-4.1.22-3.46.1">libsamba-credentials0-32bit-4.1.22-3.46.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libsamba-hostconfig-devel-4.1.22-3.46.1">
+      <FullProductName ProductID="libsamba-hostconfig-devel-4.1.22-3.46.1">libsamba-hostconfig-devel-4.1.22-3.46.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libsamba-hostconfig0-4.1.22-3.46.1">
+      <FullProductName ProductID="libsamba-hostconfig0-4.1.22-3.46.1">libsamba-hostconfig0-4.1.22-3.46.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libsamba-hostconfig0-32bit-4.1.22-3.46.1">
+      <FullProductName ProductID="libsamba-hostconfig0-32bit-4.1.22-3.46.1">libsamba-hostconfig0-32bit-4.1.22-3.46.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libsamba-policy-devel-4.1.22-3.46.1">
+      <FullProductName ProductID="libsamba-policy-devel-4.1.22-3.46.1">libsamba-policy-devel-4.1.22-3.46.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libsamba-policy0-4.1.22-3.46.1">
+      <FullProductName ProductID="libsamba-policy0-4.1.22-3.46.1">libsamba-policy0-4.1.22-3.46.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libsamba-policy0-32bit-4.1.22-3.46.1">
+      <FullProductName ProductID="libsamba-policy0-32bit-4.1.22-3.46.1">libsamba-policy0-32bit-4.1.22-3.46.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libsamba-util-devel-4.1.22-3.46.1">
+      <FullProductName ProductID="libsamba-util-devel-4.1.22-3.46.1">libsamba-util-devel-4.1.22-3.46.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libsamba-util0-4.1.22-3.46.1">
+      <FullProductName ProductID="libsamba-util0-4.1.22-3.46.1">libsamba-util0-4.1.22-3.46.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libsamba-util0-32bit-4.1.22-3.46.1">
+      <FullProductName ProductID="libsamba-util0-32bit-4.1.22-3.46.1">libsamba-util0-32bit-4.1.22-3.46.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libsamdb-devel-4.1.22-3.46.1">
+      <FullProductName ProductID="libsamdb-devel-4.1.22-3.46.1">libsamdb-devel-4.1.22-3.46.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libsamdb0-4.1.22-3.46.1">
+      <FullProductName ProductID="libsamdb0-4.1.22-3.46.1">libsamdb0-4.1.22-3.46.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libsamdb0-32bit-4.1.22-3.46.1">
+      <FullProductName ProductID="libsamdb0-32bit-4.1.22-3.46.1">libsamdb0-32bit-4.1.22-3.46.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libsmbclient-devel-4.1.22-3.46.1">
+      <FullProductName ProductID="libsmbclient-devel-4.1.22-3.46.1">libsmbclient-devel-4.1.22-3.46.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libsmbclient-raw-devel-4.1.22-3.46.1">
+      <FullProductName ProductID="libsmbclient-raw-devel-4.1.22-3.46.1">libsmbclient-raw-devel-4.1.22-3.46.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libsmbclient-raw0-4.1.22-3.46.1">
+      <FullProductName ProductID="libsmbclient-raw0-4.1.22-3.46.1">libsmbclient-raw0-4.1.22-3.46.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libsmbclient-raw0-32bit-4.1.22-3.46.1">
+      <FullProductName ProductID="libsmbclient-raw0-32bit-4.1.22-3.46.1">libsmbclient-raw0-32bit-4.1.22-3.46.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libsmbclient0-4.1.22-3.46.1">
+      <FullProductName ProductID="libsmbclient0-4.1.22-3.46.1">libsmbclient0-4.1.22-3.46.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libsmbclient0-32bit-4.1.22-3.46.1">
+      <FullProductName ProductID="libsmbclient0-32bit-4.1.22-3.46.1">libsmbclient0-32bit-4.1.22-3.46.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libsmbconf-devel-4.1.22-3.46.1">
+      <FullProductName ProductID="libsmbconf-devel-4.1.22-3.46.1">libsmbconf-devel-4.1.22-3.46.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libsmbconf0-4.1.22-3.46.1">
+      <FullProductName ProductID="libsmbconf0-4.1.22-3.46.1">libsmbconf0-4.1.22-3.46.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libsmbconf0-32bit-4.1.22-3.46.1">
+      <FullProductName ProductID="libsmbconf0-32bit-4.1.22-3.46.1">libsmbconf0-32bit-4.1.22-3.46.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libsmbldap-devel-4.1.22-3.46.1">
+      <FullProductName ProductID="libsmbldap-devel-4.1.22-3.46.1">libsmbldap-devel-4.1.22-3.46.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libsmbldap0-4.1.22-3.46.1">
+      <FullProductName ProductID="libsmbldap0-4.1.22-3.46.1">libsmbldap0-4.1.22-3.46.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libsmbldap0-32bit-4.1.22-3.46.1">
+      <FullProductName ProductID="libsmbldap0-32bit-4.1.22-3.46.1">libsmbldap0-32bit-4.1.22-3.46.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libsmbsharemodes-devel-4.1.22-3.46.1">
+      <FullProductName ProductID="libsmbsharemodes-devel-4.1.22-3.46.1">libsmbsharemodes-devel-4.1.22-3.46.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libsmbsharemodes0-4.1.22-3.46.1">
+      <FullProductName ProductID="libsmbsharemodes0-4.1.22-3.46.1">libsmbsharemodes0-4.1.22-3.46.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libtalloc-devel-2.1.5-7.10.1">
+      <FullProductName ProductID="libtalloc-devel-2.1.5-7.10.1">libtalloc-devel-2.1.5-7.10.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libtalloc2-2.1.5-7.10.1">
+      <FullProductName ProductID="libtalloc2-2.1.5-7.10.1">libtalloc2-2.1.5-7.10.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libtalloc2-32bit-2.1.5-7.10.1">
+      <FullProductName ProductID="libtalloc2-32bit-2.1.5-7.10.1">libtalloc2-32bit-2.1.5-7.10.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libtdb-devel-1.3.8-4.7.1">
+      <FullProductName ProductID="libtdb-devel-1.3.8-4.7.1">libtdb-devel-1.3.8-4.7.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libtdb1-1.3.8-4.7.1">
+      <FullProductName ProductID="libtdb1-1.3.8-4.7.1">libtdb1-1.3.8-4.7.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libtdb1-32bit-1.3.8-4.7.1">
+      <FullProductName ProductID="libtdb1-32bit-1.3.8-4.7.1">libtdb1-32bit-1.3.8-4.7.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libtevent-devel-0.9.26-4.7.1">
+      <FullProductName ProductID="libtevent-devel-0.9.26-4.7.1">libtevent-devel-0.9.26-4.7.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libtevent-util-devel-4.1.22-3.46.1">
+      <FullProductName ProductID="libtevent-util-devel-4.1.22-3.46.1">libtevent-util-devel-4.1.22-3.46.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libtevent-util0-4.1.22-3.46.1">
+      <FullProductName ProductID="libtevent-util0-4.1.22-3.46.1">libtevent-util0-4.1.22-3.46.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libtevent-util0-32bit-4.1.22-3.46.1">
+      <FullProductName ProductID="libtevent-util0-32bit-4.1.22-3.46.1">libtevent-util0-32bit-4.1.22-3.46.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libtevent0-0.9.26-4.7.1">
+      <FullProductName ProductID="libtevent0-0.9.26-4.7.1">libtevent0-0.9.26-4.7.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libtevent0-32bit-0.9.26-4.7.1">
+      <FullProductName ProductID="libtevent0-32bit-0.9.26-4.7.1">libtevent0-32bit-0.9.26-4.7.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libwbclient-devel-4.1.22-3.46.1">
+      <FullProductName ProductID="libwbclient-devel-4.1.22-3.46.1">libwbclient-devel-4.1.22-3.46.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libwbclient0-4.1.22-3.46.1">
+      <FullProductName ProductID="libwbclient0-4.1.22-3.46.1">libwbclient0-4.1.22-3.46.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libwbclient0-32bit-4.1.22-3.46.1">
+      <FullProductName ProductID="libwbclient0-32bit-4.1.22-3.46.1">libwbclient0-32bit-4.1.22-3.46.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="pyldb-1.1.24-3.7.1">
+      <FullProductName ProductID="pyldb-1.1.24-3.7.1">pyldb-1.1.24-3.7.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="pyldb-32bit-1.1.24-3.7.1">
+      <FullProductName ProductID="pyldb-32bit-1.1.24-3.7.1">pyldb-32bit-1.1.24-3.7.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="pyldb-devel-1.1.24-3.7.1">
+      <FullProductName ProductID="pyldb-devel-1.1.24-3.7.1">pyldb-devel-1.1.24-3.7.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="pytalloc-2.1.5-7.10.1">
+      <FullProductName ProductID="pytalloc-2.1.5-7.10.1">pytalloc-2.1.5-7.10.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="pytalloc-32bit-2.1.5-7.10.1">
+      <FullProductName ProductID="pytalloc-32bit-2.1.5-7.10.1">pytalloc-32bit-2.1.5-7.10.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="pytalloc-devel-2.1.5-7.10.1">
+      <FullProductName ProductID="pytalloc-devel-2.1.5-7.10.1">pytalloc-devel-2.1.5-7.10.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="python-tdb-1.3.8-4.7.1">
+      <FullProductName ProductID="python-tdb-1.3.8-4.7.1">python-tdb-1.3.8-4.7.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="python-tdb-32bit-1.3.8-4.7.1">
+      <FullProductName ProductID="python-tdb-32bit-1.3.8-4.7.1">python-tdb-32bit-1.3.8-4.7.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="python-tevent-0.9.26-4.7.1">
+      <FullProductName ProductID="python-tevent-0.9.26-4.7.1">python-tevent-0.9.26-4.7.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="python-tevent-32bit-0.9.26-4.7.1">
+      <FullProductName ProductID="python-tevent-32bit-0.9.26-4.7.1">python-tevent-32bit-0.9.26-4.7.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="samba-4.1.22-3.46.1">
+      <FullProductName ProductID="samba-4.1.22-3.46.1">samba-4.1.22-3.46.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="samba-32bit-4.1.22-3.46.1">
+      <FullProductName ProductID="samba-32bit-4.1.22-3.46.1">samba-32bit-4.1.22-3.46.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="samba-client-4.1.22-3.46.1">
+      <FullProductName ProductID="samba-client-4.1.22-3.46.1">samba-client-4.1.22-3.46.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="samba-client-32bit-4.1.22-3.46.1">
+      <FullProductName ProductID="samba-client-32bit-4.1.22-3.46.1">samba-client-32bit-4.1.22-3.46.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="samba-core-devel-4.1.22-3.46.1">
+      <FullProductName ProductID="samba-core-devel-4.1.22-3.46.1">samba-core-devel-4.1.22-3.46.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="samba-doc-4.1.22-3.46.1">
+      <FullProductName ProductID="samba-doc-4.1.22-3.46.1">samba-doc-4.1.22-3.46.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="samba-libs-4.1.22-3.46.1">
+      <FullProductName ProductID="samba-libs-4.1.22-3.46.1">samba-libs-4.1.22-3.46.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="samba-libs-32bit-4.1.22-3.46.1">
+      <FullProductName ProductID="samba-libs-32bit-4.1.22-3.46.1">samba-libs-32bit-4.1.22-3.46.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="samba-pidl-4.1.22-3.46.1">
+      <FullProductName ProductID="samba-pidl-4.1.22-3.46.1">samba-pidl-4.1.22-3.46.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="samba-python-4.1.22-3.46.1">
+      <FullProductName ProductID="samba-python-4.1.22-3.46.1">samba-python-4.1.22-3.46.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="samba-test-4.1.22-3.46.1">
+      <FullProductName ProductID="samba-test-4.1.22-3.46.1">samba-test-4.1.22-3.46.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="samba-test-devel-4.1.22-3.46.1">
+      <FullProductName ProductID="samba-test-devel-4.1.22-3.46.1">samba-test-devel-4.1.22-3.46.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="samba-winbind-4.1.22-3.46.1">
+      <FullProductName ProductID="samba-winbind-4.1.22-3.46.1">samba-winbind-4.1.22-3.46.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="samba-winbind-32bit-4.1.22-3.46.1">
+      <FullProductName ProductID="samba-winbind-32bit-4.1.22-3.46.1">samba-winbind-32bit-4.1.22-3.46.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="talloc-2.1.5-7.10.1">
+      <FullProductName ProductID="talloc-2.1.5-7.10.1">talloc-2.1.5-7.10.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="tdb-1.3.8-4.7.1">
+      <FullProductName ProductID="tdb-1.3.8-4.7.1">tdb-1.3.8-4.7.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="tdb-tools-1.3.8-4.7.1">
+      <FullProductName ProductID="tdb-tools-1.3.8-4.7.1">tdb-tools-1.3.8-4.7.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="tevent-0.9.26-4.7.1">
+      <FullProductName ProductID="tevent-0.9.26-4.7.1">tevent-0.9.26-4.7.1</FullProductName>
+    </Branch>
+  </ProductTree>
+  <Vulnerability xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1" Ordinal="1">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">The ldb_wildcard_compare function in ldb_match.c in ldb before 1.1.24, as used in the AD LDAP server in Samba 4.x before 4.1.22, 4.2.x before 4.2.7, and 4.3.x before 4.3.3, mishandles certain zero values, which allows remote attackers to cause a denial of service (infinite loop) via crafted packets.</Note>
+    </Notes>
+    <CVE>CVE-2015-3223</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed"/>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>important</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSet>
+        <BaseScore>7.8</BaseScore>
+        <Vector>AV:N/AC:L/Au:N/C:N/I:N/A:C</Vector>
+      </ScoreSet>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-security-announce/2015-12/msg00033.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-3223.html</URL>
+        <Description>CVE-2015-3223</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/958581</URL>
+        <Description>SUSE Bug 958581</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+  <Vulnerability xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1" Ordinal="2">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">vfs.c in smbd in Samba 3.x and 4.x before 4.1.22, 4.2.x before 4.2.7, and 4.3.x before 4.3.3, when share names with certain substring relationships exist, allows remote attackers to bypass intended file-access restrictions via a symlink that points outside of a share.</Note>
+    </Notes>
+    <CVE>CVE-2015-5252</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed"/>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSet>
+        <BaseScore>6.8</BaseScore>
+        <Vector>AV:N/AC:L/Au:S/C:C/I:N/A:N</Vector>
+      </ScoreSet>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-security-announce/2015-12/msg00033.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-5252.html</URL>
+        <Description>CVE-2015-5252</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/958582</URL>
+        <Description>SUSE Bug 958582</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+  <Vulnerability xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1" Ordinal="3">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">Samba 3.x and 4.x before 4.1.22, 4.2.x before 4.2.7, and 4.3.x before 4.3.3 supports connections that are encrypted but unsigned, which allows man-in-the-middle attackers to conduct encrypted-to-unencrypted downgrade attacks by modifying the client-server data stream, related to clidfs.c, libsmb_server.c, and smbXcli_base.c.</Note>
+    </Notes>
+    <CVE>CVE-2015-5296</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed"/>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSet>
+        <BaseScore>3.2</BaseScore>
+        <Vector>AV:A/AC:H/Au:N/C:P/I:P/A:N</Vector>
+      </ScoreSet>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-security-announce/2015-12/msg00033.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-5296.html</URL>
+        <Description>CVE-2015-5296</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/1058622</URL>
+        <Description>SUSE Bug 1058622</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/958584</URL>
+        <Description>SUSE Bug 958584</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/973031</URL>
+        <Description>SUSE Bug 973031</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+  <Vulnerability xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1" Ordinal="4">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">The shadow_copy2_get_shadow_copy_data function in modules/vfs_shadow_copy2.c in Samba 3.x and 4.x before 4.1.22, 4.2.x before 4.2.7, and 4.3.x before 4.3.3 does not verify that the DIRECTORY_LIST access right has been granted, which allows remote attackers to access snapshots by visiting a shadow copy directory.</Note>
+    </Notes>
+    <CVE>CVE-2015-5299</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed"/>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSet>
+        <BaseScore>3.5</BaseScore>
+        <Vector>AV:N/AC:M/Au:S/C:P/I:N/A:N</Vector>
+      </ScoreSet>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-security-announce/2015-12/msg00033.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-5299.html</URL>
+        <Description>CVE-2015-5299</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/958583</URL>
+        <Description>SUSE Bug 958583</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+  <Vulnerability xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1" Ordinal="5">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">ldb before 1.1.24, as used in the AD LDAP server in Samba 4.x before 4.1.22, 4.2.x before 4.2.7, and 4.3.x before 4.3.3, mishandles string lengths, which allows remote attackers to obtain sensitive information from daemon heap memory by sending crafted packets and then reading (1) an error message or (2) a database value.</Note>
+    </Notes>
+    <CVE>CVE-2015-5330</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed"/>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSet>
+        <BaseScore>4</BaseScore>
+        <Vector>AV:N/AC:L/Au:S/C:P/I:N/A:N</Vector>
+      </ScoreSet>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-security-announce/2015-12/msg00033.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-5330.html</URL>
+        <Description>CVE-2015-5330</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/958581</URL>
+        <Description>SUSE Bug 958581</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/958586</URL>
+        <Description>SUSE Bug 958586</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+  <Vulnerability xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1" Ordinal="6">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">The LDAP server in the AD domain controller in Samba 4.x before 4.1.22 does not check return values to ensure successful ASN.1 memory allocation, which allows remote attackers to cause a denial of service (memory consumption and daemon crash) via crafted packets.</Note>
+    </Notes>
+    <CVE>CVE-2015-7540</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed"/>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>important</Description>
+      </Threat>
+    </Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-security-announce/2015-12/msg00033.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-7540.html</URL>
+        <Description>CVE-2015-7540</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/958580</URL>
+        <Description>SUSE Bug 958580</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+  <Vulnerability xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1" Ordinal="7">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">The samldb_check_user_account_control_acl function in dsdb/samdb/ldb_modules/samldb.c in Samba 4.x before 4.1.22, 4.2.x before 4.2.7, and 4.3.x before 4.3.3 does not properly check for administrative privileges during creation of machine accounts, which allows remote authenticated users to bypass intended access restrictions by leveraging the existence of a domain with both a Samba DC and a Windows DC, a similar issue to CVE-2015-2535.</Note>
+    </Notes>
+    <CVE>CVE-2015-8467</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed"/>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-security-announce/2015-12/msg00033.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-8467.html</URL>
+        <Description>CVE-2015-8467</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/958585</URL>
+        <Description>SUSE Bug 958585</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+</cvrfdoc>

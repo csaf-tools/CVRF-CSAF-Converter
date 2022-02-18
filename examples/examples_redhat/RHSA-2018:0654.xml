@@ -1,0 +1,608 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cvrfdoc xmlns="http://www.icasi.org/CVRF/schema/cvrf/1.1" xmlns:cvrf="http://www.icasi.org/CVRF/schema/cvrf/1.1">
+  <DocumentTitle xml:lang="en">Red Hat Security Advisory: kernel-alt security, bug fix, and enhancement update</DocumentTitle>
+  <DocumentType>Security Advisory</DocumentType>
+  <DocumentPublisher Type="Vendor">
+    <ContactDetails>secalert@redhat.com</ContactDetails>
+    <IssuingAuthority>Red Hat Product Security</IssuingAuthority>
+  </DocumentPublisher>
+  <DocumentTracking>
+    <Identification><ID>RHSA-2018:0654</ID></Identification>
+    <Status>Final</Status>
+    <Version>1</Version>
+    <RevisionHistory>
+       <Revision>
+         <Number>1</Number>
+         <Date>2021-07-20T15:37:00Z</Date>
+         <Description>Current version</Description>
+       </Revision>
+    </RevisionHistory>
+    <InitialReleaseDate>2018-04-10T03:34:00Z</InitialReleaseDate>
+    <CurrentReleaseDate>2021-07-20T15:37:00Z</CurrentReleaseDate>
+    <Generator>
+      <Engine>Red Hat SDEngine 3.0.0</Engine>
+      <Date>2021-08-23T04:45:00Z</Date>
+    </Generator>
+  </DocumentTracking>
+  <DocumentNotes>
+    <Note Title="Topic" Type="Summary" Ordinal="1" xml:lang="en">
+An update for kernel-alt is now available for Red Hat Enterprise Linux 7.
+
+Red Hat Product Security has rated this update as having a security impact of Important. A Common Vulnerability Scoring System (CVSS) base score, which gives a detailed severity rating, is available for each vulnerability from the CVE link(s) in the References section.
+    </Note>
+    <Note Title="Details" Type="General" Ordinal="2" xml:lang="en">
+The kernel-alt packages provide the Linux kernel version 4.x.
+
+The following packages have been upgraded to a later upstream version: kernel-alt (4.14.0). (BZ#1492717)
+
+Security Fix(es):
+
+* An industry-wide issue was found in the way many modern microprocessor designs have implemented speculative execution of instructions (a commonly used performance optimization). There are three primary variants of the issue which differ in the way the speculative execution can be exploited.
+
+Variant CVE-2017-5715 triggers the speculative execution by utilizing branch target injection. It relies on the presence of a precisely-defined instruction sequence in the privileged code as well as the fact that memory accesses may cause allocation into the microprocessor's data cache even for speculatively executed instructions that never actually commit (retire). As a result, an unprivileged attacker could use this flaw to cross the syscall and guest/host boundaries and read privileged memory by conducting targeted cache side-channel attacks. (CVE-2017-5715, Important, ARM)
+
+Variant CVE-2017-5753 triggers the speculative execution by performing a bounds-check bypass. It relies on the presence of a precisely-defined instruction sequence in the privileged code as well as the fact that memory accesses may cause allocation into the microprocessor's data cache even for speculatively executed instructions that never actually commit (retire). As a result, an unprivileged attacker could use this flaw to cross the syscall boundary and read privileged memory by conducting targeted cache side-channel attacks. (CVE-2017-5753, Important, ARM)
+
+Variant CVE-2017-5754 relies on the fact that, on impacted microprocessors, during speculative execution of instruction permission faults, exception generation triggered by a faulting access is suppressed until the retirement of the whole instruction block. In a combination with the fact that memory accesses may populate the cache even when the block is being dropped and never committed (executed), an unprivileged local attacker could use this flaw to read privileged (kernel space) memory by conducting targeted cache side-channel attacks. (CVE-2017-5754, Important, ARM)
+
+* kernel: memory leak when merging buffers in SCSI IO vectors (CVE-2017-12190, Moderate)
+
+* kernel: net: double-free and memory corruption in get_net_ns_by_id() (CVE-2017-15129, Moderate)
+
+* kernel: Incorrect updates of uninstantiated keys crash the kernel (CVE-2017-15299, Moderate)
+
+* kernel: Missing capabilities check in net/netfilter/nfnetlink_cthelper.c allows for unprivileged access to systemwide nfnl_cthelper_list structure (CVE-2017-17448, Moderate)
+
+* kernel: Missing namespace check in net/netlink/af_netlink.c allows for network monitors to observe systemwide activity (CVE-2017-17449, Moderate)
+
+* kernel: Arbitrary stack overwrite causing oops via crafted signal frame (CVE-2017-1000255, Moderate)
+
+* kernel: Stack information leak in the EFS element (CVE-2017-1000410, Moderate)
+
+* kernel: Race condition in sound system can lead to denial of service (CVE-2018-1000004, Moderate)
+
+* kernel: Buffer overflow in mp_override_legacy_irq() (CVE-2017-11473, Low)
+
+* kernel: Integer overflow in futex.c:futux_requeue can lead to denial of service or unspecified impact (CVE-2018-6927, Low)
+
+For more details about the security issue(s), including the impact, a CVSS score, and other related information, refer to the CVE page(s) listed in the References section.
+
+Red Hat would like to thank Google Project Zero for reporting CVE-2017-5715, CVE-2017-5753, and CVE-2017-5754; Vitaly Mayatskih for reporting CVE-2017-12190; Kirill Tkhai for reporting CVE-2017-15129; Michael Ellerman, Gustavo Romero, Breno Leitao, Paul Mackerras, and Cyril Bur for reporting CVE-2017-1000255; and Armis Labs for reporting CVE-2017-1000410.
+
+Additional Changes:
+
+See the Red Hat Enterprise Linux 7.5 Release Notes linked from References.
+    </Note>
+    <Note Title="Terms of Use" Ordinal="3" Type="Legal Disclaimer" xml:lang="en">This content is licensed under the Creative Commons Attribution 4.0 International License (https://creativecommons.org/licenses/by/4.0/). If you distribute this content, or a modified version of it, you must provide attribution to Red Hat Inc. and provide a link to the original.</Note>
+  </DocumentNotes>
+  <DocumentDistribution xml:lang="en">Copyright © 2021 Red Hat, Inc. All rights reserved.</DocumentDistribution>
+  <AggregateSeverity Namespace="https://access.redhat.com/security/updates/classification/">Important</AggregateSeverity>
+  <DocumentReferences>
+    <Reference Type="Self">
+       <URL>https://access.redhat.com/errata/RHSA-2018:0654</URL>
+       <Description>https://access.redhat.com/errata/RHSA-2018:0654</Description>
+    </Reference>
+    <Reference Type="External">
+       <URL>https://access.redhat.com/security/updates/classification/#important</URL>
+       <Description>https://access.redhat.com/security/updates/classification/#important</Description>
+    </Reference>
+    <Reference Type="External">
+       <URL>https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/7.5_Release_Notes/index.html</URL>
+       <Description>https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/7.5_Release_Notes/index.html</Description>
+    </Reference>
+  </DocumentReferences>
+  <ProductTree xmlns="http://www.icasi.org/CVRF/schema/prod/1.1">
+    <Branch Type="Product Family" Name="Red Hat Enterprise Linux">
+      <Branch Type="Product Name" Name="Red Hat Enterprise Linux for ARM and IBM Power LE (POWER9) Server Optional (v. 7)">
+        <FullProductName ProductID="7Server-optional-RHELALT" CPE="cpe:/o:redhat:enterprise_linux:7::server">Red Hat Enterprise Linux for ARM and IBM Power LE (POWER9) Server Optional (v. 7)</FullProductName>
+      </Branch>
+      <Branch Type="Product Name" Name="Red Hat Enterprise Linux for ARM and IBM Power LE (POWER9) Server (v. 7)">
+        <FullProductName ProductID="7Server-RHELALT" CPE="cpe:/o:redhat:enterprise_linux:7::server">Red Hat Enterprise Linux for ARM and IBM Power LE (POWER9) Server (v. 7)</FullProductName>
+      </Branch>
+    </Branch>
+    <Branch Type="Product Version" Name="kernel-alt-0:4.14.0-49.el7a">
+      <FullProductName ProductID="kernel-alt-0:4.14.0-49.el7a" CPE="cpe:/o:redhat:enterprise_linux:7::server">kernel-alt-4.14.0-49.el7a.src.rpm</FullProductName>
+    </Branch>
+    <Relationship ProductReference="kernel-alt-0:4.14.0-49.el7a" RelationType="Default Component Of" RelatesToProductReference="7Server-RHELALT">
+      <FullProductName ProductID="7Server-RHELALT:kernel-alt-0:4.14.0-49.el7a" CPE="cpe:/o:redhat:enterprise_linux:7::server">kernel-alt-0:4.14.0-49.el7a as a component of Red Hat Enterprise Linux for ARM and IBM Power LE (POWER9) Server (v. 7)</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="kernel-alt-0:4.14.0-49.el7a" RelationType="Default Component Of" RelatesToProductReference="7Server-optional-RHELALT">
+      <FullProductName ProductID="7Server-optional-RHELALT:kernel-alt-0:4.14.0-49.el7a" CPE="cpe:/o:redhat:enterprise_linux:7::server">kernel-alt-0:4.14.0-49.el7a as a component of Red Hat Enterprise Linux for ARM and IBM Power LE (POWER9) Server Optional (v. 7)</FullProductName>
+    </Relationship>
+  </ProductTree>
+
+  <Vulnerability Ordinal="1" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">hw: cpu: speculative execution bounds-check bypass</Note></Notes>
+    <DiscoveryDate>2017-11-30T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2018-01-03T22:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2017-5753</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>7Server-RHELALT:kernel-alt-0:4.14.0-49.el7a</ProductID>
+      <ProductID>7Server-optional-RHELALT:kernel-alt-0:4.14.0-49.el7a</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Important</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+
+The system must be rebooted for this update to take effect.
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2018:0654</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/vulnerabilities/speculativeexecution</URL>
+        <Description>https://access.redhat.com/security/vulnerabilities/speculativeexecution</Description>
+      </Reference>
+      <Reference>
+        <URL>https://googleprojectzero.blogspot.com/2018/01/reading-privileged-memory-with-side.html</URL>
+        <Description>https://googleprojectzero.blogspot.com/2018/01/reading-privileged-memory-with-side.html</Description>
+      </Reference>
+      <Reference>
+        <URL>https://meltdownattack.com</URL>
+        <Description>https://meltdownattack.com</Description>
+      </Reference>
+      <Reference>
+        <URL>https://spectreattack.com/</URL>
+        <Description>https://spectreattack.com/</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2017-5753</URL>
+        <Description>CVE-2017-5753</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1519778</URL>
+        <Description>bz#1519778: CVE-2017-5753 hw: cpu: speculative execution bounds-check bypass</Description>
+      </Reference>
+    </References>
+    <Acknowledgments><Acknowledgment><Description>Red Hat would like to thank Google Project Zero for reporting this issue.</Description></Acknowledgment></Acknowledgments>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="2" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">kernel: Buffer overflow in mp_override_legacy_irq()</Note></Notes>
+    <DiscoveryDate>2017-07-20T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2017-07-18T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2017-11473</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>7Server-RHELALT:kernel-alt-0:4.14.0-49.el7a</ProductID>
+      <ProductID>7Server-optional-RHELALT:kernel-alt-0:4.14.0-49.el7a</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Low</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+
+The system must be rebooted for this update to take effect.
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2018:0654</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2017-11473</URL>
+        <Description>CVE-2017-11473</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1473209</URL>
+        <Description>bz#1473209: CVE-2017-11473 kernel: Buffer overflow in mp_override_legacy_irq()</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="3" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">kernel: memory leak when merging buffers in SCSI IO vectors</Note></Notes>
+    <DiscoveryDate>2017-09-22T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2017-09-21T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2017-12190</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>7Server-RHELALT:kernel-alt-0:4.14.0-49.el7a</ProductID>
+      <ProductID>7Server-optional-RHELALT:kernel-alt-0:4.14.0-49.el7a</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+
+The system must be rebooted for this update to take effect.
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2018:0654</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2017-12190</URL>
+        <Description>CVE-2017-12190</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1495089</URL>
+        <Description>bz#1495089: CVE-2017-12190 kernel: memory leak when merging buffers in SCSI IO vectors</Description>
+      </Reference>
+    </References>
+    <Acknowledgments><Acknowledgment><Description>Red Hat would like to thank Vitaly Mayatskih for reporting this issue.</Description></Acknowledgment></Acknowledgments>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="4" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">kernel: NULL pointer dereference due to KEYCTL_READ on negative key</Note></Notes>
+    <DiscoveryDate>2017-09-19T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2017-09-18T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2017-12192</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>7Server-RHELALT:kernel-alt-0:4.14.0-49.el7a</ProductID>
+      <ProductID>7Server-optional-RHELALT:kernel-alt-0:4.14.0-49.el7a</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+
+The system must be rebooted for this update to take effect.
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2018:0654</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>http://seclists.org/oss-sec/2017/q4/63</URL>
+        <Description>http://seclists.org/oss-sec/2017/q4/63</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2017-12192</URL>
+        <Description>CVE-2017-12192</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1493435</URL>
+        <Description>bz#1493435: CVE-2017-12192 kernel: NULL pointer dereference due to KEYCTL_READ on negative key</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="5" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">kernel: net: double-free and memory corruption in get_net_ns_by_id()</Note></Notes>
+    <DiscoveryDate>2017-12-18T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2017-12-19T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2017-15129</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>7Server-RHELALT:kernel-alt-0:4.14.0-49.el7a</ProductID>
+      <ProductID>7Server-optional-RHELALT:kernel-alt-0:4.14.0-49.el7a</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+
+The system must be rebooted for this update to take effect.
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2018:0654</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2017-15129</URL>
+        <Description>CVE-2017-15129</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1531174</URL>
+        <Description>bz#1531174: CVE-2017-15129 kernel: net: double-free and memory corruption in get_net_ns_by_id()</Description>
+      </Reference>
+    </References>
+    <Acknowledgments><Acknowledgment><Description>Red Hat would like to thank Kirill Tkhai for reporting this issue.</Description></Acknowledgment></Acknowledgments>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="6" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">kernel: Incorrect updates of uninstantiated keys crash the kernel</Note></Notes>
+    <DiscoveryDate>2017-09-29T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2017-09-27T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2017-15299</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>7Server-RHELALT:kernel-alt-0:4.14.0-49.el7a</ProductID>
+      <ProductID>7Server-optional-RHELALT:kernel-alt-0:4.14.0-49.el7a</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+
+The system must be rebooted for this update to take effect.
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2018:0654</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2017-15299</URL>
+        <Description>CVE-2017-15299</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1498016</URL>
+        <Description>bz#1498016: CVE-2017-15299 kernel: Incorrect updates of uninstantiated keys crash the kernel</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="7" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">Kernel: KVM: oops when checking KVM_CAP_PPC_HTM on PPC platform</Note></Notes>
+    <DiscoveryDate>2017-11-06T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2017-11-06T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2017-15306</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>7Server-RHELALT:kernel-alt-0:4.14.0-49.el7a</ProductID>
+      <ProductID>7Server-optional-RHELALT:kernel-alt-0:4.14.0-49.el7a</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <CVSSScoreSets><ScoreSet>
+      <BaseScore>4.9</BaseScore>
+      <Vector>AV:L/AC:L/Au:N/C:N/I:N/A:C</Vector>
+    </ScoreSet></CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+
+The system must be rebooted for this update to take effect.
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2018:0654</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2017-15306</URL>
+        <Description>CVE-2017-15306</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1510399</URL>
+        <Description>bz#1510399: CVE-2017-15306 Kernel: KVM: oops when checking KVM_CAP_PPC_HTM on PPC platform</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="8" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">Kernel: ipsec: xfrm: use-after-free leading to potential privilege escalation</Note></Notes>
+    <DiscoveryDate>2017-11-24T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2017-11-24T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2017-16939</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>7Server-RHELALT:kernel-alt-0:4.14.0-49.el7a</ProductID>
+      <ProductID>7Server-optional-RHELALT:kernel-alt-0:4.14.0-49.el7a</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Important</Description></Threat></Threats>
+    <CVSSScoreSets><ScoreSet>
+      <BaseScore>6.2</BaseScore>
+      <Vector>AV:L/AC:H/Au:N/C:C/I:C/A:C</Vector>
+    </ScoreSet></CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+
+The system must be rebooted for this update to take effect.
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2018:0654</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2017-16939</URL>
+        <Description>CVE-2017-16939</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1517220</URL>
+        <Description>bz#1517220: CVE-2017-16939 Kernel: ipsec: xfrm: use-after-free leading to potential privilege escalation</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="9" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">kernel: Missing capabilities check in net/netfilter/nfnetlink_cthelper.c allows for unprivileged access to systemwide nfnl_cthelper_list structure</Note></Notes>
+    <DiscoveryDate>2017-12-14T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2017-12-03T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2017-17448</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>7Server-RHELALT:kernel-alt-0:4.14.0-49.el7a</ProductID>
+      <ProductID>7Server-optional-RHELALT:kernel-alt-0:4.14.0-49.el7a</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+
+The system must be rebooted for this update to take effect.
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2018:0654</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2017-17448</URL>
+        <Description>CVE-2017-17448</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1525768</URL>
+        <Description>bz#1525768: CVE-2017-17448 kernel: Missing capabilities check in net/netfilter/nfnetlink_cthelper.c allows for unprivileged access to systemwide nfnl_cthelper_list structure</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="10" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">kernel: Missing namespace check in net/netlink/af_netlink.c allows for network monitors to observe systemwide activity</Note></Notes>
+    <DiscoveryDate>2017-12-14T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2017-12-05T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2017-17449</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>7Server-RHELALT:kernel-alt-0:4.14.0-49.el7a</ProductID>
+      <ProductID>7Server-optional-RHELALT:kernel-alt-0:4.14.0-49.el7a</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+
+The system must be rebooted for this update to take effect.
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2018:0654</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2017-17449</URL>
+        <Description>CVE-2017-17449</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1525762</URL>
+        <Description>bz#1525762: CVE-2017-17449 kernel: Missing namespace check in net/netlink/af_netlink.c allows for network monitors to observe systemwide activity</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="11" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">kernel: Arbitrary stack overwrite causing oops via crafted signal frame</Note></Notes>
+    <DiscoveryDate>2017-10-03T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2017-10-09T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2017-1000255</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>7Server-RHELALT:kernel-alt-0:4.14.0-49.el7a</ProductID>
+      <ProductID>7Server-optional-RHELALT:kernel-alt-0:4.14.0-49.el7a</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+
+The system must be rebooted for this update to take effect.
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2018:0654</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2017-1000255</URL>
+        <Description>CVE-2017-1000255</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1498067</URL>
+        <Description>bz#1498067: CVE-2017-1000255 kernel: Arbitrary stack overwrite causing oops via crafted signal frame</Description>
+      </Reference>
+    </References>
+    <Acknowledgments><Acknowledgment><Description>Red Hat would like to thank Breno Leitao, Cyril Bur, Gustavo Romero, Michael Ellerman, and Paul Mackerras for reporting this issue.</Description></Acknowledgment></Acknowledgments>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="12" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">kernel: Stack information leak in the EFS element</Note></Notes>
+    <DiscoveryDate>2017-11-30T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2017-12-06T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2017-1000410</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>7Server-RHELALT:kernel-alt-0:4.14.0-49.el7a</ProductID>
+      <ProductID>7Server-optional-RHELALT:kernel-alt-0:4.14.0-49.el7a</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+
+The system must be rebooted for this update to take effect.
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2018:0654</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2017-1000410</URL>
+        <Description>CVE-2017-1000410</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1519160</URL>
+        <Description>bz#1519160: CVE-2017-1000410 kernel: Stack information leak in the EFS element</Description>
+      </Reference>
+    </References>
+    <Acknowledgments><Acknowledgment><Description>Red Hat would like to thank Armis Labs for reporting this issue.</Description></Acknowledgment></Acknowledgments>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="13" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">kernel: Integer overflow in futex.c:futux_requeue can lead to denial of service or unspecified impact</Note></Notes>
+    <DiscoveryDate>2018-02-13T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2018-02-12T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2018-6927</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>7Server-RHELALT:kernel-alt-0:4.14.0-49.el7a</ProductID>
+      <ProductID>7Server-optional-RHELALT:kernel-alt-0:4.14.0-49.el7a</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Low</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+
+The system must be rebooted for this update to take effect.
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2018:0654</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2018-6927</URL>
+        <Description>CVE-2018-6927</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1544612</URL>
+        <Description>bz#1544612: CVE-2018-6927 kernel: Integer overflow in futex.c:futux_requeue can lead to denial of service or unspecified impact</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="14" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">kernel: Race condition in sound system can lead to denial of service</Note></Notes>
+    <DiscoveryDate>2018-01-17T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2018-01-10T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2018-1000004</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>7Server-RHELALT:kernel-alt-0:4.14.0-49.el7a</ProductID>
+      <ProductID>7Server-optional-RHELALT:kernel-alt-0:4.14.0-49.el7a</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+
+The system must be rebooted for this update to take effect.
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2018:0654</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2018-1000004</URL>
+        <Description>CVE-2018-1000004</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1535315</URL>
+        <Description>bz#1535315: CVE-2018-1000004 kernel: Race condition in sound system can lead to denial of service</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+</cvrfdoc>

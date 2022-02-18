@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cvrfdoc xmlns="http://www.icasi.org/CVRF/schema/cvrf/1.1" xmlns:cvrf="http://www.icasi.org/CVRF/schema/cvrf/1.1">
+  <DocumentTitle xml:lang="en">Red Hat Security Advisory: RHV Manager (ovirt-engine) security update [ovirt-4.4.7]</DocumentTitle>
+  <DocumentType>Security Advisory</DocumentType>
+  <DocumentPublisher Type="Vendor">
+    <ContactDetails>secalert@redhat.com</ContactDetails>
+    <IssuingAuthority>Red Hat Product Security</IssuingAuthority>
+  </DocumentPublisher>
+  <DocumentTracking>
+    <Identification><ID>RHSA-2021:2865</ID></Identification>
+    <Status>Final</Status>
+    <Version>1</Version>
+    <RevisionHistory>
+       <Revision>
+         <Number>1</Number>
+         <Date>2021-07-22T15:14:00Z</Date>
+         <Description>Current version</Description>
+       </Revision>
+    </RevisionHistory>
+    <InitialReleaseDate>2021-07-22T15:14:00Z</InitialReleaseDate>
+    <CurrentReleaseDate>2021-07-22T15:14:00Z</CurrentReleaseDate>
+    <Generator>
+      <Engine>Red Hat SDEngine 3.0.0</Engine>
+      <Date>2021-08-23T04:57:00Z</Date>
+    </Generator>
+  </DocumentTracking>
+  <DocumentNotes>
+    <Note Title="Topic" Type="Summary" Ordinal="1" xml:lang="en">
+Updated ovirt-engine packages that fix several bugs and add various enhancements are now available.
+
+Red Hat Product Security has rated this update as having a security impact of Moderate. A Common Vulnerability Scoring System (CVSS) base score, which gives a detailed severity rating, is available for each vulnerability from the CVE link(s) in the References section.
+    </Note>
+    <Note Title="Details" Type="General" Ordinal="2" xml:lang="en">
+The ovirt-engine package provides the manager for virtualization environments.
+This manager enables admins to define hosts and networks, as well as to add
+storage, create VMs and manage user permissions.
+
+Security Fix(es):
+
+* nodejs-underscore: Arbitrary code execution via the template function (CVE-2021-23358)
+
+* nodejs-glob-parent: Regular expression denial of service (CVE-2020-28469)
+
+* nodejs-ua-parser-js: Regular expression denial of service via the regex (CVE-2020-7733)
+
+* nodejs-path-parse: ReDoS via splitDeviceRe, splitTailRe and splitPathRe (CVE-2021-23343)
+
+For more details about the security issue(s), including the impact, a CVSS score, and other related information, refer to the CVE page(s) listed in the References section.
+
+Bug Fix(es):
+
+* Foreman integration, which allows you to provision bare metal hosts from the Administration Portal  using Foreman and then added to the Manager, was deprecated in oVirt 4.4.6 / RHV 4.4.6 and removed completely in oVirt 4.4.7 / RHV 4.4.7.
+
+Similar functionality to provision bare metal hosts can be achieved using Foreman directly and adding an already provisioned host using the Administration Portal or the REST API. (BZ#1901011)
+
+* Adding a message banner to the web administration welcome page is straight forward using custom branding that only contains a preamble section. 
+An example of preamble branding is given here: https://bugzilla.redhat.com/attachment.cgi?id=1783329.
+
+In an engine upgrade, the custom preamble brand remains in place and will work without issue.
+
+During engine backup and subsequent restore, on engine restore the custom preamble branding needs to be manually restored/reinstalled and verified. (BZ#1804774)
+
+* The column name threads_per_core in the Red hat Virtualization manager Dashboard is being deprecated, and will be removed in a future release.
+In version 4.4.7.2 the column name for threads_per_core will be changed to number_of_threads.
+In the Data Warehouse, the old name will be retained as an additional alias, resulting in 2 columns providing the same data: number_of_threads and threads_per_core, and threads_per_core will be removed in a future version. (BZ#1896359)
+    </Note>
+    <Note Title="Terms of Use" Ordinal="3" Type="Legal Disclaimer" xml:lang="en">This content is licensed under the Creative Commons Attribution 4.0 International License (https://creativecommons.org/licenses/by/4.0/). If you distribute this content, or a modified version of it, you must provide attribution to Red Hat Inc. and provide a link to the original.</Note>
+  </DocumentNotes>
+  <DocumentDistribution xml:lang="en">Copyright © 2021 Red Hat, Inc. All rights reserved.</DocumentDistribution>
+  <AggregateSeverity Namespace="https://access.redhat.com/security/updates/classification/">Moderate</AggregateSeverity>
+  <DocumentReferences>
+    <Reference Type="Self">
+       <URL>https://access.redhat.com/errata/RHSA-2021:2865</URL>
+       <Description>https://access.redhat.com/errata/RHSA-2021:2865</Description>
+    </Reference>
+    <Reference Type="External">
+       <URL>https://access.redhat.com/security/updates/classification/#moderate</URL>
+       <Description>https://access.redhat.com/security/updates/classification/#moderate</Description>
+    </Reference>
+  </DocumentReferences>
+  <ProductTree xmlns="http://www.icasi.org/CVRF/schema/prod/1.1">
+    <Branch Type="Product Family" Name="Red Hat Virtualization">
+      <Branch Type="Product Name" Name="RHEL-8-RHEV-S-4.4 - Red Hat Virtualization Engine 4.4">
+        <FullProductName ProductID="8Base-RHV-S-4.4" CPE="cpe:/a:redhat:rhev_manager:4.4:el8">RHEL-8-RHEV-S-4.4 - Red Hat Virtualization Engine 4.4</FullProductName>
+      </Branch>
+    </Branch>
+    <Branch Type="Product Version" Name="org.ovirt.engine-root-0:4.4.7.6-11">
+      <FullProductName ProductID="org.ovirt.engine-root-0:4.4.7.6-11" CPE="cpe:/a:redhat:rhev_manager:4.4:el8">org.ovirt.engine-root-4.4.7.6-11.src.rpm</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="ovirt-engine-dwh-0:4.4.7.3-1.el8ev">
+      <FullProductName ProductID="ovirt-engine-dwh-0:4.4.7.3-1.el8ev" CPE="cpe:/a:redhat:rhev_manager:4.4:el8">ovirt-engine-dwh-4.4.7.3-1.el8ev.src.rpm</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="ovirt-engine-extension-aaa-ldap-0:1.4.4-1.el8ev">
+      <FullProductName ProductID="ovirt-engine-extension-aaa-ldap-0:1.4.4-1.el8ev" CPE="cpe:/a:redhat:rhev_manager:4.4:el8">ovirt-engine-extension-aaa-ldap-1.4.4-1.el8ev.src.rpm</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="ovirt-engine-ui-extensions-0:1.2.7-1.el8ev">
+      <FullProductName ProductID="ovirt-engine-ui-extensions-0:1.2.7-1.el8ev" CPE="cpe:/a:redhat:rhev_manager:4.4:el8">ovirt-engine-ui-extensions-1.2.7-1.el8ev.src.rpm</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="ovirt-web-ui-0:1.7.0-1.el8ev">
+      <FullProductName ProductID="ovirt-web-ui-0:1.7.0-1.el8ev" CPE="cpe:/a:redhat:rhev_manager:4.4:el8">ovirt-web-ui-1.7.0-1.el8ev.src.rpm</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="rhv-log-collector-analyzer-0:1.0.10-1.el8ev">
+      <FullProductName ProductID="rhv-log-collector-analyzer-0:1.0.10-1.el8ev" CPE="cpe:/a:redhat:rhev_manager:4.4:el8">rhv-log-collector-analyzer-1.0.10-1.el8ev.src.rpm</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="rhvm-branding-rhv-0:4.4.9-1.el8ev">
+      <FullProductName ProductID="rhvm-branding-rhv-0:4.4.9-1.el8ev" CPE="cpe:/a:redhat:rhev_manager:4.4:el8">rhvm-branding-rhv-4.4.9-1.el8ev.src.rpm</FullProductName>
+    </Branch>
+    <Relationship ProductReference="org.ovirt.engine-root-0:4.4.7.6-11" RelationType="Default Component Of" RelatesToProductReference="8Base-RHV-S-4.4">
+      <FullProductName ProductID="8Base-RHV-S-4.4:org.ovirt.engine-root-0:4.4.7.6-11" CPE="cpe:/a:redhat:rhev_manager:4.4:el8">org.ovirt.engine-root-0:4.4.7.6-11 as a component of RHEL-8-RHEV-S-4.4 - Red Hat Virtualization Engine 4.4</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="ovirt-engine-dwh-0:4.4.7.3-1.el8ev" RelationType="Default Component Of" RelatesToProductReference="8Base-RHV-S-4.4">
+      <FullProductName ProductID="8Base-RHV-S-4.4:ovirt-engine-dwh-0:4.4.7.3-1.el8ev" CPE="cpe:/a:redhat:rhev_manager:4.4:el8">ovirt-engine-dwh-0:4.4.7.3-1.el8ev as a component of RHEL-8-RHEV-S-4.4 - Red Hat Virtualization Engine 4.4</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="ovirt-engine-extension-aaa-ldap-0:1.4.4-1.el8ev" RelationType="Default Component Of" RelatesToProductReference="8Base-RHV-S-4.4">
+      <FullProductName ProductID="8Base-RHV-S-4.4:ovirt-engine-extension-aaa-ldap-0:1.4.4-1.el8ev" CPE="cpe:/a:redhat:rhev_manager:4.4:el8">ovirt-engine-extension-aaa-ldap-0:1.4.4-1.el8ev as a component of RHEL-8-RHEV-S-4.4 - Red Hat Virtualization Engine 4.4</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="ovirt-engine-ui-extensions-0:1.2.7-1.el8ev" RelationType="Default Component Of" RelatesToProductReference="8Base-RHV-S-4.4">
+      <FullProductName ProductID="8Base-RHV-S-4.4:ovirt-engine-ui-extensions-0:1.2.7-1.el8ev" CPE="cpe:/a:redhat:rhev_manager:4.4:el8">ovirt-engine-ui-extensions-0:1.2.7-1.el8ev as a component of RHEL-8-RHEV-S-4.4 - Red Hat Virtualization Engine 4.4</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="ovirt-web-ui-0:1.7.0-1.el8ev" RelationType="Default Component Of" RelatesToProductReference="8Base-RHV-S-4.4">
+      <FullProductName ProductID="8Base-RHV-S-4.4:ovirt-web-ui-0:1.7.0-1.el8ev" CPE="cpe:/a:redhat:rhev_manager:4.4:el8">ovirt-web-ui-0:1.7.0-1.el8ev as a component of RHEL-8-RHEV-S-4.4 - Red Hat Virtualization Engine 4.4</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="rhv-log-collector-analyzer-0:1.0.10-1.el8ev" RelationType="Default Component Of" RelatesToProductReference="8Base-RHV-S-4.4">
+      <FullProductName ProductID="8Base-RHV-S-4.4:rhv-log-collector-analyzer-0:1.0.10-1.el8ev" CPE="cpe:/a:redhat:rhev_manager:4.4:el8">rhv-log-collector-analyzer-0:1.0.10-1.el8ev as a component of RHEL-8-RHEV-S-4.4 - Red Hat Virtualization Engine 4.4</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="rhvm-branding-rhv-0:4.4.9-1.el8ev" RelationType="Default Component Of" RelatesToProductReference="8Base-RHV-S-4.4">
+      <FullProductName ProductID="8Base-RHV-S-4.4:rhvm-branding-rhv-0:4.4.9-1.el8ev" CPE="cpe:/a:redhat:rhev_manager:4.4:el8">rhvm-branding-rhv-0:4.4.9-1.el8ev as a component of RHEL-8-RHEV-S-4.4 - Red Hat Virtualization Engine 4.4</FullProductName>
+    </Relationship>
+  </ProductTree>
+
+  <Vulnerability Ordinal="1" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">nodejs-ua-parser-js: Regular expression denial of service via the regex</Note></Notes>
+    <DiscoveryDate>2020-09-16T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2020-09-12T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2020-7733</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>8Base-RHV-S-4.4:org.ovirt.engine-root-0:4.4.7.6-11</ProductID>
+      <ProductID>8Base-RHV-S-4.4:ovirt-engine-dwh-0:4.4.7.3-1.el8ev</ProductID>
+      <ProductID>8Base-RHV-S-4.4:ovirt-engine-extension-aaa-ldap-0:1.4.4-1.el8ev</ProductID>
+      <ProductID>8Base-RHV-S-4.4:ovirt-engine-ui-extensions-0:1.2.7-1.el8ev</ProductID>
+      <ProductID>8Base-RHV-S-4.4:ovirt-web-ui-0:1.7.0-1.el8ev</ProductID>
+      <ProductID>8Base-RHV-S-4.4:rhv-log-collector-analyzer-0:1.0.10-1.el8ev</ProductID>
+      <ProductID>8Base-RHV-S-4.4:rhvm-branding-rhv-0:4.4.9-1.el8ev</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Low</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/2974891
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:2865</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://snyk.io/vuln/SNYK-JS-UAPARSERJS-610226</URL>
+        <Description>https://snyk.io/vuln/SNYK-JS-UAPARSERJS-610226</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2020-7733</URL>
+        <Description>CVE-2020-7733</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1879733</URL>
+        <Description>bz#1879733: CVE-2020-7733 nodejs-ua-parser-js: Regular expression denial of service via the regex</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="2" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">nodejs-glob-parent: Regular expression denial of service</Note></Notes>
+    <DiscoveryDate>2021-04-01T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-01-12T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2020-28469</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>8Base-RHV-S-4.4:org.ovirt.engine-root-0:4.4.7.6-11</ProductID>
+      <ProductID>8Base-RHV-S-4.4:ovirt-engine-dwh-0:4.4.7.3-1.el8ev</ProductID>
+      <ProductID>8Base-RHV-S-4.4:ovirt-engine-extension-aaa-ldap-0:1.4.4-1.el8ev</ProductID>
+      <ProductID>8Base-RHV-S-4.4:ovirt-engine-ui-extensions-0:1.2.7-1.el8ev</ProductID>
+      <ProductID>8Base-RHV-S-4.4:ovirt-web-ui-0:1.7.0-1.el8ev</ProductID>
+      <ProductID>8Base-RHV-S-4.4:rhv-log-collector-analyzer-0:1.0.10-1.el8ev</ProductID>
+      <ProductID>8Base-RHV-S-4.4:rhvm-branding-rhv-0:4.4.9-1.el8ev</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/2974891
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:2865</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://snyk.io/vuln/SNYK-JS-GLOBPARENT-1016905</URL>
+        <Description>https://snyk.io/vuln/SNYK-JS-GLOBPARENT-1016905</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2020-28469</URL>
+        <Description>CVE-2020-28469</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1945459</URL>
+        <Description>bz#1945459: CVE-2020-28469 nodejs-glob-parent: Regular expression denial of service</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="3" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">nodejs-path-parse: ReDoS via splitDeviceRe, splitTailRe and splitPathRe</Note></Notes>
+    <DiscoveryDate>2021-05-04T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-05-04T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-23343</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>8Base-RHV-S-4.4:org.ovirt.engine-root-0:4.4.7.6-11</ProductID>
+      <ProductID>8Base-RHV-S-4.4:ovirt-engine-dwh-0:4.4.7.3-1.el8ev</ProductID>
+      <ProductID>8Base-RHV-S-4.4:ovirt-engine-extension-aaa-ldap-0:1.4.4-1.el8ev</ProductID>
+      <ProductID>8Base-RHV-S-4.4:ovirt-engine-ui-extensions-0:1.2.7-1.el8ev</ProductID>
+      <ProductID>8Base-RHV-S-4.4:ovirt-web-ui-0:1.7.0-1.el8ev</ProductID>
+      <ProductID>8Base-RHV-S-4.4:rhv-log-collector-analyzer-0:1.0.10-1.el8ev</ProductID>
+      <ProductID>8Base-RHV-S-4.4:rhvm-branding-rhv-0:4.4.9-1.el8ev</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Low</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/2974891
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:2865</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://snyk.io/vuln/SNYK-JS-PATHPARSE-1077067</URL>
+        <Description>https://snyk.io/vuln/SNYK-JS-PATHPARSE-1077067</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-23343</URL>
+        <Description>CVE-2021-23343</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1956818</URL>
+        <Description>bz#1956818: CVE-2021-23343 nodejs-path-parse: ReDoS via splitDeviceRe, splitTailRe and splitPathRe</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="4" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">nodejs-underscore: Arbitrary code execution via the template function</Note></Notes>
+    <DiscoveryDate>2021-03-29T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-03-29T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-23358</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>8Base-RHV-S-4.4:org.ovirt.engine-root-0:4.4.7.6-11</ProductID>
+      <ProductID>8Base-RHV-S-4.4:ovirt-engine-dwh-0:4.4.7.3-1.el8ev</ProductID>
+      <ProductID>8Base-RHV-S-4.4:ovirt-engine-extension-aaa-ldap-0:1.4.4-1.el8ev</ProductID>
+      <ProductID>8Base-RHV-S-4.4:ovirt-engine-ui-extensions-0:1.2.7-1.el8ev</ProductID>
+      <ProductID>8Base-RHV-S-4.4:ovirt-web-ui-0:1.7.0-1.el8ev</ProductID>
+      <ProductID>8Base-RHV-S-4.4:rhv-log-collector-analyzer-0:1.0.10-1.el8ev</ProductID>
+      <ProductID>8Base-RHV-S-4.4:rhvm-branding-rhv-0:4.4.9-1.el8ev</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Important</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/2974891
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:2865</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-23358</URL>
+        <Description>CVE-2021-23358</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1944286</URL>
+        <Description>bz#1944286: CVE-2021-23358 nodejs-underscore: Arbitrary code execution via the template function</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+</cvrfdoc>

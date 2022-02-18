@@ -1,0 +1,503 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cvrfdoc xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:cpe="http://cpe.mitre.org/language/2.0" xmlns:cvrf="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/cvrf" xmlns:cvrf-common="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/common" xmlns:cvssv2="http://scap.nist.gov/schema/cvss-v2/1.0" xmlns:cvssv3="https://www.first.org/cvss/cvss-v3.0.xsd" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:ns0="http://purl.org/dc/elements/1.1/" xmlns:prod="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/prod" xmlns:scap-core="http://scap.nist.gov/schema/scap-core/1.0" xmlns:sch="http://purl.oclc.org/dsdl/schematron" xmlns:vuln="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/cvrf">
+  <DocumentTitle xml:lang="en">Security update for wireshark</DocumentTitle>
+  <DocumentType>SUSE Patch</DocumentType>
+  <DocumentPublisher Type="Vendor">
+    <ContactDetails>security@suse.de</ContactDetails>
+    <IssuingAuthority>SUSE Security Team</IssuingAuthority>
+  </DocumentPublisher>
+  <DocumentTracking>
+    <Identification>
+      <ID>openSUSE-SU-2015:1836-2</ID>
+    </Identification>
+    <Status>Final</Status>
+    <Version>1</Version>
+    <RevisionHistory>
+      <Revision>
+        <Number>1</Number>
+        <Date>2015-10-20T13:51:54Z</Date>
+        <Description>current</Description>
+      </Revision>
+    </RevisionHistory>
+    <InitialReleaseDate>2015-10-20T13:51:54Z</InitialReleaseDate>
+    <CurrentReleaseDate>2015-10-20T13:51:54Z</CurrentReleaseDate>
+    <Generator>
+      <Engine>cve-database/bin/generate-cvrf.pl</Engine>
+      <Date>2017-02-24T01:00:00Z</Date>
+    </Generator>
+  </DocumentTracking>
+  <DocumentNotes>
+    <Note Title="Topic" Type="Summary" Ordinal="1" xml:lang="en">Security update for wireshark</Note>
+    <Note Title="Details" Type="General" Ordinal="2" xml:lang="en">wireshark was updated to version 1.12.8 to fix ten security issues.
+
+These security issues were fixed:
+- CVE-2015-6247: The dissect_openflow_tablemod_v5 function in epan/dissectors/packet-openflow_v5.c in the OpenFlow dissector in Wireshark 1.12.x before 1.12.7 did not validate a certain offset value, which allowed remote attackers to cause a denial of service (infinite loop) via a crafted packet (bsc#941500).
+- CVE-2015-6246: The dissect_wa_payload function in epan/dissectors/packet-waveagent.c in the WaveAgent dissector in Wireshark 1.12.x before 1.12.7 mishandles large tag values, which allowed remote attackers to cause a denial of service (application crash) via a crafted packet (bsc#941500).
+- CVE-2015-6245: epan/dissectors/packet-gsm_rlcmac.c in the GSM RLC/MAC dissector in Wireshark 1.12.x before 1.12.7 used incorrect integer data types, which allowed remote attackers to cause a denial of service (infinite loop) via a crafted packet (bsc#941500).
+- CVE-2015-6244: The dissect_zbee_secure function in epan/dissectors/packet-zbee-security.c in the ZigBee dissector in Wireshark 1.12.x before 1.12.7 improperly relies on length fields contained in packet data, which allowed remote attackers to cause a denial of service (application crash) via a crafted packet (bsc#941500).
+- CVE-2015-6243: The dissector-table implementation in epan/packet.c in Wireshark 1.12.x before 1.12.7 mishandles table searches for empty strings, which allowed remote attackers to cause a denial of service (application crash) via a crafted packet, related to the (1) dissector_get_string_handle and (2) dissector_get_default_string_handle functions (bsc#941500).
+- CVE-2015-6242: The wmem_block_split_free_chunk function in epan/wmem/wmem_allocator_block.c in the wmem block allocator in the memory manager in Wireshark 1.12.x before 1.12.7 did not properly consider a certain case of multiple realloc operations that restore a memory chunk to its original size, which allowed remote attackers to cause a denial of service (incorrect free operation and application crash) via a crafted packet (bsc#941500).
+- CVE-2015-6241: The proto_tree_add_bytes_item function in epan/proto.c in the protocol-tree implementation in Wireshark 1.12.x before 1.12.7 did not properly terminate a data structure after a failure to locate a number within a string, which allowed remote attackers to cause a denial of service (application crash) via a crafted packet (bsc#941500).
+- CVE-2015-7830: pcapng file parser could crash while copying an interface filter (bsc#950437).
+- CVE-2015-6249: The dissect_wccp2r1_address_table_info function in epan/dissectors/packet-wccp.c in the WCCP dissector in Wireshark 1.12.x before 1.12.7 did not prevent the conflicting use of a table for both IPv4 and IPv6 addresses, which allowed remote attackers to cause a denial of service (application crash) via a crafted packet (bsc#941500).
+- CVE-2015-6248: The ptvcursor_add function in the ptvcursor implementation in epan/proto.c in Wireshark 1.12.x before 1.12.7 did not check whether the expected amount of data is available, which allowed remote attackers to cause a denial of service (application crash) via a crafted packet (bsc#941500).
+  </Note>
+    <Note Title="Terms of Use" Type="Legal Disclaimer" Ordinal="3" xml:lang="en">The CVRF data is provided by SUSE under the Creative Commons License 4.0 with Attribution for Non-Commercial usage (CC-BY-NC-4.0).</Note>
+  </DocumentNotes>
+  <DocumentDistribution xml:lang="en">Copyright SUSE LLC under the Creative Commons License 4.0 with Attribution for Non-Commercial usage (CC-BY-NC-4.0)</DocumentDistribution>
+  <DocumentReferences>
+    <Reference Type="Self">
+      <URL>https://lists.opensuse.org/opensuse-updates/2015-10/msg00057.html</URL>
+      <Description>E-Mail link for openSUSE-SU-2015:1836-2</Description>
+    </Reference>
+    <Reference Type="Self">
+      <URL>https://www.suse.com/support/security/rating/</URL>
+      <Description>SUSE Security Ratings</Description>
+    </Reference>
+  </DocumentReferences>
+  <ProductTree xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/prod">
+    <Branch Type="Product Family" Name="openSUSE Leap 42.1">
+      <Branch Type="Product Name" Name="openSUSE Leap 42.1">
+        <FullProductName ProductID="openSUSE Leap 42.1">openSUSE Leap 42.1</FullProductName>
+      </Branch>
+    </Branch>
+    <Branch Type="Product Version" Name="wireshark-1.12.8-9.1">
+      <FullProductName ProductID="wireshark-1.12.8-9.1">wireshark-1.12.8-9.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="wireshark-devel-1.12.8-9.1">
+      <FullProductName ProductID="wireshark-devel-1.12.8-9.1">wireshark-devel-1.12.8-9.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="wireshark-ui-gtk-1.12.8-9.1">
+      <FullProductName ProductID="wireshark-ui-gtk-1.12.8-9.1">wireshark-ui-gtk-1.12.8-9.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="wireshark-ui-qt-1.12.8-9.1">
+      <FullProductName ProductID="wireshark-ui-qt-1.12.8-9.1">wireshark-ui-qt-1.12.8-9.1</FullProductName>
+    </Branch>
+    <Relationship ProductReference="wireshark-1.12.8-9.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:wireshark-1.12.8-9.1">wireshark-1.12.8-9.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="wireshark-devel-1.12.8-9.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:wireshark-devel-1.12.8-9.1">wireshark-devel-1.12.8-9.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="wireshark-ui-gtk-1.12.8-9.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:wireshark-ui-gtk-1.12.8-9.1">wireshark-ui-gtk-1.12.8-9.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="wireshark-ui-qt-1.12.8-9.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:wireshark-ui-qt-1.12.8-9.1">wireshark-ui-qt-1.12.8-9.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+  </ProductTree>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="1">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">The proto_tree_add_bytes_item function in epan/proto.c in the protocol-tree implementation in Wireshark 1.12.x before 1.12.7 does not properly terminate a data structure after a failure to locate a number within a string, which allows remote attackers to cause a denial of service (application crash) via a crafted packet.</Note>
+    </Notes>
+    <CVE>CVE-2015-6241</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed">
+        <ProductID>openSUSE Leap 42.1:wireshark-1.12.8-9.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:wireshark-devel-1.12.8-9.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:wireshark-ui-gtk-1.12.8-9.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:wireshark-ui-qt-1.12.8-9.1</ProductID>
+      </Status>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>4.3</BaseScoreV2>
+        <VectorV2>AV:N/AC:M/Au:N/C:N/I:N/A:P</VectorV2>
+      </ScoreSetV2>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-updates/2015-10/msg00057.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-6241.html</URL>
+        <Description>CVE-2015-6241</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/941500</URL>
+        <Description>SUSE Bug 941500</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="2">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">The wmem_block_split_free_chunk function in epan/wmem/wmem_allocator_block.c in the wmem block allocator in the memory manager in Wireshark 1.12.x before 1.12.7 does not properly consider a certain case of multiple realloc operations that restore a memory chunk to its original size, which allows remote attackers to cause a denial of service (incorrect free operation and application crash) via a crafted packet.</Note>
+    </Notes>
+    <CVE>CVE-2015-6242</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed">
+        <ProductID>openSUSE Leap 42.1:wireshark-1.12.8-9.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:wireshark-devel-1.12.8-9.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:wireshark-ui-gtk-1.12.8-9.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:wireshark-ui-qt-1.12.8-9.1</ProductID>
+      </Status>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>4.3</BaseScoreV2>
+        <VectorV2>AV:N/AC:M/Au:N/C:N/I:N/A:P</VectorV2>
+      </ScoreSetV2>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-updates/2015-10/msg00057.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-6242.html</URL>
+        <Description>CVE-2015-6242</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/941500</URL>
+        <Description>SUSE Bug 941500</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="3">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">The dissector-table implementation in epan/packet.c in Wireshark 1.12.x before 1.12.7 mishandles table searches for empty strings, which allows remote attackers to cause a denial of service (application crash) via a crafted packet, related to the (1) dissector_get_string_handle and (2) dissector_get_default_string_handle functions.</Note>
+    </Notes>
+    <CVE>CVE-2015-6243</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed">
+        <ProductID>openSUSE Leap 42.1:wireshark-1.12.8-9.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:wireshark-devel-1.12.8-9.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:wireshark-ui-gtk-1.12.8-9.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:wireshark-ui-qt-1.12.8-9.1</ProductID>
+      </Status>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>4.3</BaseScoreV2>
+        <VectorV2>AV:N/AC:M/Au:N/C:N/I:N/A:P</VectorV2>
+      </ScoreSetV2>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-updates/2015-10/msg00057.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-6243.html</URL>
+        <Description>CVE-2015-6243</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/941500</URL>
+        <Description>SUSE Bug 941500</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="4">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">The dissect_zbee_secure function in epan/dissectors/packet-zbee-security.c in the ZigBee dissector in Wireshark 1.12.x before 1.12.7 improperly relies on length fields contained in packet data, which allows remote attackers to cause a denial of service (application crash) via a crafted packet.</Note>
+    </Notes>
+    <CVE>CVE-2015-6244</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed">
+        <ProductID>openSUSE Leap 42.1:wireshark-1.12.8-9.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:wireshark-devel-1.12.8-9.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:wireshark-ui-gtk-1.12.8-9.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:wireshark-ui-qt-1.12.8-9.1</ProductID>
+      </Status>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>4.3</BaseScoreV2>
+        <VectorV2>AV:N/AC:M/Au:N/C:N/I:N/A:P</VectorV2>
+      </ScoreSetV2>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-updates/2015-10/msg00057.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-6244.html</URL>
+        <Description>CVE-2015-6244</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/941500</URL>
+        <Description>SUSE Bug 941500</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="5">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">epan/dissectors/packet-gsm_rlcmac.c in the GSM RLC/MAC dissector in Wireshark 1.12.x before 1.12.7 uses incorrect integer data types, which allows remote attackers to cause a denial of service (infinite loop) via a crafted packet.</Note>
+    </Notes>
+    <CVE>CVE-2015-6245</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed">
+        <ProductID>openSUSE Leap 42.1:wireshark-1.12.8-9.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:wireshark-devel-1.12.8-9.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:wireshark-ui-gtk-1.12.8-9.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:wireshark-ui-qt-1.12.8-9.1</ProductID>
+      </Status>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>4.3</BaseScoreV2>
+        <VectorV2>AV:N/AC:M/Au:N/C:N/I:N/A:P</VectorV2>
+      </ScoreSetV2>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-updates/2015-10/msg00057.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-6245.html</URL>
+        <Description>CVE-2015-6245</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/941500</URL>
+        <Description>SUSE Bug 941500</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="6">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">The dissect_wa_payload function in epan/dissectors/packet-waveagent.c in the WaveAgent dissector in Wireshark 1.12.x before 1.12.7 mishandles large tag values, which allows remote attackers to cause a denial of service (application crash) via a crafted packet.</Note>
+    </Notes>
+    <CVE>CVE-2015-6246</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed">
+        <ProductID>openSUSE Leap 42.1:wireshark-1.12.8-9.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:wireshark-devel-1.12.8-9.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:wireshark-ui-gtk-1.12.8-9.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:wireshark-ui-qt-1.12.8-9.1</ProductID>
+      </Status>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>4.3</BaseScoreV2>
+        <VectorV2>AV:N/AC:M/Au:N/C:N/I:N/A:P</VectorV2>
+      </ScoreSetV2>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-updates/2015-10/msg00057.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-6246.html</URL>
+        <Description>CVE-2015-6246</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/941500</URL>
+        <Description>SUSE Bug 941500</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="7">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">The dissect_openflow_tablemod_v5 function in epan/dissectors/packet-openflow_v5.c in the OpenFlow dissector in Wireshark 1.12.x before 1.12.7 does not validate a certain offset value, which allows remote attackers to cause a denial of service (infinite loop) via a crafted packet.</Note>
+    </Notes>
+    <CVE>CVE-2015-6247</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed">
+        <ProductID>openSUSE Leap 42.1:wireshark-1.12.8-9.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:wireshark-devel-1.12.8-9.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:wireshark-ui-gtk-1.12.8-9.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:wireshark-ui-qt-1.12.8-9.1</ProductID>
+      </Status>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>4.3</BaseScoreV2>
+        <VectorV2>AV:N/AC:M/Au:N/C:N/I:N/A:P</VectorV2>
+      </ScoreSetV2>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-updates/2015-10/msg00057.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-6247.html</URL>
+        <Description>CVE-2015-6247</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/941500</URL>
+        <Description>SUSE Bug 941500</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="8">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">The ptvcursor_add function in the ptvcursor implementation in epan/proto.c in Wireshark 1.12.x before 1.12.7 does not check whether the expected amount of data is available, which allows remote attackers to cause a denial of service (application crash) via a crafted packet.</Note>
+    </Notes>
+    <CVE>CVE-2015-6248</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed">
+        <ProductID>openSUSE Leap 42.1:wireshark-1.12.8-9.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:wireshark-devel-1.12.8-9.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:wireshark-ui-gtk-1.12.8-9.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:wireshark-ui-qt-1.12.8-9.1</ProductID>
+      </Status>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>4.3</BaseScoreV2>
+        <VectorV2>AV:N/AC:M/Au:N/C:N/I:N/A:P</VectorV2>
+      </ScoreSetV2>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-updates/2015-10/msg00057.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-6248.html</URL>
+        <Description>CVE-2015-6248</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/941500</URL>
+        <Description>SUSE Bug 941500</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="9">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">The dissect_wccp2r1_address_table_info function in epan/dissectors/packet-wccp.c in the WCCP dissector in Wireshark 1.12.x before 1.12.7 does not prevent the conflicting use of a table for both IPv4 and IPv6 addresses, which allows remote attackers to cause a denial of service (application crash) via a crafted packet.</Note>
+    </Notes>
+    <CVE>CVE-2015-6249</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed">
+        <ProductID>openSUSE Leap 42.1:wireshark-1.12.8-9.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:wireshark-devel-1.12.8-9.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:wireshark-ui-gtk-1.12.8-9.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:wireshark-ui-qt-1.12.8-9.1</ProductID>
+      </Status>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>4.3</BaseScoreV2>
+        <VectorV2>AV:N/AC:M/Au:N/C:N/I:N/A:P</VectorV2>
+      </ScoreSetV2>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-updates/2015-10/msg00057.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-6249.html</URL>
+        <Description>CVE-2015-6249</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/941500</URL>
+        <Description>SUSE Bug 941500</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="10">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">The pcapng_read_if_descr_block function in wiretap/pcapng.c in the pcapng parser in Wireshark 1.12.x before 1.12.8 uses too many levels of pointer indirection, which allows remote attackers to cause a denial of service (incorrect free and application crash) via a crafted packet that triggers interface-filter copying.</Note>
+    </Notes>
+    <CVE>CVE-2015-7830</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed">
+        <ProductID>openSUSE Leap 42.1:wireshark-1.12.8-9.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:wireshark-devel-1.12.8-9.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:wireshark-ui-gtk-1.12.8-9.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:wireshark-ui-qt-1.12.8-9.1</ProductID>
+      </Status>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>4.3</BaseScoreV2>
+        <VectorV2>AV:N/AC:M/Au:N/C:N/I:N/A:P</VectorV2>
+      </ScoreSetV2>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-updates/2015-10/msg00057.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-7830.html</URL>
+        <Description>CVE-2015-7830</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/950437</URL>
+        <Description>SUSE Bug 950437</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/960382</URL>
+        <Description>SUSE Bug 960382</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+</cvrfdoc>

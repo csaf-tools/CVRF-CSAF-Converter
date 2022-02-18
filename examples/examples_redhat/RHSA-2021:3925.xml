@@ -1,0 +1,1596 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cvrfdoc xmlns="http://www.icasi.org/CVRF/schema/cvrf/1.1" xmlns:cvrf="http://www.icasi.org/CVRF/schema/cvrf/1.1">
+  <DocumentTitle xml:lang="en">Red Hat Security Advisory: Red Hat Advanced Cluster Management 2.3.3 bug fix, security, and image updates</DocumentTitle>
+  <DocumentType>Security Advisory</DocumentType>
+  <DocumentPublisher Type="Vendor">
+    <ContactDetails>secalert@redhat.com</ContactDetails>
+    <IssuingAuthority>Red Hat Product Security</IssuingAuthority>
+  </DocumentPublisher>
+  <DocumentTracking>
+    <Identification><ID>RHSA-2021:3925</ID></Identification>
+    <Status>Final</Status>
+    <Version>1</Version>
+    <RevisionHistory>
+       <Revision>
+         <Number>1</Number>
+         <Date>2021-11-05T17:00:00Z</Date>
+         <Description>Current version</Description>
+       </Revision>
+    </RevisionHistory>
+    <InitialReleaseDate>2021-10-20T03:54:00Z</InitialReleaseDate>
+    <CurrentReleaseDate>2021-11-05T17:00:00Z</CurrentReleaseDate>
+    <Generator>
+      <Engine>Red Hat SDEngine 3.2.1</Engine>
+      <Date>2021-11-08T16:46:00Z</Date>
+    </Generator>
+  </DocumentTracking>
+  <DocumentNotes>
+    <Note Title="Topic" Type="Summary" Ordinal="1" xml:lang="en">
+Red Hat Advanced Cluster Management for Kubernetes 2.3.3 General Availability release images, which fix bugs, provide security fixes, and update container images.
+
+Red Hat Product Security has rated this update as having a security impact
+of Important. A Common Vulnerability Scoring System (CVSS) base score,
+which gives a detailed severity rating, is available for each vulnerability
+from the CVE links in the References section.
+    </Note>
+    <Note Title="Details" Type="General" Ordinal="2" xml:lang="en">
+Red Hat Advanced Cluster Management for Kubernetes 2.3.3 images
+
+Red Hat Advanced Cluster Management for Kubernetes provides the capabilities to address common challenges that administrators and site reliability engineers face as they work across a range of public and private cloud environments. Clusters and applications are all visible and managed from a single console—with
+security policy built in.
+
+This advisory contains the container images for Red Hat Advanced Cluster Management for Kubernetes, which fix several bugs and provide security updates. See the following Release Notes documentation, which will be updated shortly for this release, for additional details about this release:
+
+https://access.redhat.com/documentation/en-us/red_hat_advanced_cluster_management_for_kubernetes/2.3/html/release_notes/
+
+Note: Because Red Hat OpenShift Container Platform version 4.9 was just released, the functional testing of the compatibility between Red Hat Advanced Cluster Management 2.3.3 and Red Hat OpenShift Container Platform version 4.9 is still in progress.
+
+Security fixes: 
+
+* nginx: Off-by-one in ngx_resolver_copy() when labels are followed by a pointer to a root domain name (CVE-2021-23017)
+
+* redis: Lua scripts can overflow the heap-based Lua stack (CVE-2021-32626)
+
+* redis: Integer overflow issue with Streams (CVE-2021-32627)
+
+* redis: Integer overflow bug in the ziplist data structure (CVE-2021-32628)
+
+* redis: Integer overflow issue with intsets (CVE-2021-32687)
+
+* redis: Integer overflow issue with strings (CVE-2021-41099)
+
+* redis: Out of bounds read in lua debugger protocol parser (CVE-2021-32672)
+
+* redis: Denial of service via Redis Standard Protocol (RESP) request (CVE-2021-32675)
+
+* helm: information disclosure vulnerability (CVE-2021-32690)
+
+Bug fixes:
+
+* KUBE-API: Support move agent to different cluster in the same namespace (BZ# 1977358)
+
+* Add columns to the Agent CRD list (BZ# 1977398)
+
+* ClusterDeployment controller watches all Secrets from all namespaces (BZ# 1986081)
+
+* RHACM 2.3.3 images (BZ# 1999365)
+
+* Workaround for Network Manager not supporting nmconnections priority (BZ# 2001294)
+
+* create cluster page empty in Safary Browser (BZ# 2002280)
+
+* Compliance state doesn't get updated after fixing the issue causing initially the policy not being able to update the managed object (BZ# 2002667)
+
+* Overview page displays VMware based managed cluster as other (BZ# 2004188)
+    </Note>
+    <Note Title="Terms of Use" Ordinal="3" Type="Legal Disclaimer" xml:lang="en">This content is licensed under the Creative Commons Attribution 4.0 International License (https://creativecommons.org/licenses/by/4.0/). If you distribute this content, or a modified version of it, you must provide attribution to Red Hat Inc. and provide a link to the original.</Note>
+  </DocumentNotes>
+  <DocumentDistribution xml:lang="en">Copyright © 2021 Red Hat, Inc. All rights reserved.</DocumentDistribution>
+  <AggregateSeverity Namespace="https://access.redhat.com/security/updates/classification/">Important</AggregateSeverity>
+  <DocumentReferences>
+    <Reference Type="Self">
+       <URL>https://access.redhat.com/errata/RHSA-2021:3925</URL>
+       <Description>https://access.redhat.com/errata/RHSA-2021:3925</Description>
+    </Reference>
+    <Reference Type="External">
+       <URL>https://access.redhat.com/security/updates/classification/#important</URL>
+       <Description>https://access.redhat.com/security/updates/classification/#important</Description>
+    </Reference>
+  </DocumentReferences>
+  <ProductTree xmlns="http://www.icasi.org/CVRF/schema/prod/1.1">
+    <Branch Type="Product Family" Name="Red Hat ACM">
+      <Branch Type="Product Name" Name="Red Hat Advanced Cluster Management for Kubernetes 2.3 for RHEL 7">
+        <FullProductName ProductID="7Server-RHACM-2.3" CPE="cpe:/a:redhat:acm:2.3::el7">Red Hat Advanced Cluster Management for Kubernetes 2.3 for RHEL 7</FullProductName>
+      </Branch>
+      <Branch Type="Product Name" Name="Red Hat Advanced Cluster Management for Kubernetes 2.3 for RHEL 8">
+        <FullProductName ProductID="8Base-RHACM-2.3" CPE="cpe:/a:redhat:acm:2.3::el8">Red Hat Advanced Cluster Management for Kubernetes 2.3 for RHEL 8</FullProductName>
+      </Branch>
+    </Branch>
+    <Branch Type="Product Version" Name="rhacm2/acm-grafana-rhel8:v2.3.3-2">
+      <FullProductName ProductID="rhacm2/acm-grafana-rhel8:v2.3.3-2" CPE="cpe:/a:redhat:acm:2.3::el8">rhacm2/acm-grafana-rhel8:v2.3.3-2</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="rhacm2/acm-must-gather-rhel8:v2.3.3-5">
+      <FullProductName ProductID="rhacm2/acm-must-gather-rhel8:v2.3.3-5" CPE="cpe:/a:redhat:acm:2.3::el8">rhacm2/acm-must-gather-rhel8:v2.3.3-5</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="rhacm2/acm-operator-bundle:v2.3.3-25">
+      <FullProductName ProductID="rhacm2/acm-operator-bundle:v2.3.3-25" CPE="cpe:/a:redhat:acm:2.3::el8">rhacm2/acm-operator-bundle:v2.3.3-25</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="rhacm2/agent-service-rhel8:v2.3.3-3">
+      <FullProductName ProductID="rhacm2/agent-service-rhel8:v2.3.3-3" CPE="cpe:/a:redhat:acm:2.3::el8">rhacm2/agent-service-rhel8:v2.3.3-3</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="rhacm2/application-ui-rhel8:v2.3.3-5">
+      <FullProductName ProductID="rhacm2/application-ui-rhel8:v2.3.3-5" CPE="cpe:/a:redhat:acm:2.3::el8">rhacm2/application-ui-rhel8:v2.3.3-5</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="rhacm2/assisted-installer-agent-rhel8:v2.3.3-2">
+      <FullProductName ProductID="rhacm2/assisted-installer-agent-rhel8:v2.3.3-2" CPE="cpe:/a:redhat:acm:2.3::el8">rhacm2/assisted-installer-agent-rhel8:v2.3.3-2</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="rhacm2/assisted-installer-reporter-rhel8:v2.3.3-2">
+      <FullProductName ProductID="rhacm2/assisted-installer-reporter-rhel8:v2.3.3-2" CPE="cpe:/a:redhat:acm:2.3::el8">rhacm2/assisted-installer-reporter-rhel8:v2.3.3-2</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="rhacm2/assisted-installer-rhel8:v2.3.3-2">
+      <FullProductName ProductID="rhacm2/assisted-installer-rhel8:v2.3.3-2" CPE="cpe:/a:redhat:acm:2.3::el8">rhacm2/assisted-installer-rhel8:v2.3.3-2</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="rhacm2/cert-policy-controller-rhel8:v2.3.3-2">
+      <FullProductName ProductID="rhacm2/cert-policy-controller-rhel8:v2.3.3-2" CPE="cpe:/a:redhat:acm:2.3::el8">rhacm2/cert-policy-controller-rhel8:v2.3.3-2</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="rhacm2/cluster-curator-controller-rhel8:v2.3.3-2">
+      <FullProductName ProductID="rhacm2/cluster-curator-controller-rhel8:v2.3.3-2" CPE="cpe:/a:redhat:acm:2.3::el8">rhacm2/cluster-curator-controller-rhel8:v2.3.3-2</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="rhacm2/clusterlifecycle-state-metrics-rhel8:v2.3.3-2">
+      <FullProductName ProductID="rhacm2/clusterlifecycle-state-metrics-rhel8:v2.3.3-2" CPE="cpe:/a:redhat:acm:2.3::el8">rhacm2/clusterlifecycle-state-metrics-rhel8:v2.3.3-2</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="rhacm2/config-policy-controller-rhel8:v2.3.3-4">
+      <FullProductName ProductID="rhacm2/config-policy-controller-rhel8:v2.3.3-4" CPE="cpe:/a:redhat:acm:2.3::el8">rhacm2/config-policy-controller-rhel8:v2.3.3-4</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="rhacm2/console-api-rhel8:v2.3.3-6">
+      <FullProductName ProductID="rhacm2/console-api-rhel8:v2.3.3-6" CPE="cpe:/a:redhat:acm:2.3::el8">rhacm2/console-api-rhel8:v2.3.3-6</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="rhacm2/console-rhel8:v2.3.3-4">
+      <FullProductName ProductID="rhacm2/console-rhel8:v2.3.3-4" CPE="cpe:/a:redhat:acm:2.3::el8">rhacm2/console-rhel8:v2.3.3-4</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="rhacm2/discovery-rhel8-operator:v2.3.3-2">
+      <FullProductName ProductID="rhacm2/discovery-rhel8-operator:v2.3.3-2" CPE="cpe:/a:redhat:acm:2.3::el8">rhacm2/discovery-rhel8-operator:v2.3.3-2</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="rhacm2/endpoint-monitoring-rhel8-operator:v2.3.3-2">
+      <FullProductName ProductID="rhacm2/endpoint-monitoring-rhel8-operator:v2.3.3-2" CPE="cpe:/a:redhat:acm:2.3::el8">rhacm2/endpoint-monitoring-rhel8-operator:v2.3.3-2</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="rhacm2/governance-policy-propagator-rhel8:v2.3.3-2">
+      <FullProductName ProductID="rhacm2/governance-policy-propagator-rhel8:v2.3.3-2" CPE="cpe:/a:redhat:acm:2.3::el8">rhacm2/governance-policy-propagator-rhel8:v2.3.3-2</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="rhacm2/governance-policy-spec-sync-rhel8:v2.3.3-2">
+      <FullProductName ProductID="rhacm2/governance-policy-spec-sync-rhel8:v2.3.3-2" CPE="cpe:/a:redhat:acm:2.3::el8">rhacm2/governance-policy-spec-sync-rhel8:v2.3.3-2</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="rhacm2/governance-policy-status-sync-rhel8:v2.3.3-2">
+      <FullProductName ProductID="rhacm2/governance-policy-status-sync-rhel8:v2.3.3-2" CPE="cpe:/a:redhat:acm:2.3::el8">rhacm2/governance-policy-status-sync-rhel8:v2.3.3-2</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="rhacm2/governance-policy-template-sync-rhel8:v2.3.3-2">
+      <FullProductName ProductID="rhacm2/governance-policy-template-sync-rhel8:v2.3.3-2" CPE="cpe:/a:redhat:acm:2.3::el8">rhacm2/governance-policy-template-sync-rhel8:v2.3.3-2</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="rhacm2/grafana-dashboard-loader-rhel8:v2.3.3-3">
+      <FullProductName ProductID="rhacm2/grafana-dashboard-loader-rhel8:v2.3.3-3" CPE="cpe:/a:redhat:acm:2.3::el8">rhacm2/grafana-dashboard-loader-rhel8:v2.3.3-3</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="rhacm2/grc-ui-api-rhel8:v2.3.3-5">
+      <FullProductName ProductID="rhacm2/grc-ui-api-rhel8:v2.3.3-5" CPE="cpe:/a:redhat:acm:2.3::el8">rhacm2/grc-ui-api-rhel8:v2.3.3-5</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="rhacm2/grc-ui-rhel8:v2.3.3-6">
+      <FullProductName ProductID="rhacm2/grc-ui-rhel8:v2.3.3-6" CPE="cpe:/a:redhat:acm:2.3::el8">rhacm2/grc-ui-rhel8:v2.3.3-6</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="rhacm2/iam-policy-controller-rhel8:v2.3.3-2">
+      <FullProductName ProductID="rhacm2/iam-policy-controller-rhel8:v2.3.3-2" CPE="cpe:/a:redhat:acm:2.3::el8">rhacm2/iam-policy-controller-rhel8:v2.3.3-2</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="rhacm2/insights-client-rhel8:v2.3.3-2">
+      <FullProductName ProductID="rhacm2/insights-client-rhel8:v2.3.3-2" CPE="cpe:/a:redhat:acm:2.3::el8">rhacm2/insights-client-rhel8:v2.3.3-2</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="rhacm2/insights-metrics-rhel8:v2.3.3-2">
+      <FullProductName ProductID="rhacm2/insights-metrics-rhel8:v2.3.3-2" CPE="cpe:/a:redhat:acm:2.3::el8">rhacm2/insights-metrics-rhel8:v2.3.3-2</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="rhacm2/klusterlet-addon-controller-rhel8:v2.3.3-2">
+      <FullProductName ProductID="rhacm2/klusterlet-addon-controller-rhel8:v2.3.3-2" CPE="cpe:/a:redhat:acm:2.3::el8">rhacm2/klusterlet-addon-controller-rhel8:v2.3.3-2</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="rhacm2/klusterlet-addon-rhel8-operator:v2.3.3-4">
+      <FullProductName ProductID="rhacm2/klusterlet-addon-rhel8-operator:v2.3.3-4" CPE="cpe:/a:redhat:acm:2.3::el8">rhacm2/klusterlet-addon-rhel8-operator:v2.3.3-4</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="rhacm2/klusterlet-operator-bundle:v2.3.3-17">
+      <FullProductName ProductID="rhacm2/klusterlet-operator-bundle:v2.3.3-17" CPE="cpe:/a:redhat:acm:2.3::el8">rhacm2/klusterlet-operator-bundle:v2.3.3-17</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="rhacm2/kui-web-terminal-rhel8:v2.3.3-6">
+      <FullProductName ProductID="rhacm2/kui-web-terminal-rhel8:v2.3.3-6" CPE="cpe:/a:redhat:acm:2.3::el8">rhacm2/kui-web-terminal-rhel8:v2.3.3-6</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="rhacm2/managedcluster-import-controller-rhel8:v2.3.3-2">
+      <FullProductName ProductID="rhacm2/managedcluster-import-controller-rhel8:v2.3.3-2" CPE="cpe:/a:redhat:acm:2.3::el8">rhacm2/managedcluster-import-controller-rhel8:v2.3.3-2</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="rhacm2/management-ingress-rhel7:v2.3.3-3">
+      <FullProductName ProductID="rhacm2/management-ingress-rhel7:v2.3.3-3" CPE="cpe:/a:redhat:acm:2.3::el7">rhacm2/management-ingress-rhel7:v2.3.3-3</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="rhacm2/memcached-exporter-rhel7:v2.3.3-2">
+      <FullProductName ProductID="rhacm2/memcached-exporter-rhel7:v2.3.3-2" CPE="cpe:/a:redhat:acm:2.3::el7">rhacm2/memcached-exporter-rhel7:v2.3.3-2</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="rhacm2/memcached-rhel8:v2.3.3-2">
+      <FullProductName ProductID="rhacm2/memcached-rhel8:v2.3.3-2" CPE="cpe:/a:redhat:acm:2.3::el8">rhacm2/memcached-rhel8:v2.3.3-2</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="rhacm2/metrics-collector-rhel8:v2.3.3-2">
+      <FullProductName ProductID="rhacm2/metrics-collector-rhel8:v2.3.3-2" CPE="cpe:/a:redhat:acm:2.3::el8">rhacm2/metrics-collector-rhel8:v2.3.3-2</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="rhacm2/multicloud-manager-rhel8:v2.3.3-2">
+      <FullProductName ProductID="rhacm2/multicloud-manager-rhel8:v2.3.3-2" CPE="cpe:/a:redhat:acm:2.3::el8">rhacm2/multicloud-manager-rhel8:v2.3.3-2</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="rhacm2/multicluster-observability-rhel8-operator:v2.3.3-2">
+      <FullProductName ProductID="rhacm2/multicluster-observability-rhel8-operator:v2.3.3-2" CPE="cpe:/a:redhat:acm:2.3::el8">rhacm2/multicluster-observability-rhel8-operator:v2.3.3-2</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="rhacm2/multicluster-operators-application-rhel8:v2.3.3-2">
+      <FullProductName ProductID="rhacm2/multicluster-operators-application-rhel8:v2.3.3-2" CPE="cpe:/a:redhat:acm:2.3::el8">rhacm2/multicluster-operators-application-rhel8:v2.3.3-2</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="rhacm2/multicluster-operators-channel-rhel8:v2.3.3-2">
+      <FullProductName ProductID="rhacm2/multicluster-operators-channel-rhel8:v2.3.3-2" CPE="cpe:/a:redhat:acm:2.3::el8">rhacm2/multicluster-operators-channel-rhel8:v2.3.3-2</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="rhacm2/multicluster-operators-deployable-rhel8:v2.3.3-2">
+      <FullProductName ProductID="rhacm2/multicluster-operators-deployable-rhel8:v2.3.3-2" CPE="cpe:/a:redhat:acm:2.3::el8">rhacm2/multicluster-operators-deployable-rhel8:v2.3.3-2</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="rhacm2/multicluster-operators-placementrule-rhel8:v2.3.3-2">
+      <FullProductName ProductID="rhacm2/multicluster-operators-placementrule-rhel8:v2.3.3-2" CPE="cpe:/a:redhat:acm:2.3::el8">rhacm2/multicluster-operators-placementrule-rhel8:v2.3.3-2</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="rhacm2/multicluster-operators-subscription-release-rhel8:v2.3.3-2">
+      <FullProductName ProductID="rhacm2/multicluster-operators-subscription-release-rhel8:v2.3.3-2" CPE="cpe:/a:redhat:acm:2.3::el8">rhacm2/multicluster-operators-subscription-release-rhel8:v2.3.3-2</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="rhacm2/multicluster-operators-subscription-rhel8:v2.3.3-2">
+      <FullProductName ProductID="rhacm2/multicluster-operators-subscription-rhel8:v2.3.3-2" CPE="cpe:/a:redhat:acm:2.3::el8">rhacm2/multicluster-operators-subscription-rhel8:v2.3.3-2</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="rhacm2/multiclusterhub-repo-rhel8:v2.3.3-4">
+      <FullProductName ProductID="rhacm2/multiclusterhub-repo-rhel8:v2.3.3-4" CPE="cpe:/a:redhat:acm:2.3::el8">rhacm2/multiclusterhub-repo-rhel8:v2.3.3-4</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="rhacm2/multiclusterhub-rhel8:v2.3.3-7">
+      <FullProductName ProductID="rhacm2/multiclusterhub-rhel8:v2.3.3-7" CPE="cpe:/a:redhat:acm:2.3::el8">rhacm2/multiclusterhub-rhel8:v2.3.3-7</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="rhacm2/observatorium-rhel8-operator:v2.3.3-2">
+      <FullProductName ProductID="rhacm2/observatorium-rhel8-operator:v2.3.3-2" CPE="cpe:/a:redhat:acm:2.3::el8">rhacm2/observatorium-rhel8-operator:v2.3.3-2</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="rhacm2/observatorium-rhel8:v2.3.3-2">
+      <FullProductName ProductID="rhacm2/observatorium-rhel8:v2.3.3-2" CPE="cpe:/a:redhat:acm:2.3::el8">rhacm2/observatorium-rhel8:v2.3.3-2</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="rhacm2/openshift-hive-rhel8:v2.3.3-2">
+      <FullProductName ProductID="rhacm2/openshift-hive-rhel8:v2.3.3-2" CPE="cpe:/a:redhat:acm:2.3::el8">rhacm2/openshift-hive-rhel8:v2.3.3-2</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="rhacm2/placement-rhel8:v2.3.3-2">
+      <FullProductName ProductID="rhacm2/placement-rhel8:v2.3.3-2" CPE="cpe:/a:redhat:acm:2.3::el8">rhacm2/placement-rhel8:v2.3.3-2</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="rhacm2/prometheus-alertmanager-rhel8:v2.3.2-4">
+      <FullProductName ProductID="rhacm2/prometheus-alertmanager-rhel8:v2.3.2-4" CPE="cpe:/a:redhat:acm:2.3::el8">rhacm2/prometheus-alertmanager-rhel8:v2.3.2-4</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="rhacm2/provider-credential-controller-rhel8:v2.3.2-4">
+      <FullProductName ProductID="rhacm2/provider-credential-controller-rhel8:v2.3.2-4" CPE="cpe:/a:redhat:acm:2.3::el8">rhacm2/provider-credential-controller-rhel8:v2.3.2-4</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="rhacm2/rbac-query-proxy-rhel8:v2.3.3-2">
+      <FullProductName ProductID="rhacm2/rbac-query-proxy-rhel8:v2.3.3-2" CPE="cpe:/a:redhat:acm:2.3::el8">rhacm2/rbac-query-proxy-rhel8:v2.3.3-2</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="rhacm2/redisgraph-tls-rhel8:v2.3.3-3">
+      <FullProductName ProductID="rhacm2/redisgraph-tls-rhel8:v2.3.3-3" CPE="cpe:/a:redhat:acm:2.3::el8">rhacm2/redisgraph-tls-rhel8:v2.3.3-3</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="rhacm2/registration-rhel8-operator:v2.3.3-2">
+      <FullProductName ProductID="rhacm2/registration-rhel8-operator:v2.3.3-2" CPE="cpe:/a:redhat:acm:2.3::el8">rhacm2/registration-rhel8-operator:v2.3.3-2</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="rhacm2/registration-rhel8:v2.3.3-2">
+      <FullProductName ProductID="rhacm2/registration-rhel8:v2.3.3-2" CPE="cpe:/a:redhat:acm:2.3::el8">rhacm2/registration-rhel8:v2.3.3-2</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="rhacm2/search-aggregator-rhel8:v2.3.3-2">
+      <FullProductName ProductID="rhacm2/search-aggregator-rhel8:v2.3.3-2" CPE="cpe:/a:redhat:acm:2.3::el8">rhacm2/search-aggregator-rhel8:v2.3.3-2</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="rhacm2/search-api-rhel8:v2.3.3-5">
+      <FullProductName ProductID="rhacm2/search-api-rhel8:v2.3.3-5" CPE="cpe:/a:redhat:acm:2.3::el8">rhacm2/search-api-rhel8:v2.3.3-5</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="rhacm2/search-collector-rhel8:v2.3.3-2">
+      <FullProductName ProductID="rhacm2/search-collector-rhel8:v2.3.3-2" CPE="cpe:/a:redhat:acm:2.3::el8">rhacm2/search-collector-rhel8:v2.3.3-2</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="rhacm2/search-rhel8:v2.3.3-2">
+      <FullProductName ProductID="rhacm2/search-rhel8:v2.3.3-2" CPE="cpe:/a:redhat:acm:2.3::el8">rhacm2/search-rhel8:v2.3.3-2</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="rhacm2/search-ui-rhel8:v2.3.3-7">
+      <FullProductName ProductID="rhacm2/search-ui-rhel8:v2.3.3-7" CPE="cpe:/a:redhat:acm:2.3::el8">rhacm2/search-ui-rhel8:v2.3.3-7</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="rhacm2/submariner-addon-rhel8:v2.3.3-2">
+      <FullProductName ProductID="rhacm2/submariner-addon-rhel8:v2.3.3-2" CPE="cpe:/a:redhat:acm:2.3::el8">rhacm2/submariner-addon-rhel8:v2.3.3-2</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="rhacm2/thanos-receive-controller-rhel8:v2.3.3-3">
+      <FullProductName ProductID="rhacm2/thanos-receive-controller-rhel8:v2.3.3-3" CPE="cpe:/a:redhat:acm:2.3::el8">rhacm2/thanos-receive-controller-rhel8:v2.3.3-3</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="rhacm2/thanos-rhel7:v2.3.3-2">
+      <FullProductName ProductID="rhacm2/thanos-rhel7:v2.3.3-2" CPE="cpe:/a:redhat:acm:2.3::el7">rhacm2/thanos-rhel7:v2.3.3-2</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="rhacm2/work-rhel8:v2.3.3-2">
+      <FullProductName ProductID="rhacm2/work-rhel8:v2.3.3-2" CPE="cpe:/a:redhat:acm:2.3::el8">rhacm2/work-rhel8:v2.3.3-2</FullProductName>
+    </Branch>
+    <Relationship ProductReference="management-ingress-container-v2.3.3-3" RelationType="Default Component Of" RelatesToProductReference="7Server-RHACM-2.3">
+      <FullProductName ProductID="7Server-RHACM-2.3:management-ingress-container-v2.3.3-3" CPE="cpe:/a:redhat:acm:2.3::el7">management-ingress-container-v2.3.3-3 as a component of Red Hat Advanced Cluster Management for Kubernetes 2.3 for RHEL 7</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="memcached-exporter-container-v2.3.3-2" RelationType="Default Component Of" RelatesToProductReference="7Server-RHACM-2.3">
+      <FullProductName ProductID="7Server-RHACM-2.3:memcached-exporter-container-v2.3.3-2" CPE="cpe:/a:redhat:acm:2.3::el7">memcached-exporter-container-v2.3.3-2 as a component of Red Hat Advanced Cluster Management for Kubernetes 2.3 for RHEL 7</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="thanos-container-v2.3.3-2" RelationType="Default Component Of" RelatesToProductReference="7Server-RHACM-2.3">
+      <FullProductName ProductID="7Server-RHACM-2.3:thanos-container-v2.3.3-2" CPE="cpe:/a:redhat:acm:2.3::el7">thanos-container-v2.3.3-2 as a component of Red Hat Advanced Cluster Management for Kubernetes 2.3 for RHEL 7</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="acm-grafana-container-v2.3.3-2" RelationType="Default Component Of" RelatesToProductReference="8Base-RHACM-2.3">
+      <FullProductName ProductID="8Base-RHACM-2.3:acm-grafana-container-v2.3.3-2" CPE="cpe:/a:redhat:acm:2.3::el8">acm-grafana-container-v2.3.3-2 as a component of Red Hat Advanced Cluster Management for Kubernetes 2.3 for RHEL 8</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="acm-must-gather-container-v2.3.3-5" RelationType="Default Component Of" RelatesToProductReference="8Base-RHACM-2.3">
+      <FullProductName ProductID="8Base-RHACM-2.3:acm-must-gather-container-v2.3.3-5" CPE="cpe:/a:redhat:acm:2.3::el8">acm-must-gather-container-v2.3.3-5 as a component of Red Hat Advanced Cluster Management for Kubernetes 2.3 for RHEL 8</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="acm-operator-bundle-container-v2.3.3-25" RelationType="Default Component Of" RelatesToProductReference="8Base-RHACM-2.3">
+      <FullProductName ProductID="8Base-RHACM-2.3:acm-operator-bundle-container-v2.3.3-25" CPE="cpe:/a:redhat:acm:2.3::el8">acm-operator-bundle-container-v2.3.3-25 as a component of Red Hat Advanced Cluster Management for Kubernetes 2.3 for RHEL 8</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="application-ui-container-v2.3.3-5" RelationType="Default Component Of" RelatesToProductReference="8Base-RHACM-2.3">
+      <FullProductName ProductID="8Base-RHACM-2.3:application-ui-container-v2.3.3-5" CPE="cpe:/a:redhat:acm:2.3::el8">application-ui-container-v2.3.3-5 as a component of Red Hat Advanced Cluster Management for Kubernetes 2.3 for RHEL 8</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="cert-policy-controller-container-v2.3.3-2" RelationType="Default Component Of" RelatesToProductReference="8Base-RHACM-2.3">
+      <FullProductName ProductID="8Base-RHACM-2.3:cert-policy-controller-container-v2.3.3-2" CPE="cpe:/a:redhat:acm:2.3::el8">cert-policy-controller-container-v2.3.3-2 as a component of Red Hat Advanced Cluster Management for Kubernetes 2.3 for RHEL 8</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="cluster-curator-controller-container-v2.3.3-2" RelationType="Default Component Of" RelatesToProductReference="8Base-RHACM-2.3">
+      <FullProductName ProductID="8Base-RHACM-2.3:cluster-curator-controller-container-v2.3.3-2" CPE="cpe:/a:redhat:acm:2.3::el8">cluster-curator-controller-container-v2.3.3-2 as a component of Red Hat Advanced Cluster Management for Kubernetes 2.3 for RHEL 8</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="clusterlifecycle-state-metrics-container-v2.3.3-2" RelationType="Default Component Of" RelatesToProductReference="8Base-RHACM-2.3">
+      <FullProductName ProductID="8Base-RHACM-2.3:clusterlifecycle-state-metrics-container-v2.3.3-2" CPE="cpe:/a:redhat:acm:2.3::el8">clusterlifecycle-state-metrics-container-v2.3.3-2 as a component of Red Hat Advanced Cluster Management for Kubernetes 2.3 for RHEL 8</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="config-policy-controller-container-v2.3.3-4" RelationType="Default Component Of" RelatesToProductReference="8Base-RHACM-2.3">
+      <FullProductName ProductID="8Base-RHACM-2.3:config-policy-controller-container-v2.3.3-4" CPE="cpe:/a:redhat:acm:2.3::el8">config-policy-controller-container-v2.3.3-4 as a component of Red Hat Advanced Cluster Management for Kubernetes 2.3 for RHEL 8</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="console-api-container-v2.3.3-6" RelationType="Default Component Of" RelatesToProductReference="8Base-RHACM-2.3">
+      <FullProductName ProductID="8Base-RHACM-2.3:console-api-container-v2.3.3-6" CPE="cpe:/a:redhat:acm:2.3::el8">console-api-container-v2.3.3-6 as a component of Red Hat Advanced Cluster Management for Kubernetes 2.3 for RHEL 8</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="console-container-v2.3.3-4" RelationType="Default Component Of" RelatesToProductReference="8Base-RHACM-2.3">
+      <FullProductName ProductID="8Base-RHACM-2.3:console-container-v2.3.3-4" CPE="cpe:/a:redhat:acm:2.3::el8">console-container-v2.3.3-4 as a component of Red Hat Advanced Cluster Management for Kubernetes 2.3 for RHEL 8</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="discovery-operator-container-v2.3.3-2" RelationType="Default Component Of" RelatesToProductReference="8Base-RHACM-2.3">
+      <FullProductName ProductID="8Base-RHACM-2.3:discovery-operator-container-v2.3.3-2" CPE="cpe:/a:redhat:acm:2.3::el8">discovery-operator-container-v2.3.3-2 as a component of Red Hat Advanced Cluster Management for Kubernetes 2.3 for RHEL 8</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="endpoint-monitoring-operator-container-v2.3.3-2" RelationType="Default Component Of" RelatesToProductReference="8Base-RHACM-2.3">
+      <FullProductName ProductID="8Base-RHACM-2.3:endpoint-monitoring-operator-container-v2.3.3-2" CPE="cpe:/a:redhat:acm:2.3::el8">endpoint-monitoring-operator-container-v2.3.3-2 as a component of Red Hat Advanced Cluster Management for Kubernetes 2.3 for RHEL 8</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="governance-policy-propagator-container-v2.3.3-2" RelationType="Default Component Of" RelatesToProductReference="8Base-RHACM-2.3">
+      <FullProductName ProductID="8Base-RHACM-2.3:governance-policy-propagator-container-v2.3.3-2" CPE="cpe:/a:redhat:acm:2.3::el8">governance-policy-propagator-container-v2.3.3-2 as a component of Red Hat Advanced Cluster Management for Kubernetes 2.3 for RHEL 8</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="governance-policy-spec-sync-container-v2.3.3-2" RelationType="Default Component Of" RelatesToProductReference="8Base-RHACM-2.3">
+      <FullProductName ProductID="8Base-RHACM-2.3:governance-policy-spec-sync-container-v2.3.3-2" CPE="cpe:/a:redhat:acm:2.3::el8">governance-policy-spec-sync-container-v2.3.3-2 as a component of Red Hat Advanced Cluster Management for Kubernetes 2.3 for RHEL 8</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="governance-policy-status-sync-container-v2.3.3-2" RelationType="Default Component Of" RelatesToProductReference="8Base-RHACM-2.3">
+      <FullProductName ProductID="8Base-RHACM-2.3:governance-policy-status-sync-container-v2.3.3-2" CPE="cpe:/a:redhat:acm:2.3::el8">governance-policy-status-sync-container-v2.3.3-2 as a component of Red Hat Advanced Cluster Management for Kubernetes 2.3 for RHEL 8</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="governance-policy-template-sync-container-v2.3.3-2" RelationType="Default Component Of" RelatesToProductReference="8Base-RHACM-2.3">
+      <FullProductName ProductID="8Base-RHACM-2.3:governance-policy-template-sync-container-v2.3.3-2" CPE="cpe:/a:redhat:acm:2.3::el8">governance-policy-template-sync-container-v2.3.3-2 as a component of Red Hat Advanced Cluster Management for Kubernetes 2.3 for RHEL 8</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="grafana-dashboard-loader-container-v2.3.3-3" RelationType="Default Component Of" RelatesToProductReference="8Base-RHACM-2.3">
+      <FullProductName ProductID="8Base-RHACM-2.3:grafana-dashboard-loader-container-v2.3.3-3" CPE="cpe:/a:redhat:acm:2.3::el8">grafana-dashboard-loader-container-v2.3.3-3 as a component of Red Hat Advanced Cluster Management for Kubernetes 2.3 for RHEL 8</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="grc-ui-api-container-v2.3.3-5" RelationType="Default Component Of" RelatesToProductReference="8Base-RHACM-2.3">
+      <FullProductName ProductID="8Base-RHACM-2.3:grc-ui-api-container-v2.3.3-5" CPE="cpe:/a:redhat:acm:2.3::el8">grc-ui-api-container-v2.3.3-5 as a component of Red Hat Advanced Cluster Management for Kubernetes 2.3 for RHEL 8</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="grc-ui-container-v2.3.3-6" RelationType="Default Component Of" RelatesToProductReference="8Base-RHACM-2.3">
+      <FullProductName ProductID="8Base-RHACM-2.3:grc-ui-container-v2.3.3-6" CPE="cpe:/a:redhat:acm:2.3::el8">grc-ui-container-v2.3.3-6 as a component of Red Hat Advanced Cluster Management for Kubernetes 2.3 for RHEL 8</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="iam-policy-controller-container-v2.3.3-2" RelationType="Default Component Of" RelatesToProductReference="8Base-RHACM-2.3">
+      <FullProductName ProductID="8Base-RHACM-2.3:iam-policy-controller-container-v2.3.3-2" CPE="cpe:/a:redhat:acm:2.3::el8">iam-policy-controller-container-v2.3.3-2 as a component of Red Hat Advanced Cluster Management for Kubernetes 2.3 for RHEL 8</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="insights-client-container-v2.3.3-2" RelationType="Default Component Of" RelatesToProductReference="8Base-RHACM-2.3">
+      <FullProductName ProductID="8Base-RHACM-2.3:insights-client-container-v2.3.3-2" CPE="cpe:/a:redhat:acm:2.3::el8">insights-client-container-v2.3.3-2 as a component of Red Hat Advanced Cluster Management for Kubernetes 2.3 for RHEL 8</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="insights-metrics-container-v2.3.3-2" RelationType="Default Component Of" RelatesToProductReference="8Base-RHACM-2.3">
+      <FullProductName ProductID="8Base-RHACM-2.3:insights-metrics-container-v2.3.3-2" CPE="cpe:/a:redhat:acm:2.3::el8">insights-metrics-container-v2.3.3-2 as a component of Red Hat Advanced Cluster Management for Kubernetes 2.3 for RHEL 8</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="klusterlet-addon-controller-container-v2.3.3-2" RelationType="Default Component Of" RelatesToProductReference="8Base-RHACM-2.3">
+      <FullProductName ProductID="8Base-RHACM-2.3:klusterlet-addon-controller-container-v2.3.3-2" CPE="cpe:/a:redhat:acm:2.3::el8">klusterlet-addon-controller-container-v2.3.3-2 as a component of Red Hat Advanced Cluster Management for Kubernetes 2.3 for RHEL 8</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="klusterlet-addon-operator-container-v2.3.3-4" RelationType="Default Component Of" RelatesToProductReference="8Base-RHACM-2.3">
+      <FullProductName ProductID="8Base-RHACM-2.3:klusterlet-addon-operator-container-v2.3.3-4" CPE="cpe:/a:redhat:acm:2.3::el8">klusterlet-addon-operator-container-v2.3.3-4 as a component of Red Hat Advanced Cluster Management for Kubernetes 2.3 for RHEL 8</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="klusterlet-operator-bundle-container-v2.3.3-17" RelationType="Default Component Of" RelatesToProductReference="8Base-RHACM-2.3">
+      <FullProductName ProductID="8Base-RHACM-2.3:klusterlet-operator-bundle-container-v2.3.3-17" CPE="cpe:/a:redhat:acm:2.3::el8">klusterlet-operator-bundle-container-v2.3.3-17 as a component of Red Hat Advanced Cluster Management for Kubernetes 2.3 for RHEL 8</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="kui-web-terminal-container-v2.3.3-6" RelationType="Default Component Of" RelatesToProductReference="8Base-RHACM-2.3">
+      <FullProductName ProductID="8Base-RHACM-2.3:kui-web-terminal-container-v2.3.3-6" CPE="cpe:/a:redhat:acm:2.3::el8">kui-web-terminal-container-v2.3.3-6 as a component of Red Hat Advanced Cluster Management for Kubernetes 2.3 for RHEL 8</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="managedcluster-import-controller-container-v2.3.3-2" RelationType="Default Component Of" RelatesToProductReference="8Base-RHACM-2.3">
+      <FullProductName ProductID="8Base-RHACM-2.3:managedcluster-import-controller-container-v2.3.3-2" CPE="cpe:/a:redhat:acm:2.3::el8">managedcluster-import-controller-container-v2.3.3-2 as a component of Red Hat Advanced Cluster Management for Kubernetes 2.3 for RHEL 8</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="memcached-container-v2.3.3-2" RelationType="Default Component Of" RelatesToProductReference="8Base-RHACM-2.3">
+      <FullProductName ProductID="8Base-RHACM-2.3:memcached-container-v2.3.3-2" CPE="cpe:/a:redhat:acm:2.3::el8">memcached-container-v2.3.3-2 as a component of Red Hat Advanced Cluster Management for Kubernetes 2.3 for RHEL 8</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="metrics-collector-container-v2.3.3-2" RelationType="Default Component Of" RelatesToProductReference="8Base-RHACM-2.3">
+      <FullProductName ProductID="8Base-RHACM-2.3:metrics-collector-container-v2.3.3-2" CPE="cpe:/a:redhat:acm:2.3::el8">metrics-collector-container-v2.3.3-2 as a component of Red Hat Advanced Cluster Management for Kubernetes 2.3 for RHEL 8</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="multicloud-manager-container-v2.3.3-2" RelationType="Default Component Of" RelatesToProductReference="8Base-RHACM-2.3">
+      <FullProductName ProductID="8Base-RHACM-2.3:multicloud-manager-container-v2.3.3-2" CPE="cpe:/a:redhat:acm:2.3::el8">multicloud-manager-container-v2.3.3-2 as a component of Red Hat Advanced Cluster Management for Kubernetes 2.3 for RHEL 8</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="multicluster-observability-operator-container-v2.3.3-2" RelationType="Default Component Of" RelatesToProductReference="8Base-RHACM-2.3">
+      <FullProductName ProductID="8Base-RHACM-2.3:multicluster-observability-operator-container-v2.3.3-2" CPE="cpe:/a:redhat:acm:2.3::el8">multicluster-observability-operator-container-v2.3.3-2 as a component of Red Hat Advanced Cluster Management for Kubernetes 2.3 for RHEL 8</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="multicluster-operators-application-container-v2.3.3-2" RelationType="Default Component Of" RelatesToProductReference="8Base-RHACM-2.3">
+      <FullProductName ProductID="8Base-RHACM-2.3:multicluster-operators-application-container-v2.3.3-2" CPE="cpe:/a:redhat:acm:2.3::el8">multicluster-operators-application-container-v2.3.3-2 as a component of Red Hat Advanced Cluster Management for Kubernetes 2.3 for RHEL 8</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="multicluster-operators-channel-container-v2.3.3-2" RelationType="Default Component Of" RelatesToProductReference="8Base-RHACM-2.3">
+      <FullProductName ProductID="8Base-RHACM-2.3:multicluster-operators-channel-container-v2.3.3-2" CPE="cpe:/a:redhat:acm:2.3::el8">multicluster-operators-channel-container-v2.3.3-2 as a component of Red Hat Advanced Cluster Management for Kubernetes 2.3 for RHEL 8</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="multicluster-operators-deployable-container-v2.3.3-2" RelationType="Default Component Of" RelatesToProductReference="8Base-RHACM-2.3">
+      <FullProductName ProductID="8Base-RHACM-2.3:multicluster-operators-deployable-container-v2.3.3-2" CPE="cpe:/a:redhat:acm:2.3::el8">multicluster-operators-deployable-container-v2.3.3-2 as a component of Red Hat Advanced Cluster Management for Kubernetes 2.3 for RHEL 8</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="multicluster-operators-placementrule-container-v2.3.3-2" RelationType="Default Component Of" RelatesToProductReference="8Base-RHACM-2.3">
+      <FullProductName ProductID="8Base-RHACM-2.3:multicluster-operators-placementrule-container-v2.3.3-2" CPE="cpe:/a:redhat:acm:2.3::el8">multicluster-operators-placementrule-container-v2.3.3-2 as a component of Red Hat Advanced Cluster Management for Kubernetes 2.3 for RHEL 8</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="multicluster-operators-subscription-operator-container-v2.3.3-2" RelationType="Default Component Of" RelatesToProductReference="8Base-RHACM-2.3">
+      <FullProductName ProductID="8Base-RHACM-2.3:multicluster-operators-subscription-operator-container-v2.3.3-2" CPE="cpe:/a:redhat:acm:2.3::el8">multicluster-operators-subscription-operator-container-v2.3.3-2 as a component of Red Hat Advanced Cluster Management for Kubernetes 2.3 for RHEL 8</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="multicluster-operators-subscription-release-container-v2.3.3-2" RelationType="Default Component Of" RelatesToProductReference="8Base-RHACM-2.3">
+      <FullProductName ProductID="8Base-RHACM-2.3:multicluster-operators-subscription-release-container-v2.3.3-2" CPE="cpe:/a:redhat:acm:2.3::el8">multicluster-operators-subscription-release-container-v2.3.3-2 as a component of Red Hat Advanced Cluster Management for Kubernetes 2.3 for RHEL 8</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="multiclusterhub-operator-container-v2.3.3-7" RelationType="Default Component Of" RelatesToProductReference="8Base-RHACM-2.3">
+      <FullProductName ProductID="8Base-RHACM-2.3:multiclusterhub-operator-container-v2.3.3-7" CPE="cpe:/a:redhat:acm:2.3::el8">multiclusterhub-operator-container-v2.3.3-7 as a component of Red Hat Advanced Cluster Management for Kubernetes 2.3 for RHEL 8</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="multiclusterhub-repo-container-v2.3.3-4" RelationType="Default Component Of" RelatesToProductReference="8Base-RHACM-2.3">
+      <FullProductName ProductID="8Base-RHACM-2.3:multiclusterhub-repo-container-v2.3.3-4" CPE="cpe:/a:redhat:acm:2.3::el8">multiclusterhub-repo-container-v2.3.3-4 as a component of Red Hat Advanced Cluster Management for Kubernetes 2.3 for RHEL 8</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="observatorium-container-v2.3.3-2" RelationType="Default Component Of" RelatesToProductReference="8Base-RHACM-2.3">
+      <FullProductName ProductID="8Base-RHACM-2.3:observatorium-container-v2.3.3-2" CPE="cpe:/a:redhat:acm:2.3::el8">observatorium-container-v2.3.3-2 as a component of Red Hat Advanced Cluster Management for Kubernetes 2.3 for RHEL 8</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="observatorium-operator-container-v2.3.3-2" RelationType="Default Component Of" RelatesToProductReference="8Base-RHACM-2.3">
+      <FullProductName ProductID="8Base-RHACM-2.3:observatorium-operator-container-v2.3.3-2" CPE="cpe:/a:redhat:acm:2.3::el8">observatorium-operator-container-v2.3.3-2 as a component of Red Hat Advanced Cluster Management for Kubernetes 2.3 for RHEL 8</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="openshift-hive-operator-container-v2.3.3-2" RelationType="Default Component Of" RelatesToProductReference="8Base-RHACM-2.3">
+      <FullProductName ProductID="8Base-RHACM-2.3:openshift-hive-operator-container-v2.3.3-2" CPE="cpe:/a:redhat:acm:2.3::el8">openshift-hive-operator-container-v2.3.3-2 as a component of Red Hat Advanced Cluster Management for Kubernetes 2.3 for RHEL 8</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="placement-container-v2.3.3-2" RelationType="Default Component Of" RelatesToProductReference="8Base-RHACM-2.3">
+      <FullProductName ProductID="8Base-RHACM-2.3:placement-container-v2.3.3-2" CPE="cpe:/a:redhat:acm:2.3::el8">placement-container-v2.3.3-2 as a component of Red Hat Advanced Cluster Management for Kubernetes 2.3 for RHEL 8</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="prometheus-alertmanager-container-v2.3.2-4" RelationType="Default Component Of" RelatesToProductReference="8Base-RHACM-2.3">
+      <FullProductName ProductID="8Base-RHACM-2.3:prometheus-alertmanager-container-v2.3.2-4" CPE="cpe:/a:redhat:acm:2.3::el8">prometheus-alertmanager-container-v2.3.2-4 as a component of Red Hat Advanced Cluster Management for Kubernetes 2.3 for RHEL 8</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="provider-credential-controller-container-v2.3.2-4" RelationType="Default Component Of" RelatesToProductReference="8Base-RHACM-2.3">
+      <FullProductName ProductID="8Base-RHACM-2.3:provider-credential-controller-container-v2.3.2-4" CPE="cpe:/a:redhat:acm:2.3::el8">provider-credential-controller-container-v2.3.2-4 as a component of Red Hat Advanced Cluster Management for Kubernetes 2.3 for RHEL 8</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="rbac-query-proxy-container-v2.3.3-2" RelationType="Default Component Of" RelatesToProductReference="8Base-RHACM-2.3">
+      <FullProductName ProductID="8Base-RHACM-2.3:rbac-query-proxy-container-v2.3.3-2" CPE="cpe:/a:redhat:acm:2.3::el8">rbac-query-proxy-container-v2.3.3-2 as a component of Red Hat Advanced Cluster Management for Kubernetes 2.3 for RHEL 8</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="redisgraph-tls-container-v2.3.3-3" RelationType="Default Component Of" RelatesToProductReference="8Base-RHACM-2.3">
+      <FullProductName ProductID="8Base-RHACM-2.3:redisgraph-tls-container-v2.3.3-3" CPE="cpe:/a:redhat:acm:2.3::el8">redisgraph-tls-container-v2.3.3-3 as a component of Red Hat Advanced Cluster Management for Kubernetes 2.3 for RHEL 8</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="registration-container-v2.3.3-2" RelationType="Default Component Of" RelatesToProductReference="8Base-RHACM-2.3">
+      <FullProductName ProductID="8Base-RHACM-2.3:registration-container-v2.3.3-2" CPE="cpe:/a:redhat:acm:2.3::el8">registration-container-v2.3.3-2 as a component of Red Hat Advanced Cluster Management for Kubernetes 2.3 for RHEL 8</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="registration-operator-container-v2.3.3-2" RelationType="Default Component Of" RelatesToProductReference="8Base-RHACM-2.3">
+      <FullProductName ProductID="8Base-RHACM-2.3:registration-operator-container-v2.3.3-2" CPE="cpe:/a:redhat:acm:2.3::el8">registration-operator-container-v2.3.3-2 as a component of Red Hat Advanced Cluster Management for Kubernetes 2.3 for RHEL 8</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="rhacm-agent-service-container-v2.3.3-3" RelationType="Default Component Of" RelatesToProductReference="8Base-RHACM-2.3">
+      <FullProductName ProductID="8Base-RHACM-2.3:rhacm-agent-service-container-v2.3.3-3" CPE="cpe:/a:redhat:acm:2.3::el8">rhacm-agent-service-container-v2.3.3-3 as a component of Red Hat Advanced Cluster Management for Kubernetes 2.3 for RHEL 8</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="rhacm-assisted-installer-agent-container-v2.3.3-2" RelationType="Default Component Of" RelatesToProductReference="8Base-RHACM-2.3">
+      <FullProductName ProductID="8Base-RHACM-2.3:rhacm-assisted-installer-agent-container-v2.3.3-2" CPE="cpe:/a:redhat:acm:2.3::el8">rhacm-assisted-installer-agent-container-v2.3.3-2 as a component of Red Hat Advanced Cluster Management for Kubernetes 2.3 for RHEL 8</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="rhacm-assisted-installer-container-v2.3.3-2" RelationType="Default Component Of" RelatesToProductReference="8Base-RHACM-2.3">
+      <FullProductName ProductID="8Base-RHACM-2.3:rhacm-assisted-installer-container-v2.3.3-2" CPE="cpe:/a:redhat:acm:2.3::el8">rhacm-assisted-installer-container-v2.3.3-2 as a component of Red Hat Advanced Cluster Management for Kubernetes 2.3 for RHEL 8</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="rhacm-assisted-installer-reporter-container-v2.3.3-2" RelationType="Default Component Of" RelatesToProductReference="8Base-RHACM-2.3">
+      <FullProductName ProductID="8Base-RHACM-2.3:rhacm-assisted-installer-reporter-container-v2.3.3-2" CPE="cpe:/a:redhat:acm:2.3::el8">rhacm-assisted-installer-reporter-container-v2.3.3-2 as a component of Red Hat Advanced Cluster Management for Kubernetes 2.3 for RHEL 8</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="search-aggregator-container-v2.3.3-2" RelationType="Default Component Of" RelatesToProductReference="8Base-RHACM-2.3">
+      <FullProductName ProductID="8Base-RHACM-2.3:search-aggregator-container-v2.3.3-2" CPE="cpe:/a:redhat:acm:2.3::el8">search-aggregator-container-v2.3.3-2 as a component of Red Hat Advanced Cluster Management for Kubernetes 2.3 for RHEL 8</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="search-api-container-v2.3.3-5" RelationType="Default Component Of" RelatesToProductReference="8Base-RHACM-2.3">
+      <FullProductName ProductID="8Base-RHACM-2.3:search-api-container-v2.3.3-5" CPE="cpe:/a:redhat:acm:2.3::el8">search-api-container-v2.3.3-5 as a component of Red Hat Advanced Cluster Management for Kubernetes 2.3 for RHEL 8</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="search-collector-container-v2.3.3-2" RelationType="Default Component Of" RelatesToProductReference="8Base-RHACM-2.3">
+      <FullProductName ProductID="8Base-RHACM-2.3:search-collector-container-v2.3.3-2" CPE="cpe:/a:redhat:acm:2.3::el8">search-collector-container-v2.3.3-2 as a component of Red Hat Advanced Cluster Management for Kubernetes 2.3 for RHEL 8</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="search-operator-container-v2.3.3-2" RelationType="Default Component Of" RelatesToProductReference="8Base-RHACM-2.3">
+      <FullProductName ProductID="8Base-RHACM-2.3:search-operator-container-v2.3.3-2" CPE="cpe:/a:redhat:acm:2.3::el8">search-operator-container-v2.3.3-2 as a component of Red Hat Advanced Cluster Management for Kubernetes 2.3 for RHEL 8</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="search-ui-container-v2.3.3-7" RelationType="Default Component Of" RelatesToProductReference="8Base-RHACM-2.3">
+      <FullProductName ProductID="8Base-RHACM-2.3:search-ui-container-v2.3.3-7" CPE="cpe:/a:redhat:acm:2.3::el8">search-ui-container-v2.3.3-7 as a component of Red Hat Advanced Cluster Management for Kubernetes 2.3 for RHEL 8</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="submariner-addon-container-v2.3.3-2" RelationType="Default Component Of" RelatesToProductReference="8Base-RHACM-2.3">
+      <FullProductName ProductID="8Base-RHACM-2.3:submariner-addon-container-v2.3.3-2" CPE="cpe:/a:redhat:acm:2.3::el8">submariner-addon-container-v2.3.3-2 as a component of Red Hat Advanced Cluster Management for Kubernetes 2.3 for RHEL 8</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="thanos-receive-controller-container-v2.3.3-3" RelationType="Default Component Of" RelatesToProductReference="8Base-RHACM-2.3">
+      <FullProductName ProductID="8Base-RHACM-2.3:thanos-receive-controller-container-v2.3.3-3" CPE="cpe:/a:redhat:acm:2.3::el8">thanos-receive-controller-container-v2.3.3-3 as a component of Red Hat Advanced Cluster Management for Kubernetes 2.3 for RHEL 8</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="work-container-v2.3.3-2" RelationType="Default Component Of" RelatesToProductReference="8Base-RHACM-2.3">
+      <FullProductName ProductID="8Base-RHACM-2.3:work-container-v2.3.3-2" CPE="cpe:/a:redhat:acm:2.3::el8">work-container-v2.3.3-2 as a component of Red Hat Advanced Cluster Management for Kubernetes 2.3 for RHEL 8</FullProductName>
+    </Relationship>
+  </ProductTree>
+
+  <Vulnerability Ordinal="1" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">nodejs-object-path: prototype pollution vulnerability</Note></Notes>
+    <DiscoveryDate>2021-09-17T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-09-13T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-3805</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>7Server-RHACM-2.3:management-ingress-container-v2.3.3-3</ProductID>
+      <ProductID>7Server-RHACM-2.3:memcached-exporter-container-v2.3.3-2</ProductID>
+      <ProductID>7Server-RHACM-2.3:thanos-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:acm-grafana-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:acm-must-gather-container-v2.3.3-5</ProductID>
+      <ProductID>8Base-RHACM-2.3:acm-operator-bundle-container-v2.3.3-25</ProductID>
+      <ProductID>8Base-RHACM-2.3:application-ui-container-v2.3.3-5</ProductID>
+      <ProductID>8Base-RHACM-2.3:cert-policy-controller-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:cluster-curator-controller-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:clusterlifecycle-state-metrics-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:config-policy-controller-container-v2.3.3-4</ProductID>
+      <ProductID>8Base-RHACM-2.3:console-api-container-v2.3.3-6</ProductID>
+      <ProductID>8Base-RHACM-2.3:console-container-v2.3.3-4</ProductID>
+      <ProductID>8Base-RHACM-2.3:discovery-operator-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:endpoint-monitoring-operator-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:governance-policy-propagator-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:governance-policy-spec-sync-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:governance-policy-status-sync-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:governance-policy-template-sync-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:grafana-dashboard-loader-container-v2.3.3-3</ProductID>
+      <ProductID>8Base-RHACM-2.3:grc-ui-api-container-v2.3.3-5</ProductID>
+      <ProductID>8Base-RHACM-2.3:grc-ui-container-v2.3.3-6</ProductID>
+      <ProductID>8Base-RHACM-2.3:iam-policy-controller-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:insights-client-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:insights-metrics-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:klusterlet-addon-controller-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:klusterlet-addon-operator-container-v2.3.3-4</ProductID>
+      <ProductID>8Base-RHACM-2.3:klusterlet-operator-bundle-container-v2.3.3-17</ProductID>
+      <ProductID>8Base-RHACM-2.3:kui-web-terminal-container-v2.3.3-6</ProductID>
+      <ProductID>8Base-RHACM-2.3:managedcluster-import-controller-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:memcached-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:metrics-collector-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:multicloud-manager-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:multicluster-observability-operator-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:multicluster-operators-application-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:multicluster-operators-channel-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:multicluster-operators-deployable-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:multicluster-operators-placementrule-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:multicluster-operators-subscription-operator-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:multicluster-operators-subscription-release-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:multiclusterhub-operator-container-v2.3.3-7</ProductID>
+      <ProductID>8Base-RHACM-2.3:multiclusterhub-repo-container-v2.3.3-4</ProductID>
+      <ProductID>8Base-RHACM-2.3:observatorium-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:observatorium-operator-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:openshift-hive-operator-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:placement-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:prometheus-alertmanager-container-v2.3.2-4</ProductID>
+      <ProductID>8Base-RHACM-2.3:provider-credential-controller-container-v2.3.2-4</ProductID>
+      <ProductID>8Base-RHACM-2.3:rbac-query-proxy-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:redisgraph-tls-container-v2.3.3-3</ProductID>
+      <ProductID>8Base-RHACM-2.3:registration-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:registration-operator-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:rhacm-agent-service-container-v2.3.3-3</ProductID>
+      <ProductID>8Base-RHACM-2.3:rhacm-assisted-installer-agent-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:rhacm-assisted-installer-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:rhacm-assisted-installer-reporter-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:search-aggregator-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:search-api-container-v2.3.3-5</ProductID>
+      <ProductID>8Base-RHACM-2.3:search-collector-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:search-operator-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:search-ui-container-v2.3.3-7</ProductID>
+      <ProductID>8Base-RHACM-2.3:submariner-addon-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:thanos-receive-controller-container-v2.3.3-3</ProductID>
+      <ProductID>8Base-RHACM-2.3:work-container-v2.3.3-2</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+Before applying this update, make sure all previously released errata
+relevant to your system have been applied.
+
+For details on how to apply this update, refer to:
+
+https://access.redhat.com/documentation/en-us/red_hat_advanced_cluster_management_for_kubernetes/2.3/html-single/install/index#installing
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:3925</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-3805</URL>
+        <Description>CVE-2021-3805</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=2006397</URL>
+        <Description>bz#2006397: CVE-2021-3805 nodejs-object-path: prototype pollution vulnerability</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="2" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">nginx: Off-by-one in ngx_resolver_copy() when labels are followed by a pointer to a root domain name</Note></Notes>
+    <DiscoveryDate>2021-05-19T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-05-25T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-23017</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>7Server-RHACM-2.3:management-ingress-container-v2.3.3-3</ProductID>
+      <ProductID>7Server-RHACM-2.3:memcached-exporter-container-v2.3.3-2</ProductID>
+      <ProductID>7Server-RHACM-2.3:thanos-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:acm-grafana-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:acm-must-gather-container-v2.3.3-5</ProductID>
+      <ProductID>8Base-RHACM-2.3:acm-operator-bundle-container-v2.3.3-25</ProductID>
+      <ProductID>8Base-RHACM-2.3:application-ui-container-v2.3.3-5</ProductID>
+      <ProductID>8Base-RHACM-2.3:cert-policy-controller-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:cluster-curator-controller-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:clusterlifecycle-state-metrics-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:config-policy-controller-container-v2.3.3-4</ProductID>
+      <ProductID>8Base-RHACM-2.3:console-api-container-v2.3.3-6</ProductID>
+      <ProductID>8Base-RHACM-2.3:console-container-v2.3.3-4</ProductID>
+      <ProductID>8Base-RHACM-2.3:discovery-operator-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:endpoint-monitoring-operator-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:governance-policy-propagator-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:governance-policy-spec-sync-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:governance-policy-status-sync-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:governance-policy-template-sync-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:grafana-dashboard-loader-container-v2.3.3-3</ProductID>
+      <ProductID>8Base-RHACM-2.3:grc-ui-api-container-v2.3.3-5</ProductID>
+      <ProductID>8Base-RHACM-2.3:grc-ui-container-v2.3.3-6</ProductID>
+      <ProductID>8Base-RHACM-2.3:iam-policy-controller-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:insights-client-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:insights-metrics-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:klusterlet-addon-controller-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:klusterlet-addon-operator-container-v2.3.3-4</ProductID>
+      <ProductID>8Base-RHACM-2.3:klusterlet-operator-bundle-container-v2.3.3-17</ProductID>
+      <ProductID>8Base-RHACM-2.3:kui-web-terminal-container-v2.3.3-6</ProductID>
+      <ProductID>8Base-RHACM-2.3:managedcluster-import-controller-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:memcached-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:metrics-collector-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:multicloud-manager-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:multicluster-observability-operator-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:multicluster-operators-application-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:multicluster-operators-channel-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:multicluster-operators-deployable-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:multicluster-operators-placementrule-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:multicluster-operators-subscription-operator-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:multicluster-operators-subscription-release-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:multiclusterhub-operator-container-v2.3.3-7</ProductID>
+      <ProductID>8Base-RHACM-2.3:multiclusterhub-repo-container-v2.3.3-4</ProductID>
+      <ProductID>8Base-RHACM-2.3:observatorium-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:observatorium-operator-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:openshift-hive-operator-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:placement-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:prometheus-alertmanager-container-v2.3.2-4</ProductID>
+      <ProductID>8Base-RHACM-2.3:provider-credential-controller-container-v2.3.2-4</ProductID>
+      <ProductID>8Base-RHACM-2.3:rbac-query-proxy-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:redisgraph-tls-container-v2.3.3-3</ProductID>
+      <ProductID>8Base-RHACM-2.3:registration-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:registration-operator-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:rhacm-agent-service-container-v2.3.3-3</ProductID>
+      <ProductID>8Base-RHACM-2.3:rhacm-assisted-installer-agent-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:rhacm-assisted-installer-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:rhacm-assisted-installer-reporter-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:search-aggregator-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:search-api-container-v2.3.3-5</ProductID>
+      <ProductID>8Base-RHACM-2.3:search-collector-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:search-operator-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:search-ui-container-v2.3.3-7</ProductID>
+      <ProductID>8Base-RHACM-2.3:submariner-addon-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:thanos-receive-controller-container-v2.3.3-3</ProductID>
+      <ProductID>8Base-RHACM-2.3:work-container-v2.3.3-2</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Important</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+Before applying this update, make sure all previously released errata
+relevant to your system have been applied.
+
+For details on how to apply this update, refer to:
+
+https://access.redhat.com/documentation/en-us/red_hat_advanced_cluster_management_for_kubernetes/2.3/html-single/install/index#installing
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:3925</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-23017</URL>
+        <Description>CVE-2021-23017</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1963121</URL>
+        <Description>bz#1963121: CVE-2021-23017 nginx: Off-by-one in ngx_resolver_copy() when labels are followed by a pointer to a root domain name</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="3" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">object-path: Type confusion vulnerability can lead to a bypass of CVE-2020-15256</Note></Notes>
+    <DiscoveryDate>2021-08-31T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-08-27T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-23434</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>7Server-RHACM-2.3:management-ingress-container-v2.3.3-3</ProductID>
+      <ProductID>7Server-RHACM-2.3:memcached-exporter-container-v2.3.3-2</ProductID>
+      <ProductID>7Server-RHACM-2.3:thanos-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:acm-grafana-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:acm-must-gather-container-v2.3.3-5</ProductID>
+      <ProductID>8Base-RHACM-2.3:acm-operator-bundle-container-v2.3.3-25</ProductID>
+      <ProductID>8Base-RHACM-2.3:application-ui-container-v2.3.3-5</ProductID>
+      <ProductID>8Base-RHACM-2.3:cert-policy-controller-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:cluster-curator-controller-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:clusterlifecycle-state-metrics-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:config-policy-controller-container-v2.3.3-4</ProductID>
+      <ProductID>8Base-RHACM-2.3:console-api-container-v2.3.3-6</ProductID>
+      <ProductID>8Base-RHACM-2.3:console-container-v2.3.3-4</ProductID>
+      <ProductID>8Base-RHACM-2.3:discovery-operator-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:endpoint-monitoring-operator-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:governance-policy-propagator-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:governance-policy-spec-sync-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:governance-policy-status-sync-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:governance-policy-template-sync-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:grafana-dashboard-loader-container-v2.3.3-3</ProductID>
+      <ProductID>8Base-RHACM-2.3:grc-ui-api-container-v2.3.3-5</ProductID>
+      <ProductID>8Base-RHACM-2.3:grc-ui-container-v2.3.3-6</ProductID>
+      <ProductID>8Base-RHACM-2.3:iam-policy-controller-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:insights-client-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:insights-metrics-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:klusterlet-addon-controller-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:klusterlet-addon-operator-container-v2.3.3-4</ProductID>
+      <ProductID>8Base-RHACM-2.3:klusterlet-operator-bundle-container-v2.3.3-17</ProductID>
+      <ProductID>8Base-RHACM-2.3:kui-web-terminal-container-v2.3.3-6</ProductID>
+      <ProductID>8Base-RHACM-2.3:managedcluster-import-controller-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:memcached-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:metrics-collector-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:multicloud-manager-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:multicluster-observability-operator-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:multicluster-operators-application-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:multicluster-operators-channel-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:multicluster-operators-deployable-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:multicluster-operators-placementrule-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:multicluster-operators-subscription-operator-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:multicluster-operators-subscription-release-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:multiclusterhub-operator-container-v2.3.3-7</ProductID>
+      <ProductID>8Base-RHACM-2.3:multiclusterhub-repo-container-v2.3.3-4</ProductID>
+      <ProductID>8Base-RHACM-2.3:observatorium-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:observatorium-operator-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:openshift-hive-operator-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:placement-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:prometheus-alertmanager-container-v2.3.2-4</ProductID>
+      <ProductID>8Base-RHACM-2.3:provider-credential-controller-container-v2.3.2-4</ProductID>
+      <ProductID>8Base-RHACM-2.3:rbac-query-proxy-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:redisgraph-tls-container-v2.3.3-3</ProductID>
+      <ProductID>8Base-RHACM-2.3:registration-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:registration-operator-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:rhacm-agent-service-container-v2.3.3-3</ProductID>
+      <ProductID>8Base-RHACM-2.3:rhacm-assisted-installer-agent-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:rhacm-assisted-installer-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:rhacm-assisted-installer-reporter-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:search-aggregator-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:search-api-container-v2.3.3-5</ProductID>
+      <ProductID>8Base-RHACM-2.3:search-collector-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:search-operator-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:search-ui-container-v2.3.3-7</ProductID>
+      <ProductID>8Base-RHACM-2.3:submariner-addon-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:thanos-receive-controller-container-v2.3.3-3</ProductID>
+      <ProductID>8Base-RHACM-2.3:work-container-v2.3.3-2</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+Before applying this update, make sure all previously released errata
+relevant to your system have been applied.
+
+For details on how to apply this update, refer to:
+
+https://access.redhat.com/documentation/en-us/red_hat_advanced_cluster_management_for_kubernetes/2.3/html-single/install/index#installing
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:3925</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://snyk.io/vuln/SNYK-JAVA-ORGWEBJARSNPM-1570423</URL>
+        <Description>https://snyk.io/vuln/SNYK-JAVA-ORGWEBJARSNPM-1570423</Description>
+      </Reference>
+      <Reference>
+        <URL>https://snyk.io/vuln/SNYK-JS-OBJECTPATH-1569453</URL>
+        <Description>https://snyk.io/vuln/SNYK-JS-OBJECTPATH-1569453</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-23434</URL>
+        <Description>CVE-2021-23434</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1999810</URL>
+        <Description>bz#1999810: CVE-2021-23434 object-path: Type confusion vulnerability can lead to a bypass of CVE-2020-15256</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="4" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">redis: Lua scripts can overflow the heap-based Lua stack</Note></Notes>
+    <DiscoveryDate>2021-10-04T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-10-04T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-32626</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>7Server-RHACM-2.3:management-ingress-container-v2.3.3-3</ProductID>
+      <ProductID>7Server-RHACM-2.3:memcached-exporter-container-v2.3.3-2</ProductID>
+      <ProductID>7Server-RHACM-2.3:thanos-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:acm-grafana-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:acm-must-gather-container-v2.3.3-5</ProductID>
+      <ProductID>8Base-RHACM-2.3:acm-operator-bundle-container-v2.3.3-25</ProductID>
+      <ProductID>8Base-RHACM-2.3:application-ui-container-v2.3.3-5</ProductID>
+      <ProductID>8Base-RHACM-2.3:cert-policy-controller-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:cluster-curator-controller-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:clusterlifecycle-state-metrics-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:config-policy-controller-container-v2.3.3-4</ProductID>
+      <ProductID>8Base-RHACM-2.3:console-api-container-v2.3.3-6</ProductID>
+      <ProductID>8Base-RHACM-2.3:console-container-v2.3.3-4</ProductID>
+      <ProductID>8Base-RHACM-2.3:discovery-operator-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:endpoint-monitoring-operator-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:governance-policy-propagator-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:governance-policy-spec-sync-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:governance-policy-status-sync-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:governance-policy-template-sync-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:grafana-dashboard-loader-container-v2.3.3-3</ProductID>
+      <ProductID>8Base-RHACM-2.3:grc-ui-api-container-v2.3.3-5</ProductID>
+      <ProductID>8Base-RHACM-2.3:grc-ui-container-v2.3.3-6</ProductID>
+      <ProductID>8Base-RHACM-2.3:iam-policy-controller-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:insights-client-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:insights-metrics-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:klusterlet-addon-controller-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:klusterlet-addon-operator-container-v2.3.3-4</ProductID>
+      <ProductID>8Base-RHACM-2.3:klusterlet-operator-bundle-container-v2.3.3-17</ProductID>
+      <ProductID>8Base-RHACM-2.3:kui-web-terminal-container-v2.3.3-6</ProductID>
+      <ProductID>8Base-RHACM-2.3:managedcluster-import-controller-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:memcached-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:metrics-collector-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:multicloud-manager-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:multicluster-observability-operator-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:multicluster-operators-application-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:multicluster-operators-channel-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:multicluster-operators-deployable-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:multicluster-operators-placementrule-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:multicluster-operators-subscription-operator-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:multicluster-operators-subscription-release-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:multiclusterhub-operator-container-v2.3.3-7</ProductID>
+      <ProductID>8Base-RHACM-2.3:multiclusterhub-repo-container-v2.3.3-4</ProductID>
+      <ProductID>8Base-RHACM-2.3:observatorium-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:observatorium-operator-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:openshift-hive-operator-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:placement-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:prometheus-alertmanager-container-v2.3.2-4</ProductID>
+      <ProductID>8Base-RHACM-2.3:provider-credential-controller-container-v2.3.2-4</ProductID>
+      <ProductID>8Base-RHACM-2.3:rbac-query-proxy-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:redisgraph-tls-container-v2.3.3-3</ProductID>
+      <ProductID>8Base-RHACM-2.3:registration-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:registration-operator-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:rhacm-agent-service-container-v2.3.3-3</ProductID>
+      <ProductID>8Base-RHACM-2.3:rhacm-assisted-installer-agent-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:rhacm-assisted-installer-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:rhacm-assisted-installer-reporter-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:search-aggregator-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:search-api-container-v2.3.3-5</ProductID>
+      <ProductID>8Base-RHACM-2.3:search-collector-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:search-operator-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:search-ui-container-v2.3.3-7</ProductID>
+      <ProductID>8Base-RHACM-2.3:submariner-addon-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:thanos-receive-controller-container-v2.3.3-3</ProductID>
+      <ProductID>8Base-RHACM-2.3:work-container-v2.3.3-2</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Important</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+Before applying this update, make sure all previously released errata
+relevant to your system have been applied.
+
+For details on how to apply this update, refer to:
+
+https://access.redhat.com/documentation/en-us/red_hat_advanced_cluster_management_for_kubernetes/2.3/html-single/install/index#installing
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:3925</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://github.com/redis/redis/security/advisories/GHSA-p486-xggp-782c</URL>
+        <Description>https://github.com/redis/redis/security/advisories/GHSA-p486-xggp-782c</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-32626</URL>
+        <Description>CVE-2021-32626</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=2011017</URL>
+        <Description>bz#2011017: CVE-2021-32626 redis: Lua scripts can overflow the heap-based Lua stack</Description>
+      </Reference>
+    </References>
+    <Acknowledgments><Acknowledgment><Description>Upstream acknowledges Meir Shpilraien as the original reporter.</Description></Acknowledgment></Acknowledgments>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="5" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">redis: Integer overflow issue with Streams</Note></Notes>
+    <DiscoveryDate>2021-10-04T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-10-04T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-32627</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>7Server-RHACM-2.3:management-ingress-container-v2.3.3-3</ProductID>
+      <ProductID>7Server-RHACM-2.3:memcached-exporter-container-v2.3.3-2</ProductID>
+      <ProductID>7Server-RHACM-2.3:thanos-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:acm-grafana-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:acm-must-gather-container-v2.3.3-5</ProductID>
+      <ProductID>8Base-RHACM-2.3:acm-operator-bundle-container-v2.3.3-25</ProductID>
+      <ProductID>8Base-RHACM-2.3:application-ui-container-v2.3.3-5</ProductID>
+      <ProductID>8Base-RHACM-2.3:cert-policy-controller-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:cluster-curator-controller-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:clusterlifecycle-state-metrics-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:config-policy-controller-container-v2.3.3-4</ProductID>
+      <ProductID>8Base-RHACM-2.3:console-api-container-v2.3.3-6</ProductID>
+      <ProductID>8Base-RHACM-2.3:console-container-v2.3.3-4</ProductID>
+      <ProductID>8Base-RHACM-2.3:discovery-operator-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:endpoint-monitoring-operator-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:governance-policy-propagator-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:governance-policy-spec-sync-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:governance-policy-status-sync-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:governance-policy-template-sync-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:grafana-dashboard-loader-container-v2.3.3-3</ProductID>
+      <ProductID>8Base-RHACM-2.3:grc-ui-api-container-v2.3.3-5</ProductID>
+      <ProductID>8Base-RHACM-2.3:grc-ui-container-v2.3.3-6</ProductID>
+      <ProductID>8Base-RHACM-2.3:iam-policy-controller-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:insights-client-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:insights-metrics-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:klusterlet-addon-controller-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:klusterlet-addon-operator-container-v2.3.3-4</ProductID>
+      <ProductID>8Base-RHACM-2.3:klusterlet-operator-bundle-container-v2.3.3-17</ProductID>
+      <ProductID>8Base-RHACM-2.3:kui-web-terminal-container-v2.3.3-6</ProductID>
+      <ProductID>8Base-RHACM-2.3:managedcluster-import-controller-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:memcached-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:metrics-collector-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:multicloud-manager-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:multicluster-observability-operator-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:multicluster-operators-application-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:multicluster-operators-channel-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:multicluster-operators-deployable-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:multicluster-operators-placementrule-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:multicluster-operators-subscription-operator-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:multicluster-operators-subscription-release-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:multiclusterhub-operator-container-v2.3.3-7</ProductID>
+      <ProductID>8Base-RHACM-2.3:multiclusterhub-repo-container-v2.3.3-4</ProductID>
+      <ProductID>8Base-RHACM-2.3:observatorium-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:observatorium-operator-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:openshift-hive-operator-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:placement-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:prometheus-alertmanager-container-v2.3.2-4</ProductID>
+      <ProductID>8Base-RHACM-2.3:provider-credential-controller-container-v2.3.2-4</ProductID>
+      <ProductID>8Base-RHACM-2.3:rbac-query-proxy-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:redisgraph-tls-container-v2.3.3-3</ProductID>
+      <ProductID>8Base-RHACM-2.3:registration-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:registration-operator-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:rhacm-agent-service-container-v2.3.3-3</ProductID>
+      <ProductID>8Base-RHACM-2.3:rhacm-assisted-installer-agent-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:rhacm-assisted-installer-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:rhacm-assisted-installer-reporter-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:search-aggregator-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:search-api-container-v2.3.3-5</ProductID>
+      <ProductID>8Base-RHACM-2.3:search-collector-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:search-operator-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:search-ui-container-v2.3.3-7</ProductID>
+      <ProductID>8Base-RHACM-2.3:submariner-addon-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:thanos-receive-controller-container-v2.3.3-3</ProductID>
+      <ProductID>8Base-RHACM-2.3:work-container-v2.3.3-2</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Important</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+Before applying this update, make sure all previously released errata
+relevant to your system have been applied.
+
+For details on how to apply this update, refer to:
+
+https://access.redhat.com/documentation/en-us/red_hat_advanced_cluster_management_for_kubernetes/2.3/html-single/install/index#installing
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:3925</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://github.com/redis/redis/security/advisories/GHSA-f434-69fm-g45v</URL>
+        <Description>https://github.com/redis/redis/security/advisories/GHSA-f434-69fm-g45v</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-32627</URL>
+        <Description>CVE-2021-32627</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=2011010</URL>
+        <Description>bz#2011010: CVE-2021-32627 redis: Integer overflow issue with Streams</Description>
+      </Reference>
+    </References>
+    <Acknowledgments><Acknowledgment><Description>Upstream acknowledges sundb as the original reporter.</Description></Acknowledgment></Acknowledgments>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="6" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">redis: Integer overflow bug in the ziplist data structure</Note></Notes>
+    <DiscoveryDate>2021-10-04T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-10-04T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-32628</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>7Server-RHACM-2.3:management-ingress-container-v2.3.3-3</ProductID>
+      <ProductID>7Server-RHACM-2.3:memcached-exporter-container-v2.3.3-2</ProductID>
+      <ProductID>7Server-RHACM-2.3:thanos-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:acm-grafana-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:acm-must-gather-container-v2.3.3-5</ProductID>
+      <ProductID>8Base-RHACM-2.3:acm-operator-bundle-container-v2.3.3-25</ProductID>
+      <ProductID>8Base-RHACM-2.3:application-ui-container-v2.3.3-5</ProductID>
+      <ProductID>8Base-RHACM-2.3:cert-policy-controller-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:cluster-curator-controller-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:clusterlifecycle-state-metrics-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:config-policy-controller-container-v2.3.3-4</ProductID>
+      <ProductID>8Base-RHACM-2.3:console-api-container-v2.3.3-6</ProductID>
+      <ProductID>8Base-RHACM-2.3:console-container-v2.3.3-4</ProductID>
+      <ProductID>8Base-RHACM-2.3:discovery-operator-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:endpoint-monitoring-operator-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:governance-policy-propagator-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:governance-policy-spec-sync-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:governance-policy-status-sync-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:governance-policy-template-sync-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:grafana-dashboard-loader-container-v2.3.3-3</ProductID>
+      <ProductID>8Base-RHACM-2.3:grc-ui-api-container-v2.3.3-5</ProductID>
+      <ProductID>8Base-RHACM-2.3:grc-ui-container-v2.3.3-6</ProductID>
+      <ProductID>8Base-RHACM-2.3:iam-policy-controller-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:insights-client-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:insights-metrics-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:klusterlet-addon-controller-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:klusterlet-addon-operator-container-v2.3.3-4</ProductID>
+      <ProductID>8Base-RHACM-2.3:klusterlet-operator-bundle-container-v2.3.3-17</ProductID>
+      <ProductID>8Base-RHACM-2.3:kui-web-terminal-container-v2.3.3-6</ProductID>
+      <ProductID>8Base-RHACM-2.3:managedcluster-import-controller-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:memcached-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:metrics-collector-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:multicloud-manager-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:multicluster-observability-operator-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:multicluster-operators-application-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:multicluster-operators-channel-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:multicluster-operators-deployable-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:multicluster-operators-placementrule-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:multicluster-operators-subscription-operator-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:multicluster-operators-subscription-release-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:multiclusterhub-operator-container-v2.3.3-7</ProductID>
+      <ProductID>8Base-RHACM-2.3:multiclusterhub-repo-container-v2.3.3-4</ProductID>
+      <ProductID>8Base-RHACM-2.3:observatorium-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:observatorium-operator-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:openshift-hive-operator-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:placement-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:prometheus-alertmanager-container-v2.3.2-4</ProductID>
+      <ProductID>8Base-RHACM-2.3:provider-credential-controller-container-v2.3.2-4</ProductID>
+      <ProductID>8Base-RHACM-2.3:rbac-query-proxy-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:redisgraph-tls-container-v2.3.3-3</ProductID>
+      <ProductID>8Base-RHACM-2.3:registration-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:registration-operator-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:rhacm-agent-service-container-v2.3.3-3</ProductID>
+      <ProductID>8Base-RHACM-2.3:rhacm-assisted-installer-agent-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:rhacm-assisted-installer-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:rhacm-assisted-installer-reporter-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:search-aggregator-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:search-api-container-v2.3.3-5</ProductID>
+      <ProductID>8Base-RHACM-2.3:search-collector-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:search-operator-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:search-ui-container-v2.3.3-7</ProductID>
+      <ProductID>8Base-RHACM-2.3:submariner-addon-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:thanos-receive-controller-container-v2.3.3-3</ProductID>
+      <ProductID>8Base-RHACM-2.3:work-container-v2.3.3-2</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Important</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+Before applying this update, make sure all previously released errata
+relevant to your system have been applied.
+
+For details on how to apply this update, refer to:
+
+https://access.redhat.com/documentation/en-us/red_hat_advanced_cluster_management_for_kubernetes/2.3/html-single/install/index#installing
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:3925</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://github.com/redis/redis/security/advisories/GHSA-vw22-qm3h-49pr</URL>
+        <Description>https://github.com/redis/redis/security/advisories/GHSA-vw22-qm3h-49pr</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-32628</URL>
+        <Description>CVE-2021-32628</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=2011004</URL>
+        <Description>bz#2011004: CVE-2021-32628 redis: Integer overflow bug in the ziplist data structure</Description>
+      </Reference>
+    </References>
+    <Acknowledgments><Acknowledgment><Description>Upstream acknowledges sundb as the original reporter.</Description></Acknowledgment></Acknowledgments>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="7" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">redis: Out of bounds read in lua debugger protocol parser</Note></Notes>
+    <DiscoveryDate>2021-10-04T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-10-04T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-32672</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>7Server-RHACM-2.3:management-ingress-container-v2.3.3-3</ProductID>
+      <ProductID>7Server-RHACM-2.3:memcached-exporter-container-v2.3.3-2</ProductID>
+      <ProductID>7Server-RHACM-2.3:thanos-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:acm-grafana-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:acm-must-gather-container-v2.3.3-5</ProductID>
+      <ProductID>8Base-RHACM-2.3:acm-operator-bundle-container-v2.3.3-25</ProductID>
+      <ProductID>8Base-RHACM-2.3:application-ui-container-v2.3.3-5</ProductID>
+      <ProductID>8Base-RHACM-2.3:cert-policy-controller-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:cluster-curator-controller-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:clusterlifecycle-state-metrics-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:config-policy-controller-container-v2.3.3-4</ProductID>
+      <ProductID>8Base-RHACM-2.3:console-api-container-v2.3.3-6</ProductID>
+      <ProductID>8Base-RHACM-2.3:console-container-v2.3.3-4</ProductID>
+      <ProductID>8Base-RHACM-2.3:discovery-operator-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:endpoint-monitoring-operator-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:governance-policy-propagator-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:governance-policy-spec-sync-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:governance-policy-status-sync-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:governance-policy-template-sync-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:grafana-dashboard-loader-container-v2.3.3-3</ProductID>
+      <ProductID>8Base-RHACM-2.3:grc-ui-api-container-v2.3.3-5</ProductID>
+      <ProductID>8Base-RHACM-2.3:grc-ui-container-v2.3.3-6</ProductID>
+      <ProductID>8Base-RHACM-2.3:iam-policy-controller-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:insights-client-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:insights-metrics-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:klusterlet-addon-controller-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:klusterlet-addon-operator-container-v2.3.3-4</ProductID>
+      <ProductID>8Base-RHACM-2.3:klusterlet-operator-bundle-container-v2.3.3-17</ProductID>
+      <ProductID>8Base-RHACM-2.3:kui-web-terminal-container-v2.3.3-6</ProductID>
+      <ProductID>8Base-RHACM-2.3:managedcluster-import-controller-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:memcached-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:metrics-collector-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:multicloud-manager-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:multicluster-observability-operator-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:multicluster-operators-application-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:multicluster-operators-channel-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:multicluster-operators-deployable-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:multicluster-operators-placementrule-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:multicluster-operators-subscription-operator-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:multicluster-operators-subscription-release-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:multiclusterhub-operator-container-v2.3.3-7</ProductID>
+      <ProductID>8Base-RHACM-2.3:multiclusterhub-repo-container-v2.3.3-4</ProductID>
+      <ProductID>8Base-RHACM-2.3:observatorium-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:observatorium-operator-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:openshift-hive-operator-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:placement-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:prometheus-alertmanager-container-v2.3.2-4</ProductID>
+      <ProductID>8Base-RHACM-2.3:provider-credential-controller-container-v2.3.2-4</ProductID>
+      <ProductID>8Base-RHACM-2.3:rbac-query-proxy-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:redisgraph-tls-container-v2.3.3-3</ProductID>
+      <ProductID>8Base-RHACM-2.3:registration-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:registration-operator-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:rhacm-agent-service-container-v2.3.3-3</ProductID>
+      <ProductID>8Base-RHACM-2.3:rhacm-assisted-installer-agent-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:rhacm-assisted-installer-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:rhacm-assisted-installer-reporter-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:search-aggregator-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:search-api-container-v2.3.3-5</ProductID>
+      <ProductID>8Base-RHACM-2.3:search-collector-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:search-operator-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:search-ui-container-v2.3.3-7</ProductID>
+      <ProductID>8Base-RHACM-2.3:submariner-addon-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:thanos-receive-controller-container-v2.3.3-3</ProductID>
+      <ProductID>8Base-RHACM-2.3:work-container-v2.3.3-2</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Low</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+Before applying this update, make sure all previously released errata
+relevant to your system have been applied.
+
+For details on how to apply this update, refer to:
+
+https://access.redhat.com/documentation/en-us/red_hat_advanced_cluster_management_for_kubernetes/2.3/html-single/install/index#installing
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:3925</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://github.com/redis/redis/security/advisories/GHSA-9mj9-xx53-qmxm</URL>
+        <Description>https://github.com/redis/redis/security/advisories/GHSA-9mj9-xx53-qmxm</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-32672</URL>
+        <Description>CVE-2021-32672</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=2011001</URL>
+        <Description>bz#2011001: CVE-2021-32672 redis: Out of bounds read in lua debugger protocol parser</Description>
+      </Reference>
+    </References>
+    <Acknowledgments><Acknowledgment><Description>Upstream acknowledges Meir Shpilraien as the original reporter.</Description></Acknowledgment></Acknowledgments>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="8" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">redis: Denial of service via Redis Standard Protocol (RESP) request</Note></Notes>
+    <DiscoveryDate>2021-10-04T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-10-04T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-32675</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>7Server-RHACM-2.3:management-ingress-container-v2.3.3-3</ProductID>
+      <ProductID>7Server-RHACM-2.3:memcached-exporter-container-v2.3.3-2</ProductID>
+      <ProductID>7Server-RHACM-2.3:thanos-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:acm-grafana-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:acm-must-gather-container-v2.3.3-5</ProductID>
+      <ProductID>8Base-RHACM-2.3:acm-operator-bundle-container-v2.3.3-25</ProductID>
+      <ProductID>8Base-RHACM-2.3:application-ui-container-v2.3.3-5</ProductID>
+      <ProductID>8Base-RHACM-2.3:cert-policy-controller-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:cluster-curator-controller-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:clusterlifecycle-state-metrics-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:config-policy-controller-container-v2.3.3-4</ProductID>
+      <ProductID>8Base-RHACM-2.3:console-api-container-v2.3.3-6</ProductID>
+      <ProductID>8Base-RHACM-2.3:console-container-v2.3.3-4</ProductID>
+      <ProductID>8Base-RHACM-2.3:discovery-operator-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:endpoint-monitoring-operator-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:governance-policy-propagator-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:governance-policy-spec-sync-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:governance-policy-status-sync-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:governance-policy-template-sync-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:grafana-dashboard-loader-container-v2.3.3-3</ProductID>
+      <ProductID>8Base-RHACM-2.3:grc-ui-api-container-v2.3.3-5</ProductID>
+      <ProductID>8Base-RHACM-2.3:grc-ui-container-v2.3.3-6</ProductID>
+      <ProductID>8Base-RHACM-2.3:iam-policy-controller-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:insights-client-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:insights-metrics-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:klusterlet-addon-controller-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:klusterlet-addon-operator-container-v2.3.3-4</ProductID>
+      <ProductID>8Base-RHACM-2.3:klusterlet-operator-bundle-container-v2.3.3-17</ProductID>
+      <ProductID>8Base-RHACM-2.3:kui-web-terminal-container-v2.3.3-6</ProductID>
+      <ProductID>8Base-RHACM-2.3:managedcluster-import-controller-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:memcached-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:metrics-collector-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:multicloud-manager-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:multicluster-observability-operator-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:multicluster-operators-application-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:multicluster-operators-channel-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:multicluster-operators-deployable-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:multicluster-operators-placementrule-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:multicluster-operators-subscription-operator-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:multicluster-operators-subscription-release-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:multiclusterhub-operator-container-v2.3.3-7</ProductID>
+      <ProductID>8Base-RHACM-2.3:multiclusterhub-repo-container-v2.3.3-4</ProductID>
+      <ProductID>8Base-RHACM-2.3:observatorium-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:observatorium-operator-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:openshift-hive-operator-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:placement-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:prometheus-alertmanager-container-v2.3.2-4</ProductID>
+      <ProductID>8Base-RHACM-2.3:provider-credential-controller-container-v2.3.2-4</ProductID>
+      <ProductID>8Base-RHACM-2.3:rbac-query-proxy-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:redisgraph-tls-container-v2.3.3-3</ProductID>
+      <ProductID>8Base-RHACM-2.3:registration-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:registration-operator-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:rhacm-agent-service-container-v2.3.3-3</ProductID>
+      <ProductID>8Base-RHACM-2.3:rhacm-assisted-installer-agent-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:rhacm-assisted-installer-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:rhacm-assisted-installer-reporter-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:search-aggregator-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:search-api-container-v2.3.3-5</ProductID>
+      <ProductID>8Base-RHACM-2.3:search-collector-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:search-operator-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:search-ui-container-v2.3.3-7</ProductID>
+      <ProductID>8Base-RHACM-2.3:submariner-addon-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:thanos-receive-controller-container-v2.3.3-3</ProductID>
+      <ProductID>8Base-RHACM-2.3:work-container-v2.3.3-2</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Important</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+Before applying this update, make sure all previously released errata
+relevant to your system have been applied.
+
+For details on how to apply this update, refer to:
+
+https://access.redhat.com/documentation/en-us/red_hat_advanced_cluster_management_for_kubernetes/2.3/html-single/install/index#installing
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:3925</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://github.com/redis/redis/security/advisories/GHSA-f6pw-v9gw-v64p</URL>
+        <Description>https://github.com/redis/redis/security/advisories/GHSA-f6pw-v9gw-v64p</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-32675</URL>
+        <Description>CVE-2021-32675</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=2011000</URL>
+        <Description>bz#2011000: CVE-2021-32675 redis: Denial of service via Redis Standard Protocol (RESP) request</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="9" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">redis: Integer overflow issue with intsets</Note></Notes>
+    <DiscoveryDate>2021-10-04T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-10-04T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-32687</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>7Server-RHACM-2.3:management-ingress-container-v2.3.3-3</ProductID>
+      <ProductID>7Server-RHACM-2.3:memcached-exporter-container-v2.3.3-2</ProductID>
+      <ProductID>7Server-RHACM-2.3:thanos-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:acm-grafana-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:acm-must-gather-container-v2.3.3-5</ProductID>
+      <ProductID>8Base-RHACM-2.3:acm-operator-bundle-container-v2.3.3-25</ProductID>
+      <ProductID>8Base-RHACM-2.3:application-ui-container-v2.3.3-5</ProductID>
+      <ProductID>8Base-RHACM-2.3:cert-policy-controller-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:cluster-curator-controller-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:clusterlifecycle-state-metrics-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:config-policy-controller-container-v2.3.3-4</ProductID>
+      <ProductID>8Base-RHACM-2.3:console-api-container-v2.3.3-6</ProductID>
+      <ProductID>8Base-RHACM-2.3:console-container-v2.3.3-4</ProductID>
+      <ProductID>8Base-RHACM-2.3:discovery-operator-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:endpoint-monitoring-operator-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:governance-policy-propagator-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:governance-policy-spec-sync-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:governance-policy-status-sync-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:governance-policy-template-sync-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:grafana-dashboard-loader-container-v2.3.3-3</ProductID>
+      <ProductID>8Base-RHACM-2.3:grc-ui-api-container-v2.3.3-5</ProductID>
+      <ProductID>8Base-RHACM-2.3:grc-ui-container-v2.3.3-6</ProductID>
+      <ProductID>8Base-RHACM-2.3:iam-policy-controller-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:insights-client-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:insights-metrics-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:klusterlet-addon-controller-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:klusterlet-addon-operator-container-v2.3.3-4</ProductID>
+      <ProductID>8Base-RHACM-2.3:klusterlet-operator-bundle-container-v2.3.3-17</ProductID>
+      <ProductID>8Base-RHACM-2.3:kui-web-terminal-container-v2.3.3-6</ProductID>
+      <ProductID>8Base-RHACM-2.3:managedcluster-import-controller-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:memcached-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:metrics-collector-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:multicloud-manager-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:multicluster-observability-operator-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:multicluster-operators-application-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:multicluster-operators-channel-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:multicluster-operators-deployable-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:multicluster-operators-placementrule-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:multicluster-operators-subscription-operator-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:multicluster-operators-subscription-release-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:multiclusterhub-operator-container-v2.3.3-7</ProductID>
+      <ProductID>8Base-RHACM-2.3:multiclusterhub-repo-container-v2.3.3-4</ProductID>
+      <ProductID>8Base-RHACM-2.3:observatorium-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:observatorium-operator-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:openshift-hive-operator-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:placement-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:prometheus-alertmanager-container-v2.3.2-4</ProductID>
+      <ProductID>8Base-RHACM-2.3:provider-credential-controller-container-v2.3.2-4</ProductID>
+      <ProductID>8Base-RHACM-2.3:rbac-query-proxy-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:redisgraph-tls-container-v2.3.3-3</ProductID>
+      <ProductID>8Base-RHACM-2.3:registration-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:registration-operator-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:rhacm-agent-service-container-v2.3.3-3</ProductID>
+      <ProductID>8Base-RHACM-2.3:rhacm-assisted-installer-agent-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:rhacm-assisted-installer-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:rhacm-assisted-installer-reporter-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:search-aggregator-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:search-api-container-v2.3.3-5</ProductID>
+      <ProductID>8Base-RHACM-2.3:search-collector-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:search-operator-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:search-ui-container-v2.3.3-7</ProductID>
+      <ProductID>8Base-RHACM-2.3:submariner-addon-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:thanos-receive-controller-container-v2.3.3-3</ProductID>
+      <ProductID>8Base-RHACM-2.3:work-container-v2.3.3-2</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Important</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+Before applying this update, make sure all previously released errata
+relevant to your system have been applied.
+
+For details on how to apply this update, refer to:
+
+https://access.redhat.com/documentation/en-us/red_hat_advanced_cluster_management_for_kubernetes/2.3/html-single/install/index#installing
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:3925</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://github.com/redis/redis/security/advisories/GHSA-m3mf-8x9w-r27q</URL>
+        <Description>https://github.com/redis/redis/security/advisories/GHSA-m3mf-8x9w-r27q</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-32687</URL>
+        <Description>CVE-2021-32687</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=2010991</URL>
+        <Description>bz#2010991: CVE-2021-32687 redis: Integer overflow issue with intsets</Description>
+      </Reference>
+    </References>
+    <Acknowledgments><Acknowledgment><Description>Upstream acknowledges Pawel Wieczorkiewicz (Amazon Web Services) as the original reporter.</Description></Acknowledgment></Acknowledgments>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="10" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">helm: information disclosure vulnerability</Note></Notes>
+    <DiscoveryDate>2021-06-17T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-06-16T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-32690</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>7Server-RHACM-2.3:management-ingress-container-v2.3.3-3</ProductID>
+      <ProductID>7Server-RHACM-2.3:memcached-exporter-container-v2.3.3-2</ProductID>
+      <ProductID>7Server-RHACM-2.3:thanos-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:acm-grafana-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:acm-must-gather-container-v2.3.3-5</ProductID>
+      <ProductID>8Base-RHACM-2.3:acm-operator-bundle-container-v2.3.3-25</ProductID>
+      <ProductID>8Base-RHACM-2.3:application-ui-container-v2.3.3-5</ProductID>
+      <ProductID>8Base-RHACM-2.3:cert-policy-controller-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:cluster-curator-controller-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:clusterlifecycle-state-metrics-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:config-policy-controller-container-v2.3.3-4</ProductID>
+      <ProductID>8Base-RHACM-2.3:console-api-container-v2.3.3-6</ProductID>
+      <ProductID>8Base-RHACM-2.3:console-container-v2.3.3-4</ProductID>
+      <ProductID>8Base-RHACM-2.3:discovery-operator-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:endpoint-monitoring-operator-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:governance-policy-propagator-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:governance-policy-spec-sync-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:governance-policy-status-sync-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:governance-policy-template-sync-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:grafana-dashboard-loader-container-v2.3.3-3</ProductID>
+      <ProductID>8Base-RHACM-2.3:grc-ui-api-container-v2.3.3-5</ProductID>
+      <ProductID>8Base-RHACM-2.3:grc-ui-container-v2.3.3-6</ProductID>
+      <ProductID>8Base-RHACM-2.3:iam-policy-controller-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:insights-client-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:insights-metrics-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:klusterlet-addon-controller-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:klusterlet-addon-operator-container-v2.3.3-4</ProductID>
+      <ProductID>8Base-RHACM-2.3:klusterlet-operator-bundle-container-v2.3.3-17</ProductID>
+      <ProductID>8Base-RHACM-2.3:kui-web-terminal-container-v2.3.3-6</ProductID>
+      <ProductID>8Base-RHACM-2.3:managedcluster-import-controller-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:memcached-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:metrics-collector-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:multicloud-manager-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:multicluster-observability-operator-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:multicluster-operators-application-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:multicluster-operators-channel-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:multicluster-operators-deployable-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:multicluster-operators-placementrule-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:multicluster-operators-subscription-operator-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:multicluster-operators-subscription-release-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:multiclusterhub-operator-container-v2.3.3-7</ProductID>
+      <ProductID>8Base-RHACM-2.3:multiclusterhub-repo-container-v2.3.3-4</ProductID>
+      <ProductID>8Base-RHACM-2.3:observatorium-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:observatorium-operator-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:openshift-hive-operator-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:placement-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:prometheus-alertmanager-container-v2.3.2-4</ProductID>
+      <ProductID>8Base-RHACM-2.3:provider-credential-controller-container-v2.3.2-4</ProductID>
+      <ProductID>8Base-RHACM-2.3:rbac-query-proxy-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:redisgraph-tls-container-v2.3.3-3</ProductID>
+      <ProductID>8Base-RHACM-2.3:registration-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:registration-operator-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:rhacm-agent-service-container-v2.3.3-3</ProductID>
+      <ProductID>8Base-RHACM-2.3:rhacm-assisted-installer-agent-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:rhacm-assisted-installer-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:rhacm-assisted-installer-reporter-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:search-aggregator-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:search-api-container-v2.3.3-5</ProductID>
+      <ProductID>8Base-RHACM-2.3:search-collector-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:search-operator-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:search-ui-container-v2.3.3-7</ProductID>
+      <ProductID>8Base-RHACM-2.3:submariner-addon-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:thanos-receive-controller-container-v2.3.3-3</ProductID>
+      <ProductID>8Base-RHACM-2.3:work-container-v2.3.3-2</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+Before applying this update, make sure all previously released errata
+relevant to your system have been applied.
+
+For details on how to apply this update, refer to:
+
+https://access.redhat.com/documentation/en-us/red_hat_advanced_cluster_management_for_kubernetes/2.3/html-single/install/index#installing
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:3925</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://github.com/helm/helm/security/advisories/GHSA-56hp-xqp3-w2jf</URL>
+        <Description>https://github.com/helm/helm/security/advisories/GHSA-56hp-xqp3-w2jf</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-32690</URL>
+        <Description>CVE-2021-32690</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1978144</URL>
+        <Description>bz#1978144: CVE-2021-32690 helm: information disclosure vulnerability</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="11" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">redis: Integer overflow issue with strings</Note></Notes>
+    <DiscoveryDate>2021-10-04T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-10-04T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-41099</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>7Server-RHACM-2.3:management-ingress-container-v2.3.3-3</ProductID>
+      <ProductID>7Server-RHACM-2.3:memcached-exporter-container-v2.3.3-2</ProductID>
+      <ProductID>7Server-RHACM-2.3:thanos-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:acm-grafana-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:acm-must-gather-container-v2.3.3-5</ProductID>
+      <ProductID>8Base-RHACM-2.3:acm-operator-bundle-container-v2.3.3-25</ProductID>
+      <ProductID>8Base-RHACM-2.3:application-ui-container-v2.3.3-5</ProductID>
+      <ProductID>8Base-RHACM-2.3:cert-policy-controller-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:cluster-curator-controller-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:clusterlifecycle-state-metrics-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:config-policy-controller-container-v2.3.3-4</ProductID>
+      <ProductID>8Base-RHACM-2.3:console-api-container-v2.3.3-6</ProductID>
+      <ProductID>8Base-RHACM-2.3:console-container-v2.3.3-4</ProductID>
+      <ProductID>8Base-RHACM-2.3:discovery-operator-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:endpoint-monitoring-operator-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:governance-policy-propagator-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:governance-policy-spec-sync-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:governance-policy-status-sync-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:governance-policy-template-sync-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:grafana-dashboard-loader-container-v2.3.3-3</ProductID>
+      <ProductID>8Base-RHACM-2.3:grc-ui-api-container-v2.3.3-5</ProductID>
+      <ProductID>8Base-RHACM-2.3:grc-ui-container-v2.3.3-6</ProductID>
+      <ProductID>8Base-RHACM-2.3:iam-policy-controller-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:insights-client-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:insights-metrics-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:klusterlet-addon-controller-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:klusterlet-addon-operator-container-v2.3.3-4</ProductID>
+      <ProductID>8Base-RHACM-2.3:klusterlet-operator-bundle-container-v2.3.3-17</ProductID>
+      <ProductID>8Base-RHACM-2.3:kui-web-terminal-container-v2.3.3-6</ProductID>
+      <ProductID>8Base-RHACM-2.3:managedcluster-import-controller-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:memcached-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:metrics-collector-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:multicloud-manager-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:multicluster-observability-operator-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:multicluster-operators-application-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:multicluster-operators-channel-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:multicluster-operators-deployable-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:multicluster-operators-placementrule-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:multicluster-operators-subscription-operator-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:multicluster-operators-subscription-release-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:multiclusterhub-operator-container-v2.3.3-7</ProductID>
+      <ProductID>8Base-RHACM-2.3:multiclusterhub-repo-container-v2.3.3-4</ProductID>
+      <ProductID>8Base-RHACM-2.3:observatorium-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:observatorium-operator-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:openshift-hive-operator-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:placement-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:prometheus-alertmanager-container-v2.3.2-4</ProductID>
+      <ProductID>8Base-RHACM-2.3:provider-credential-controller-container-v2.3.2-4</ProductID>
+      <ProductID>8Base-RHACM-2.3:rbac-query-proxy-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:redisgraph-tls-container-v2.3.3-3</ProductID>
+      <ProductID>8Base-RHACM-2.3:registration-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:registration-operator-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:rhacm-agent-service-container-v2.3.3-3</ProductID>
+      <ProductID>8Base-RHACM-2.3:rhacm-assisted-installer-agent-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:rhacm-assisted-installer-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:rhacm-assisted-installer-reporter-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:search-aggregator-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:search-api-container-v2.3.3-5</ProductID>
+      <ProductID>8Base-RHACM-2.3:search-collector-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:search-operator-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:search-ui-container-v2.3.3-7</ProductID>
+      <ProductID>8Base-RHACM-2.3:submariner-addon-container-v2.3.3-2</ProductID>
+      <ProductID>8Base-RHACM-2.3:thanos-receive-controller-container-v2.3.3-3</ProductID>
+      <ProductID>8Base-RHACM-2.3:work-container-v2.3.3-2</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Important</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+Before applying this update, make sure all previously released errata
+relevant to your system have been applied.
+
+For details on how to apply this update, refer to:
+
+https://access.redhat.com/documentation/en-us/red_hat_advanced_cluster_management_for_kubernetes/2.3/html-single/install/index#installing
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:3925</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://github.com/redis/redis/security/advisories/GHSA-j3cr-9h5g-6cph</URL>
+        <Description>https://github.com/redis/redis/security/advisories/GHSA-j3cr-9h5g-6cph</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-41099</URL>
+        <Description>CVE-2021-41099</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=2011020</URL>
+        <Description>bz#2011020: CVE-2021-41099 redis: Integer overflow issue with strings</Description>
+      </Reference>
+    </References>
+    <Acknowledgments><Acknowledgment><Description>Upstream acknowledges yiyuaner as the original reporter.</Description></Acknowledgment></Acknowledgments>
+  </Vulnerability>
+</cvrfdoc>

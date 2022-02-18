@@ -1,0 +1,1385 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cvrf:cvrfdoc xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:cvrf-common="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/common" xmlns:cvrf="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/cvrf">
+  <cvrf:DocumentTitle>Cisco IOS XE Software NETCONF and RESTCONF Authentication Bypass Vulnerability</cvrf:DocumentTitle>
+  <cvrf:DocumentType>Cisco Security Advisory</cvrf:DocumentType>
+  <cvrf:DocumentPublisher Type="Vendor">
+    <cvrf:ContactDetails>Emergency Support:
++1 877 228 7302 (toll-free within North America)
++1 408 525 6532 (International direct-dial)
+Non-emergency Support:
+Email: psirt@cisco.com
+Support requests that are received via e-mail are typically acknowledged within 48 hours.</cvrf:ContactDetails>
+    <cvrf:IssuingAuthority>Cisco product security incident response is the responsibility of the Cisco Product Security Incident Response Team (PSIRT). The Cisco PSIRT is a dedicated, global team that manages the receipt, investigation, and public reporting of security vulnerability information that is related to Cisco products and networks. The on-call Cisco PSIRT works 24x7 with Cisco customers, independent security researchers, consultants, industry organizations, and other vendors to identify possible security issues with Cisco products and networks.
+More information can be found in Cisco Security Vulnerability Policy available at http://www.cisco.com/web/about/security/psirt/security_vulnerability_policy.html</cvrf:IssuingAuthority>
+  </cvrf:DocumentPublisher>
+  <cvrf:DocumentTracking>
+    <cvrf:Identification>
+      <cvrf:ID>cisco-sa-aaa-Yx47ZT8Q</cvrf:ID>
+    </cvrf:Identification>
+    <cvrf:Status>Final</cvrf:Status>
+    <cvrf:Version>1.0</cvrf:Version>
+    <cvrf:RevisionHistory>
+      <cvrf:Revision>
+        <cvrf:Number>1.0</cvrf:Number>
+        <cvrf:Date>2021-09-22T15:48:12</cvrf:Date>
+        <cvrf:Description>Initial public release.</cvrf:Description>
+      </cvrf:Revision>
+    </cvrf:RevisionHistory>
+    <cvrf:InitialReleaseDate>2021-09-22T16:00:00</cvrf:InitialReleaseDate>
+    <cvrf:CurrentReleaseDate>2021-09-22T16:00:00</cvrf:CurrentReleaseDate>
+    <cvrf:Generator>
+      <cvrf:Engine>TVCE</cvrf:Engine>
+    </cvrf:Generator>
+  </cvrf:DocumentTracking>
+  <cvrf:DocumentNotes>
+    <cvrf:Note Title="Summary" Type="Summary" Ordinal="1">A vulnerability in the authentication, authorization, and accounting (AAA) function of Cisco IOS XE Software could allow an unauthenticated, remote attacker to bypass NETCONF or RESTCONF authentication and do either of the following:
+
+Install, manipulate, or delete the configuration of an affected device
+Cause memory corruption that results in a denial of service (DoS) on an affected device
+
+This vulnerability is due to an uninitialized variable. An attacker could exploit this vulnerability by sending a series of NETCONF or RESTCONF requests to an affected device. A successful exploit could allow the attacker to use NETCONF or RESTCONF to install, manipulate, or delete the configuration of a network device or to corrupt memory on the device, resulting a DoS.
+
+Cisco has released software updates that address this vulnerability. There are workarounds that address this vulnerability.
+
+This advisory is available at the following link:
+https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-aaa-Yx47ZT8Q ["https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-aaa-Yx47ZT8Q"]
+
+This advisory is part of the September 2021 release of the Cisco IOS and IOS XE Software Security Advisory Bundled Publication. For a complete list of the advisories and links to them, see Cisco Event Response: September 2021 Semiannual Cisco IOS and IOS XE Software Security Advisory Bundled Publication. ["https://tools.cisco.com/security/center/viewErp.x?alertId=ERP-74581"]</cvrf:Note>
+    <cvrf:Note Title="Vulnerable Products" Type="General" Ordinal="2">This vulnerability affects Cisco IOS XE Software if it is running in autonomous or controller mode and Cisco IOS XE SD-WAN Software. For either to be affected, all of the following must be configured:
+
+AAA
+NETCONF, RESTCONF, or both
+enable password without enable secret
+
+For information about which Cisco software releases are vulnerable, see the Fixed Software ["#fs"] section of this advisory.
+
+Note: The standalone Cisco IOS XE SD-WAN release images are separate from the universal Cisco IOS XE Software releases. The SD-WAN feature set was first integrated into the universal Cisco IOS XE Software releases starting with IOS XE Software Release 17.2.1r. For additional information, see the Install and Upgrade Cisco IOS XE Release 17.2.1r and Later ["https://www.cisco.com/c/en/us/td/docs/routers/sdwan/configuration/sdwan-xe-gs-book/install-upgrade-17-2-later.html"] chapter of the Cisco SD-WAN Getting Started Guide.
+    Determine the Device Configuration
+To determine whether a device has a vulnerable configuration, do the following:
+
+Check AAA Configuration
+
+To determine whether AAA authentication is configured on the device, use the show running-config | include aaa authentication login command, as shown in the following example:
+
+
+Router#show running-config | include aaa authentication login
+aaa authentication login default local group example
+Router#
+
+Check NETCONF and RESTCONF Configuration
+
+To determine whether NETCONF or RESTCONF is configured on the device, use the show running-config | include netconf|restconf command, as shown in the following example:
+
+
+Router#show running-config | include netconf|restconf
+netconf-yang
+restconf
+Router#
+
+Check enable password Configuration
+
+To determine whether enable password is configured on the device without the presence of an enable secret, use the show running-config | include enable password|secret command, as shown in the following example:
+
+
+Router#show running-config | include enable password|secret
+enable password 7 00010B07094B0703
+Router#
+
+Note: If enable secret is being used without the presence of enable password, the device is not affected.</cvrf:Note>
+    <cvrf:Note Title="Products Confirmed Not Vulnerable" Type="General" Ordinal="3">Only products listed in the Vulnerable Products ["#vp"] section of this advisory are known to be affected by this vulnerability.
+
+Cisco has confirmed that this vulnerability does not affect the following Cisco products:
+
+IOS Software
+IOS XR Software
+Meraki products
+NX-OS Software</cvrf:Note>
+    <cvrf:Note Title="Workarounds" Type="General" Ordinal="4">There is a workaround that addresses this vulnerability: Remove the enable password and configure an enable secret. For more information, see Cisco Guide to Harden Cisco IOS Devices ["https://www.cisco.com/c/en/us/support/docs/ip/access-lists/13608-21.html#anc14"].
+
+There is also a mitigation that addresses this vulnerability: To limit the attack surface of this vulnerability, ensure that access control lists (ACLs) are in place for NETCONF and RESTCONF to prevent attempted access from untrusted subnets. For more information, see NETCONF and RESTCONF Service-Level ACLs ["https://www.cisco.com/c/en/us/td/docs/ios-xml/ios/prog/configuration/1611/b_1611_programmability_cg/service_level_ACLs_NETCONF_RESTCONF.html"].
+
+While this workaround and this mitigation have been deployed and were proven successful in a test environment, customers should determine the applicability and effectiveness in their own environment and under their own use conditions. Customers should be aware that any workaround or mitigation that is implemented may negatively impact the functionality or performance of their network based on intrinsic customer deployment scenarios and limitations. Customers should not deploy any workarounds or mitigations before first evaluating the applicability to their own environment and any impact to such environment.</cvrf:Note>
+    <cvrf:Note Title="Fixed Software" Type="General" Ordinal="5">Cisco has released free software updates that address the vulnerability described in this advisory. Customers may only install and expect support for software versions and feature sets for which they have purchased a license. By installing, downloading, accessing, or otherwise using such software upgrades, customers agree to follow the terms of the Cisco software license:
+https://www.cisco.com/c/en/us/products/end-user-license-agreement.html ["https://www.cisco.com/c/en/us/products/end-user-license-agreement.html"]
+
+Additionally, customers may only download software for which they have a valid license, procured from Cisco directly, or through a Cisco authorized reseller or partner. In most cases this will be a maintenance upgrade to software that was previously purchased. Free security software updates do not entitle customers to a new software license, additional software feature sets, or major revision upgrades.
+
+When considering software upgrades ["https://tools.cisco.com/security/center/resources/security_vulnerability_policy.html#fixes"], customers are advised to regularly consult the advisories for Cisco products, which are available from the Cisco Security Advisories page ["https://www.cisco.com/go/psirt"], to determine exposure and a complete upgrade solution.
+
+In all cases, customers should ensure that the devices to be upgraded contain sufficient memory and confirm that current hardware and software configurations will continue to be supported properly by the new release. If the information is not clear, customers are advised to contact the Cisco Technical Assistance Center (TAC) or their contracted maintenance providers.
+ Customers Without Service Contracts
+Customers who purchase directly from Cisco but do not hold a Cisco service contract and customers who make purchases through third-party vendors but are unsuccessful in obtaining fixed software through their point of sale should obtain upgrades by contacting the Cisco TAC: https://www.cisco.com/c/en/us/support/web/tsd-cisco-worldwide-contacts.html ["https://www.cisco.com/c/en/us/support/web/tsd-cisco-worldwide-contacts.html"]
+
+Customers should have the product serial number available and be prepared to provide the URL of this advisory as evidence of entitlement to a free upgrade.
+    Cisco IOS and IOS XE Software
+To help customers determine their exposure to vulnerabilities in Cisco IOS and IOS XE Software, Cisco provides the Cisco Software Checker ["https://tools.cisco.com/security/center/softwarechecker.x"] to identify any Cisco Security Advisories that impact a specific software release and the earliest release that fixes the vulnerabilities described in each advisory (“First Fixed”). If applicable, the tool also returns the earliest release that fixes all the vulnerabilities described in all the advisories identified (“Combined First Fixed”).
+
+Customers can use the Cisco Software Checker ["https://tools.cisco.com/security/center/softwarechecker.x"] to search advisories in the following ways:
+
+Choose the software and one or more releases
+Upload a .txt file that includes a list of specific releases
+Enter the output of the show version command
+
+After initiating a search, customers can customize the search to include all Cisco Security Advisories, a specific advisory, or all advisories in the most recent bundled publication.
+
+Customers can also use the following form to determine whether a release is affected by any Cisco Security Advisory by entering a Cisco IOS or IOS XE Software release—for example, 15.1(4)M2 or 3.13.8S:
+
+
+
+By default, the Cisco Software Checker ["https://tools.cisco.com/security/center/softwarechecker.x"] includes results only for vulnerabilities that have a Critical or High Security Impact Rating (SIR). To include results for Medium SIR vulnerabilities, customers can use the Cisco Software Checker on Cisco.com and check the Medium check box in the drop-down list under Impact Rating when customizing a search.</cvrf:Note>
+    <cvrf:Note Title="Vulnerability Policy" Type="General" Ordinal="6">To learn about Cisco security vulnerability disclosure policies and publications, see the Security Vulnerability Policy ["http://www.cisco.com/web/about/security/psirt/security_vulnerability_policy.html"]. This document also contains instructions for obtaining fixed software and receiving security vulnerability information from Cisco.</cvrf:Note>
+    <cvrf:Note Title="Exploitation and Public Announcements" Type="General" Ordinal="7">The Cisco Product Security Incident Response Team (PSIRT) is not aware of any public announcements or malicious use of the vulnerability that is described in this advisory.</cvrf:Note>
+    <cvrf:Note Title="Source" Type="General" Ordinal="8">This vulnerability was found during the resolution of a Cisco TAC support case.</cvrf:Note>
+    <cvrf:Note Title="Legal Disclaimer" Type="Legal Disclaimer" Ordinal="9">THIS DOCUMENT IS PROVIDED ON AN "AS IS" BASIS AND DOES NOT IMPLY ANY KIND OF GUARANTEE OR WARRANTY, INCLUDING THE WARRANTIES OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR USE. YOUR USE OF THE INFORMATION ON THE DOCUMENT OR MATERIALS LINKED FROM THE DOCUMENT IS AT YOUR OWN RISK. CISCO RESERVES THE RIGHT TO CHANGE OR UPDATE THIS DOCUMENT AT ANY TIME.
+
+A standalone copy or paraphrase of the text of this document that omits the distribution URL is an uncontrolled copy and may lack important information or contain factual errors. The information in this document is intended for end users of Cisco products.</cvrf:Note>
+  </cvrf:DocumentNotes>
+  <cvrf:DocumentReferences>
+    <cvrf:Reference Type="Self">
+      <cvrf:URL>https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-aaa-Yx47ZT8Q</cvrf:URL>
+      <cvrf:Description>Cisco IOS XE Software NETCONF and RESTCONF Authentication Bypass Vulnerability</cvrf:Description>
+    </cvrf:Reference>
+    <cvrf:Reference>
+      <cvrf:URL>http://tools.cisco.com/security/center/viewErp.x?alertId=ERP-74581</cvrf:URL>
+      <cvrf:Description>Cisco Event Response: September 2021 Semiannual Cisco IOS and IOS XE Software Security Advisory Bundled Publication</cvrf:Description>
+    </cvrf:Reference>
+  </cvrf:DocumentReferences>
+  <ProductTree xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/prod">
+    <Branch Name="Cisco" Type="Vendor">
+      <Branch Name="Cisco IOS XE Software" Type="Product Name">
+        <Branch Name="16.3" Type="Product Version">
+          <Branch Name="16.3.1" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-213960">Cisco IOS XE Software 16.3.1</FullProductName>
+          </Branch>
+          <Branch Name="16.3.2" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-217255">Cisco IOS XE Software 16.3.2</FullProductName>
+          </Branch>
+          <Branch Name="16.3.3" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-217256">Cisco IOS XE Software 16.3.3</FullProductName>
+          </Branch>
+          <Branch Name="16.3.1a" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-220802">Cisco IOS XE Software 16.3.1a</FullProductName>
+          </Branch>
+          <Branch Name="16.3.4" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-222711">Cisco IOS XE Software 16.3.4</FullProductName>
+          </Branch>
+          <Branch Name="16.3.5" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-229124">Cisco IOS XE Software 16.3.5</FullProductName>
+          </Branch>
+          <Branch Name="16.3.5b" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-231187">Cisco IOS XE Software 16.3.5b</FullProductName>
+          </Branch>
+          <Branch Name="16.3.6" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-231667">Cisco IOS XE Software 16.3.6</FullProductName>
+          </Branch>
+          <Branch Name="16.3.7" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-239264">Cisco IOS XE Software 16.3.7</FullProductName>
+          </Branch>
+          <Branch Name="16.3.8" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-251165">Cisco IOS XE Software 16.3.8</FullProductName>
+          </Branch>
+          <Branch Name="16.3.9" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-262389">Cisco IOS XE Software 16.3.9</FullProductName>
+          </Branch>
+          <Branch Name="16.3.10" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-273563">Cisco IOS XE Software 16.3.10</FullProductName>
+          </Branch>
+          <Branch Name="16.3.11" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-278402">Cisco IOS XE Software 16.3.11</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="16.4" Type="Product Version">
+          <Branch Name="16.4.1" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-214051">Cisco IOS XE Software 16.4.1</FullProductName>
+          </Branch>
+          <Branch Name="16.4.2" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-217257">Cisco IOS XE Software 16.4.2</FullProductName>
+          </Branch>
+          <Branch Name="16.4.3" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-231390">Cisco IOS XE Software 16.4.3</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="16.5" Type="Product Version">
+          <Branch Name="16.5.1" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-217259">Cisco IOS XE Software 16.5.1</FullProductName>
+          </Branch>
+          <Branch Name="16.5.1a" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-225784">Cisco IOS XE Software 16.5.1a</FullProductName>
+          </Branch>
+          <Branch Name="16.5.1b" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-226330">Cisco IOS XE Software 16.5.1b</FullProductName>
+          </Branch>
+          <Branch Name="16.5.2" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-229187">Cisco IOS XE Software 16.5.2</FullProductName>
+          </Branch>
+          <Branch Name="16.5.3" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-232461">Cisco IOS XE Software 16.5.3</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="16.6" Type="Product Version">
+          <Branch Name="16.6.1" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-218901">Cisco IOS XE Software 16.6.1</FullProductName>
+          </Branch>
+          <Branch Name="16.6.2" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-228706">Cisco IOS XE Software 16.6.2</FullProductName>
+          </Branch>
+          <Branch Name="16.6.3" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-231682">Cisco IOS XE Software 16.6.3</FullProductName>
+          </Branch>
+          <Branch Name="16.6.4" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-233155">Cisco IOS XE Software 16.6.4</FullProductName>
+          </Branch>
+          <Branch Name="16.6.5" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-241736">Cisco IOS XE Software 16.6.5</FullProductName>
+          </Branch>
+          <Branch Name="16.6.4s" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-244900">Cisco IOS XE Software 16.6.4s</FullProductName>
+          </Branch>
+          <Branch Name="16.6.4a" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-247629">Cisco IOS XE Software 16.6.4a</FullProductName>
+          </Branch>
+          <Branch Name="16.6.5a" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-252235">Cisco IOS XE Software 16.6.5a</FullProductName>
+          </Branch>
+          <Branch Name="16.6.6" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-252914">Cisco IOS XE Software 16.6.6</FullProductName>
+          </Branch>
+          <Branch Name="16.6.5b" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-258170">Cisco IOS XE Software 16.6.5b</FullProductName>
+          </Branch>
+          <Branch Name="16.6.7" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-261241">Cisco IOS XE Software 16.6.7</FullProductName>
+          </Branch>
+          <Branch Name="16.6.7a" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-270097">Cisco IOS XE Software 16.6.7a</FullProductName>
+          </Branch>
+          <Branch Name="16.6.8" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-277148">Cisco IOS XE Software 16.6.8</FullProductName>
+          </Branch>
+          <Branch Name="16.6.9" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-280801">Cisco IOS XE Software 16.6.9</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="16.7" Type="Product Version">
+          <Branch Name="16.7.1" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-218903">Cisco IOS XE Software 16.7.1</FullProductName>
+          </Branch>
+          <Branch Name="16.7.1a" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-231389">Cisco IOS XE Software 16.7.1a</FullProductName>
+          </Branch>
+          <Branch Name="16.7.1b" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-232767">Cisco IOS XE Software 16.7.1b</FullProductName>
+          </Branch>
+          <Branch Name="16.7.2" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-236837">Cisco IOS XE Software 16.7.2</FullProductName>
+          </Branch>
+          <Branch Name="16.7.3" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-244070">Cisco IOS XE Software 16.7.3</FullProductName>
+          </Branch>
+          <Branch Name="16.7.4" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-258388">Cisco IOS XE Software 16.7.4</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="16.8" Type="Product Version">
+          <Branch Name="16.8.1" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-218905">Cisco IOS XE Software 16.8.1</FullProductName>
+          </Branch>
+          <Branch Name="16.8.1a" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-235307">Cisco IOS XE Software 16.8.1a</FullProductName>
+          </Branch>
+          <Branch Name="16.8.1b" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-235858">Cisco IOS XE Software 16.8.1b</FullProductName>
+          </Branch>
+          <Branch Name="16.8.1s" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-236834">Cisco IOS XE Software 16.8.1s</FullProductName>
+          </Branch>
+          <Branch Name="16.8.1c" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-237460">Cisco IOS XE Software 16.8.1c</FullProductName>
+          </Branch>
+          <Branch Name="16.8.1d" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-242834">Cisco IOS XE Software 16.8.1d</FullProductName>
+          </Branch>
+          <Branch Name="16.8.2" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-244071">Cisco IOS XE Software 16.8.2</FullProductName>
+          </Branch>
+          <Branch Name="16.8.1e" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-249171">Cisco IOS XE Software 16.8.1e</FullProductName>
+          </Branch>
+          <Branch Name="16.8.3" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-257984">Cisco IOS XE Software 16.8.3</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="16.9" Type="Product Version">
+          <Branch Name="16.9.1" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-225856">Cisco IOS XE Software 16.9.1</FullProductName>
+          </Branch>
+          <Branch Name="16.9.2" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-232008">Cisco IOS XE Software 16.9.2</FullProductName>
+          </Branch>
+          <Branch Name="16.9.1a" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-242308">Cisco IOS XE Software 16.9.1a</FullProductName>
+          </Branch>
+          <Branch Name="16.9.1b" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-243362">Cisco IOS XE Software 16.9.1b</FullProductName>
+          </Branch>
+          <Branch Name="16.9.1s" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-244530">Cisco IOS XE Software 16.9.1s</FullProductName>
+          </Branch>
+          <Branch Name="16.9.1c" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-245375">Cisco IOS XE Software 16.9.1c</FullProductName>
+          </Branch>
+          <Branch Name="16.9.1d" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-248242">Cisco IOS XE Software 16.9.1d</FullProductName>
+          </Branch>
+          <Branch Name="16.9.3" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-251075">Cisco IOS XE Software 16.9.3</FullProductName>
+          </Branch>
+          <Branch Name="16.9.2a" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-251166">Cisco IOS XE Software 16.9.2a</FullProductName>
+          </Branch>
+          <Branch Name="16.9.2s" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-252272">Cisco IOS XE Software 16.9.2s</FullProductName>
+          </Branch>
+          <Branch Name="16.9.3h" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-258229">Cisco IOS XE Software 16.9.3h</FullProductName>
+          </Branch>
+          <Branch Name="16.9.4" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-262390">Cisco IOS XE Software 16.9.4</FullProductName>
+          </Branch>
+          <Branch Name="16.9.3s" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-262549">Cisco IOS XE Software 16.9.3s</FullProductName>
+          </Branch>
+          <Branch Name="16.9.3a" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-263804">Cisco IOS XE Software 16.9.3a</FullProductName>
+          </Branch>
+          <Branch Name="16.9.4c" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-268921">Cisco IOS XE Software 16.9.4c</FullProductName>
+          </Branch>
+          <Branch Name="16.9.5" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-271798">Cisco IOS XE Software 16.9.5</FullProductName>
+          </Branch>
+          <Branch Name="16.9.5f" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-276837">Cisco IOS XE Software 16.9.5f</FullProductName>
+          </Branch>
+          <Branch Name="16.9.6" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-277945">Cisco IOS XE Software 16.9.6</FullProductName>
+          </Branch>
+          <Branch Name="16.9.7" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-280651">Cisco IOS XE Software 16.9.7</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="16.10" Type="Product Version">
+          <Branch Name="16.10.1" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-225858">Cisco IOS XE Software 16.10.1</FullProductName>
+          </Branch>
+          <Branch Name="16.10.1a" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-250629">Cisco IOS XE Software 16.10.1a</FullProductName>
+          </Branch>
+          <Branch Name="16.10.1b" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-252045">Cisco IOS XE Software 16.10.1b</FullProductName>
+          </Branch>
+          <Branch Name="16.10.1s" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-252913">Cisco IOS XE Software 16.10.1s</FullProductName>
+          </Branch>
+          <Branch Name="16.10.1c" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-254688">Cisco IOS XE Software 16.10.1c</FullProductName>
+          </Branch>
+          <Branch Name="16.10.1e" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-257955">Cisco IOS XE Software 16.10.1e</FullProductName>
+          </Branch>
+          <Branch Name="16.10.1d" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-258900">Cisco IOS XE Software 16.10.1d</FullProductName>
+          </Branch>
+          <Branch Name="16.10.2" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-260917">Cisco IOS XE Software 16.10.2</FullProductName>
+          </Branch>
+          <Branch Name="16.10.1f" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-262595">Cisco IOS XE Software 16.10.1f</FullProductName>
+          </Branch>
+          <Branch Name="16.10.1g" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-266259">Cisco IOS XE Software 16.10.1g</FullProductName>
+          </Branch>
+          <Branch Name="16.10.3" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-273112">Cisco IOS XE Software 16.10.3</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="16.11" Type="Product Version">
+          <Branch Name="16.11.1" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-227918">Cisco IOS XE Software 16.11.1</FullProductName>
+          </Branch>
+          <Branch Name="16.11.1a" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-252271">Cisco IOS XE Software 16.11.1a</FullProductName>
+          </Branch>
+          <Branch Name="16.11.1b" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-260741">Cisco IOS XE Software 16.11.1b</FullProductName>
+          </Branch>
+          <Branch Name="16.11.2" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-261240">Cisco IOS XE Software 16.11.2</FullProductName>
+          </Branch>
+          <Branch Name="16.11.1s" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-261465">Cisco IOS XE Software 16.11.1s</FullProductName>
+          </Branch>
+          <Branch Name="16.11.1c" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-264096">Cisco IOS XE Software 16.11.1c</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="16.12" Type="Product Version">
+          <Branch Name="16.12.1" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-227920">Cisco IOS XE Software 16.12.1</FullProductName>
+          </Branch>
+          <Branch Name="16.12.1s" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-265735">Cisco IOS XE Software 16.12.1s</FullProductName>
+          </Branch>
+          <Branch Name="16.12.1a" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-265841">Cisco IOS XE Software 16.12.1a</FullProductName>
+          </Branch>
+          <Branch Name="16.12.1c" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-267110">Cisco IOS XE Software 16.12.1c</FullProductName>
+          </Branch>
+          <Branch Name="16.12.1w" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-267240">Cisco IOS XE Software 16.12.1w</FullProductName>
+          </Branch>
+          <Branch Name="16.12.2" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-267605">Cisco IOS XE Software 16.12.2</FullProductName>
+          </Branch>
+          <Branch Name="16.12.1y" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-271938">Cisco IOS XE Software 16.12.1y</FullProductName>
+          </Branch>
+          <Branch Name="16.12.2a" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-272047">Cisco IOS XE Software 16.12.2a</FullProductName>
+          </Branch>
+          <Branch Name="16.12.3" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-273445">Cisco IOS XE Software 16.12.3</FullProductName>
+          </Branch>
+          <Branch Name="16.12.2s" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-273509">Cisco IOS XE Software 16.12.2s</FullProductName>
+          </Branch>
+          <Branch Name="16.12.1x" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-273649">Cisco IOS XE Software 16.12.1x</FullProductName>
+          </Branch>
+          <Branch Name="16.12.1t" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-274832">Cisco IOS XE Software 16.12.1t</FullProductName>
+          </Branch>
+          <Branch Name="16.12.2t" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-275538">Cisco IOS XE Software 16.12.2t</FullProductName>
+          </Branch>
+          <Branch Name="16.12.4" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-277147">Cisco IOS XE Software 16.12.4</FullProductName>
+          </Branch>
+          <Branch Name="16.12.3s" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-277255">Cisco IOS XE Software 16.12.3s</FullProductName>
+          </Branch>
+          <Branch Name="16.12.1z" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-277256">Cisco IOS XE Software 16.12.1z</FullProductName>
+          </Branch>
+          <Branch Name="16.12.3a" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-277321">Cisco IOS XE Software 16.12.3a</FullProductName>
+          </Branch>
+          <Branch Name="16.12.4a" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-278881">Cisco IOS XE Software 16.12.4a</FullProductName>
+          </Branch>
+          <Branch Name="16.12.5" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-280463">Cisco IOS XE Software 16.12.5</FullProductName>
+          </Branch>
+          <Branch Name="16.12.1z1" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-281320">Cisco IOS XE Software 16.12.1z1</FullProductName>
+          </Branch>
+          <Branch Name="16.12.5a" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-281438">Cisco IOS XE Software 16.12.5a</FullProductName>
+          </Branch>
+          <Branch Name="16.12.5b" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-281654">Cisco IOS XE Software 16.12.5b</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="17.1" Type="Product Version">
+          <Branch Name="17.1.1" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-245377">Cisco IOS XE Software 17.1.1</FullProductName>
+          </Branch>
+          <Branch Name="17.1.1a" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-272932">Cisco IOS XE Software 17.1.1a</FullProductName>
+          </Branch>
+          <Branch Name="17.1.1s" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-274818">Cisco IOS XE Software 17.1.1s</FullProductName>
+          </Branch>
+          <Branch Name="17.1.2" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-277338">Cisco IOS XE Software 17.1.2</FullProductName>
+          </Branch>
+          <Branch Name="17.1.1t" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-277348">Cisco IOS XE Software 17.1.1t</FullProductName>
+          </Branch>
+          <Branch Name="17.1.3" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-280652">Cisco IOS XE Software 17.1.3</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="17.2" Type="Product Version">
+          <Branch Name="17.2.1" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-251225">Cisco IOS XE Software 17.2.1</FullProductName>
+          </Branch>
+          <Branch Name="17.2.1r" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-277194">Cisco IOS XE Software 17.2.1r</FullProductName>
+          </Branch>
+          <Branch Name="17.2.1a" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-277343">Cisco IOS XE Software 17.2.1a</FullProductName>
+          </Branch>
+          <Branch Name="17.2.1v" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-278002">Cisco IOS XE Software 17.2.1v</FullProductName>
+          </Branch>
+        </Branch>
+      </Branch>
+      <Branch Name="Cisco IOS XE Software" Type="Product Name">
+        <FullProductName ProductID="CVRFPID-93036">Cisco IOS XE Software </FullProductName>
+      </Branch>
+      <Branch Name="Cisco IOS XE SD-WAN Software" Type="Product Name">
+        <Branch Name="16.9" Type="Product Version">
+          <Branch Name="16.9.1" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-275043">Cisco IOS XE SD-WAN Software 16.9.1</FullProductName>
+          </Branch>
+          <Branch Name="16.9.2" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-275044">Cisco IOS XE SD-WAN Software 16.9.2</FullProductName>
+          </Branch>
+          <Branch Name="16.9.3" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-275045">Cisco IOS XE SD-WAN Software 16.9.3</FullProductName>
+          </Branch>
+          <Branch Name="16.9.4" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-275046">Cisco IOS XE SD-WAN Software 16.9.4</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="16.10" Type="Product Version">
+          <Branch Name="16.10.1" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-275047">Cisco IOS XE SD-WAN Software 16.10.1</FullProductName>
+          </Branch>
+          <Branch Name="16.10.2" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-275048">Cisco IOS XE SD-WAN Software 16.10.2</FullProductName>
+          </Branch>
+          <Branch Name="16.10.3" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-275049">Cisco IOS XE SD-WAN Software 16.10.3</FullProductName>
+          </Branch>
+          <Branch Name="16.10.3a" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-275050">Cisco IOS XE SD-WAN Software 16.10.3a</FullProductName>
+          </Branch>
+          <Branch Name="16.10.3b" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-275051">Cisco IOS XE SD-WAN Software 16.10.3b</FullProductName>
+          </Branch>
+          <Branch Name="16.10.4" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-275052">Cisco IOS XE SD-WAN Software 16.10.4</FullProductName>
+          </Branch>
+          <Branch Name="16.10.5" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-280948">Cisco IOS XE SD-WAN Software 16.10.5</FullProductName>
+          </Branch>
+          <Branch Name="16.10.6" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-280949">Cisco IOS XE SD-WAN Software 16.10.6</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="16.11" Type="Product Version">
+          <Branch Name="16.11.1a" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-275053">Cisco IOS XE SD-WAN Software 16.11.1a</FullProductName>
+          </Branch>
+          <Branch Name="16.11.1" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-280950">Cisco IOS XE SD-WAN Software 16.11.1</FullProductName>
+          </Branch>
+          <Branch Name="16.11.1b" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-280951">Cisco IOS XE SD-WAN Software 16.11.1b</FullProductName>
+          </Branch>
+          <Branch Name="16.11.1d" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-280952">Cisco IOS XE SD-WAN Software 16.11.1d</FullProductName>
+          </Branch>
+          <Branch Name="16.11.1f" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-280953">Cisco IOS XE SD-WAN Software 16.11.1f</FullProductName>
+          </Branch>
+          <Branch Name="16.11.1s" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-280954">Cisco IOS XE SD-WAN Software 16.11.1s</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="16.12" Type="Product Version">
+          <Branch Name="16.12.1b" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-275056">Cisco IOS XE SD-WAN Software 16.12.1b</FullProductName>
+          </Branch>
+          <Branch Name="16.12.1d" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-275057">Cisco IOS XE SD-WAN Software 16.12.1d</FullProductName>
+          </Branch>
+          <Branch Name="16.12.1e" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-275058">Cisco IOS XE SD-WAN Software 16.12.1e</FullProductName>
+          </Branch>
+          <Branch Name="16.12.2r" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-275059">Cisco IOS XE SD-WAN Software 16.12.2r</FullProductName>
+          </Branch>
+          <Branch Name="16.12.1" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-280955">Cisco IOS XE SD-WAN Software 16.12.1</FullProductName>
+          </Branch>
+          <Branch Name="16.12.1a" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-280956">Cisco IOS XE SD-WAN Software 16.12.1a</FullProductName>
+          </Branch>
+          <Branch Name="16.12.1b1" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-280957">Cisco IOS XE SD-WAN Software 16.12.1b1</FullProductName>
+          </Branch>
+          <Branch Name="16.12.1c" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-280958">Cisco IOS XE SD-WAN Software 16.12.1c</FullProductName>
+          </Branch>
+          <Branch Name="16.12.3" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-280959">Cisco IOS XE SD-WAN Software 16.12.3</FullProductName>
+          </Branch>
+          <Branch Name="16.12.4" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-280960">Cisco IOS XE SD-WAN Software 16.12.4</FullProductName>
+          </Branch>
+          <Branch Name="16.12.4a" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-280961">Cisco IOS XE SD-WAN Software 16.12.4a</FullProductName>
+          </Branch>
+          <Branch Name="16.12.5" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-281296">Cisco IOS XE SD-WAN Software 16.12.5</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="Cisco 1100 Series Industrial Integrated Services Routers" Type="Product Name">
+          <FullProductName ProductID="CVRFPID-277414">Cisco IOS XE SD-WAN Software Platform Cisco 1100 Series Industrial Integrated Services Routers</FullProductName>
+        </Branch>
+        <Branch Name="Cisco Cloud Services Router 1000V Series" Type="Product Name">
+          <FullProductName ProductID="CVRFPID-277415">Cisco IOS XE SD-WAN Software Platform Cisco Cloud Services Router 1000V Series</FullProductName>
+        </Branch>
+        <Branch Name="Cisco 1000 Series Integrated Services Routers" Type="Product Name">
+          <FullProductName ProductID="CVRFPID-277416">Cisco IOS XE SD-WAN Software Platform Cisco 1000 Series Integrated Services Routers</FullProductName>
+        </Branch>
+        <Branch Name="Cisco ASR 1000 Series Aggregation Services Routers" Type="Product Name">
+          <FullProductName ProductID="CVRFPID-277417">Cisco IOS XE SD-WAN Software Platform Cisco ASR 1000 Series Aggregation Services Routers</FullProductName>
+        </Branch>
+        <Branch Name="Cisco 4000 Series Integrated Services Routers" Type="Product Name">
+          <FullProductName ProductID="CVRFPID-277455">Cisco IOS XE SD-WAN Software Platform Cisco 4000 Series Integrated Services Routers</FullProductName>
+        </Branch>
+        <Branch Name="Cisco Integrated Services Virtual Router" Type="Product Name">
+          <FullProductName ProductID="CVRFPID-279747">Cisco IOS XE SD-WAN Software Platform Cisco Integrated Services Virtual Router</FullProductName>
+        </Branch>
+      </Branch>
+      <Branch Name="Cisco IOS XE SD-WAN Software" Type="Product Name">
+        <FullProductName ProductID="CVRFPID-275036">Cisco IOS XE SD-WAN Software </FullProductName>
+      </Branch>
+    </Branch>
+    <Relationship RelatesToProductReference="CVRFPID-277416" RelationType="Installed On" ProductReference="CVRFPID-275043">
+      <FullProductName ProductID="CVRFPID-275043:277416">Cisco IOS XE SD-WAN Software 16.9.1 when installed on Cisco 1000 Series Integrated Services Routers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277417" RelationType="Installed On" ProductReference="CVRFPID-275043">
+      <FullProductName ProductID="CVRFPID-275043:277417">Cisco IOS XE SD-WAN Software 16.9.1 when installed on Cisco ASR 1000 Series Aggregation Services Routers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277455" RelationType="Installed On" ProductReference="CVRFPID-275043">
+      <FullProductName ProductID="CVRFPID-275043:277455">Cisco IOS XE SD-WAN Software 16.9.1 when installed on Cisco 4000 Series Integrated Services Routers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-279747" RelationType="Installed On" ProductReference="CVRFPID-275043">
+      <FullProductName ProductID="CVRFPID-275043:279747">Cisco IOS XE SD-WAN Software 16.9.1 when installed on Cisco Integrated Services Virtual Router</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277416" RelationType="Installed On" ProductReference="CVRFPID-275044">
+      <FullProductName ProductID="CVRFPID-275044:277416">Cisco IOS XE SD-WAN Software 16.9.2 when installed on Cisco 1000 Series Integrated Services Routers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277417" RelationType="Installed On" ProductReference="CVRFPID-275044">
+      <FullProductName ProductID="CVRFPID-275044:277417">Cisco IOS XE SD-WAN Software 16.9.2 when installed on Cisco ASR 1000 Series Aggregation Services Routers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277455" RelationType="Installed On" ProductReference="CVRFPID-275044">
+      <FullProductName ProductID="CVRFPID-275044:277455">Cisco IOS XE SD-WAN Software 16.9.2 when installed on Cisco 4000 Series Integrated Services Routers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-279747" RelationType="Installed On" ProductReference="CVRFPID-275044">
+      <FullProductName ProductID="CVRFPID-275044:279747">Cisco IOS XE SD-WAN Software 16.9.2 when installed on Cisco Integrated Services Virtual Router</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277416" RelationType="Installed On" ProductReference="CVRFPID-275045">
+      <FullProductName ProductID="CVRFPID-275045:277416">Cisco IOS XE SD-WAN Software 16.9.3 when installed on Cisco 1000 Series Integrated Services Routers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277417" RelationType="Installed On" ProductReference="CVRFPID-275045">
+      <FullProductName ProductID="CVRFPID-275045:277417">Cisco IOS XE SD-WAN Software 16.9.3 when installed on Cisco ASR 1000 Series Aggregation Services Routers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277455" RelationType="Installed On" ProductReference="CVRFPID-275045">
+      <FullProductName ProductID="CVRFPID-275045:277455">Cisco IOS XE SD-WAN Software 16.9.3 when installed on Cisco 4000 Series Integrated Services Routers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-279747" RelationType="Installed On" ProductReference="CVRFPID-275045">
+      <FullProductName ProductID="CVRFPID-275045:279747">Cisco IOS XE SD-WAN Software 16.9.3 when installed on Cisco Integrated Services Virtual Router</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277416" RelationType="Installed On" ProductReference="CVRFPID-275046">
+      <FullProductName ProductID="CVRFPID-275046:277416">Cisco IOS XE SD-WAN Software 16.9.4 when installed on Cisco 1000 Series Integrated Services Routers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277417" RelationType="Installed On" ProductReference="CVRFPID-275046">
+      <FullProductName ProductID="CVRFPID-275046:277417">Cisco IOS XE SD-WAN Software 16.9.4 when installed on Cisco ASR 1000 Series Aggregation Services Routers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277455" RelationType="Installed On" ProductReference="CVRFPID-275046">
+      <FullProductName ProductID="CVRFPID-275046:277455">Cisco IOS XE SD-WAN Software 16.9.4 when installed on Cisco 4000 Series Integrated Services Routers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-279747" RelationType="Installed On" ProductReference="CVRFPID-275046">
+      <FullProductName ProductID="CVRFPID-275046:279747">Cisco IOS XE SD-WAN Software 16.9.4 when installed on Cisco Integrated Services Virtual Router</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277416" RelationType="Installed On" ProductReference="CVRFPID-275047">
+      <FullProductName ProductID="CVRFPID-275047:277416">Cisco IOS XE SD-WAN Software 16.10.1 when installed on Cisco 1000 Series Integrated Services Routers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277417" RelationType="Installed On" ProductReference="CVRFPID-275047">
+      <FullProductName ProductID="CVRFPID-275047:277417">Cisco IOS XE SD-WAN Software 16.10.1 when installed on Cisco ASR 1000 Series Aggregation Services Routers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277455" RelationType="Installed On" ProductReference="CVRFPID-275047">
+      <FullProductName ProductID="CVRFPID-275047:277455">Cisco IOS XE SD-WAN Software 16.10.1 when installed on Cisco 4000 Series Integrated Services Routers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-279747" RelationType="Installed On" ProductReference="CVRFPID-275047">
+      <FullProductName ProductID="CVRFPID-275047:279747">Cisco IOS XE SD-WAN Software 16.10.1 when installed on Cisco Integrated Services Virtual Router</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277416" RelationType="Installed On" ProductReference="CVRFPID-275048">
+      <FullProductName ProductID="CVRFPID-275048:277416">Cisco IOS XE SD-WAN Software 16.10.2 when installed on Cisco 1000 Series Integrated Services Routers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277417" RelationType="Installed On" ProductReference="CVRFPID-275048">
+      <FullProductName ProductID="CVRFPID-275048:277417">Cisco IOS XE SD-WAN Software 16.10.2 when installed on Cisco ASR 1000 Series Aggregation Services Routers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277455" RelationType="Installed On" ProductReference="CVRFPID-275048">
+      <FullProductName ProductID="CVRFPID-275048:277455">Cisco IOS XE SD-WAN Software 16.10.2 when installed on Cisco 4000 Series Integrated Services Routers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-279747" RelationType="Installed On" ProductReference="CVRFPID-275048">
+      <FullProductName ProductID="CVRFPID-275048:279747">Cisco IOS XE SD-WAN Software 16.10.2 when installed on Cisco Integrated Services Virtual Router</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277416" RelationType="Installed On" ProductReference="CVRFPID-275049">
+      <FullProductName ProductID="CVRFPID-275049:277416">Cisco IOS XE SD-WAN Software 16.10.3 when installed on Cisco 1000 Series Integrated Services Routers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277417" RelationType="Installed On" ProductReference="CVRFPID-275049">
+      <FullProductName ProductID="CVRFPID-275049:277417">Cisco IOS XE SD-WAN Software 16.10.3 when installed on Cisco ASR 1000 Series Aggregation Services Routers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277455" RelationType="Installed On" ProductReference="CVRFPID-275049">
+      <FullProductName ProductID="CVRFPID-275049:277455">Cisco IOS XE SD-WAN Software 16.10.3 when installed on Cisco 4000 Series Integrated Services Routers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-279747" RelationType="Installed On" ProductReference="CVRFPID-275049">
+      <FullProductName ProductID="CVRFPID-275049:279747">Cisco IOS XE SD-WAN Software 16.10.3 when installed on Cisco Integrated Services Virtual Router</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277415" RelationType="Installed On" ProductReference="CVRFPID-275050">
+      <FullProductName ProductID="CVRFPID-275050:277415">Cisco IOS XE SD-WAN Software 16.10.3a when installed on Cisco Cloud Services Router 1000V Series</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277416" RelationType="Installed On" ProductReference="CVRFPID-275050">
+      <FullProductName ProductID="CVRFPID-275050:277416">Cisco IOS XE SD-WAN Software 16.10.3a when installed on Cisco 1000 Series Integrated Services Routers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277417" RelationType="Installed On" ProductReference="CVRFPID-275050">
+      <FullProductName ProductID="CVRFPID-275050:277417">Cisco IOS XE SD-WAN Software 16.10.3a when installed on Cisco ASR 1000 Series Aggregation Services Routers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277455" RelationType="Installed On" ProductReference="CVRFPID-275050">
+      <FullProductName ProductID="CVRFPID-275050:277455">Cisco IOS XE SD-WAN Software 16.10.3a when installed on Cisco 4000 Series Integrated Services Routers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-279747" RelationType="Installed On" ProductReference="CVRFPID-275050">
+      <FullProductName ProductID="CVRFPID-275050:279747">Cisco IOS XE SD-WAN Software 16.10.3a when installed on Cisco Integrated Services Virtual Router</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277415" RelationType="Installed On" ProductReference="CVRFPID-275051">
+      <FullProductName ProductID="CVRFPID-275051:277415">Cisco IOS XE SD-WAN Software 16.10.3b when installed on Cisco Cloud Services Router 1000V Series</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277416" RelationType="Installed On" ProductReference="CVRFPID-275051">
+      <FullProductName ProductID="CVRFPID-275051:277416">Cisco IOS XE SD-WAN Software 16.10.3b when installed on Cisco 1000 Series Integrated Services Routers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277417" RelationType="Installed On" ProductReference="CVRFPID-275051">
+      <FullProductName ProductID="CVRFPID-275051:277417">Cisco IOS XE SD-WAN Software 16.10.3b when installed on Cisco ASR 1000 Series Aggregation Services Routers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277455" RelationType="Installed On" ProductReference="CVRFPID-275051">
+      <FullProductName ProductID="CVRFPID-275051:277455">Cisco IOS XE SD-WAN Software 16.10.3b when installed on Cisco 4000 Series Integrated Services Routers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-279747" RelationType="Installed On" ProductReference="CVRFPID-275051">
+      <FullProductName ProductID="CVRFPID-275051:279747">Cisco IOS XE SD-WAN Software 16.10.3b when installed on Cisco Integrated Services Virtual Router</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277415" RelationType="Installed On" ProductReference="CVRFPID-275052">
+      <FullProductName ProductID="CVRFPID-275052:277415">Cisco IOS XE SD-WAN Software 16.10.4 when installed on Cisco Cloud Services Router 1000V Series</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277416" RelationType="Installed On" ProductReference="CVRFPID-275052">
+      <FullProductName ProductID="CVRFPID-275052:277416">Cisco IOS XE SD-WAN Software 16.10.4 when installed on Cisco 1000 Series Integrated Services Routers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277417" RelationType="Installed On" ProductReference="CVRFPID-275052">
+      <FullProductName ProductID="CVRFPID-275052:277417">Cisco IOS XE SD-WAN Software 16.10.4 when installed on Cisco ASR 1000 Series Aggregation Services Routers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277455" RelationType="Installed On" ProductReference="CVRFPID-275052">
+      <FullProductName ProductID="CVRFPID-275052:277455">Cisco IOS XE SD-WAN Software 16.10.4 when installed on Cisco 4000 Series Integrated Services Routers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-279747" RelationType="Installed On" ProductReference="CVRFPID-275052">
+      <FullProductName ProductID="CVRFPID-275052:279747">Cisco IOS XE SD-WAN Software 16.10.4 when installed on Cisco Integrated Services Virtual Router</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277415" RelationType="Installed On" ProductReference="CVRFPID-280948">
+      <FullProductName ProductID="CVRFPID-280948:277415">Cisco IOS XE SD-WAN Software 16.10.5 when installed on Cisco Cloud Services Router 1000V Series</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277416" RelationType="Installed On" ProductReference="CVRFPID-280948">
+      <FullProductName ProductID="CVRFPID-280948:277416">Cisco IOS XE SD-WAN Software 16.10.5 when installed on Cisco 1000 Series Integrated Services Routers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277417" RelationType="Installed On" ProductReference="CVRFPID-280948">
+      <FullProductName ProductID="CVRFPID-280948:277417">Cisco IOS XE SD-WAN Software 16.10.5 when installed on Cisco ASR 1000 Series Aggregation Services Routers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277455" RelationType="Installed On" ProductReference="CVRFPID-280948">
+      <FullProductName ProductID="CVRFPID-280948:277455">Cisco IOS XE SD-WAN Software 16.10.5 when installed on Cisco 4000 Series Integrated Services Routers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-279747" RelationType="Installed On" ProductReference="CVRFPID-280948">
+      <FullProductName ProductID="CVRFPID-280948:279747">Cisco IOS XE SD-WAN Software 16.10.5 when installed on Cisco Integrated Services Virtual Router</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277415" RelationType="Installed On" ProductReference="CVRFPID-280949">
+      <FullProductName ProductID="CVRFPID-280949:277415">Cisco IOS XE SD-WAN Software 16.10.6 when installed on Cisco Cloud Services Router 1000V Series</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277416" RelationType="Installed On" ProductReference="CVRFPID-280949">
+      <FullProductName ProductID="CVRFPID-280949:277416">Cisco IOS XE SD-WAN Software 16.10.6 when installed on Cisco 1000 Series Integrated Services Routers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277417" RelationType="Installed On" ProductReference="CVRFPID-280949">
+      <FullProductName ProductID="CVRFPID-280949:277417">Cisco IOS XE SD-WAN Software 16.10.6 when installed on Cisco ASR 1000 Series Aggregation Services Routers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277455" RelationType="Installed On" ProductReference="CVRFPID-280949">
+      <FullProductName ProductID="CVRFPID-280949:277455">Cisco IOS XE SD-WAN Software 16.10.6 when installed on Cisco 4000 Series Integrated Services Routers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-279747" RelationType="Installed On" ProductReference="CVRFPID-280949">
+      <FullProductName ProductID="CVRFPID-280949:279747">Cisco IOS XE SD-WAN Software 16.10.6 when installed on Cisco Integrated Services Virtual Router</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277415" RelationType="Installed On" ProductReference="CVRFPID-275053">
+      <FullProductName ProductID="CVRFPID-275053:277415">Cisco IOS XE SD-WAN Software 16.11.1a when installed on Cisco Cloud Services Router 1000V Series</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277416" RelationType="Installed On" ProductReference="CVRFPID-275053">
+      <FullProductName ProductID="CVRFPID-275053:277416">Cisco IOS XE SD-WAN Software 16.11.1a when installed on Cisco 1000 Series Integrated Services Routers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277417" RelationType="Installed On" ProductReference="CVRFPID-275053">
+      <FullProductName ProductID="CVRFPID-275053:277417">Cisco IOS XE SD-WAN Software 16.11.1a when installed on Cisco ASR 1000 Series Aggregation Services Routers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277455" RelationType="Installed On" ProductReference="CVRFPID-275053">
+      <FullProductName ProductID="CVRFPID-275053:277455">Cisco IOS XE SD-WAN Software 16.11.1a when installed on Cisco 4000 Series Integrated Services Routers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-279747" RelationType="Installed On" ProductReference="CVRFPID-275053">
+      <FullProductName ProductID="CVRFPID-275053:279747">Cisco IOS XE SD-WAN Software 16.11.1a when installed on Cisco Integrated Services Virtual Router</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277416" RelationType="Installed On" ProductReference="CVRFPID-280950">
+      <FullProductName ProductID="CVRFPID-280950:277416">Cisco IOS XE SD-WAN Software 16.11.1 when installed on Cisco 1000 Series Integrated Services Routers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277417" RelationType="Installed On" ProductReference="CVRFPID-280950">
+      <FullProductName ProductID="CVRFPID-280950:277417">Cisco IOS XE SD-WAN Software 16.11.1 when installed on Cisco ASR 1000 Series Aggregation Services Routers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277455" RelationType="Installed On" ProductReference="CVRFPID-280950">
+      <FullProductName ProductID="CVRFPID-280950:277455">Cisco IOS XE SD-WAN Software 16.11.1 when installed on Cisco 4000 Series Integrated Services Routers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-279747" RelationType="Installed On" ProductReference="CVRFPID-280950">
+      <FullProductName ProductID="CVRFPID-280950:279747">Cisco IOS XE SD-WAN Software 16.11.1 when installed on Cisco Integrated Services Virtual Router</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277415" RelationType="Installed On" ProductReference="CVRFPID-280951">
+      <FullProductName ProductID="CVRFPID-280951:277415">Cisco IOS XE SD-WAN Software 16.11.1b when installed on Cisco Cloud Services Router 1000V Series</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277416" RelationType="Installed On" ProductReference="CVRFPID-280951">
+      <FullProductName ProductID="CVRFPID-280951:277416">Cisco IOS XE SD-WAN Software 16.11.1b when installed on Cisco 1000 Series Integrated Services Routers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277417" RelationType="Installed On" ProductReference="CVRFPID-280951">
+      <FullProductName ProductID="CVRFPID-280951:277417">Cisco IOS XE SD-WAN Software 16.11.1b when installed on Cisco ASR 1000 Series Aggregation Services Routers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277455" RelationType="Installed On" ProductReference="CVRFPID-280951">
+      <FullProductName ProductID="CVRFPID-280951:277455">Cisco IOS XE SD-WAN Software 16.11.1b when installed on Cisco 4000 Series Integrated Services Routers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-279747" RelationType="Installed On" ProductReference="CVRFPID-280951">
+      <FullProductName ProductID="CVRFPID-280951:279747">Cisco IOS XE SD-WAN Software 16.11.1b when installed on Cisco Integrated Services Virtual Router</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277415" RelationType="Installed On" ProductReference="CVRFPID-280952">
+      <FullProductName ProductID="CVRFPID-280952:277415">Cisco IOS XE SD-WAN Software 16.11.1d when installed on Cisco Cloud Services Router 1000V Series</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-279747" RelationType="Installed On" ProductReference="CVRFPID-280952">
+      <FullProductName ProductID="CVRFPID-280952:279747">Cisco IOS XE SD-WAN Software 16.11.1d when installed on Cisco Integrated Services Virtual Router</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277455" RelationType="Installed On" ProductReference="CVRFPID-280953">
+      <FullProductName ProductID="CVRFPID-280953:277455">Cisco IOS XE SD-WAN Software 16.11.1f when installed on Cisco 4000 Series Integrated Services Routers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277415" RelationType="Installed On" ProductReference="CVRFPID-280954">
+      <FullProductName ProductID="CVRFPID-280954:277415">Cisco IOS XE SD-WAN Software 16.11.1s when installed on Cisco Cloud Services Router 1000V Series</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277416" RelationType="Installed On" ProductReference="CVRFPID-280954">
+      <FullProductName ProductID="CVRFPID-280954:277416">Cisco IOS XE SD-WAN Software 16.11.1s when installed on Cisco 1000 Series Integrated Services Routers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277417" RelationType="Installed On" ProductReference="CVRFPID-280954">
+      <FullProductName ProductID="CVRFPID-280954:277417">Cisco IOS XE SD-WAN Software 16.11.1s when installed on Cisco ASR 1000 Series Aggregation Services Routers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277455" RelationType="Installed On" ProductReference="CVRFPID-280954">
+      <FullProductName ProductID="CVRFPID-280954:277455">Cisco IOS XE SD-WAN Software 16.11.1s when installed on Cisco 4000 Series Integrated Services Routers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-279747" RelationType="Installed On" ProductReference="CVRFPID-280954">
+      <FullProductName ProductID="CVRFPID-280954:279747">Cisco IOS XE SD-WAN Software 16.11.1s when installed on Cisco Integrated Services Virtual Router</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277414" RelationType="Installed On" ProductReference="CVRFPID-275056">
+      <FullProductName ProductID="CVRFPID-275056:277414">Cisco IOS XE SD-WAN Software 16.12.1b when installed on Cisco 1100 Series Industrial Integrated Services Routers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277415" RelationType="Installed On" ProductReference="CVRFPID-275056">
+      <FullProductName ProductID="CVRFPID-275056:277415">Cisco IOS XE SD-WAN Software 16.12.1b when installed on Cisco Cloud Services Router 1000V Series</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277416" RelationType="Installed On" ProductReference="CVRFPID-275056">
+      <FullProductName ProductID="CVRFPID-275056:277416">Cisco IOS XE SD-WAN Software 16.12.1b when installed on Cisco 1000 Series Integrated Services Routers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277417" RelationType="Installed On" ProductReference="CVRFPID-275056">
+      <FullProductName ProductID="CVRFPID-275056:277417">Cisco IOS XE SD-WAN Software 16.12.1b when installed on Cisco ASR 1000 Series Aggregation Services Routers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277455" RelationType="Installed On" ProductReference="CVRFPID-275056">
+      <FullProductName ProductID="CVRFPID-275056:277455">Cisco IOS XE SD-WAN Software 16.12.1b when installed on Cisco 4000 Series Integrated Services Routers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-279747" RelationType="Installed On" ProductReference="CVRFPID-275056">
+      <FullProductName ProductID="CVRFPID-275056:279747">Cisco IOS XE SD-WAN Software 16.12.1b when installed on Cisco Integrated Services Virtual Router</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277414" RelationType="Installed On" ProductReference="CVRFPID-275057">
+      <FullProductName ProductID="CVRFPID-275057:277414">Cisco IOS XE SD-WAN Software 16.12.1d when installed on Cisco 1100 Series Industrial Integrated Services Routers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277415" RelationType="Installed On" ProductReference="CVRFPID-275057">
+      <FullProductName ProductID="CVRFPID-275057:277415">Cisco IOS XE SD-WAN Software 16.12.1d when installed on Cisco Cloud Services Router 1000V Series</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277416" RelationType="Installed On" ProductReference="CVRFPID-275057">
+      <FullProductName ProductID="CVRFPID-275057:277416">Cisco IOS XE SD-WAN Software 16.12.1d when installed on Cisco 1000 Series Integrated Services Routers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277417" RelationType="Installed On" ProductReference="CVRFPID-275057">
+      <FullProductName ProductID="CVRFPID-275057:277417">Cisco IOS XE SD-WAN Software 16.12.1d when installed on Cisco ASR 1000 Series Aggregation Services Routers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277455" RelationType="Installed On" ProductReference="CVRFPID-275057">
+      <FullProductName ProductID="CVRFPID-275057:277455">Cisco IOS XE SD-WAN Software 16.12.1d when installed on Cisco 4000 Series Integrated Services Routers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-279747" RelationType="Installed On" ProductReference="CVRFPID-275057">
+      <FullProductName ProductID="CVRFPID-275057:279747">Cisco IOS XE SD-WAN Software 16.12.1d when installed on Cisco Integrated Services Virtual Router</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277414" RelationType="Installed On" ProductReference="CVRFPID-275058">
+      <FullProductName ProductID="CVRFPID-275058:277414">Cisco IOS XE SD-WAN Software 16.12.1e when installed on Cisco 1100 Series Industrial Integrated Services Routers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277415" RelationType="Installed On" ProductReference="CVRFPID-275058">
+      <FullProductName ProductID="CVRFPID-275058:277415">Cisco IOS XE SD-WAN Software 16.12.1e when installed on Cisco Cloud Services Router 1000V Series</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277416" RelationType="Installed On" ProductReference="CVRFPID-275058">
+      <FullProductName ProductID="CVRFPID-275058:277416">Cisco IOS XE SD-WAN Software 16.12.1e when installed on Cisco 1000 Series Integrated Services Routers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277417" RelationType="Installed On" ProductReference="CVRFPID-275058">
+      <FullProductName ProductID="CVRFPID-275058:277417">Cisco IOS XE SD-WAN Software 16.12.1e when installed on Cisco ASR 1000 Series Aggregation Services Routers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277455" RelationType="Installed On" ProductReference="CVRFPID-275058">
+      <FullProductName ProductID="CVRFPID-275058:277455">Cisco IOS XE SD-WAN Software 16.12.1e when installed on Cisco 4000 Series Integrated Services Routers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-279747" RelationType="Installed On" ProductReference="CVRFPID-275058">
+      <FullProductName ProductID="CVRFPID-275058:279747">Cisco IOS XE SD-WAN Software 16.12.1e when installed on Cisco Integrated Services Virtual Router</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277414" RelationType="Installed On" ProductReference="CVRFPID-275059">
+      <FullProductName ProductID="CVRFPID-275059:277414">Cisco IOS XE SD-WAN Software 16.12.2r when installed on Cisco 1100 Series Industrial Integrated Services Routers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277415" RelationType="Installed On" ProductReference="CVRFPID-275059">
+      <FullProductName ProductID="CVRFPID-275059:277415">Cisco IOS XE SD-WAN Software 16.12.2r when installed on Cisco Cloud Services Router 1000V Series</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277416" RelationType="Installed On" ProductReference="CVRFPID-275059">
+      <FullProductName ProductID="CVRFPID-275059:277416">Cisco IOS XE SD-WAN Software 16.12.2r when installed on Cisco 1000 Series Integrated Services Routers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277417" RelationType="Installed On" ProductReference="CVRFPID-275059">
+      <FullProductName ProductID="CVRFPID-275059:277417">Cisco IOS XE SD-WAN Software 16.12.2r when installed on Cisco ASR 1000 Series Aggregation Services Routers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277455" RelationType="Installed On" ProductReference="CVRFPID-275059">
+      <FullProductName ProductID="CVRFPID-275059:277455">Cisco IOS XE SD-WAN Software 16.12.2r when installed on Cisco 4000 Series Integrated Services Routers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-279747" RelationType="Installed On" ProductReference="CVRFPID-275059">
+      <FullProductName ProductID="CVRFPID-275059:279747">Cisco IOS XE SD-WAN Software 16.12.2r when installed on Cisco Integrated Services Virtual Router</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277414" RelationType="Installed On" ProductReference="CVRFPID-280955">
+      <FullProductName ProductID="CVRFPID-280955:277414">Cisco IOS XE SD-WAN Software 16.12.1 when installed on Cisco 1100 Series Industrial Integrated Services Routers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277415" RelationType="Installed On" ProductReference="CVRFPID-280955">
+      <FullProductName ProductID="CVRFPID-280955:277415">Cisco IOS XE SD-WAN Software 16.12.1 when installed on Cisco Cloud Services Router 1000V Series</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277416" RelationType="Installed On" ProductReference="CVRFPID-280955">
+      <FullProductName ProductID="CVRFPID-280955:277416">Cisco IOS XE SD-WAN Software 16.12.1 when installed on Cisco 1000 Series Integrated Services Routers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277417" RelationType="Installed On" ProductReference="CVRFPID-280955">
+      <FullProductName ProductID="CVRFPID-280955:277417">Cisco IOS XE SD-WAN Software 16.12.1 when installed on Cisco ASR 1000 Series Aggregation Services Routers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277455" RelationType="Installed On" ProductReference="CVRFPID-280955">
+      <FullProductName ProductID="CVRFPID-280955:277455">Cisco IOS XE SD-WAN Software 16.12.1 when installed on Cisco 4000 Series Integrated Services Routers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-279747" RelationType="Installed On" ProductReference="CVRFPID-280955">
+      <FullProductName ProductID="CVRFPID-280955:279747">Cisco IOS XE SD-WAN Software 16.12.1 when installed on Cisco Integrated Services Virtual Router</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277414" RelationType="Installed On" ProductReference="CVRFPID-280956">
+      <FullProductName ProductID="CVRFPID-280956:277414">Cisco IOS XE SD-WAN Software 16.12.1a when installed on Cisco 1100 Series Industrial Integrated Services Routers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277415" RelationType="Installed On" ProductReference="CVRFPID-280956">
+      <FullProductName ProductID="CVRFPID-280956:277415">Cisco IOS XE SD-WAN Software 16.12.1a when installed on Cisco Cloud Services Router 1000V Series</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277416" RelationType="Installed On" ProductReference="CVRFPID-280956">
+      <FullProductName ProductID="CVRFPID-280956:277416">Cisco IOS XE SD-WAN Software 16.12.1a when installed on Cisco 1000 Series Integrated Services Routers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277417" RelationType="Installed On" ProductReference="CVRFPID-280956">
+      <FullProductName ProductID="CVRFPID-280956:277417">Cisco IOS XE SD-WAN Software 16.12.1a when installed on Cisco ASR 1000 Series Aggregation Services Routers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277455" RelationType="Installed On" ProductReference="CVRFPID-280956">
+      <FullProductName ProductID="CVRFPID-280956:277455">Cisco IOS XE SD-WAN Software 16.12.1a when installed on Cisco 4000 Series Integrated Services Routers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-279747" RelationType="Installed On" ProductReference="CVRFPID-280956">
+      <FullProductName ProductID="CVRFPID-280956:279747">Cisco IOS XE SD-WAN Software 16.12.1a when installed on Cisco Integrated Services Virtual Router</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277414" RelationType="Installed On" ProductReference="CVRFPID-280957">
+      <FullProductName ProductID="CVRFPID-280957:277414">Cisco IOS XE SD-WAN Software 16.12.1b1 when installed on Cisco 1100 Series Industrial Integrated Services Routers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277415" RelationType="Installed On" ProductReference="CVRFPID-280957">
+      <FullProductName ProductID="CVRFPID-280957:277415">Cisco IOS XE SD-WAN Software 16.12.1b1 when installed on Cisco Cloud Services Router 1000V Series</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277416" RelationType="Installed On" ProductReference="CVRFPID-280957">
+      <FullProductName ProductID="CVRFPID-280957:277416">Cisco IOS XE SD-WAN Software 16.12.1b1 when installed on Cisco 1000 Series Integrated Services Routers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277417" RelationType="Installed On" ProductReference="CVRFPID-280957">
+      <FullProductName ProductID="CVRFPID-280957:277417">Cisco IOS XE SD-WAN Software 16.12.1b1 when installed on Cisco ASR 1000 Series Aggregation Services Routers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277455" RelationType="Installed On" ProductReference="CVRFPID-280957">
+      <FullProductName ProductID="CVRFPID-280957:277455">Cisco IOS XE SD-WAN Software 16.12.1b1 when installed on Cisco 4000 Series Integrated Services Routers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-279747" RelationType="Installed On" ProductReference="CVRFPID-280957">
+      <FullProductName ProductID="CVRFPID-280957:279747">Cisco IOS XE SD-WAN Software 16.12.1b1 when installed on Cisco Integrated Services Virtual Router</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277414" RelationType="Installed On" ProductReference="CVRFPID-280958">
+      <FullProductName ProductID="CVRFPID-280958:277414">Cisco IOS XE SD-WAN Software 16.12.1c when installed on Cisco 1100 Series Industrial Integrated Services Routers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277415" RelationType="Installed On" ProductReference="CVRFPID-280958">
+      <FullProductName ProductID="CVRFPID-280958:277415">Cisco IOS XE SD-WAN Software 16.12.1c when installed on Cisco Cloud Services Router 1000V Series</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277416" RelationType="Installed On" ProductReference="CVRFPID-280958">
+      <FullProductName ProductID="CVRFPID-280958:277416">Cisco IOS XE SD-WAN Software 16.12.1c when installed on Cisco 1000 Series Integrated Services Routers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277417" RelationType="Installed On" ProductReference="CVRFPID-280958">
+      <FullProductName ProductID="CVRFPID-280958:277417">Cisco IOS XE SD-WAN Software 16.12.1c when installed on Cisco ASR 1000 Series Aggregation Services Routers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277455" RelationType="Installed On" ProductReference="CVRFPID-280958">
+      <FullProductName ProductID="CVRFPID-280958:277455">Cisco IOS XE SD-WAN Software 16.12.1c when installed on Cisco 4000 Series Integrated Services Routers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-279747" RelationType="Installed On" ProductReference="CVRFPID-280958">
+      <FullProductName ProductID="CVRFPID-280958:279747">Cisco IOS XE SD-WAN Software 16.12.1c when installed on Cisco Integrated Services Virtual Router</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277414" RelationType="Installed On" ProductReference="CVRFPID-280959">
+      <FullProductName ProductID="CVRFPID-280959:277414">Cisco IOS XE SD-WAN Software 16.12.3 when installed on Cisco 1100 Series Industrial Integrated Services Routers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277415" RelationType="Installed On" ProductReference="CVRFPID-280959">
+      <FullProductName ProductID="CVRFPID-280959:277415">Cisco IOS XE SD-WAN Software 16.12.3 when installed on Cisco Cloud Services Router 1000V Series</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277416" RelationType="Installed On" ProductReference="CVRFPID-280959">
+      <FullProductName ProductID="CVRFPID-280959:277416">Cisco IOS XE SD-WAN Software 16.12.3 when installed on Cisco 1000 Series Integrated Services Routers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277417" RelationType="Installed On" ProductReference="CVRFPID-280959">
+      <FullProductName ProductID="CVRFPID-280959:277417">Cisco IOS XE SD-WAN Software 16.12.3 when installed on Cisco ASR 1000 Series Aggregation Services Routers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277455" RelationType="Installed On" ProductReference="CVRFPID-280959">
+      <FullProductName ProductID="CVRFPID-280959:277455">Cisco IOS XE SD-WAN Software 16.12.3 when installed on Cisco 4000 Series Integrated Services Routers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-279747" RelationType="Installed On" ProductReference="CVRFPID-280959">
+      <FullProductName ProductID="CVRFPID-280959:279747">Cisco IOS XE SD-WAN Software 16.12.3 when installed on Cisco Integrated Services Virtual Router</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277414" RelationType="Installed On" ProductReference="CVRFPID-280960">
+      <FullProductName ProductID="CVRFPID-280960:277414">Cisco IOS XE SD-WAN Software 16.12.4 when installed on Cisco 1100 Series Industrial Integrated Services Routers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277415" RelationType="Installed On" ProductReference="CVRFPID-280960">
+      <FullProductName ProductID="CVRFPID-280960:277415">Cisco IOS XE SD-WAN Software 16.12.4 when installed on Cisco Cloud Services Router 1000V Series</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277416" RelationType="Installed On" ProductReference="CVRFPID-280960">
+      <FullProductName ProductID="CVRFPID-280960:277416">Cisco IOS XE SD-WAN Software 16.12.4 when installed on Cisco 1000 Series Integrated Services Routers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277417" RelationType="Installed On" ProductReference="CVRFPID-280960">
+      <FullProductName ProductID="CVRFPID-280960:277417">Cisco IOS XE SD-WAN Software 16.12.4 when installed on Cisco ASR 1000 Series Aggregation Services Routers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277455" RelationType="Installed On" ProductReference="CVRFPID-280960">
+      <FullProductName ProductID="CVRFPID-280960:277455">Cisco IOS XE SD-WAN Software 16.12.4 when installed on Cisco 4000 Series Integrated Services Routers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-279747" RelationType="Installed On" ProductReference="CVRFPID-280960">
+      <FullProductName ProductID="CVRFPID-280960:279747">Cisco IOS XE SD-WAN Software 16.12.4 when installed on Cisco Integrated Services Virtual Router</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277415" RelationType="Installed On" ProductReference="CVRFPID-280961">
+      <FullProductName ProductID="CVRFPID-280961:277415">Cisco IOS XE SD-WAN Software 16.12.4a when installed on Cisco Cloud Services Router 1000V Series</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277455" RelationType="Installed On" ProductReference="CVRFPID-280961">
+      <FullProductName ProductID="CVRFPID-280961:277455">Cisco IOS XE SD-WAN Software 16.12.4a when installed on Cisco 4000 Series Integrated Services Routers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-279747" RelationType="Installed On" ProductReference="CVRFPID-280961">
+      <FullProductName ProductID="CVRFPID-280961:279747">Cisco IOS XE SD-WAN Software 16.12.4a when installed on Cisco Integrated Services Virtual Router</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277414" RelationType="Installed On" ProductReference="CVRFPID-281296">
+      <FullProductName ProductID="CVRFPID-281296:277414">Cisco IOS XE SD-WAN Software 16.12.5 when installed on Cisco 1100 Series Industrial Integrated Services Routers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277415" RelationType="Installed On" ProductReference="CVRFPID-281296">
+      <FullProductName ProductID="CVRFPID-281296:277415">Cisco IOS XE SD-WAN Software 16.12.5 when installed on Cisco Cloud Services Router 1000V Series</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277416" RelationType="Installed On" ProductReference="CVRFPID-281296">
+      <FullProductName ProductID="CVRFPID-281296:277416">Cisco IOS XE SD-WAN Software 16.12.5 when installed on Cisco 1000 Series Integrated Services Routers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277417" RelationType="Installed On" ProductReference="CVRFPID-281296">
+      <FullProductName ProductID="CVRFPID-281296:277417">Cisco IOS XE SD-WAN Software 16.12.5 when installed on Cisco ASR 1000 Series Aggregation Services Routers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277455" RelationType="Installed On" ProductReference="CVRFPID-281296">
+      <FullProductName ProductID="CVRFPID-281296:277455">Cisco IOS XE SD-WAN Software 16.12.5 when installed on Cisco 4000 Series Integrated Services Routers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-279747" RelationType="Installed On" ProductReference="CVRFPID-281296">
+      <FullProductName ProductID="CVRFPID-281296:279747">Cisco IOS XE SD-WAN Software 16.12.5 when installed on Cisco Integrated Services Virtual Router</FullProductName>
+    </Relationship>
+  </ProductTree>
+  <Vulnerability Ordinal="1" xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln">
+    <Title>vuln-CVE-2021-1619</Title>
+    <ID SystemName="Cisco Bug ID">CSCvt53563</ID>
+    <Notes>
+      <Note Title="Cisco Bug IDs" Type="Other" Ordinal="1">CSCvt53563</Note>
+      <Note Title="Affected Product Comprehensiveness" Type="Other" Ordinal="2">Complete.</Note>
+    </Notes>
+    <CVE>CVE-2021-1619</CVE>
+    <ProductStatuses>
+      <Status Type="Known Affected">
+        <ProductID>CVRFPID-213960</ProductID>
+        <ProductID>CVRFPID-214051</ProductID>
+        <ProductID>CVRFPID-217255</ProductID>
+        <ProductID>CVRFPID-217256</ProductID>
+        <ProductID>CVRFPID-217257</ProductID>
+        <ProductID>CVRFPID-217259</ProductID>
+        <ProductID>CVRFPID-218901</ProductID>
+        <ProductID>CVRFPID-218903</ProductID>
+        <ProductID>CVRFPID-218905</ProductID>
+        <ProductID>CVRFPID-220802</ProductID>
+        <ProductID>CVRFPID-222711</ProductID>
+        <ProductID>CVRFPID-225784</ProductID>
+        <ProductID>CVRFPID-225856</ProductID>
+        <ProductID>CVRFPID-225858</ProductID>
+        <ProductID>CVRFPID-226330</ProductID>
+        <ProductID>CVRFPID-227918</ProductID>
+        <ProductID>CVRFPID-227920</ProductID>
+        <ProductID>CVRFPID-228706</ProductID>
+        <ProductID>CVRFPID-229124</ProductID>
+        <ProductID>CVRFPID-229187</ProductID>
+        <ProductID>CVRFPID-231187</ProductID>
+        <ProductID>CVRFPID-231389</ProductID>
+        <ProductID>CVRFPID-231390</ProductID>
+        <ProductID>CVRFPID-231667</ProductID>
+        <ProductID>CVRFPID-231682</ProductID>
+        <ProductID>CVRFPID-232008</ProductID>
+        <ProductID>CVRFPID-232461</ProductID>
+        <ProductID>CVRFPID-232767</ProductID>
+        <ProductID>CVRFPID-233155</ProductID>
+        <ProductID>CVRFPID-235307</ProductID>
+        <ProductID>CVRFPID-235858</ProductID>
+        <ProductID>CVRFPID-236834</ProductID>
+        <ProductID>CVRFPID-236837</ProductID>
+        <ProductID>CVRFPID-237460</ProductID>
+        <ProductID>CVRFPID-239264</ProductID>
+        <ProductID>CVRFPID-241736</ProductID>
+        <ProductID>CVRFPID-242308</ProductID>
+        <ProductID>CVRFPID-242834</ProductID>
+        <ProductID>CVRFPID-243362</ProductID>
+        <ProductID>CVRFPID-244070</ProductID>
+        <ProductID>CVRFPID-244071</ProductID>
+        <ProductID>CVRFPID-244530</ProductID>
+        <ProductID>CVRFPID-244900</ProductID>
+        <ProductID>CVRFPID-245375</ProductID>
+        <ProductID>CVRFPID-245377</ProductID>
+        <ProductID>CVRFPID-247629</ProductID>
+        <ProductID>CVRFPID-248242</ProductID>
+        <ProductID>CVRFPID-249171</ProductID>
+        <ProductID>CVRFPID-250629</ProductID>
+        <ProductID>CVRFPID-251075</ProductID>
+        <ProductID>CVRFPID-251165</ProductID>
+        <ProductID>CVRFPID-251166</ProductID>
+        <ProductID>CVRFPID-251225</ProductID>
+        <ProductID>CVRFPID-252045</ProductID>
+        <ProductID>CVRFPID-252235</ProductID>
+        <ProductID>CVRFPID-252271</ProductID>
+        <ProductID>CVRFPID-252272</ProductID>
+        <ProductID>CVRFPID-252913</ProductID>
+        <ProductID>CVRFPID-252914</ProductID>
+        <ProductID>CVRFPID-254688</ProductID>
+        <ProductID>CVRFPID-257955</ProductID>
+        <ProductID>CVRFPID-257984</ProductID>
+        <ProductID>CVRFPID-258170</ProductID>
+        <ProductID>CVRFPID-258229</ProductID>
+        <ProductID>CVRFPID-258388</ProductID>
+        <ProductID>CVRFPID-258900</ProductID>
+        <ProductID>CVRFPID-260741</ProductID>
+        <ProductID>CVRFPID-260917</ProductID>
+        <ProductID>CVRFPID-261240</ProductID>
+        <ProductID>CVRFPID-261241</ProductID>
+        <ProductID>CVRFPID-261465</ProductID>
+        <ProductID>CVRFPID-262389</ProductID>
+        <ProductID>CVRFPID-262390</ProductID>
+        <ProductID>CVRFPID-262549</ProductID>
+        <ProductID>CVRFPID-262595</ProductID>
+        <ProductID>CVRFPID-263804</ProductID>
+        <ProductID>CVRFPID-264096</ProductID>
+        <ProductID>CVRFPID-265735</ProductID>
+        <ProductID>CVRFPID-265841</ProductID>
+        <ProductID>CVRFPID-266259</ProductID>
+        <ProductID>CVRFPID-267110</ProductID>
+        <ProductID>CVRFPID-267240</ProductID>
+        <ProductID>CVRFPID-267605</ProductID>
+        <ProductID>CVRFPID-268921</ProductID>
+        <ProductID>CVRFPID-270097</ProductID>
+        <ProductID>CVRFPID-271798</ProductID>
+        <ProductID>CVRFPID-271938</ProductID>
+        <ProductID>CVRFPID-272047</ProductID>
+        <ProductID>CVRFPID-272932</ProductID>
+        <ProductID>CVRFPID-273112</ProductID>
+        <ProductID>CVRFPID-273445</ProductID>
+        <ProductID>CVRFPID-273509</ProductID>
+        <ProductID>CVRFPID-273563</ProductID>
+        <ProductID>CVRFPID-273649</ProductID>
+        <ProductID>CVRFPID-274818</ProductID>
+        <ProductID>CVRFPID-274832</ProductID>
+        <ProductID>CVRFPID-275538</ProductID>
+        <ProductID>CVRFPID-276837</ProductID>
+        <ProductID>CVRFPID-277147</ProductID>
+        <ProductID>CVRFPID-277148</ProductID>
+        <ProductID>CVRFPID-277194</ProductID>
+        <ProductID>CVRFPID-277255</ProductID>
+        <ProductID>CVRFPID-277256</ProductID>
+        <ProductID>CVRFPID-277321</ProductID>
+        <ProductID>CVRFPID-277338</ProductID>
+        <ProductID>CVRFPID-277343</ProductID>
+        <ProductID>CVRFPID-277348</ProductID>
+        <ProductID>CVRFPID-277945</ProductID>
+        <ProductID>CVRFPID-278002</ProductID>
+        <ProductID>CVRFPID-278402</ProductID>
+        <ProductID>CVRFPID-278881</ProductID>
+        <ProductID>CVRFPID-280463</ProductID>
+        <ProductID>CVRFPID-280651</ProductID>
+        <ProductID>CVRFPID-280652</ProductID>
+        <ProductID>CVRFPID-280801</ProductID>
+        <ProductID>CVRFPID-281320</ProductID>
+        <ProductID>CVRFPID-281438</ProductID>
+        <ProductID>CVRFPID-281654</ProductID>
+        <ProductID>CVRFPID-93036</ProductID>
+        <ProductID>CVRFPID-275036</ProductID>
+        <ProductID>CVRFPID-275043:277416</ProductID>
+        <ProductID>CVRFPID-275043:277417</ProductID>
+        <ProductID>CVRFPID-275043:277455</ProductID>
+        <ProductID>CVRFPID-275043:279747</ProductID>
+        <ProductID>CVRFPID-275044:277416</ProductID>
+        <ProductID>CVRFPID-275044:277417</ProductID>
+        <ProductID>CVRFPID-275044:277455</ProductID>
+        <ProductID>CVRFPID-275044:279747</ProductID>
+        <ProductID>CVRFPID-275045:277416</ProductID>
+        <ProductID>CVRFPID-275045:277417</ProductID>
+        <ProductID>CVRFPID-275045:277455</ProductID>
+        <ProductID>CVRFPID-275045:279747</ProductID>
+        <ProductID>CVRFPID-275046:277416</ProductID>
+        <ProductID>CVRFPID-275046:277417</ProductID>
+        <ProductID>CVRFPID-275046:277455</ProductID>
+        <ProductID>CVRFPID-275046:279747</ProductID>
+        <ProductID>CVRFPID-275047:277416</ProductID>
+        <ProductID>CVRFPID-275047:277417</ProductID>
+        <ProductID>CVRFPID-275047:277455</ProductID>
+        <ProductID>CVRFPID-275047:279747</ProductID>
+        <ProductID>CVRFPID-275048:277416</ProductID>
+        <ProductID>CVRFPID-275048:277417</ProductID>
+        <ProductID>CVRFPID-275048:277455</ProductID>
+        <ProductID>CVRFPID-275048:279747</ProductID>
+        <ProductID>CVRFPID-275049:277416</ProductID>
+        <ProductID>CVRFPID-275049:277417</ProductID>
+        <ProductID>CVRFPID-275049:277455</ProductID>
+        <ProductID>CVRFPID-275049:279747</ProductID>
+        <ProductID>CVRFPID-275050:277415</ProductID>
+        <ProductID>CVRFPID-275050:277416</ProductID>
+        <ProductID>CVRFPID-275050:277417</ProductID>
+        <ProductID>CVRFPID-275050:277455</ProductID>
+        <ProductID>CVRFPID-275050:279747</ProductID>
+        <ProductID>CVRFPID-275051:277415</ProductID>
+        <ProductID>CVRFPID-275051:277416</ProductID>
+        <ProductID>CVRFPID-275051:277417</ProductID>
+        <ProductID>CVRFPID-275051:277455</ProductID>
+        <ProductID>CVRFPID-275051:279747</ProductID>
+        <ProductID>CVRFPID-275052:277415</ProductID>
+        <ProductID>CVRFPID-275052:277416</ProductID>
+        <ProductID>CVRFPID-275052:277417</ProductID>
+        <ProductID>CVRFPID-275052:277455</ProductID>
+        <ProductID>CVRFPID-275052:279747</ProductID>
+        <ProductID>CVRFPID-275053:277415</ProductID>
+        <ProductID>CVRFPID-275053:277416</ProductID>
+        <ProductID>CVRFPID-275053:277417</ProductID>
+        <ProductID>CVRFPID-275053:277455</ProductID>
+        <ProductID>CVRFPID-275053:279747</ProductID>
+        <ProductID>CVRFPID-275056:277414</ProductID>
+        <ProductID>CVRFPID-275056:277415</ProductID>
+        <ProductID>CVRFPID-275056:277416</ProductID>
+        <ProductID>CVRFPID-275056:277417</ProductID>
+        <ProductID>CVRFPID-275056:277455</ProductID>
+        <ProductID>CVRFPID-275056:279747</ProductID>
+        <ProductID>CVRFPID-275057:277414</ProductID>
+        <ProductID>CVRFPID-275057:277415</ProductID>
+        <ProductID>CVRFPID-275057:277416</ProductID>
+        <ProductID>CVRFPID-275057:277417</ProductID>
+        <ProductID>CVRFPID-275057:277455</ProductID>
+        <ProductID>CVRFPID-275057:279747</ProductID>
+        <ProductID>CVRFPID-275058:277414</ProductID>
+        <ProductID>CVRFPID-275058:277415</ProductID>
+        <ProductID>CVRFPID-275058:277416</ProductID>
+        <ProductID>CVRFPID-275058:277417</ProductID>
+        <ProductID>CVRFPID-275058:277455</ProductID>
+        <ProductID>CVRFPID-275058:279747</ProductID>
+        <ProductID>CVRFPID-275059:277414</ProductID>
+        <ProductID>CVRFPID-275059:277415</ProductID>
+        <ProductID>CVRFPID-275059:277416</ProductID>
+        <ProductID>CVRFPID-275059:277417</ProductID>
+        <ProductID>CVRFPID-275059:277455</ProductID>
+        <ProductID>CVRFPID-275059:279747</ProductID>
+        <ProductID>CVRFPID-280948:277415</ProductID>
+        <ProductID>CVRFPID-280948:277416</ProductID>
+        <ProductID>CVRFPID-280948:277417</ProductID>
+        <ProductID>CVRFPID-280948:277455</ProductID>
+        <ProductID>CVRFPID-280948:279747</ProductID>
+        <ProductID>CVRFPID-280949:277415</ProductID>
+        <ProductID>CVRFPID-280949:277416</ProductID>
+        <ProductID>CVRFPID-280949:277417</ProductID>
+        <ProductID>CVRFPID-280949:277455</ProductID>
+        <ProductID>CVRFPID-280949:279747</ProductID>
+        <ProductID>CVRFPID-280950:277416</ProductID>
+        <ProductID>CVRFPID-280950:277417</ProductID>
+        <ProductID>CVRFPID-280950:277455</ProductID>
+        <ProductID>CVRFPID-280950:279747</ProductID>
+        <ProductID>CVRFPID-280951:277415</ProductID>
+        <ProductID>CVRFPID-280951:277416</ProductID>
+        <ProductID>CVRFPID-280951:277417</ProductID>
+        <ProductID>CVRFPID-280951:277455</ProductID>
+        <ProductID>CVRFPID-280951:279747</ProductID>
+        <ProductID>CVRFPID-280952:277415</ProductID>
+        <ProductID>CVRFPID-280952:279747</ProductID>
+        <ProductID>CVRFPID-280953:277455</ProductID>
+        <ProductID>CVRFPID-280954:277415</ProductID>
+        <ProductID>CVRFPID-280954:277416</ProductID>
+        <ProductID>CVRFPID-280954:277417</ProductID>
+        <ProductID>CVRFPID-280954:277455</ProductID>
+        <ProductID>CVRFPID-280954:279747</ProductID>
+        <ProductID>CVRFPID-280955:277414</ProductID>
+        <ProductID>CVRFPID-280955:277415</ProductID>
+        <ProductID>CVRFPID-280955:277416</ProductID>
+        <ProductID>CVRFPID-280955:277417</ProductID>
+        <ProductID>CVRFPID-280955:277455</ProductID>
+        <ProductID>CVRFPID-280955:279747</ProductID>
+        <ProductID>CVRFPID-280956:277414</ProductID>
+        <ProductID>CVRFPID-280956:277415</ProductID>
+        <ProductID>CVRFPID-280956:277416</ProductID>
+        <ProductID>CVRFPID-280956:277417</ProductID>
+        <ProductID>CVRFPID-280956:277455</ProductID>
+        <ProductID>CVRFPID-280956:279747</ProductID>
+        <ProductID>CVRFPID-280957:277414</ProductID>
+        <ProductID>CVRFPID-280957:277415</ProductID>
+        <ProductID>CVRFPID-280957:277416</ProductID>
+        <ProductID>CVRFPID-280957:277417</ProductID>
+        <ProductID>CVRFPID-280957:277455</ProductID>
+        <ProductID>CVRFPID-280957:279747</ProductID>
+        <ProductID>CVRFPID-280958:277414</ProductID>
+        <ProductID>CVRFPID-280958:277415</ProductID>
+        <ProductID>CVRFPID-280958:277416</ProductID>
+        <ProductID>CVRFPID-280958:277417</ProductID>
+        <ProductID>CVRFPID-280958:277455</ProductID>
+        <ProductID>CVRFPID-280958:279747</ProductID>
+        <ProductID>CVRFPID-280959:277414</ProductID>
+        <ProductID>CVRFPID-280959:277415</ProductID>
+        <ProductID>CVRFPID-280959:277416</ProductID>
+        <ProductID>CVRFPID-280959:277417</ProductID>
+        <ProductID>CVRFPID-280959:277455</ProductID>
+        <ProductID>CVRFPID-280959:279747</ProductID>
+        <ProductID>CVRFPID-280960:277414</ProductID>
+        <ProductID>CVRFPID-280960:277415</ProductID>
+        <ProductID>CVRFPID-280960:277416</ProductID>
+        <ProductID>CVRFPID-280960:277417</ProductID>
+        <ProductID>CVRFPID-280960:277455</ProductID>
+        <ProductID>CVRFPID-280960:279747</ProductID>
+        <ProductID>CVRFPID-280961:277415</ProductID>
+        <ProductID>CVRFPID-280961:277455</ProductID>
+        <ProductID>CVRFPID-280961:279747</ProductID>
+        <ProductID>CVRFPID-281296:277414</ProductID>
+        <ProductID>CVRFPID-281296:277415</ProductID>
+        <ProductID>CVRFPID-281296:277416</ProductID>
+        <ProductID>CVRFPID-281296:277417</ProductID>
+        <ProductID>CVRFPID-281296:277455</ProductID>
+        <ProductID>CVRFPID-281296:279747</ProductID>
+      </Status>
+    </ProductStatuses>
+    <CVSSScoreSets>
+      <ScoreSetV3>
+        <BaseScoreV3>9.8</BaseScoreV3>
+        <VectorV3>CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H</VectorV3>
+      </ScoreSetV3>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Workaround">
+        <Description>There is a workaround that addresses this vulnerability: Remove the enable password and configure an enable secret. For more information, see Cisco Guide to Harden Cisco IOS Devices ["https://www.cisco.com/c/en/us/support/docs/ip/access-lists/13608-21.html#anc14"].
+
+There is also a mitigation that addresses this vulnerability: To limit the attack surface of this vulnerability, ensure that access control lists (ACLs) are in place for NETCONF and RESTCONF to prevent attempted access from untrusted subnets. For more information, see NETCONF and RESTCONF Service-Level ACLs ["https://www.cisco.com/c/en/us/td/docs/ios-xml/ios/prog/configuration/1611/b_1611_programmability_cg/service_level_ACLs_NETCONF_RESTCONF.html"].
+
+While this workaround and this mitigation have been deployed and were proven successful in a test environment, customers should determine the applicability and effectiveness in their own environment and under their own use conditions. Customers should be aware that any workaround or mitigation that is implemented may negatively impact the functionality or performance of their network based on intrinsic customer deployment scenarios and limitations. Customers should not deploy any workarounds or mitigations before first evaluating the applicability to their own environment and any impact to such environment.</Description>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference Type="Self">
+        <URL>https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-aaa-Yx47ZT8Q</URL>
+        <Description>Cisco IOS XE Software NETCONF and RESTCONF Authentication Bypass Vulnerability</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+</cvrf:cvrfdoc>

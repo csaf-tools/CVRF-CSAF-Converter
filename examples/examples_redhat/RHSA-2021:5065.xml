@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cvrfdoc xmlns="http://www.icasi.org/CVRF/schema/cvrf/1.1" xmlns:cvrf="http://www.icasi.org/CVRF/schema/cvrf/1.1">
+  <DocumentTitle xml:lang="en">Red Hat Security Advisory: virt:av and virt-devel:av security, bug fix, and enhancement update</DocumentTitle>
+  <DocumentType>Security Advisory</DocumentType>
+  <DocumentPublisher Type="Vendor">
+    <ContactDetails>secalert@redhat.com</ContactDetails>
+    <IssuingAuthority>Red Hat Product Security</IssuingAuthority>
+  </DocumentPublisher>
+  <DocumentTracking>
+    <Identification><ID>RHSA-2021:5065</ID></Identification>
+    <Status>Final</Status>
+    <Version>1</Version>
+    <RevisionHistory>
+       <Revision>
+         <Number>1</Number>
+         <Date>2021-12-09T18:31:00Z</Date>
+         <Description>Current version</Description>
+       </Revision>
+    </RevisionHistory>
+    <InitialReleaseDate>2021-12-09T18:31:00Z</InitialReleaseDate>
+    <CurrentReleaseDate>2021-12-09T18:31:00Z</CurrentReleaseDate>
+    <Generator>
+      <Engine>Red Hat SDEngine 3.3.0</Engine>
+      <Date>2021-12-09T20:22:00Z</Date>
+    </Generator>
+  </DocumentTracking>
+  <DocumentNotes>
+    <Note Title="Topic" Type="Summary" Ordinal="1" xml:lang="en">
+An update for the virt:av and virt-devel:av modules is now available for Red Hat Enterprise Linux Advanced Virtualization 8.4.
+
+Red Hat Product Security has rated this update as having a security impact of Low. A Common Vulnerability Scoring System (CVSS) base score, which gives a detailed severity rating, is available for each vulnerability from the CVE link(s) in the References section.
+    </Note>
+    <Note Title="Details" Type="General" Ordinal="2" xml:lang="en">
+The Advanced Virtualization module provides the user-space component for running virtual machines that use KVM in environments managed by Red Hat products.
+
+Security Fix(es):
+
+* QEMU: off-by-one error in mode_sense_page() in hw/scsi/scsi-disk.c (CVE-2021-3930)
+
+For more details about the security issue(s), including the impact, a CVSS score, acknowledgments, and other related information, refer to the CVE page(s) listed in the References section.
+
+Bug Fix(es):
+
+* qemu segfault after the 2rd postcopy live migration with vhost-user (BZ#2021981)
+
+Enhancement(s):
+
+* support Live Migration from Ubuntu 18.04 i440fx to RHEL (BZ#2021859)
+    </Note>
+    <Note Title="Terms of Use" Ordinal="3" Type="Legal Disclaimer" xml:lang="en">This content is licensed under the Creative Commons Attribution 4.0 International License (https://creativecommons.org/licenses/by/4.0/). If you distribute this content, or a modified version of it, you must provide attribution to Red Hat Inc. and provide a link to the original.</Note>
+  </DocumentNotes>
+  <DocumentDistribution xml:lang="en">Copyright © 2021 Red Hat, Inc. All rights reserved.</DocumentDistribution>
+  <AggregateSeverity Namespace="https://access.redhat.com/security/updates/classification/">Low</AggregateSeverity>
+  <DocumentReferences>
+    <Reference Type="Self">
+       <URL>https://access.redhat.com/errata/RHSA-2021:5065</URL>
+       <Description>https://access.redhat.com/errata/RHSA-2021:5065</Description>
+    </Reference>
+    <Reference Type="External">
+       <URL>https://access.redhat.com/security/updates/classification/#low</URL>
+       <Description>https://access.redhat.com/security/updates/classification/#low</Description>
+    </Reference>
+  </DocumentReferences>
+  <ProductTree xmlns="http://www.icasi.org/CVRF/schema/prod/1.1">
+    <Branch Type="Product Family" Name="Advanced Virtualization">
+      <Branch Type="Product Name" Name="Advanced Virtualization for RHEL 8.4.0.EUS">
+        <FullProductName ProductID="8Base-Advanced-Virt-8.4.0.EUS" CPE="cpe:/a:redhat:advanced_virtualization:8.4::el8">Advanced Virtualization for RHEL 8.4.0.EUS</FullProductName>
+      </Branch>
+    </Branch>
+    <Branch Type="Product Version" Name="virt-devel:av-8040020211126213321.522a0ee4">
+      <FullProductName ProductID="virt-devel:av-8040020211126213321.522a0ee4" CPE="cpe:/a:redhat:advanced_virtualization:8.4::el8">virt-devel-av-8040020211126213321.522a0ee4</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="virt:av-8040020211126213321.522a0ee4">
+      <FullProductName ProductID="virt:av-8040020211126213321.522a0ee4" CPE="cpe:/a:redhat:advanced_virtualization:8.4::el8">virt-av-8040020211126213321.522a0ee4</FullProductName>
+    </Branch>
+    <Relationship ProductReference="virt-devel:av-8040020211126213321.522a0ee4" RelationType="Default Component Of" RelatesToProductReference="8Base-Advanced-Virt-8.4.0.EUS">
+      <FullProductName ProductID="8Base-Advanced-Virt-8.4.0.EUS:virt-devel:av-8040020211126213321.522a0ee4" CPE="cpe:/a:redhat:advanced_virtualization:8.4::el8">virt-devel:av-8040020211126213321.522a0ee4 as a component of Advanced Virtualization for RHEL 8.4.0.EUS</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="virt:av-8040020211126213321.522a0ee4" RelationType="Default Component Of" RelatesToProductReference="8Base-Advanced-Virt-8.4.0.EUS">
+      <FullProductName ProductID="8Base-Advanced-Virt-8.4.0.EUS:virt:av-8040020211126213321.522a0ee4" CPE="cpe:/a:redhat:advanced_virtualization:8.4::el8">virt:av-8040020211126213321.522a0ee4 as a component of Advanced Virtualization for RHEL 8.4.0.EUS</FullProductName>
+    </Relationship>
+  </ProductTree>
+
+  <Vulnerability Ordinal="1" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">QEMU: off-by-one error in mode_sense_page() in hw/scsi/scsi-disk.c</Note></Notes>
+    <DiscoveryDate>2021-11-03T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-02-04T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-3930</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>8Base-Advanced-Virt-8.4.0.EUS:virt-devel:av-8040020211126213321.522a0ee4</ProductID>
+      <ProductID>8Base-Advanced-Virt-8.4.0.EUS:virt:av-8040020211126213321.522a0ee4</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Low</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:5065</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-3930</URL>
+        <Description>CVE-2021-3930</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=2020588</URL>
+        <Description>bz#2020588: CVE-2021-3930 QEMU: off-by-one error in mode_sense_page() in hw/scsi/scsi-disk.c</Description>
+      </Reference>
+    </References>
+    <Acknowledgments><Acknowledgment><Description>Red Hat would like to thank Alexander Bulekov and Qiuhao Li for reporting this issue.</Description></Acknowledgment></Acknowledgments>
+  </Vulnerability>
+</cvrfdoc>

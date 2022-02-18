@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cvrfdoc xmlns="http://www.icasi.org/CVRF/schema/cvrf/1.1" xmlns:cvrf="http://www.icasi.org/CVRF/schema/cvrf/1.1">
+  <DocumentTitle xml:lang="en">Red Hat Security Advisory: kernel security and bug fix update</DocumentTitle>
+  <DocumentType>Security Advisory</DocumentType>
+  <DocumentPublisher Type="Vendor">
+    <ContactDetails>secalert@redhat.com</ContactDetails>
+    <IssuingAuthority>Red Hat Product Security</IssuingAuthority>
+  </DocumentPublisher>
+  <DocumentTracking>
+    <Identification><ID>RHSA-2018:0512</ID></Identification>
+    <Status>Final</Status>
+    <Version>1</Version>
+    <RevisionHistory>
+       <Revision>
+         <Number>1</Number>
+         <Date>2021-07-20T20:04:00Z</Date>
+         <Description>Current version</Description>
+       </Revision>
+    </RevisionHistory>
+    <InitialReleaseDate>2018-03-13T18:38:00Z</InitialReleaseDate>
+    <CurrentReleaseDate>2021-07-20T20:04:00Z</CurrentReleaseDate>
+    <Generator>
+      <Engine>Red Hat SDEngine 3.0.0</Engine>
+      <Date>2021-08-23T04:51:00Z</Date>
+    </Generator>
+  </DocumentTracking>
+  <DocumentNotes>
+    <Note Title="Topic" Type="Summary" Ordinal="1" xml:lang="en">
+An update for kernel is now available for Red Hat Enterprise Linux 6.
+
+Red Hat Product Security has rated this update as having a security impact of Important. A Common Vulnerability Scoring System (CVSS) base score, which gives a detailed severity rating, is available for each vulnerability from the CVE link(s) in the References section.
+    </Note>
+    <Note Title="Details" Type="General" Ordinal="2" xml:lang="en">
+The kernel packages contain the Linux kernel, the core of any Linux operating system.
+
+Security Fix(es):
+
+* hw: cpu: speculative execution branch target injection (s390-only) (CVE-2017-5715, Important)
+
+* hw: cpu: speculative execution bounds-check bypass (s390 and powerpc) (CVE-2017-5753, Important)
+
+* hw: cpu: speculative execution permission faults handling (powerpc-only) (CVE-2017-5754)
+
+For more details about the security issue(s), including the impact, a CVSS score, acknowledgments, and other related information, refer to the CVE page(s) listed in the References section.
+
+Bug Fixes:
+
+* If a fibre channel (FC) switch was powered down and then powered on again, the SCSI device driver stopped permanently the SCSI device's request queue. Consequently, the FC port login failed, leaving the port state as &quot;Bypassed&quot; instead of &quot;Online&quot;, and users had to reboot the operating system. This update fixes the driver to avoid the permanent stop of the request queue. As a result, SCSI device now continues working as expected after power cycling the FC switch. (BZ#1519857)
+
+* Previously, on final close or unlink of a file, the find_get_pages() function in the memory management sometimes found no pages even if there were some pages left to save. Consequently, a kernel crash occurred when attempting to enter the unlink() function. This update fixes the find_get_pages() function in the memory management code to not return 0 too early. As a result, the kernel no longer crashes due to this behavior.(BZ#1527811)
+
+* Using IPsec connections under a heavy load could previously lead to a network performance degradation, especially when using the aesni-intel module. This update fixes the issue by making the cryptd queue length configurable so that it can be increased to prevent an overflow and packet drop. As a result, using IPsec under a heavy load no longer reduces network performance. (BZ#1527802)
+
+* Previously, a deadlock in the bnx2fc driver caused all adapters to block and the SCSI error handler to become unresponsive. As a result, data transferring through the adapter was sometimes blocked. This update fixes bnx2fc, and data transferring through the adapter is no longer blocked due to this behavior. (BZ#1523783)
+
+* If an NFSv3 client mounted a subdirectory of an exported file system, a directory entry to the mount hosting the export was incorrectly held even after clearing the cache. Consequently, attempts to unmount the subdirectory with the umount command failed with the EBUSY error. With this update, the underlying source code has been fixed, and the unmount operation now succeeds as expected in the described situation. (BZ#1535938)
+
+Users of kernel are advised to upgrade to these updated packages, which fix these bugs. The system must be rebooted for this update to take effect.
+    </Note>
+    <Note Title="Terms of Use" Ordinal="3" Type="Legal Disclaimer" xml:lang="en">This content is licensed under the Creative Commons Attribution 4.0 International License (https://creativecommons.org/licenses/by/4.0/). If you distribute this content, or a modified version of it, you must provide attribution to Red Hat Inc. and provide a link to the original.</Note>
+  </DocumentNotes>
+  <DocumentDistribution xml:lang="en">Copyright © 2021 Red Hat, Inc. All rights reserved.</DocumentDistribution>
+  <AggregateSeverity Namespace="https://access.redhat.com/security/updates/classification/">Important</AggregateSeverity>
+  <DocumentReferences>
+    <Reference Type="Self">
+       <URL>https://access.redhat.com/errata/RHSA-2018:0512</URL>
+       <Description>https://access.redhat.com/errata/RHSA-2018:0512</Description>
+    </Reference>
+    <Reference Type="External">
+       <URL>https://access.redhat.com/security/updates/classification/#important</URL>
+       <Description>https://access.redhat.com/security/updates/classification/#important</Description>
+    </Reference>
+  </DocumentReferences>
+  <ProductTree xmlns="http://www.icasi.org/CVRF/schema/prod/1.1">
+    <Branch Type="Product Family" Name="Red Hat Enterprise Linux">
+      <Branch Type="Product Name" Name="Red Hat Enterprise Linux Desktop (v. 6)">
+        <FullProductName ProductID="6Client-6.9.z" CPE="cpe:/o:redhat:enterprise_linux:6::client">Red Hat Enterprise Linux Desktop (v. 6)</FullProductName>
+      </Branch>
+      <Branch Type="Product Name" Name="Red Hat Enterprise Linux Desktop Optional (v. 6)">
+        <FullProductName ProductID="6Client-optional-6.9.z" CPE="cpe:/o:redhat:enterprise_linux:6::client">Red Hat Enterprise Linux Desktop Optional (v. 6)</FullProductName>
+      </Branch>
+      <Branch Type="Product Name" Name="Red Hat Enterprise Linux HPC Node (v. 6)">
+        <FullProductName ProductID="6ComputeNode-6.9.z" CPE="cpe:/o:redhat:enterprise_linux:6::computenode">Red Hat Enterprise Linux HPC Node (v. 6)</FullProductName>
+      </Branch>
+      <Branch Type="Product Name" Name="Red Hat Enterprise Linux HPC Node Optional (v. 6)">
+        <FullProductName ProductID="6ComputeNode-optional-6.9.z" CPE="cpe:/o:redhat:enterprise_linux:6::computenode">Red Hat Enterprise Linux HPC Node Optional (v. 6)</FullProductName>
+      </Branch>
+      <Branch Type="Product Name" Name="Red Hat Enterprise Linux Server (v. 6)">
+        <FullProductName ProductID="6Server-6.9.z" CPE="cpe:/o:redhat:enterprise_linux:6::server">Red Hat Enterprise Linux Server (v. 6)</FullProductName>
+      </Branch>
+      <Branch Type="Product Name" Name="Red Hat Enterprise Linux Server Optional (v. 6)">
+        <FullProductName ProductID="6Server-optional-6.9.z" CPE="cpe:/o:redhat:enterprise_linux:6::server">Red Hat Enterprise Linux Server Optional (v. 6)</FullProductName>
+      </Branch>
+      <Branch Type="Product Name" Name="Red Hat Enterprise Linux Workstation (v. 6)">
+        <FullProductName ProductID="6Workstation-6.9.z" CPE="cpe:/o:redhat:enterprise_linux:6::workstation">Red Hat Enterprise Linux Workstation (v. 6)</FullProductName>
+      </Branch>
+      <Branch Type="Product Name" Name="Red Hat Enterprise Linux Workstation Optional (v. 6)">
+        <FullProductName ProductID="6Workstation-optional-6.9.z" CPE="cpe:/o:redhat:enterprise_linux:6::workstation">Red Hat Enterprise Linux Workstation Optional (v. 6)</FullProductName>
+      </Branch>
+    </Branch>
+    <Branch Type="Product Version" Name="kernel-0:2.6.32-696.23.1.el6">
+      <FullProductName ProductID="kernel-0:2.6.32-696.23.1.el6" CPE="cpe:/o:redhat:enterprise_linux:6::client">kernel-2.6.32-696.23.1.el6.src.rpm</FullProductName>
+    </Branch>
+    <Relationship ProductReference="kernel-0:2.6.32-696.23.1.el6" RelationType="Default Component Of" RelatesToProductReference="6Client-6.9.z">
+      <FullProductName ProductID="6Client-6.9.z:kernel-0:2.6.32-696.23.1.el6" CPE="cpe:/o:redhat:enterprise_linux:6::client">kernel-0:2.6.32-696.23.1.el6 as a component of Red Hat Enterprise Linux Desktop (v. 6)</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="kernel-0:2.6.32-696.23.1.el6" RelationType="Default Component Of" RelatesToProductReference="6Client-optional-6.9.z">
+      <FullProductName ProductID="6Client-optional-6.9.z:kernel-0:2.6.32-696.23.1.el6" CPE="cpe:/o:redhat:enterprise_linux:6::client">kernel-0:2.6.32-696.23.1.el6 as a component of Red Hat Enterprise Linux Desktop Optional (v. 6)</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="kernel-0:2.6.32-696.23.1.el6" RelationType="Default Component Of" RelatesToProductReference="6ComputeNode-6.9.z">
+      <FullProductName ProductID="6ComputeNode-6.9.z:kernel-0:2.6.32-696.23.1.el6" CPE="cpe:/o:redhat:enterprise_linux:6::computenode">kernel-0:2.6.32-696.23.1.el6 as a component of Red Hat Enterprise Linux HPC Node (v. 6)</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="kernel-0:2.6.32-696.23.1.el6" RelationType="Default Component Of" RelatesToProductReference="6ComputeNode-optional-6.9.z">
+      <FullProductName ProductID="6ComputeNode-optional-6.9.z:kernel-0:2.6.32-696.23.1.el6" CPE="cpe:/o:redhat:enterprise_linux:6::computenode">kernel-0:2.6.32-696.23.1.el6 as a component of Red Hat Enterprise Linux HPC Node Optional (v. 6)</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="kernel-0:2.6.32-696.23.1.el6" RelationType="Default Component Of" RelatesToProductReference="6Server-6.9.z">
+      <FullProductName ProductID="6Server-6.9.z:kernel-0:2.6.32-696.23.1.el6" CPE="cpe:/o:redhat:enterprise_linux:6::server">kernel-0:2.6.32-696.23.1.el6 as a component of Red Hat Enterprise Linux Server (v. 6)</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="kernel-0:2.6.32-696.23.1.el6" RelationType="Default Component Of" RelatesToProductReference="6Server-optional-6.9.z">
+      <FullProductName ProductID="6Server-optional-6.9.z:kernel-0:2.6.32-696.23.1.el6" CPE="cpe:/o:redhat:enterprise_linux:6::server">kernel-0:2.6.32-696.23.1.el6 as a component of Red Hat Enterprise Linux Server Optional (v. 6)</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="kernel-0:2.6.32-696.23.1.el6" RelationType="Default Component Of" RelatesToProductReference="6Workstation-6.9.z">
+      <FullProductName ProductID="6Workstation-6.9.z:kernel-0:2.6.32-696.23.1.el6" CPE="cpe:/o:redhat:enterprise_linux:6::workstation">kernel-0:2.6.32-696.23.1.el6 as a component of Red Hat Enterprise Linux Workstation (v. 6)</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="kernel-0:2.6.32-696.23.1.el6" RelationType="Default Component Of" RelatesToProductReference="6Workstation-optional-6.9.z">
+      <FullProductName ProductID="6Workstation-optional-6.9.z:kernel-0:2.6.32-696.23.1.el6" CPE="cpe:/o:redhat:enterprise_linux:6::workstation">kernel-0:2.6.32-696.23.1.el6 as a component of Red Hat Enterprise Linux Workstation Optional (v. 6)</FullProductName>
+    </Relationship>
+  </ProductTree>
+
+  <Vulnerability Ordinal="1" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">hw: cpu: speculative execution bounds-check bypass</Note></Notes>
+    <DiscoveryDate>2017-11-30T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2018-01-03T22:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2017-5753</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>6Client-6.9.z:kernel-0:2.6.32-696.23.1.el6</ProductID>
+      <ProductID>6Client-optional-6.9.z:kernel-0:2.6.32-696.23.1.el6</ProductID>
+      <ProductID>6ComputeNode-6.9.z:kernel-0:2.6.32-696.23.1.el6</ProductID>
+      <ProductID>6ComputeNode-optional-6.9.z:kernel-0:2.6.32-696.23.1.el6</ProductID>
+      <ProductID>6Server-6.9.z:kernel-0:2.6.32-696.23.1.el6</ProductID>
+      <ProductID>6Server-optional-6.9.z:kernel-0:2.6.32-696.23.1.el6</ProductID>
+      <ProductID>6Workstation-6.9.z:kernel-0:2.6.32-696.23.1.el6</ProductID>
+      <ProductID>6Workstation-optional-6.9.z:kernel-0:2.6.32-696.23.1.el6</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Important</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+
+The system must be rebooted for this update to take effect.
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2018:0512</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/vulnerabilities/speculativeexecution</URL>
+        <Description>https://access.redhat.com/security/vulnerabilities/speculativeexecution</Description>
+      </Reference>
+      <Reference>
+        <URL>https://googleprojectzero.blogspot.com/2018/01/reading-privileged-memory-with-side.html</URL>
+        <Description>https://googleprojectzero.blogspot.com/2018/01/reading-privileged-memory-with-side.html</Description>
+      </Reference>
+      <Reference>
+        <URL>https://meltdownattack.com</URL>
+        <Description>https://meltdownattack.com</Description>
+      </Reference>
+      <Reference>
+        <URL>https://spectreattack.com/</URL>
+        <Description>https://spectreattack.com/</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2017-5753</URL>
+        <Description>CVE-2017-5753</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1519778</URL>
+        <Description>bz#1519778: CVE-2017-5753 hw: cpu: speculative execution bounds-check bypass</Description>
+      </Reference>
+    </References>
+    <Acknowledgments><Acknowledgment><Description>Red Hat would like to thank Google Project Zero for reporting this issue.</Description></Acknowledgment></Acknowledgments>
+  </Vulnerability>
+</cvrfdoc>

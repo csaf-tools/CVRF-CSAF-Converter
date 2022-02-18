@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cvrf:cvrfdoc xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:cvrf-common="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/common" xmlns:cvrf="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/cvrf">
+  <cvrf:DocumentTitle>Wi-Fi Protected Network and Wi-Fi Protected Network 2 Information Disclosure Vulnerability</cvrf:DocumentTitle>
+  <cvrf:DocumentType>Cisco Security Advisory</cvrf:DocumentType>
+  <cvrf:DocumentPublisher Type="Vendor">
+    <cvrf:ContactDetails>Emergency Support:
++1 877 228 7302 (toll-free within North America)
++1 408 525 6532 (International direct-dial)
+Non-emergency Support:
+Email: psirt@cisco.com
+Support requests that are received via e-mail are typically acknowledged within 48 hours.</cvrf:ContactDetails>
+    <cvrf:IssuingAuthority>Cisco product security incident response is the responsibility of the Cisco Product Security Incident Response Team (PSIRT). The Cisco PSIRT is a dedicated, global team that manages the receipt, investigation, and public reporting of security vulnerability information that is related to Cisco products and networks. The on-call Cisco PSIRT works 24x7 with Cisco customers, independent security researchers, consultants, industry organizations, and other vendors to identify possible security issues with Cisco products and networks.
+More information can be found in Cisco Security Vulnerability Policy available at http://www.cisco.com/web/about/security/psirt/security_vulnerability_policy.html</cvrf:IssuingAuthority>
+  </cvrf:DocumentPublisher>
+  <cvrf:DocumentTracking>
+    <cvrf:Identification>
+      <cvrf:ID>cisco-sa-20200226-wi-fi-info-disclosure</cvrf:ID>
+    </cvrf:Identification>
+    <cvrf:Status>Interim</cvrf:Status>
+    <cvrf:Version>1.2</cvrf:Version>
+    <cvrf:RevisionHistory>
+      <cvrf:Revision>
+        <cvrf:Number>1.0</cvrf:Number>
+        <cvrf:Date>2020-02-26T22:38:13</cvrf:Date>
+        <cvrf:Description>Initial public release.</cvrf:Description>
+      </cvrf:Revision>
+      <cvrf:Revision>
+        <cvrf:Number>1.1</cvrf:Number>
+        <cvrf:Date>2020-03-25T20:58:26</cvrf:Date>
+        <cvrf:Description>Updated Vulnerable Products, Products Confirmed Not Vulnerable, and included information about publicly available code to exploit this vulnerability.</cvrf:Description>
+      </cvrf:Revision>
+      <cvrf:Revision>
+        <cvrf:Number>1.2</cvrf:Number>
+        <cvrf:Date>2020-04-28T22:24:15</cvrf:Date>
+        <cvrf:Description>Updated Vulnerable Products, and included information about the impact of this vulnerability on Cisco Meraki products.</cvrf:Description>
+      </cvrf:Revision>
+    </cvrf:RevisionHistory>
+    <cvrf:InitialReleaseDate>2020-02-27T00:00:00</cvrf:InitialReleaseDate>
+    <cvrf:CurrentReleaseDate>2020-04-28T22:24:15</cvrf:CurrentReleaseDate>
+    <cvrf:Generator>
+      <cvrf:Engine>TVCE</cvrf:Engine>
+    </cvrf:Generator>
+  </cvrf:DocumentTracking>
+  <cvrf:DocumentNotes>
+    <cvrf:Note Title="Summary" Type="Summary" Ordinal="1">On February 26th, 2020, researchers Štefan Svorencík and Robert Lipovsky disclosed a vulnerability in the implementation of the wireless egress packet processing of certain Broadcom Wi-Fi chipsets. This vulnerability could allow an unauthenticated, adjacent attacker to decrypt Wi-Fi frames without the knowledge of the Wireless Protected Access (WPA) or Wireless Protected Access 2 (WPA2) Pairwise Temporal Key (PTK) used to secure the Wi-Fi network.
+
+The vulnerability exists because after an affected device handles a disassociation event it could send a limited number of Wi-Fi frames encrypted with a static, weak PTK. An attacker could exploit this vulnerability by acquiring these frames and decrypting them with the static PTK. A successful exploit could allow the attacker to decrypt Wi-Fi frames without the knowledge of the security session establishment used to secure the Wi-Fi network.
+
+
+Multiple Cisco wireless products are affected by this vulnerability.
+
+Cisco will release software updates that address this vulnerability. There are no workarounds that address this vulnerability.
+
+This advisory is available at the following link:
+https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20200226-wi-fi-info-disclosure ["https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20200226-wi-fi-info-disclosure"]</cvrf:Note>
+    <cvrf:Note Title="Affected Products" Type="General" Ordinal="2">Cisco is investigating its product line to determine which products may be affected by this vulnerability. As the investigation progresses, Cisco will update this advisory with information about affected products, including the ID of the Cisco bug for each affected product.
+
+For information about whether a product is affected by this vulnerability, refer to the Vulnerable Products ["#vp"] and Products Confirmed Not Vulnerable ["#nv"] sections of this advisory. The Vulnerable Products section includes Cisco bug IDs for each affected product. The bugs are accessible through the Cisco Bug Search Tool and contain additional platform-specific information, including workarounds (if available) and fixed software releases.</cvrf:Note>
+    <cvrf:Note Title="Vulnerable Products" Type="General" Ordinal="3">Product  Cisco Bug ID  Fixed Release Availability      Routing and Switching - Enterprise and Service Provider      Cisco Connected Grid Routers  CSCvs87927 ["https://tools.cisco.com/bugsearch/bug/CSCvs87927"]         Routing and Switching - Small Business      Cisco RV160x and RV260x VPN Routers  CSCvt23810 ["https://tools.cisco.com/bugsearch/bug/CSCvt23810"]         Cisco RV340W Dual WAN Gigabit Wireless-AC VPN Router  CSCvs87875 ["https://tools.cisco.com/bugsearch/bug/CSCvs87875"]         Cisco Small Business RV Series RV110W Wireless-N VPN Firewall  CSCvs87870 ["https://tools.cisco.com/bugsearch/bug/CSCvs87870"]         Cisco Small Business RV Series RV215W Wireless-N VPN Router  CSCvs87874 ["https://tools.cisco.com/bugsearch/bug/CSCvs87874"]         Cisco Small Business RV130 Series VPN Routers  CSCvs87871 ["https://tools.cisco.com/bugsearch/bug/CSCvs87871"]         Cisco WAP125 Wireless-AC Dual Band Desktop Access Point with PoE  CSCvs87868 ["https://tools.cisco.com/bugsearch/bug/CSCvs87868"]         Cisco WAP150 Wireless-AC/N Dual Radio Access Point with PoE  CSCvs87877 ["https://tools.cisco.com/bugsearch/bug/CSCvs87877"]         Cisco WAP361 Wireless-AC/N Dual Radio Wall Plate Access Point with PoE  CSCvs87877 ["https://tools.cisco.com/bugsearch/bug/CSCvs87877"]         Cisco WAP571 Wireless-AC/N Premium Dual Radio Access Point with PoE  CSCvs93095 ["https://tools.cisco.com/bugsearch/bug/CSCvs93095"]         Cisco WAP571E Wireless-AC/N Premium Dual Radio Outdoor Access Point  CSCvs93095 ["https://tools.cisco.com/bugsearch/bug/CSCvs93095"]         Voice and Unified Communications Devices      Cisco IP Phone 8861  CSCvs87895 ["https://tools.cisco.com/bugsearch/bug/CSCvs87895"]         Cisco Wireless IP Phone 8821  CSCvs87896 ["https://tools.cisco.com/bugsearch/bug/CSCvs87896"]         Video, Streaming, TelePresence, and Transcoding Devices      Cisco Webex Board (all models)  CSCvs91690 ["https://tools.cisco.com/bugsearch/bug/CSCvs91690"]         Cisco Webex Desk Pro  CSCvs91690 ["https://tools.cisco.com/bugsearch/bug/CSCvs91690"]         Cisco Webex Room Series  CSCvs91690 ["https://tools.cisco.com/bugsearch/bug/CSCvs91690"]         Wireless      Cisco Catalyst 9115 Series Wi-Fi 6 Access Points  CSCvs87888 ["https://tools.cisco.com/bugsearch/bug/CSCvs87888"]         Cisco Catalyst 9120 Series Access Points  CSCvs87888 ["https://tools.cisco.com/bugsearch/bug/CSCvs87888"]         Cisco Small Business 100 Series Wireless-N Access Points  CSCvs87879 ["https://tools.cisco.com/bugsearch/bug/CSCvs87879"]         Cisco Small Business 300 Series Wireless-N Access Points  CSCvs87879 ["https://tools.cisco.com/bugsearch/bug/CSCvs87879"]         Cisco Meraki MR26    N/A         Cisco Meraki MR32   N/A         Cisco Meraki MR34   N/A         Cisco Meraki MR72   N/A         Security      Cisco Meraki MX64W   N/A         Cisco Meraki MX65W   N/A
+For additional information about the impact of this vulnerability on Cisco Meraki, see the Cisco Meraki Customer Advisories ["https://meraki.cisco.com/blog/cisco-meraki-customer-advisories/"].
+  Products Under Investigation
+Voice and Unified Communications Devices
+
+DX650 IP Phones - Running Android-based firmware</cvrf:Note>
+    <cvrf:Note Title="Products Confirmed Not Vulnerable" Type="General" Ordinal="4">Only products listed in the Vulnerable Products ["#vp"] section of this advisory are known to be affected by this vulnerability.
+
+Endpoint Clients and Client Software
+
+Cisco AnyConnect Secure Mobility Client - Network Access Manager
+
+Routing and Switching - Enterprise and Service Provider
+
+Cisco 829 Industrial Integrated Services Routers
+Cisco c800 Series Integrated Services Routers
+
+Routing and Switching - Small Business
+
+Cisco RV132W ADSL2+ Wireless-N VPN Router
+Cisco RV134W VDSL2 Wireless-AC VPN Router
+
+Voice and Unified Communications Devices
+
+Cisco IP Phone 8800 Series with Multiplatform Firmware
+Cisco Unified IP Phone 8961
+Cisco Unified IP Phone 9951
+Cisco Unified IP Phone 9971
+Cisco Unified Wireless IP Phone 7925 and 7926
+
+Video, Streaming, TelePresence, and Transcoding Devices
+
+Cisco TelePresence MX Series
+Cisco TelePresence Profile Series
+Cisco TelePresence SX Series
+Cisco TelePresence System EX Series
+Cisco Telepresence Integrator C Series
+Cisco Vision Dynamic Signage Director - SV-4K digital media player
+
+Wireless
+
+Cisco Wireless LAN Controller
+Cisco Aironet 1560 Series Access Points
+Cisco Aironet 1810 Series OfficeExtend Access Points
+Cisco Aironet 1810w Series Access Points
+Cisco Aironet 1815 Series Access Points
+Cisco Aironet 1830 Series Access Points
+Cisco Aironet 1850 Series Access Points
+Cisco Aironet 2800 Series Access Points
+Cisco Aironet 3800 Series Access Points</cvrf:Note>
+    <cvrf:Note Title="Details" Type="General" Ordinal="5">When a disassociation event is triggered, an affected device will delete the user-configured PTK as part of a sequence of cleanup operations. A number of Wi-Fi frames still buffered in the hardware egress queue could then be transmitted while encrypted with a static, weak PTK.
+
+There are two ways to acquire Wi-Fi frames encrypted with the static PTK:
+
+Triggering the disassociation event by injecting malicious packets into the wireless network and capturing the frames sent after the event.
+Passively listening to traffic from the wireless network and capturing the frames sent after a disassociation event.
+
+The frames affected by the weak encryption are the only ones present in the hardware egress buffer during the processing of a disassociation event. Further frames will not be accepted or queued. Under no circumstances can the attacker control the content or number of frames. This limits the information that can be obtained in case of successful exploitation of the vulnerability described in this advisory.</cvrf:Note>
+    <cvrf:Note Title="Workarounds" Type="General" Ordinal="6">There are no workarounds that address this vulnerability.</cvrf:Note>
+    <cvrf:Note Title="Fixed Software" Type="General" Ordinal="7">When considering software upgrades ["https://tools.cisco.com/security/center/resources/security_vulnerability_policy.html#fixes"], customers are advised to regularly consult the advisories for Cisco products, which are available from the Cisco Security Advisories and Alerts page ["https://www.cisco.com/go/psirt"], to determine exposure and a complete upgrade solution.
+
+In all cases, customers should ensure that the devices to be upgraded contain sufficient memory and confirm that current hardware and software configurations will continue to be supported properly by the new release. If the information is not clear, customers are advised to contact the Cisco Technical Assistance Center (TAC) or their contracted maintenance providers.
+      Fixed Releases
+See the Details section in the bug ID(s) in the Vulnerable Products ["#vp"] section for the most complete and current information.</cvrf:Note>
+    <cvrf:Note Title="Vulnerability Policy" Type="General" Ordinal="8">To learn about Cisco security vulnerability disclosure policies and publications, see the Security Vulnerability Policy ["http://www.cisco.com/web/about/security/psirt/security_vulnerability_policy.html"]. This document also contains instructions for obtaining fixed software and receiving security vulnerability information from Cisco.</cvrf:Note>
+    <cvrf:Note Title="Exploitation and Public Announcements" Type="General" Ordinal="9">The vulnerability described in this advisory was discussed during the RSA conference of February 26, 2020.
+
+The Cisco Product Security Incident Response Team (PSIRT) is aware that proof-of-concept exploit code is available for the vulnerability that is described in this advisory.
+
+Cisco PSIRT is not aware of any malicious use of the vulnerability that is described in this advisory.</cvrf:Note>
+    <cvrf:Note Title="Source" Type="General" Ordinal="10">Security researchers Štefan Svorencík and Robert Lipovsky of ESET have reported this vulnerability to the Industry Consortium for Advancement of Security on the Internet (ICASI).
+
+Cisco collaborated with ICASI during the investigation and disclosure of this vulnerability. More information can be found at http://www.icasi.org ["http://www.icasi.org/wi-fi-protected-access-wpa-vulnerabilities"]</cvrf:Note>
+    <cvrf:Note Title="Legal Disclaimer" Type="Legal Disclaimer" Ordinal="11">THIS DOCUMENT IS PROVIDED ON AN "AS IS" BASIS AND DOES NOT IMPLY ANY KIND OF GUARANTEE OR WARRANTY, INCLUDING THE WARRANTIES OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR USE. YOUR USE OF THE INFORMATION ON THE DOCUMENT OR MATERIALS LINKED FROM THE DOCUMENT IS AT YOUR OWN RISK. CISCO RESERVES THE RIGHT TO CHANGE OR UPDATE THIS DOCUMENT AT ANY TIME. CISCO EXPECTS TO UPDATE THIS DOCUMENT AS NEW INFORMATION BECOMES AVAILABLE.
+
+A standalone copy or paraphrase of the text of this document that omits the distribution URL is an uncontrolled copy and may lack important information or contain factual errors. The information in this document is intended for end users of Cisco products.</cvrf:Note>
+  </cvrf:DocumentNotes>
+  <cvrf:DocumentReferences>
+    <cvrf:Reference Type="Self">
+      <cvrf:URL>https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20200226-wi-fi-info-disclosure</cvrf:URL>
+      <cvrf:Description>Wi-Fi Protected Network and Wi-Fi Protected Network 2 Information Disclosure Vulnerability</cvrf:Description>
+    </cvrf:Reference>
+  </cvrf:DocumentReferences>
+  <Vulnerability Ordinal="1" xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln">
+    <Title>kr00k-Information Discosure Vulnerability</Title>
+    <Notes>
+      <Note Title="Summary" Type="Summary" Ordinal="1">On February 26th, 2020, researchers &amp;Scaron;tefan Svorenc&amp;iacute;k and Robert Lipovsky disclosed a vulnerability in the implementation of the wireless egress packet processing of certain Broadcom Wi-Fi chipsets. This vulnerability could allow an unauthenticated, adjacent attacker to decrypt Wi-Fi frames without the knowledge of the Wireless Protected Access (WPA) or Wireless Protected Access 2 (WPA2) Pairwise Temporal Key (PTK) used to secure the Wi-Fi network.
+
+The vulnerability exists because after an affected device handles a disassociation event it could send a limited number of Wi-Fi frames encrypted with a static, weak PTK. An attacker could exploit this vulnerability by acquiring these frames and decrypting them with the static PTK. A successful exploit could allow the attacker to decrypt Wi-Fi frames without the knowledge of the security session establishment used to secure the Wi-Fi network.
+</Note>
+    </Notes>
+    <CVE>CVE-2019-15126</CVE>
+    <Remediations>
+      <Remediation Type="Workaround">
+        <Description>There are no workarounds that address this vulnerability.</Description>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference Type="Self">
+        <URL>https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20200226-wi-fi-info-disclosure</URL>
+        <Description>Wi-Fi Protected Network and Wi-Fi Protected Network 2 Information Disclosure Vulnerability</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+</cvrf:cvrfdoc>

@@ -1,0 +1,382 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cvrfdoc xmlns="http://www.icasi.org/CVRF/schema/cvrf/1.1" xmlns:cvrf="http://www.icasi.org/CVRF/schema/cvrf/1.1">
+  <DocumentTitle xml:lang="en">Red Hat Security Advisory: ruby:2.6 security, bug fix, and enhancement update</DocumentTitle>
+  <DocumentType>Security Advisory</DocumentType>
+  <DocumentPublisher Type="Vendor">
+    <ContactDetails>secalert@redhat.com</ContactDetails>
+    <IssuingAuthority>Red Hat Product Security</IssuingAuthority>
+  </DocumentPublisher>
+  <DocumentTracking>
+    <Identification><ID>RHSA-2021:2588</ID></Identification>
+    <Status>Final</Status>
+    <Version>1</Version>
+    <RevisionHistory>
+       <Revision>
+         <Number>1</Number>
+         <Date>2021-06-29T16:10:00Z</Date>
+         <Description>Current version</Description>
+       </Revision>
+    </RevisionHistory>
+    <InitialReleaseDate>2021-06-29T16:10:00Z</InitialReleaseDate>
+    <CurrentReleaseDate>2021-06-29T16:10:00Z</CurrentReleaseDate>
+    <Generator>
+      <Engine>Red Hat SDEngine 3.0.0</Engine>
+      <Date>2021-08-23T04:49:00Z</Date>
+    </Generator>
+  </DocumentTracking>
+  <DocumentNotes>
+    <Note Title="Topic" Type="Summary" Ordinal="1" xml:lang="en">
+An update for the ruby:2.6 module is now available for Red Hat Enterprise Linux 8.
+
+Red Hat Product Security has rated this update as having a security impact of Moderate. A Common Vulnerability Scoring System (CVSS) base score, which gives a detailed severity rating, is available for each vulnerability from the CVE link(s) in the References section.
+    </Note>
+    <Note Title="Details" Type="General" Ordinal="2" xml:lang="en">
+Ruby is an extensible, interpreted, object-oriented, scripting language. It has features to process text files and to perform system management tasks.
+
+The following packages have been upgraded to a later upstream version: ruby (2.6.7). (BZ#1952627)
+
+Security Fix(es):
+
+* rubygem-bundler: Insecure permissions on directory in /tmp/ allows for execution of malicious code (CVE-2019-3881)
+
+* ruby: NUL injection vulnerability of File.fnmatch and File.fnmatch? (CVE-2019-15845)
+
+* ruby: Regular expression denial of service vulnerability of WEBrick's Digest authentication (CVE-2019-16201)
+
+* ruby: Code injection via command argument of Shell#test / Shell#[] (CVE-2019-16255)
+
+* rubygem-json: Unsafe object creation vulnerability in JSON (CVE-2020-10663)
+
+* ruby: BasicSocket#read_nonblock method leads to information disclosure (CVE-2020-10933)
+
+* ruby: Potential HTTP request smuggling in WEBrick (CVE-2020-25613)
+
+* ruby: XML round-trip vulnerability in REXML (CVE-2021-28965)
+
+* ruby: HTTP response splitting in WEBrick (CVE-2019-16254)
+
+For more details about the security issue(s), including the impact, a CVSS score, acknowledgments, and other related information, refer to the CVE page(s) listed in the References section.
+
+Bug Fix(es):
+
+* Resolv::DNS: ruby:2.6/ruby: timeouts if multiple IPv6 name servers are given and address contains leading zero [rhel-8] (BZ#1954968)
+    </Note>
+    <Note Title="Terms of Use" Ordinal="3" Type="Legal Disclaimer" xml:lang="en">This content is licensed under the Creative Commons Attribution 4.0 International License (https://creativecommons.org/licenses/by/4.0/). If you distribute this content, or a modified version of it, you must provide attribution to Red Hat Inc. and provide a link to the original.</Note>
+  </DocumentNotes>
+  <DocumentDistribution xml:lang="en">Copyright © 2021 Red Hat, Inc. All rights reserved.</DocumentDistribution>
+  <AggregateSeverity Namespace="https://access.redhat.com/security/updates/classification/">Moderate</AggregateSeverity>
+  <DocumentReferences>
+    <Reference Type="Self">
+       <URL>https://access.redhat.com/errata/RHSA-2021:2588</URL>
+       <Description>https://access.redhat.com/errata/RHSA-2021:2588</Description>
+    </Reference>
+    <Reference Type="External">
+       <URL>https://access.redhat.com/security/updates/classification/#moderate</URL>
+       <Description>https://access.redhat.com/security/updates/classification/#moderate</Description>
+    </Reference>
+  </DocumentReferences>
+  <ProductTree xmlns="http://www.icasi.org/CVRF/schema/prod/1.1">
+    <Branch Type="Product Family" Name="Red Hat Enterprise Linux">
+      <Branch Type="Product Name" Name="Red Hat Enterprise Linux AppStream (v. 8)">
+        <FullProductName ProductID="AppStream-8.4.0.Z.MAIN.EUS" CPE="cpe:/a:redhat:enterprise_linux:8::appstream">Red Hat Enterprise Linux AppStream (v. 8)</FullProductName>
+      </Branch>
+    </Branch>
+    <Branch Type="Product Version" Name="ruby:2.6-8040020210430142949.522a0ee4">
+      <FullProductName ProductID="ruby:2.6-8040020210430142949.522a0ee4" CPE="cpe:/a:redhat:enterprise_linux:8::appstream">ruby-2.6-8040020210430142949.522a0ee4</FullProductName>
+    </Branch>
+    <Relationship ProductReference="ruby:2.6-8040020210430142949.522a0ee4" RelationType="Default Component Of" RelatesToProductReference="AppStream-8.4.0.Z.MAIN.EUS">
+      <FullProductName ProductID="AppStream-8.4.0.Z.MAIN.EUS:ruby:2.6-8040020210430142949.522a0ee4" CPE="cpe:/a:redhat:enterprise_linux:8::appstream">ruby:2.6-8040020210430142949.522a0ee4 as a component of Red Hat Enterprise Linux AppStream (v. 8)</FullProductName>
+    </Relationship>
+  </ProductTree>
+
+  <Vulnerability Ordinal="1" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">rubygem-bundler: Insecure permissions on directory in /tmp/ allows for execution of malicious code</Note></Notes>
+    <DiscoveryDate>2018-11-21T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2018-05-23T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2019-3881</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>AppStream-8.4.0.Z.MAIN.EUS:ruby:2.6-8040020210430142949.522a0ee4</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:2588</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2019-3881</URL>
+        <Description>CVE-2019-3881</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1651826</URL>
+        <Description>bz#1651826: CVE-2019-3881 rubygem-bundler: Insecure permissions on directory in /tmp/ allows for execution of malicious code</Description>
+      </Reference>
+    </References>
+    <Acknowledgments><Acknowledgment><Description>This issue was discovered by Lukáš Zapletal (Red Hat).</Description></Acknowledgment></Acknowledgments>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="2" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">ruby: NUL injection vulnerability of File.fnmatch and File.fnmatch?</Note></Notes>
+    <DiscoveryDate>2020-01-09T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2019-10-01T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2019-15845</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>AppStream-8.4.0.Z.MAIN.EUS:ruby:2.6-8040020210430142949.522a0ee4</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:2588</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.ruby-lang.org/en/news/2019/10/01/nul-injection-file-fnmatch-cve-2019-15845/</URL>
+        <Description>https://www.ruby-lang.org/en/news/2019/10/01/nul-injection-file-fnmatch-cve-2019-15845/</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2019-15845</URL>
+        <Description>CVE-2019-15845</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1789407</URL>
+        <Description>bz#1789407: CVE-2019-15845 ruby: NUL injection vulnerability of File.fnmatch and File.fnmatch?</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="3" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">ruby: Regular expression denial of service vulnerability of WEBrick's Digest authentication</Note></Notes>
+    <DiscoveryDate>2019-11-18T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2019-10-01T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2019-16201</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>AppStream-8.4.0.Z.MAIN.EUS:ruby:2.6-8040020210430142949.522a0ee4</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:2588</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.ruby-lang.org/en/news/2019/10/01/webrick-regexp-digestauth-dos-cve-2019-16201/</URL>
+        <Description>https://www.ruby-lang.org/en/news/2019/10/01/webrick-regexp-digestauth-dos-cve-2019-16201/</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2019-16201</URL>
+        <Description>CVE-2019-16201</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1773728</URL>
+        <Description>bz#1773728: CVE-2019-16201 ruby: Regular expression denial of service vulnerability of WEBrick's Digest authentication</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="4" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">ruby: HTTP response splitting in WEBrick</Note></Notes>
+    <DiscoveryDate>2020-01-09T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2019-10-25T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2019-16254</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>AppStream-8.4.0.Z.MAIN.EUS:ruby:2.6-8040020210430142949.522a0ee4</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Low</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:2588</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2019-16254</URL>
+        <Description>CVE-2019-16254</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1789556</URL>
+        <Description>bz#1789556: CVE-2019-16254 ruby: HTTP response splitting in WEBrick</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="5" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">ruby: Code injection via command argument of Shell#test / Shell#[]</Note></Notes>
+    <DiscoveryDate>2020-01-21T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2019-11-26T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2019-16255</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>AppStream-8.4.0.Z.MAIN.EUS:ruby:2.6-8040020210430142949.522a0ee4</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:2588</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2019-16255</URL>
+        <Description>CVE-2019-16255</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1793683</URL>
+        <Description>bz#1793683: CVE-2019-16255 ruby: Code injection via command argument of Shell#test / Shell#[]</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="6" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">rubygem-json: Unsafe object creation vulnerability in JSON</Note></Notes>
+    <DiscoveryDate>2020-03-19T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2020-03-19T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2020-10663</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>AppStream-8.4.0.Z.MAIN.EUS:ruby:2.6-8040020210430142949.522a0ee4</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:2588</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.ruby-lang.org/en/news/2020/03/19/json-dos-cve-2020-10663</URL>
+        <Description>https://www.ruby-lang.org/en/news/2020/03/19/json-dos-cve-2020-10663</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2020-10663</URL>
+        <Description>CVE-2020-10663</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1827500</URL>
+        <Description>bz#1827500: CVE-2020-10663 rubygem-json: Unsafe object creation vulnerability in JSON</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="7" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">ruby: BasicSocket#read_nonblock method leads to information disclosure</Note></Notes>
+    <DiscoveryDate>2020-05-04T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2020-03-31T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2020-10933</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>AppStream-8.4.0.Z.MAIN.EUS:ruby:2.6-8040020210430142949.522a0ee4</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:2588</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.ruby-lang.org/en/news/2020/03/31/heap-exposure-in-socket-cve-2020-10933</URL>
+        <Description>https://www.ruby-lang.org/en/news/2020/03/31/heap-exposure-in-socket-cve-2020-10933</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2020-10933</URL>
+        <Description>CVE-2020-10933</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1833291</URL>
+        <Description>bz#1833291: CVE-2020-10933 ruby: BasicSocket#read_nonblock method leads to information disclosure</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="8" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">ruby: Potential HTTP request smuggling in WEBrick</Note></Notes>
+    <DiscoveryDate>2020-09-29T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2020-09-29T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2020-25613</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>AppStream-8.4.0.Z.MAIN.EUS:ruby:2.6-8040020210430142949.522a0ee4</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:2588</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.ruby-lang.org/en/news/2020/09/29/http-request-smuggling-cve-2020-25613/</URL>
+        <Description>https://www.ruby-lang.org/en/news/2020/09/29/http-request-smuggling-cve-2020-25613/</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2020-25613</URL>
+        <Description>CVE-2020-25613</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1883623</URL>
+        <Description>bz#1883623: CVE-2020-25613 ruby: Potential HTTP request smuggling in WEBrick</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="9" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">ruby: XML round-trip vulnerability in REXML</Note></Notes>
+    <DiscoveryDate>2021-04-05T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-04-05T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-28965</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>AppStream-8.4.0.Z.MAIN.EUS:ruby:2.6-8040020210430142949.522a0ee4</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:2588</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-28965</URL>
+        <Description>CVE-2021-28965</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1947526</URL>
+        <Description>bz#1947526: CVE-2021-28965 ruby: XML round-trip vulnerability in REXML</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+</cvrfdoc>

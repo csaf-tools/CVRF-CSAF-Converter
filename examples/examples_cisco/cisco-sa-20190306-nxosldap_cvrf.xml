@@ -1,0 +1,563 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cvrf:cvrfdoc xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:cvrf-common="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/common" xmlns:cvrf="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/cvrf">
+  <cvrf:DocumentTitle>Cisco FXOS and NX-OS Lightweight Directory Access Protocol Denial of Service Vulnerabilities</cvrf:DocumentTitle>
+  <cvrf:DocumentType>Cisco Security Advisory</cvrf:DocumentType>
+  <cvrf:DocumentPublisher Type="Vendor">
+    <cvrf:ContactDetails>Emergency Support:
++1 877 228 7302 (toll-free within North America)
++1 408 525 6532 (International direct-dial)
+Non-emergency Support:
+Email: psirt@cisco.com
+Support requests that are received via e-mail are typically acknowledged within 48 hours.</cvrf:ContactDetails>
+    <cvrf:IssuingAuthority>Cisco product security incident response is the responsibility of the Cisco Product Security Incident Response Team (PSIRT). The Cisco PSIRT is a dedicated, global team that manages the receipt, investigation, and public reporting of security vulnerability information that is related to Cisco products and networks. The on-call Cisco PSIRT works 24x7 with Cisco customers, independent security researchers, consultants, industry organizations, and other vendors to identify possible security issues with Cisco products and networks.
+More information can be found in Cisco Security Vulnerability Policy available at http://www.cisco.com/web/about/security/psirt/security_vulnerability_policy.html</cvrf:IssuingAuthority>
+  </cvrf:DocumentPublisher>
+  <cvrf:DocumentTracking>
+    <cvrf:Identification>
+      <cvrf:ID>cisco-sa-20190306-nxosldap</cvrf:ID>
+    </cvrf:Identification>
+    <cvrf:Status>Final</cvrf:Status>
+    <cvrf:Version>1.0</cvrf:Version>
+    <cvrf:RevisionHistory>
+      <cvrf:Revision>
+        <cvrf:Number>1.0</cvrf:Number>
+        <cvrf:Date>2019-03-06T15:31:29</cvrf:Date>
+        <cvrf:Description>Initial public release.</cvrf:Description>
+      </cvrf:Revision>
+    </cvrf:RevisionHistory>
+    <cvrf:InitialReleaseDate>2019-03-06T16:00:00</cvrf:InitialReleaseDate>
+    <cvrf:CurrentReleaseDate>2019-03-06T15:31:29</cvrf:CurrentReleaseDate>
+    <cvrf:Generator>
+      <cvrf:Engine>TVCE</cvrf:Engine>
+    </cvrf:Generator>
+  </cvrf:DocumentTracking>
+  <cvrf:DocumentNotes>
+    <cvrf:Note Title="Summary" Type="Summary" Ordinal="1">Multiple vulnerabilities in the implementation of the Lightweight Directory Access Protocol (LDAP) feature in Cisco FXOS Software and Cisco NX-OS Software could allow an unauthenticated, remote attacker to cause an affected device to reload, resulting in a denial of service (DoS) condition.
+
+The vulnerabilities are due to the improper parsing of LDAP packets by an affected device. An attacker could exploit these vulnerabilities by sending an LDAP packet crafted using Basic Encoding Rules (BER) to an affected device. The LDAP packet must have a source IP address of an LDAP server configured on the targeted device. A successful exploit could cause the affected device to reload, resulting in a DoS condition.
+
+Cisco has released software updates that address these vulnerabilities. There are no workarounds that address these vulnerabilities.
+
+This advisory is available at the following link:
+https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20190306-nxosldap ["https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20190306-nxosldap"]
+  This advisory is part of the March 2019 Cisco FXOS and NX-OS Software Security Advisory Bundled Publication, which includes 25 Cisco Security Advisories that describe 26 vulnerabilities. For a complete list of the advisories and links to them, see Cisco Event Response: March 2019 Cisco FXOS and NX-OS Software Security Advisory Bundled Publication ["http://tools.cisco.com/security/center/viewErp.x?alertId=ERP-70757"].</cvrf:Note>
+    <cvrf:Note Title="Vulnerable Products" Type="General" Ordinal="2">These vulnerabilities affect the following Cisco products if they are running a vulnerable release of Cisco FXOS Software or Cisco NX-OS Software and are configured for remote LDAP authentication:
+Firepower 4100 Series Next-Generation Firewalls
+ Firepower 9300 Security Appliance
+MDS 9000 Series Multilayer Switches
+ Nexus 3000 Series Switches
+Nexus 3500 Platform Switches
+Nexus 7000 Series Switches
+Nexus 7700 Series Switches
+ Nexus 9000 Series Switches in standalone NX-OS mode
+UCS 6200 Series Fabric Interconnects
+UCS 6300 Series Fabric Interconnects
+
+For information about which Cisco FXOS Software and Cisco NX-OS Software releases are vulnerable, see the Fixed Software ["#fs"] section of this advisory.
+  Determining the Cisco FXOS LDAP Configuration
+To determine whether a Nexus device is configured for LDAP-based authentication, authorization, and accounting (AAA), administrators can use the show ldap-server CLI command. Output after the following LDAP servers are configured header indicates that a device is vulnerable. For additional information about AAA configuration for FXOS-based devices, customers can refer to the Configuring AAA section ["https://www.cisco.com/c/en/us/td/docs/security/firepower/fxos/fxos201/cli-config/b_CLI_ConfigGuide_FXOS_201/platform_settings.html#topic_105C66CC3C7F4D99B08A413FEF5BCEF4"] of the Cisco FXOS CLI Configuration Guide.
+
+
+fxos# show ldap-server
+ timeout : 30          port : 0        baseDN :  user profile attribute :  search filter : cn=$userid    use groups : 0  recurse groups : 0  group attribute : memberOf  total number of servers : 1     following LDAP servers are configured:      ldap1:          timeout: 30    port: 389    rootDN: DC=cisco-firepower-aaa1,DC=qalab0,DC=com0,DC=cisco-firepower-aaa2,DC=qalab1,DC=com1,DC=cisco-firepower-aaa3,DC=qalab2,DC=com2,DC=cisco-firepower-aaa4,DC=qalab3,DC=com3,DC=cisco-firepower-aaa5,DC=qalab4,DC=com4,DC=cisco-firepower-aaa6,DC=qalab5,DC=qalab006          enable-ssl: true  .  .  .
+    Determining the Cisco NX-OS LDAP Configuration
+To determine whether a Nexus device is configured for the LDAP feature, administrators can use the show running-config | include "ldap-server host" command from the NX-OS CLI and verify that the feature is enabled.
+
+
+nxos-switch# show running-config | include "ldap-server host"
+ldap-server host ...
+
+For additional information on NX-OS LDAP configuration, customers can refer to the Configuring LDAP chapter ["https://www.cisco.com/c/en/us/td/docs/switches/datacenter/sw/5_x/nx-os/security/configuration/guide/b_Cisco_Nexus_7000_NX-OS_Security_Configuration_Guide__Release_5-x/b_Cisco_Nexus_7000_NX-OS_Security_Configuration_Guide__Release_5-x_chapter_0111.html#con_1473592"] of the Cisco Security Configuration Guide.
+
+Determining the Cisco FXOS Software Release
+Administrators can check the release of Cisco FXOS Software that is running on a device by using the following commands in the device CLI or by navigating to the Overview tab in the Admin portal. The following example shows the output of the show version CLI command on a device that is running Cisco FXOS Software Release 2.2(2.14), as identified in the Package-Vers field of the command output:
+
+
+QP4120B1 # scope system
+QP4120B1 /system # show version  FPRM:  Running-Vers: 4.2(2.15)  Package-Vers: 2.2(2.14)  Activate-Status: Ready
+
+
+Determining the Cisco NX-OS Software Release
+Administrators can check the release of Cisco NX-OS Software that is running on a device by using the show version command in the device CLI. The following example shows the output of this command on a device that is running Cisco NX-OS Software Release 7.0(3)I5(1):
+
+
+nxos-switch# show version
+Cisco Nexus Operating System (NX-OS) Software  TAC support: http://www.cisco.com/tac  Copyright (C) 2002-2016, Cisco and/or its affiliates.  All rights reserved.  The copyrights to certain works contained in this software are  owned by other third parties and used and distributed under their own  licenses, such as open source.  This software is provided "as is," and  unless otherwise stated, there is no warranty, express or implied,   including but not limited to warranties of merchantability and fitness   for a particular purpose. Certain components of this software are   licensed under the GNU General Public License (GPL) version 2.0 or   GNU General Public License (GPL) version 3.0  or the GNU  Lesser General Public License (LGPL) Version 2.1 or   Lesser General Public License (LGPL) Version 2.0.   A copy of each such license is available at  http://www.opensource.org/licenses/gpl-2.0.php and  http://opensource.org/licenses/gpl-3.0.html and  http://www.opensource.org/licenses/lgpl-2.1.php and  http://www.gnu.org/licenses/old-licenses/library.txt.  Software    BIOS: version 07.57    NXOS: version 7.0(3)I5(1) [build 7.0(3)I5(0.9)]    BIOS compile time:  06/29/2016    NXOS image file is: bootflash:///nxos.7.0.3.I5.0.9.bin    NXOS compile time:  8/1/2016 23:00:00 [08/02/2016 00:30:32]    .    .    .</cvrf:Note>
+    <cvrf:Note Title="Products Confirmed Not Vulnerable" Type="General" Ordinal="3">Only products listed in the Vulnerable Products ["#vp"] section of this advisory are known to be affected by these vulnerabilities.
+
+Cisco has confirmed that these vulnerabilities do not affect the following Cisco products:
+
+ Firepower 2100 Series Firewalls
+Nexus 1000V Switch for KVM
+Nexus 1000V Switch for Microsoft Hyper-V
+Nexus 1000V Switch for VMware vSphere
+Nexus 1100 Series Cloud Services Platforms
+Nexus 2000 Series Fabric Extenders
+Nexus 3600 Platform Switches
+ Nexus 5500 Platform Switches
+Nexus 5600 Platform Switches
+Nexus 6000 Series Switches
+ Nexus 9000 Series Fabric Switches in Application Centric Infrastructure (ACI) mode
+Nexus 9500 R-Series Line Cards and Fabric Modules
+UCS 6400 Series Fabric Interconnects</cvrf:Note>
+    <cvrf:Note Title="Workarounds" Type="General" Ordinal="4">There are no workarounds that address these vulnerabilities.</cvrf:Note>
+    <cvrf:Note Title="Fixed Software" Type="General" Ordinal="5">Cisco has released free software updates that address the  vulnerabilities described in this advisory. Customers may only install and  expect support for software versions and feature sets for which they  have purchased a license. By installing, downloading, accessing, or  otherwise using such software upgrades, customers agree to follow the  terms of the Cisco software license:  https://www.cisco.com/c/en/us/products/end-user-license-agreement.html ["https://www.cisco.com/c/en/us/products/end-user-license-agreement.html"]
+
+Additionally, customers may only download software for which they  have a valid license, procured from Cisco directly, or through a Cisco  authorized reseller or partner. In most cases this will be a maintenance  upgrade to software that was previously purchased. Free security  software updates do not entitle customers to a new software license,  additional software feature sets, or major revision upgrades.
+
+When considering software upgrades, customers are advised to  regularly consult the advisories for Cisco products, which are available  from the Cisco Security Advisories and Alerts page ["https://www.cisco.com/go/psirt"], to determine exposure and a complete upgrade solution.
+
+In all cases, customers should ensure that the devices to be upgraded  contain sufficient memory and confirm that current hardware and  software configurations will continue to be supported properly by the  new release. If the information is not clear, customers are advised to  contact the Cisco Technical Assistance Center (TAC) or their contracted  maintenance providers.
+  Customers Without Service Contracts
+Customers who purchase directly from Cisco but do not hold a Cisco  service contract and customers who make purchases through third-party  vendors but are unsuccessful in obtaining fixed software through their  point of sale should obtain upgrades by contacting the Cisco TAC: https://www.cisco.com/c/en/us/support/web/tsd-cisco-worldwide-contacts.html ["https://www.cisco.com/c/en/us/support/web/tsd-cisco-worldwide-contacts.html"]
+
+Customers should have the product serial number available and be  prepared to provide the URL of this advisory as evidence of entitlement  to a free upgrade.
+  Fixed Releases
+
+Customers are advised to upgrade to an appropriate release ["https://tools.cisco.com/security/center/resources/security_vulnerability_policy.html#fixes"] as indicated in the applicable table in this section. To help ensure a complete upgrade solution, customers should consider that this advisory is part of a bundled publication. The following page provides a complete list of bundle advisories: Cisco Event Response: March 2019 Cisco FXOS and NX-OS Software Security Advisory Bundled Publication ["http://tools.cisco.com/security/center/viewErp.x?alertId=ERP-70757"].
+
+In the following tables, the left column lists releases of Cisco FXOS Software or Cisco NX-OS Software. The center column indicates whether a release is affected by the vulnerabilities described in this advisory and the first release that includes the fix for these vulnerabilities. The right column indicates whether a release is affected by all the vulnerabilities described in this bundle and which release includes fixes for those vulnerabilities.
+
+
+
+Although the releases listed in the right column of each table include fixes for the vulnerabilities, the fix related to the Cisco NX-OS Software Image Signature Verification Vulnerability ["https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20190306-nxos-sig-verif"] requires a BIOS upgrade as part of the software upgrade. Customers who are upgrading the software for any of the following products are advised to refer to this advisory for further details about the BIOS upgrade and affected product IDs and BIOS versions:
+
+Nexus 3000 Series Switches
+Nexus 9000 Series Fabric Switches in ACI mode
+Nexus 9000 Series Switches in standalone NX-OS mode
+Nexus 9500 R-Series Line Cards and Fabric Modules
+
+
+Firepower 4100 Series Next-Generation Firewalls: CSCvd40241 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCvd40241"] and CSCvd57308 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCvd57308"]
+                                Cisco FXOS Software Release              First Fixed Release for These Vulnerabilities              First Fixed Release for All Vulnerabilities Described in the Bundle of Advisories                                              1.1
+              2.0.1.201
+              2.2.2.91
+                                  2.0              2.0.1.201
+              2.2.2.91                                   2.1              2.2.2.54
+              2.2.2.91                                   2.2              2.2.2.54
+              2.2.2.91                                   2.3              2.3.1.75
+              2.3.1.110                                   2.4              Not vulnerable              2.4.1.122
+Firepower 9300 Security Appliance: CSCvd40241 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCvd40241"] and CSCvd57308 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCvd57308"]
+                                Cisco FXOS Software Release              First Fixed Release for These Vulnerabilities              First Fixed Release for All Vulnerabilities Described in the Bundle of Advisories                                              1.1
+              2.0.1.201              2.2.2.91
+                                  2.0              2.0.1.201              2.2.2.91                                   2.1              2.2.2.54              2.2.2.91                                   2.2              2.2.2.54              2.2.2.91                                   2.3              2.3.1.75              2.3.1.110
+                                  2.4              Not vulnerable              2.4.1.122
+
+MDS 9000 Series Multilayer Switches: CSCve57820 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCve57820"] and CSCve02867 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCve02867"]
+                                Cisco NX-OS Software Release              First Fixed Release for These Vulnerabilities              First Fixed Release for All Vulnerabilities Described in the Bundle of Advisories                                              5.2
+              6.2(21)              6.2(27)
+                                  6.2              6.2(21)              6.2(27)
+                                  7.3              8.2(1)              8.3(2)
+                                  8.1              8.2(1)              8.3(2)                                    8.2              Not vulnerable              8.3(2)                                    8.3              Not vulnerable              8.3(2)
+Nexus 3000 Series Switches: CSCve58224 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCve58224"] and CSCve02858 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCve02858"]
+                                Cisco NX-OS Software Release              First Fixed Release for These Vulnerabilities              First Fixed Release for All Vulnerabilities Described in the Bundle of Advisories                                              Prior to 7.0(3)I4
+              7.0(3)I4(7)              7.0(3)I7(6)
+                                  7.0(3)I4              7.0(3)I4(7)              7.0(3)I7(6)
+                                  7.0(3)I5              7.0(3)I7(1)               7.0(3)I7(6)
+                                  7.0(3)I6              7.0(3)I7(1)              7.0(3)I7(6)                                   7.0(3)I7              7.0(3)I7(1)               7.0(3)I7(6)
+                                  9.2(1)              Not vulnerable
+               9.2(2)
+Nexus 3500 Platform Switches: CSCve02871 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCve02871"]
+                                Cisco NX-OS Software Release              First Fixed Release for These Vulnerabilities              First Fixed Release for All Vulnerabilities Described in the Bundle of Advisories                                              Prior to 6.0(2)A8
+              6.0(2)A8(11)               6.0(2)A8(11)                                   6.0(2)A8
+              6.0(2)A8(11)
+              6.0(2)A8(11)                                   7.0(3)              7.0(3)I7(2)
+              7.0(3)I7(6)
+                                  9.2              Not vulnerable              9.2(2)
+
+Nexus 7000 and 7700 Series Switches: CSCve57820 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCve57820"] and CSCve02867 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCve02867"]
+                                Cisco NX-OS Software Release              First Fixed Release for These Vulnerabilities              First Fixed Release for All Vulnerabilities Described in the Bundle of Advisories                                              Prior to 6.2
+              6.2(20)              6.2(22)
+                                  6.2
+              6.2(20)              6.2(22)
+                                  7.2              7.3(2)D1(1)              8.2(3)
+                                  7.3              7.3(2)D1(1)              8.2(3)
+                                  8.0              8.2(1)              8.2(3)
+                                  8.1              8.2(1)               8.2(3)
+                                  8.2              Not vulnerable               8.2(3)
+                                  8.3              Not vulnerable
+              8.3(2)
+
+Nexus 9000 Series Switches in Standalone NX-OS Mode: CSCve02865 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCve02865"] and CSCve57816 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCve57816"]
+                                Cisco NX-OS Software Release              First Fixed Release for These Vulnerabilities              First Fixed Release for All Vulnerabilities Described in the Bundle of Advisories                                              Prior to 7.0(3)I4
+              7.0(3)I4(7)              7.0(3)I7(6)
+                                  7.0(3)I4              7.0(3)I4(7)              7.0(3)I7(6)
+                                  7.0(3)I5              7.0(3)I7(1)               7.0(3)I7(6)
+                                  7.0(3)I6              7.0(3)I7(1)              7.0(3)I7(6)                                   7.0(3)I7              7.0(3)I7(1)               7.0(3)I7(6)
+                                  9.2(1)              Not vulnerable
+              9.2(2)
+
+UCS 6200 and 6300 Fabric Interconnects: CSCve02855 ["https://bst.cloudapps.cisco.com/bugsearch/bug/ CSCve02855"]
+                                Cisco NX-OS Software Release              First Fixed Release for These Vulnerabilities              First Fixed Release for All Vulnerabilities Described in the Bundle of Advisories                                              Prior to 3.1
+              3.2(2b)              3.2(3j)
+                                  3.1              3.2(2b)               3.2(3j)
+                                  3.2              3.2(2b)               3.2(3j)
+                                  4.0              Not vulnerable
+              4.0(2a)
+Additional Resources
+For help determining the best Cisco NX-OS Software release for a Cisco Nexus Switch, administrators can refer to the following Recommended Releases documents. If a security advisory recommends a later release, Cisco recommends following the advisory guidance.
+
+
+Cisco MDS Series Switches ["https://www.cisco.com/c/en/us/td/docs/switches/datacenter/mds9000/sw/b_MDS_NX-OS_Recommended_Releases.html"]
+Cisco Nexus 1000V for VMware Switch ["http://www.cisco.com/c/en/us/td/docs/switches/datacenter/nexus1000/sw/recommended_releases/b_Cisco_N1KV_VMware_MinRecommendedReleases.html"]
+Cisco Nexus 3000 Series and 3500 Series Switches ["http://www.cisco.com/c/en/us/td/docs/switches/datacenter/nexus3000/sw/recommended_release/b_Minimum_and_Recommended_Cisco_NX-OS_Releases_for_Cisco_Nexus_3000_Series_Switches.html"]
+Cisco Nexus 5000 Series Switches ["http://www.cisco.com/c/en/us/td/docs/switches/datacenter/nexus5000/sw/release/recommended_releases/recommended_nx-os_releases.html"]
+Cisco Nexus 5500 Platform Switches ["http://www.cisco.com/c/en/us/td/docs/switches/datacenter/nexus5500/sw/release/recommended_releases/n5500_recommended_nx-os_releases.html"]
+Cisco Nexus 6000 Series Switches ["http://www.cisco.com/c/en/us/td/docs/switches/datacenter/nexus6000/sw/release/recommended_releases/recommended_nx-os_releases.html"]
+Cisco Nexus 7000 Series Switches ["http://www.cisco.com/c/en/us/td/docs/switches/datacenter/sw/nx-os/recommended_releases/recommended_nx-os_releases.html"]
+Cisco Nexus 9000 Series Switches ["http://www.cisco.com/c/en/us/td/docs/switches/datacenter/nexus9000/sw/recommended_release/b_Minimum_and_Recommended_Cisco_NX-OS_Releases_for_Cisco_Nexus_9000_Series_Switches.html"]
+Cisco Nexus 9000 Series ACI-Mode Switches ["https://www.cisco.com/c/en/us/td/docs/switches/datacenter/aci/apic/sw/recommended-release/b_Recommended_Cisco_ACI_Releases.html"]
+  For help determining the best Cisco NX-OS Software release for Cisco UCS, refer to the Recommended Releases documents in the release notes for the device.</cvrf:Note>
+    <cvrf:Note Title="Vulnerability Policy" Type="General" Ordinal="6">To learn about Cisco security vulnerability disclosure policies and publications, see the Security Vulnerability Policy ["http://www.cisco.com/web/about/security/psirt/security_vulnerability_policy.html"]. This document also contains instructions for obtaining fixed software and receiving security vulnerability information from Cisco.</cvrf:Note>
+    <cvrf:Note Title="Exploitation and Public Announcements" Type="General" Ordinal="7">The Cisco Product Security Incident Response Team (PSIRT) is not aware of any public announcements or malicious use of the vulnerabilities that are described in this advisory.</cvrf:Note>
+    <cvrf:Note Title="Source" Type="General" Ordinal="8">These vulnerabilities were found during internal security testing.</cvrf:Note>
+    <cvrf:Note Title="Legal Disclaimer" Type="Legal Disclaimer" Ordinal="9">THIS DOCUMENT IS PROVIDED ON AN "AS IS" BASIS AND DOES NOT IMPLY ANY KIND OF GUARANTEE OR WARRANTY, INCLUDING THE WARRANTIES OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR USE. YOUR USE OF THE INFORMATION ON THE DOCUMENT OR MATERIALS LINKED FROM THE DOCUMENT IS AT YOUR OWN RISK. CISCO RESERVES THE RIGHT TO CHANGE OR UPDATE THIS DOCUMENT AT ANY TIME.
+
+A standalone copy or paraphrase of the text of this document that omits the distribution URL is an uncontrolled copy and may lack important information or contain factual errors. The information in this document is intended for end users of Cisco products.</cvrf:Note>
+  </cvrf:DocumentNotes>
+  <cvrf:DocumentReferences>
+    <cvrf:Reference Type="Self">
+      <cvrf:URL>https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20190306-nxosldap</cvrf:URL>
+      <cvrf:Description>Cisco FXOS and NX-OS Lightweight Directory Access Protocol Denial of Service Vulnerabilities</cvrf:Description>
+    </cvrf:Reference>
+    <cvrf:Reference>
+      <cvrf:URL>http://tools.cisco.com/security/center/viewErp.x?alertId=ERP-70757</cvrf:URL>
+      <cvrf:Description>Cisco Event Response: March 2019 Cisco FXOS and NX-OS Software Security Advisory Bundled Publication</cvrf:Description>
+    </cvrf:Reference>
+  </cvrf:DocumentReferences>
+  <ProductTree xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/prod">
+    <Branch Name="Cisco" Type="Vendor">
+      <Branch Name="Cisco NX-OS Software" Type="Product Name">
+        <Branch Name="4.1" Type="Product Version">
+          <Branch Name="4.1(2)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-191429">Cisco NX-OS Software 4.1(2)</FullProductName>
+          </Branch>
+          <Branch Name="4.1(3)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-191430">Cisco NX-OS Software 4.1(3)</FullProductName>
+          </Branch>
+          <Branch Name="4.1(4)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-191431">Cisco NX-OS Software 4.1(4)</FullProductName>
+          </Branch>
+          <Branch Name="4.1(5)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-191432">Cisco NX-OS Software 4.1(5)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="5.0" Type="Product Version">
+          <Branch Name="5.0(2a)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-191438">Cisco NX-OS Software 5.0(2a)</FullProductName>
+          </Branch>
+          <Branch Name="5.0(3)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-191439">Cisco NX-OS Software 5.0(3)</FullProductName>
+          </Branch>
+          <Branch Name="5.0(5)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-191440">Cisco NX-OS Software 5.0(5)</FullProductName>
+          </Branch>
+          <Branch Name="5.0(2)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-256525">Cisco NX-OS Software 5.0(2)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="4.2" Type="Product Version">
+          <Branch Name="4.2(2a)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-191433">Cisco NX-OS Software 4.2(2a)</FullProductName>
+          </Branch>
+          <Branch Name="4.2(3)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-191434">Cisco NX-OS Software 4.2(3)</FullProductName>
+          </Branch>
+          <Branch Name="4.2(4)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-191435">Cisco NX-OS Software 4.2(4)</FullProductName>
+          </Branch>
+          <Branch Name="4.2(6)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-191436">Cisco NX-OS Software 4.2(6)</FullProductName>
+          </Branch>
+          <Branch Name="4.2(8)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-191437">Cisco NX-OS Software 4.2(8)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="5.1" Type="Product Version">
+          <Branch Name="5.1(1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-191441">Cisco NX-OS Software 5.1(1)</FullProductName>
+          </Branch>
+          <Branch Name="5.1(1a)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-191442">Cisco NX-OS Software 5.1(1a)</FullProductName>
+          </Branch>
+          <Branch Name="5.1(3)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-191443">Cisco NX-OS Software 5.1(3)</FullProductName>
+          </Branch>
+          <Branch Name="5.1(4)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-191444">Cisco NX-OS Software 5.1(4)</FullProductName>
+          </Branch>
+          <Branch Name="5.1(5)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-191445">Cisco NX-OS Software 5.1(5)</FullProductName>
+          </Branch>
+          <Branch Name="5.1(6)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-191446">Cisco NX-OS Software 5.1(6)</FullProductName>
+          </Branch>
+          <Branch Name="5.1(2)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-256524">Cisco NX-OS Software 5.1(2)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="5.2" Type="Product Version">
+          <Branch Name="5.2(3a)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-191448">Cisco NX-OS Software 5.2(3a)</FullProductName>
+          </Branch>
+          <Branch Name="5.2(4)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-191449">Cisco NX-OS Software 5.2(4)</FullProductName>
+          </Branch>
+          <Branch Name="5.2(5)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-191450">Cisco NX-OS Software 5.2(5)</FullProductName>
+          </Branch>
+          <Branch Name="5.2(7)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-191451">Cisco NX-OS Software 5.2(7)</FullProductName>
+          </Branch>
+          <Branch Name="5.2(9)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-191452">Cisco NX-OS Software 5.2(9)</FullProductName>
+          </Branch>
+          <Branch Name="5.2(3)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-239416">Cisco NX-OS Software 5.2(3)</FullProductName>
+          </Branch>
+          <Branch Name="5.2(9a)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-239422">Cisco NX-OS Software 5.2(9a)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="6.1" Type="Product Version">
+          <Branch Name="6.1(1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-191457">Cisco NX-OS Software 6.1(1)</FullProductName>
+          </Branch>
+          <Branch Name="6.1(2)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-191458">Cisco NX-OS Software 6.1(2)</FullProductName>
+          </Branch>
+          <Branch Name="6.1(3)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-191459">Cisco NX-OS Software 6.1(3)</FullProductName>
+          </Branch>
+          <Branch Name="6.1(4)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-196607">Cisco NX-OS Software 6.1(4)</FullProductName>
+          </Branch>
+          <Branch Name="6.1(4a)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-196608">Cisco NX-OS Software 6.1(4a)</FullProductName>
+          </Branch>
+          <Branch Name="6.1(5)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-212033">Cisco NX-OS Software 6.1(5)</FullProductName>
+          </Branch>
+          <Branch Name="6.1(3)S5" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-225656">Cisco NX-OS Software 6.1(3)S5</FullProductName>
+          </Branch>
+          <Branch Name="6.1(3)S6" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-225657">Cisco NX-OS Software 6.1(3)S6</FullProductName>
+          </Branch>
+          <Branch Name="6.1(5a)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-239433">Cisco NX-OS Software 6.1(5a)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="6.0" Type="Product Version">
+          <Branch Name="6.0(1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-191453">Cisco NX-OS Software 6.0(1)</FullProductName>
+          </Branch>
+          <Branch Name="6.0(2)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-191454">Cisco NX-OS Software 6.0(2)</FullProductName>
+          </Branch>
+          <Branch Name="6.0(3)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-191455">Cisco NX-OS Software 6.0(3)</FullProductName>
+          </Branch>
+          <Branch Name="6.0(4)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-191456">Cisco NX-OS Software 6.0(4)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="6.1(2)I1" Type="Product Version">
+          <Branch Name="6.1(2)I1(1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-240152">Cisco NX-OS Software 6.1(2)I1(1)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="6.1(2)I3" Type="Product Version">
+          <Branch Name="6.1(2)I3(3.78)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-208867">Cisco NX-OS Software 6.1(2)I3(3.78)</FullProductName>
+          </Branch>
+          <Branch Name="6.1(2)I3(3b)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-240154">Cisco NX-OS Software 6.1(2)I3(3b)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="7.0" Type="Product Version">
+          <Branch Name="7.0(3)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-208195">Cisco NX-OS Software 7.0(3)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="7.0(2)I2" Type="Product Version">
+          <Branch Name="7.0(2)I2(2c)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-239460">Cisco NX-OS Software 7.0(2)I2(2c)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="7.3(1)D1" Type="Product Version">
+          <Branch Name="7.3(1)D1(1B)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-230434">Cisco NX-OS Software 7.3(1)D1(1B)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="7.3(1)N1" Type="Product Version">
+          <Branch Name="7.3(1)N1(0.1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-225661">Cisco NX-OS Software 7.3(1)N1(0.1)</FullProductName>
+          </Branch>
+        </Branch>
+      </Branch>
+      <Branch Name="Cisco Unified Computing System (Managed)" Type="Product Name">
+        <FullProductName ProductID="CVRFPID-112776">Cisco Unified Computing System (Managed) </FullProductName>
+      </Branch>
+      <Branch Name="Cisco Firepower Extensible Operating System (FXOS)" Type="Product Name">
+        <FullProductName ProductID="CVRFPID-225888">Cisco Firepower Extensible Operating System (FXOS) </FullProductName>
+      </Branch>
+    </Branch>
+  </ProductTree>
+  <Vulnerability Ordinal="1" xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln">
+    <Title>Cisco NX-OS Lightweight Directory Access Protocol Denial of Service Vulnerabilities</Title>
+    <ID SystemName="Cisco Bug ID">CSCvd40241</ID>
+    <Notes>
+      <Note Title="Cisco Bug IDs" Type="Other" Ordinal="1">CSCvd40241,CSCvd57308,CSCve02855,CSCve02871,CSCve57820,CSCve02867,CSCve58224,CSCve02858,CSCve02865,CSCve57816</Note>
+    </Notes>
+    <CVE>CVE-2019-1597</CVE>
+    <ProductStatuses>
+      <Status Type="Known Affected">
+        <ProductID>CVRFPID-225888</ProductID>
+        <ProductID>CVRFPID-112776</ProductID>
+        <ProductID>CVRFPID-191429</ProductID>
+        <ProductID>CVRFPID-191430</ProductID>
+        <ProductID>CVRFPID-191431</ProductID>
+        <ProductID>CVRFPID-191432</ProductID>
+        <ProductID>CVRFPID-191433</ProductID>
+        <ProductID>CVRFPID-191434</ProductID>
+        <ProductID>CVRFPID-191435</ProductID>
+        <ProductID>CVRFPID-191436</ProductID>
+        <ProductID>CVRFPID-191437</ProductID>
+        <ProductID>CVRFPID-191438</ProductID>
+        <ProductID>CVRFPID-191439</ProductID>
+        <ProductID>CVRFPID-191440</ProductID>
+        <ProductID>CVRFPID-191441</ProductID>
+        <ProductID>CVRFPID-191442</ProductID>
+        <ProductID>CVRFPID-191443</ProductID>
+        <ProductID>CVRFPID-191444</ProductID>
+        <ProductID>CVRFPID-191445</ProductID>
+        <ProductID>CVRFPID-191446</ProductID>
+        <ProductID>CVRFPID-191448</ProductID>
+        <ProductID>CVRFPID-191449</ProductID>
+        <ProductID>CVRFPID-191450</ProductID>
+        <ProductID>CVRFPID-191451</ProductID>
+        <ProductID>CVRFPID-191452</ProductID>
+        <ProductID>CVRFPID-191453</ProductID>
+        <ProductID>CVRFPID-191454</ProductID>
+        <ProductID>CVRFPID-191455</ProductID>
+        <ProductID>CVRFPID-191456</ProductID>
+        <ProductID>CVRFPID-191457</ProductID>
+        <ProductID>CVRFPID-191458</ProductID>
+        <ProductID>CVRFPID-191459</ProductID>
+        <ProductID>CVRFPID-196607</ProductID>
+        <ProductID>CVRFPID-196608</ProductID>
+        <ProductID>CVRFPID-208195</ProductID>
+        <ProductID>CVRFPID-208867</ProductID>
+        <ProductID>CVRFPID-212033</ProductID>
+        <ProductID>CVRFPID-225656</ProductID>
+        <ProductID>CVRFPID-225657</ProductID>
+        <ProductID>CVRFPID-225661</ProductID>
+        <ProductID>CVRFPID-230434</ProductID>
+        <ProductID>CVRFPID-239416</ProductID>
+        <ProductID>CVRFPID-239422</ProductID>
+        <ProductID>CVRFPID-239433</ProductID>
+        <ProductID>CVRFPID-239460</ProductID>
+        <ProductID>CVRFPID-240152</ProductID>
+        <ProductID>CVRFPID-240154</ProductID>
+        <ProductID>CVRFPID-256524</ProductID>
+        <ProductID>CVRFPID-256525</ProductID>
+      </Status>
+    </ProductStatuses>
+    <CVSSScoreSets>
+      <ScoreSetV3>
+        <BaseScoreV3>8.6</BaseScoreV3>
+        <VectorV3>CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:C/C:N/I:N/A:H</VectorV3>
+      </ScoreSetV3>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Workaround">
+        <Description>There are no workarounds that address these vulnerabilities.</Description>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference Type="Self">
+        <URL>https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20190306-nxosldap</URL>
+        <Description>Cisco FXOS and NX-OS Lightweight Directory Access Protocol Denial of Service Vulnerabilities</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+  <Vulnerability Ordinal="2" xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln">
+    <Title>Cisco NX-OS Lightweight Directory Access Protocol Denial of Service Vulnerabilities</Title>
+    <ID SystemName="Cisco Bug ID">CSCvd40241</ID>
+    <Notes>
+      <Note Title="Cisco Bug IDs" Type="Other" Ordinal="1">CSCvd40241,CSCvd57308,CSCve02855,CSCve02871,CSCve57820,CSCve02867,CSCve58224,CSCve02858,CSCve02865,CSCve57816</Note>
+    </Notes>
+    <CVE>CVE-2019-1598</CVE>
+    <ProductStatuses>
+      <Status Type="Known Affected">
+        <ProductID>CVRFPID-225888</ProductID>
+        <ProductID>CVRFPID-112776</ProductID>
+        <ProductID>CVRFPID-191429</ProductID>
+        <ProductID>CVRFPID-191430</ProductID>
+        <ProductID>CVRFPID-191431</ProductID>
+        <ProductID>CVRFPID-191432</ProductID>
+        <ProductID>CVRFPID-191433</ProductID>
+        <ProductID>CVRFPID-191434</ProductID>
+        <ProductID>CVRFPID-191435</ProductID>
+        <ProductID>CVRFPID-191436</ProductID>
+        <ProductID>CVRFPID-191437</ProductID>
+        <ProductID>CVRFPID-191438</ProductID>
+        <ProductID>CVRFPID-191439</ProductID>
+        <ProductID>CVRFPID-191440</ProductID>
+        <ProductID>CVRFPID-191441</ProductID>
+        <ProductID>CVRFPID-191442</ProductID>
+        <ProductID>CVRFPID-191443</ProductID>
+        <ProductID>CVRFPID-191444</ProductID>
+        <ProductID>CVRFPID-191445</ProductID>
+        <ProductID>CVRFPID-191446</ProductID>
+        <ProductID>CVRFPID-191448</ProductID>
+        <ProductID>CVRFPID-191449</ProductID>
+        <ProductID>CVRFPID-191450</ProductID>
+        <ProductID>CVRFPID-191451</ProductID>
+        <ProductID>CVRFPID-191452</ProductID>
+        <ProductID>CVRFPID-191453</ProductID>
+        <ProductID>CVRFPID-191454</ProductID>
+        <ProductID>CVRFPID-191455</ProductID>
+        <ProductID>CVRFPID-191456</ProductID>
+        <ProductID>CVRFPID-191457</ProductID>
+        <ProductID>CVRFPID-191458</ProductID>
+        <ProductID>CVRFPID-191459</ProductID>
+        <ProductID>CVRFPID-196607</ProductID>
+        <ProductID>CVRFPID-196608</ProductID>
+        <ProductID>CVRFPID-208195</ProductID>
+        <ProductID>CVRFPID-208867</ProductID>
+        <ProductID>CVRFPID-212033</ProductID>
+        <ProductID>CVRFPID-225656</ProductID>
+        <ProductID>CVRFPID-225657</ProductID>
+        <ProductID>CVRFPID-225661</ProductID>
+        <ProductID>CVRFPID-230434</ProductID>
+        <ProductID>CVRFPID-239416</ProductID>
+        <ProductID>CVRFPID-239422</ProductID>
+        <ProductID>CVRFPID-239433</ProductID>
+        <ProductID>CVRFPID-239460</ProductID>
+        <ProductID>CVRFPID-240152</ProductID>
+        <ProductID>CVRFPID-240154</ProductID>
+        <ProductID>CVRFPID-256524</ProductID>
+        <ProductID>CVRFPID-256525</ProductID>
+      </Status>
+    </ProductStatuses>
+    <CVSSScoreSets>
+      <ScoreSetV3>
+        <BaseScoreV3>8.6</BaseScoreV3>
+        <VectorV3>CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:C/C:N/I:N/A:H</VectorV3>
+      </ScoreSetV3>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Workaround">
+        <Description>There are no workarounds that address these vulnerabilities.</Description>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference Type="Self">
+        <URL>https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20190306-nxosldap</URL>
+        <Description>Cisco FXOS and NX-OS Lightweight Directory Access Protocol Denial of Service Vulnerabilities</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+</cvrf:cvrfdoc>

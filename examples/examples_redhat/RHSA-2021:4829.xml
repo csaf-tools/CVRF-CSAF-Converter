@@ -1,0 +1,818 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cvrfdoc xmlns="http://www.icasi.org/CVRF/schema/cvrf/1.1" xmlns:cvrf="http://www.icasi.org/CVRF/schema/cvrf/1.1">
+  <DocumentTitle xml:lang="en">Red Hat Security Advisory: OpenShift Container Platform 4.8.22 security update</DocumentTitle>
+  <DocumentType>Security Advisory</DocumentType>
+  <DocumentPublisher Type="Vendor">
+    <ContactDetails>secalert@redhat.com</ContactDetails>
+    <IssuingAuthority>Red Hat Product Security</IssuingAuthority>
+  </DocumentPublisher>
+  <DocumentTracking>
+    <Identification><ID>RHSA-2021:4829</ID></Identification>
+    <Status>Final</Status>
+    <Version>1</Version>
+    <RevisionHistory>
+       <Revision>
+         <Number>1</Number>
+         <Date>2021-11-30T09:11:00Z</Date>
+         <Description>Current version</Description>
+       </Revision>
+    </RevisionHistory>
+    <InitialReleaseDate>2021-11-30T09:11:00Z</InitialReleaseDate>
+    <CurrentReleaseDate>2021-11-30T09:11:00Z</CurrentReleaseDate>
+    <Generator>
+      <Engine>Red Hat SDEngine 3.3.0</Engine>
+      <Date>2021-11-30T14:03:00Z</Date>
+    </Generator>
+  </DocumentTracking>
+  <DocumentNotes>
+    <Note Title="Topic" Type="Summary" Ordinal="1" xml:lang="en">
+Red Hat OpenShift Container Platform release 4.8.22 is now available with updates to packages and images that fix several bugs and add enhancements.
+
+Red Hat Product Security has rated this update as having a security impact of Important. A Common Vulnerability Scoring System (CVSS) base score, which gives a detailed severity rating, is available for each vulnerability
+from the CVE link(s) in the References section.
+    </Note>
+    <Note Title="Details" Type="General" Ordinal="2" xml:lang="en">
+Red Hat OpenShift Container Platform is Red Hat's cloud computing Kubernetes application platform solution designed for on-premise or private cloud deployments.
+
+This advisory contains the RPM packages for Red Hat OpenShift Container Platform 4.8.22. See the following advisory for the container images for this release:
+
+https://access.redhat.com/errata/RHBA-2021:4830
+
+All OpenShift Container Platform 4.8 users are advised to upgrade to these updated packages and images when they are available in the appropriate release channel. To check for available updates, use the OpenShift Console
+or the CLI oc command. Instructions for upgrading a cluster are available at
+https://docs.openshift.com/container-platform/4.8/updating/updating-cluster-between-minor.html#understanding-upgrade-channels_updating-cluster-between-minor
+
+Security Fix(es):
+
+* jenkins-2-plugins/subversion: does not restrict the name of a file when looking up a subversion key (CVE-2021-21698)
+* jenkins: FilePath#mkdirs does not check permission to create parent directories (CVE-2021-21685)
+* jenkins: File path filters do not canonicalize paths, allowing operations to follow symbolic links to outside allowed directories (CVE-2021-21686)
+* jenkins: FilePath#untar does not check permission to create symbolic links when unarchiving a symbolic link (CVE-2021-21687)
+* jenkins: FilePath#reading(FileVisitor) does not reject any operations allowing users to have unrestricted read access (CVE-2021-21688)
+* coreos-installer: restrict access permissions on /boot/ignition{,/config.ign} (CVE-2021-3917)
+* jenkins: FilePath#unzip and FilePath#untar were not subject to any access control (CVE-2021-21689)
+* jenkins: Agent processes are able to completely bypass file path filtering by wrapping the file operation in an agent file path (CVE-2021-21690)
+* jenkins: Creating symbolic links is possible without the symlink permission (CVE-2021-21691)
+* jenkins: The operations FilePath#renameTo and FilePath#moveAllChildrenTo only check read permission on the source path (CVE-2021-21692)
+* jenkins: When creating temporary files, permission to create files is only checked after they’ve been created. (CVE-2021-21693)
+* jenkins: FilePath#toURI, FilePath#hasSymlink, FilePath#absolutize, FilePath#isDescendant, and FilePath#get*DiskSpace do not check any permissions (CVE-2021-21694)
+* jenkins: FilePath#listFiles lists files outside directories with agent read access when following symbolic links. (CVE-2021-21695)
+* jenkins: Agent-to-controller access control allowed writing to sensitive directory used by Pipeline: Shared Groovy Libraries Plugin (CVE-2021-21696)
+* jenkins: Agent-to-controller access control allows reading/writing most content of build directories (CVE-2021-21697)
+
+For more details about the security issue(s), including the impact, a CVSS score, acknowledgments, and other related information, refer to the CVE page(s) listed in the References section.
+    </Note>
+    <Note Title="Terms of Use" Ordinal="3" Type="Legal Disclaimer" xml:lang="en">This content is licensed under the Creative Commons Attribution 4.0 International License (https://creativecommons.org/licenses/by/4.0/). If you distribute this content, or a modified version of it, you must provide attribution to Red Hat Inc. and provide a link to the original.</Note>
+  </DocumentNotes>
+  <DocumentDistribution xml:lang="en">Copyright © 2021 Red Hat, Inc. All rights reserved.</DocumentDistribution>
+  <AggregateSeverity Namespace="https://access.redhat.com/security/updates/classification/">Important</AggregateSeverity>
+  <DocumentReferences>
+    <Reference Type="Self">
+       <URL>https://access.redhat.com/errata/RHSA-2021:4829</URL>
+       <Description>https://access.redhat.com/errata/RHSA-2021:4829</Description>
+    </Reference>
+    <Reference Type="External">
+       <URL>https://access.redhat.com/security/updates/classification/#important</URL>
+       <Description>https://access.redhat.com/security/updates/classification/#important</Description>
+    </Reference>
+  </DocumentReferences>
+  <ProductTree xmlns="http://www.icasi.org/CVRF/schema/prod/1.1">
+    <Branch Type="Product Family" Name="Red Hat OpenShift Enterprise">
+      <Branch Type="Product Name" Name="Red Hat OpenShift Container Platform 4.8">
+        <FullProductName ProductID="7Server-RH7-RHOSE-4.8" CPE="cpe:/a:redhat:openshift:4.8::el7">Red Hat OpenShift Container Platform 4.8</FullProductName>
+      </Branch>
+      <Branch Type="Product Name" Name="Red Hat OpenShift Container Platform 4.8">
+        <FullProductName ProductID="8Base-RHOSE-4.8" CPE="cpe:/a:redhat:openshift:4.8::el8">Red Hat OpenShift Container Platform 4.8</FullProductName>
+      </Branch>
+    </Branch>
+    <Branch Type="Product Version" Name="coreos-installer-0:0.9.0-8.rhaos4.8.el8">
+      <FullProductName ProductID="coreos-installer-0:0.9.0-8.rhaos4.8.el8" CPE="cpe:/a:redhat:openshift:4.8::el8">coreos-installer-0.9.0-8.rhaos4.8.el8.src.rpm</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="cri-o-0:1.21.4-3.rhaos4.8.git84fa55d.el7">
+      <FullProductName ProductID="cri-o-0:1.21.4-3.rhaos4.8.git84fa55d.el7" CPE="cpe:/a:redhat:openshift:4.8::el7">cri-o-1.21.4-3.rhaos4.8.git84fa55d.el7.src.rpm</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="cri-o-0:1.21.4-3.rhaos4.8.git84fa55d.el8">
+      <FullProductName ProductID="cri-o-0:1.21.4-3.rhaos4.8.git84fa55d.el8" CPE="cpe:/a:redhat:openshift:4.8::el8">cri-o-1.21.4-3.rhaos4.8.git84fa55d.el8.src.rpm</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="jenkins-0:2.303.3.1637596565-1.el8">
+      <FullProductName ProductID="jenkins-0:2.303.3.1637596565-1.el8" CPE="cpe:/a:redhat:openshift:4.8::el8">jenkins-2.303.3.1637596565-1.el8.src.rpm</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="jenkins-2-plugins-0:4.8.1637599935-1.el8">
+      <FullProductName ProductID="jenkins-2-plugins-0:4.8.1637599935-1.el8" CPE="cpe:/a:redhat:openshift:4.8::el8">jenkins-2-plugins-4.8.1637599935-1.el8.src.rpm</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="openshift-0:4.8.0-202111221934.p0.g81bc627.assembly.stream.el7">
+      <FullProductName ProductID="openshift-0:4.8.0-202111221934.p0.g81bc627.assembly.stream.el7" CPE="cpe:/a:redhat:openshift:4.8::el7">openshift-4.8.0-202111221934.p0.g81bc627.assembly.stream.el7.src.rpm</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="openshift-0:4.8.0-202111221934.p0.g81bc627.assembly.stream.el8">
+      <FullProductName ProductID="openshift-0:4.8.0-202111221934.p0.g81bc627.assembly.stream.el8" CPE="cpe:/a:redhat:openshift:4.8::el8">openshift-4.8.0-202111221934.p0.g81bc627.assembly.stream.el8.src.rpm</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="openshift-kuryr-0:4.8.0-202111221627.p0.g43dd2f6.assembly.stream.el8">
+      <FullProductName ProductID="openshift-kuryr-0:4.8.0-202111221627.p0.g43dd2f6.assembly.stream.el8" CPE="cpe:/a:redhat:openshift:4.8::el8">openshift-kuryr-4.8.0-202111221627.p0.g43dd2f6.assembly.stream.el8.src.rpm</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="python-sushy-0:3.7.4-0.20211119091058.2cc60dc.el8">
+      <FullProductName ProductID="python-sushy-0:3.7.4-0.20211119091058.2cc60dc.el8" CPE="cpe:/a:redhat:openshift:4.8::el8">python-sushy-3.7.4-0.20211119091058.2cc60dc.el8.src.rpm</FullProductName>
+    </Branch>
+    <Relationship ProductReference="cri-o-0:1.21.4-3.rhaos4.8.git84fa55d.el7" RelationType="Default Component Of" RelatesToProductReference="7Server-RH7-RHOSE-4.8">
+      <FullProductName ProductID="7Server-RH7-RHOSE-4.8:cri-o-0:1.21.4-3.rhaos4.8.git84fa55d.el7" CPE="cpe:/a:redhat:openshift:4.8::el7">cri-o-0:1.21.4-3.rhaos4.8.git84fa55d.el7 as a component of Red Hat OpenShift Container Platform 4.8</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="openshift-0:4.8.0-202111221934.p0.g81bc627.assembly.stream.el7" RelationType="Default Component Of" RelatesToProductReference="7Server-RH7-RHOSE-4.8">
+      <FullProductName ProductID="7Server-RH7-RHOSE-4.8:openshift-0:4.8.0-202111221934.p0.g81bc627.assembly.stream.el7" CPE="cpe:/a:redhat:openshift:4.8::el7">openshift-0:4.8.0-202111221934.p0.g81bc627.assembly.stream.el7 as a component of Red Hat OpenShift Container Platform 4.8</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="coreos-installer-0:0.9.0-8.rhaos4.8.el8" RelationType="Default Component Of" RelatesToProductReference="8Base-RHOSE-4.8">
+      <FullProductName ProductID="8Base-RHOSE-4.8:coreos-installer-0:0.9.0-8.rhaos4.8.el8" CPE="cpe:/a:redhat:openshift:4.8::el8">coreos-installer-0:0.9.0-8.rhaos4.8.el8 as a component of Red Hat OpenShift Container Platform 4.8</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="cri-o-0:1.21.4-3.rhaos4.8.git84fa55d.el8" RelationType="Default Component Of" RelatesToProductReference="8Base-RHOSE-4.8">
+      <FullProductName ProductID="8Base-RHOSE-4.8:cri-o-0:1.21.4-3.rhaos4.8.git84fa55d.el8" CPE="cpe:/a:redhat:openshift:4.8::el8">cri-o-0:1.21.4-3.rhaos4.8.git84fa55d.el8 as a component of Red Hat OpenShift Container Platform 4.8</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="jenkins-0:2.303.3.1637596565-1.el8" RelationType="Default Component Of" RelatesToProductReference="8Base-RHOSE-4.8">
+      <FullProductName ProductID="8Base-RHOSE-4.8:jenkins-0:2.303.3.1637596565-1.el8" CPE="cpe:/a:redhat:openshift:4.8::el8">jenkins-0:2.303.3.1637596565-1.el8 as a component of Red Hat OpenShift Container Platform 4.8</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="jenkins-2-plugins-0:4.8.1637599935-1.el8" RelationType="Default Component Of" RelatesToProductReference="8Base-RHOSE-4.8">
+      <FullProductName ProductID="8Base-RHOSE-4.8:jenkins-2-plugins-0:4.8.1637599935-1.el8" CPE="cpe:/a:redhat:openshift:4.8::el8">jenkins-2-plugins-0:4.8.1637599935-1.el8 as a component of Red Hat OpenShift Container Platform 4.8</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="openshift-0:4.8.0-202111221934.p0.g81bc627.assembly.stream.el8" RelationType="Default Component Of" RelatesToProductReference="8Base-RHOSE-4.8">
+      <FullProductName ProductID="8Base-RHOSE-4.8:openshift-0:4.8.0-202111221934.p0.g81bc627.assembly.stream.el8" CPE="cpe:/a:redhat:openshift:4.8::el8">openshift-0:4.8.0-202111221934.p0.g81bc627.assembly.stream.el8 as a component of Red Hat OpenShift Container Platform 4.8</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="openshift-kuryr-0:4.8.0-202111221627.p0.g43dd2f6.assembly.stream.el8" RelationType="Default Component Of" RelatesToProductReference="8Base-RHOSE-4.8">
+      <FullProductName ProductID="8Base-RHOSE-4.8:openshift-kuryr-0:4.8.0-202111221627.p0.g43dd2f6.assembly.stream.el8" CPE="cpe:/a:redhat:openshift:4.8::el8">openshift-kuryr-0:4.8.0-202111221627.p0.g43dd2f6.assembly.stream.el8 as a component of Red Hat OpenShift Container Platform 4.8</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="python-sushy-0:3.7.4-0.20211119091058.2cc60dc.el8" RelationType="Default Component Of" RelatesToProductReference="8Base-RHOSE-4.8">
+      <FullProductName ProductID="8Base-RHOSE-4.8:python-sushy-0:3.7.4-0.20211119091058.2cc60dc.el8" CPE="cpe:/a:redhat:openshift:4.8::el8">python-sushy-0:3.7.4-0.20211119091058.2cc60dc.el8 as a component of Red Hat OpenShift Container Platform 4.8</FullProductName>
+    </Relationship>
+  </ProductTree>
+
+  <Vulnerability Ordinal="1" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">coreos-installer: restrict access permissions on /boot/ignition{,/config.ign}</Note></Notes>
+    <DiscoveryDate>2021-10-29T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-07-07T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-3917</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>7Server-RH7-RHOSE-4.8:cri-o-0:1.21.4-3.rhaos4.8.git84fa55d.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-4.8:openshift-0:4.8.0-202111221934.p0.g81bc627.assembly.stream.el7</ProductID>
+      <ProductID>8Base-RHOSE-4.8:coreos-installer-0:0.9.0-8.rhaos4.8.el8</ProductID>
+      <ProductID>8Base-RHOSE-4.8:cri-o-0:1.21.4-3.rhaos4.8.git84fa55d.el8</ProductID>
+      <ProductID>8Base-RHOSE-4.8:jenkins-0:2.303.3.1637596565-1.el8</ProductID>
+      <ProductID>8Base-RHOSE-4.8:jenkins-2-plugins-0:4.8.1637599935-1.el8</ProductID>
+      <ProductID>8Base-RHOSE-4.8:openshift-0:4.8.0-202111221934.p0.g81bc627.assembly.stream.el8</ProductID>
+      <ProductID>8Base-RHOSE-4.8:openshift-kuryr-0:4.8.0-202111221627.p0.g43dd2f6.assembly.stream.el8</ProductID>
+      <ProductID>8Base-RHOSE-4.8:python-sushy-0:3.7.4-0.20211119091058.2cc60dc.el8</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For OpenShift Container Platform 4.8 see the following documentation, which will be updated shortly for this release, for important instructions on how to upgrade your cluster and fully apply this asynchronous errata update:
+
+https://docs.openshift.com/container-platform/4.8/release_notes/ocp-4-8-release-notes.html
+
+Details on how to access this content are available at
+https://docs.openshift.com/container-platform/4.8/updating/updating-cluster-cli.html
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:4829</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://github.com/coreos/coreos-installer/commit/2a36405339c87b16ed6c76e91ad5b76638fbdb0c</URL>
+        <Description>https://github.com/coreos/coreos-installer/commit/2a36405339c87b16ed6c76e91ad5b76638fbdb0c</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-3917</URL>
+        <Description>CVE-2021-3917</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=2018478</URL>
+        <Description>bz#2018478: CVE-2021-3917 coreos-installer: restrict access permissions on /boot/ignition{,/config.ign}</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="2" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">jenkins: FilePath#mkdirs does not check permission to create parent directories</Note></Notes>
+    <DiscoveryDate>2021-11-04T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-11-04T14:20:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-21685</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>7Server-RH7-RHOSE-4.8:cri-o-0:1.21.4-3.rhaos4.8.git84fa55d.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-4.8:openshift-0:4.8.0-202111221934.p0.g81bc627.assembly.stream.el7</ProductID>
+      <ProductID>8Base-RHOSE-4.8:coreos-installer-0:0.9.0-8.rhaos4.8.el8</ProductID>
+      <ProductID>8Base-RHOSE-4.8:cri-o-0:1.21.4-3.rhaos4.8.git84fa55d.el8</ProductID>
+      <ProductID>8Base-RHOSE-4.8:jenkins-0:2.303.3.1637596565-1.el8</ProductID>
+      <ProductID>8Base-RHOSE-4.8:jenkins-2-plugins-0:4.8.1637599935-1.el8</ProductID>
+      <ProductID>8Base-RHOSE-4.8:openshift-0:4.8.0-202111221934.p0.g81bc627.assembly.stream.el8</ProductID>
+      <ProductID>8Base-RHOSE-4.8:openshift-kuryr-0:4.8.0-202111221627.p0.g43dd2f6.assembly.stream.el8</ProductID>
+      <ProductID>8Base-RHOSE-4.8:python-sushy-0:3.7.4-0.20211119091058.2cc60dc.el8</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Important</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For OpenShift Container Platform 4.8 see the following documentation, which will be updated shortly for this release, for important instructions on how to upgrade your cluster and fully apply this asynchronous errata update:
+
+https://docs.openshift.com/container-platform/4.8/release_notes/ocp-4-8-release-notes.html
+
+Details on how to access this content are available at
+https://docs.openshift.com/container-platform/4.8/updating/updating-cluster-cli.html
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:4829</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.jenkins.io/security/advisory/2021-11-04/#SECURITY-2455</URL>
+        <Description>https://www.jenkins.io/security/advisory/2021-11-04/#SECURITY-2455</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-21685</URL>
+        <Description>CVE-2021-21685</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=2020322</URL>
+        <Description>bz#2020322: CVE-2021-21685 jenkins: FilePath#mkdirs does not check permission to create parent directories</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="3" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">jenkins: File path filters do not canonicalize paths, allowing operations to follow symbolic links to outside allowed directories</Note></Notes>
+    <DiscoveryDate>2021-11-04T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-11-04T14:20:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-21686</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>7Server-RH7-RHOSE-4.8:cri-o-0:1.21.4-3.rhaos4.8.git84fa55d.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-4.8:openshift-0:4.8.0-202111221934.p0.g81bc627.assembly.stream.el7</ProductID>
+      <ProductID>8Base-RHOSE-4.8:coreos-installer-0:0.9.0-8.rhaos4.8.el8</ProductID>
+      <ProductID>8Base-RHOSE-4.8:cri-o-0:1.21.4-3.rhaos4.8.git84fa55d.el8</ProductID>
+      <ProductID>8Base-RHOSE-4.8:jenkins-0:2.303.3.1637596565-1.el8</ProductID>
+      <ProductID>8Base-RHOSE-4.8:jenkins-2-plugins-0:4.8.1637599935-1.el8</ProductID>
+      <ProductID>8Base-RHOSE-4.8:openshift-0:4.8.0-202111221934.p0.g81bc627.assembly.stream.el8</ProductID>
+      <ProductID>8Base-RHOSE-4.8:openshift-kuryr-0:4.8.0-202111221627.p0.g43dd2f6.assembly.stream.el8</ProductID>
+      <ProductID>8Base-RHOSE-4.8:python-sushy-0:3.7.4-0.20211119091058.2cc60dc.el8</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Important</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For OpenShift Container Platform 4.8 see the following documentation, which will be updated shortly for this release, for important instructions on how to upgrade your cluster and fully apply this asynchronous errata update:
+
+https://docs.openshift.com/container-platform/4.8/release_notes/ocp-4-8-release-notes.html
+
+Details on how to access this content are available at
+https://docs.openshift.com/container-platform/4.8/updating/updating-cluster-cli.html
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:4829</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.jenkins.io/security/advisory/2021-11-04/#SECURITY-2455</URL>
+        <Description>https://www.jenkins.io/security/advisory/2021-11-04/#SECURITY-2455</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-21686</URL>
+        <Description>CVE-2021-21686</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=2020323</URL>
+        <Description>bz#2020323: CVE-2021-21686 jenkins: File path filters do not canonicalize paths, allowing operations to follow symbolic links to outside allowed directories</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="4" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">jenkins: FilePath#untar does not check permission to create symbolic links when unarchiving a symbolic link</Note></Notes>
+    <DiscoveryDate>2021-11-04T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-11-04T14:20:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-21687</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>7Server-RH7-RHOSE-4.8:cri-o-0:1.21.4-3.rhaos4.8.git84fa55d.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-4.8:openshift-0:4.8.0-202111221934.p0.g81bc627.assembly.stream.el7</ProductID>
+      <ProductID>8Base-RHOSE-4.8:coreos-installer-0:0.9.0-8.rhaos4.8.el8</ProductID>
+      <ProductID>8Base-RHOSE-4.8:cri-o-0:1.21.4-3.rhaos4.8.git84fa55d.el8</ProductID>
+      <ProductID>8Base-RHOSE-4.8:jenkins-0:2.303.3.1637596565-1.el8</ProductID>
+      <ProductID>8Base-RHOSE-4.8:jenkins-2-plugins-0:4.8.1637599935-1.el8</ProductID>
+      <ProductID>8Base-RHOSE-4.8:openshift-0:4.8.0-202111221934.p0.g81bc627.assembly.stream.el8</ProductID>
+      <ProductID>8Base-RHOSE-4.8:openshift-kuryr-0:4.8.0-202111221627.p0.g43dd2f6.assembly.stream.el8</ProductID>
+      <ProductID>8Base-RHOSE-4.8:python-sushy-0:3.7.4-0.20211119091058.2cc60dc.el8</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Important</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For OpenShift Container Platform 4.8 see the following documentation, which will be updated shortly for this release, for important instructions on how to upgrade your cluster and fully apply this asynchronous errata update:
+
+https://docs.openshift.com/container-platform/4.8/release_notes/ocp-4-8-release-notes.html
+
+Details on how to access this content are available at
+https://docs.openshift.com/container-platform/4.8/updating/updating-cluster-cli.html
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:4829</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.jenkins.io/security/advisory/2021-11-04/#SECURITY-2455</URL>
+        <Description>https://www.jenkins.io/security/advisory/2021-11-04/#SECURITY-2455</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-21687</URL>
+        <Description>CVE-2021-21687</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=2020324</URL>
+        <Description>bz#2020324: CVE-2021-21687 jenkins: FilePath#untar does not check permission to create symbolic links when unarchiving a symbolic link</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="5" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">jenkins: FilePath#reading(FileVisitor) does not reject any operations allowing users to have unrestricted read access</Note></Notes>
+    <DiscoveryDate>2021-11-04T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-11-04T14:20:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-21688</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>7Server-RH7-RHOSE-4.8:cri-o-0:1.21.4-3.rhaos4.8.git84fa55d.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-4.8:openshift-0:4.8.0-202111221934.p0.g81bc627.assembly.stream.el7</ProductID>
+      <ProductID>8Base-RHOSE-4.8:coreos-installer-0:0.9.0-8.rhaos4.8.el8</ProductID>
+      <ProductID>8Base-RHOSE-4.8:cri-o-0:1.21.4-3.rhaos4.8.git84fa55d.el8</ProductID>
+      <ProductID>8Base-RHOSE-4.8:jenkins-0:2.303.3.1637596565-1.el8</ProductID>
+      <ProductID>8Base-RHOSE-4.8:jenkins-2-plugins-0:4.8.1637599935-1.el8</ProductID>
+      <ProductID>8Base-RHOSE-4.8:openshift-0:4.8.0-202111221934.p0.g81bc627.assembly.stream.el8</ProductID>
+      <ProductID>8Base-RHOSE-4.8:openshift-kuryr-0:4.8.0-202111221627.p0.g43dd2f6.assembly.stream.el8</ProductID>
+      <ProductID>8Base-RHOSE-4.8:python-sushy-0:3.7.4-0.20211119091058.2cc60dc.el8</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Important</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For OpenShift Container Platform 4.8 see the following documentation, which will be updated shortly for this release, for important instructions on how to upgrade your cluster and fully apply this asynchronous errata update:
+
+https://docs.openshift.com/container-platform/4.8/release_notes/ocp-4-8-release-notes.html
+
+Details on how to access this content are available at
+https://docs.openshift.com/container-platform/4.8/updating/updating-cluster-cli.html
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:4829</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.jenkins.io/security/advisory/2021-11-04/#SECURITY-2455</URL>
+        <Description>https://www.jenkins.io/security/advisory/2021-11-04/#SECURITY-2455</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-21688</URL>
+        <Description>CVE-2021-21688</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=2020327</URL>
+        <Description>bz#2020327: CVE-2021-21688 jenkins: FilePath#reading(FileVisitor) does not reject any operations allowing users to have unrestricted read access</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="6" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">jenkins: FilePath#unzip and FilePath#untar were not subject to any access control</Note></Notes>
+    <DiscoveryDate>2021-11-04T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-11-04T14:20:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-21689</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>7Server-RH7-RHOSE-4.8:cri-o-0:1.21.4-3.rhaos4.8.git84fa55d.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-4.8:openshift-0:4.8.0-202111221934.p0.g81bc627.assembly.stream.el7</ProductID>
+      <ProductID>8Base-RHOSE-4.8:coreos-installer-0:0.9.0-8.rhaos4.8.el8</ProductID>
+      <ProductID>8Base-RHOSE-4.8:cri-o-0:1.21.4-3.rhaos4.8.git84fa55d.el8</ProductID>
+      <ProductID>8Base-RHOSE-4.8:jenkins-0:2.303.3.1637596565-1.el8</ProductID>
+      <ProductID>8Base-RHOSE-4.8:jenkins-2-plugins-0:4.8.1637599935-1.el8</ProductID>
+      <ProductID>8Base-RHOSE-4.8:openshift-0:4.8.0-202111221934.p0.g81bc627.assembly.stream.el8</ProductID>
+      <ProductID>8Base-RHOSE-4.8:openshift-kuryr-0:4.8.0-202111221627.p0.g43dd2f6.assembly.stream.el8</ProductID>
+      <ProductID>8Base-RHOSE-4.8:python-sushy-0:3.7.4-0.20211119091058.2cc60dc.el8</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Important</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For OpenShift Container Platform 4.8 see the following documentation, which will be updated shortly for this release, for important instructions on how to upgrade your cluster and fully apply this asynchronous errata update:
+
+https://docs.openshift.com/container-platform/4.8/release_notes/ocp-4-8-release-notes.html
+
+Details on how to access this content are available at
+https://docs.openshift.com/container-platform/4.8/updating/updating-cluster-cli.html
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:4829</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.jenkins.io/security/advisory/2021-11-04/#SECURITY-2455</URL>
+        <Description>https://www.jenkins.io/security/advisory/2021-11-04/#SECURITY-2455</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-21689</URL>
+        <Description>CVE-2021-21689</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=2020335</URL>
+        <Description>bz#2020335: CVE-2021-21689 jenkins: FilePath#unzip and FilePath#untar were not subject to any access control</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="7" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">jenkins: Agent processes are able to completely bypass file path filtering by wrapping the file operation in an agent file path</Note></Notes>
+    <DiscoveryDate>2021-11-04T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-11-04T14:20:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-21690</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>7Server-RH7-RHOSE-4.8:cri-o-0:1.21.4-3.rhaos4.8.git84fa55d.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-4.8:openshift-0:4.8.0-202111221934.p0.g81bc627.assembly.stream.el7</ProductID>
+      <ProductID>8Base-RHOSE-4.8:coreos-installer-0:0.9.0-8.rhaos4.8.el8</ProductID>
+      <ProductID>8Base-RHOSE-4.8:cri-o-0:1.21.4-3.rhaos4.8.git84fa55d.el8</ProductID>
+      <ProductID>8Base-RHOSE-4.8:jenkins-0:2.303.3.1637596565-1.el8</ProductID>
+      <ProductID>8Base-RHOSE-4.8:jenkins-2-plugins-0:4.8.1637599935-1.el8</ProductID>
+      <ProductID>8Base-RHOSE-4.8:openshift-0:4.8.0-202111221934.p0.g81bc627.assembly.stream.el8</ProductID>
+      <ProductID>8Base-RHOSE-4.8:openshift-kuryr-0:4.8.0-202111221627.p0.g43dd2f6.assembly.stream.el8</ProductID>
+      <ProductID>8Base-RHOSE-4.8:python-sushy-0:3.7.4-0.20211119091058.2cc60dc.el8</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Important</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For OpenShift Container Platform 4.8 see the following documentation, which will be updated shortly for this release, for important instructions on how to upgrade your cluster and fully apply this asynchronous errata update:
+
+https://docs.openshift.com/container-platform/4.8/release_notes/ocp-4-8-release-notes.html
+
+Details on how to access this content are available at
+https://docs.openshift.com/container-platform/4.8/updating/updating-cluster-cli.html
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:4829</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.jenkins.io/security/advisory/2021-11-04/#SECURITY-2455</URL>
+        <Description>https://www.jenkins.io/security/advisory/2021-11-04/#SECURITY-2455</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-21690</URL>
+        <Description>CVE-2021-21690</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=2020336</URL>
+        <Description>bz#2020336: CVE-2021-21690 jenkins: Agent processes are able to completely bypass file path filtering by wrapping the file operation in an agent file path</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="8" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">jenkins: Creating symbolic links is possible without the symlink permission</Note></Notes>
+    <DiscoveryDate>2021-11-04T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-11-04T14:20:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-21691</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>7Server-RH7-RHOSE-4.8:cri-o-0:1.21.4-3.rhaos4.8.git84fa55d.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-4.8:openshift-0:4.8.0-202111221934.p0.g81bc627.assembly.stream.el7</ProductID>
+      <ProductID>8Base-RHOSE-4.8:coreos-installer-0:0.9.0-8.rhaos4.8.el8</ProductID>
+      <ProductID>8Base-RHOSE-4.8:cri-o-0:1.21.4-3.rhaos4.8.git84fa55d.el8</ProductID>
+      <ProductID>8Base-RHOSE-4.8:jenkins-0:2.303.3.1637596565-1.el8</ProductID>
+      <ProductID>8Base-RHOSE-4.8:jenkins-2-plugins-0:4.8.1637599935-1.el8</ProductID>
+      <ProductID>8Base-RHOSE-4.8:openshift-0:4.8.0-202111221934.p0.g81bc627.assembly.stream.el8</ProductID>
+      <ProductID>8Base-RHOSE-4.8:openshift-kuryr-0:4.8.0-202111221627.p0.g43dd2f6.assembly.stream.el8</ProductID>
+      <ProductID>8Base-RHOSE-4.8:python-sushy-0:3.7.4-0.20211119091058.2cc60dc.el8</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Important</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For OpenShift Container Platform 4.8 see the following documentation, which will be updated shortly for this release, for important instructions on how to upgrade your cluster and fully apply this asynchronous errata update:
+
+https://docs.openshift.com/container-platform/4.8/release_notes/ocp-4-8-release-notes.html
+
+Details on how to access this content are available at
+https://docs.openshift.com/container-platform/4.8/updating/updating-cluster-cli.html
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:4829</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.jenkins.io/security/advisory/2021-11-04/#SECURITY-2455</URL>
+        <Description>https://www.jenkins.io/security/advisory/2021-11-04/#SECURITY-2455</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-21691</URL>
+        <Description>CVE-2021-21691</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=2020338</URL>
+        <Description>bz#2020338: CVE-2021-21691 jenkins: Creating symbolic links is possible without the symlink permission</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="9" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">jenkins: The operations FilePath#renameTo and FilePath#moveAllChildrenTo only check read permission on the source path</Note></Notes>
+    <DiscoveryDate>2021-11-04T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-11-04T14:20:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-21692</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>7Server-RH7-RHOSE-4.8:cri-o-0:1.21.4-3.rhaos4.8.git84fa55d.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-4.8:openshift-0:4.8.0-202111221934.p0.g81bc627.assembly.stream.el7</ProductID>
+      <ProductID>8Base-RHOSE-4.8:coreos-installer-0:0.9.0-8.rhaos4.8.el8</ProductID>
+      <ProductID>8Base-RHOSE-4.8:cri-o-0:1.21.4-3.rhaos4.8.git84fa55d.el8</ProductID>
+      <ProductID>8Base-RHOSE-4.8:jenkins-0:2.303.3.1637596565-1.el8</ProductID>
+      <ProductID>8Base-RHOSE-4.8:jenkins-2-plugins-0:4.8.1637599935-1.el8</ProductID>
+      <ProductID>8Base-RHOSE-4.8:openshift-0:4.8.0-202111221934.p0.g81bc627.assembly.stream.el8</ProductID>
+      <ProductID>8Base-RHOSE-4.8:openshift-kuryr-0:4.8.0-202111221627.p0.g43dd2f6.assembly.stream.el8</ProductID>
+      <ProductID>8Base-RHOSE-4.8:python-sushy-0:3.7.4-0.20211119091058.2cc60dc.el8</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Important</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For OpenShift Container Platform 4.8 see the following documentation, which will be updated shortly for this release, for important instructions on how to upgrade your cluster and fully apply this asynchronous errata update:
+
+https://docs.openshift.com/container-platform/4.8/release_notes/ocp-4-8-release-notes.html
+
+Details on how to access this content are available at
+https://docs.openshift.com/container-platform/4.8/updating/updating-cluster-cli.html
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:4829</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.jenkins.io/security/advisory/2021-11-04/#SECURITY-2455</URL>
+        <Description>https://www.jenkins.io/security/advisory/2021-11-04/#SECURITY-2455</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-21692</URL>
+        <Description>CVE-2021-21692</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=2020339</URL>
+        <Description>bz#2020339: CVE-2021-21692 jenkins: The operations FilePath#renameTo and FilePath#moveAllChildrenTo only check read permission on the source path</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="10" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">jenkins: When creating temporary files, permission to create files is only checked after they’ve been created.</Note></Notes>
+    <DiscoveryDate>2021-11-04T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-11-04T14:20:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-21693</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>7Server-RH7-RHOSE-4.8:cri-o-0:1.21.4-3.rhaos4.8.git84fa55d.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-4.8:openshift-0:4.8.0-202111221934.p0.g81bc627.assembly.stream.el7</ProductID>
+      <ProductID>8Base-RHOSE-4.8:coreos-installer-0:0.9.0-8.rhaos4.8.el8</ProductID>
+      <ProductID>8Base-RHOSE-4.8:cri-o-0:1.21.4-3.rhaos4.8.git84fa55d.el8</ProductID>
+      <ProductID>8Base-RHOSE-4.8:jenkins-0:2.303.3.1637596565-1.el8</ProductID>
+      <ProductID>8Base-RHOSE-4.8:jenkins-2-plugins-0:4.8.1637599935-1.el8</ProductID>
+      <ProductID>8Base-RHOSE-4.8:openshift-0:4.8.0-202111221934.p0.g81bc627.assembly.stream.el8</ProductID>
+      <ProductID>8Base-RHOSE-4.8:openshift-kuryr-0:4.8.0-202111221627.p0.g43dd2f6.assembly.stream.el8</ProductID>
+      <ProductID>8Base-RHOSE-4.8:python-sushy-0:3.7.4-0.20211119091058.2cc60dc.el8</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Important</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For OpenShift Container Platform 4.8 see the following documentation, which will be updated shortly for this release, for important instructions on how to upgrade your cluster and fully apply this asynchronous errata update:
+
+https://docs.openshift.com/container-platform/4.8/release_notes/ocp-4-8-release-notes.html
+
+Details on how to access this content are available at
+https://docs.openshift.com/container-platform/4.8/updating/updating-cluster-cli.html
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:4829</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.jenkins.io/security/advisory/2021-11-04/#SECURITY-2455</URL>
+        <Description>https://www.jenkins.io/security/advisory/2021-11-04/#SECURITY-2455</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-21693</URL>
+        <Description>CVE-2021-21693</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=2020341</URL>
+        <Description>bz#2020341: CVE-2021-21693 jenkins: When creating temporary files, permission to create files is only checked after they’ve been created.</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="11" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">jenkins: FilePath#toURI, FilePath#hasSymlink, FilePath#absolutize, FilePath#isDescendant, and FilePath#get*DiskSpace do not check any permissions</Note></Notes>
+    <DiscoveryDate>2021-11-04T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-11-04T14:20:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-21694</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>7Server-RH7-RHOSE-4.8:cri-o-0:1.21.4-3.rhaos4.8.git84fa55d.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-4.8:openshift-0:4.8.0-202111221934.p0.g81bc627.assembly.stream.el7</ProductID>
+      <ProductID>8Base-RHOSE-4.8:coreos-installer-0:0.9.0-8.rhaos4.8.el8</ProductID>
+      <ProductID>8Base-RHOSE-4.8:cri-o-0:1.21.4-3.rhaos4.8.git84fa55d.el8</ProductID>
+      <ProductID>8Base-RHOSE-4.8:jenkins-0:2.303.3.1637596565-1.el8</ProductID>
+      <ProductID>8Base-RHOSE-4.8:jenkins-2-plugins-0:4.8.1637599935-1.el8</ProductID>
+      <ProductID>8Base-RHOSE-4.8:openshift-0:4.8.0-202111221934.p0.g81bc627.assembly.stream.el8</ProductID>
+      <ProductID>8Base-RHOSE-4.8:openshift-kuryr-0:4.8.0-202111221627.p0.g43dd2f6.assembly.stream.el8</ProductID>
+      <ProductID>8Base-RHOSE-4.8:python-sushy-0:3.7.4-0.20211119091058.2cc60dc.el8</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Important</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For OpenShift Container Platform 4.8 see the following documentation, which will be updated shortly for this release, for important instructions on how to upgrade your cluster and fully apply this asynchronous errata update:
+
+https://docs.openshift.com/container-platform/4.8/release_notes/ocp-4-8-release-notes.html
+
+Details on how to access this content are available at
+https://docs.openshift.com/container-platform/4.8/updating/updating-cluster-cli.html
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:4829</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.jenkins.io/security/advisory/2021-11-04/#SECURITY-2455</URL>
+        <Description>https://www.jenkins.io/security/advisory/2021-11-04/#SECURITY-2455</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-21694</URL>
+        <Description>CVE-2021-21694</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=2020342</URL>
+        <Description>bz#2020342: CVE-2021-21694 jenkins: FilePath#toURI, FilePath#hasSymlink, FilePath#absolutize, FilePath#isDescendant, and FilePath#get*DiskSpace do not check any permissions</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="12" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">jenkins: FilePath#listFiles lists files outside directories with agent read access when following symbolic links.</Note></Notes>
+    <DiscoveryDate>2021-11-04T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-11-04T14:20:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-21695</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>7Server-RH7-RHOSE-4.8:cri-o-0:1.21.4-3.rhaos4.8.git84fa55d.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-4.8:openshift-0:4.8.0-202111221934.p0.g81bc627.assembly.stream.el7</ProductID>
+      <ProductID>8Base-RHOSE-4.8:coreos-installer-0:0.9.0-8.rhaos4.8.el8</ProductID>
+      <ProductID>8Base-RHOSE-4.8:cri-o-0:1.21.4-3.rhaos4.8.git84fa55d.el8</ProductID>
+      <ProductID>8Base-RHOSE-4.8:jenkins-0:2.303.3.1637596565-1.el8</ProductID>
+      <ProductID>8Base-RHOSE-4.8:jenkins-2-plugins-0:4.8.1637599935-1.el8</ProductID>
+      <ProductID>8Base-RHOSE-4.8:openshift-0:4.8.0-202111221934.p0.g81bc627.assembly.stream.el8</ProductID>
+      <ProductID>8Base-RHOSE-4.8:openshift-kuryr-0:4.8.0-202111221627.p0.g43dd2f6.assembly.stream.el8</ProductID>
+      <ProductID>8Base-RHOSE-4.8:python-sushy-0:3.7.4-0.20211119091058.2cc60dc.el8</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Important</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For OpenShift Container Platform 4.8 see the following documentation, which will be updated shortly for this release, for important instructions on how to upgrade your cluster and fully apply this asynchronous errata update:
+
+https://docs.openshift.com/container-platform/4.8/release_notes/ocp-4-8-release-notes.html
+
+Details on how to access this content are available at
+https://docs.openshift.com/container-platform/4.8/updating/updating-cluster-cli.html
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:4829</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.jenkins.io/security/advisory/2021-11-04/#SECURITY-2455</URL>
+        <Description>https://www.jenkins.io/security/advisory/2021-11-04/#SECURITY-2455</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-21695</URL>
+        <Description>CVE-2021-21695</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=2020343</URL>
+        <Description>bz#2020343: CVE-2021-21695 jenkins: FilePath#listFiles lists files outside directories with agent read access when following symbolic links.</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="13" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">jenkins: Agent-to-controller access control allowed writing to sensitive directory used by Pipeline: Shared Groovy Libraries Plugin</Note></Notes>
+    <DiscoveryDate>2021-11-04T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-11-04T14:20:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-21696</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>7Server-RH7-RHOSE-4.8:cri-o-0:1.21.4-3.rhaos4.8.git84fa55d.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-4.8:openshift-0:4.8.0-202111221934.p0.g81bc627.assembly.stream.el7</ProductID>
+      <ProductID>8Base-RHOSE-4.8:coreos-installer-0:0.9.0-8.rhaos4.8.el8</ProductID>
+      <ProductID>8Base-RHOSE-4.8:cri-o-0:1.21.4-3.rhaos4.8.git84fa55d.el8</ProductID>
+      <ProductID>8Base-RHOSE-4.8:jenkins-0:2.303.3.1637596565-1.el8</ProductID>
+      <ProductID>8Base-RHOSE-4.8:jenkins-2-plugins-0:4.8.1637599935-1.el8</ProductID>
+      <ProductID>8Base-RHOSE-4.8:openshift-0:4.8.0-202111221934.p0.g81bc627.assembly.stream.el8</ProductID>
+      <ProductID>8Base-RHOSE-4.8:openshift-kuryr-0:4.8.0-202111221627.p0.g43dd2f6.assembly.stream.el8</ProductID>
+      <ProductID>8Base-RHOSE-4.8:python-sushy-0:3.7.4-0.20211119091058.2cc60dc.el8</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Important</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For OpenShift Container Platform 4.8 see the following documentation, which will be updated shortly for this release, for important instructions on how to upgrade your cluster and fully apply this asynchronous errata update:
+
+https://docs.openshift.com/container-platform/4.8/release_notes/ocp-4-8-release-notes.html
+
+Details on how to access this content are available at
+https://docs.openshift.com/container-platform/4.8/updating/updating-cluster-cli.html
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:4829</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.jenkins.io/security/advisory/2021-11-04/#SECURITY-2423</URL>
+        <Description>https://www.jenkins.io/security/advisory/2021-11-04/#SECURITY-2423</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-21696</URL>
+        <Description>CVE-2021-21696</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=2020344</URL>
+        <Description>bz#2020344: CVE-2021-21696 jenkins: Agent-to-controller access control allowed writing to sensitive directory used by Pipeline: Shared Groovy Libraries Plugin</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="14" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">jenkins: Agent-to-controller access control allows reading/writing most content of build directories</Note></Notes>
+    <DiscoveryDate>2021-11-04T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-11-04T14:20:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-21697</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>7Server-RH7-RHOSE-4.8:cri-o-0:1.21.4-3.rhaos4.8.git84fa55d.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-4.8:openshift-0:4.8.0-202111221934.p0.g81bc627.assembly.stream.el7</ProductID>
+      <ProductID>8Base-RHOSE-4.8:coreos-installer-0:0.9.0-8.rhaos4.8.el8</ProductID>
+      <ProductID>8Base-RHOSE-4.8:cri-o-0:1.21.4-3.rhaos4.8.git84fa55d.el8</ProductID>
+      <ProductID>8Base-RHOSE-4.8:jenkins-0:2.303.3.1637596565-1.el8</ProductID>
+      <ProductID>8Base-RHOSE-4.8:jenkins-2-plugins-0:4.8.1637599935-1.el8</ProductID>
+      <ProductID>8Base-RHOSE-4.8:openshift-0:4.8.0-202111221934.p0.g81bc627.assembly.stream.el8</ProductID>
+      <ProductID>8Base-RHOSE-4.8:openshift-kuryr-0:4.8.0-202111221627.p0.g43dd2f6.assembly.stream.el8</ProductID>
+      <ProductID>8Base-RHOSE-4.8:python-sushy-0:3.7.4-0.20211119091058.2cc60dc.el8</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Important</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For OpenShift Container Platform 4.8 see the following documentation, which will be updated shortly for this release, for important instructions on how to upgrade your cluster and fully apply this asynchronous errata update:
+
+https://docs.openshift.com/container-platform/4.8/release_notes/ocp-4-8-release-notes.html
+
+Details on how to access this content are available at
+https://docs.openshift.com/container-platform/4.8/updating/updating-cluster-cli.html
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:4829</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.jenkins.io/security/advisory/2021-11-04/#SECURITY-2428</URL>
+        <Description>https://www.jenkins.io/security/advisory/2021-11-04/#SECURITY-2428</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-21697</URL>
+        <Description>CVE-2021-21697</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=2020345</URL>
+        <Description>bz#2020345: CVE-2021-21697 jenkins: Agent-to-controller access control allows reading/writing most content of build directories</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="15" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">jenkins-2-plugins/subversion: does not restrict the name of a file when looking up a subversion key</Note></Notes>
+    <DiscoveryDate>2021-11-04T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-11-04T14:20:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-21698</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>7Server-RH7-RHOSE-4.8:cri-o-0:1.21.4-3.rhaos4.8.git84fa55d.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-4.8:openshift-0:4.8.0-202111221934.p0.g81bc627.assembly.stream.el7</ProductID>
+      <ProductID>8Base-RHOSE-4.8:coreos-installer-0:0.9.0-8.rhaos4.8.el8</ProductID>
+      <ProductID>8Base-RHOSE-4.8:cri-o-0:1.21.4-3.rhaos4.8.git84fa55d.el8</ProductID>
+      <ProductID>8Base-RHOSE-4.8:jenkins-0:2.303.3.1637596565-1.el8</ProductID>
+      <ProductID>8Base-RHOSE-4.8:jenkins-2-plugins-0:4.8.1637599935-1.el8</ProductID>
+      <ProductID>8Base-RHOSE-4.8:openshift-0:4.8.0-202111221934.p0.g81bc627.assembly.stream.el8</ProductID>
+      <ProductID>8Base-RHOSE-4.8:openshift-kuryr-0:4.8.0-202111221627.p0.g43dd2f6.assembly.stream.el8</ProductID>
+      <ProductID>8Base-RHOSE-4.8:python-sushy-0:3.7.4-0.20211119091058.2cc60dc.el8</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For OpenShift Container Platform 4.8 see the following documentation, which will be updated shortly for this release, for important instructions on how to upgrade your cluster and fully apply this asynchronous errata update:
+
+https://docs.openshift.com/container-platform/4.8/release_notes/ocp-4-8-release-notes.html
+
+Details on how to access this content are available at
+https://docs.openshift.com/container-platform/4.8/updating/updating-cluster-cli.html
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:4829</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.jenkins.io/security/advisory/2021-11-04/#SECURITY-2506</URL>
+        <Description>https://www.jenkins.io/security/advisory/2021-11-04/#SECURITY-2506</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-21698</URL>
+        <Description>CVE-2021-21698</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=2020385</URL>
+        <Description>bz#2020385: CVE-2021-21698 jenkins-2-plugins/subversion: does not restrict the name of a file when looking up a subversion key</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+</cvrfdoc>

@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cvrfdoc xmlns="http://www.icasi.org/CVRF/schema/cvrf/1.1" xmlns:cvrf="http://www.icasi.org/CVRF/schema/cvrf/1.1">
+  <DocumentTitle xml:lang="en">Security update for LibVNCServer</DocumentTitle>
+  <DocumentType>SUSE Patch</DocumentType>
+  <DocumentPublisher Type="Vendor">
+    <ContactDetails>security@suse.de</ContactDetails>
+    <IssuingAuthority>SUSE Security Team</IssuingAuthority>
+  </DocumentPublisher>
+  <DocumentTracking>
+    <Identification>
+      <ID>openSUSE-SU-2015:0932-1</ID>
+    </Identification>
+    <Status>Final</Status>
+    <Version>1</Version>
+    <RevisionHistory>
+      <Revision>
+        <Number>1</Number>
+        <Date>2015-05-13T08:07:52Z</Date>
+        <Description>current</Description>
+      </Revision>
+    </RevisionHistory>
+    <InitialReleaseDate>2015-05-13T08:07:52Z</InitialReleaseDate>
+    <CurrentReleaseDate>2015-05-13T08:07:52Z</CurrentReleaseDate>
+    <Generator>
+      <Engine>cve-database/bin/generate-cvrf.pl</Engine>
+      <Date>2017-02-24T01:00:00Z</Date>
+    </Generator>
+  </DocumentTracking>
+  <DocumentNotes>
+    <Note Title="Topic" Type="Summary" Ordinal="1" xml:lang="en">Security update for LibVNCServer</Note>
+    <Note Title="Details" Type="General" Ordinal="2" xml:lang="en">
+LibVNCServer was updated to version 0.9.10 to fix several security and non-security issues.
+
+The following issues were fixed:
+- Remove xorg-x11-devel from buildRequires, X libraries 
+  are not directly used/linked
+- libvncserver-0.9.10-ossl.patch: Update, do not 
+  RAND_load_file(&amp;quot;/dev/urandom&amp;quot;, 1024) if the the PRNG is already
+  seeded. (It always is on linux)
+- Update to version 0.9.10
+  + Moved the whole project from sourceforge to https://libvnc.github.io/.
+  + Cleaned out the autotools build system which now uses autoreconf.
+  + Updated noVNC HTML5 client to latest version.
+  + Split out x11vnc sources into separate repository at
+    https://github.com/LibVNC/x11vnc
+  + Split out vncterm sources into separate repository at
+    https://github.com/LibVNC/vncterm
+  + Split out VisualNaCro sources into separate repository at
+    https://github.com/LibVNC/VisualNaCro
+  + Merged Debian patches.
+  + Fixed some security-related buffer overflow cases.
+  + Added compatibility headers to make LibVNCServer/LibVNCClient
+    build on native Windows 8.
+  + Update LZO to version 2.07, fixing CVE-2014-4607.
+  + Merged patches from KDE/krfb.
+  + Can now do IPv6 without IPv4.
+  + Fixed a use-after-free issue in scale.c.
+- Update Url and download source to new project home
+- Remove LibVNCServer-0.9.9-no_x11vnc.patch; upstream splited it
+  out of main tarball
+- Rebase libvncserver-ossl.patch to upstream changes
+  &amp;gt; libvncserver-0.9.10-ossl.patch
+- Remove linuxvnc subpackage; like x11vnc, it has been splited out
+  but is depreciated and unmaintained. 
+</Note>
+    <Note Title="Terms of Use" Type="Legal Disclaimer" Ordinal="3" xml:lang="en">The CVRF data is provided by SUSE under the Creative Commons License 4.0 with Attribution for Non-Commercial usage (CC-BY-NC-4.0).</Note>
+  </DocumentNotes>
+  <DocumentDistribution xml:lang="en">Copyright SUSE LLC under the Creative Commons License 4.0 with Attribution for Non-Commercial usage (CC-BY-NC-4.0)</DocumentDistribution>
+  <DocumentReferences>
+    <Reference Type="Self">
+      <URL>http://lists.opensuse.org/opensuse-updates/2015-05/msg00034.html</URL>
+      <Description>E-Mail link for openSUSE-SU-2015:0932-1</Description>
+    </Reference>
+    <Reference Type="Self">
+      <URL>https://www.suse.com/support/security/rating/</URL>
+      <Description>SUSE Security Ratings</Description>
+    </Reference>
+  </DocumentReferences>
+  <ProductTree xmlns="http://www.icasi.org/CVRF/schema/prod/1.1">
+    <Branch Type="Product Family" Name="openSUSE 13.2">
+      <Branch Type="Product Name" Name="openSUSE 13.2">
+        <FullProductName ProductID="openSUSE 13.2">openSUSE 13.2</FullProductName>
+      </Branch>
+    </Branch>
+    <Branch Type="Product Version" Name="LibVNCServer-0.9.10-10.4.1">
+      <FullProductName ProductID="LibVNCServer-0.9.10-10.4.1">LibVNCServer-0.9.10-10.4.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="LibVNCServer-debugsource-0.9.10-10.4.1">
+      <FullProductName ProductID="LibVNCServer-debugsource-0.9.10-10.4.1">LibVNCServer-debugsource-0.9.10-10.4.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="LibVNCServer-devel-0.9.10-10.4.1">
+      <FullProductName ProductID="LibVNCServer-devel-0.9.10-10.4.1">LibVNCServer-devel-0.9.10-10.4.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libvncclient0-0.9.10-10.4.1">
+      <FullProductName ProductID="libvncclient0-0.9.10-10.4.1">libvncclient0-0.9.10-10.4.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libvncclient0-debuginfo-0.9.10-10.4.1">
+      <FullProductName ProductID="libvncclient0-debuginfo-0.9.10-10.4.1">libvncclient0-debuginfo-0.9.10-10.4.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libvncserver0-0.9.10-10.4.1">
+      <FullProductName ProductID="libvncserver0-0.9.10-10.4.1">libvncserver0-0.9.10-10.4.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libvncserver0-debuginfo-0.9.10-10.4.1">
+      <FullProductName ProductID="libvncserver0-debuginfo-0.9.10-10.4.1">libvncserver0-debuginfo-0.9.10-10.4.1</FullProductName>
+    </Branch>
+    <Relationship ProductReference="LibVNCServer-0.9.10-10.4.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE 13.2">
+      <FullProductName ProductID="openSUSE 13.2:LibVNCServer-0.9.10-10.4.1">LibVNCServer-0.9.10-10.4.1 as a component of openSUSE 13.2</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="LibVNCServer-debugsource-0.9.10-10.4.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE 13.2">
+      <FullProductName ProductID="openSUSE 13.2:LibVNCServer-debugsource-0.9.10-10.4.1">LibVNCServer-debugsource-0.9.10-10.4.1 as a component of openSUSE 13.2</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="LibVNCServer-devel-0.9.10-10.4.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE 13.2">
+      <FullProductName ProductID="openSUSE 13.2:LibVNCServer-devel-0.9.10-10.4.1">LibVNCServer-devel-0.9.10-10.4.1 as a component of openSUSE 13.2</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="libvncclient0-0.9.10-10.4.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE 13.2">
+      <FullProductName ProductID="openSUSE 13.2:libvncclient0-0.9.10-10.4.1">libvncclient0-0.9.10-10.4.1 as a component of openSUSE 13.2</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="libvncclient0-debuginfo-0.9.10-10.4.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE 13.2">
+      <FullProductName ProductID="openSUSE 13.2:libvncclient0-debuginfo-0.9.10-10.4.1">libvncclient0-debuginfo-0.9.10-10.4.1 as a component of openSUSE 13.2</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="libvncserver0-0.9.10-10.4.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE 13.2">
+      <FullProductName ProductID="openSUSE 13.2:libvncserver0-0.9.10-10.4.1">libvncserver0-0.9.10-10.4.1 as a component of openSUSE 13.2</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="libvncserver0-debuginfo-0.9.10-10.4.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE 13.2">
+      <FullProductName ProductID="openSUSE 13.2:libvncserver0-debuginfo-0.9.10-10.4.1">libvncserver0-debuginfo-0.9.10-10.4.1 as a component of openSUSE 13.2</FullProductName>
+    </Relationship>
+  </ProductTree>
+  <Vulnerability xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1" Ordinal="1">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">** RESERVED ** This candidate has been reserved by an organization or individual that will use it when announcing a new security problem.  When the candidate has been publicized, the details for this candidate will be provided.</Note>
+    </Notes>
+    <CVE>CVE-2014-4607</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed">
+        <ProductID>openSUSE 13.2:LibVNCServer-0.9.10-10.4.1</ProductID>
+        <ProductID>openSUSE 13.2:LibVNCServer-debugsource-0.9.10-10.4.1</ProductID>
+        <ProductID>openSUSE 13.2:LibVNCServer-devel-0.9.10-10.4.1</ProductID>
+        <ProductID>openSUSE 13.2:libvncclient0-0.9.10-10.4.1</ProductID>
+        <ProductID>openSUSE 13.2:libvncclient0-debuginfo-0.9.10-10.4.1</ProductID>
+        <ProductID>openSUSE 13.2:libvncserver0-0.9.10-10.4.1</ProductID>
+        <ProductID>openSUSE 13.2:libvncserver0-debuginfo-0.9.10-10.4.1</ProductID>
+      </Status>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>http://lists.opensuse.org/opensuse-updates/2015-05/msg00034.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2014-4607.html</URL>
+        <Description>CVE-2014-4607</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/883947</URL>
+        <Description>SUSE Bug 883947</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+</cvrfdoc>

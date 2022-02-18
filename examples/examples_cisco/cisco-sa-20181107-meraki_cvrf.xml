@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cvrf:cvrfdoc xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:cvrf-common="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/common" xmlns:cvrf="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/cvrf">
+  <cvrf:DocumentTitle>Cisco Meraki Local Status Page Privilege Escalation Vulnerability</cvrf:DocumentTitle>
+  <cvrf:DocumentType>Cisco Security Advisory</cvrf:DocumentType>
+  <cvrf:DocumentPublisher Type="Vendor">
+    <cvrf:ContactDetails>Emergency Support:
++1 877 228 7302 (toll-free within North America)
++1 408 525 6532 (International direct-dial)
+Non-emergency Support:
+Email: psirt@cisco.com
+Support requests that are received via e-mail are typically acknowledged within 48 hours.</cvrf:ContactDetails>
+    <cvrf:IssuingAuthority>Cisco product security incident response is the responsibility of the Cisco Product Security Incident Response Team (PSIRT). The Cisco PSIRT is a dedicated, global team that manages the receipt, investigation, and public reporting of security vulnerability information that is related to Cisco products and networks. The on-call Cisco PSIRT works 24x7 with Cisco customers, independent security researchers, consultants, industry organizations, and other vendors to identify possible security issues with Cisco products and networks.
+More information can be found in Cisco Security Vulnerability Policy available at http://www.cisco.com/web/about/security/psirt/security_vulnerability_policy.html</cvrf:IssuingAuthority>
+  </cvrf:DocumentPublisher>
+  <cvrf:DocumentTracking>
+    <cvrf:Identification>
+      <cvrf:ID>cisco-sa-20181107-meraki</cvrf:ID>
+    </cvrf:Identification>
+    <cvrf:Status>Final</cvrf:Status>
+    <cvrf:Version>1.0</cvrf:Version>
+    <cvrf:RevisionHistory>
+      <cvrf:Revision>
+        <cvrf:Number>1.0</cvrf:Number>
+        <cvrf:Date>2018-11-07T01:04:44</cvrf:Date>
+        <cvrf:Description>Initial public release.</cvrf:Description>
+      </cvrf:Revision>
+      <cvrf:Revision>
+        <cvrf:Number>1.0</cvrf:Number>
+        <cvrf:Date>2018-11-07T15:02:59</cvrf:Date>
+        <cvrf:Description>Initial public release.</cvrf:Description>
+      </cvrf:Revision>
+      <cvrf:Revision>
+        <cvrf:Number>1.0</cvrf:Number>
+        <cvrf:Date>2018-11-07T15:28:19</cvrf:Date>
+        <cvrf:Description>Initial public release.</cvrf:Description>
+      </cvrf:Revision>
+      <cvrf:Revision>
+        <cvrf:Number>1.0</cvrf:Number>
+        <cvrf:Date>2018-11-07T15:52:19</cvrf:Date>
+        <cvrf:Description>Initial public release.</cvrf:Description>
+      </cvrf:Revision>
+      <cvrf:Revision>
+        <cvrf:Number>1.0</cvrf:Number>
+        <cvrf:Date>2018-11-07T15:58:03</cvrf:Date>
+        <cvrf:Description>Initial public release.</cvrf:Description>
+      </cvrf:Revision>
+    </cvrf:RevisionHistory>
+    <cvrf:InitialReleaseDate>2018-11-07T16:00:00</cvrf:InitialReleaseDate>
+    <cvrf:CurrentReleaseDate>2018-11-07T15:58:03</cvrf:CurrentReleaseDate>
+    <cvrf:Generator>
+      <cvrf:Engine>TVCE</cvrf:Engine>
+    </cvrf:Generator>
+  </cvrf:DocumentTracking>
+  <cvrf:DocumentNotes>
+    <cvrf:Note Title="Summary" Type="Summary" Ordinal="1">A vulnerability in the local status page functionality of the Cisco Meraki MR, MS, MX, Z1, and Z3 product lines could allow an authenticated, remote attacker to modify device configuration files.
+
+The vulnerability occurs when handling requests to the local status page. An exploit could allow the attacker to establish an interactive session to the device with elevated privileges. The attacker could then use the elevated privileges to further compromise the device or obtain additional configuration data from the device that is being exploited.
+
+
+ Cisco has released software updates that address this vulnerability. There are no workarounds that address this vulnerability.
+
+This advisory is available at the following link:
+https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20181107-meraki ["https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20181107-meraki"]</cvrf:Note>
+    <cvrf:Note Title="Vulnerable Products" Type="General" Ordinal="2">All Cisco Meraki products in the following list are affected by this vulnerability when the local status page feature is enabled and the device is running a software release prior to a fixed release listed in the Fixed Software ["#fs"] section of this advisory:
+
+MR devices
+MS devices
+MX devices (includes physical devices and the vMX100 virtual appliance)
+Z1 and Z3 devices
+
+  Note: The local status page feature is enabled by default on all Cisco Meraki software releases for the products in the preceding list.</cvrf:Note>
+    <cvrf:Note Title="Products Confirmed Not Vulnerable" Type="General" Ordinal="3">Only products listed in the Vulnerable Products ["#vp"] section of this advisory are known to be affected by this vulnerability.
+
+Cisco has confirmed that this vulnerability does not affect any Cisco wireless products except the Cisco Meraki products listed in the Vulnerable Products ["#vp"] section.
+
+Cisco has confirmed that this vulnerability does not affect the following Cisco Meraki products:
+
+Cisco Meraki Insight (MI)
+Cisco Meraki MC family of VoIP phones
+Cisco Meraki MV family of security cameras
+Cisco Meraki Systems Manager (SM)</cvrf:Note>
+    <cvrf:Note Title="Workarounds" Type="General" Ordinal="4">Although there are no workarounds that will allow customers to continue using the local status page and eliminate the attack vector for this vulnerability, disabling the local status page would eliminate the attack vector and prevent the vulnerability from being exploited. Customers are advised to consider their own environment needs to determine whether disabling the local status page is a feasible mitigation for preventing exploitation of unpatched devices.
+
+Customers with access to the Meraki Dashboard can use the following instructions to disable the local status page: Disabling the Local Status Page ["https://documentation.meraki.com/zGeneral_Administration/Tools_and_Troubleshooting/Using_the_Cisco_Meraki_Device_Local_Status_Page#Disabling_the_Local_Status_Page"].
+
+Note: Disabling the local status page can result in limited functionality in some scenarios. Consult the preceding link for information about the possible negative impact of disabling the local status page.</cvrf:Note>
+    <cvrf:Note Title="Fixed Software" Type="General" Ordinal="5">Cisco Meraki has released software updates that address the vulnerability described in this advisory. Cisco Meraki provides software updates for all devices with a valid and active license, and there is no other requirement to receive such updates, as described in our End Customer Agreement. Devices without a valid, active license will not receive any software upgrades. If you require a new license, please contact your sales team or representative. The contact information is in the Meraki Dashboard under Help &gt; Get Help.
+
+The policy and procedure for devices that have reached the end-of-support milestone are detailed on the Support Policies ["https://meraki.cisco.com/support/#policies:eol"] page.
+  Fixed Releases                                Product              Fixed Release                                              Meraki MR
+              MR 24 firmware - 24.13 or later
+                                  MR 25 firmware - 25.11 or later
+                                  Meraki MS
+              MS 9 firmware - 9.37 or later
+                                  MS 10 firmware - 10.20 or later
+                                  Meraki MX and Meraki Z1/Z3              MX 13 firmware - 13.32 or later
+                                  MX 14 firmware - 14.25 or later                                   MX 15 firmware - 15.7 or later</cvrf:Note>
+    <cvrf:Note Title="Vulnerability Policy" Type="General" Ordinal="6">To learn about Cisco security vulnerability disclosure policies and publications, see the Security Vulnerability Policy ["http://www.cisco.com/web/about/security/psirt/security_vulnerability_policy.html"]. This document also contains instructions for obtaining fixed software and receiving security vulnerability information from Cisco.
+
+The Cisco Meraki Security Vulnerability Rewards Program ["https://meraki.cisco.com/trust#srp"] page describes this program and how to participate.</cvrf:Note>
+    <cvrf:Note Title="Exploitation and Public Announcements" Type="General" Ordinal="7">The Cisco Product Security Incident Response Team (PSIRT) is not aware of any public announcements or malicious use of the vulnerability that is described in this advisory.</cvrf:Note>
+    <cvrf:Note Title="Source" Type="General" Ordinal="8">This vulnerability was found by an external researcher and reported to Cisco Meraki through the Cisco Meraki Security Vulnerability Rewards Program ["https://meraki.cisco.com/trust#srp"].</cvrf:Note>
+    <cvrf:Note Title="Legal Disclaimer" Type="Legal Disclaimer" Ordinal="9">THIS DOCUMENT IS PROVIDED ON AN "AS IS" BASIS AND DOES NOT IMPLY ANY KIND OF GUARANTEE OR WARRANTY, INCLUDING THE WARRANTIES OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR USE. YOUR USE OF THE INFORMATION ON THE DOCUMENT OR MATERIALS LINKED FROM THE DOCUMENT IS AT YOUR OWN RISK. CISCO RESERVES THE RIGHT TO CHANGE OR UPDATE THIS DOCUMENT AT ANY TIME.
+
+A standalone copy or paraphrase of the text of this document that omits the distribution URL is an uncontrolled copy and may lack important information or contain factual errors. The information in this document is intended for end users of Cisco products.</cvrf:Note>
+  </cvrf:DocumentNotes>
+  <cvrf:DocumentReferences>
+    <cvrf:Reference Type="Self">
+      <cvrf:URL>https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20181107-meraki</cvrf:URL>
+      <cvrf:Description>Cisco Meraki Local Status Page Privilege Escalation Vulnerability</cvrf:Description>
+    </cvrf:Reference>
+  </cvrf:DocumentReferences>
+  <Vulnerability Ordinal="1" xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln">
+    <Title>Cisco Meraki Local Status Page Privilege Escalation Vulnerability</Title>
+    <Notes>
+      <Note Title="Summary" Type="Summary" Ordinal="1">A vulnerability in the local status page functionality of the Cisco Meraki MR, MS, MX, Z1, and Z3 product lines could allow an authenticated, remote attacker to modify device configuration files.
+
+The vulnerability occurs when handling requests to the local status page. An exploit could allow the attacker to establish an interactive session to the device with elevated privileges. The attacker could then use the elevated privileges to further compromise the device or obtain additional configuration data from the device that is being exploited.
+</Note>
+    </Notes>
+    <CVE>CVE-2018-0284</CVE>
+    <Remediations>
+      <Remediation Type="Workaround">
+        <Description>Although there are no workarounds that will allow customers to continue using the local status page and eliminate the attack vector for this vulnerability, disabling the local status page would eliminate the attack vector and prevent the vulnerability from being exploited. Customers are advised to consider their own environment needs to determine whether disabling the local status page is a feasible mitigation for preventing exploitation of unpatched devices.
+
+Customers with access to the Meraki Dashboard can use the following instructions to disable the local status page: Disabling the Local Status Page ["https://documentation.meraki.com/zGeneral_Administration/Tools_and_Troubleshooting/Using_the_Cisco_Meraki_Device_Local_Status_Page#Disabling_the_Local_Status_Page"].
+
+Note: Disabling the local status page can result in limited functionality in some scenarios. Consult the preceding link for information about the possible negative impact of disabling the local status page.</Description>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference Type="Self">
+        <URL>https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20181107-meraki</URL>
+        <Description>Cisco Meraki Local Status Page Privilege Escalation Vulnerability</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+</cvrf:cvrfdoc>

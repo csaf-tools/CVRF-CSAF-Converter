@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cvrfdoc xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:cpe="http://cpe.mitre.org/language/2.0" xmlns:cvrf="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/cvrf" xmlns:cvrf-common="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/common" xmlns:cvssv2="http://scap.nist.gov/schema/cvss-v2/1.0" xmlns:cvssv3="https://www.first.org/cvss/cvss-v3.0.xsd" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:ns0="http://purl.org/dc/elements/1.1/" xmlns:prod="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/prod" xmlns:scap-core="http://scap.nist.gov/schema/scap-core/1.0" xmlns:sch="http://purl.oclc.org/dsdl/schematron" xmlns:vuln="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/cvrf">
+  <DocumentTitle xml:lang="en">Security update for percona-toolkit, xtrabackup</DocumentTitle>
+  <DocumentType>SUSE Patch</DocumentType>
+  <DocumentPublisher Type="Vendor">
+    <ContactDetails>security@suse.de</ContactDetails>
+    <IssuingAuthority>SUSE Security Team</IssuingAuthority>
+  </DocumentPublisher>
+  <DocumentTracking>
+    <Identification>
+      <ID>openSUSE-SU-2015:0472-1</ID>
+    </Identification>
+    <Status>Final</Status>
+    <Version>1</Version>
+    <RevisionHistory>
+      <Revision>
+        <Number>1</Number>
+        <Date>2015-03-03T15:21:17Z</Date>
+        <Description>current</Description>
+      </Revision>
+    </RevisionHistory>
+    <InitialReleaseDate>2015-03-03T15:21:17Z</InitialReleaseDate>
+    <CurrentReleaseDate>2015-03-03T15:21:17Z</CurrentReleaseDate>
+    <Generator>
+      <Engine>cve-database/bin/generate-cvrf.pl</Engine>
+      <Date>2017-02-24T01:00:00Z</Date>
+    </Generator>
+  </DocumentTracking>
+  <DocumentNotes>
+    <Note Title="Topic" Type="Summary" Ordinal="1" xml:lang="en">Security update for percona-toolkit, xtrabackup</Note>
+    <Note Title="Details" Type="General" Ordinal="2" xml:lang="en">
+Percona Toolkit and XtraBackup were updated to fix bugs and security issues.
+
+Percona XtraBackup was vulnerable to MITM attack which could allow
+exfiltration of MySQL configuration information via the --version-check
+option. [boo#919298] CVE-2015-1027 lp#1408375.
+
+The openSUSE package has the version check disabled by default.
+
+Percona Toolkit was updated to 2.2.13:
+* Feature lp#1391240: pt-kill added query fingerprint hash to output
+* Fixed lp#1402668: pt-mysql-summary fails on cluster in Donor/Desynced status 
+* Fixed lp#1396870: pt-online-schema-change CTRL+C leaves terminal in inconsistent state 
+* Fixed lp#1396868: pt-online-schema-change --ask-pass option error
+* Fixed lp#1266869: pt-stalk fails to start if $HOME environment variable is not set 
+* Fixed lp#1019479: pt-table-checksum does not work with sql_mode ONLY_FULL_GROUP_BY
+* Fixed lp#1394934: pt-table-checksum error in debug mode
+* Fixed lp#1321297: pt-table-checksum reports diffs on timestamp columns in 5.5 vs 5.6 
+* Fixed lp#1399789: pt-table-checksum fails to find pxc nodes when wsrep_node_incoming_address is set to AUTO
+* Fixed lp#1388870: pt-table-checksum has some errors with different time zones
+* Fixed lp#1408375: vulnerable to MITM attack which would allow exfiltration of MySQL configuration information via --version-check [boo#919298] [CVE-2015-1027]
+* Fixed lp#1404298: missing MySQL5.7 test files for pt-table-checksum
+* Fixed lp#1403900: added sandbox and fixed sakila test db for 5.7
+
+Percona XtraBackup was updated to version 2.2.9:
+* xtrabackup_galera_info file isn't overwritten during the Galera auto-recovery. lp#1418584.
+* Percona XtraBackup now sets the maximum supported session value
+  for lock_wait_timeout variable to prevent unnecessary timeouts
+  when the global value is changed from the default. lp#1410339.
+* New option --backup-locks, enabled by default, has been
+  implemented to control if backup locks will be used even if
+  they are supported by the server. To disable backup locks
+  innobackupex should be run with innobackupex --no-backup-locks
+  option. lp#1418820.
+</Note>
+    <Note Title="Terms of Use" Type="Legal Disclaimer" Ordinal="3" xml:lang="en">The CVRF data is provided by SUSE under the Creative Commons License 4.0 with Attribution for Non-Commercial usage (CC-BY-NC-4.0).</Note>
+  </DocumentNotes>
+  <DocumentDistribution xml:lang="en">Copyright SUSE LLC under the Creative Commons License 4.0 with Attribution for Non-Commercial usage (CC-BY-NC-4.0)</DocumentDistribution>
+  <DocumentReferences>
+    <Reference Type="Self">
+      <URL>https://lists.opensuse.org/opensuse-updates/2015-03/msg00030.html</URL>
+      <Description>E-Mail link for openSUSE-SU-2015:0472-1</Description>
+    </Reference>
+    <Reference Type="Self">
+      <URL>https://www.suse.com/support/security/rating/</URL>
+      <Description>SUSE Security Ratings</Description>
+    </Reference>
+  </DocumentReferences>
+  <ProductTree xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/prod">
+    <Branch Type="Product Version" Name="percona-toolkit-2.2.13-2.14.1">
+      <FullProductName ProductID="percona-toolkit-2.2.13-2.14.1">percona-toolkit-2.2.13-2.14.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="xtrabackup-2.1.8-25.1">
+      <FullProductName ProductID="xtrabackup-2.1.8-25.1">xtrabackup-2.1.8-25.1</FullProductName>
+    </Branch>
+  </ProductTree>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="1">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">The version checking subroutine in percona-toolkit before 2.2.13 and xtrabackup before 2.2.9 was vulnerable to silent HTTP downgrade attacks and Man In The Middle attacks in which the server response could be modified to allow the attacker to respond with modified command payload and have the client return additional running configuration information leading to an information disclosure of running configuration of MySQL.</Note>
+    </Notes>
+    <CVE>CVE-2015-1027</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed"/>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>low</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>4.3</BaseScoreV2>
+        <VectorV2>AV:N/AC:M/Au:N/C:P/I:N/A:N</VectorV2>
+      </ScoreSetV2>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-updates/2015-03/msg00030.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-1027.html</URL>
+        <Description>CVE-2015-1027</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/919298</URL>
+        <Description>SUSE Bug 919298</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+</cvrfdoc>

@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cvrf:cvrfdoc xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:cvrf-common="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/common" xmlns:cvrf="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/cvrf">
+  <cvrf:DocumentTitle>Cisco ASA Software, FTD Software, and AnyConnect Secure Mobility Client SAML Authentication Session Fixation Vulnerability</cvrf:DocumentTitle>
+  <cvrf:DocumentType>Cisco Security Advisory</cvrf:DocumentType>
+  <cvrf:DocumentPublisher Type="Vendor">
+    <cvrf:ContactDetails>Emergency Support:
++1 877 228 7302 (toll-free within North America)
++1 408 525 6532 (International direct-dial)
+Non-emergency Support:
+Email: psirt@cisco.com
+Support requests that are received via e-mail are typically acknowledged within 48 hours.</cvrf:ContactDetails>
+    <cvrf:IssuingAuthority>Cisco product security incident response is the responsibility of the Cisco Product Security Incident Response Team (PSIRT). The Cisco PSIRT is a dedicated, global team that manages the receipt, investigation, and public reporting of security vulnerability information that is related to Cisco products and networks. The on-call Cisco PSIRT works 24x7 with Cisco customers, independent security researchers, consultants, industry organizations, and other vendors to identify possible security issues with Cisco products and networks.
+More information can be found in Cisco Security Vulnerability Policy available at http://www.cisco.com/web/about/security/psirt/security_vulnerability_policy.html</cvrf:IssuingAuthority>
+  </cvrf:DocumentPublisher>
+  <cvrf:DocumentTracking>
+    <cvrf:Identification>
+      <cvrf:ID>cisco-sa-20180418-asaanyconnect</cvrf:ID>
+    </cvrf:Identification>
+    <cvrf:Status>Final</cvrf:Status>
+    <cvrf:Version>1.2</cvrf:Version>
+    <cvrf:RevisionHistory>
+      <cvrf:Revision>
+        <cvrf:Number>1.0</cvrf:Number>
+        <cvrf:Date>2018-04-18T15:40:57</cvrf:Date>
+        <cvrf:Description>Initial public release.</cvrf:Description>
+      </cvrf:Revision>
+      <cvrf:Revision>
+        <cvrf:Number>1.1</cvrf:Number>
+        <cvrf:Date>2018-04-20T12:43:38</cvrf:Date>
+        <cvrf:Description>Added references to ASA and AnyConnect documentation; re-iterated the need to upgrade both ASA/FTD software and the AnyConnect client for a complete fix.</cvrf:Description>
+      </cvrf:Revision>
+      <cvrf:Revision>
+        <cvrf:Number>1.2</cvrf:Number>
+        <cvrf:Date>2018-10-05T16:12:17</cvrf:Date>
+        <cvrf:Description>Updated advisory metadata to reflect affected versions documented in Fixed Software section.</cvrf:Description>
+      </cvrf:Revision>
+    </cvrf:RevisionHistory>
+    <cvrf:InitialReleaseDate>2018-04-18T16:00:00</cvrf:InitialReleaseDate>
+    <cvrf:CurrentReleaseDate>2018-10-05T16:12:17</cvrf:CurrentReleaseDate>
+    <cvrf:Generator>
+      <cvrf:Engine>TVCE</cvrf:Engine>
+    </cvrf:Generator>
+  </cvrf:DocumentTracking>
+  <cvrf:DocumentNotes>
+    <cvrf:Note Title="Summary" Type="Summary" Ordinal="1">A vulnerability in the implementation of Security Assertion Markup Language (SAML) Single Sign-On (SSO) authentication for Cisco AnyConnect Secure Mobility Client for Desktop Platforms, Cisco Adaptive Security Appliance (ASA) Software, and Cisco Firepower Threat Defense (FTD) Software could allow an unauthenticated, remote attacker to establish an authenticated AnyConnect session through an affected device running ASA or FTD Software. The authentication would need to be done by an unsuspecting third party.
+
+The vulnerability exists because there is no mechanism for the ASA or FTD Software to detect that the authentication request originates from the AnyConnect client directly. An attacker could exploit this vulnerability by persuading a user to click a crafted link and authenticating using the company's Identity Provider (IdP). A successful exploit could allow the attacker to  hijack a valid authentication token and use that to establish an authenticated AnyConnect session through an affected device running ASA or FTD Software.
+
+Cisco has released software updates that address this vulnerability. There are no workarounds that address this vulnerability.
+
+This advisory is available at the following link:
+https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20180418-asaanyconnect ["https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20180418-asaanyconnect"]</cvrf:Note>
+    <cvrf:Note Title="Vulnerable Products" Type="General" Ordinal="2">This vulnerability affects the Cisco AnyConnect Secure Mobility Client, and ASA Software and FTD Software configured for SAML 2.0-based SSO for AnyConnect Remote Access VPN that is running on the following Cisco products:
+
+3000 Series Industrial Security Appliances (ISA)
+ASA 5500 Series Adaptive Security Appliances
+ASA 5500-X Series Next-Generation Firewalls
+ASA Services Module for Cisco Catalyst 6500 Series Switches and Cisco 7600 Series Routers
+Adaptive Security Virtual Appliance (ASAv)
+Firepower 2100 Series Security Appliance
+Firepower 4100 Series Security Appliance
+Firepower 9300 ASA Security Module
+FTD Virtual (FTDv)
+
+ASA Software
+
+The ASA Software is only vulnerable if running software version 9.7.1 or later.Determining the Cisco ASA Software Release  To determine whether a vulnerable version of Cisco ASA Software is running on a device, administrators can use the show version command in the CLI. The following example shows the output of the command for a device that is running Cisco ASA Software Release 9.7(1)4:
+ciscoasa# show version | include Version
+Cisco Adaptive Security Appliance Software Version 9.7(1)4  Firepower Extensible Operating System Version 2.1(1.66)  Baseboard Management Controller (revision 0x1) Firmware Version: 2.4
+    Customers who use Cisco Adaptive Security Device Manager (ASDM) to manage devices can locate the software release in the table that appears in the login window or the upper-left corner of the Cisco ASDM window.
+
+FTD Software
+
+The FTD Software is only vulnerable if running software version 6.2.1 or later.Determining the Cisco FTD Software Release
+To determine which Cisco FTD Software release is running on a device, administrators can log in to the device and use the show version command in the CLI. The following example shows the output of the command for a device that is running Cisco FTD Software Release 6.2.2:
+
+
+&gt; show version
+  ------------------[ ftd ]-----------------------
+Model : Cisco Firepower 2130 Threat Defense (77) Version 6.2.2 (Build 81)
+UUID : 0cd3595a-7efa-11e7-aaa1-ee3989c8bf25
+Rules update version : 2017-12-20-001-vrt
+VDB version : 290
+----------------------------------------------------
+
+
+AnyConnect Software
+
+The AnyConnect Secure Mobility Client Software is only vulnerable if running software version 4.4.00243 or later.
+
+ASA and FTD Features
+
+The ASA software and the FTD software are vulnerable only if all of the following features are configured:
+
+SAML 2.0 Identity Provider (IdP)
+SAML 2.0 Service Provider (SP)
+AnyConnect Remote Access VPN
+
+Note: SAML 2.0 for AnyConnect features are first supported as of ASA release 9.7.1, FTD release 6.2.1, and AnyConnect Secure Mobility Client release 4.4.00243.
+
+
+To determine whether ASA or FTD is configured with a SAML 2.0 IdP, administrators can use the show webvpn saml idp CLI command. The following output shows an ASA configured with a SAML 2.0 IdP:
+
+
+ciscoasa# show webvpn saml idp
+ saml idp my_domain_idp
+url sign-in https://asa-dev.my.domain.com/idp/endpoint/HttpRedirect
+url sign-out https://asa-dev.my.domain.com/idp/endpoint/HttpRedirect
+trustpoint idp my_domain_trustpoint
+trustpoint sp asa_trustpoint
+
+To determine whether ASA or FTD is configured as SAML 2.0 SP, administrators can use the show running-config tunnel-group | include remote-access|webvpn-attributes|saml CLI command. The following output shows an ASA configured as SAML 2.0 SP:
+
+
+ciscoasa# show running-config tunnel-group | include remote-access|webvpn-attributes|saml
+tunnel-group cloud_idp_onelogin type remote-access
+tunnel-group cloud_idp_onelogin webvpn-attributes
+authentication saml
+saml identity-provider my_domain_idp
+
+To determine whether ASA or FTD is configured for AnyConnect Remote Access VPN, administrators can use the show running-config CLI command and consult the following table for vulnerable configurations.
+                                Feature              Vulnerable Configuration                                              AnyConnect IKEv2 Remote Access (with client services)                            crypto ikev2 enable &lt;interface_name&gt; client-services port &lt;port #&gt;
+webvpn
+ anyconnect enable                                                AnyConnect IKEv2 Remote Access (without client services)                            crypto ikev2 enable &lt;interface_name&gt;
+webvpn
+ anyconnect enable                                                AnyConnect SSL VPN                            webvpn
+ enable &lt;interface_name&gt;</cvrf:Note>
+    <cvrf:Note Title="Products Confirmed Not Vulnerable" Type="General" Ordinal="3">No other Cisco products are currently known to be affected by this vulnerability.</cvrf:Note>
+    <cvrf:Note Title="Details" Type="General" Ordinal="4">The vulnerability described in this advisory originates from the dilemma that the head-end device that has the SAML 2.0-based SSO for AnyConnect feature  enabled has no way to verify that the authentication request came from the same machine that is running the AnyConnect Secure Mobility Client.
+
+The fix for this vulnerability involves changes in both the head-end device's ASA software and the client-side's AnyConnect Secure Mobility Client. This includes embedded browser functionality in the AnyConnect Secure Mobility Client. For a complete fix, both the head-end device and the AnyConnect Secure Mobility Client must be upgraded.
+
+As the fix for this vulnerability requires protocol adjustments, the ASA has no automatic backward compatibility between the behavior of a solution running software versions prior to the fix and the default behavior of solutions running software versions that do include the fix.
+
+For a transition period, both the AnyConnect Secure Mobility Client and ASA Software will support both methods. The AnyConnect Secure Mobility Client will automatically detect the correct behavior when talking to a head-end device. On the ASA side, the previous behavior will be disabled by default. The previous behavior can be enabled manually per Connection Profile ("tunnel-group") using the newly introduced saml external-browser command under webvpn-attributes.
+
+When upgrading an ASA that has the SAML 2.0-based SSO for AnyConnect feature enabled, the new behavior will be enforced after the upgrade. Customers who cannot upgrade their AnyConnect clients at the same time will need to re-enable the previous behavior manually by adding the saml external-browser command after the ASA upgrade has completed. Cisco recommends removing the saml external-browser command after all AnyConnect clients have been migrated.
+
+Please refer to the Important Notes section in the Release Notes for the Cisco ASA Series, 9.9(x) ["https://www.cisco.com/c/en/us/td/docs/security/asa/asa99/release/notes/asarn99.html#reference_wpd_32d_ybb"], the About SSO and SAML 2.0 section in the Cisco ASA Series VPN CLI Configuration Guide, 9.9 ["https://www.cisco.com/c/en/us/td/docs/security/asa/asa99/configuration/vpn/asa-99-vpn-config/webvpn-configure-users.html#concept_E4852D9DE2B44A469C4D9C31444BFB62"], the AnyConnect 4.6.00362 New Features section in the Release Notes for Cisco AnyConnect Secure Mobility Client, Release 4.6, ["https://www.cisco.com/c/en/us/td/docs/security/vpn_client/anyconnect/anyconnect46/release/notes/b_Release_Notes_AnyConnect_4_6.html#reference_iwz_3kr_ycb"] and the VPN Authentication Using SAML section in the Cisco AnyConnect Secure Mobility Client Administrator Guide, Release 4.6 ["https://www.cisco.com/c/en/us/td/docs/security/vpn_client/anyconnect/anyconnect46/administration/guide/b_AnyConnect_Administrator_Guide_4-6/configure-vpn.html#reference_FE50F6515F3F41F085C733AF39C83275"] for further information on the changed behavior.</cvrf:Note>
+    <cvrf:Note Title="Workarounds" Type="General" Ordinal="5">There are no workarounds that address this vulnerability.</cvrf:Note>
+    <cvrf:Note Title="Fixed Software" Type="General" Ordinal="6">Cisco has released free software updates that address the vulnerability described in this advisory. Customers may only install and expect support for software versions and feature sets for which they have purchased a license. By installing, downloading, accessing, or otherwise using such software upgrades, customers agree to follow the terms of the Cisco software license:
+https://www.cisco.com/c/en/us/products/end-user-license-agreement.html ["https://www.cisco.com/c/en/us/products/end-user-license-agreement.html"]
+
+Additionally, customers may only download software for which they have a valid license, procured from Cisco directly, or through a Cisco authorized reseller or partner. In most cases this will be a maintenance upgrade to software that was previously purchased. Free security software updates do not entitle customers to a new software license, additional software feature sets, or major revision upgrades.
+
+When considering software upgrades, customers are advised to regularly consult the advisories for Cisco products, which are available from the Cisco Security Advisories and Alerts page ["https://www.cisco.com/go/psirt"], to determine exposure and a complete upgrade solution.
+
+In all cases, customers should ensure that the devices to be upgraded contain sufficient memory and confirm that current hardware and software configurations will continue to be supported properly by the new release. If the information is not clear, customers are advised to contact the Cisco Technical Assistance Center (TAC) or their contracted maintenance providers.
+
+Customers Without Service Contracts
+
+Customers who purchase directly from Cisco but do not hold a Cisco service contract and customers who make purchases through third-party vendors but are unsuccessful in obtaining fixed software through their point of sale should obtain upgrades by contacting the Cisco TAC:
+https://www.cisco.com/c/en/us/support/web/tsd-cisco-worldwide-contacts.html ["https://www.cisco.com/c/en/us/support/web/tsd-cisco-worldwide-contacts.html"]
+
+Customers should have the product serial number available and be prepared to provide the URL of this advisory as evidence of entitlement to a free upgrade.
+
+  Fixed Releases  Customers should upgrade to an appropriate release as indicated in the table(s) in this section. To help ensure a complete upgrade solution, consider that this advisory is part of a collection that includes the following advisories:
+
+      cisco-sa-20180418-asa1 ["https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20180418-asa1"]: Cisco Adaptive Security Appliance SSL Certificate Bypass Vulnerability
+      cisco-sa-20180418-asa2 ["https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-2018418-asa2"]: Cisco Adaptive Security Appliance Flow Creation Denial of Service Vulnerability
+      cisco-sa-20180418-asa3 ["https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20180418-asa3"]: Cisco Adaptive Security Appliance TLS Denial of Service Vulnerability
+cisco-sa-20180418-asaanyconnect ["https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20180418-asaanyconnect"]: Cisco ASA Software, FTD Software, and AnyConnect Secure Mobility Client SAML Authentication Session Fixation Vulnerability
+cisco-sa-20180418-asa_inspect ["https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20180418-asa_inspect"]: Cisco Adaptive Security Appliance Application Layer Protocol Inspection Denial of Service Vulnerability
+  In the following table(s), the left column lists major releases of Cisco software. The center column indicates whether a major release is affected by the vulnerability described in this advisory and the first minor release that includes the fix for this vulnerability. The right column indicates whether a major release is affected by all the vulnerabilities described in this collection of advisories and the current recommended release for those vulnerabilities.
+
+Note: For a complete fix, both the ASA or FTD Software on the head-end device and the AnyConnect Secure Mobility Client must be upgraded.
+  ASA Software                                Cisco ASA Major Release
+              First Fixed Release for This Vulnerability
+              Recommended Fixed Release for All the Vulnerabilities Described in this Collection of Advisories                                               Prior to 9.11
+              Not vulnerable2                            9.1.7.20                                  9.1               Not vulnerable2               9.1.7.20                                  9.2              Not vulnerable2
+              9.2.4.27                                  9.31              Not vulnerable2
+              9.4.4.14                                  9.4              Not vulnerable2
+              9.4.4.14                                  9.51              Not vulnerable2
+              9.6.4.6                                  9.6              Not vulnerable2
+              9.6.4.6                                  9.7              9.7.1.24               9.7.1.24                                   9.8              9.8.2.28
+               9.8.2.28                                   9.9              9.9.2.1              9.9.2.1
+1 Cisco ASA Software releases prior to 9.1 and ASA releases 9.3 and 9.5 have reached End of Software Maintenance. Customers should migrate to a supported release.
+2 SAML 2.0 for AnyConnect features are first supported as of software release 9.7.1.
+The software is available for download from the Software Center ["https://software.cisco.com/download/navigator.html"] on Cisco.com by navigating to Products &gt; Security &gt; Firewalls &gt; Adaptive Security Appliances (ASA) &gt; ASA 5500-X Series Firewalls, where there is a list of ASA hardware platforms. The majority of these software releases are listed under Interim.
+  FTD Software                                Cisco FTD Major Release
+              First Fixed Release for This Vulnerability
+              Recommended Fixed Release for All the Vulnerabilities Described in this Collection of Advisories
+                                              6.0
+              Not vulnerable1              Cisco_FTD_SSP_Hotfix_EI-6.1.0.7-2.sh (41xx and 9300 FTD hardware platform)
+
+Cisco_FTD_Hotfix_EI-6.1.0.7-2.sh  (All FTD hardware platforms except 41xx and 9300)                                  6.0.1                Not vulnerable1               Cisco_FTD_SSP_Hotfix_EI-6.1.0.7-2.sh (41xx and 9300 FTD hardware platform)
+
+Cisco_FTD_Hotfix_EI-6.1.0.7-2.sh  (All FTD hardware platforms except 41xx and 9300)                                  6.1.0               Not vulnerable1
+              Cisco_FTD_SSP_Hotfix_EI-6.1.0.7-2.sh (41xx and 9300 FTD hardware platform)
+
+Cisco_FTD_Hotfix_EI-6.1.0.7-2.sh  (All FTD hardware platforms except 41xx and 9300)                                  6.2.0               Not vulnerable1
+              6.2.0.5                                  6.2.1               Migrate to 6.2.2 Hotfix
+               Cisco_FTD_SSP_Hotfix_BD-6.2.2.3-4.sh.REL.tar (41xx and 9300 FTD hardware platforms)
+
+Cisco_FTD_SSP_FP2K_Hotfix_BD-6.2.2.3-4.sh.REL.tar (21xx FTD hardware platform)
+
+Cisco_FTD_Hotfix_BD-6.2.2.3-4.sh.REL.tar (All other FTD hardware platforms)                                                6.2.2              Cisco_FTD_SSP_Hotfix_BD-6.2.2.3-4.sh.REL.tar (41xx and 9300 FTD hardware platforms)
+
+Cisco_FTD_SSP_FP2K_Hotfix_BD-6.2.2.3-4.sh.REL.tar (21xx FTD hardware platform)
+
+Cisco_FTD_Hotfix_BD-6.2.2.3-4.sh.REL.tar (All other FTD hardware platforms)              Cisco_FTD_SSP_Hotfix_BD-6.2.2.3-4.sh.REL.tar (41xx and 9300 FTD hardware platforms)
+
+Cisco_FTD_SSP_FP2K_Hotfix_BD-6.2.2.3-4.sh.REL.tar (21xx FTD hardware platform)
+
+Cisco_FTD_Hotfix_BD-6.2.2.3-4.sh.REL.tar (All other FTD hardware platforms)                                  6.2.3              Cisco_FTD_SSP_Hotfix_A-6.2.3.1-10.sh.REL.tar (41xx and 9300 FTD hardware platforms)
+
+Cisco_FTD_SSP_FP2K_Hotfix_A-6.2.3.1-10.sh.REL.tar (21xx FTD hardware platform)
+
+Cisco_FTD_Hotfix_A-6.2.3.1-10.sh.REL.tar (All other FTD hardware platforms)                            Cisco_FTD_SSP_Hotfix_A-6.2.3.1-10.sh.REL.tar (41xx and 9300 FTD hardware platforms)
+
+Cisco_FTD_SSP_FP2K_Hotfix_A-6.2.3.1-10.sh.REL.tar (21xx FTD hardware platform)
+
+Cisco_FTD_Hotfix_A-6.2.3.1-10.sh.REL.tar (All other FTD hardware platforms)
+1 Remote Access VPN features are first supported as of software release 6.2.1.
+The software is available for download from the Software Center ["https://software.cisco.com/download/navigator.html"] on Cisco.com by navigating to Products &gt; Security &gt; Firewalls&gt; Next-Generation Firewalls (NGFW), where there is a list of possible FTD hardware platforms.
+  AnyConnect Secure Mobility Client                                Cisco AnyConnect Secure Mobility Client Major Release
+              First Fixed Release for This Vulnerability
+              Recommended Fixed Release for All the Vulnerabilities Described in this Collection of Advisories
+                                              Prior to 4.41
+              Not vulnerable
+              Not applicable2
+                                  4.4              Affected; migrate to 4.6
+              Not applicable2
+                                  4.5              Affected; migrate to 4.6
+              Not applicable2
+                                  4.6              Not vulnerable
+              Not applicable2
+
+1 SAML 2.0 SSO features are first supported as of software release 4.4.00243.
+2 This is the only vulnerability of this collection of advisories that affects the Cisco AnyConnect Secure Mobility Client.
+
+The software is available for download from the Software Center ["https://software.cisco.com/download/navigator.html"] on Cisco.com by navigating to Products &gt; Security &gt; VPN and Endpoint Security Clients &gt; Cisco VPN Clients &gt; AnyConnect Secure Mobility Client &gt; AnyConnect Secure Mobility Client v4.x.</cvrf:Note>
+    <cvrf:Note Title="Vulnerability Policy" Type="General" Ordinal="7">To learn about Cisco security vulnerability disclosure policies and publications, see the Security Vulnerability Policy ["http://www.cisco.com/web/about/security/psirt/security_vulnerability_policy.html"]. This document also contains instructions for obtaining fixed software and receiving security vulnerability information from Cisco.</cvrf:Note>
+    <cvrf:Note Title="Exploitation and Public Announcements" Type="General" Ordinal="8">The Cisco Product Security Incident Response Team (PSIRT) is not aware of any public announcements or malicious use of the vulnerability that is described in this advisory.</cvrf:Note>
+    <cvrf:Note Title="Source" Type="General" Ordinal="9">This vulnerability was found during the resolution of a Cisco TAC support case.</cvrf:Note>
+    <cvrf:Note Title="Legal Disclaimer" Type="Legal Disclaimer" Ordinal="10">THIS DOCUMENT IS PROVIDED ON AN "AS IS" BASIS AND DOES NOT IMPLY ANY KIND OF GUARANTEE OR WARRANTY, INCLUDING THE WARRANTIES OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR USE. YOUR USE OF THE INFORMATION ON THE DOCUMENT OR MATERIALS LINKED FROM THE DOCUMENT IS AT YOUR OWN RISK. CISCO RESERVES THE RIGHT TO CHANGE OR UPDATE THIS DOCUMENT AT ANY TIME.
+
+A standalone copy or paraphrase of the text of this document that omits the distribution URL is an uncontrolled copy and may lack important information or contain factual errors. The information in this document is intended for end users of Cisco products.</cvrf:Note>
+  </cvrf:DocumentNotes>
+  <cvrf:DocumentReferences>
+    <cvrf:Reference Type="Self">
+      <cvrf:URL>https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20180418-asaanyconnect</cvrf:URL>
+      <cvrf:Description>Cisco ASA Software, FTD Software, and AnyConnect Secure Mobility Client SAML Authentication Session Fixation Vulnerability</cvrf:Description>
+    </cvrf:Reference>
+  </cvrf:DocumentReferences>
+  <ProductTree xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/prod">
+    <Branch Name="Cisco" Type="Vendor">
+      <Branch Name="Cisco Adaptive Security Appliance (ASA) Software" Type="Product Name">
+        <FullProductName ProductID="CVRFPID-6588">Cisco Adaptive Security Appliance (ASA) Software </FullProductName>
+      </Branch>
+      <Branch Name="Cisco AnyConnect Secure Mobility Client" Type="Product Name">
+        <FullProductName ProductID="CVRFPID-109810">Cisco AnyConnect Secure Mobility Client </FullProductName>
+      </Branch>
+      <Branch Name="Cisco Firepower Threat Defense Software" Type="Product Name">
+        <FullProductName ProductID="CVRFPID-220203">Cisco Firepower Threat Defense Software </FullProductName>
+      </Branch>
+    </Branch>
+  </ProductTree>
+  <Vulnerability Ordinal="1" xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln">
+    <Title>vuln_cisco-sa-20180418-asaanyconnect</Title>
+    <ID SystemName="Cisco Bug ID">CSCvg65072</ID>
+    <Notes>
+      <Note Title="Summary" Type="Summary" Ordinal="1">A vulnerability in the implementation of Security Assertion Markup Language (SAML) Single Sign-On (SSO) authentication for Cisco AnyConnect Secure Mobility Client for Desktop Platforms, Cisco Adaptive Security Appliance (ASA) Software, and Cisco Firepower Threat Defense (FTD) Software could allow an unauthenticated, remote attacker to establish an authenticated AnyConnect session through an affected device running ASA or FTD Software. The authentication would need to be done by an unsuspecting third party.
+
+
+
+The vulnerability exists because there is no mechanism for the ASA or FTD Software to detect that the authentication request originates from the AnyConnect client directly. An attacker could exploit this vulnerability by persuading a user to click a crafted link and authenticating using the company's Identity Provider (IdP). A successful exploit could allow the attacker to  hijack a valid authentication token and use that to establish an authenticated AnyConnect session through an affected device running ASA or FTD Software.</Note>
+      <Note Title="Cisco Bug IDs" Type="Other" Ordinal="2">CSCvg65072,CSCvh87448</Note>
+    </Notes>
+    <CVE>CVE-2018-0229</CVE>
+    <ProductStatuses>
+      <Status Type="Known Affected">
+        <ProductID>CVRFPID-109810</ProductID>
+        <ProductID>CVRFPID-220203</ProductID>
+        <ProductID>CVRFPID-6588</ProductID>
+      </Status>
+    </ProductStatuses>
+    <CVSSScoreSets>
+      <ScoreSetV3>
+        <BaseScoreV3>6.5</BaseScoreV3>
+        <VectorV3>CVSS:3.0/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:N/A:N</VectorV3>
+      </ScoreSetV3>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Workaround">
+        <Description>There are no workarounds that address this vulnerability.</Description>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference Type="Self">
+        <URL>https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20180418-asaanyconnect</URL>
+        <Description>Cisco ASA Software, FTD Software, and AnyConnect Secure Mobility Client SAML Authentication Session Fixation Vulnerability</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+</cvrf:cvrfdoc>

@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cvrf:cvrfdoc xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:cvrf-common="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/common" xmlns:cvrf="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/cvrf">
+  <cvrf:DocumentTitle>Cisco Webex Network Recording Player Arbitrary Code Execution Vulnerabilities</cvrf:DocumentTitle>
+  <cvrf:DocumentType>Cisco Security Advisory</cvrf:DocumentType>
+  <cvrf:DocumentPublisher Type="Vendor">
+    <cvrf:ContactDetails>Emergency Support:
++1 877 228 7302 (toll-free within North America)
++1 408 525 6532 (International direct-dial)
+Non-emergency Support:
+Email: psirt@cisco.com
+Support requests that are received via e-mail are typically acknowledged within 48 hours.</cvrf:ContactDetails>
+    <cvrf:IssuingAuthority>Cisco product security incident response is the responsibility of the Cisco Product Security Incident Response Team (PSIRT). The Cisco PSIRT is a dedicated, global team that manages the receipt, investigation, and public reporting of security vulnerability information that is related to Cisco products and networks. The on-call Cisco PSIRT works 24x7 with Cisco customers, independent security researchers, consultants, industry organizations, and other vendors to identify possible security issues with Cisco products and networks.
+More information can be found in Cisco Security Vulnerability Policy available at http://www.cisco.com/web/about/security/psirt/security_vulnerability_policy.html</cvrf:IssuingAuthority>
+  </cvrf:DocumentPublisher>
+  <cvrf:DocumentTracking>
+    <cvrf:Identification>
+      <cvrf:ID>cisco-sa-20190515-webex-player</cvrf:ID>
+    </cvrf:Identification>
+    <cvrf:Status>Final</cvrf:Status>
+    <cvrf:Version>1.0</cvrf:Version>
+    <cvrf:RevisionHistory>
+      <cvrf:Revision>
+        <cvrf:Number>1.0</cvrf:Number>
+        <cvrf:Date>2019-05-14T19:27:38</cvrf:Date>
+        <cvrf:Description>Initial public release.</cvrf:Description>
+      </cvrf:Revision>
+      <cvrf:Revision>
+        <cvrf:Number>1.0</cvrf:Number>
+        <cvrf:Date>2019-05-14T21:02:09</cvrf:Date>
+        <cvrf:Description>Initial public release.</cvrf:Description>
+      </cvrf:Revision>
+    </cvrf:RevisionHistory>
+    <cvrf:InitialReleaseDate>2019-05-15T16:00:00</cvrf:InitialReleaseDate>
+    <cvrf:CurrentReleaseDate>2019-05-14T21:02:09</cvrf:CurrentReleaseDate>
+    <cvrf:Generator>
+      <cvrf:Engine>TVCE</cvrf:Engine>
+    </cvrf:Generator>
+  </cvrf:DocumentTracking>
+  <cvrf:DocumentNotes>
+    <cvrf:Note Title="Summary" Type="Summary" Ordinal="1">Multiple vulnerabilities in the Cisco Webex Network Recording Player for Microsoft Windows and the Cisco Webex Player for Microsoft Windows could allow an attacker to execute arbitrary code on an affected system.
+
+The vulnerabilities exist because the affected software improperly validates Advanced Recording Format (ARF) and Webex Recording Format (WRF) files. An attacker could exploit these vulnerabilities by sending a user a malicious ARF or WRF file via a link or email attachment and persuading the user to open the file with the affected software on the local system. A successful exploit could allow the attacker to execute arbitrary code on the affected system.
+
+Cisco has released software updates that address this vulnerability. There are no workarounds that address this vulnerability. No exploit code proving exploitability of the vulnerabilities is publicly available.
+
+This advisory is available at the following link:
+https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20190515-webex-player ["https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20190515-webex-player"]</cvrf:Note>
+    <cvrf:Note Title="Vulnerable Products" Type="General" Ordinal="2">These vulnerabilities affect the following versions of the Cisco Webex Network Recording Player for Microsoft Windows and the Cisco Webex Player for Microsoft Windows, which are available from Cisco Webex Business Suite sites, Cisco Webex Meetings Online sites, and Cisco Webex Meetings Server:
+
+Cisco Webex Business Suite sites — All Webex Network Recording Player and Webex Player versions prior to Version WBS39.2.205
+Cisco Webex Meetings Online — All Webex Network Recording Player and Webex Player versions prior to Version 1.3.42
+Cisco Webex Meetings Server — All Webex Network Recording Player versions prior to Version 2.8MR3 SecurityPatch2, 3.0MR2 SecurityPatch2, or 4.0
+
+To determine which version of the Cisco Webex Network Recording Player or the Cisco Webex Player is installed on a system, users can open the player and choose Help &gt; About.</cvrf:Note>
+    <cvrf:Note Title="Products Confirmed Not Vulnerable" Type="General" Ordinal="3">Only products listed in the Vulnerable Products ["#vp"] section of this advisory are known to be affected by this vulnerability.
+
+Cisco Webex Network Recording Player for Mac OS is not affected.</cvrf:Note>
+    <cvrf:Note Title="Details" Type="General" Ordinal="4">Cisco Webex Business Suite services and Cisco Webex Meetings Online are hosted, multimedia conferencing solutions that are managed and maintained by Cisco Webex. Cisco Webex Meetings Server is a multimedia conferencing solution that customers host, manage, and maintain in their private clouds.
+
+Cisco Webex Business Suite services can be configured to allow users to store meeting recordings online and download those recordings as ARF files. These services can also be configured to allow users to record meetings directly on their local computers as WRF files.
+
+The Cisco Webex Network Recording Player is the application that is used to play back ARF files. It is available from Cisco Webex Business Suite sites, Cisco Webex Meetings Online, and Cisco Webex Meetings Server. The player can be installed manually from the Cisco Webex website ["https://www.webex.com/play-webex-recording.html"], from the user's Webex site, or automatically when a user accesses an ARF file for streaming playback from a Cisco Webex Business Suite site.
+
+The Cisco Webex Player is the application that is used to play back WRF files. It is available from Cisco Webex Business Suite sites and Cisco Webex Meetings Online. It is not available from Cisco Webex Meetings Server. The player can also be installed manually from the Cisco Webex website ["https://www.webex.com/play-webex-recording.html"] or from the user's Webex site.</cvrf:Note>
+    <cvrf:Note Title="Workarounds" Type="General" Ordinal="5">There are no workarounds that address these vulnerabilities. However, customers may remove the Cisco Webex Network Recording Player and the Cisco Webex Player from a system by using the software-removal procedure for the operating system. For example, to remove a player from a Microsoft Windows 10 system, customers can use the Apps &amp; Features app in Windows Settings.
+
+To remove all Cisco Webex software from a Microsoft Windows system, customers can use the Meeting Services Removal Tool, which is available for download from the Cisco Collaboration Help article Cisco Webex and 3rd Party Support Utilities ["https://collaborationhelp.cisco.com/article/en-us/WBX000026396"].
+
+By removing the Cisco Webex Network Recording Player, a user will be unable to play recordings. However, the next time media is accessed, the system will download a new version of the software, providing the user with an updated version.</cvrf:Note>
+    <cvrf:Note Title="Fixed Software" Type="General" Ordinal="6">Cisco has released free software updates that address the vulnerability described in this advisory. Customers may only install and expect support for software versions and feature sets for which they have purchased a license. By installing, downloading, accessing, or otherwise using such software upgrades, customers agree to follow the terms of the Cisco software license:
+https://www.cisco.com/c/en/us/products/end-user-license-agreement.html ["https://www.cisco.com/c/en/us/products/end-user-license-agreement.html"]
+
+Additionally, customers may only download software for which they have a valid license, procured from Cisco directly, or through a Cisco authorized reseller or partner. In most cases this will be a maintenance upgrade to software that was previously purchased. Free security software updates do not entitle customers to a new software license, additional software feature sets, or major revision upgrades.
+
+When considering software upgrades, customers are advised to regularly consult the advisories for Cisco products, which are available from the Cisco Security Advisories and Alerts page ["https://www.cisco.com/go/psirt"], to determine exposure and a complete upgrade solution.
+
+In all cases, customers should ensure that the devices to be upgraded contain sufficient memory and confirm that current hardware and software configurations will continue to be supported properly by the new release. If the information is not clear, customers are advised to contact the Cisco Technical Assistance Center (TAC) or their contracted maintenance providers.
+  Customers Without Service Contracts
+Customers who purchase directly from Cisco but do not hold a Cisco service contract and customers who make purchases through third-party vendors but are unsuccessful in obtaining fixed software through their point of sale should obtain upgrades by contacting the Cisco TAC:
+https://www.cisco.com/c/en/us/support/web/tsd-cisco-worldwide-contacts.html ["https://www.cisco.com/c/en/us/support/web/tsd-cisco-worldwide-contacts.html"]
+
+Customers should have the product serial number available and be prepared to provide the URL of this advisory as evidence of entitlement to a free upgrade.
+  Fixed Releases  Cisco has fixed these vulnerabilities in the following versions of the Cisco Webex Network Recording Player and the Cisco Webex Player:
+      Cisco Webex Business Suite sites — Webex Network Recording Player and Webex Player Versions WBS39.2.205 and later
+Cisco Webex Business Suite lockdown sites — Webex Network Recording Player and Webex Player Versions WBS33.6.11 and later
+      Cisco Webex Meetings Online — Webex Network Recording Player and Webex Player Versions 1.3.42 and later
+      Cisco Webex Meetings Server — Webex Network Recording Player Versions 2.8MR3 SecurityPatch2, 3.0MR2 SecurityPatch3, or 4.0 and later
+
+Cisco has not and will not fix all these vulnerabilities in Cisco Webex Business Suite WBS32 sites because those sites have reached the end-of-version-support milestone. For information about this milestone and the upgrade plans for WBS32 sites, see Cisco Webex Meetings Suite Version Retirement Policy ["https://help.webex.com/en-us/ns12j0bb/Cisco-Webex-Meetings-Suite-Version-Retirement-Policy"].
+
+Customers can upgrade to a fixed version of the Cisco Webex Network Recording Player in either of two ways:
+
+      Automatically: The player will be automatically upgraded to the latest version of the software when a user accesses an ARF file that is hosted on a Cisco Webex Business Suite site, Cisco Webex Meetings Online site, or Cisco Webex Meetings Server.
+      Manually: The player can be downloaded and installed from https://www.webex.com/play-webex-recording.html ["https://www.webex.com/play-webex-recording.html"].
+
+Note: Customers who use locked-down Cisco Webex sites will not receive updated versions of the Cisco Webex Network Recording Player automatically. These customers should contact Cisco Webex Customer Support to obtain updates or the latest version of the player from https://www.webex.com/play-webex-recording.html ["https://www.webex.com/play-webex-recording.html"].
+
+Customers can upgrade to a fixed version of the Cisco Webex Player by uninstalling their current version of the player and then downloading and installing the latest version of the player from https://www.webex.com/play-webex-recording.html ["https://www.webex.com/play-webex-recording.html"].
+
+The following table lists the Cisco bug IDs and fixed versions of the software for each vulnerability that is described in this advisory. Customers are advised to upgrade to an appropriate version as indicated in the table.
+
+Fixed Versions
+                                Cisco assigned CVE ID
+              Fixed Versions                                  Webex Business Suite WBS Latest Sites                             Webex Business Suite WBS33.6.x Sites              Webex Meetings Server              Webex Meetings Online                                              CVE-2019-1771              39.2.205               33.6.11              2.8MR3 SecurityPatch2, 3.0MR2 SecurityPatch3              1.3.42                                  CVE-2019-1772
+              39.1.0.471               33.6.11              2.8MR3 SecurityPatch2, 3.0MR2 SecurityPatch3              1.3.42                                  CVE-2019-1773              39.2.205               33.6.11              4.0
+              1.3.42</cvrf:Note>
+    <cvrf:Note Title="Vulnerability Policy" Type="General" Ordinal="7">To learn about Cisco security vulnerability disclosure policies and publications, see the Security Vulnerability Policy ["http://www.cisco.com/web/about/security/psirt/security_vulnerability_policy.html"]. This document also contains instructions for obtaining fixed software and receiving security vulnerability information from Cisco.</cvrf:Note>
+    <cvrf:Note Title="Exploitation and Public Announcements" Type="General" Ordinal="8">The Cisco Product Security Incident Response Team (PSIRT) is not aware of any public announcements or malicious use of the vulnerability that is described in this advisory. No exploit code exists at the time of publication proving the potential for code execution. Cisco PSIRT evaluates the Security Impact Rating as High despite the lack of evidence proving code execution.</cvrf:Note>
+    <cvrf:Note Title="Source" Type="General" Ordinal="9">Cisco would like to thank Yici Wang of Fortinet's FortiGuard Labs for reporting this vulnerability.</cvrf:Note>
+    <cvrf:Note Title="Legal Disclaimer" Type="Legal Disclaimer" Ordinal="10">THIS DOCUMENT IS PROVIDED ON AN "AS IS" BASIS AND DOES NOT IMPLY ANY KIND OF GUARANTEE OR WARRANTY, INCLUDING THE WARRANTIES OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR USE. YOUR USE OF THE INFORMATION ON THE DOCUMENT OR MATERIALS LINKED FROM THE DOCUMENT IS AT YOUR OWN RISK. CISCO RESERVES THE RIGHT TO CHANGE OR UPDATE THIS DOCUMENT AT ANY TIME.
+
+A standalone copy or paraphrase of the text of this document that omits the distribution URL is an uncontrolled copy and may lack important information or contain factual errors. The information in this document is intended for end users of Cisco products.</cvrf:Note>
+  </cvrf:DocumentNotes>
+  <cvrf:DocumentReferences>
+    <cvrf:Reference Type="Self">
+      <cvrf:URL>https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20190515-webex-player</cvrf:URL>
+      <cvrf:Description>Cisco Webex Network Recording Player Arbitrary Code Execution Vulnerabilities</cvrf:Description>
+    </cvrf:Reference>
+  </cvrf:DocumentReferences>
+  <ProductTree xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/prod">
+    <Branch Name="Cisco" Type="Vendor">
+      <Branch Name="Cisco WebEx WRF Player" Type="Product Name">
+        <FullProductName ProductID="CVRFPID-96064">Cisco WebEx WRF Player </FullProductName>
+      </Branch>
+      <Branch Name="Cisco WebEx ARF Player" Type="Product Name">
+        <FullProductName ProductID="CVRFPID-100455">Cisco WebEx ARF Player </FullProductName>
+      </Branch>
+    </Branch>
+  </ProductTree>
+  <Vulnerability Ordinal="1" xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln">
+    <Title>Cisco Webex Network Recording Player Arbitrary Code Execution Vulnerabilities</Title>
+    <ID SystemName="Cisco Bug ID">CSCvn88721</ID>
+    <Notes>
+      <Note Title="Summary" Type="Summary" Ordinal="1">Multiple vulnerabilities in the Cisco Webex Network Recording Player for Microsoft Windows and the Cisco Webex Player for Microsoft Windows could allow an attacker to execute arbitrary code on an affected system.
+
+
+
+The vulnerabilities exist because the affected software improperly validates Advanced Recording Format (ARF) and Webex Recording Format (WRF) files. An attacker could exploit these vulnerabilities by sending a user a malicious ARF or WRF file via a link or email attachment and persuading the user to open the file with the affected software on the local system. A successful exploit could allow the attacker to execute arbitrary code on the affected system.</Note>
+      <Note Title="Cisco Bug IDs" Type="Other" Ordinal="2">CSCvn88721,CSCvo03346,CSCvo05231,CSCvo05229,CSCvo33767,CSCvo33769,CSCvo33774</Note>
+    </Notes>
+    <CVE>CVE-2019-1771</CVE>
+    <ProductStatuses>
+      <Status Type="Known Affected">
+        <ProductID>CVRFPID-100455</ProductID>
+        <ProductID>CVRFPID-96064</ProductID>
+      </Status>
+    </ProductStatuses>
+    <CVSSScoreSets>
+      <ScoreSetV3>
+        <BaseScoreV3>7.8</BaseScoreV3>
+        <VectorV3>CVSS:3.0/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H</VectorV3>
+      </ScoreSetV3>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Workaround">
+        <Description>There are no workarounds that address these vulnerabilities. However, customers may remove the Cisco Webex Network Recording Player and the Cisco Webex Player from a system by using the software-removal procedure for the operating system. For example, to remove a player from a Microsoft Windows 10 system, customers can use the Apps &amp; Features app in Windows Settings.
+
+To remove all Cisco Webex software from a Microsoft Windows system, customers can use the Meeting Services Removal Tool, which is available for download from the Cisco Collaboration Help article Cisco Webex and 3rd Party Support Utilities ["https://collaborationhelp.cisco.com/article/en-us/WBX000026396"].
+
+By removing the Cisco Webex Network Recording Player, a user will be unable to play recordings. However, the next time media is accessed, the system will download a new version of the software, providing the user with an updated version.</Description>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference Type="Self">
+        <URL>https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20190515-webex-player</URL>
+        <Description>Cisco Webex Network Recording Player Arbitrary Code Execution Vulnerabilities</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+  <Vulnerability Ordinal="2" xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln">
+    <Title>Cisco Webex Network Recording Player Arbitrary Code Execution Vulnerabilities</Title>
+    <ID SystemName="Cisco Bug ID">CSCvn88721</ID>
+    <Notes>
+      <Note Title="Summary" Type="Summary" Ordinal="1">Multiple vulnerabilities in the Cisco Webex Network Recording Player for Microsoft Windows and the Cisco Webex Player for Microsoft Windows could allow an attacker to execute arbitrary code on an affected system.
+
+
+
+The vulnerabilities exist because the affected software improperly validates Advanced Recording Format (ARF) and Webex Recording Format (WRF) files. An attacker could exploit these vulnerabilities by sending a user a malicious ARF or WRF file via a link or email attachment and persuading the user to open the file with the affected software on the local system. A successful exploit could allow the attacker to execute arbitrary code on the affected system.</Note>
+      <Note Title="Cisco Bug IDs" Type="Other" Ordinal="2">CSCvn88721,CSCvo03346,CSCvo05231,CSCvo05229,CSCvo33767,CSCvo33769,CSCvo33774</Note>
+    </Notes>
+    <CVE>CVE-2019-1772</CVE>
+    <ProductStatuses>
+      <Status Type="Known Affected">
+        <ProductID>CVRFPID-100455</ProductID>
+        <ProductID>CVRFPID-96064</ProductID>
+      </Status>
+    </ProductStatuses>
+    <CVSSScoreSets>
+      <ScoreSetV3>
+        <BaseScoreV3>7.8</BaseScoreV3>
+        <VectorV3>CVSS:3.0/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H</VectorV3>
+      </ScoreSetV3>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Workaround">
+        <Description>There are no workarounds that address these vulnerabilities. However, customers may remove the Cisco Webex Network Recording Player and the Cisco Webex Player from a system by using the software-removal procedure for the operating system. For example, to remove a player from a Microsoft Windows 10 system, customers can use the Apps &amp; Features app in Windows Settings.
+
+To remove all Cisco Webex software from a Microsoft Windows system, customers can use the Meeting Services Removal Tool, which is available for download from the Cisco Collaboration Help article Cisco Webex and 3rd Party Support Utilities ["https://collaborationhelp.cisco.com/article/en-us/WBX000026396"].
+
+By removing the Cisco Webex Network Recording Player, a user will be unable to play recordings. However, the next time media is accessed, the system will download a new version of the software, providing the user with an updated version.</Description>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference Type="Self">
+        <URL>https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20190515-webex-player</URL>
+        <Description>Cisco Webex Network Recording Player Arbitrary Code Execution Vulnerabilities</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+  <Vulnerability Ordinal="3" xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln">
+    <Title>Cisco Webex Network Recording Player Arbitrary Code Execution Vulnerabilities</Title>
+    <ID SystemName="Cisco Bug ID">CSCvn88721</ID>
+    <Notes>
+      <Note Title="Summary" Type="Summary" Ordinal="1">Multiple vulnerabilities in the Cisco Webex Network Recording Player for Microsoft Windows and the Cisco Webex Player for Microsoft Windows could allow an attacker to execute arbitrary code on an affected system.
+
+
+
+The vulnerabilities exist because the affected software improperly validates Advanced Recording Format (ARF) and Webex Recording Format (WRF) files. An attacker could exploit these vulnerabilities by sending a user a malicious ARF or WRF file via a link or email attachment and persuading the user to open the file with the affected software on the local system. A successful exploit could allow the attacker to execute arbitrary code on the affected system.</Note>
+      <Note Title="Cisco Bug IDs" Type="Other" Ordinal="2">CSCvn88721,CSCvo03346,CSCvo05231,CSCvo05229,CSCvo33767,CSCvo33769,CSCvo33774</Note>
+    </Notes>
+    <CVE>CVE-2019-1773</CVE>
+    <ProductStatuses>
+      <Status Type="Known Affected">
+        <ProductID>CVRFPID-100455</ProductID>
+        <ProductID>CVRFPID-96064</ProductID>
+      </Status>
+    </ProductStatuses>
+    <CVSSScoreSets>
+      <ScoreSetV3>
+        <BaseScoreV3>7.8</BaseScoreV3>
+        <VectorV3>CVSS:3.0/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H</VectorV3>
+      </ScoreSetV3>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Workaround">
+        <Description>There are no workarounds that address these vulnerabilities. However, customers may remove the Cisco Webex Network Recording Player and the Cisco Webex Player from a system by using the software-removal procedure for the operating system. For example, to remove a player from a Microsoft Windows 10 system, customers can use the Apps &amp; Features app in Windows Settings.
+
+To remove all Cisco Webex software from a Microsoft Windows system, customers can use the Meeting Services Removal Tool, which is available for download from the Cisco Collaboration Help article Cisco Webex and 3rd Party Support Utilities ["https://collaborationhelp.cisco.com/article/en-us/WBX000026396"].
+
+By removing the Cisco Webex Network Recording Player, a user will be unable to play recordings. However, the next time media is accessed, the system will download a new version of the software, providing the user with an updated version.</Description>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference Type="Self">
+        <URL>https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20190515-webex-player</URL>
+        <Description>Cisco Webex Network Recording Player Arbitrary Code Execution Vulnerabilities</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+</cvrf:cvrfdoc>

@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cvrfdoc xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:cpe="http://cpe.mitre.org/language/2.0" xmlns:cvrf="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/cvrf" xmlns:cvrf-common="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/common" xmlns:cvssv2="http://scap.nist.gov/schema/cvss-v2/1.0" xmlns:cvssv3="https://www.first.org/cvss/cvss-v3.0.xsd" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:ns0="http://purl.org/dc/elements/1.1/" xmlns:prod="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/prod" xmlns:scap-core="http://scap.nist.gov/schema/scap-core/1.0" xmlns:sch="http://purl.oclc.org/dsdl/schematron" xmlns:vuln="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/cvrf">
+  <DocumentTitle xml:lang="en">Security update for spice</DocumentTitle>
+  <DocumentType>SUSE Patch</DocumentType>
+  <DocumentPublisher Type="Vendor">
+    <ContactDetails>security@suse.de</ContactDetails>
+    <IssuingAuthority>SUSE Security Team</IssuingAuthority>
+  </DocumentPublisher>
+  <DocumentTracking>
+    <Identification>
+      <ID>openSUSE-SU-2015:1750-1</ID>
+    </Identification>
+    <Status>Final</Status>
+    <Version>1</Version>
+    <RevisionHistory>
+      <Revision>
+        <Number>1</Number>
+        <Date>2015-10-07T17:27:31Z</Date>
+        <Description>current</Description>
+      </Revision>
+    </RevisionHistory>
+    <InitialReleaseDate>2015-10-07T17:27:31Z</InitialReleaseDate>
+    <CurrentReleaseDate>2015-10-07T17:27:31Z</CurrentReleaseDate>
+    <Generator>
+      <Engine>cve-database/bin/generate-cvrf.pl</Engine>
+      <Date>2017-02-24T01:00:00Z</Date>
+    </Generator>
+  </DocumentTracking>
+  <DocumentNotes>
+    <Note Title="Topic" Type="Summary" Ordinal="1" xml:lang="en">Security update for spice</Note>
+    <Note Title="Details" Type="General" Ordinal="2" xml:lang="en">Spice was updated to fix four security issues.
+
+The following vulnerabilities were fixed:
+* CVE-2015-3247: heap corruption in the spice server (bsc#944460)
+* CVE-2015-5261: Guest could have accessed host memory using crafted images (bsc#948976)
+* CVE-2015-5260: Insufficient validation of surface_id parameter could have caused a crash (bsc#944460)
+* CVE-2013-4282: Buffer overflow in password handling (bsc#848279)
+</Note>
+    <Note Title="Terms of Use" Type="Legal Disclaimer" Ordinal="3" xml:lang="en">The CVRF data is provided by SUSE under the Creative Commons License 4.0 with Attribution for Non-Commercial usage (CC-BY-NC-4.0).</Note>
+  </DocumentNotes>
+  <DocumentDistribution xml:lang="en">Copyright SUSE LLC under the Creative Commons License 4.0 with Attribution for Non-Commercial usage (CC-BY-NC-4.0)</DocumentDistribution>
+  <DocumentReferences>
+    <Reference Type="Self">
+      <URL>https://lists.opensuse.org/opensuse-updates/2015-10/msg00032.html</URL>
+      <Description>E-Mail link for openSUSE-SU-2015:1750-1</Description>
+    </Reference>
+    <Reference Type="Self">
+      <URL>https://www.suse.com/support/security/rating/</URL>
+      <Description>SUSE Security Ratings</Description>
+    </Reference>
+  </DocumentReferences>
+  <ProductTree xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/prod">
+    <Branch Type="Product Version" Name="libspice-server-devel-0.12.4-2.3.1">
+      <FullProductName ProductID="libspice-server-devel-0.12.4-2.3.1">libspice-server-devel-0.12.4-2.3.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libspice-server1-0.12.4-2.3.1">
+      <FullProductName ProductID="libspice-server1-0.12.4-2.3.1">libspice-server1-0.12.4-2.3.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="spice-0.12.4-2.3.1">
+      <FullProductName ProductID="spice-0.12.4-2.3.1">spice-0.12.4-2.3.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="spice-client-0.12.4-2.3.1">
+      <FullProductName ProductID="spice-client-0.12.4-2.3.1">spice-client-0.12.4-2.3.1</FullProductName>
+    </Branch>
+  </ProductTree>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="1">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">Stack-based buffer overflow in the reds_handle_ticket function in server/reds.c in SPICE 0.12.0 allows remote attackers to cause a denial of service (crash) via a long password in a SPICE ticket.</Note>
+    </Notes>
+    <CVE>CVE-2013-4282</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed"/>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>important</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>5</BaseScoreV2>
+        <VectorV2>AV:N/AC:L/Au:N/C:N/I:N/A:P</VectorV2>
+      </ScoreSetV2>
+      <ScoreSetV3>
+        <BaseScoreV3>7.5</BaseScoreV3>
+        <VectorV3>CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H</VectorV3>
+      </ScoreSetV3>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-updates/2015-10/msg00032.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2013-4282.html</URL>
+        <Description>CVE-2013-4282</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/848279</URL>
+        <Description>SUSE Bug 848279</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="2">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">Race condition in the worker_update_monitors_config function in SPICE 0.12.4 allows a remote authenticated guest user to cause a denial of service (heap-based memory corruption and QEMU-KVM crash) or possibly execute arbitrary code on the host via unspecified vectors.</Note>
+    </Notes>
+    <CVE>CVE-2015-3247</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed"/>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>important</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>6.9</BaseScoreV2>
+        <VectorV2>AV:L/AC:M/Au:N/C:C/I:C/A:C</VectorV2>
+      </ScoreSetV2>
+      <ScoreSetV3>
+        <BaseScoreV3>7</BaseScoreV3>
+        <VectorV3>CVSS:3.1/AV:L/AC:H/PR:L/UI:N/S:U/C:H/I:H/A:H</VectorV3>
+      </ScoreSetV3>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-updates/2015-10/msg00032.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-3247.html</URL>
+        <Description>CVE-2015-3247</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/944460</URL>
+        <Description>SUSE Bug 944460</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="3">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">Heap-based buffer overflow in SPICE before 0.12.6 allows guest OS users to cause a denial of service (heap-based memory corruption and QEMU-KVM crash) or possibly execute arbitrary code on the host via QXL commands related to the surface_id parameter.</Note>
+    </Notes>
+    <CVE>CVE-2015-5260</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed"/>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>5.8</BaseScoreV2>
+        <VectorV2>AV:N/AC:M/Au:N/C:N/I:P/A:P</VectorV2>
+      </ScoreSetV2>
+      <ScoreSetV3>
+        <BaseScoreV3>7.8</BaseScoreV3>
+        <VectorV3>CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H</VectorV3>
+      </ScoreSetV3>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-updates/2015-10/msg00032.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-5260.html</URL>
+        <Description>CVE-2015-5260</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/944787</URL>
+        <Description>SUSE Bug 944787</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="4">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">Heap-based buffer overflow in SPICE before 0.12.6 allows guest OS users to read and write to arbitrary memory locations on the host via guest QXL commands related to surface creation.</Note>
+    </Notes>
+    <CVE>CVE-2015-5261</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed"/>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>3.3</BaseScoreV2>
+        <VectorV2>AV:L/AC:M/Au:N/C:P/I:N/A:P</VectorV2>
+      </ScoreSetV2>
+      <ScoreSetV3>
+        <BaseScoreV3>7.1</BaseScoreV3>
+        <VectorV3>CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:N</VectorV3>
+      </ScoreSetV3>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-updates/2015-10/msg00032.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-5261.html</URL>
+        <Description>CVE-2015-5261</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/948976</URL>
+        <Description>SUSE Bug 948976</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/982386</URL>
+        <Description>SUSE Bug 982386</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+</cvrfdoc>

@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cvrfdoc xmlns="http://www.icasi.org/CVRF/schema/cvrf/1.1" xmlns:cvrf="http://www.icasi.org/CVRF/schema/cvrf/1.1">
+  <DocumentTitle xml:lang="en">Red Hat Security Advisory: Red Hat OpenShift Container Storage 4.6.5 security and bug fix update</DocumentTitle>
+  <DocumentType>Security Advisory</DocumentType>
+  <DocumentPublisher Type="Vendor">
+    <ContactDetails>secalert@redhat.com</ContactDetails>
+    <IssuingAuthority>Red Hat Product Security</IssuingAuthority>
+  </DocumentPublisher>
+  <DocumentTracking>
+    <Identification><ID>RHSA-2021:2479</ID></Identification>
+    <Status>Final</Status>
+    <Version>1</Version>
+    <RevisionHistory>
+       <Revision>
+         <Number>1</Number>
+         <Date>2021-06-17T15:46:00Z</Date>
+         <Description>Current version</Description>
+       </Revision>
+    </RevisionHistory>
+    <InitialReleaseDate>2021-06-17T15:46:00Z</InitialReleaseDate>
+    <CurrentReleaseDate>2021-06-17T15:46:00Z</CurrentReleaseDate>
+    <Generator>
+      <Engine>Red Hat SDEngine 3.0.0</Engine>
+      <Date>2021-08-23T04:58:00Z</Date>
+    </Generator>
+  </DocumentTracking>
+  <DocumentNotes>
+    <Note Title="Topic" Type="Summary" Ordinal="1" xml:lang="en">
+Updated images that fix one security issue and several bugs are now available for Red Hat OpenShift Container Storage 4.6.5 on Red Hat Enterprise Linux 8 from Red Hat Container Registry.
+
+Red Hat Product Security has rated this update as having a security impact of Moderate. A Common Vulnerability Scoring System (CVSS) base score, which gives a detailed severity rating, is available for each vulnerability from the CVE link(s) in the References section.
+    </Note>
+    <Note Title="Details" Type="General" Ordinal="2" xml:lang="en">
+Red Hat OpenShift Container Storage is software-defined storage integrated with and optimized for the Red Hat OpenShift Container Platform. Red Hat OpenShift Container Storage is a highly scalable, production-grade persistent storage for stateful applications running in the Red Hat OpenShift Container Platform. In addition to persistent storage, Red Hat OpenShift Container Storage provisions a multicloud data management service
+with an S3 compatible API.
+
+Security Fix(es):
+
+* NooBaa: noobaa-operator leaking RPC AuthToken into log files (CVE-2021-3528)
+
+For more details about the security issue(s), including the impact, a CVSS score, and other related information, refer to the CVE page(s) listed in the References section.
+
+Bug Fix(es):
+
+* Currently, a newly restored PVC cannot be mounted if some of the OpenShift Container Platform nodes are running on a version of Red Hat Enterprise Linux which is less than 8.2, and the snapshot from which the PVC was restored is deleted. 
+Workaround: Do not delete the snapshot from which the PVC was restored until the restored PVC is deleted. (BZ#1962483)
+
+* Previously, the default backingstore was not created on AWS S3 when OpenShift Container Storage was deployed, due to incorrect identification of AWS S3. With this update, the default backingstore gets created when OpenShift Container Storage is deployed on AWS S3. (BZ#1927307)
+
+* Previously, log messages were printed to the endpoint pod log even if the debug option was not set. With this update, the log messages are printed to the endpoint pod log only when the debug option is set. (BZ#1938106)
+
+* Previously, the PVCs could not be provisioned as the `rook-ceph-mds` did not register the pod IP on the monitor servers, and hence every mount on the filesystem timed out, resulting in CephFS volume provisioning failure. With this update, an argument `--public-addr=podIP` is added to the MDS pod when the host network is not enabled, and hence the CephFS volume provisioning does not fail. (BZ#1949558)
+
+* Previously, OpenShift Container Storage 4.2 clusters were not updated with the correct cache value, and hence MDSs in standby-replay might report an oversized cache, as rook did not apply the `mds_cache_memory_limit` argument during upgrades. With this update, the `mds_cache_memory_limit` argument is applied during upgrades and the mds daemon operates normally. (BZ#1951348)
+
+* Previously, the coredumps were not generated in the correct location as rook was setting the config option `log_file` to an empty string since logging happened on stdout and not on the files, and hence Ceph read the value of the `log_file` to build the dump path. With this update, rook does not set the `log_file` and keeps Ceph's internal default, and hence the coredumps are generated in the correct location and are accessible under `/var/log/ceph/`. (BZ#1938049)
+
+* Previously, Ceph became inaccessible, as the mons lose quorum if a mon pod was drained while another mon was failing over. With this update, voluntary mon drains are prevented while a mon is failing over, and hence Ceph does not become inaccessible. (BZ#1946573)
+
+* Previously, the mon quorum was at risk, as the operator could erroneously remove the new mon if the operator was restarted during a mon failover. With this update, the operator completes the same mon failover after the operator is restarted, and hence the mon quorum is more reliable in the node drains and mon failover scenarios. (BZ#1959983)
+
+All users of Red Hat OpenShift Container Storage are advised to pull these
+new images from the Red Hat Container Registry.
+    </Note>
+    <Note Title="Terms of Use" Ordinal="3" Type="Legal Disclaimer" xml:lang="en">This content is licensed under the Creative Commons Attribution 4.0 International License (https://creativecommons.org/licenses/by/4.0/). If you distribute this content, or a modified version of it, you must provide attribution to Red Hat Inc. and provide a link to the original.</Note>
+  </DocumentNotes>
+  <DocumentDistribution xml:lang="en">Copyright © 2021 Red Hat, Inc. All rights reserved.</DocumentDistribution>
+  <AggregateSeverity Namespace="https://access.redhat.com/security/updates/classification/">Moderate</AggregateSeverity>
+  <DocumentReferences>
+    <Reference Type="Self">
+       <URL>https://access.redhat.com/errata/RHSA-2021:2479</URL>
+       <Description>https://access.redhat.com/errata/RHSA-2021:2479</Description>
+    </Reference>
+    <Reference Type="External">
+       <URL>https://access.redhat.com/security/updates/classification/#moderate</URL>
+       <Description>https://access.redhat.com/security/updates/classification/#moderate</Description>
+    </Reference>
+  </DocumentReferences>
+  <ProductTree xmlns="http://www.icasi.org/CVRF/schema/prod/1.1">
+    <Branch Type="Product Family" Name="Red Hat OpenShift Container Storage">
+      <Branch Type="Product Name" Name="Red Hat OpenShift Container Storage 4.6 on RHEL-8">
+        <FullProductName ProductID="8Base-RH-OCS-4.6" CPE="cpe:/a:redhat:openshift_container_storage:4.6::el8">Red Hat OpenShift Container Storage 4.6 on RHEL-8</FullProductName>
+      </Branch>
+    </Branch>
+    <Branch Type="Product Version" Name="ocs4/cephcsi-rhel8:4.6-75.ce3f8de.release_4.6">
+      <FullProductName ProductID="ocs4/cephcsi-rhel8:4.6-75.ce3f8de.release_4.6" CPE="cpe:/a:redhat:openshift_container_storage:4.6::el8">ocs4/cephcsi-rhel8:4.6-75.ce3f8de.release_4.6</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="ocs4/mcg-core-rhel8:5.6.0-54.93205f1.5.6">
+      <FullProductName ProductID="ocs4/mcg-core-rhel8:5.6.0-54.93205f1.5.6" CPE="cpe:/a:redhat:openshift_container_storage:4.6::el8">ocs4/mcg-core-rhel8:5.6.0-54.93205f1.5.6</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="ocs4/mcg-rhel8-operator:5.6.0-57.43b2f28.5.6">
+      <FullProductName ProductID="ocs4/mcg-rhel8-operator:5.6.0-57.43b2f28.5.6" CPE="cpe:/a:redhat:openshift_container_storage:4.6::el8">ocs4/mcg-rhel8-operator:5.6.0-57.43b2f28.5.6</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="ocs4/ocs-must-gather-rhel8:4.6-90.8bee60f.release_4.6">
+      <FullProductName ProductID="ocs4/ocs-must-gather-rhel8:4.6-90.8bee60f.release_4.6" CPE="cpe:/a:redhat:openshift_container_storage:4.6::el8">ocs4/ocs-must-gather-rhel8:4.6-90.8bee60f.release_4.6</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="ocs4/ocs-operator-bundle:4.6.5-3">
+      <FullProductName ProductID="ocs4/ocs-operator-bundle:4.6.5-3" CPE="cpe:/a:redhat:openshift_container_storage:4.6::el8">ocs4/ocs-operator-bundle:4.6.5-3</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="ocs4/ocs-rhel8-operator:4.6-90.8bee60f.release_4.6">
+      <FullProductName ProductID="ocs4/ocs-rhel8-operator:4.6-90.8bee60f.release_4.6" CPE="cpe:/a:redhat:openshift_container_storage:4.6::el8">ocs4/ocs-rhel8-operator:4.6-90.8bee60f.release_4.6</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="ocs4/rook-ceph-rhel8-operator:4.6-100.9bbe471.release_4.6">
+      <FullProductName ProductID="ocs4/rook-ceph-rhel8-operator:4.6-100.9bbe471.release_4.6" CPE="cpe:/a:redhat:openshift_container_storage:4.6::el8">ocs4/rook-ceph-rhel8-operator:4.6-100.9bbe471.release_4.6</FullProductName>
+    </Branch>
+    <Relationship ProductReference="cephcsi-container-4.6-75.ce3f8de.release_4.6" RelationType="Default Component Of" RelatesToProductReference="8Base-RH-OCS-4.6">
+      <FullProductName ProductID="8Base-RH-OCS-4.6:cephcsi-container-4.6-75.ce3f8de.release_4.6" CPE="cpe:/a:redhat:openshift_container_storage:4.6::el8">cephcsi-container-4.6-75.ce3f8de.release_4.6 as a component of Red Hat OpenShift Container Storage 4.6 on RHEL-8</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="noobaa-core-container-5.6.0-54.93205f1.5.6" RelationType="Default Component Of" RelatesToProductReference="8Base-RH-OCS-4.6">
+      <FullProductName ProductID="8Base-RH-OCS-4.6:noobaa-core-container-5.6.0-54.93205f1.5.6" CPE="cpe:/a:redhat:openshift_container_storage:4.6::el8">noobaa-core-container-5.6.0-54.93205f1.5.6 as a component of Red Hat OpenShift Container Storage 4.6 on RHEL-8</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="noobaa-operator-container-5.6.0-57.43b2f28.5.6" RelationType="Default Component Of" RelatesToProductReference="8Base-RH-OCS-4.6">
+      <FullProductName ProductID="8Base-RH-OCS-4.6:noobaa-operator-container-5.6.0-57.43b2f28.5.6" CPE="cpe:/a:redhat:openshift_container_storage:4.6::el8">noobaa-operator-container-5.6.0-57.43b2f28.5.6 as a component of Red Hat OpenShift Container Storage 4.6 on RHEL-8</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="ocs-must-gather-container-4.6-90.8bee60f.release_4.6" RelationType="Default Component Of" RelatesToProductReference="8Base-RH-OCS-4.6">
+      <FullProductName ProductID="8Base-RH-OCS-4.6:ocs-must-gather-container-4.6-90.8bee60f.release_4.6" CPE="cpe:/a:redhat:openshift_container_storage:4.6::el8">ocs-must-gather-container-4.6-90.8bee60f.release_4.6 as a component of Red Hat OpenShift Container Storage 4.6 on RHEL-8</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="ocs-operator-bundle-container-4.6.5-3" RelationType="Default Component Of" RelatesToProductReference="8Base-RH-OCS-4.6">
+      <FullProductName ProductID="8Base-RH-OCS-4.6:ocs-operator-bundle-container-4.6.5-3" CPE="cpe:/a:redhat:openshift_container_storage:4.6::el8">ocs-operator-bundle-container-4.6.5-3 as a component of Red Hat OpenShift Container Storage 4.6 on RHEL-8</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="ocs-operator-container-4.6-90.8bee60f.release_4.6" RelationType="Default Component Of" RelatesToProductReference="8Base-RH-OCS-4.6">
+      <FullProductName ProductID="8Base-RH-OCS-4.6:ocs-operator-container-4.6-90.8bee60f.release_4.6" CPE="cpe:/a:redhat:openshift_container_storage:4.6::el8">ocs-operator-container-4.6-90.8bee60f.release_4.6 as a component of Red Hat OpenShift Container Storage 4.6 on RHEL-8</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="rook-ceph-operator-container-4.6-100.9bbe471.release_4.6" RelationType="Default Component Of" RelatesToProductReference="8Base-RH-OCS-4.6">
+      <FullProductName ProductID="8Base-RH-OCS-4.6:rook-ceph-operator-container-4.6-100.9bbe471.release_4.6" CPE="cpe:/a:redhat:openshift_container_storage:4.6::el8">rook-ceph-operator-container-4.6-100.9bbe471.release_4.6 as a component of Red Hat OpenShift Container Storage 4.6 on RHEL-8</FullProductName>
+    </Relationship>
+  </ProductTree>
+
+  <Vulnerability Ordinal="1" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">NooBaa: noobaa-operator leaking RPC AuthToken into log files</Note></Notes>
+    <DiscoveryDate>2021-03-10T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-03-07T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-3528</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>8Base-RH-OCS-4.6:cephcsi-container-4.6-75.ce3f8de.release_4.6</ProductID>
+      <ProductID>8Base-RH-OCS-4.6:noobaa-core-container-5.6.0-54.93205f1.5.6</ProductID>
+      <ProductID>8Base-RH-OCS-4.6:noobaa-operator-container-5.6.0-57.43b2f28.5.6</ProductID>
+      <ProductID>8Base-RH-OCS-4.6:ocs-must-gather-container-4.6-90.8bee60f.release_4.6</ProductID>
+      <ProductID>8Base-RH-OCS-4.6:ocs-operator-bundle-container-4.6.5-3</ProductID>
+      <ProductID>8Base-RH-OCS-4.6:ocs-operator-container-4.6-90.8bee60f.release_4.6</ProductID>
+      <ProductID>8Base-RH-OCS-4.6:rook-ceph-operator-container-4.6-100.9bbe471.release_4.6</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+Before applying this update, make sure all previously released errata
+relevant to your system have been applied.
+
+For details on how to apply this update, refer to:
+
+https://access.redhat.com/articles/11258
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:2479</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-3528</URL>
+        <Description>CVE-2021-3528</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1955601</URL>
+        <Description>bz#1955601: CVE-2021-3528 NooBaa: noobaa-operator leaking RPC AuthToken into log files</Description>
+      </Reference>
+    </References>
+    <Acknowledgments><Acknowledgment><Description>This issue was discovered by Martin Bukatovic (Red Hat).</Description></Acknowledgment></Acknowledgments>
+  </Vulnerability>
+</cvrfdoc>

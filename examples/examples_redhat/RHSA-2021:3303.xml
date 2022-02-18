@@ -1,0 +1,921 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cvrfdoc xmlns="http://www.icasi.org/CVRF/schema/cvrf/1.1" xmlns:cvrf="http://www.icasi.org/CVRF/schema/cvrf/1.1">
+  <DocumentTitle xml:lang="en">Red Hat Security Advisory: OpenShift Container Platform 4.7.29 bug fix and security update</DocumentTitle>
+  <DocumentType>Security Advisory</DocumentType>
+  <DocumentPublisher Type="Vendor">
+    <ContactDetails>secalert@redhat.com</ContactDetails>
+    <IssuingAuthority>Red Hat Product Security</IssuingAuthority>
+  </DocumentPublisher>
+  <DocumentTracking>
+    <Identification><ID>RHSA-2021:3303</ID></Identification>
+    <Status>Final</Status>
+    <Version>4</Version>
+    <RevisionHistory>
+       <Revision>
+         <Number>4</Number>
+         <Date>2021-09-08T13:15:00Z</Date>
+         <Description>Current version</Description>
+       </Revision>
+    </RevisionHistory>
+    <InitialReleaseDate>2021-09-08T13:15:00Z</InitialReleaseDate>
+    <CurrentReleaseDate>2021-09-08T13:15:00Z</CurrentReleaseDate>
+    <Generator>
+      <Engine>Red Hat SDEngine 3.0.2</Engine>
+      <Date>2021-09-08T17:12:00Z</Date>
+    </Generator>
+  </DocumentTracking>
+  <DocumentNotes>
+    <Note Title="Topic" Type="Summary" Ordinal="1" xml:lang="en">
+Red Hat OpenShift Container Platform release 4.7.29 is now available with updates to packages and images that fix several bugs and add enhancements.
+
+This release includes a security update for Red Hat OpenShift Container Platform 4.7.
+
+Red Hat Product Security has rated this update as having a security impact of Moderate. A Common Vulnerability Scoring System (CVSS) base score, which gives a detailed severity rating, is available for each vulnerability from the CVE link(s) in the References section.
+    </Note>
+    <Note Title="Details" Type="General" Ordinal="2" xml:lang="en">
+Red Hat OpenShift Container Platform is Red Hat's cloud computing Kubernetes application platform solution designed for on-premise or private cloud deployments.
+
+This advisory contains the container images for Red Hat OpenShift Container Platform 4.7.29. See the following advisory for the RPM packages for this release:
+
+https://access.redhat.com/errata/RHBA-2021:3304
+
+Space precludes documenting all of the container images in this advisory. See the following Release Notes documentation, which will be updated shortly for this release, for details about these changes:
+
+https://docs.openshift.com/container-platform/4.7/release_notes/ocp-4-7-release-notes.html
+
+Security Fix(es):
+
+* gogo/protobuf: plugin/unmarshal/unmarshal.go lacks certain index validation (CVE-2021-3121)
+
+For more details about the security issue(s), including the impact, a CVSS score, acknowledgments, and other related information, refer to the CVE page(s) listed in the References section.
+
+You may download the oc tool and use it to inspect release image metadata as follows:
+
+(For x86_64 architecture)
+
+  $ oc adm release info quay.io/openshift-release-dev/ocp-release:4.7.29-x86_64
+
+The image digest is sha256:b10034bedb4bf08a393462caf4c3fac8f9e4646d3b49d05915850dce0145cf15
+
+(For s390x architecture)
+
+  $ oc adm release info quay.io/openshift-release-dev/ocp-release:4.7.29-s390x
+
+The image digest is sha256:19794cea3ec0e319223b38926e9a5356f0daa1594238ea620d83f6689777b11f
+
+(For ppc64le architecture)
+
+  $ oc adm release info quay.io/openshift-release-dev/ocp-release:4.7.29-ppc64le
+
+The image digest is sha256:38484e753414060210bddef0e0d771ac5fe89f50272c9a959547195ac1615c05
+
+All OpenShift Container Platform 4.7 users are advised to upgrade to these updated packages and images when they are available in the appropriate release channel. To check for available updates, use the OpenShift Console or the CLI oc command. Instructions for upgrading a cluster are available
+at https://docs.openshift.com/container-platform/4.7/updating/updating-cluster-between-minor.html#understanding-upgrade-channels_updating-cluster-between-minor
+    </Note>
+    <Note Title="Terms of Use" Ordinal="3" Type="Legal Disclaimer" xml:lang="en">This content is licensed under the Creative Commons Attribution 4.0 International License (https://creativecommons.org/licenses/by/4.0/). If you distribute this content, or a modified version of it, you must provide attribution to Red Hat Inc. and provide a link to the original.</Note>
+  </DocumentNotes>
+  <DocumentDistribution xml:lang="en">Copyright © 2021 Red Hat, Inc. All rights reserved.</DocumentDistribution>
+  <AggregateSeverity Namespace="https://access.redhat.com/security/updates/classification/">Moderate</AggregateSeverity>
+  <DocumentReferences>
+    <Reference Type="Self">
+       <URL>https://access.redhat.com/errata/RHSA-2021:3303</URL>
+       <Description>https://access.redhat.com/errata/RHSA-2021:3303</Description>
+    </Reference>
+    <Reference Type="External">
+       <URL>https://access.redhat.com/security/updates/classification/#moderate</URL>
+       <Description>https://access.redhat.com/security/updates/classification/#moderate</Description>
+    </Reference>
+  </DocumentReferences>
+  <ProductTree xmlns="http://www.icasi.org/CVRF/schema/prod/1.1">
+    <Branch Type="Product Family" Name="Red Hat OpenShift Enterprise">
+      <Branch Type="Product Name" Name="Red Hat OpenShift Container Platform 4.7">
+        <FullProductName ProductID="8Base-RHOSE-4.7" CPE="cpe:/a:redhat:openshift:4.7::el8">Red Hat OpenShift Container Platform 4.7</FullProductName>
+      </Branch>
+    </Branch>
+    <Branch Type="Product Version" Name="openshift4/driver-toolkit-rhel8:v4.7.0-202108311835.p0.git.bcd11a1.assembly.stream">
+      <FullProductName ProductID="openshift4/driver-toolkit-rhel8:v4.7.0-202108311835.p0.git.bcd11a1.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">openshift4/driver-toolkit-rhel8:v4.7.0-202108311835.p0.git.bcd11a1.assembly.stream</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="openshift4/egress-router-cni-rhel8:v4.7.0-202108311835.p0.git.96ebd37.assembly.stream">
+      <FullProductName ProductID="openshift4/egress-router-cni-rhel8:v4.7.0-202108311835.p0.git.96ebd37.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">openshift4/egress-router-cni-rhel8:v4.7.0-202108311835.p0.git.96ebd37.assembly.stream</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="openshift4/ose-aws-ebs-csi-driver-rhel8-operator:v4.7.0-202108311835.p0.git.3a9ff17.assembly.stream">
+      <FullProductName ProductID="openshift4/ose-aws-ebs-csi-driver-rhel8-operator:v4.7.0-202108311835.p0.git.3a9ff17.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">openshift4/ose-aws-ebs-csi-driver-rhel8-operator:v4.7.0-202108311835.p0.git.3a9ff17.assembly.stream</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="openshift4/ose-aws-ebs-csi-driver-rhel8:v4.7.0-202108311835.p0.git.f6a71bf.assembly.stream">
+      <FullProductName ProductID="openshift4/ose-aws-ebs-csi-driver-rhel8:v4.7.0-202108311835.p0.git.f6a71bf.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">openshift4/ose-aws-ebs-csi-driver-rhel8:v4.7.0-202108311835.p0.git.f6a71bf.assembly.stream</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="openshift4/ose-aws-machine-controllers:v4.7.0-202108311835.p0.git.5368195.assembly.stream">
+      <FullProductName ProductID="openshift4/ose-aws-machine-controllers:v4.7.0-202108311835.p0.git.5368195.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">openshift4/ose-aws-machine-controllers:v4.7.0-202108311835.p0.git.5368195.assembly.stream</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="openshift4/ose-aws-pod-identity-webhook-rhel8:v4.7.0-202108311835.p0.git.0074d6a.assembly.stream">
+      <FullProductName ProductID="openshift4/ose-aws-pod-identity-webhook-rhel8:v4.7.0-202108311835.p0.git.0074d6a.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">openshift4/ose-aws-pod-identity-webhook-rhel8:v4.7.0-202108311835.p0.git.0074d6a.assembly.stream</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="openshift4/ose-azure-machine-controllers:v4.7.0-202108311835.p0.git.723b7ab.assembly.stream">
+      <FullProductName ProductID="openshift4/ose-azure-machine-controllers:v4.7.0-202108311835.p0.git.723b7ab.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">openshift4/ose-azure-machine-controllers:v4.7.0-202108311835.p0.git.723b7ab.assembly.stream</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="openshift4/ose-baremetal-installer-rhel8:v4.7.0-202108311835.p0.git.94125b2.assembly.stream">
+      <FullProductName ProductID="openshift4/ose-baremetal-installer-rhel8:v4.7.0-202108311835.p0.git.94125b2.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">openshift4/ose-baremetal-installer-rhel8:v4.7.0-202108311835.p0.git.94125b2.assembly.stream</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="openshift4/ose-baremetal-machine-controllers:v4.7.0-202108311835.p0.git.726d97e.assembly.stream">
+      <FullProductName ProductID="openshift4/ose-baremetal-machine-controllers:v4.7.0-202108311835.p0.git.726d97e.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">openshift4/ose-baremetal-machine-controllers:v4.7.0-202108311835.p0.git.726d97e.assembly.stream</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="openshift4/ose-baremetal-rhel8-operator:v4.7.0-202108311835.p0.git.e36cbc1.assembly.stream">
+      <FullProductName ProductID="openshift4/ose-baremetal-rhel8-operator:v4.7.0-202108311835.p0.git.e36cbc1.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">openshift4/ose-baremetal-rhel8-operator:v4.7.0-202108311835.p0.git.e36cbc1.assembly.stream</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="openshift4/ose-baremetal-runtimecfg-rhel8:v4.7.0-202108311835.p0.git.9c5da32.assembly.stream">
+      <FullProductName ProductID="openshift4/ose-baremetal-runtimecfg-rhel8:v4.7.0-202108311835.p0.git.9c5da32.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">openshift4/ose-baremetal-runtimecfg-rhel8:v4.7.0-202108311835.p0.git.9c5da32.assembly.stream</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="openshift4/ose-cli-artifacts:v4.7.0-202108311835.p0.git.d1ffb3c.assembly.stream">
+      <FullProductName ProductID="openshift4/ose-cli-artifacts:v4.7.0-202108311835.p0.git.d1ffb3c.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">openshift4/ose-cli-artifacts:v4.7.0-202108311835.p0.git.d1ffb3c.assembly.stream</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="openshift4/ose-cli:v4.7.0-202108311835.p0.git.d1ffb3c.assembly.stream">
+      <FullProductName ProductID="openshift4/ose-cli:v4.7.0-202108311835.p0.git.d1ffb3c.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">openshift4/ose-cli:v4.7.0-202108311835.p0.git.d1ffb3c.assembly.stream</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="openshift4/ose-cloud-credential-operator:v4.7.0-202108311835.p0.git.0783477.assembly.stream">
+      <FullProductName ProductID="openshift4/ose-cloud-credential-operator:v4.7.0-202108311835.p0.git.0783477.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">openshift4/ose-cloud-credential-operator:v4.7.0-202108311835.p0.git.0783477.assembly.stream</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="openshift4/ose-cluster-authentication-operator:v4.7.0-202108311835.p0.git.4c02b7b.assembly.stream">
+      <FullProductName ProductID="openshift4/ose-cluster-authentication-operator:v4.7.0-202108311835.p0.git.4c02b7b.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">openshift4/ose-cluster-authentication-operator:v4.7.0-202108311835.p0.git.4c02b7b.assembly.stream</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="openshift4/ose-cluster-autoscaler-operator:v4.7.0-202108311835.p0.git.7658bea.assembly.stream">
+      <FullProductName ProductID="openshift4/ose-cluster-autoscaler-operator:v4.7.0-202108311835.p0.git.7658bea.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">openshift4/ose-cluster-autoscaler-operator:v4.7.0-202108311835.p0.git.7658bea.assembly.stream</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="openshift4/ose-cluster-baremetal-operator-rhel8:v4.7.0-202108311835.p0.git.f73e5fc.assembly.stream">
+      <FullProductName ProductID="openshift4/ose-cluster-baremetal-operator-rhel8:v4.7.0-202108311835.p0.git.f73e5fc.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">openshift4/ose-cluster-baremetal-operator-rhel8:v4.7.0-202108311835.p0.git.f73e5fc.assembly.stream</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="openshift4/ose-cluster-bootstrap:v4.7.0-202108311835.p0.git.6665cae.assembly.stream">
+      <FullProductName ProductID="openshift4/ose-cluster-bootstrap:v4.7.0-202108311835.p0.git.6665cae.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">openshift4/ose-cluster-bootstrap:v4.7.0-202108311835.p0.git.6665cae.assembly.stream</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="openshift4/ose-cluster-config-operator:v4.7.0-202108311835.p0.git.07e059a.assembly.stream">
+      <FullProductName ProductID="openshift4/ose-cluster-config-operator:v4.7.0-202108311835.p0.git.07e059a.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">openshift4/ose-cluster-config-operator:v4.7.0-202108311835.p0.git.07e059a.assembly.stream</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="openshift4/ose-cluster-dns-operator:v4.7.0-202108311835.p0.git.cf8be7b.assembly.stream">
+      <FullProductName ProductID="openshift4/ose-cluster-dns-operator:v4.7.0-202108311835.p0.git.cf8be7b.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">openshift4/ose-cluster-dns-operator:v4.7.0-202108311835.p0.git.cf8be7b.assembly.stream</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="openshift4/ose-cluster-etcd-rhel8-operator:v4.7.0-202108311835.p0.git.51cb8c4.assembly.stream">
+      <FullProductName ProductID="openshift4/ose-cluster-etcd-rhel8-operator:v4.7.0-202108311835.p0.git.51cb8c4.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">openshift4/ose-cluster-etcd-rhel8-operator:v4.7.0-202108311835.p0.git.51cb8c4.assembly.stream</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="openshift4/ose-cluster-image-registry-operator:v4.7.0-202108311835.p0.git.70a8588.assembly.stream">
+      <FullProductName ProductID="openshift4/ose-cluster-image-registry-operator:v4.7.0-202108311835.p0.git.70a8588.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">openshift4/ose-cluster-image-registry-operator:v4.7.0-202108311835.p0.git.70a8588.assembly.stream</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="openshift4/ose-cluster-ingress-operator:v4.7.0-202108311835.p0.git.b86f935.assembly.stream">
+      <FullProductName ProductID="openshift4/ose-cluster-ingress-operator:v4.7.0-202108311835.p0.git.b86f935.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">openshift4/ose-cluster-ingress-operator:v4.7.0-202108311835.p0.git.b86f935.assembly.stream</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="openshift4/ose-cluster-kube-apiserver-operator:v4.7.0-202108311835.p0.git.099c6af.assembly.stream">
+      <FullProductName ProductID="openshift4/ose-cluster-kube-apiserver-operator:v4.7.0-202108311835.p0.git.099c6af.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">openshift4/ose-cluster-kube-apiserver-operator:v4.7.0-202108311835.p0.git.099c6af.assembly.stream</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="openshift4/ose-cluster-kube-controller-manager-operator:v4.7.0-202108311835.p0.git.2815909.assembly.stream">
+      <FullProductName ProductID="openshift4/ose-cluster-kube-controller-manager-operator:v4.7.0-202108311835.p0.git.2815909.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">openshift4/ose-cluster-kube-controller-manager-operator:v4.7.0-202108311835.p0.git.2815909.assembly.stream</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="openshift4/ose-cluster-kube-scheduler-operator:v4.7.0-202108311835.p0.git.b2204ca.assembly.stream">
+      <FullProductName ProductID="openshift4/ose-cluster-kube-scheduler-operator:v4.7.0-202108311835.p0.git.b2204ca.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">openshift4/ose-cluster-kube-scheduler-operator:v4.7.0-202108311835.p0.git.b2204ca.assembly.stream</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="openshift4/ose-cluster-kube-storage-version-migrator-rhel8-operator:v4.7.0-202108311835.p0.git.5448475.assembly.stream">
+      <FullProductName ProductID="openshift4/ose-cluster-kube-storage-version-migrator-rhel8-operator:v4.7.0-202108311835.p0.git.5448475.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">openshift4/ose-cluster-kube-storage-version-migrator-rhel8-operator:v4.7.0-202108311835.p0.git.5448475.assembly.stream</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="openshift4/ose-cluster-monitoring-operator:v4.7.0-202108311835.p0.git.035c803.assembly.stream">
+      <FullProductName ProductID="openshift4/ose-cluster-monitoring-operator:v4.7.0-202108311835.p0.git.035c803.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">openshift4/ose-cluster-monitoring-operator:v4.7.0-202108311835.p0.git.035c803.assembly.stream</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="openshift4/ose-cluster-network-operator:v4.7.0-202108311835.p0.git.9a9a870.assembly.stream">
+      <FullProductName ProductID="openshift4/ose-cluster-network-operator:v4.7.0-202108311835.p0.git.9a9a870.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">openshift4/ose-cluster-network-operator:v4.7.0-202108311835.p0.git.9a9a870.assembly.stream</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="openshift4/ose-cluster-node-tuning-operator:v4.7.0-202108311835.p0.git.3066601.assembly.stream">
+      <FullProductName ProductID="openshift4/ose-cluster-node-tuning-operator:v4.7.0-202108311835.p0.git.3066601.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">openshift4/ose-cluster-node-tuning-operator:v4.7.0-202108311835.p0.git.3066601.assembly.stream</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="openshift4/ose-cluster-openshift-apiserver-operator:v4.7.0-202108311835.p0.git.fa6d8e1.assembly.stream">
+      <FullProductName ProductID="openshift4/ose-cluster-openshift-apiserver-operator:v4.7.0-202108311835.p0.git.fa6d8e1.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">openshift4/ose-cluster-openshift-apiserver-operator:v4.7.0-202108311835.p0.git.fa6d8e1.assembly.stream</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="openshift4/ose-cluster-openshift-controller-manager-operator:v4.7.0-202108311835.p0.git.2a8963a.assembly.stream">
+      <FullProductName ProductID="openshift4/ose-cluster-openshift-controller-manager-operator:v4.7.0-202108311835.p0.git.2a8963a.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">openshift4/ose-cluster-openshift-controller-manager-operator:v4.7.0-202108311835.p0.git.2a8963a.assembly.stream</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="openshift4/ose-cluster-policy-controller-rhel8:v4.7.0-202108311835.p0.git.42791ba.assembly.stream">
+      <FullProductName ProductID="openshift4/ose-cluster-policy-controller-rhel8:v4.7.0-202108311835.p0.git.42791ba.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">openshift4/ose-cluster-policy-controller-rhel8:v4.7.0-202108311835.p0.git.42791ba.assembly.stream</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="openshift4/ose-cluster-storage-operator:v4.7.0-202108311835.p0.git.6d2c25f.assembly.stream">
+      <FullProductName ProductID="openshift4/ose-cluster-storage-operator:v4.7.0-202108311835.p0.git.6d2c25f.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">openshift4/ose-cluster-storage-operator:v4.7.0-202108311835.p0.git.6d2c25f.assembly.stream</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="openshift4/ose-cluster-update-keys:v4.7.0-202108311835.p0.git.b7e7917.assembly.stream">
+      <FullProductName ProductID="openshift4/ose-cluster-update-keys:v4.7.0-202108311835.p0.git.b7e7917.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">openshift4/ose-cluster-update-keys:v4.7.0-202108311835.p0.git.b7e7917.assembly.stream</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="openshift4/ose-cluster-version-operator:v4.7.0-202108311835.p0.git.cc81827.assembly.stream">
+      <FullProductName ProductID="openshift4/ose-cluster-version-operator:v4.7.0-202108311835.p0.git.cc81827.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">openshift4/ose-cluster-version-operator:v4.7.0-202108311835.p0.git.cc81827.assembly.stream</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="openshift4/ose-console-operator:v4.7.0-202108311835.p0.git.44a0308.assembly.stream">
+      <FullProductName ProductID="openshift4/ose-console-operator:v4.7.0-202108311835.p0.git.44a0308.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">openshift4/ose-console-operator:v4.7.0-202108311835.p0.git.44a0308.assembly.stream</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="openshift4/ose-console:v4.7.0-202108311835.p0.git.3cb2ea6.assembly.stream">
+      <FullProductName ProductID="openshift4/ose-console:v4.7.0-202108311835.p0.git.3cb2ea6.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">openshift4/ose-console:v4.7.0-202108311835.p0.git.3cb2ea6.assembly.stream</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="openshift4/ose-container-networking-plugins-rhel8:v4.7.0-202108311835.p0.git.fc27124.assembly.stream">
+      <FullProductName ProductID="openshift4/ose-container-networking-plugins-rhel8:v4.7.0-202108311835.p0.git.fc27124.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">openshift4/ose-container-networking-plugins-rhel8:v4.7.0-202108311835.p0.git.fc27124.assembly.stream</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="openshift4/ose-coredns:v4.7.0-202108311835.p0.git.d4a3ba3.assembly.stream">
+      <FullProductName ProductID="openshift4/ose-coredns:v4.7.0-202108311835.p0.git.d4a3ba3.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">openshift4/ose-coredns:v4.7.0-202108311835.p0.git.d4a3ba3.assembly.stream</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="openshift4/ose-csi-driver-manila-rhel8-operator:v4.7.0-202108311835.p0.git.bffdeaa.assembly.stream">
+      <FullProductName ProductID="openshift4/ose-csi-driver-manila-rhel8-operator:v4.7.0-202108311835.p0.git.bffdeaa.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">openshift4/ose-csi-driver-manila-rhel8-operator:v4.7.0-202108311835.p0.git.bffdeaa.assembly.stream</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="openshift4/ose-csi-driver-manila-rhel8:v4.7.0-202108311835.p0.git.d3f7092.assembly.stream">
+      <FullProductName ProductID="openshift4/ose-csi-driver-manila-rhel8:v4.7.0-202108311835.p0.git.d3f7092.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">openshift4/ose-csi-driver-manila-rhel8:v4.7.0-202108311835.p0.git.d3f7092.assembly.stream</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="openshift4/ose-csi-driver-nfs-rhel8:v4.7.0-202108311835.p0.git.9404d34.assembly.stream">
+      <FullProductName ProductID="openshift4/ose-csi-driver-nfs-rhel8:v4.7.0-202108311835.p0.git.9404d34.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">openshift4/ose-csi-driver-nfs-rhel8:v4.7.0-202108311835.p0.git.9404d34.assembly.stream</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="openshift4/ose-csi-external-provisioner-rhel8:v4.7.0-202108311835.p0.git.a49415e.assembly.stream">
+      <FullProductName ProductID="openshift4/ose-csi-external-provisioner-rhel8:v4.7.0-202108311835.p0.git.a49415e.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">openshift4/ose-csi-external-provisioner-rhel8:v4.7.0-202108311835.p0.git.a49415e.assembly.stream</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="openshift4/ose-csi-external-provisioner:v4.7.0-202108311835.p0.git.a49415e.assembly.stream">
+      <FullProductName ProductID="openshift4/ose-csi-external-provisioner:v4.7.0-202108311835.p0.git.a49415e.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">openshift4/ose-csi-external-provisioner:v4.7.0-202108311835.p0.git.a49415e.assembly.stream</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="openshift4/ose-csi-external-resizer-rhel8:v4.7.0-202108311835.p0.git.f77279e.assembly.stream">
+      <FullProductName ProductID="openshift4/ose-csi-external-resizer-rhel8:v4.7.0-202108311835.p0.git.f77279e.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">openshift4/ose-csi-external-resizer-rhel8:v4.7.0-202108311835.p0.git.f77279e.assembly.stream</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="openshift4/ose-csi-external-resizer:v4.7.0-202108311835.p0.git.f77279e.assembly.stream">
+      <FullProductName ProductID="openshift4/ose-csi-external-resizer:v4.7.0-202108311835.p0.git.f77279e.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">openshift4/ose-csi-external-resizer:v4.7.0-202108311835.p0.git.f77279e.assembly.stream</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="openshift4/ose-csi-external-snapshotter-rhel8:v4.7.0-202108311835.p0.git.2677373.assembly.stream">
+      <FullProductName ProductID="openshift4/ose-csi-external-snapshotter-rhel8:v4.7.0-202108311835.p0.git.2677373.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">openshift4/ose-csi-external-snapshotter-rhel8:v4.7.0-202108311835.p0.git.2677373.assembly.stream</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="openshift4/ose-csi-external-snapshotter:v4.7.0-202108311835.p0.git.2677373.assembly.stream">
+      <FullProductName ProductID="openshift4/ose-csi-external-snapshotter:v4.7.0-202108311835.p0.git.2677373.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">openshift4/ose-csi-external-snapshotter:v4.7.0-202108311835.p0.git.2677373.assembly.stream</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="openshift4/ose-csi-livenessprobe-rhel8:v4.7.0-202108311835.p0.git.3dad028.assembly.stream">
+      <FullProductName ProductID="openshift4/ose-csi-livenessprobe-rhel8:v4.7.0-202108311835.p0.git.3dad028.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">openshift4/ose-csi-livenessprobe-rhel8:v4.7.0-202108311835.p0.git.3dad028.assembly.stream</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="openshift4/ose-csi-livenessprobe:v4.7.0-202108311835.p0.git.3dad028.assembly.stream">
+      <FullProductName ProductID="openshift4/ose-csi-livenessprobe:v4.7.0-202108311835.p0.git.3dad028.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">openshift4/ose-csi-livenessprobe:v4.7.0-202108311835.p0.git.3dad028.assembly.stream</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="openshift4/ose-csi-node-driver-registrar-rhel8:v4.7.0-202108311835.p0.git.2a77963.assembly.stream">
+      <FullProductName ProductID="openshift4/ose-csi-node-driver-registrar-rhel8:v4.7.0-202108311835.p0.git.2a77963.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">openshift4/ose-csi-node-driver-registrar-rhel8:v4.7.0-202108311835.p0.git.2a77963.assembly.stream</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="openshift4/ose-csi-node-driver-registrar:v4.7.0-202108311835.p0.git.2a77963.assembly.stream">
+      <FullProductName ProductID="openshift4/ose-csi-node-driver-registrar:v4.7.0-202108311835.p0.git.2a77963.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">openshift4/ose-csi-node-driver-registrar:v4.7.0-202108311835.p0.git.2a77963.assembly.stream</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="openshift4/ose-csi-snapshot-controller-rhel8:v4.7.0-202108311835.p0.git.2677373.assembly.stream">
+      <FullProductName ProductID="openshift4/ose-csi-snapshot-controller-rhel8:v4.7.0-202108311835.p0.git.2677373.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">openshift4/ose-csi-snapshot-controller-rhel8:v4.7.0-202108311835.p0.git.2677373.assembly.stream</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="openshift4/ose-csi-snapshot-controller:v4.7.0-202108311835.p0.git.2677373.assembly.stream">
+      <FullProductName ProductID="openshift4/ose-csi-snapshot-controller:v4.7.0-202108311835.p0.git.2677373.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">openshift4/ose-csi-snapshot-controller:v4.7.0-202108311835.p0.git.2677373.assembly.stream</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="openshift4/ose-csi-snapshot-validation-webhook-rhel8:v4.7.0-202108311835.p0.git.2677373.assembly.stream">
+      <FullProductName ProductID="openshift4/ose-csi-snapshot-validation-webhook-rhel8:v4.7.0-202108311835.p0.git.2677373.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">openshift4/ose-csi-snapshot-validation-webhook-rhel8:v4.7.0-202108311835.p0.git.2677373.assembly.stream</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="openshift4/ose-deployer:v4.7.0-202108311835.p0.git.d1ffb3c.assembly.stream">
+      <FullProductName ProductID="openshift4/ose-deployer:v4.7.0-202108311835.p0.git.d1ffb3c.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">openshift4/ose-deployer:v4.7.0-202108311835.p0.git.d1ffb3c.assembly.stream</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="openshift4/ose-docker-builder:v4.7.0-202108251815.p0.git.0e44bee.assembly.stream">
+      <FullProductName ProductID="openshift4/ose-docker-builder:v4.7.0-202108251815.p0.git.0e44bee.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">openshift4/ose-docker-builder:v4.7.0-202108251815.p0.git.0e44bee.assembly.stream</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="openshift4/ose-docker-registry:v4.7.0-202108311835.p0.git.8b03485.assembly.stream">
+      <FullProductName ProductID="openshift4/ose-docker-registry:v4.7.0-202108311835.p0.git.8b03485.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">openshift4/ose-docker-registry:v4.7.0-202108311835.p0.git.8b03485.assembly.stream</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="openshift4/ose-etcd:v4.7.0-202108311835.p0.git.c61e5af.assembly.stream">
+      <FullProductName ProductID="openshift4/ose-etcd:v4.7.0-202108311835.p0.git.c61e5af.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">openshift4/ose-etcd:v4.7.0-202108311835.p0.git.c61e5af.assembly.stream</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="openshift4/ose-gcp-machine-controllers-rhel8:v4.7.0-202108311835.p0.git.5f6589d.assembly.stream">
+      <FullProductName ProductID="openshift4/ose-gcp-machine-controllers-rhel8:v4.7.0-202108311835.p0.git.5f6589d.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">openshift4/ose-gcp-machine-controllers-rhel8:v4.7.0-202108311835.p0.git.5f6589d.assembly.stream</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="openshift4/ose-gcp-pd-csi-driver-operator-rhel8:v4.7.0-202108311835.p0.git.d40dd57.assembly.stream">
+      <FullProductName ProductID="openshift4/ose-gcp-pd-csi-driver-operator-rhel8:v4.7.0-202108311835.p0.git.d40dd57.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">openshift4/ose-gcp-pd-csi-driver-operator-rhel8:v4.7.0-202108311835.p0.git.d40dd57.assembly.stream</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="openshift4/ose-gcp-pd-csi-driver-rhel8:v4.7.0-202108311835.p0.git.0cb61d2.assembly.stream">
+      <FullProductName ProductID="openshift4/ose-gcp-pd-csi-driver-rhel8:v4.7.0-202108311835.p0.git.0cb61d2.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">openshift4/ose-gcp-pd-csi-driver-rhel8:v4.7.0-202108311835.p0.git.0cb61d2.assembly.stream</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="openshift4/ose-grafana:v4.7.0-202108311835.p0.git.b02c35d.assembly.stream">
+      <FullProductName ProductID="openshift4/ose-grafana:v4.7.0-202108311835.p0.git.b02c35d.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">openshift4/ose-grafana:v4.7.0-202108311835.p0.git.b02c35d.assembly.stream</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="openshift4/ose-haproxy-router:v4.7.0-202108311835.p0.git.4ab216f.assembly.stream">
+      <FullProductName ProductID="openshift4/ose-haproxy-router:v4.7.0-202108311835.p0.git.4ab216f.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">openshift4/ose-haproxy-router:v4.7.0-202108311835.p0.git.4ab216f.assembly.stream</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="openshift4/ose-hello-openshift-rhel8:v4.7.0-202108311835.p0.git.24f464b.assembly.stream">
+      <FullProductName ProductID="openshift4/ose-hello-openshift-rhel8:v4.7.0-202108311835.p0.git.24f464b.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">openshift4/ose-hello-openshift-rhel8:v4.7.0-202108311835.p0.git.24f464b.assembly.stream</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="openshift4/ose-hyperkube:v4.7.0-202108311835.p0.git.9689d22.assembly.stream">
+      <FullProductName ProductID="openshift4/ose-hyperkube:v4.7.0-202108311835.p0.git.9689d22.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">openshift4/ose-hyperkube:v4.7.0-202108311835.p0.git.9689d22.assembly.stream</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="openshift4/ose-insights-rhel8-operator:v4.7.0-202108311835.p0.git.19b13a7.assembly.stream">
+      <FullProductName ProductID="openshift4/ose-insights-rhel8-operator:v4.7.0-202108311835.p0.git.19b13a7.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">openshift4/ose-insights-rhel8-operator:v4.7.0-202108311835.p0.git.19b13a7.assembly.stream</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="openshift4/ose-installer-artifacts:v4.7.0-202108311835.p0.git.94125b2.assembly.stream">
+      <FullProductName ProductID="openshift4/ose-installer-artifacts:v4.7.0-202108311835.p0.git.94125b2.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">openshift4/ose-installer-artifacts:v4.7.0-202108311835.p0.git.94125b2.assembly.stream</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="openshift4/ose-installer:v4.7.0-202108311835.p0.git.94125b2.assembly.stream">
+      <FullProductName ProductID="openshift4/ose-installer:v4.7.0-202108311835.p0.git.94125b2.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">openshift4/ose-installer:v4.7.0-202108311835.p0.git.94125b2.assembly.stream</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="openshift4/ose-jenkins-agent-base:v4.7.0-202108311835.p0.git.02e81a5.assembly.stream">
+      <FullProductName ProductID="openshift4/ose-jenkins-agent-base:v4.7.0-202108311835.p0.git.02e81a5.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">openshift4/ose-jenkins-agent-base:v4.7.0-202108311835.p0.git.02e81a5.assembly.stream</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="openshift4/ose-jenkins-agent-maven:v4.7.0-202108311835.p0.git.02e81a5.assembly.stream">
+      <FullProductName ProductID="openshift4/ose-jenkins-agent-maven:v4.7.0-202108311835.p0.git.02e81a5.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">openshift4/ose-jenkins-agent-maven:v4.7.0-202108311835.p0.git.02e81a5.assembly.stream</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="openshift4/ose-jenkins-agent-nodejs-12-rhel8:v4.7.0-202108311835.p0.git.02e81a5.assembly.stream">
+      <FullProductName ProductID="openshift4/ose-jenkins-agent-nodejs-12-rhel8:v4.7.0-202108311835.p0.git.02e81a5.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">openshift4/ose-jenkins-agent-nodejs-12-rhel8:v4.7.0-202108311835.p0.git.02e81a5.assembly.stream</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="openshift4/ose-jenkins:v4.7.0-202108311835.p0.git.02e81a5.assembly.stream">
+      <FullProductName ProductID="openshift4/ose-jenkins:v4.7.0-202108311835.p0.git.02e81a5.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">openshift4/ose-jenkins:v4.7.0-202108311835.p0.git.02e81a5.assembly.stream</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="openshift4/ose-k8s-prometheus-adapter:v4.7.0-202108311835.p0.git.212d80b.assembly.stream">
+      <FullProductName ProductID="openshift4/ose-k8s-prometheus-adapter:v4.7.0-202108311835.p0.git.212d80b.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">openshift4/ose-k8s-prometheus-adapter:v4.7.0-202108311835.p0.git.212d80b.assembly.stream</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="openshift4/ose-keepalived-ipfailover:v4.7.0-202108311835.p0.git.0e45f63.assembly.stream">
+      <FullProductName ProductID="openshift4/ose-keepalived-ipfailover:v4.7.0-202108311835.p0.git.0e45f63.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">openshift4/ose-keepalived-ipfailover:v4.7.0-202108311835.p0.git.0e45f63.assembly.stream</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="openshift4/ose-kube-proxy:v4.7.0-202108311835.p0.git.cbd5e4b.assembly.stream">
+      <FullProductName ProductID="openshift4/ose-kube-proxy:v4.7.0-202108311835.p0.git.cbd5e4b.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">openshift4/ose-kube-proxy:v4.7.0-202108311835.p0.git.cbd5e4b.assembly.stream</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="openshift4/ose-kube-rbac-proxy:v4.7.0-202108311835.p0.git.14c288e.assembly.stream">
+      <FullProductName ProductID="openshift4/ose-kube-rbac-proxy:v4.7.0-202108311835.p0.git.14c288e.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">openshift4/ose-kube-rbac-proxy:v4.7.0-202108311835.p0.git.14c288e.assembly.stream</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="openshift4/ose-kube-state-metrics:v4.7.0-202108311835.p0.git.04bff70.assembly.stream">
+      <FullProductName ProductID="openshift4/ose-kube-state-metrics:v4.7.0-202108311835.p0.git.04bff70.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">openshift4/ose-kube-state-metrics:v4.7.0-202108311835.p0.git.04bff70.assembly.stream</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="openshift4/ose-kube-storage-version-migrator-rhel8:v4.7.0-202108311835.p0.git.329a4b0.assembly.stream">
+      <FullProductName ProductID="openshift4/ose-kube-storage-version-migrator-rhel8:v4.7.0-202108311835.p0.git.329a4b0.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">openshift4/ose-kube-storage-version-migrator-rhel8:v4.7.0-202108311835.p0.git.329a4b0.assembly.stream</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="openshift4/ose-kuryr-cni-rhel8:v4.7.0-202108311403.p0.git.c7654fb.assembly.stream">
+      <FullProductName ProductID="openshift4/ose-kuryr-cni-rhel8:v4.7.0-202108311403.p0.git.c7654fb.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">openshift4/ose-kuryr-cni-rhel8:v4.7.0-202108311403.p0.git.c7654fb.assembly.stream</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="openshift4/ose-kuryr-controller-rhel8:v4.7.0-202108311403.p0.git.c7654fb.assembly.stream">
+      <FullProductName ProductID="openshift4/ose-kuryr-controller-rhel8:v4.7.0-202108311403.p0.git.c7654fb.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">openshift4/ose-kuryr-controller-rhel8:v4.7.0-202108311403.p0.git.c7654fb.assembly.stream</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="openshift4/ose-libvirt-machine-controllers:v4.7.0-202108311835.p0.git.eb819cb.assembly.stream">
+      <FullProductName ProductID="openshift4/ose-libvirt-machine-controllers:v4.7.0-202108311835.p0.git.eb819cb.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">openshift4/ose-libvirt-machine-controllers:v4.7.0-202108311835.p0.git.eb819cb.assembly.stream</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="openshift4/ose-machine-api-operator:v4.7.0-202108311835.p0.git.e179bb5.assembly.stream">
+      <FullProductName ProductID="openshift4/ose-machine-api-operator:v4.7.0-202108311835.p0.git.e179bb5.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">openshift4/ose-machine-api-operator:v4.7.0-202108311835.p0.git.e179bb5.assembly.stream</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="openshift4/ose-machine-config-operator:v4.7.0-202108311835.p0.git.d6d26e1.assembly.stream">
+      <FullProductName ProductID="openshift4/ose-machine-config-operator:v4.7.0-202108311835.p0.git.d6d26e1.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">openshift4/ose-machine-config-operator:v4.7.0-202108311835.p0.git.d6d26e1.assembly.stream</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="openshift4/ose-mdns-publisher-rhel8:v4.7.0-202108311835.p0.git.4b2a152.assembly.stream">
+      <FullProductName ProductID="openshift4/ose-mdns-publisher-rhel8:v4.7.0-202108311835.p0.git.4b2a152.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">openshift4/ose-mdns-publisher-rhel8:v4.7.0-202108311835.p0.git.4b2a152.assembly.stream</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="openshift4/ose-multus-admission-controller:v4.7.0-202108311835.p0.git.a7312f5.assembly.stream">
+      <FullProductName ProductID="openshift4/ose-multus-admission-controller:v4.7.0-202108311835.p0.git.a7312f5.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">openshift4/ose-multus-admission-controller:v4.7.0-202108311835.p0.git.a7312f5.assembly.stream</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="openshift4/ose-multus-cni:v4.7.0-202108311835.p0.git.5530094.assembly.stream">
+      <FullProductName ProductID="openshift4/ose-multus-cni:v4.7.0-202108311835.p0.git.5530094.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">openshift4/ose-multus-cni:v4.7.0-202108311835.p0.git.5530094.assembly.stream</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="openshift4/ose-multus-networkpolicy-rhel8:v4.7.0-202108311835.p0.git.820a753.assembly.stream">
+      <FullProductName ProductID="openshift4/ose-multus-networkpolicy-rhel8:v4.7.0-202108311835.p0.git.820a753.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">openshift4/ose-multus-networkpolicy-rhel8:v4.7.0-202108311835.p0.git.820a753.assembly.stream</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="openshift4/ose-must-gather:v4.7.0-202108311835.p0.git.205d4e3.assembly.stream">
+      <FullProductName ProductID="openshift4/ose-must-gather:v4.7.0-202108311835.p0.git.205d4e3.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">openshift4/ose-must-gather:v4.7.0-202108311835.p0.git.205d4e3.assembly.stream</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="openshift4/ose-network-metrics-daemon-rhel8:v4.7.0-202108311835.p0.git.b192615.assembly.stream">
+      <FullProductName ProductID="openshift4/ose-network-metrics-daemon-rhel8:v4.7.0-202108311835.p0.git.b192615.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">openshift4/ose-network-metrics-daemon-rhel8:v4.7.0-202108311835.p0.git.b192615.assembly.stream</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="openshift4/ose-oauth-apiserver-rhel8:v4.7.0-202108311835.p0.git.69f527e.assembly.stream">
+      <FullProductName ProductID="openshift4/ose-oauth-apiserver-rhel8:v4.7.0-202108311835.p0.git.69f527e.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">openshift4/ose-oauth-apiserver-rhel8:v4.7.0-202108311835.p0.git.69f527e.assembly.stream</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="openshift4/ose-oauth-server-rhel8:v4.7.0-202108311835.p0.git.61db550.assembly.stream">
+      <FullProductName ProductID="openshift4/ose-oauth-server-rhel8:v4.7.0-202108311835.p0.git.61db550.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">openshift4/ose-oauth-server-rhel8:v4.7.0-202108311835.p0.git.61db550.assembly.stream</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="openshift4/ose-openshift-apiserver-rhel8:v4.7.0-202108311835.p0.git.f9ac087.assembly.stream">
+      <FullProductName ProductID="openshift4/ose-openshift-apiserver-rhel8:v4.7.0-202108311835.p0.git.f9ac087.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">openshift4/ose-openshift-apiserver-rhel8:v4.7.0-202108311835.p0.git.f9ac087.assembly.stream</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="openshift4/ose-openshift-controller-manager-rhel8:v4.7.0-202108311835.p0.git.c93745b.assembly.stream">
+      <FullProductName ProductID="openshift4/ose-openshift-controller-manager-rhel8:v4.7.0-202108311835.p0.git.c93745b.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">openshift4/ose-openshift-controller-manager-rhel8:v4.7.0-202108311835.p0.git.c93745b.assembly.stream</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="openshift4/ose-openshift-state-metrics-rhel8:v4.7.0-202108311835.p0.git.40b0968.assembly.stream">
+      <FullProductName ProductID="openshift4/ose-openshift-state-metrics-rhel8:v4.7.0-202108311835.p0.git.40b0968.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">openshift4/ose-openshift-state-metrics-rhel8:v4.7.0-202108311835.p0.git.40b0968.assembly.stream</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="openshift4/ose-openstack-cinder-csi-driver-rhel8-operator:v4.7.0-202108311835.p0.git.117ce62.assembly.stream">
+      <FullProductName ProductID="openshift4/ose-openstack-cinder-csi-driver-rhel8-operator:v4.7.0-202108311835.p0.git.117ce62.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">openshift4/ose-openstack-cinder-csi-driver-rhel8-operator:v4.7.0-202108311835.p0.git.117ce62.assembly.stream</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="openshift4/ose-openstack-cinder-csi-driver-rhel8:v4.7.0-202108311835.p0.git.d3f7092.assembly.stream">
+      <FullProductName ProductID="openshift4/ose-openstack-cinder-csi-driver-rhel8:v4.7.0-202108311835.p0.git.d3f7092.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">openshift4/ose-openstack-cinder-csi-driver-rhel8:v4.7.0-202108311835.p0.git.d3f7092.assembly.stream</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="openshift4/ose-openstack-machine-controllers:v4.7.0-202108311835.p0.git.471cf3a.assembly.stream">
+      <FullProductName ProductID="openshift4/ose-openstack-machine-controllers:v4.7.0-202108311835.p0.git.471cf3a.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">openshift4/ose-openstack-machine-controllers:v4.7.0-202108311835.p0.git.471cf3a.assembly.stream</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="openshift4/ose-operator-lifecycle-manager:v4.7.0-202108311835.p0.git.2012879.assembly.stream">
+      <FullProductName ProductID="openshift4/ose-operator-lifecycle-manager:v4.7.0-202108311835.p0.git.2012879.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">openshift4/ose-operator-lifecycle-manager:v4.7.0-202108311835.p0.git.2012879.assembly.stream</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="openshift4/ose-operator-marketplace:v4.7.0-202108311835.p0.git.96bab9b.assembly.stream">
+      <FullProductName ProductID="openshift4/ose-operator-marketplace:v4.7.0-202108311835.p0.git.96bab9b.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">openshift4/ose-operator-marketplace:v4.7.0-202108311835.p0.git.96bab9b.assembly.stream</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="openshift4/ose-operator-registry:v4.7.0-202108311835.p0.git.06e950d.assembly.stream">
+      <FullProductName ProductID="openshift4/ose-operator-registry:v4.7.0-202108311835.p0.git.06e950d.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">openshift4/ose-operator-registry:v4.7.0-202108311835.p0.git.06e950d.assembly.stream</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="openshift4/ose-ovirt-machine-controllers-rhel8:v4.7.0-202108311835.p0.git.01b9bf8.assembly.stream">
+      <FullProductName ProductID="openshift4/ose-ovirt-machine-controllers-rhel8:v4.7.0-202108311835.p0.git.01b9bf8.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">openshift4/ose-ovirt-machine-controllers-rhel8:v4.7.0-202108311835.p0.git.01b9bf8.assembly.stream</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="openshift4/ose-ovn-kubernetes:v4.7.0-202108311835.p0.git.53bc319.assembly.stream">
+      <FullProductName ProductID="openshift4/ose-ovn-kubernetes:v4.7.0-202108311835.p0.git.53bc319.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">openshift4/ose-ovn-kubernetes:v4.7.0-202108311835.p0.git.53bc319.assembly.stream</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="openshift4/ose-pod:v4.7.0-202108311835.p0.git.0e45f63.assembly.stream">
+      <FullProductName ProductID="openshift4/ose-pod:v4.7.0-202108311835.p0.git.0e45f63.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">openshift4/ose-pod:v4.7.0-202108311835.p0.git.0e45f63.assembly.stream</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="openshift4/ose-prometheus-config-reloader:v4.7.0-202108311835.p0.git.1f0fd51.assembly.stream">
+      <FullProductName ProductID="openshift4/ose-prometheus-config-reloader:v4.7.0-202108311835.p0.git.1f0fd51.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">openshift4/ose-prometheus-config-reloader:v4.7.0-202108311835.p0.git.1f0fd51.assembly.stream</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="openshift4/ose-prometheus-operator:v4.7.0-202108311835.p0.git.1f0fd51.assembly.stream">
+      <FullProductName ProductID="openshift4/ose-prometheus-operator:v4.7.0-202108311835.p0.git.1f0fd51.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">openshift4/ose-prometheus-operator:v4.7.0-202108311835.p0.git.1f0fd51.assembly.stream</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="openshift4/ose-sdn-rhel8:v4.7.0-202108311835.p0.git.cbd5e4b.assembly.stream">
+      <FullProductName ProductID="openshift4/ose-sdn-rhel8:v4.7.0-202108311835.p0.git.cbd5e4b.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">openshift4/ose-sdn-rhel8:v4.7.0-202108311835.p0.git.cbd5e4b.assembly.stream</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="openshift4/ose-service-ca-operator:v4.7.0-202108311835.p0.git.f65053f.assembly.stream">
+      <FullProductName ProductID="openshift4/ose-service-ca-operator:v4.7.0-202108311835.p0.git.f65053f.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">openshift4/ose-service-ca-operator:v4.7.0-202108311835.p0.git.f65053f.assembly.stream</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="openshift4/ose-telemeter:v4.7.0-202108311835.p0.git.e4dac51.assembly.stream">
+      <FullProductName ProductID="openshift4/ose-telemeter:v4.7.0-202108311835.p0.git.e4dac51.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">openshift4/ose-telemeter:v4.7.0-202108311835.p0.git.e4dac51.assembly.stream</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="openshift4/ose-tests:v4.7.0-202108311835.p0.git.24f464b.assembly.stream">
+      <FullProductName ProductID="openshift4/ose-tests:v4.7.0-202108311835.p0.git.24f464b.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">openshift4/ose-tests:v4.7.0-202108311835.p0.git.24f464b.assembly.stream</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="openshift4/ose-thanos-rhel8:v4.7.0-202108311835.p0.git.319e70c.assembly.stream">
+      <FullProductName ProductID="openshift4/ose-thanos-rhel8:v4.7.0-202108311835.p0.git.319e70c.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">openshift4/ose-thanos-rhel8:v4.7.0-202108311835.p0.git.319e70c.assembly.stream</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="openshift4/ose-tools-rhel8:v4.7.0-202108311835.p0.git.d1ffb3c.assembly.stream">
+      <FullProductName ProductID="openshift4/ose-tools-rhel8:v4.7.0-202108311835.p0.git.d1ffb3c.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">openshift4/ose-tools-rhel8:v4.7.0-202108311835.p0.git.d1ffb3c.assembly.stream</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="openshift4/ose-vsphere-problem-detector-rhel8:v4.7.0-202108311835.p0.git.8f7c124.assembly.stream">
+      <FullProductName ProductID="openshift4/ose-vsphere-problem-detector-rhel8:v4.7.0-202108311835.p0.git.8f7c124.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">openshift4/ose-vsphere-problem-detector-rhel8:v4.7.0-202108311835.p0.git.8f7c124.assembly.stream</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="openshift4/ovirt-csi-driver-rhel7:v4.7.0-202108311835.p0.git.72545e6.assembly.stream">
+      <FullProductName ProductID="openshift4/ovirt-csi-driver-rhel7:v4.7.0-202108311835.p0.git.72545e6.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">openshift4/ovirt-csi-driver-rhel7:v4.7.0-202108311835.p0.git.72545e6.assembly.stream</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="openshift4/ovirt-csi-driver-rhel8-operator:v4.7.0-202108311835.p0.git.5e51508.assembly.stream">
+      <FullProductName ProductID="openshift4/ovirt-csi-driver-rhel8-operator:v4.7.0-202108311835.p0.git.5e51508.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">openshift4/ovirt-csi-driver-rhel8-operator:v4.7.0-202108311835.p0.git.5e51508.assembly.stream</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="redhat/redhat-operator-index:v4.7.0-202108311835.p0.git.06e950d.assembly.stream">
+      <FullProductName ProductID="redhat/redhat-operator-index:v4.7.0-202108311835.p0.git.06e950d.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">redhat/redhat-operator-index:v4.7.0-202108311835.p0.git.06e950d.assembly.stream</FullProductName>
+    </Branch>
+    <Relationship ProductReference="baremetal-machine-controller-container-v4.7.0-202108311835.p0.git.726d97e.assembly.stream" RelationType="Default Component Of" RelatesToProductReference="8Base-RHOSE-4.7">
+      <FullProductName ProductID="8Base-RHOSE-4.7:baremetal-machine-controller-container-v4.7.0-202108311835.p0.git.726d97e.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">baremetal-machine-controller-container-v4.7.0-202108311835.p0.git.726d97e.assembly.stream as a component of Red Hat OpenShift Container Platform 4.7</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="cluster-etcd-operator-container-v4.7.0-202108311835.p0.git.51cb8c4.assembly.stream" RelationType="Default Component Of" RelatesToProductReference="8Base-RHOSE-4.7">
+      <FullProductName ProductID="8Base-RHOSE-4.7:cluster-etcd-operator-container-v4.7.0-202108311835.p0.git.51cb8c4.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">cluster-etcd-operator-container-v4.7.0-202108311835.p0.git.51cb8c4.assembly.stream as a component of Red Hat OpenShift Container Platform 4.7</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="cluster-monitoring-operator-container-v4.7.0-202108311835.p0.git.035c803.assembly.stream" RelationType="Default Component Of" RelatesToProductReference="8Base-RHOSE-4.7">
+      <FullProductName ProductID="8Base-RHOSE-4.7:cluster-monitoring-operator-container-v4.7.0-202108311835.p0.git.035c803.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">cluster-monitoring-operator-container-v4.7.0-202108311835.p0.git.035c803.assembly.stream as a component of Red Hat OpenShift Container Platform 4.7</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="cluster-network-operator-container-v4.7.0-202108311835.p0.git.9a9a870.assembly.stream" RelationType="Default Component Of" RelatesToProductReference="8Base-RHOSE-4.7">
+      <FullProductName ProductID="8Base-RHOSE-4.7:cluster-network-operator-container-v4.7.0-202108311835.p0.git.9a9a870.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">cluster-network-operator-container-v4.7.0-202108311835.p0.git.9a9a870.assembly.stream as a component of Red Hat OpenShift Container Platform 4.7</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="cluster-node-tuning-operator-container-v4.7.0-202108311835.p0.git.3066601.assembly.stream" RelationType="Default Component Of" RelatesToProductReference="8Base-RHOSE-4.7">
+      <FullProductName ProductID="8Base-RHOSE-4.7:cluster-node-tuning-operator-container-v4.7.0-202108311835.p0.git.3066601.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">cluster-node-tuning-operator-container-v4.7.0-202108311835.p0.git.3066601.assembly.stream as a component of Red Hat OpenShift Container Platform 4.7</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="cluster-version-operator-container-v4.7.0-202108311835.p0.git.cc81827.assembly.stream" RelationType="Default Component Of" RelatesToProductReference="8Base-RHOSE-4.7">
+      <FullProductName ProductID="8Base-RHOSE-4.7:cluster-version-operator-container-v4.7.0-202108311835.p0.git.cc81827.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">cluster-version-operator-container-v4.7.0-202108311835.p0.git.cc81827.assembly.stream as a component of Red Hat OpenShift Container Platform 4.7</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="coredns-container-v4.7.0-202108311835.p0.git.d4a3ba3.assembly.stream" RelationType="Default Component Of" RelatesToProductReference="8Base-RHOSE-4.7">
+      <FullProductName ProductID="8Base-RHOSE-4.7:coredns-container-v4.7.0-202108311835.p0.git.d4a3ba3.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">coredns-container-v4.7.0-202108311835.p0.git.d4a3ba3.assembly.stream as a component of Red Hat OpenShift Container Platform 4.7</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="csi-driver-manila-container-v4.7.0-202108311835.p0.git.d3f7092.assembly.stream" RelationType="Default Component Of" RelatesToProductReference="8Base-RHOSE-4.7">
+      <FullProductName ProductID="8Base-RHOSE-4.7:csi-driver-manila-container-v4.7.0-202108311835.p0.git.d3f7092.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">csi-driver-manila-container-v4.7.0-202108311835.p0.git.d3f7092.assembly.stream as a component of Red Hat OpenShift Container Platform 4.7</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="csi-driver-manila-operator-container-v4.7.0-202108311835.p0.git.bffdeaa.assembly.stream" RelationType="Default Component Of" RelatesToProductReference="8Base-RHOSE-4.7">
+      <FullProductName ProductID="8Base-RHOSE-4.7:csi-driver-manila-operator-container-v4.7.0-202108311835.p0.git.bffdeaa.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">csi-driver-manila-operator-container-v4.7.0-202108311835.p0.git.bffdeaa.assembly.stream as a component of Red Hat OpenShift Container Platform 4.7</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="csi-driver-nfs-container-v4.7.0-202108311835.p0.git.9404d34.assembly.stream" RelationType="Default Component Of" RelatesToProductReference="8Base-RHOSE-4.7">
+      <FullProductName ProductID="8Base-RHOSE-4.7:csi-driver-nfs-container-v4.7.0-202108311835.p0.git.9404d34.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">csi-driver-nfs-container-v4.7.0-202108311835.p0.git.9404d34.assembly.stream as a component of Red Hat OpenShift Container Platform 4.7</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="csi-livenessprobe-container-v4.7.0-202108311835.p0.git.3dad028.assembly.stream" RelationType="Default Component Of" RelatesToProductReference="8Base-RHOSE-4.7">
+      <FullProductName ProductID="8Base-RHOSE-4.7:csi-livenessprobe-container-v4.7.0-202108311835.p0.git.3dad028.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">csi-livenessprobe-container-v4.7.0-202108311835.p0.git.3dad028.assembly.stream as a component of Red Hat OpenShift Container Platform 4.7</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="csi-node-driver-registrar-container-v4.7.0-202108311835.p0.git.2a77963.assembly.stream" RelationType="Default Component Of" RelatesToProductReference="8Base-RHOSE-4.7">
+      <FullProductName ProductID="8Base-RHOSE-4.7:csi-node-driver-registrar-container-v4.7.0-202108311835.p0.git.2a77963.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">csi-node-driver-registrar-container-v4.7.0-202108311835.p0.git.2a77963.assembly.stream as a component of Red Hat OpenShift Container Platform 4.7</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="csi-provisioner-container-v4.7.0-202108311835.p0.git.a49415e.assembly.stream" RelationType="Default Component Of" RelatesToProductReference="8Base-RHOSE-4.7">
+      <FullProductName ProductID="8Base-RHOSE-4.7:csi-provisioner-container-v4.7.0-202108311835.p0.git.a49415e.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">csi-provisioner-container-v4.7.0-202108311835.p0.git.a49415e.assembly.stream as a component of Red Hat OpenShift Container Platform 4.7</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="driver-toolkit-container-v4.7.0-202108311835.p0.git.bcd11a1.assembly.stream" RelationType="Default Component Of" RelatesToProductReference="8Base-RHOSE-4.7">
+      <FullProductName ProductID="8Base-RHOSE-4.7:driver-toolkit-container-v4.7.0-202108311835.p0.git.bcd11a1.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">driver-toolkit-container-v4.7.0-202108311835.p0.git.bcd11a1.assembly.stream as a component of Red Hat OpenShift Container Platform 4.7</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="grafana-container-v4.7.0-202108311835.p0.git.b02c35d.assembly.stream" RelationType="Default Component Of" RelatesToProductReference="8Base-RHOSE-4.7">
+      <FullProductName ProductID="8Base-RHOSE-4.7:grafana-container-v4.7.0-202108311835.p0.git.b02c35d.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">grafana-container-v4.7.0-202108311835.p0.git.b02c35d.assembly.stream as a component of Red Hat OpenShift Container Platform 4.7</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="kube-proxy-container-v4.7.0-202108311835.p0.git.cbd5e4b.assembly.stream" RelationType="Default Component Of" RelatesToProductReference="8Base-RHOSE-4.7">
+      <FullProductName ProductID="8Base-RHOSE-4.7:kube-proxy-container-v4.7.0-202108311835.p0.git.cbd5e4b.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">kube-proxy-container-v4.7.0-202108311835.p0.git.cbd5e4b.assembly.stream as a component of Red Hat OpenShift Container Platform 4.7</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="kube-rbac-proxy-container-v4.7.0-202108311835.p0.git.14c288e.assembly.stream" RelationType="Default Component Of" RelatesToProductReference="8Base-RHOSE-4.7">
+      <FullProductName ProductID="8Base-RHOSE-4.7:kube-rbac-proxy-container-v4.7.0-202108311835.p0.git.14c288e.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">kube-rbac-proxy-container-v4.7.0-202108311835.p0.git.14c288e.assembly.stream as a component of Red Hat OpenShift Container Platform 4.7</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="kube-state-metrics-container-v4.7.0-202108311835.p0.git.04bff70.assembly.stream" RelationType="Default Component Of" RelatesToProductReference="8Base-RHOSE-4.7">
+      <FullProductName ProductID="8Base-RHOSE-4.7:kube-state-metrics-container-v4.7.0-202108311835.p0.git.04bff70.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">kube-state-metrics-container-v4.7.0-202108311835.p0.git.04bff70.assembly.stream as a component of Red Hat OpenShift Container Platform 4.7</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="kuryr-cni-container-v4.7.0-202108311403.p0.git.c7654fb.assembly.stream" RelationType="Default Component Of" RelatesToProductReference="8Base-RHOSE-4.7">
+      <FullProductName ProductID="8Base-RHOSE-4.7:kuryr-cni-container-v4.7.0-202108311403.p0.git.c7654fb.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">kuryr-cni-container-v4.7.0-202108311403.p0.git.c7654fb.assembly.stream as a component of Red Hat OpenShift Container Platform 4.7</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="kuryr-controller-container-v4.7.0-202108311403.p0.git.c7654fb.assembly.stream" RelationType="Default Component Of" RelatesToProductReference="8Base-RHOSE-4.7">
+      <FullProductName ProductID="8Base-RHOSE-4.7:kuryr-controller-container-v4.7.0-202108311403.p0.git.c7654fb.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">kuryr-controller-container-v4.7.0-202108311403.p0.git.c7654fb.assembly.stream as a component of Red Hat OpenShift Container Platform 4.7</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="marketplace-operator-container-v4.7.0-202108311835.p0.git.96bab9b.assembly.stream" RelationType="Default Component Of" RelatesToProductReference="8Base-RHOSE-4.7">
+      <FullProductName ProductID="8Base-RHOSE-4.7:marketplace-operator-container-v4.7.0-202108311835.p0.git.96bab9b.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">marketplace-operator-container-v4.7.0-202108311835.p0.git.96bab9b.assembly.stream as a component of Red Hat OpenShift Container Platform 4.7</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="multus-cni-container-v4.7.0-202108311835.p0.git.5530094.assembly.stream" RelationType="Default Component Of" RelatesToProductReference="8Base-RHOSE-4.7">
+      <FullProductName ProductID="8Base-RHOSE-4.7:multus-cni-container-v4.7.0-202108311835.p0.git.5530094.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">multus-cni-container-v4.7.0-202108311835.p0.git.5530094.assembly.stream as a component of Red Hat OpenShift Container Platform 4.7</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="oauth-server-container-v4.7.0-202108311835.p0.git.61db550.assembly.stream" RelationType="Default Component Of" RelatesToProductReference="8Base-RHOSE-4.7">
+      <FullProductName ProductID="8Base-RHOSE-4.7:oauth-server-container-v4.7.0-202108311835.p0.git.61db550.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">oauth-server-container-v4.7.0-202108311835.p0.git.61db550.assembly.stream as a component of Red Hat OpenShift Container Platform 4.7</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="openshift-enterprise-builder-container-v4.7.0-202108251815.p0.git.0e44bee.assembly.stream" RelationType="Default Component Of" RelatesToProductReference="8Base-RHOSE-4.7">
+      <FullProductName ProductID="8Base-RHOSE-4.7:openshift-enterprise-builder-container-v4.7.0-202108251815.p0.git.0e44bee.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">openshift-enterprise-builder-container-v4.7.0-202108251815.p0.git.0e44bee.assembly.stream as a component of Red Hat OpenShift Container Platform 4.7</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="openshift-enterprise-cli-container-v4.7.0-202108311835.p0.git.d1ffb3c.assembly.stream" RelationType="Default Component Of" RelatesToProductReference="8Base-RHOSE-4.7">
+      <FullProductName ProductID="8Base-RHOSE-4.7:openshift-enterprise-cli-container-v4.7.0-202108311835.p0.git.d1ffb3c.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">openshift-enterprise-cli-container-v4.7.0-202108311835.p0.git.d1ffb3c.assembly.stream as a component of Red Hat OpenShift Container Platform 4.7</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="openshift-enterprise-console-container-v4.7.0-202108311835.p0.git.3cb2ea6.assembly.stream" RelationType="Default Component Of" RelatesToProductReference="8Base-RHOSE-4.7">
+      <FullProductName ProductID="8Base-RHOSE-4.7:openshift-enterprise-console-container-v4.7.0-202108311835.p0.git.3cb2ea6.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">openshift-enterprise-console-container-v4.7.0-202108311835.p0.git.3cb2ea6.assembly.stream as a component of Red Hat OpenShift Container Platform 4.7</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="openshift-enterprise-console-operator-container-v4.7.0-202108311835.p0.git.44a0308.assembly.stream" RelationType="Default Component Of" RelatesToProductReference="8Base-RHOSE-4.7">
+      <FullProductName ProductID="8Base-RHOSE-4.7:openshift-enterprise-console-operator-container-v4.7.0-202108311835.p0.git.44a0308.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">openshift-enterprise-console-operator-container-v4.7.0-202108311835.p0.git.44a0308.assembly.stream as a component of Red Hat OpenShift Container Platform 4.7</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="openshift-enterprise-deployer-container-v4.7.0-202108311835.p0.git.d1ffb3c.assembly.stream" RelationType="Default Component Of" RelatesToProductReference="8Base-RHOSE-4.7">
+      <FullProductName ProductID="8Base-RHOSE-4.7:openshift-enterprise-deployer-container-v4.7.0-202108311835.p0.git.d1ffb3c.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">openshift-enterprise-deployer-container-v4.7.0-202108311835.p0.git.d1ffb3c.assembly.stream as a component of Red Hat OpenShift Container Platform 4.7</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="openshift-enterprise-haproxy-router-container-v4.7.0-202108311835.p0.git.4ab216f.assembly.stream" RelationType="Default Component Of" RelatesToProductReference="8Base-RHOSE-4.7">
+      <FullProductName ProductID="8Base-RHOSE-4.7:openshift-enterprise-haproxy-router-container-v4.7.0-202108311835.p0.git.4ab216f.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">openshift-enterprise-haproxy-router-container-v4.7.0-202108311835.p0.git.4ab216f.assembly.stream as a component of Red Hat OpenShift Container Platform 4.7</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="openshift-enterprise-hyperkube-container-v4.7.0-202108311835.p0.git.9689d22.assembly.stream" RelationType="Default Component Of" RelatesToProductReference="8Base-RHOSE-4.7">
+      <FullProductName ProductID="8Base-RHOSE-4.7:openshift-enterprise-hyperkube-container-v4.7.0-202108311835.p0.git.9689d22.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">openshift-enterprise-hyperkube-container-v4.7.0-202108311835.p0.git.9689d22.assembly.stream as a component of Red Hat OpenShift Container Platform 4.7</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="openshift-enterprise-keepalived-ipfailover-container-v4.7.0-202108311835.p0.git.0e45f63.assembly.stream" RelationType="Default Component Of" RelatesToProductReference="8Base-RHOSE-4.7">
+      <FullProductName ProductID="8Base-RHOSE-4.7:openshift-enterprise-keepalived-ipfailover-container-v4.7.0-202108311835.p0.git.0e45f63.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">openshift-enterprise-keepalived-ipfailover-container-v4.7.0-202108311835.p0.git.0e45f63.assembly.stream as a component of Red Hat OpenShift Container Platform 4.7</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="openshift-enterprise-pod-container-v4.7.0-202108311835.p0.git.0e45f63.assembly.stream" RelationType="Default Component Of" RelatesToProductReference="8Base-RHOSE-4.7">
+      <FullProductName ProductID="8Base-RHOSE-4.7:openshift-enterprise-pod-container-v4.7.0-202108311835.p0.git.0e45f63.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">openshift-enterprise-pod-container-v4.7.0-202108311835.p0.git.0e45f63.assembly.stream as a component of Red Hat OpenShift Container Platform 4.7</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="openshift-enterprise-registry-container-v4.7.0-202108311835.p0.git.8b03485.assembly.stream" RelationType="Default Component Of" RelatesToProductReference="8Base-RHOSE-4.7">
+      <FullProductName ProductID="8Base-RHOSE-4.7:openshift-enterprise-registry-container-v4.7.0-202108311835.p0.git.8b03485.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">openshift-enterprise-registry-container-v4.7.0-202108311835.p0.git.8b03485.assembly.stream as a component of Red Hat OpenShift Container Platform 4.7</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="openshift-enterprise-tests-container-v4.7.0-202108311835.p0.git.24f464b.assembly.stream" RelationType="Default Component Of" RelatesToProductReference="8Base-RHOSE-4.7">
+      <FullProductName ProductID="8Base-RHOSE-4.7:openshift-enterprise-tests-container-v4.7.0-202108311835.p0.git.24f464b.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">openshift-enterprise-tests-container-v4.7.0-202108311835.p0.git.24f464b.assembly.stream as a component of Red Hat OpenShift Container Platform 4.7</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="openshift-jenkins-2-container-v4.7.0-202108311835.p0.git.02e81a5.assembly.stream" RelationType="Default Component Of" RelatesToProductReference="8Base-RHOSE-4.7">
+      <FullProductName ProductID="8Base-RHOSE-4.7:openshift-jenkins-2-container-v4.7.0-202108311835.p0.git.02e81a5.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">openshift-jenkins-2-container-v4.7.0-202108311835.p0.git.02e81a5.assembly.stream as a component of Red Hat OpenShift Container Platform 4.7</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="openshift-state-metrics-container-v4.7.0-202108311835.p0.git.40b0968.assembly.stream" RelationType="Default Component Of" RelatesToProductReference="8Base-RHOSE-4.7">
+      <FullProductName ProductID="8Base-RHOSE-4.7:openshift-state-metrics-container-v4.7.0-202108311835.p0.git.40b0968.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">openshift-state-metrics-container-v4.7.0-202108311835.p0.git.40b0968.assembly.stream as a component of Red Hat OpenShift Container Platform 4.7</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="operator-lifecycle-manager-container-v4.7.0-202108311835.p0.git.2012879.assembly.stream" RelationType="Default Component Of" RelatesToProductReference="8Base-RHOSE-4.7">
+      <FullProductName ProductID="8Base-RHOSE-4.7:operator-lifecycle-manager-container-v4.7.0-202108311835.p0.git.2012879.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">operator-lifecycle-manager-container-v4.7.0-202108311835.p0.git.2012879.assembly.stream as a component of Red Hat OpenShift Container Platform 4.7</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="operator-registry-container-v4.7.0-202108311835.p0.git.06e950d.assembly.stream" RelationType="Default Component Of" RelatesToProductReference="8Base-RHOSE-4.7">
+      <FullProductName ProductID="8Base-RHOSE-4.7:operator-registry-container-v4.7.0-202108311835.p0.git.06e950d.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">operator-registry-container-v4.7.0-202108311835.p0.git.06e950d.assembly.stream as a component of Red Hat OpenShift Container Platform 4.7</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="ose-aws-ebs-csi-driver-container-v4.7.0-202108311835.p0.git.f6a71bf.assembly.stream" RelationType="Default Component Of" RelatesToProductReference="8Base-RHOSE-4.7">
+      <FullProductName ProductID="8Base-RHOSE-4.7:ose-aws-ebs-csi-driver-container-v4.7.0-202108311835.p0.git.f6a71bf.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">ose-aws-ebs-csi-driver-container-v4.7.0-202108311835.p0.git.f6a71bf.assembly.stream as a component of Red Hat OpenShift Container Platform 4.7</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="ose-aws-ebs-csi-driver-operator-container-v4.7.0-202108311835.p0.git.3a9ff17.assembly.stream" RelationType="Default Component Of" RelatesToProductReference="8Base-RHOSE-4.7">
+      <FullProductName ProductID="8Base-RHOSE-4.7:ose-aws-ebs-csi-driver-operator-container-v4.7.0-202108311835.p0.git.3a9ff17.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">ose-aws-ebs-csi-driver-operator-container-v4.7.0-202108311835.p0.git.3a9ff17.assembly.stream as a component of Red Hat OpenShift Container Platform 4.7</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="ose-aws-machine-controllers-container-v4.7.0-202108311835.p0.git.5368195.assembly.stream" RelationType="Default Component Of" RelatesToProductReference="8Base-RHOSE-4.7">
+      <FullProductName ProductID="8Base-RHOSE-4.7:ose-aws-machine-controllers-container-v4.7.0-202108311835.p0.git.5368195.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">ose-aws-machine-controllers-container-v4.7.0-202108311835.p0.git.5368195.assembly.stream as a component of Red Hat OpenShift Container Platform 4.7</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="ose-aws-pod-identity-webhook-container-v4.7.0-202108311835.p0.git.0074d6a.assembly.stream" RelationType="Default Component Of" RelatesToProductReference="8Base-RHOSE-4.7">
+      <FullProductName ProductID="8Base-RHOSE-4.7:ose-aws-pod-identity-webhook-container-v4.7.0-202108311835.p0.git.0074d6a.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">ose-aws-pod-identity-webhook-container-v4.7.0-202108311835.p0.git.0074d6a.assembly.stream as a component of Red Hat OpenShift Container Platform 4.7</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="ose-azure-machine-controllers-container-v4.7.0-202108311835.p0.git.723b7ab.assembly.stream" RelationType="Default Component Of" RelatesToProductReference="8Base-RHOSE-4.7">
+      <FullProductName ProductID="8Base-RHOSE-4.7:ose-azure-machine-controllers-container-v4.7.0-202108311835.p0.git.723b7ab.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">ose-azure-machine-controllers-container-v4.7.0-202108311835.p0.git.723b7ab.assembly.stream as a component of Red Hat OpenShift Container Platform 4.7</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="ose-baremetal-installer-container-v4.7.0-202108311835.p0.git.94125b2.assembly.stream" RelationType="Default Component Of" RelatesToProductReference="8Base-RHOSE-4.7">
+      <FullProductName ProductID="8Base-RHOSE-4.7:ose-baremetal-installer-container-v4.7.0-202108311835.p0.git.94125b2.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">ose-baremetal-installer-container-v4.7.0-202108311835.p0.git.94125b2.assembly.stream as a component of Red Hat OpenShift Container Platform 4.7</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="ose-baremetal-operator-container-v4.7.0-202108311835.p0.git.e36cbc1.assembly.stream" RelationType="Default Component Of" RelatesToProductReference="8Base-RHOSE-4.7">
+      <FullProductName ProductID="8Base-RHOSE-4.7:ose-baremetal-operator-container-v4.7.0-202108311835.p0.git.e36cbc1.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">ose-baremetal-operator-container-v4.7.0-202108311835.p0.git.e36cbc1.assembly.stream as a component of Red Hat OpenShift Container Platform 4.7</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="ose-baremetal-runtimecfg-container-v4.7.0-202108311835.p0.git.9c5da32.assembly.stream" RelationType="Default Component Of" RelatesToProductReference="8Base-RHOSE-4.7">
+      <FullProductName ProductID="8Base-RHOSE-4.7:ose-baremetal-runtimecfg-container-v4.7.0-202108311835.p0.git.9c5da32.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">ose-baremetal-runtimecfg-container-v4.7.0-202108311835.p0.git.9c5da32.assembly.stream as a component of Red Hat OpenShift Container Platform 4.7</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="ose-cli-artifacts-container-v4.7.0-202108311835.p0.git.d1ffb3c.assembly.stream" RelationType="Default Component Of" RelatesToProductReference="8Base-RHOSE-4.7">
+      <FullProductName ProductID="8Base-RHOSE-4.7:ose-cli-artifacts-container-v4.7.0-202108311835.p0.git.d1ffb3c.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">ose-cli-artifacts-container-v4.7.0-202108311835.p0.git.d1ffb3c.assembly.stream as a component of Red Hat OpenShift Container Platform 4.7</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="ose-cloud-credential-operator-container-v4.7.0-202108311835.p0.git.0783477.assembly.stream" RelationType="Default Component Of" RelatesToProductReference="8Base-RHOSE-4.7">
+      <FullProductName ProductID="8Base-RHOSE-4.7:ose-cloud-credential-operator-container-v4.7.0-202108311835.p0.git.0783477.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">ose-cloud-credential-operator-container-v4.7.0-202108311835.p0.git.0783477.assembly.stream as a component of Red Hat OpenShift Container Platform 4.7</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="ose-cluster-authentication-operator-container-v4.7.0-202108311835.p0.git.4c02b7b.assembly.stream" RelationType="Default Component Of" RelatesToProductReference="8Base-RHOSE-4.7">
+      <FullProductName ProductID="8Base-RHOSE-4.7:ose-cluster-authentication-operator-container-v4.7.0-202108311835.p0.git.4c02b7b.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">ose-cluster-authentication-operator-container-v4.7.0-202108311835.p0.git.4c02b7b.assembly.stream as a component of Red Hat OpenShift Container Platform 4.7</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="ose-cluster-autoscaler-operator-container-v4.7.0-202108311835.p0.git.7658bea.assembly.stream" RelationType="Default Component Of" RelatesToProductReference="8Base-RHOSE-4.7">
+      <FullProductName ProductID="8Base-RHOSE-4.7:ose-cluster-autoscaler-operator-container-v4.7.0-202108311835.p0.git.7658bea.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">ose-cluster-autoscaler-operator-container-v4.7.0-202108311835.p0.git.7658bea.assembly.stream as a component of Red Hat OpenShift Container Platform 4.7</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="ose-cluster-baremetal-operator-container-v4.7.0-202108311835.p0.git.f73e5fc.assembly.stream" RelationType="Default Component Of" RelatesToProductReference="8Base-RHOSE-4.7">
+      <FullProductName ProductID="8Base-RHOSE-4.7:ose-cluster-baremetal-operator-container-v4.7.0-202108311835.p0.git.f73e5fc.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">ose-cluster-baremetal-operator-container-v4.7.0-202108311835.p0.git.f73e5fc.assembly.stream as a component of Red Hat OpenShift Container Platform 4.7</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="ose-cluster-bootstrap-container-v4.7.0-202108311835.p0.git.6665cae.assembly.stream" RelationType="Default Component Of" RelatesToProductReference="8Base-RHOSE-4.7">
+      <FullProductName ProductID="8Base-RHOSE-4.7:ose-cluster-bootstrap-container-v4.7.0-202108311835.p0.git.6665cae.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">ose-cluster-bootstrap-container-v4.7.0-202108311835.p0.git.6665cae.assembly.stream as a component of Red Hat OpenShift Container Platform 4.7</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="ose-cluster-config-operator-container-v4.7.0-202108311835.p0.git.07e059a.assembly.stream" RelationType="Default Component Of" RelatesToProductReference="8Base-RHOSE-4.7">
+      <FullProductName ProductID="8Base-RHOSE-4.7:ose-cluster-config-operator-container-v4.7.0-202108311835.p0.git.07e059a.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">ose-cluster-config-operator-container-v4.7.0-202108311835.p0.git.07e059a.assembly.stream as a component of Red Hat OpenShift Container Platform 4.7</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="ose-cluster-dns-operator-container-v4.7.0-202108311835.p0.git.cf8be7b.assembly.stream" RelationType="Default Component Of" RelatesToProductReference="8Base-RHOSE-4.7">
+      <FullProductName ProductID="8Base-RHOSE-4.7:ose-cluster-dns-operator-container-v4.7.0-202108311835.p0.git.cf8be7b.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">ose-cluster-dns-operator-container-v4.7.0-202108311835.p0.git.cf8be7b.assembly.stream as a component of Red Hat OpenShift Container Platform 4.7</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="ose-cluster-image-registry-operator-container-v4.7.0-202108311835.p0.git.70a8588.assembly.stream" RelationType="Default Component Of" RelatesToProductReference="8Base-RHOSE-4.7">
+      <FullProductName ProductID="8Base-RHOSE-4.7:ose-cluster-image-registry-operator-container-v4.7.0-202108311835.p0.git.70a8588.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">ose-cluster-image-registry-operator-container-v4.7.0-202108311835.p0.git.70a8588.assembly.stream as a component of Red Hat OpenShift Container Platform 4.7</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="ose-cluster-ingress-operator-container-v4.7.0-202108311835.p0.git.b86f935.assembly.stream" RelationType="Default Component Of" RelatesToProductReference="8Base-RHOSE-4.7">
+      <FullProductName ProductID="8Base-RHOSE-4.7:ose-cluster-ingress-operator-container-v4.7.0-202108311835.p0.git.b86f935.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">ose-cluster-ingress-operator-container-v4.7.0-202108311835.p0.git.b86f935.assembly.stream as a component of Red Hat OpenShift Container Platform 4.7</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="ose-cluster-kube-apiserver-operator-container-v4.7.0-202108311835.p0.git.099c6af.assembly.stream" RelationType="Default Component Of" RelatesToProductReference="8Base-RHOSE-4.7">
+      <FullProductName ProductID="8Base-RHOSE-4.7:ose-cluster-kube-apiserver-operator-container-v4.7.0-202108311835.p0.git.099c6af.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">ose-cluster-kube-apiserver-operator-container-v4.7.0-202108311835.p0.git.099c6af.assembly.stream as a component of Red Hat OpenShift Container Platform 4.7</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="ose-cluster-kube-controller-manager-operator-container-v4.7.0-202108311835.p0.git.2815909.assembly.stream" RelationType="Default Component Of" RelatesToProductReference="8Base-RHOSE-4.7">
+      <FullProductName ProductID="8Base-RHOSE-4.7:ose-cluster-kube-controller-manager-operator-container-v4.7.0-202108311835.p0.git.2815909.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">ose-cluster-kube-controller-manager-operator-container-v4.7.0-202108311835.p0.git.2815909.assembly.stream as a component of Red Hat OpenShift Container Platform 4.7</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="ose-cluster-kube-scheduler-operator-container-v4.7.0-202108311835.p0.git.b2204ca.assembly.stream" RelationType="Default Component Of" RelatesToProductReference="8Base-RHOSE-4.7">
+      <FullProductName ProductID="8Base-RHOSE-4.7:ose-cluster-kube-scheduler-operator-container-v4.7.0-202108311835.p0.git.b2204ca.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">ose-cluster-kube-scheduler-operator-container-v4.7.0-202108311835.p0.git.b2204ca.assembly.stream as a component of Red Hat OpenShift Container Platform 4.7</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="ose-cluster-kube-storage-version-migrator-operator-container-v4.7.0-202108311835.p0.git.5448475.assembly.stream" RelationType="Default Component Of" RelatesToProductReference="8Base-RHOSE-4.7">
+      <FullProductName ProductID="8Base-RHOSE-4.7:ose-cluster-kube-storage-version-migrator-operator-container-v4.7.0-202108311835.p0.git.5448475.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">ose-cluster-kube-storage-version-migrator-operator-container-v4.7.0-202108311835.p0.git.5448475.assembly.stream as a component of Red Hat OpenShift Container Platform 4.7</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="ose-cluster-openshift-apiserver-operator-container-v4.7.0-202108311835.p0.git.fa6d8e1.assembly.stream" RelationType="Default Component Of" RelatesToProductReference="8Base-RHOSE-4.7">
+      <FullProductName ProductID="8Base-RHOSE-4.7:ose-cluster-openshift-apiserver-operator-container-v4.7.0-202108311835.p0.git.fa6d8e1.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">ose-cluster-openshift-apiserver-operator-container-v4.7.0-202108311835.p0.git.fa6d8e1.assembly.stream as a component of Red Hat OpenShift Container Platform 4.7</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="ose-cluster-openshift-controller-manager-operator-container-v4.7.0-202108311835.p0.git.2a8963a.assembly.stream" RelationType="Default Component Of" RelatesToProductReference="8Base-RHOSE-4.7">
+      <FullProductName ProductID="8Base-RHOSE-4.7:ose-cluster-openshift-controller-manager-operator-container-v4.7.0-202108311835.p0.git.2a8963a.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">ose-cluster-openshift-controller-manager-operator-container-v4.7.0-202108311835.p0.git.2a8963a.assembly.stream as a component of Red Hat OpenShift Container Platform 4.7</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="ose-cluster-ovirt-csi-operator-container-v4.7.0-202108311835.p0.git.5e51508.assembly.stream" RelationType="Default Component Of" RelatesToProductReference="8Base-RHOSE-4.7">
+      <FullProductName ProductID="8Base-RHOSE-4.7:ose-cluster-ovirt-csi-operator-container-v4.7.0-202108311835.p0.git.5e51508.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">ose-cluster-ovirt-csi-operator-container-v4.7.0-202108311835.p0.git.5e51508.assembly.stream as a component of Red Hat OpenShift Container Platform 4.7</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="ose-cluster-policy-controller-container-v4.7.0-202108311835.p0.git.42791ba.assembly.stream" RelationType="Default Component Of" RelatesToProductReference="8Base-RHOSE-4.7">
+      <FullProductName ProductID="8Base-RHOSE-4.7:ose-cluster-policy-controller-container-v4.7.0-202108311835.p0.git.42791ba.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">ose-cluster-policy-controller-container-v4.7.0-202108311835.p0.git.42791ba.assembly.stream as a component of Red Hat OpenShift Container Platform 4.7</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="ose-cluster-storage-operator-container-v4.7.0-202108311835.p0.git.6d2c25f.assembly.stream" RelationType="Default Component Of" RelatesToProductReference="8Base-RHOSE-4.7">
+      <FullProductName ProductID="8Base-RHOSE-4.7:ose-cluster-storage-operator-container-v4.7.0-202108311835.p0.git.6d2c25f.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">ose-cluster-storage-operator-container-v4.7.0-202108311835.p0.git.6d2c25f.assembly.stream as a component of Red Hat OpenShift Container Platform 4.7</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="ose-cluster-update-keys-container-v4.7.0-202108311835.p0.git.b7e7917.assembly.stream" RelationType="Default Component Of" RelatesToProductReference="8Base-RHOSE-4.7">
+      <FullProductName ProductID="8Base-RHOSE-4.7:ose-cluster-update-keys-container-v4.7.0-202108311835.p0.git.b7e7917.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">ose-cluster-update-keys-container-v4.7.0-202108311835.p0.git.b7e7917.assembly.stream as a component of Red Hat OpenShift Container Platform 4.7</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="ose-containernetworking-plugins-container-v4.7.0-202108311835.p0.git.fc27124.assembly.stream" RelationType="Default Component Of" RelatesToProductReference="8Base-RHOSE-4.7">
+      <FullProductName ProductID="8Base-RHOSE-4.7:ose-containernetworking-plugins-container-v4.7.0-202108311835.p0.git.fc27124.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">ose-containernetworking-plugins-container-v4.7.0-202108311835.p0.git.fc27124.assembly.stream as a component of Red Hat OpenShift Container Platform 4.7</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="ose-csi-external-resizer-container-v4.7.0-202108311835.p0.git.f77279e.assembly.stream" RelationType="Default Component Of" RelatesToProductReference="8Base-RHOSE-4.7">
+      <FullProductName ProductID="8Base-RHOSE-4.7:ose-csi-external-resizer-container-v4.7.0-202108311835.p0.git.f77279e.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">ose-csi-external-resizer-container-v4.7.0-202108311835.p0.git.f77279e.assembly.stream as a component of Red Hat OpenShift Container Platform 4.7</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="ose-csi-external-snapshotter-container-v4.7.0-202108311835.p0.git.2677373.assembly.stream" RelationType="Default Component Of" RelatesToProductReference="8Base-RHOSE-4.7">
+      <FullProductName ProductID="8Base-RHOSE-4.7:ose-csi-external-snapshotter-container-v4.7.0-202108311835.p0.git.2677373.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">ose-csi-external-snapshotter-container-v4.7.0-202108311835.p0.git.2677373.assembly.stream as a component of Red Hat OpenShift Container Platform 4.7</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="ose-csi-snapshot-controller-container-v4.7.0-202108311835.p0.git.2677373.assembly.stream" RelationType="Default Component Of" RelatesToProductReference="8Base-RHOSE-4.7">
+      <FullProductName ProductID="8Base-RHOSE-4.7:ose-csi-snapshot-controller-container-v4.7.0-202108311835.p0.git.2677373.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">ose-csi-snapshot-controller-container-v4.7.0-202108311835.p0.git.2677373.assembly.stream as a component of Red Hat OpenShift Container Platform 4.7</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="ose-csi-snapshot-validation-webhook-container-v4.7.0-202108311835.p0.git.2677373.assembly.stream" RelationType="Default Component Of" RelatesToProductReference="8Base-RHOSE-4.7">
+      <FullProductName ProductID="8Base-RHOSE-4.7:ose-csi-snapshot-validation-webhook-container-v4.7.0-202108311835.p0.git.2677373.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">ose-csi-snapshot-validation-webhook-container-v4.7.0-202108311835.p0.git.2677373.assembly.stream as a component of Red Hat OpenShift Container Platform 4.7</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="ose-egress-router-cni-container-v4.7.0-202108311835.p0.git.96ebd37.assembly.stream" RelationType="Default Component Of" RelatesToProductReference="8Base-RHOSE-4.7">
+      <FullProductName ProductID="8Base-RHOSE-4.7:ose-egress-router-cni-container-v4.7.0-202108311835.p0.git.96ebd37.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">ose-egress-router-cni-container-v4.7.0-202108311835.p0.git.96ebd37.assembly.stream as a component of Red Hat OpenShift Container Platform 4.7</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="ose-etcd-container-v4.7.0-202108311835.p0.git.c61e5af.assembly.stream" RelationType="Default Component Of" RelatesToProductReference="8Base-RHOSE-4.7">
+      <FullProductName ProductID="8Base-RHOSE-4.7:ose-etcd-container-v4.7.0-202108311835.p0.git.c61e5af.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">ose-etcd-container-v4.7.0-202108311835.p0.git.c61e5af.assembly.stream as a component of Red Hat OpenShift Container Platform 4.7</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="ose-gcp-machine-controllers-container-v4.7.0-202108311835.p0.git.5f6589d.assembly.stream" RelationType="Default Component Of" RelatesToProductReference="8Base-RHOSE-4.7">
+      <FullProductName ProductID="8Base-RHOSE-4.7:ose-gcp-machine-controllers-container-v4.7.0-202108311835.p0.git.5f6589d.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">ose-gcp-machine-controllers-container-v4.7.0-202108311835.p0.git.5f6589d.assembly.stream as a component of Red Hat OpenShift Container Platform 4.7</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="ose-gcp-pd-csi-driver-container-v4.7.0-202108311835.p0.git.0cb61d2.assembly.stream" RelationType="Default Component Of" RelatesToProductReference="8Base-RHOSE-4.7">
+      <FullProductName ProductID="8Base-RHOSE-4.7:ose-gcp-pd-csi-driver-container-v4.7.0-202108311835.p0.git.0cb61d2.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">ose-gcp-pd-csi-driver-container-v4.7.0-202108311835.p0.git.0cb61d2.assembly.stream as a component of Red Hat OpenShift Container Platform 4.7</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="ose-gcp-pd-csi-driver-operator-container-v4.7.0-202108311835.p0.git.d40dd57.assembly.stream" RelationType="Default Component Of" RelatesToProductReference="8Base-RHOSE-4.7">
+      <FullProductName ProductID="8Base-RHOSE-4.7:ose-gcp-pd-csi-driver-operator-container-v4.7.0-202108311835.p0.git.d40dd57.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">ose-gcp-pd-csi-driver-operator-container-v4.7.0-202108311835.p0.git.d40dd57.assembly.stream as a component of Red Hat OpenShift Container Platform 4.7</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="ose-hello-openshift-container-v4.7.0-202108311835.p0.git.24f464b.assembly.stream" RelationType="Default Component Of" RelatesToProductReference="8Base-RHOSE-4.7">
+      <FullProductName ProductID="8Base-RHOSE-4.7:ose-hello-openshift-container-v4.7.0-202108311835.p0.git.24f464b.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">ose-hello-openshift-container-v4.7.0-202108311835.p0.git.24f464b.assembly.stream as a component of Red Hat OpenShift Container Platform 4.7</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="ose-insights-operator-container-v4.7.0-202108311835.p0.git.19b13a7.assembly.stream" RelationType="Default Component Of" RelatesToProductReference="8Base-RHOSE-4.7">
+      <FullProductName ProductID="8Base-RHOSE-4.7:ose-insights-operator-container-v4.7.0-202108311835.p0.git.19b13a7.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">ose-insights-operator-container-v4.7.0-202108311835.p0.git.19b13a7.assembly.stream as a component of Red Hat OpenShift Container Platform 4.7</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="ose-installer-artifacts-container-v4.7.0-202108311835.p0.git.94125b2.assembly.stream" RelationType="Default Component Of" RelatesToProductReference="8Base-RHOSE-4.7">
+      <FullProductName ProductID="8Base-RHOSE-4.7:ose-installer-artifacts-container-v4.7.0-202108311835.p0.git.94125b2.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">ose-installer-artifacts-container-v4.7.0-202108311835.p0.git.94125b2.assembly.stream as a component of Red Hat OpenShift Container Platform 4.7</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="ose-installer-container-v4.7.0-202108311835.p0.git.94125b2.assembly.stream" RelationType="Default Component Of" RelatesToProductReference="8Base-RHOSE-4.7">
+      <FullProductName ProductID="8Base-RHOSE-4.7:ose-installer-container-v4.7.0-202108311835.p0.git.94125b2.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">ose-installer-container-v4.7.0-202108311835.p0.git.94125b2.assembly.stream as a component of Red Hat OpenShift Container Platform 4.7</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="ose-jenkins-agent-base-container-v4.7.0-202108311835.p0.git.02e81a5.assembly.stream" RelationType="Default Component Of" RelatesToProductReference="8Base-RHOSE-4.7">
+      <FullProductName ProductID="8Base-RHOSE-4.7:ose-jenkins-agent-base-container-v4.7.0-202108311835.p0.git.02e81a5.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">ose-jenkins-agent-base-container-v4.7.0-202108311835.p0.git.02e81a5.assembly.stream as a component of Red Hat OpenShift Container Platform 4.7</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="ose-jenkins-agent-maven-container-v4.7.0-202108311835.p0.git.02e81a5.assembly.stream" RelationType="Default Component Of" RelatesToProductReference="8Base-RHOSE-4.7">
+      <FullProductName ProductID="8Base-RHOSE-4.7:ose-jenkins-agent-maven-container-v4.7.0-202108311835.p0.git.02e81a5.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">ose-jenkins-agent-maven-container-v4.7.0-202108311835.p0.git.02e81a5.assembly.stream as a component of Red Hat OpenShift Container Platform 4.7</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="ose-jenkins-agent-nodejs-12-container-v4.7.0-202108311835.p0.git.02e81a5.assembly.stream" RelationType="Default Component Of" RelatesToProductReference="8Base-RHOSE-4.7">
+      <FullProductName ProductID="8Base-RHOSE-4.7:ose-jenkins-agent-nodejs-12-container-v4.7.0-202108311835.p0.git.02e81a5.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">ose-jenkins-agent-nodejs-12-container-v4.7.0-202108311835.p0.git.02e81a5.assembly.stream as a component of Red Hat OpenShift Container Platform 4.7</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="ose-kube-storage-version-migrator-container-v4.7.0-202108311835.p0.git.329a4b0.assembly.stream" RelationType="Default Component Of" RelatesToProductReference="8Base-RHOSE-4.7">
+      <FullProductName ProductID="8Base-RHOSE-4.7:ose-kube-storage-version-migrator-container-v4.7.0-202108311835.p0.git.329a4b0.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">ose-kube-storage-version-migrator-container-v4.7.0-202108311835.p0.git.329a4b0.assembly.stream as a component of Red Hat OpenShift Container Platform 4.7</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="ose-libvirt-machine-controllers-container-v4.7.0-202108311835.p0.git.eb819cb.assembly.stream" RelationType="Default Component Of" RelatesToProductReference="8Base-RHOSE-4.7">
+      <FullProductName ProductID="8Base-RHOSE-4.7:ose-libvirt-machine-controllers-container-v4.7.0-202108311835.p0.git.eb819cb.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">ose-libvirt-machine-controllers-container-v4.7.0-202108311835.p0.git.eb819cb.assembly.stream as a component of Red Hat OpenShift Container Platform 4.7</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="ose-machine-api-operator-container-v4.7.0-202108311835.p0.git.e179bb5.assembly.stream" RelationType="Default Component Of" RelatesToProductReference="8Base-RHOSE-4.7">
+      <FullProductName ProductID="8Base-RHOSE-4.7:ose-machine-api-operator-container-v4.7.0-202108311835.p0.git.e179bb5.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">ose-machine-api-operator-container-v4.7.0-202108311835.p0.git.e179bb5.assembly.stream as a component of Red Hat OpenShift Container Platform 4.7</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="ose-machine-config-operator-container-v4.7.0-202108311835.p0.git.d6d26e1.assembly.stream" RelationType="Default Component Of" RelatesToProductReference="8Base-RHOSE-4.7">
+      <FullProductName ProductID="8Base-RHOSE-4.7:ose-machine-config-operator-container-v4.7.0-202108311835.p0.git.d6d26e1.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">ose-machine-config-operator-container-v4.7.0-202108311835.p0.git.d6d26e1.assembly.stream as a component of Red Hat OpenShift Container Platform 4.7</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="ose-mdns-publisher-container-v4.7.0-202108311835.p0.git.4b2a152.assembly.stream" RelationType="Default Component Of" RelatesToProductReference="8Base-RHOSE-4.7">
+      <FullProductName ProductID="8Base-RHOSE-4.7:ose-mdns-publisher-container-v4.7.0-202108311835.p0.git.4b2a152.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">ose-mdns-publisher-container-v4.7.0-202108311835.p0.git.4b2a152.assembly.stream as a component of Red Hat OpenShift Container Platform 4.7</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="ose-multus-admission-controller-container-v4.7.0-202108311835.p0.git.a7312f5.assembly.stream" RelationType="Default Component Of" RelatesToProductReference="8Base-RHOSE-4.7">
+      <FullProductName ProductID="8Base-RHOSE-4.7:ose-multus-admission-controller-container-v4.7.0-202108311835.p0.git.a7312f5.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">ose-multus-admission-controller-container-v4.7.0-202108311835.p0.git.a7312f5.assembly.stream as a component of Red Hat OpenShift Container Platform 4.7</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="ose-multus-networkpolicy-container-v4.7.0-202108311835.p0.git.820a753.assembly.stream" RelationType="Default Component Of" RelatesToProductReference="8Base-RHOSE-4.7">
+      <FullProductName ProductID="8Base-RHOSE-4.7:ose-multus-networkpolicy-container-v4.7.0-202108311835.p0.git.820a753.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">ose-multus-networkpolicy-container-v4.7.0-202108311835.p0.git.820a753.assembly.stream as a component of Red Hat OpenShift Container Platform 4.7</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="ose-must-gather-container-v4.7.0-202108311835.p0.git.205d4e3.assembly.stream" RelationType="Default Component Of" RelatesToProductReference="8Base-RHOSE-4.7">
+      <FullProductName ProductID="8Base-RHOSE-4.7:ose-must-gather-container-v4.7.0-202108311835.p0.git.205d4e3.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">ose-must-gather-container-v4.7.0-202108311835.p0.git.205d4e3.assembly.stream as a component of Red Hat OpenShift Container Platform 4.7</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="ose-network-metrics-daemon-container-v4.7.0-202108311835.p0.git.b192615.assembly.stream" RelationType="Default Component Of" RelatesToProductReference="8Base-RHOSE-4.7">
+      <FullProductName ProductID="8Base-RHOSE-4.7:ose-network-metrics-daemon-container-v4.7.0-202108311835.p0.git.b192615.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">ose-network-metrics-daemon-container-v4.7.0-202108311835.p0.git.b192615.assembly.stream as a component of Red Hat OpenShift Container Platform 4.7</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="ose-node-container-v4.7.0-202108311835.p0.git.cbd5e4b.assembly.stream" RelationType="Default Component Of" RelatesToProductReference="8Base-RHOSE-4.7">
+      <FullProductName ProductID="8Base-RHOSE-4.7:ose-node-container-v4.7.0-202108311835.p0.git.cbd5e4b.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">ose-node-container-v4.7.0-202108311835.p0.git.cbd5e4b.assembly.stream as a component of Red Hat OpenShift Container Platform 4.7</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="ose-oauth-apiserver-container-v4.7.0-202108311835.p0.git.69f527e.assembly.stream" RelationType="Default Component Of" RelatesToProductReference="8Base-RHOSE-4.7">
+      <FullProductName ProductID="8Base-RHOSE-4.7:ose-oauth-apiserver-container-v4.7.0-202108311835.p0.git.69f527e.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">ose-oauth-apiserver-container-v4.7.0-202108311835.p0.git.69f527e.assembly.stream as a component of Red Hat OpenShift Container Platform 4.7</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="ose-openshift-apiserver-container-v4.7.0-202108311835.p0.git.f9ac087.assembly.stream" RelationType="Default Component Of" RelatesToProductReference="8Base-RHOSE-4.7">
+      <FullProductName ProductID="8Base-RHOSE-4.7:ose-openshift-apiserver-container-v4.7.0-202108311835.p0.git.f9ac087.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">ose-openshift-apiserver-container-v4.7.0-202108311835.p0.git.f9ac087.assembly.stream as a component of Red Hat OpenShift Container Platform 4.7</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="ose-openshift-controller-manager-container-v4.7.0-202108311835.p0.git.c93745b.assembly.stream" RelationType="Default Component Of" RelatesToProductReference="8Base-RHOSE-4.7">
+      <FullProductName ProductID="8Base-RHOSE-4.7:ose-openshift-controller-manager-container-v4.7.0-202108311835.p0.git.c93745b.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">ose-openshift-controller-manager-container-v4.7.0-202108311835.p0.git.c93745b.assembly.stream as a component of Red Hat OpenShift Container Platform 4.7</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="ose-openstack-cinder-csi-driver-container-v4.7.0-202108311835.p0.git.d3f7092.assembly.stream" RelationType="Default Component Of" RelatesToProductReference="8Base-RHOSE-4.7">
+      <FullProductName ProductID="8Base-RHOSE-4.7:ose-openstack-cinder-csi-driver-container-v4.7.0-202108311835.p0.git.d3f7092.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">ose-openstack-cinder-csi-driver-container-v4.7.0-202108311835.p0.git.d3f7092.assembly.stream as a component of Red Hat OpenShift Container Platform 4.7</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="ose-openstack-cinder-csi-driver-operator-container-v4.7.0-202108311835.p0.git.117ce62.assembly.stream" RelationType="Default Component Of" RelatesToProductReference="8Base-RHOSE-4.7">
+      <FullProductName ProductID="8Base-RHOSE-4.7:ose-openstack-cinder-csi-driver-operator-container-v4.7.0-202108311835.p0.git.117ce62.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">ose-openstack-cinder-csi-driver-operator-container-v4.7.0-202108311835.p0.git.117ce62.assembly.stream as a component of Red Hat OpenShift Container Platform 4.7</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="ose-openstack-machine-controllers-container-v4.7.0-202108311835.p0.git.471cf3a.assembly.stream" RelationType="Default Component Of" RelatesToProductReference="8Base-RHOSE-4.7">
+      <FullProductName ProductID="8Base-RHOSE-4.7:ose-openstack-machine-controllers-container-v4.7.0-202108311835.p0.git.471cf3a.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">ose-openstack-machine-controllers-container-v4.7.0-202108311835.p0.git.471cf3a.assembly.stream as a component of Red Hat OpenShift Container Platform 4.7</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="ose-ovirt-csi-driver-container-v4.7.0-202108311835.p0.git.72545e6.assembly.stream" RelationType="Default Component Of" RelatesToProductReference="8Base-RHOSE-4.7">
+      <FullProductName ProductID="8Base-RHOSE-4.7:ose-ovirt-csi-driver-container-v4.7.0-202108311835.p0.git.72545e6.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">ose-ovirt-csi-driver-container-v4.7.0-202108311835.p0.git.72545e6.assembly.stream as a component of Red Hat OpenShift Container Platform 4.7</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="ose-ovirt-machine-controllers-container-v4.7.0-202108311835.p0.git.01b9bf8.assembly.stream" RelationType="Default Component Of" RelatesToProductReference="8Base-RHOSE-4.7">
+      <FullProductName ProductID="8Base-RHOSE-4.7:ose-ovirt-machine-controllers-container-v4.7.0-202108311835.p0.git.01b9bf8.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">ose-ovirt-machine-controllers-container-v4.7.0-202108311835.p0.git.01b9bf8.assembly.stream as a component of Red Hat OpenShift Container Platform 4.7</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="ose-ovn-kubernetes-container-v4.7.0-202108311835.p0.git.53bc319.assembly.stream" RelationType="Default Component Of" RelatesToProductReference="8Base-RHOSE-4.7">
+      <FullProductName ProductID="8Base-RHOSE-4.7:ose-ovn-kubernetes-container-v4.7.0-202108311835.p0.git.53bc319.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">ose-ovn-kubernetes-container-v4.7.0-202108311835.p0.git.53bc319.assembly.stream as a component of Red Hat OpenShift Container Platform 4.7</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="ose-prometheus-adapter-container-v4.7.0-202108311835.p0.git.212d80b.assembly.stream" RelationType="Default Component Of" RelatesToProductReference="8Base-RHOSE-4.7">
+      <FullProductName ProductID="8Base-RHOSE-4.7:ose-prometheus-adapter-container-v4.7.0-202108311835.p0.git.212d80b.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">ose-prometheus-adapter-container-v4.7.0-202108311835.p0.git.212d80b.assembly.stream as a component of Red Hat OpenShift Container Platform 4.7</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="ose-service-ca-operator-container-v4.7.0-202108311835.p0.git.f65053f.assembly.stream" RelationType="Default Component Of" RelatesToProductReference="8Base-RHOSE-4.7">
+      <FullProductName ProductID="8Base-RHOSE-4.7:ose-service-ca-operator-container-v4.7.0-202108311835.p0.git.f65053f.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">ose-service-ca-operator-container-v4.7.0-202108311835.p0.git.f65053f.assembly.stream as a component of Red Hat OpenShift Container Platform 4.7</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="ose-thanos-container-v4.7.0-202108311835.p0.git.319e70c.assembly.stream" RelationType="Default Component Of" RelatesToProductReference="8Base-RHOSE-4.7">
+      <FullProductName ProductID="8Base-RHOSE-4.7:ose-thanos-container-v4.7.0-202108311835.p0.git.319e70c.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">ose-thanos-container-v4.7.0-202108311835.p0.git.319e70c.assembly.stream as a component of Red Hat OpenShift Container Platform 4.7</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="ose-tools-container-v4.7.0-202108311835.p0.git.d1ffb3c.assembly.stream" RelationType="Default Component Of" RelatesToProductReference="8Base-RHOSE-4.7">
+      <FullProductName ProductID="8Base-RHOSE-4.7:ose-tools-container-v4.7.0-202108311835.p0.git.d1ffb3c.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">ose-tools-container-v4.7.0-202108311835.p0.git.d1ffb3c.assembly.stream as a component of Red Hat OpenShift Container Platform 4.7</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="ose-vsphere-problem-detector-container-v4.7.0-202108311835.p0.git.8f7c124.assembly.stream" RelationType="Default Component Of" RelatesToProductReference="8Base-RHOSE-4.7">
+      <FullProductName ProductID="8Base-RHOSE-4.7:ose-vsphere-problem-detector-container-v4.7.0-202108311835.p0.git.8f7c124.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">ose-vsphere-problem-detector-container-v4.7.0-202108311835.p0.git.8f7c124.assembly.stream as a component of Red Hat OpenShift Container Platform 4.7</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="prometheus-config-reloader-container-v4.7.0-202108311835.p0.git.1f0fd51.assembly.stream" RelationType="Default Component Of" RelatesToProductReference="8Base-RHOSE-4.7">
+      <FullProductName ProductID="8Base-RHOSE-4.7:prometheus-config-reloader-container-v4.7.0-202108311835.p0.git.1f0fd51.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">prometheus-config-reloader-container-v4.7.0-202108311835.p0.git.1f0fd51.assembly.stream as a component of Red Hat OpenShift Container Platform 4.7</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="prometheus-operator-container-v4.7.0-202108311835.p0.git.1f0fd51.assembly.stream" RelationType="Default Component Of" RelatesToProductReference="8Base-RHOSE-4.7">
+      <FullProductName ProductID="8Base-RHOSE-4.7:prometheus-operator-container-v4.7.0-202108311835.p0.git.1f0fd51.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">prometheus-operator-container-v4.7.0-202108311835.p0.git.1f0fd51.assembly.stream as a component of Red Hat OpenShift Container Platform 4.7</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="telemeter-container-v4.7.0-202108311835.p0.git.e4dac51.assembly.stream" RelationType="Default Component Of" RelatesToProductReference="8Base-RHOSE-4.7">
+      <FullProductName ProductID="8Base-RHOSE-4.7:telemeter-container-v4.7.0-202108311835.p0.git.e4dac51.assembly.stream" CPE="cpe:/a:redhat:openshift:4.7::el8">telemeter-container-v4.7.0-202108311835.p0.git.e4dac51.assembly.stream as a component of Red Hat OpenShift Container Platform 4.7</FullProductName>
+    </Relationship>
+  </ProductTree>
+
+  <Vulnerability Ordinal="1" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">gogo/protobuf: plugin/unmarshal/unmarshal.go lacks certain index validation</Note></Notes>
+    <DiscoveryDate>2021-01-28T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-01-11T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-3121</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>8Base-RHOSE-4.7:baremetal-machine-controller-container-v4.7.0-202108311835.p0.git.726d97e.assembly.stream</ProductID>
+      <ProductID>8Base-RHOSE-4.7:cluster-etcd-operator-container-v4.7.0-202108311835.p0.git.51cb8c4.assembly.stream</ProductID>
+      <ProductID>8Base-RHOSE-4.7:cluster-monitoring-operator-container-v4.7.0-202108311835.p0.git.035c803.assembly.stream</ProductID>
+      <ProductID>8Base-RHOSE-4.7:cluster-network-operator-container-v4.7.0-202108311835.p0.git.9a9a870.assembly.stream</ProductID>
+      <ProductID>8Base-RHOSE-4.7:cluster-node-tuning-operator-container-v4.7.0-202108311835.p0.git.3066601.assembly.stream</ProductID>
+      <ProductID>8Base-RHOSE-4.7:cluster-version-operator-container-v4.7.0-202108311835.p0.git.cc81827.assembly.stream</ProductID>
+      <ProductID>8Base-RHOSE-4.7:coredns-container-v4.7.0-202108311835.p0.git.d4a3ba3.assembly.stream</ProductID>
+      <ProductID>8Base-RHOSE-4.7:csi-driver-manila-container-v4.7.0-202108311835.p0.git.d3f7092.assembly.stream</ProductID>
+      <ProductID>8Base-RHOSE-4.7:csi-driver-manila-operator-container-v4.7.0-202108311835.p0.git.bffdeaa.assembly.stream</ProductID>
+      <ProductID>8Base-RHOSE-4.7:csi-driver-nfs-container-v4.7.0-202108311835.p0.git.9404d34.assembly.stream</ProductID>
+      <ProductID>8Base-RHOSE-4.7:csi-livenessprobe-container-v4.7.0-202108311835.p0.git.3dad028.assembly.stream</ProductID>
+      <ProductID>8Base-RHOSE-4.7:csi-node-driver-registrar-container-v4.7.0-202108311835.p0.git.2a77963.assembly.stream</ProductID>
+      <ProductID>8Base-RHOSE-4.7:csi-provisioner-container-v4.7.0-202108311835.p0.git.a49415e.assembly.stream</ProductID>
+      <ProductID>8Base-RHOSE-4.7:driver-toolkit-container-v4.7.0-202108311835.p0.git.bcd11a1.assembly.stream</ProductID>
+      <ProductID>8Base-RHOSE-4.7:grafana-container-v4.7.0-202108311835.p0.git.b02c35d.assembly.stream</ProductID>
+      <ProductID>8Base-RHOSE-4.7:kube-proxy-container-v4.7.0-202108311835.p0.git.cbd5e4b.assembly.stream</ProductID>
+      <ProductID>8Base-RHOSE-4.7:kube-rbac-proxy-container-v4.7.0-202108311835.p0.git.14c288e.assembly.stream</ProductID>
+      <ProductID>8Base-RHOSE-4.7:kube-state-metrics-container-v4.7.0-202108311835.p0.git.04bff70.assembly.stream</ProductID>
+      <ProductID>8Base-RHOSE-4.7:kuryr-cni-container-v4.7.0-202108311403.p0.git.c7654fb.assembly.stream</ProductID>
+      <ProductID>8Base-RHOSE-4.7:kuryr-controller-container-v4.7.0-202108311403.p0.git.c7654fb.assembly.stream</ProductID>
+      <ProductID>8Base-RHOSE-4.7:marketplace-operator-container-v4.7.0-202108311835.p0.git.96bab9b.assembly.stream</ProductID>
+      <ProductID>8Base-RHOSE-4.7:multus-cni-container-v4.7.0-202108311835.p0.git.5530094.assembly.stream</ProductID>
+      <ProductID>8Base-RHOSE-4.7:oauth-server-container-v4.7.0-202108311835.p0.git.61db550.assembly.stream</ProductID>
+      <ProductID>8Base-RHOSE-4.7:openshift-enterprise-builder-container-v4.7.0-202108251815.p0.git.0e44bee.assembly.stream</ProductID>
+      <ProductID>8Base-RHOSE-4.7:openshift-enterprise-cli-container-v4.7.0-202108311835.p0.git.d1ffb3c.assembly.stream</ProductID>
+      <ProductID>8Base-RHOSE-4.7:openshift-enterprise-console-container-v4.7.0-202108311835.p0.git.3cb2ea6.assembly.stream</ProductID>
+      <ProductID>8Base-RHOSE-4.7:openshift-enterprise-console-operator-container-v4.7.0-202108311835.p0.git.44a0308.assembly.stream</ProductID>
+      <ProductID>8Base-RHOSE-4.7:openshift-enterprise-deployer-container-v4.7.0-202108311835.p0.git.d1ffb3c.assembly.stream</ProductID>
+      <ProductID>8Base-RHOSE-4.7:openshift-enterprise-haproxy-router-container-v4.7.0-202108311835.p0.git.4ab216f.assembly.stream</ProductID>
+      <ProductID>8Base-RHOSE-4.7:openshift-enterprise-hyperkube-container-v4.7.0-202108311835.p0.git.9689d22.assembly.stream</ProductID>
+      <ProductID>8Base-RHOSE-4.7:openshift-enterprise-keepalived-ipfailover-container-v4.7.0-202108311835.p0.git.0e45f63.assembly.stream</ProductID>
+      <ProductID>8Base-RHOSE-4.7:openshift-enterprise-pod-container-v4.7.0-202108311835.p0.git.0e45f63.assembly.stream</ProductID>
+      <ProductID>8Base-RHOSE-4.7:openshift-enterprise-registry-container-v4.7.0-202108311835.p0.git.8b03485.assembly.stream</ProductID>
+      <ProductID>8Base-RHOSE-4.7:openshift-enterprise-tests-container-v4.7.0-202108311835.p0.git.24f464b.assembly.stream</ProductID>
+      <ProductID>8Base-RHOSE-4.7:openshift-jenkins-2-container-v4.7.0-202108311835.p0.git.02e81a5.assembly.stream</ProductID>
+      <ProductID>8Base-RHOSE-4.7:openshift-state-metrics-container-v4.7.0-202108311835.p0.git.40b0968.assembly.stream</ProductID>
+      <ProductID>8Base-RHOSE-4.7:operator-lifecycle-manager-container-v4.7.0-202108311835.p0.git.2012879.assembly.stream</ProductID>
+      <ProductID>8Base-RHOSE-4.7:operator-registry-container-v4.7.0-202108311835.p0.git.06e950d.assembly.stream</ProductID>
+      <ProductID>8Base-RHOSE-4.7:ose-aws-ebs-csi-driver-container-v4.7.0-202108311835.p0.git.f6a71bf.assembly.stream</ProductID>
+      <ProductID>8Base-RHOSE-4.7:ose-aws-ebs-csi-driver-operator-container-v4.7.0-202108311835.p0.git.3a9ff17.assembly.stream</ProductID>
+      <ProductID>8Base-RHOSE-4.7:ose-aws-machine-controllers-container-v4.7.0-202108311835.p0.git.5368195.assembly.stream</ProductID>
+      <ProductID>8Base-RHOSE-4.7:ose-aws-pod-identity-webhook-container-v4.7.0-202108311835.p0.git.0074d6a.assembly.stream</ProductID>
+      <ProductID>8Base-RHOSE-4.7:ose-azure-machine-controllers-container-v4.7.0-202108311835.p0.git.723b7ab.assembly.stream</ProductID>
+      <ProductID>8Base-RHOSE-4.7:ose-baremetal-installer-container-v4.7.0-202108311835.p0.git.94125b2.assembly.stream</ProductID>
+      <ProductID>8Base-RHOSE-4.7:ose-baremetal-operator-container-v4.7.0-202108311835.p0.git.e36cbc1.assembly.stream</ProductID>
+      <ProductID>8Base-RHOSE-4.7:ose-baremetal-runtimecfg-container-v4.7.0-202108311835.p0.git.9c5da32.assembly.stream</ProductID>
+      <ProductID>8Base-RHOSE-4.7:ose-cli-artifacts-container-v4.7.0-202108311835.p0.git.d1ffb3c.assembly.stream</ProductID>
+      <ProductID>8Base-RHOSE-4.7:ose-cloud-credential-operator-container-v4.7.0-202108311835.p0.git.0783477.assembly.stream</ProductID>
+      <ProductID>8Base-RHOSE-4.7:ose-cluster-authentication-operator-container-v4.7.0-202108311835.p0.git.4c02b7b.assembly.stream</ProductID>
+      <ProductID>8Base-RHOSE-4.7:ose-cluster-autoscaler-operator-container-v4.7.0-202108311835.p0.git.7658bea.assembly.stream</ProductID>
+      <ProductID>8Base-RHOSE-4.7:ose-cluster-baremetal-operator-container-v4.7.0-202108311835.p0.git.f73e5fc.assembly.stream</ProductID>
+      <ProductID>8Base-RHOSE-4.7:ose-cluster-bootstrap-container-v4.7.0-202108311835.p0.git.6665cae.assembly.stream</ProductID>
+      <ProductID>8Base-RHOSE-4.7:ose-cluster-config-operator-container-v4.7.0-202108311835.p0.git.07e059a.assembly.stream</ProductID>
+      <ProductID>8Base-RHOSE-4.7:ose-cluster-dns-operator-container-v4.7.0-202108311835.p0.git.cf8be7b.assembly.stream</ProductID>
+      <ProductID>8Base-RHOSE-4.7:ose-cluster-image-registry-operator-container-v4.7.0-202108311835.p0.git.70a8588.assembly.stream</ProductID>
+      <ProductID>8Base-RHOSE-4.7:ose-cluster-ingress-operator-container-v4.7.0-202108311835.p0.git.b86f935.assembly.stream</ProductID>
+      <ProductID>8Base-RHOSE-4.7:ose-cluster-kube-apiserver-operator-container-v4.7.0-202108311835.p0.git.099c6af.assembly.stream</ProductID>
+      <ProductID>8Base-RHOSE-4.7:ose-cluster-kube-controller-manager-operator-container-v4.7.0-202108311835.p0.git.2815909.assembly.stream</ProductID>
+      <ProductID>8Base-RHOSE-4.7:ose-cluster-kube-scheduler-operator-container-v4.7.0-202108311835.p0.git.b2204ca.assembly.stream</ProductID>
+      <ProductID>8Base-RHOSE-4.7:ose-cluster-kube-storage-version-migrator-operator-container-v4.7.0-202108311835.p0.git.5448475.assembly.stream</ProductID>
+      <ProductID>8Base-RHOSE-4.7:ose-cluster-openshift-apiserver-operator-container-v4.7.0-202108311835.p0.git.fa6d8e1.assembly.stream</ProductID>
+      <ProductID>8Base-RHOSE-4.7:ose-cluster-openshift-controller-manager-operator-container-v4.7.0-202108311835.p0.git.2a8963a.assembly.stream</ProductID>
+      <ProductID>8Base-RHOSE-4.7:ose-cluster-ovirt-csi-operator-container-v4.7.0-202108311835.p0.git.5e51508.assembly.stream</ProductID>
+      <ProductID>8Base-RHOSE-4.7:ose-cluster-policy-controller-container-v4.7.0-202108311835.p0.git.42791ba.assembly.stream</ProductID>
+      <ProductID>8Base-RHOSE-4.7:ose-cluster-storage-operator-container-v4.7.0-202108311835.p0.git.6d2c25f.assembly.stream</ProductID>
+      <ProductID>8Base-RHOSE-4.7:ose-cluster-update-keys-container-v4.7.0-202108311835.p0.git.b7e7917.assembly.stream</ProductID>
+      <ProductID>8Base-RHOSE-4.7:ose-containernetworking-plugins-container-v4.7.0-202108311835.p0.git.fc27124.assembly.stream</ProductID>
+      <ProductID>8Base-RHOSE-4.7:ose-csi-external-resizer-container-v4.7.0-202108311835.p0.git.f77279e.assembly.stream</ProductID>
+      <ProductID>8Base-RHOSE-4.7:ose-csi-external-snapshotter-container-v4.7.0-202108311835.p0.git.2677373.assembly.stream</ProductID>
+      <ProductID>8Base-RHOSE-4.7:ose-csi-snapshot-controller-container-v4.7.0-202108311835.p0.git.2677373.assembly.stream</ProductID>
+      <ProductID>8Base-RHOSE-4.7:ose-csi-snapshot-validation-webhook-container-v4.7.0-202108311835.p0.git.2677373.assembly.stream</ProductID>
+      <ProductID>8Base-RHOSE-4.7:ose-egress-router-cni-container-v4.7.0-202108311835.p0.git.96ebd37.assembly.stream</ProductID>
+      <ProductID>8Base-RHOSE-4.7:ose-etcd-container-v4.7.0-202108311835.p0.git.c61e5af.assembly.stream</ProductID>
+      <ProductID>8Base-RHOSE-4.7:ose-gcp-machine-controllers-container-v4.7.0-202108311835.p0.git.5f6589d.assembly.stream</ProductID>
+      <ProductID>8Base-RHOSE-4.7:ose-gcp-pd-csi-driver-container-v4.7.0-202108311835.p0.git.0cb61d2.assembly.stream</ProductID>
+      <ProductID>8Base-RHOSE-4.7:ose-gcp-pd-csi-driver-operator-container-v4.7.0-202108311835.p0.git.d40dd57.assembly.stream</ProductID>
+      <ProductID>8Base-RHOSE-4.7:ose-hello-openshift-container-v4.7.0-202108311835.p0.git.24f464b.assembly.stream</ProductID>
+      <ProductID>8Base-RHOSE-4.7:ose-insights-operator-container-v4.7.0-202108311835.p0.git.19b13a7.assembly.stream</ProductID>
+      <ProductID>8Base-RHOSE-4.7:ose-installer-artifacts-container-v4.7.0-202108311835.p0.git.94125b2.assembly.stream</ProductID>
+      <ProductID>8Base-RHOSE-4.7:ose-installer-container-v4.7.0-202108311835.p0.git.94125b2.assembly.stream</ProductID>
+      <ProductID>8Base-RHOSE-4.7:ose-jenkins-agent-base-container-v4.7.0-202108311835.p0.git.02e81a5.assembly.stream</ProductID>
+      <ProductID>8Base-RHOSE-4.7:ose-jenkins-agent-maven-container-v4.7.0-202108311835.p0.git.02e81a5.assembly.stream</ProductID>
+      <ProductID>8Base-RHOSE-4.7:ose-jenkins-agent-nodejs-12-container-v4.7.0-202108311835.p0.git.02e81a5.assembly.stream</ProductID>
+      <ProductID>8Base-RHOSE-4.7:ose-kube-storage-version-migrator-container-v4.7.0-202108311835.p0.git.329a4b0.assembly.stream</ProductID>
+      <ProductID>8Base-RHOSE-4.7:ose-libvirt-machine-controllers-container-v4.7.0-202108311835.p0.git.eb819cb.assembly.stream</ProductID>
+      <ProductID>8Base-RHOSE-4.7:ose-machine-api-operator-container-v4.7.0-202108311835.p0.git.e179bb5.assembly.stream</ProductID>
+      <ProductID>8Base-RHOSE-4.7:ose-machine-config-operator-container-v4.7.0-202108311835.p0.git.d6d26e1.assembly.stream</ProductID>
+      <ProductID>8Base-RHOSE-4.7:ose-mdns-publisher-container-v4.7.0-202108311835.p0.git.4b2a152.assembly.stream</ProductID>
+      <ProductID>8Base-RHOSE-4.7:ose-multus-admission-controller-container-v4.7.0-202108311835.p0.git.a7312f5.assembly.stream</ProductID>
+      <ProductID>8Base-RHOSE-4.7:ose-multus-networkpolicy-container-v4.7.0-202108311835.p0.git.820a753.assembly.stream</ProductID>
+      <ProductID>8Base-RHOSE-4.7:ose-must-gather-container-v4.7.0-202108311835.p0.git.205d4e3.assembly.stream</ProductID>
+      <ProductID>8Base-RHOSE-4.7:ose-network-metrics-daemon-container-v4.7.0-202108311835.p0.git.b192615.assembly.stream</ProductID>
+      <ProductID>8Base-RHOSE-4.7:ose-node-container-v4.7.0-202108311835.p0.git.cbd5e4b.assembly.stream</ProductID>
+      <ProductID>8Base-RHOSE-4.7:ose-oauth-apiserver-container-v4.7.0-202108311835.p0.git.69f527e.assembly.stream</ProductID>
+      <ProductID>8Base-RHOSE-4.7:ose-openshift-apiserver-container-v4.7.0-202108311835.p0.git.f9ac087.assembly.stream</ProductID>
+      <ProductID>8Base-RHOSE-4.7:ose-openshift-controller-manager-container-v4.7.0-202108311835.p0.git.c93745b.assembly.stream</ProductID>
+      <ProductID>8Base-RHOSE-4.7:ose-openstack-cinder-csi-driver-container-v4.7.0-202108311835.p0.git.d3f7092.assembly.stream</ProductID>
+      <ProductID>8Base-RHOSE-4.7:ose-openstack-cinder-csi-driver-operator-container-v4.7.0-202108311835.p0.git.117ce62.assembly.stream</ProductID>
+      <ProductID>8Base-RHOSE-4.7:ose-openstack-machine-controllers-container-v4.7.0-202108311835.p0.git.471cf3a.assembly.stream</ProductID>
+      <ProductID>8Base-RHOSE-4.7:ose-ovirt-csi-driver-container-v4.7.0-202108311835.p0.git.72545e6.assembly.stream</ProductID>
+      <ProductID>8Base-RHOSE-4.7:ose-ovirt-machine-controllers-container-v4.7.0-202108311835.p0.git.01b9bf8.assembly.stream</ProductID>
+      <ProductID>8Base-RHOSE-4.7:ose-ovn-kubernetes-container-v4.7.0-202108311835.p0.git.53bc319.assembly.stream</ProductID>
+      <ProductID>8Base-RHOSE-4.7:ose-prometheus-adapter-container-v4.7.0-202108311835.p0.git.212d80b.assembly.stream</ProductID>
+      <ProductID>8Base-RHOSE-4.7:ose-service-ca-operator-container-v4.7.0-202108311835.p0.git.f65053f.assembly.stream</ProductID>
+      <ProductID>8Base-RHOSE-4.7:ose-thanos-container-v4.7.0-202108311835.p0.git.319e70c.assembly.stream</ProductID>
+      <ProductID>8Base-RHOSE-4.7:ose-tools-container-v4.7.0-202108311835.p0.git.d1ffb3c.assembly.stream</ProductID>
+      <ProductID>8Base-RHOSE-4.7:ose-vsphere-problem-detector-container-v4.7.0-202108311835.p0.git.8f7c124.assembly.stream</ProductID>
+      <ProductID>8Base-RHOSE-4.7:prometheus-config-reloader-container-v4.7.0-202108311835.p0.git.1f0fd51.assembly.stream</ProductID>
+      <ProductID>8Base-RHOSE-4.7:prometheus-operator-container-v4.7.0-202108311835.p0.git.1f0fd51.assembly.stream</ProductID>
+      <ProductID>8Base-RHOSE-4.7:telemeter-container-v4.7.0-202108311835.p0.git.e4dac51.assembly.stream</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Important</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For OpenShift Container Platform 4.7 see the following documentation, which
+will be updated shortly for this release, for important instructions on how
+to upgrade your cluster and fully apply this asynchronous errata update:
+
+https://docs.openshift.com/container-platform/4.7/release_notes/ocp-4-7-release-notes.html
+
+Details on how to access this content are available at
+https://docs.openshift.com/container-platform/4.7/updating/updating-cluster-cli.html
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:3303</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-3121</URL>
+        <Description>CVE-2021-3121</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1921650</URL>
+        <Description>bz#1921650: CVE-2021-3121 gogo/protobuf: plugin/unmarshal/unmarshal.go lacks certain index validation</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+</cvrfdoc>

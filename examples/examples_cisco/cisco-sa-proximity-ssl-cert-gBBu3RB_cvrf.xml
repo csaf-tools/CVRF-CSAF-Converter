@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cvrf:cvrfdoc xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:cvrf-common="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/common" xmlns:cvrf="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/cvrf">
+  <cvrf:DocumentTitle>Cisco Intelligent Proximity SSL Certificate Validation Vulnerability</cvrf:DocumentTitle>
+  <cvrf:DocumentType>Cisco Security Advisory</cvrf:DocumentType>
+  <cvrf:DocumentPublisher Type="Vendor">
+    <cvrf:ContactDetails>Emergency Support:
++1 877 228 7302 (toll-free within North America)
++1 408 525 6532 (International direct-dial)
+Non-emergency Support:
+Email: psirt@cisco.com
+Support requests that are received via e-mail are typically acknowledged within 48 hours.</cvrf:ContactDetails>
+    <cvrf:IssuingAuthority>Cisco product security incident response is the responsibility of the Cisco Product Security Incident Response Team (PSIRT). The Cisco PSIRT is a dedicated, global team that manages the receipt, investigation, and public reporting of security vulnerability information that is related to Cisco products and networks. The on-call Cisco PSIRT works 24x7 with Cisco customers, independent security researchers, consultants, industry organizations, and other vendors to identify possible security issues with Cisco products and networks.
+More information can be found in Cisco Security Vulnerability Policy available at http://www.cisco.com/web/about/security/psirt/security_vulnerability_policy.html</cvrf:IssuingAuthority>
+  </cvrf:DocumentPublisher>
+  <cvrf:DocumentTracking>
+    <cvrf:Identification>
+      <cvrf:ID>cisco-sa-proximity-ssl-cert-gBBu3RB</cvrf:ID>
+    </cvrf:Identification>
+    <cvrf:Status>Final</cvrf:Status>
+    <cvrf:Version>1.1</cvrf:Version>
+    <cvrf:RevisionHistory>
+      <cvrf:Revision>
+        <cvrf:Number>1.0</cvrf:Number>
+        <cvrf:Date>2020-03-04T15:17:50</cvrf:Date>
+        <cvrf:Description>Initial public release.</cvrf:Description>
+      </cvrf:Revision>
+      <cvrf:Revision>
+        <cvrf:Number>1.1</cvrf:Number>
+        <cvrf:Date>2021-07-15T14:50:11</cvrf:Date>
+        <cvrf:Description>Added fixed releases.</cvrf:Description>
+      </cvrf:Revision>
+    </cvrf:RevisionHistory>
+    <cvrf:InitialReleaseDate>2020-03-04T16:00:00</cvrf:InitialReleaseDate>
+    <cvrf:CurrentReleaseDate>2021-07-15T14:50:11</cvrf:CurrentReleaseDate>
+    <cvrf:Generator>
+      <cvrf:Engine>TVCE</cvrf:Engine>
+    </cvrf:Generator>
+  </cvrf:DocumentTracking>
+  <cvrf:DocumentNotes>
+    <cvrf:Note Title="Summary" Type="Summary" Ordinal="1">A vulnerability in the SSL implementation of the Cisco Intelligent Proximity solution could allow an unauthenticated, remote attacker to view or alter information shared on Cisco Webex video devices and Cisco collaboration endpoints if the products meet the conditions described in the Vulnerable Products ["#vp"] section.
+
+The vulnerability is due to a lack of validation of the SSL server certificate received when establishing a connection to a Cisco Webex video device or a Cisco collaboration endpoint. An attacker could exploit this vulnerability by using man in the middle (MITM) techniques to intercept the traffic between the affected client and an endpoint, and then using a forged certificate to impersonate the endpoint. Depending on the configuration of the endpoint, an exploit could allow the attacker to view presentation content shared on it, modify any content being presented by the victim, or have access to call controls.
+
+This vulnerability does not affect cloud registered collaboration endpoints.
+
+There are no workarounds that address this vulnerability.
+
+This advisory is available at the following link:
+https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-proximity-ssl-cert-gBBu3RB ["https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-proximity-ssl-cert-gBBu3RB"]</cvrf:Note>
+    <cvrf:Note Title="Vulnerable Products" Type="General" Ordinal="2">This vulnerability affects the following Cisco products if they are running a vulnerable software release, have the Proximity feature enabled, and are used to connect to on-premises devices:
+
+Cisco Intelligent Proximity application
+Cisco Jabber
+Cisco Webex Meetings
+Cisco Webex Teams
+Cisco Meeting App
+  Determining if the Proximity Feature Is Enabled on the Clients
+The software clients listed above are affected by this vulnerability when they are configured with the Proximity feature. However, for an attacker to exploit this vulnerability, a collaboration endpoint would also need to have the Proximity feature enabled. More information regarding the configuration of the Proximity feature on the endpoints is available in the Details ["#details"] and Workarounds ["#workarounds"] sections of this advisory.
+  Cisco Intelligent Proximity Application
+The Proximity feature is always enabled and cannot be disabled.
+  Cisco Jabber1
+There are multiple methods to determine whether the Proximity feature is enabled in Cisco Jabber:
+
+1. In the Jabber configuration file jabber-config.xml, this feature is enabled if the following line is not present:
+
+
+&lt;EnableProximity&gt;false&lt;/EnableProximity&gt;
+
+2. In the application's preferences, navigate to Video Device. This feature is enabled if Connect to nearest device automatically is selected.
+  Cisco Webex Meetings1
+In the application's preferences, navigate to Video Systems. This feature is enabled if Automatically discover nearby devices is selected.
+  Cisco Webex Teams1
+From the Cisco Webex Control Hub, navigate to Settings and scroll to Device Discovery. This feature is enabled if Allow the Webex Teams app to connect to on-premises registered device is selected.
+  Cisco Meeting App
+The Proximity feature is always enabled and cannot be disabled.
+
+1 The title of the submenu and the description of the option may vary with the software version. This information is meant to provide a general indication of where to find the configuration option for the Proximity feature.</cvrf:Note>
+    <cvrf:Note Title="Products Confirmed Not Vulnerable" Type="General" Ordinal="3">Only products listed in the Vulnerable Products ["#vp"] section of this advisory are known to be affected by this vulnerability.
+
+Cisco has confirmed that this vulnerability does not affect Cisco Proximity clients when used to connect to cloud registered devices.</cvrf:Note>
+    <cvrf:Note Title="Details" Type="General" Ordinal="4">The Cisco Intelligent Proximity solution allows laptops, smartphones, or other handheld devices to automatically discover and connect to Cisco Webex video devices and collaboration endpoints. The features available to the client depend on the endpoint configuration, which will influence what can be exploited by an attacker.
+
+Configuration options can include any combination of the following:
+
+Content share from clients: A client can present onto the screen of the collaboration endpoint. The shared contents are presented only on the collaboration endpoint and are not shared with other connected clients. A MITM could read or modify the contents of the presentation.
+Content share to clients: The shared contents are presented on the screen of the collaboration endpoint and on any connected client devices. A MITM could see any ongoing presentation shared by other clients and alter the presentation contents viewed by the victim of the attack.
+Call controls: A client can control the Cisco collaboration endpoint in the same way as if using the device's touch panel. For example, it is possible to send commands to control volume or dial others. A MITM could use this to dial in and listen in on the call, impersonate the victim, or view any commands sent by the victim to the collaboration endpoint, including dialed URIs.</cvrf:Note>
+    <cvrf:Note Title="Workarounds" Type="General" Ordinal="5">There are no workarounds that address this vulnerability.
+  Mitigations  Disabling the Proximity Pairing Feature
+The primary purpose of the collaboration endpoints is video and content sharing. Customers that don't require automatic endpoint discovery and connection can disable the Proximity pairing feature.
+  Disabling the Proximity Pairing Feature on Cisco Webex Video Devices and on Cisco Collaboration Endpoints
+Sign in to the endpoint's web interface and navigate to Setup &gt; Configuration, then go to Proximity &gt; Mode. Setting Mode to Off will ensure that all the Proximity features are disabled. Alternatively, the different sub-services can be disabled, which will limit exposure accordingly.
+
+For the Cisco IX5000 Series, navigate to Configuration &gt; Display Frequency and Proximity Sections. Setting Mode to Off will ensure that all the Proximity features are disabled. Alternatively, the different sub-services can be disabled, which will limit exposure accordingly.
+
+Note: Once this feature is disabled on an endpoint, direct interaction with the device is required to use it. The various Proximity clients will not be able to connect to the endpoints. However, this doesn't prevent client software from connecting to other endpoints that might have the feature enabled, thus not fully eliminating the risk of exploitation.
+  Disabling the Automatic Discovery of Collaboration Endpoints on the Proximity Clients
+It is possible to disable the Proximity pairing in Cisco Jabber, Cisco Webex Teams, and Cisco Webex Meetings. The instructions for how to reach the configuration option for each respective client are listed in the Vulnerable Products ["#vp"] section of this advisory.
+
+Note: Disabling this feature on the clients will not prevent external guests from connecting to the endpoint, thus not fully eliminating the risk of exploitation.
+  Migration of the Collaboration Solution to the Cloud
+Customers that are entitled to use the cloud registered collaboration solution may migrate their environment from on-premises to cloud registered devices. The Cisco Intelligent Proximity solution for cloud registered devices is not affected by this vulnerability.</cvrf:Note>
+    <cvrf:Note Title="Fixed Software" Type="General" Ordinal="6">Cisco has released free software updates that address the vulnerability described in this advisory. Customers may only install and expect support for software versions and feature sets for which they have purchased a license. By installing, downloading, accessing, or otherwise using such software upgrades, customers agree to follow the terms of the Cisco software license:
+https://www.cisco.com/c/en/us/products/end-user-license-agreement.html ["https://www.cisco.com/c/en/us/products/end-user-license-agreement.html"]
+
+Additionally, customers may only download software for which they have a valid license, procured from Cisco directly, or through a Cisco authorized reseller or partner. In most cases this will be a maintenance upgrade to software that was previously purchased. Free security software updates do not entitle customers to a new software license, additional software feature sets, or major revision upgrades.
+
+When considering software upgrades ["https://tools.cisco.com/security/center/resources/security_vulnerability_policy.html#fixes"], customers are advised to regularly consult the advisories for Cisco products, which are available from the Cisco Security Advisories page ["https://www.cisco.com/go/psirt"], to determine exposure and a complete upgrade solution.
+
+In all cases, customers should ensure that the devices to be upgraded contain sufficient memory and confirm that current hardware and software configurations will continue to be supported properly by the new release. If the information is not clear, customers are advised to contact the Cisco Technical Assistance Center (TAC) or their contracted maintenance providers.
+  Customers Without Service Contracts
+Customers who purchase directly from Cisco but do not hold a Cisco service contract and customers who make purchases through third-party vendors but are unsuccessful in obtaining fixed software through their point of sale should obtain upgrades by contacting the Cisco TAC: https://www.cisco.com/c/en/us/support/web/tsd-cisco-worldwide-contacts.html ["https://www.cisco.com/c/en/us/support/web/tsd-cisco-worldwide-contacts.html"]
+
+Customers should have the product serial number available and be prepared to provide the URL of this advisory as evidence of entitlement to a free upgrade.
+      Fixed Releases
+Cisco has released software updates that address this vulnerability only for the Cisco Intelligent Proximity Application. Other client solutions that support the Proximity feature have not been patched.
+
+The solution implemented to address this vulnerability relies on host fingerprint verification. To prevent exploitation of this vulnerability, both the proximity client and collaboration endpoint need to be upgraded.
+  Client: Cisco Intelligent Proximity Application
+Cisco fixed this vulnerability in Cisco Intelligent Proximity Application releases 3.1.0 and later.
+  Endpoints: Cisco Webex Video Devices and Cisco Collaboration Endpoints
+Cisco fixed this vulnerability in Cisco Collaboration Endpoint Software releases 9.14.3 and later.</cvrf:Note>
+    <cvrf:Note Title="Vulnerability Policy" Type="General" Ordinal="7">To learn about Cisco security vulnerability disclosure policies and publications, see the Security Vulnerability Policy ["http://www.cisco.com/web/about/security/psirt/security_vulnerability_policy.html"]. This document also contains instructions for obtaining fixed software and receiving security vulnerability information from Cisco.</cvrf:Note>
+    <cvrf:Note Title="Exploitation and Public Announcements" Type="General" Ordinal="8">The Cisco Product Security Incident Response Team (PSIRT) is not aware of any public announcements or malicious use of the vulnerability that is described in this advisory.</cvrf:Note>
+    <cvrf:Note Title="Source" Type="General" Ordinal="9">Cisco would like to thank Adam Shore for reporting this vulnerability.</cvrf:Note>
+    <cvrf:Note Title="Legal Disclaimer" Type="Legal Disclaimer" Ordinal="10">THIS DOCUMENT IS PROVIDED ON AN "AS IS" BASIS AND DOES NOT IMPLY ANY KIND OF GUARANTEE OR WARRANTY, INCLUDING THE WARRANTIES OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR USE. YOUR USE OF THE INFORMATION ON THE DOCUMENT OR MATERIALS LINKED FROM THE DOCUMENT IS AT YOUR OWN RISK. CISCO RESERVES THE RIGHT TO CHANGE OR UPDATE THIS DOCUMENT AT ANY TIME.
+
+A standalone copy or paraphrase of the text of this document that omits the distribution URL is an uncontrolled copy and may lack important information or contain factual errors. The information in this document is intended for end users of Cisco products.</cvrf:Note>
+  </cvrf:DocumentNotes>
+  <cvrf:DocumentReferences>
+    <cvrf:Reference Type="Self">
+      <cvrf:URL>https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-proximity-ssl-cert-gBBu3RB</cvrf:URL>
+      <cvrf:Description>Cisco Intelligent Proximity SSL Certificate Validation Vulnerability</cvrf:Description>
+    </cvrf:Reference>
+  </cvrf:DocumentReferences>
+  <ProductTree xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/prod">
+    <Branch Name="Cisco" Type="Vendor">
+      <Branch Name="Cisco Jabber IM for Android" Type="Product Name">
+        <FullProductName ProductID="CVRFPID-190570">Cisco Jabber IM for Android </FullProductName>
+      </Branch>
+      <Branch Name="Cisco WebEx Meetings Server" Type="Product Name">
+        <FullProductName ProductID="CVRFPID-190702">Cisco WebEx Meetings Server </FullProductName>
+      </Branch>
+      <Branch Name="Cisco Jabber for Windows" Type="Product Name">
+        <FullProductName ProductID="CVRFPID-192127">Cisco Jabber for Windows </FullProductName>
+      </Branch>
+      <Branch Name="Cisco WebEx Meetings for Android" Type="Product Name">
+        <FullProductName ProductID="CVRFPID-203919">Cisco WebEx Meetings for Android </FullProductName>
+      </Branch>
+      <Branch Name="Cisco WebEx Meetings for Windows Phone 8" Type="Product Name">
+        <FullProductName ProductID="CVRFPID-203922">Cisco WebEx Meetings for Windows Phone 8 </FullProductName>
+      </Branch>
+      <Branch Name="Cisco Webex Teams" Type="Product Name">
+        <FullProductName ProductID="CVRFPID-210403">Cisco Webex Teams </FullProductName>
+      </Branch>
+      <Branch Name="Cisco Jabber for Mac" Type="Product Name">
+        <FullProductName ProductID="CVRFPID-210554">Cisco Jabber for Mac </FullProductName>
+      </Branch>
+      <Branch Name="Cisco Jabber for iOS" Type="Product Name">
+        <FullProductName ProductID="CVRFPID-210568">Cisco Jabber for iOS </FullProductName>
+      </Branch>
+      <Branch Name="Cisco Meeting App" Type="Product Name">
+        <FullProductName ProductID="CVRFPID-221064">Cisco Meeting App </FullProductName>
+      </Branch>
+      <Branch Name="Cisco Webex Meetings" Type="Product Name">
+        <FullProductName ProductID="CVRFPID-228295">Cisco Webex Meetings </FullProductName>
+      </Branch>
+      <Branch Name="Cisco WebEx Meetings for iOS" Type="Product Name">
+        <FullProductName ProductID="CVRFPID-265365">Cisco WebEx Meetings for iOS </FullProductName>
+      </Branch>
+      <Branch Name="Cisco Proximity" Type="Product Name">
+        <FullProductName ProductID="CVRFPID-276958">Cisco Proximity </FullProductName>
+      </Branch>
+    </Branch>
+  </ProductTree>
+  <Vulnerability Ordinal="1" xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln">
+    <Title>vuln-CVE-2020-3155</Title>
+    <ID SystemName="Cisco Bug ID">CSCvr90871</ID>
+    <Notes>
+      <Note Title="Cisco Bug IDs" Type="Other" Ordinal="1">CSCvr90871</Note>
+    </Notes>
+    <CVE>CVE-2020-3155</CVE>
+    <ProductStatuses>
+      <Status Type="Known Affected">
+        <ProductID>CVRFPID-221064</ProductID>
+        <ProductID>CVRFPID-276958</ProductID>
+        <ProductID>CVRFPID-190702</ProductID>
+        <ProductID>CVRFPID-203919</ProductID>
+        <ProductID>CVRFPID-203922</ProductID>
+        <ProductID>CVRFPID-228295</ProductID>
+        <ProductID>CVRFPID-265365</ProductID>
+        <ProductID>CVRFPID-210403</ProductID>
+        <ProductID>CVRFPID-210568</ProductID>
+        <ProductID>CVRFPID-210554</ProductID>
+        <ProductID>CVRFPID-192127</ProductID>
+        <ProductID>CVRFPID-190570</ProductID>
+      </Status>
+    </ProductStatuses>
+    <CVSSScoreSets>
+      <ScoreSetV3>
+        <BaseScoreV3>7.4</BaseScoreV3>
+        <VectorV3>CVSS:3.0/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:N</VectorV3>
+      </ScoreSetV3>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Workaround">
+        <Description>There are no workarounds that address this vulnerability.
+  Mitigations  Disabling the Proximity Pairing Feature
+The primary purpose of the collaboration endpoints is video and content sharing. Customers that don't require automatic endpoint discovery and connection can disable the Proximity pairing feature.
+  Disabling the Proximity Pairing Feature on Cisco Webex Video Devices and on Cisco Collaboration Endpoints
+Sign in to the endpoint's web interface and navigate to Setup &gt; Configuration, then go to Proximity &gt; Mode. Setting Mode to Off will ensure that all the Proximity features are disabled. Alternatively, the different sub-services can be disabled, which will limit exposure accordingly.
+
+For the Cisco IX5000 Series, navigate to Configuration &gt; Display Frequency and Proximity Sections. Setting Mode to Off will ensure that all the Proximity features are disabled. Alternatively, the different sub-services can be disabled, which will limit exposure accordingly.
+
+Note: Once this feature is disabled on an endpoint, direct interaction with the device is required to use it. The various Proximity clients will not be able to connect to the endpoints. However, this doesn't prevent client software from connecting to other endpoints that might have the feature enabled, thus not fully eliminating the risk of exploitation.
+  Disabling the Automatic Discovery of Collaboration Endpoints on the Proximity Clients
+It is possible to disable the Proximity pairing in Cisco Jabber, Cisco Webex Teams, and Cisco Webex Meetings. The instructions for how to reach the configuration option for each respective client are listed in the Vulnerable Products ["#vp"] section of this advisory.
+
+Note: Disabling this feature on the clients will not prevent external guests from connecting to the endpoint, thus not fully eliminating the risk of exploitation.
+  Migration of the Collaboration Solution to the Cloud
+Customers that are entitled to use the cloud registered collaboration solution may migrate their environment from on-premises to cloud registered devices. The Cisco Intelligent Proximity solution for cloud registered devices is not affected by this vulnerability.</Description>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference Type="Self">
+        <URL>https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-proximity-ssl-cert-gBBu3RB</URL>
+        <Description>Cisco Intelligent Proximity SSL Certificate Validation Vulnerability</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+</cvrf:cvrfdoc>

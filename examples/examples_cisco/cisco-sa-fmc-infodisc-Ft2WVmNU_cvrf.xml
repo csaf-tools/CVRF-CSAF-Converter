@@ -1,0 +1,2324 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cvrf:cvrfdoc xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:cvrf-common="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/common" xmlns:cvrf="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/cvrf">
+  <cvrf:DocumentTitle>Cisco Firepower Management Center Software Configuration Information Disclosure Vulnerabilities</cvrf:DocumentTitle>
+  <cvrf:DocumentType>Cisco Security Advisory</cvrf:DocumentType>
+  <cvrf:DocumentPublisher Type="Vendor">
+    <cvrf:ContactDetails>Emergency Support:
++1 877 228 7302 (toll-free within North America)
++1 408 525 6532 (International direct-dial)
+Non-emergency Support:
+Email: psirt@cisco.com
+Support requests that are received via e-mail are typically acknowledged within 48 hours.</cvrf:ContactDetails>
+    <cvrf:IssuingAuthority>Cisco product security incident response is the responsibility of the Cisco Product Security Incident Response Team (PSIRT). The Cisco PSIRT is a dedicated, global team that manages the receipt, investigation, and public reporting of security vulnerability information that is related to Cisco products and networks. The on-call Cisco PSIRT works 24x7 with Cisco customers, independent security researchers, consultants, industry organizations, and other vendors to identify possible security issues with Cisco products and networks.
+More information can be found in Cisco Security Vulnerability Policy available at http://www.cisco.com/web/about/security/psirt/security_vulnerability_policy.html</cvrf:IssuingAuthority>
+  </cvrf:DocumentPublisher>
+  <cvrf:DocumentTracking>
+    <cvrf:Identification>
+      <cvrf:ID>cisco-sa-fmc-infodisc-Ft2WVmNU</cvrf:ID>
+    </cvrf:Identification>
+    <cvrf:Status>Final</cvrf:Status>
+    <cvrf:Version>1.0</cvrf:Version>
+    <cvrf:RevisionHistory>
+      <cvrf:Revision>
+        <cvrf:Number>1.0</cvrf:Number>
+        <cvrf:Date>2021-10-27T15:39:32</cvrf:Date>
+        <cvrf:Description>Initial public release.</cvrf:Description>
+      </cvrf:Revision>
+    </cvrf:RevisionHistory>
+    <cvrf:InitialReleaseDate>2021-10-27T16:00:00</cvrf:InitialReleaseDate>
+    <cvrf:CurrentReleaseDate>2021-10-27T16:00:00</cvrf:CurrentReleaseDate>
+    <cvrf:Generator>
+      <cvrf:Engine>TVCE</cvrf:Engine>
+    </cvrf:Generator>
+  </cvrf:DocumentTracking>
+  <cvrf:DocumentNotes>
+    <cvrf:Note Title="Summary" Type="Summary" Ordinal="1">Multiple vulnerabilities in the administrative web-based GUI configuration manager of Cisco Firepower Management Center (FMC) Software could allow an authenticated, remote attacker to access sensitive configuration information. The attacker would require low privilege credentials on an affected device.
+
+These vulnerabilities exist because of improper encryption of sensitive information stored within the GUI configuration manager. An attacker could exploit these vulnerabilities by logging into the GUI of Cisco FMC Software and navigating to certain sensitive configurations. A successful exploit could allow the attacker to view sensitive configuration parameters in clear text.
+
+Cisco has released software updates that address these vulnerabilities. There are no workarounds that address these vulnerabilities.
+
+This advisory is available at the following link:
+https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-fmc-infodisc-Ft2WVmNU ["https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-fmc-infodisc-Ft2WVmNU"]
+
+This advisory is part of the October 2021 release of the Cisco ASA, FTD, and FMC Security Advisory Bundled publication. For a complete list of the advisories and links to them, see Cisco Event Response: October 2021 Cisco ASA, FMC, and FTD Software Security Advisory Bundled Publication ["https://tools.cisco.com/security/center/viewErp.x?alertId=ERP-74773"].</cvrf:Note>
+    <cvrf:Note Title="Vulnerable Products" Type="General" Ordinal="2">At the time of publication, these vulnerabilities affected vulnerable releases of Cisco FMC Software.
+
+For information about which Cisco software releases were vulnerable at the time of publication, see the Fixed Software ["#fs"] section of this advisory. See the Details section in the bug ID(s) at the top of this advisory for the most complete and current information.</cvrf:Note>
+    <cvrf:Note Title="Products Confirmed Not Vulnerable" Type="General" Ordinal="3">Only products listed in the Vulnerable Products ["#vp"] section of this advisory are known to be affected by these vulnerabilities.
+
+Cisco has confirmed that these vulnerabilities do not affect Cisco Adaptive Security Appliance (ASA) Software or Cisco Firepower Threat Defense (FTD) Software.</cvrf:Note>
+    <cvrf:Note Title="Workarounds" Type="General" Ordinal="4">There are no workarounds that address these vulnerabilities.</cvrf:Note>
+    <cvrf:Note Title="Fixed Software" Type="General" Ordinal="5">When considering software upgrades ["https://tools.cisco.com/security/center/resources/security_vulnerability_policy.html#fixes"], customers are advised to regularly consult the advisories for Cisco products, which are available from the Cisco Security Advisories page ["https://www.cisco.com/go/psirt"], to determine exposure and a complete upgrade solution.
+
+In all cases, customers should ensure that the devices to be upgraded contain sufficient memory and confirm that current hardware and software configurations will continue to be supported properly by the new release. If the information is not clear, customers are advised to contact the Cisco Technical Assistance Center (TAC) or their contracted maintenance providers.
+      Fixed Releases
+At the time of publication, the release information in the following table(s) was accurate. See the Details section in the bug ID(s) at the top of this advisory for the most complete and current information.
+
+The left column lists Cisco software releases, and the right column indicates whether a release was affected by the vulnerabilities described in this advisory and which release included the fix for these vulnerabilities.
+
+Cisco FMC Software
+        Cisco FMC Software Release  First Fixed Release for These Vulnerabilities          6.2.2 and earlier1  Migrate to a fixed release.      6.2.3  Migrate to a fixed release.      6.3.01  Migrate to a fixed release.      6.4.0  6.4.0.13       6.5.01  Migrate to a fixed release.      6.6.0  6.6.5.1 (Nov 2021)      6.7.0  6.7.0.3 (Jan 2022)      7.0.0  7.0.1
+1. Cisco FMC and FTD Software releases 6.2.2 and earlier, as well as releases 6.3.0 and 6.5.0, have reached end of software maintenance ["https://www.cisco.com/c/en/us/products/eos-eol-listing.html"]. Customers are advised to migrate to a supported release that includes the fix for these vulnerabilities.
+The Cisco Product Security Incident Response Team (PSIRT) validates only the affected and fixed release information that is documented in this advisory.</cvrf:Note>
+    <cvrf:Note Title="Vulnerability Policy" Type="General" Ordinal="6">To learn about Cisco security vulnerability disclosure policies and publications, see the Security Vulnerability Policy ["http://www.cisco.com/web/about/security/psirt/security_vulnerability_policy.html"]. This document also contains instructions for obtaining fixed software and receiving security vulnerability information from Cisco.</cvrf:Note>
+    <cvrf:Note Title="Exploitation and Public Announcements" Type="General" Ordinal="7">The Cisco PSIRT is not aware of any public announcements or malicious use of the vulnerability that is described in this advisory.</cvrf:Note>
+    <cvrf:Note Title="Source" Type="General" Ordinal="8">Cisco would like to thank Fabio Poloni from Compass Security for reporting these vulnerabilities.</cvrf:Note>
+    <cvrf:Note Title="Legal Disclaimer" Type="Legal Disclaimer" Ordinal="9">THIS DOCUMENT IS PROVIDED ON AN "AS IS" BASIS AND DOES NOT IMPLY ANY KIND OF GUARANTEE OR WARRANTY, INCLUDING THE WARRANTIES OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR USE. YOUR USE OF THE INFORMATION ON THE DOCUMENT OR MATERIALS LINKED FROM THE DOCUMENT IS AT YOUR OWN RISK. CISCO RESERVES THE RIGHT TO CHANGE OR UPDATE THIS DOCUMENT AT ANY TIME.
+
+A standalone copy or paraphrase of the text of this document that omits the distribution URL is an uncontrolled copy and may lack important information or contain factual errors. The information in this document is intended for end users of Cisco products.</cvrf:Note>
+  </cvrf:DocumentNotes>
+  <cvrf:DocumentReferences>
+    <cvrf:Reference Type="Self">
+      <cvrf:URL>https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-fmc-infodisc-Ft2WVmNU</cvrf:URL>
+      <cvrf:Description>Cisco Firepower Management Center Software Configuration Information Disclosure Vulnerabilities</cvrf:Description>
+    </cvrf:Reference>
+    <cvrf:Reference>
+      <cvrf:URL>https://tools.cisco.com/security/center/viewErp.x?alertId=ERP-74773</cvrf:URL>
+      <cvrf:Description>Cisco Event Response: October 2021 Cisco ASA, FMC, and FTD Software Security Advisory Bundled Publication</cvrf:Description>
+    </cvrf:Reference>
+  </cvrf:DocumentReferences>
+  <ProductTree xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/prod">
+    <Branch Name="Cisco" Type="Vendor">
+      <Branch Name="Cisco Firepower Management Center" Type="Product Name">
+        <Branch Name="6.0" Type="Product Version">
+          <Branch Name="6.0.1" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-212172">Cisco Firepower Management Center 6.0.1</FullProductName>
+          </Branch>
+          <Branch Name="6.0.0.1" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-213676">Cisco Firepower Management Center 6.0.0.1</FullProductName>
+          </Branch>
+          <Branch Name="6.0.0.0" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-213754">Cisco Firepower Management Center 6.0.0.0</FullProductName>
+          </Branch>
+          <Branch Name="6.0.1.1" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-222771">Cisco Firepower Management Center 6.0.1.1</FullProductName>
+          </Branch>
+          <Branch Name="6.0.1.3" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-227816">Cisco Firepower Management Center 6.0.1.3</FullProductName>
+          </Branch>
+          <Branch Name="6.0.1.2" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-267611">Cisco Firepower Management Center 6.0.1.2</FullProductName>
+          </Branch>
+          <Branch Name="6.0.1.4" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-267612">Cisco Firepower Management Center 6.0.1.4</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="6.1" Type="Product Version">
+          <Branch Name="6.1.0" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-216309">Cisco Firepower Management Center 6.1.0</FullProductName>
+          </Branch>
+          <Branch Name="6.1.0.2" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-226361">Cisco Firepower Management Center 6.1.0.2</FullProductName>
+          </Branch>
+          <Branch Name="6.1.0.1" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-267613">Cisco Firepower Management Center 6.1.0.1</FullProductName>
+          </Branch>
+          <Branch Name="6.1.0.3" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-267614">Cisco Firepower Management Center 6.1.0.3</FullProductName>
+          </Branch>
+          <Branch Name="6.1.0.4" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-267615">Cisco Firepower Management Center 6.1.0.4</FullProductName>
+          </Branch>
+          <Branch Name="6.1.0.5" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-267616">Cisco Firepower Management Center 6.1.0.5</FullProductName>
+          </Branch>
+          <Branch Name="6.1.0.6" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-267617">Cisco Firepower Management Center 6.1.0.6</FullProductName>
+          </Branch>
+          <Branch Name="6.1.0.7" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-267618">Cisco Firepower Management Center 6.1.0.7</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="6.2" Type="Product Version">
+          <Branch Name="6.2.0" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-224894">Cisco Firepower Management Center 6.2.0</FullProductName>
+          </Branch>
+          <Branch Name="6.2.1" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-225378">Cisco Firepower Management Center 6.2.1</FullProductName>
+          </Branch>
+          <Branch Name="6.2.2" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-226362">Cisco Firepower Management Center 6.2.2</FullProductName>
+          </Branch>
+          <Branch Name="6.2.0.2" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-227815">Cisco Firepower Management Center 6.2.0.2</FullProductName>
+          </Branch>
+          <Branch Name="6.2.0.1" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-267619">Cisco Firepower Management Center 6.2.0.1</FullProductName>
+          </Branch>
+          <Branch Name="6.2.0.3" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-267620">Cisco Firepower Management Center 6.2.0.3</FullProductName>
+          </Branch>
+          <Branch Name="6.2.0.4" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-267621">Cisco Firepower Management Center 6.2.0.4</FullProductName>
+          </Branch>
+          <Branch Name="6.2.0.5" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-267622">Cisco Firepower Management Center 6.2.0.5</FullProductName>
+          </Branch>
+          <Branch Name="6.2.0.6" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-267623">Cisco Firepower Management Center 6.2.0.6</FullProductName>
+          </Branch>
+          <Branch Name="6.2.2.1" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-267625">Cisco Firepower Management Center 6.2.2.1</FullProductName>
+          </Branch>
+          <Branch Name="6.2.2.2" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-267626">Cisco Firepower Management Center 6.2.2.2</FullProductName>
+          </Branch>
+          <Branch Name="6.2.2.3" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-267627">Cisco Firepower Management Center 6.2.2.3</FullProductName>
+          </Branch>
+          <Branch Name="6.2.2.4" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-267628">Cisco Firepower Management Center 6.2.2.4</FullProductName>
+          </Branch>
+          <Branch Name="6.2.3" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-267629">Cisco Firepower Management Center 6.2.3</FullProductName>
+          </Branch>
+          <Branch Name="6.2.3.1" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-267630">Cisco Firepower Management Center 6.2.3.1</FullProductName>
+          </Branch>
+          <Branch Name="6.2.3.2" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-267631">Cisco Firepower Management Center 6.2.3.2</FullProductName>
+          </Branch>
+          <Branch Name="6.2.3.3" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-267632">Cisco Firepower Management Center 6.2.3.3</FullProductName>
+          </Branch>
+          <Branch Name="6.2.3.4" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-267633">Cisco Firepower Management Center 6.2.3.4</FullProductName>
+          </Branch>
+          <Branch Name="6.2.3.5" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-267634">Cisco Firepower Management Center 6.2.3.5</FullProductName>
+          </Branch>
+          <Branch Name="6.2.3.6" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-267635">Cisco Firepower Management Center 6.2.3.6</FullProductName>
+          </Branch>
+          <Branch Name="6.2.3.7" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-267677">Cisco Firepower Management Center 6.2.3.7</FullProductName>
+          </Branch>
+          <Branch Name="6.2.3.9" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-267678">Cisco Firepower Management Center 6.2.3.9</FullProductName>
+          </Branch>
+          <Branch Name="6.2.3.10" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-267679">Cisco Firepower Management Center 6.2.3.10</FullProductName>
+          </Branch>
+          <Branch Name="6.2.3.11" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-267680">Cisco Firepower Management Center 6.2.3.11</FullProductName>
+          </Branch>
+          <Branch Name="6.2.3.12" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-267681">Cisco Firepower Management Center 6.2.3.12</FullProductName>
+          </Branch>
+          <Branch Name="6.2.3.13" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-267682">Cisco Firepower Management Center 6.2.3.13</FullProductName>
+          </Branch>
+          <Branch Name="6.2.3.14" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-267683">Cisco Firepower Management Center 6.2.3.14</FullProductName>
+          </Branch>
+          <Branch Name="6.2.2.5" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-278486">Cisco Firepower Management Center 6.2.2.5</FullProductName>
+          </Branch>
+          <Branch Name="6.2.3.15" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-278487">Cisco Firepower Management Center 6.2.3.15</FullProductName>
+          </Branch>
+          <Branch Name="6.2.3.8" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-278488">Cisco Firepower Management Center 6.2.3.8</FullProductName>
+          </Branch>
+          <Branch Name="6.2.3.16" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-278806">Cisco Firepower Management Center 6.2.3.16</FullProductName>
+          </Branch>
+          <Branch Name="6.2.3.17" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-284308">Cisco Firepower Management Center 6.2.3.17</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="6.3" Type="Product Version">
+          <Branch Name="6.3.0" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-267645">Cisco Firepower Management Center 6.3.0</FullProductName>
+          </Branch>
+          <Branch Name="6.3.0.1" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-267646">Cisco Firepower Management Center 6.3.0.1</FullProductName>
+          </Branch>
+          <Branch Name="6.3.0.2" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-267647">Cisco Firepower Management Center 6.3.0.2</FullProductName>
+          </Branch>
+          <Branch Name="6.3.0.3" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-267648">Cisco Firepower Management Center 6.3.0.3</FullProductName>
+          </Branch>
+          <Branch Name="6.3.0.4" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-278489">Cisco Firepower Management Center 6.3.0.4</FullProductName>
+          </Branch>
+          <Branch Name="6.3.0.5" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-278490">Cisco Firepower Management Center 6.3.0.5</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="6.4" Type="Product Version">
+          <Branch Name="6.4.0" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-267650">Cisco Firepower Management Center 6.4.0</FullProductName>
+          </Branch>
+          <Branch Name="6.4.0.1" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-267651">Cisco Firepower Management Center 6.4.0.1</FullProductName>
+          </Branch>
+          <Branch Name="6.4.0.3" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-267652">Cisco Firepower Management Center 6.4.0.3</FullProductName>
+          </Branch>
+          <Branch Name="6.4.0.2" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-278491">Cisco Firepower Management Center 6.4.0.2</FullProductName>
+          </Branch>
+          <Branch Name="6.4.0.4" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-278492">Cisco Firepower Management Center 6.4.0.4</FullProductName>
+          </Branch>
+          <Branch Name="6.4.0.5" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-278493">Cisco Firepower Management Center 6.4.0.5</FullProductName>
+          </Branch>
+          <Branch Name="6.4.0.6" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-278494">Cisco Firepower Management Center 6.4.0.6</FullProductName>
+          </Branch>
+          <Branch Name="6.4.0.7" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-278495">Cisco Firepower Management Center 6.4.0.7</FullProductName>
+          </Branch>
+          <Branch Name="6.4.0.8" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-278496">Cisco Firepower Management Center 6.4.0.8</FullProductName>
+          </Branch>
+          <Branch Name="6.4.0.9" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-278497">Cisco Firepower Management Center 6.4.0.9</FullProductName>
+          </Branch>
+          <Branch Name="6.4.0.10" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-280641">Cisco Firepower Management Center 6.4.0.10</FullProductName>
+          </Branch>
+          <Branch Name="6.4.0.11" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-281469">Cisco Firepower Management Center 6.4.0.11</FullProductName>
+          </Branch>
+          <Branch Name="6.4.0.12" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-284309">Cisco Firepower Management Center 6.4.0.12</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="6.5" Type="Product Version">
+          <Branch Name="6.5.0" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-267654">Cisco Firepower Management Center 6.5.0</FullProductName>
+          </Branch>
+          <Branch Name="6.5.0.1" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-278498">Cisco Firepower Management Center 6.5.0.1</FullProductName>
+          </Branch>
+          <Branch Name="6.5.0.2" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-278499">Cisco Firepower Management Center 6.5.0.2</FullProductName>
+          </Branch>
+          <Branch Name="6.5.0.3" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-278500">Cisco Firepower Management Center 6.5.0.3</FullProductName>
+          </Branch>
+          <Branch Name="6.5.0.4" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-278501">Cisco Firepower Management Center 6.5.0.4</FullProductName>
+          </Branch>
+          <Branch Name="6.5.0.5" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-281470">Cisco Firepower Management Center 6.5.0.5</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="6.6" Type="Product Version">
+          <Branch Name="6.6.0" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-277314">Cisco Firepower Management Center 6.6.0</FullProductName>
+          </Branch>
+          <Branch Name="6.6.0.1" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-279342">Cisco Firepower Management Center 6.6.0.1</FullProductName>
+          </Branch>
+          <Branch Name="6.6.1" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-280017">Cisco Firepower Management Center 6.6.1</FullProductName>
+          </Branch>
+          <Branch Name="6.6.3" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-281983">Cisco Firepower Management Center 6.6.3</FullProductName>
+          </Branch>
+          <Branch Name="6.6.4" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-282175">Cisco Firepower Management Center 6.6.4</FullProductName>
+          </Branch>
+          <Branch Name="6.6.5" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-284594">Cisco Firepower Management Center 6.6.5</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="6.7" Type="Product Version">
+          <Branch Name="6.7.0" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-280643">Cisco Firepower Management Center 6.7.0</FullProductName>
+          </Branch>
+          <Branch Name="6.7.0.1" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-282064">Cisco Firepower Management Center 6.7.0.1</FullProductName>
+          </Branch>
+          <Branch Name="6.7.0.2" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-284310">Cisco Firepower Management Center 6.7.0.2</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="7.0" Type="Product Version">
+          <Branch Name="7.0.0" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-284312">Cisco Firepower Management Center 7.0.0</FullProductName>
+          </Branch>
+          <Branch Name="7.0.0.1" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-284313">Cisco Firepower Management Center 7.0.0.1</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="Cisco FirePOWER 7000 Series Appliances" Type="Product Name">
+          <FullProductName ProductID="CVRFPID-277391">Cisco Firepower Management Center Platform Cisco FirePOWER 7000 Series Appliances</FullProductName>
+        </Branch>
+        <Branch Name="Cisco FirePOWER 8000 Series Appliances" Type="Product Name">
+          <FullProductName ProductID="CVRFPID-277405">Cisco Firepower Management Center Platform Cisco FirePOWER 8000 Series Appliances</FullProductName>
+        </Branch>
+        <Branch Name="Cisco Firepower Management Center Virtual Appliance" Type="Product Name">
+          <FullProductName ProductID="CVRFPID-277507">Cisco Firepower Management Center Platform Cisco Firepower Management Center Virtual Appliance</FullProductName>
+        </Branch>
+        <Branch Name="Cisco NGIPS Virtual Appliance" Type="Product Name">
+          <FullProductName ProductID="CVRFPID-277509">Cisco Firepower Management Center Platform Cisco NGIPS Virtual Appliance</FullProductName>
+        </Branch>
+        <Branch Name="Cisco Firepower Management Center Appliances" Type="Product Name">
+          <FullProductName ProductID="CVRFPID-277516">Cisco Firepower Management Center Platform Cisco Firepower Management Center Appliances</FullProductName>
+        </Branch>
+      </Branch>
+      <Branch Name="Cisco Firepower Management Center" Type="Product Name">
+        <FullProductName ProductID="CVRFPID-212162">Cisco Firepower Management Center </FullProductName>
+      </Branch>
+    </Branch>
+    <Relationship RelatesToProductReference="CVRFPID-277391" RelationType="Installed On" ProductReference="CVRFPID-212172">
+      <FullProductName ProductID="CVRFPID-212172:277391">Cisco Firepower Management Center 6.0.1 when installed on Cisco FirePOWER 7000 Series Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277405" RelationType="Installed On" ProductReference="CVRFPID-212172">
+      <FullProductName ProductID="CVRFPID-212172:277405">Cisco Firepower Management Center 6.0.1 when installed on Cisco FirePOWER 8000 Series Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277507" RelationType="Installed On" ProductReference="CVRFPID-212172">
+      <FullProductName ProductID="CVRFPID-212172:277507">Cisco Firepower Management Center 6.0.1 when installed on Cisco Firepower Management Center Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277509" RelationType="Installed On" ProductReference="CVRFPID-212172">
+      <FullProductName ProductID="CVRFPID-212172:277509">Cisco Firepower Management Center 6.0.1 when installed on Cisco NGIPS Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277516" RelationType="Installed On" ProductReference="CVRFPID-212172">
+      <FullProductName ProductID="CVRFPID-212172:277516">Cisco Firepower Management Center 6.0.1 when installed on Cisco Firepower Management Center Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277391" RelationType="Installed On" ProductReference="CVRFPID-213676">
+      <FullProductName ProductID="CVRFPID-213676:277391">Cisco Firepower Management Center 6.0.0.1 when installed on Cisco FirePOWER 7000 Series Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277405" RelationType="Installed On" ProductReference="CVRFPID-213676">
+      <FullProductName ProductID="CVRFPID-213676:277405">Cisco Firepower Management Center 6.0.0.1 when installed on Cisco FirePOWER 8000 Series Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277507" RelationType="Installed On" ProductReference="CVRFPID-213676">
+      <FullProductName ProductID="CVRFPID-213676:277507">Cisco Firepower Management Center 6.0.0.1 when installed on Cisco Firepower Management Center Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277509" RelationType="Installed On" ProductReference="CVRFPID-213676">
+      <FullProductName ProductID="CVRFPID-213676:277509">Cisco Firepower Management Center 6.0.0.1 when installed on Cisco NGIPS Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277516" RelationType="Installed On" ProductReference="CVRFPID-213676">
+      <FullProductName ProductID="CVRFPID-213676:277516">Cisco Firepower Management Center 6.0.0.1 when installed on Cisco Firepower Management Center Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277391" RelationType="Installed On" ProductReference="CVRFPID-213754">
+      <FullProductName ProductID="CVRFPID-213754:277391">Cisco Firepower Management Center 6.0.0.0 when installed on Cisco FirePOWER 7000 Series Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277405" RelationType="Installed On" ProductReference="CVRFPID-213754">
+      <FullProductName ProductID="CVRFPID-213754:277405">Cisco Firepower Management Center 6.0.0.0 when installed on Cisco FirePOWER 8000 Series Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277507" RelationType="Installed On" ProductReference="CVRFPID-213754">
+      <FullProductName ProductID="CVRFPID-213754:277507">Cisco Firepower Management Center 6.0.0.0 when installed on Cisco Firepower Management Center Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277509" RelationType="Installed On" ProductReference="CVRFPID-213754">
+      <FullProductName ProductID="CVRFPID-213754:277509">Cisco Firepower Management Center 6.0.0.0 when installed on Cisco NGIPS Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277516" RelationType="Installed On" ProductReference="CVRFPID-213754">
+      <FullProductName ProductID="CVRFPID-213754:277516">Cisco Firepower Management Center 6.0.0.0 when installed on Cisco Firepower Management Center Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277391" RelationType="Installed On" ProductReference="CVRFPID-222771">
+      <FullProductName ProductID="CVRFPID-222771:277391">Cisco Firepower Management Center 6.0.1.1 when installed on Cisco FirePOWER 7000 Series Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277405" RelationType="Installed On" ProductReference="CVRFPID-222771">
+      <FullProductName ProductID="CVRFPID-222771:277405">Cisco Firepower Management Center 6.0.1.1 when installed on Cisco FirePOWER 8000 Series Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277507" RelationType="Installed On" ProductReference="CVRFPID-222771">
+      <FullProductName ProductID="CVRFPID-222771:277507">Cisco Firepower Management Center 6.0.1.1 when installed on Cisco Firepower Management Center Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277509" RelationType="Installed On" ProductReference="CVRFPID-222771">
+      <FullProductName ProductID="CVRFPID-222771:277509">Cisco Firepower Management Center 6.0.1.1 when installed on Cisco NGIPS Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277516" RelationType="Installed On" ProductReference="CVRFPID-222771">
+      <FullProductName ProductID="CVRFPID-222771:277516">Cisco Firepower Management Center 6.0.1.1 when installed on Cisco Firepower Management Center Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277391" RelationType="Installed On" ProductReference="CVRFPID-227816">
+      <FullProductName ProductID="CVRFPID-227816:277391">Cisco Firepower Management Center 6.0.1.3 when installed on Cisco FirePOWER 7000 Series Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277405" RelationType="Installed On" ProductReference="CVRFPID-227816">
+      <FullProductName ProductID="CVRFPID-227816:277405">Cisco Firepower Management Center 6.0.1.3 when installed on Cisco FirePOWER 8000 Series Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277507" RelationType="Installed On" ProductReference="CVRFPID-227816">
+      <FullProductName ProductID="CVRFPID-227816:277507">Cisco Firepower Management Center 6.0.1.3 when installed on Cisco Firepower Management Center Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277509" RelationType="Installed On" ProductReference="CVRFPID-227816">
+      <FullProductName ProductID="CVRFPID-227816:277509">Cisco Firepower Management Center 6.0.1.3 when installed on Cisco NGIPS Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277516" RelationType="Installed On" ProductReference="CVRFPID-227816">
+      <FullProductName ProductID="CVRFPID-227816:277516">Cisco Firepower Management Center 6.0.1.3 when installed on Cisco Firepower Management Center Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277391" RelationType="Installed On" ProductReference="CVRFPID-267611">
+      <FullProductName ProductID="CVRFPID-267611:277391">Cisco Firepower Management Center 6.0.1.2 when installed on Cisco FirePOWER 7000 Series Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277405" RelationType="Installed On" ProductReference="CVRFPID-267611">
+      <FullProductName ProductID="CVRFPID-267611:277405">Cisco Firepower Management Center 6.0.1.2 when installed on Cisco FirePOWER 8000 Series Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277507" RelationType="Installed On" ProductReference="CVRFPID-267611">
+      <FullProductName ProductID="CVRFPID-267611:277507">Cisco Firepower Management Center 6.0.1.2 when installed on Cisco Firepower Management Center Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277509" RelationType="Installed On" ProductReference="CVRFPID-267611">
+      <FullProductName ProductID="CVRFPID-267611:277509">Cisco Firepower Management Center 6.0.1.2 when installed on Cisco NGIPS Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277516" RelationType="Installed On" ProductReference="CVRFPID-267611">
+      <FullProductName ProductID="CVRFPID-267611:277516">Cisco Firepower Management Center 6.0.1.2 when installed on Cisco Firepower Management Center Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277391" RelationType="Installed On" ProductReference="CVRFPID-267612">
+      <FullProductName ProductID="CVRFPID-267612:277391">Cisco Firepower Management Center 6.0.1.4 when installed on Cisco FirePOWER 7000 Series Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277405" RelationType="Installed On" ProductReference="CVRFPID-267612">
+      <FullProductName ProductID="CVRFPID-267612:277405">Cisco Firepower Management Center 6.0.1.4 when installed on Cisco FirePOWER 8000 Series Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277507" RelationType="Installed On" ProductReference="CVRFPID-267612">
+      <FullProductName ProductID="CVRFPID-267612:277507">Cisco Firepower Management Center 6.0.1.4 when installed on Cisco Firepower Management Center Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277509" RelationType="Installed On" ProductReference="CVRFPID-267612">
+      <FullProductName ProductID="CVRFPID-267612:277509">Cisco Firepower Management Center 6.0.1.4 when installed on Cisco NGIPS Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277516" RelationType="Installed On" ProductReference="CVRFPID-267612">
+      <FullProductName ProductID="CVRFPID-267612:277516">Cisco Firepower Management Center 6.0.1.4 when installed on Cisco Firepower Management Center Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277391" RelationType="Installed On" ProductReference="CVRFPID-216309">
+      <FullProductName ProductID="CVRFPID-216309:277391">Cisco Firepower Management Center 6.1.0 when installed on Cisco FirePOWER 7000 Series Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277405" RelationType="Installed On" ProductReference="CVRFPID-216309">
+      <FullProductName ProductID="CVRFPID-216309:277405">Cisco Firepower Management Center 6.1.0 when installed on Cisco FirePOWER 8000 Series Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277507" RelationType="Installed On" ProductReference="CVRFPID-216309">
+      <FullProductName ProductID="CVRFPID-216309:277507">Cisco Firepower Management Center 6.1.0 when installed on Cisco Firepower Management Center Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277509" RelationType="Installed On" ProductReference="CVRFPID-216309">
+      <FullProductName ProductID="CVRFPID-216309:277509">Cisco Firepower Management Center 6.1.0 when installed on Cisco NGIPS Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277516" RelationType="Installed On" ProductReference="CVRFPID-216309">
+      <FullProductName ProductID="CVRFPID-216309:277516">Cisco Firepower Management Center 6.1.0 when installed on Cisco Firepower Management Center Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277391" RelationType="Installed On" ProductReference="CVRFPID-226361">
+      <FullProductName ProductID="CVRFPID-226361:277391">Cisco Firepower Management Center 6.1.0.2 when installed on Cisco FirePOWER 7000 Series Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277405" RelationType="Installed On" ProductReference="CVRFPID-226361">
+      <FullProductName ProductID="CVRFPID-226361:277405">Cisco Firepower Management Center 6.1.0.2 when installed on Cisco FirePOWER 8000 Series Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277507" RelationType="Installed On" ProductReference="CVRFPID-226361">
+      <FullProductName ProductID="CVRFPID-226361:277507">Cisco Firepower Management Center 6.1.0.2 when installed on Cisco Firepower Management Center Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277509" RelationType="Installed On" ProductReference="CVRFPID-226361">
+      <FullProductName ProductID="CVRFPID-226361:277509">Cisco Firepower Management Center 6.1.0.2 when installed on Cisco NGIPS Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277516" RelationType="Installed On" ProductReference="CVRFPID-226361">
+      <FullProductName ProductID="CVRFPID-226361:277516">Cisco Firepower Management Center 6.1.0.2 when installed on Cisco Firepower Management Center Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277391" RelationType="Installed On" ProductReference="CVRFPID-267613">
+      <FullProductName ProductID="CVRFPID-267613:277391">Cisco Firepower Management Center 6.1.0.1 when installed on Cisco FirePOWER 7000 Series Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277405" RelationType="Installed On" ProductReference="CVRFPID-267613">
+      <FullProductName ProductID="CVRFPID-267613:277405">Cisco Firepower Management Center 6.1.0.1 when installed on Cisco FirePOWER 8000 Series Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277507" RelationType="Installed On" ProductReference="CVRFPID-267613">
+      <FullProductName ProductID="CVRFPID-267613:277507">Cisco Firepower Management Center 6.1.0.1 when installed on Cisco Firepower Management Center Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277509" RelationType="Installed On" ProductReference="CVRFPID-267613">
+      <FullProductName ProductID="CVRFPID-267613:277509">Cisco Firepower Management Center 6.1.0.1 when installed on Cisco NGIPS Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277516" RelationType="Installed On" ProductReference="CVRFPID-267613">
+      <FullProductName ProductID="CVRFPID-267613:277516">Cisco Firepower Management Center 6.1.0.1 when installed on Cisco Firepower Management Center Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277391" RelationType="Installed On" ProductReference="CVRFPID-267614">
+      <FullProductName ProductID="CVRFPID-267614:277391">Cisco Firepower Management Center 6.1.0.3 when installed on Cisco FirePOWER 7000 Series Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277405" RelationType="Installed On" ProductReference="CVRFPID-267614">
+      <FullProductName ProductID="CVRFPID-267614:277405">Cisco Firepower Management Center 6.1.0.3 when installed on Cisco FirePOWER 8000 Series Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277507" RelationType="Installed On" ProductReference="CVRFPID-267614">
+      <FullProductName ProductID="CVRFPID-267614:277507">Cisco Firepower Management Center 6.1.0.3 when installed on Cisco Firepower Management Center Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277509" RelationType="Installed On" ProductReference="CVRFPID-267614">
+      <FullProductName ProductID="CVRFPID-267614:277509">Cisco Firepower Management Center 6.1.0.3 when installed on Cisco NGIPS Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277516" RelationType="Installed On" ProductReference="CVRFPID-267614">
+      <FullProductName ProductID="CVRFPID-267614:277516">Cisco Firepower Management Center 6.1.0.3 when installed on Cisco Firepower Management Center Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277391" RelationType="Installed On" ProductReference="CVRFPID-267615">
+      <FullProductName ProductID="CVRFPID-267615:277391">Cisco Firepower Management Center 6.1.0.4 when installed on Cisco FirePOWER 7000 Series Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277405" RelationType="Installed On" ProductReference="CVRFPID-267615">
+      <FullProductName ProductID="CVRFPID-267615:277405">Cisco Firepower Management Center 6.1.0.4 when installed on Cisco FirePOWER 8000 Series Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277507" RelationType="Installed On" ProductReference="CVRFPID-267615">
+      <FullProductName ProductID="CVRFPID-267615:277507">Cisco Firepower Management Center 6.1.0.4 when installed on Cisco Firepower Management Center Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277509" RelationType="Installed On" ProductReference="CVRFPID-267615">
+      <FullProductName ProductID="CVRFPID-267615:277509">Cisco Firepower Management Center 6.1.0.4 when installed on Cisco NGIPS Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277516" RelationType="Installed On" ProductReference="CVRFPID-267615">
+      <FullProductName ProductID="CVRFPID-267615:277516">Cisco Firepower Management Center 6.1.0.4 when installed on Cisco Firepower Management Center Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277391" RelationType="Installed On" ProductReference="CVRFPID-267616">
+      <FullProductName ProductID="CVRFPID-267616:277391">Cisco Firepower Management Center 6.1.0.5 when installed on Cisco FirePOWER 7000 Series Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277405" RelationType="Installed On" ProductReference="CVRFPID-267616">
+      <FullProductName ProductID="CVRFPID-267616:277405">Cisco Firepower Management Center 6.1.0.5 when installed on Cisco FirePOWER 8000 Series Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277507" RelationType="Installed On" ProductReference="CVRFPID-267616">
+      <FullProductName ProductID="CVRFPID-267616:277507">Cisco Firepower Management Center 6.1.0.5 when installed on Cisco Firepower Management Center Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277509" RelationType="Installed On" ProductReference="CVRFPID-267616">
+      <FullProductName ProductID="CVRFPID-267616:277509">Cisco Firepower Management Center 6.1.0.5 when installed on Cisco NGIPS Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277516" RelationType="Installed On" ProductReference="CVRFPID-267616">
+      <FullProductName ProductID="CVRFPID-267616:277516">Cisco Firepower Management Center 6.1.0.5 when installed on Cisco Firepower Management Center Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277391" RelationType="Installed On" ProductReference="CVRFPID-267617">
+      <FullProductName ProductID="CVRFPID-267617:277391">Cisco Firepower Management Center 6.1.0.6 when installed on Cisco FirePOWER 7000 Series Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277405" RelationType="Installed On" ProductReference="CVRFPID-267617">
+      <FullProductName ProductID="CVRFPID-267617:277405">Cisco Firepower Management Center 6.1.0.6 when installed on Cisco FirePOWER 8000 Series Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277507" RelationType="Installed On" ProductReference="CVRFPID-267617">
+      <FullProductName ProductID="CVRFPID-267617:277507">Cisco Firepower Management Center 6.1.0.6 when installed on Cisco Firepower Management Center Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277509" RelationType="Installed On" ProductReference="CVRFPID-267617">
+      <FullProductName ProductID="CVRFPID-267617:277509">Cisco Firepower Management Center 6.1.0.6 when installed on Cisco NGIPS Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277516" RelationType="Installed On" ProductReference="CVRFPID-267617">
+      <FullProductName ProductID="CVRFPID-267617:277516">Cisco Firepower Management Center 6.1.0.6 when installed on Cisco Firepower Management Center Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277391" RelationType="Installed On" ProductReference="CVRFPID-267618">
+      <FullProductName ProductID="CVRFPID-267618:277391">Cisco Firepower Management Center 6.1.0.7 when installed on Cisco FirePOWER 7000 Series Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277405" RelationType="Installed On" ProductReference="CVRFPID-267618">
+      <FullProductName ProductID="CVRFPID-267618:277405">Cisco Firepower Management Center 6.1.0.7 when installed on Cisco FirePOWER 8000 Series Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277507" RelationType="Installed On" ProductReference="CVRFPID-267618">
+      <FullProductName ProductID="CVRFPID-267618:277507">Cisco Firepower Management Center 6.1.0.7 when installed on Cisco Firepower Management Center Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277509" RelationType="Installed On" ProductReference="CVRFPID-267618">
+      <FullProductName ProductID="CVRFPID-267618:277509">Cisco Firepower Management Center 6.1.0.7 when installed on Cisco NGIPS Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277516" RelationType="Installed On" ProductReference="CVRFPID-267618">
+      <FullProductName ProductID="CVRFPID-267618:277516">Cisco Firepower Management Center 6.1.0.7 when installed on Cisco Firepower Management Center Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277391" RelationType="Installed On" ProductReference="CVRFPID-224894">
+      <FullProductName ProductID="CVRFPID-224894:277391">Cisco Firepower Management Center 6.2.0 when installed on Cisco FirePOWER 7000 Series Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277405" RelationType="Installed On" ProductReference="CVRFPID-224894">
+      <FullProductName ProductID="CVRFPID-224894:277405">Cisco Firepower Management Center 6.2.0 when installed on Cisco FirePOWER 8000 Series Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277507" RelationType="Installed On" ProductReference="CVRFPID-224894">
+      <FullProductName ProductID="CVRFPID-224894:277507">Cisco Firepower Management Center 6.2.0 when installed on Cisco Firepower Management Center Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277509" RelationType="Installed On" ProductReference="CVRFPID-224894">
+      <FullProductName ProductID="CVRFPID-224894:277509">Cisco Firepower Management Center 6.2.0 when installed on Cisco NGIPS Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277516" RelationType="Installed On" ProductReference="CVRFPID-224894">
+      <FullProductName ProductID="CVRFPID-224894:277516">Cisco Firepower Management Center 6.2.0 when installed on Cisco Firepower Management Center Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277507" RelationType="Installed On" ProductReference="CVRFPID-225378">
+      <FullProductName ProductID="CVRFPID-225378:277507">Cisco Firepower Management Center 6.2.1 when installed on Cisco Firepower Management Center Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277516" RelationType="Installed On" ProductReference="CVRFPID-225378">
+      <FullProductName ProductID="CVRFPID-225378:277516">Cisco Firepower Management Center 6.2.1 when installed on Cisco Firepower Management Center Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277391" RelationType="Installed On" ProductReference="CVRFPID-226362">
+      <FullProductName ProductID="CVRFPID-226362:277391">Cisco Firepower Management Center 6.2.2 when installed on Cisco FirePOWER 7000 Series Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277405" RelationType="Installed On" ProductReference="CVRFPID-226362">
+      <FullProductName ProductID="CVRFPID-226362:277405">Cisco Firepower Management Center 6.2.2 when installed on Cisco FirePOWER 8000 Series Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277507" RelationType="Installed On" ProductReference="CVRFPID-226362">
+      <FullProductName ProductID="CVRFPID-226362:277507">Cisco Firepower Management Center 6.2.2 when installed on Cisco Firepower Management Center Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277509" RelationType="Installed On" ProductReference="CVRFPID-226362">
+      <FullProductName ProductID="CVRFPID-226362:277509">Cisco Firepower Management Center 6.2.2 when installed on Cisco NGIPS Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277516" RelationType="Installed On" ProductReference="CVRFPID-226362">
+      <FullProductName ProductID="CVRFPID-226362:277516">Cisco Firepower Management Center 6.2.2 when installed on Cisco Firepower Management Center Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277391" RelationType="Installed On" ProductReference="CVRFPID-227815">
+      <FullProductName ProductID="CVRFPID-227815:277391">Cisco Firepower Management Center 6.2.0.2 when installed on Cisco FirePOWER 7000 Series Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277405" RelationType="Installed On" ProductReference="CVRFPID-227815">
+      <FullProductName ProductID="CVRFPID-227815:277405">Cisco Firepower Management Center 6.2.0.2 when installed on Cisco FirePOWER 8000 Series Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277507" RelationType="Installed On" ProductReference="CVRFPID-227815">
+      <FullProductName ProductID="CVRFPID-227815:277507">Cisco Firepower Management Center 6.2.0.2 when installed on Cisco Firepower Management Center Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277509" RelationType="Installed On" ProductReference="CVRFPID-227815">
+      <FullProductName ProductID="CVRFPID-227815:277509">Cisco Firepower Management Center 6.2.0.2 when installed on Cisco NGIPS Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277516" RelationType="Installed On" ProductReference="CVRFPID-227815">
+      <FullProductName ProductID="CVRFPID-227815:277516">Cisco Firepower Management Center 6.2.0.2 when installed on Cisco Firepower Management Center Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277391" RelationType="Installed On" ProductReference="CVRFPID-267619">
+      <FullProductName ProductID="CVRFPID-267619:277391">Cisco Firepower Management Center 6.2.0.1 when installed on Cisco FirePOWER 7000 Series Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277405" RelationType="Installed On" ProductReference="CVRFPID-267619">
+      <FullProductName ProductID="CVRFPID-267619:277405">Cisco Firepower Management Center 6.2.0.1 when installed on Cisco FirePOWER 8000 Series Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277507" RelationType="Installed On" ProductReference="CVRFPID-267619">
+      <FullProductName ProductID="CVRFPID-267619:277507">Cisco Firepower Management Center 6.2.0.1 when installed on Cisco Firepower Management Center Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277509" RelationType="Installed On" ProductReference="CVRFPID-267619">
+      <FullProductName ProductID="CVRFPID-267619:277509">Cisco Firepower Management Center 6.2.0.1 when installed on Cisco NGIPS Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277516" RelationType="Installed On" ProductReference="CVRFPID-267619">
+      <FullProductName ProductID="CVRFPID-267619:277516">Cisco Firepower Management Center 6.2.0.1 when installed on Cisco Firepower Management Center Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277391" RelationType="Installed On" ProductReference="CVRFPID-267620">
+      <FullProductName ProductID="CVRFPID-267620:277391">Cisco Firepower Management Center 6.2.0.3 when installed on Cisco FirePOWER 7000 Series Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277405" RelationType="Installed On" ProductReference="CVRFPID-267620">
+      <FullProductName ProductID="CVRFPID-267620:277405">Cisco Firepower Management Center 6.2.0.3 when installed on Cisco FirePOWER 8000 Series Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277507" RelationType="Installed On" ProductReference="CVRFPID-267620">
+      <FullProductName ProductID="CVRFPID-267620:277507">Cisco Firepower Management Center 6.2.0.3 when installed on Cisco Firepower Management Center Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277509" RelationType="Installed On" ProductReference="CVRFPID-267620">
+      <FullProductName ProductID="CVRFPID-267620:277509">Cisco Firepower Management Center 6.2.0.3 when installed on Cisco NGIPS Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277516" RelationType="Installed On" ProductReference="CVRFPID-267620">
+      <FullProductName ProductID="CVRFPID-267620:277516">Cisco Firepower Management Center 6.2.0.3 when installed on Cisco Firepower Management Center Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277391" RelationType="Installed On" ProductReference="CVRFPID-267621">
+      <FullProductName ProductID="CVRFPID-267621:277391">Cisco Firepower Management Center 6.2.0.4 when installed on Cisco FirePOWER 7000 Series Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277405" RelationType="Installed On" ProductReference="CVRFPID-267621">
+      <FullProductName ProductID="CVRFPID-267621:277405">Cisco Firepower Management Center 6.2.0.4 when installed on Cisco FirePOWER 8000 Series Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277507" RelationType="Installed On" ProductReference="CVRFPID-267621">
+      <FullProductName ProductID="CVRFPID-267621:277507">Cisco Firepower Management Center 6.2.0.4 when installed on Cisco Firepower Management Center Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277509" RelationType="Installed On" ProductReference="CVRFPID-267621">
+      <FullProductName ProductID="CVRFPID-267621:277509">Cisco Firepower Management Center 6.2.0.4 when installed on Cisco NGIPS Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277516" RelationType="Installed On" ProductReference="CVRFPID-267621">
+      <FullProductName ProductID="CVRFPID-267621:277516">Cisco Firepower Management Center 6.2.0.4 when installed on Cisco Firepower Management Center Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277391" RelationType="Installed On" ProductReference="CVRFPID-267622">
+      <FullProductName ProductID="CVRFPID-267622:277391">Cisco Firepower Management Center 6.2.0.5 when installed on Cisco FirePOWER 7000 Series Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277405" RelationType="Installed On" ProductReference="CVRFPID-267622">
+      <FullProductName ProductID="CVRFPID-267622:277405">Cisco Firepower Management Center 6.2.0.5 when installed on Cisco FirePOWER 8000 Series Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277507" RelationType="Installed On" ProductReference="CVRFPID-267622">
+      <FullProductName ProductID="CVRFPID-267622:277507">Cisco Firepower Management Center 6.2.0.5 when installed on Cisco Firepower Management Center Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277509" RelationType="Installed On" ProductReference="CVRFPID-267622">
+      <FullProductName ProductID="CVRFPID-267622:277509">Cisco Firepower Management Center 6.2.0.5 when installed on Cisco NGIPS Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277516" RelationType="Installed On" ProductReference="CVRFPID-267622">
+      <FullProductName ProductID="CVRFPID-267622:277516">Cisco Firepower Management Center 6.2.0.5 when installed on Cisco Firepower Management Center Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277391" RelationType="Installed On" ProductReference="CVRFPID-267623">
+      <FullProductName ProductID="CVRFPID-267623:277391">Cisco Firepower Management Center 6.2.0.6 when installed on Cisco FirePOWER 7000 Series Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277405" RelationType="Installed On" ProductReference="CVRFPID-267623">
+      <FullProductName ProductID="CVRFPID-267623:277405">Cisco Firepower Management Center 6.2.0.6 when installed on Cisco FirePOWER 8000 Series Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277507" RelationType="Installed On" ProductReference="CVRFPID-267623">
+      <FullProductName ProductID="CVRFPID-267623:277507">Cisco Firepower Management Center 6.2.0.6 when installed on Cisco Firepower Management Center Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277509" RelationType="Installed On" ProductReference="CVRFPID-267623">
+      <FullProductName ProductID="CVRFPID-267623:277509">Cisco Firepower Management Center 6.2.0.6 when installed on Cisco NGIPS Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277516" RelationType="Installed On" ProductReference="CVRFPID-267623">
+      <FullProductName ProductID="CVRFPID-267623:277516">Cisco Firepower Management Center 6.2.0.6 when installed on Cisco Firepower Management Center Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277391" RelationType="Installed On" ProductReference="CVRFPID-267625">
+      <FullProductName ProductID="CVRFPID-267625:277391">Cisco Firepower Management Center 6.2.2.1 when installed on Cisco FirePOWER 7000 Series Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277405" RelationType="Installed On" ProductReference="CVRFPID-267625">
+      <FullProductName ProductID="CVRFPID-267625:277405">Cisco Firepower Management Center 6.2.2.1 when installed on Cisco FirePOWER 8000 Series Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277507" RelationType="Installed On" ProductReference="CVRFPID-267625">
+      <FullProductName ProductID="CVRFPID-267625:277507">Cisco Firepower Management Center 6.2.2.1 when installed on Cisco Firepower Management Center Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277509" RelationType="Installed On" ProductReference="CVRFPID-267625">
+      <FullProductName ProductID="CVRFPID-267625:277509">Cisco Firepower Management Center 6.2.2.1 when installed on Cisco NGIPS Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277516" RelationType="Installed On" ProductReference="CVRFPID-267625">
+      <FullProductName ProductID="CVRFPID-267625:277516">Cisco Firepower Management Center 6.2.2.1 when installed on Cisco Firepower Management Center Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277391" RelationType="Installed On" ProductReference="CVRFPID-267626">
+      <FullProductName ProductID="CVRFPID-267626:277391">Cisco Firepower Management Center 6.2.2.2 when installed on Cisco FirePOWER 7000 Series Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277405" RelationType="Installed On" ProductReference="CVRFPID-267626">
+      <FullProductName ProductID="CVRFPID-267626:277405">Cisco Firepower Management Center 6.2.2.2 when installed on Cisco FirePOWER 8000 Series Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277507" RelationType="Installed On" ProductReference="CVRFPID-267626">
+      <FullProductName ProductID="CVRFPID-267626:277507">Cisco Firepower Management Center 6.2.2.2 when installed on Cisco Firepower Management Center Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277509" RelationType="Installed On" ProductReference="CVRFPID-267626">
+      <FullProductName ProductID="CVRFPID-267626:277509">Cisco Firepower Management Center 6.2.2.2 when installed on Cisco NGIPS Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277516" RelationType="Installed On" ProductReference="CVRFPID-267626">
+      <FullProductName ProductID="CVRFPID-267626:277516">Cisco Firepower Management Center 6.2.2.2 when installed on Cisco Firepower Management Center Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277391" RelationType="Installed On" ProductReference="CVRFPID-267627">
+      <FullProductName ProductID="CVRFPID-267627:277391">Cisco Firepower Management Center 6.2.2.3 when installed on Cisco FirePOWER 7000 Series Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277405" RelationType="Installed On" ProductReference="CVRFPID-267627">
+      <FullProductName ProductID="CVRFPID-267627:277405">Cisco Firepower Management Center 6.2.2.3 when installed on Cisco FirePOWER 8000 Series Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277507" RelationType="Installed On" ProductReference="CVRFPID-267627">
+      <FullProductName ProductID="CVRFPID-267627:277507">Cisco Firepower Management Center 6.2.2.3 when installed on Cisco Firepower Management Center Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277509" RelationType="Installed On" ProductReference="CVRFPID-267627">
+      <FullProductName ProductID="CVRFPID-267627:277509">Cisco Firepower Management Center 6.2.2.3 when installed on Cisco NGIPS Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277516" RelationType="Installed On" ProductReference="CVRFPID-267627">
+      <FullProductName ProductID="CVRFPID-267627:277516">Cisco Firepower Management Center 6.2.2.3 when installed on Cisco Firepower Management Center Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277391" RelationType="Installed On" ProductReference="CVRFPID-267628">
+      <FullProductName ProductID="CVRFPID-267628:277391">Cisco Firepower Management Center 6.2.2.4 when installed on Cisco FirePOWER 7000 Series Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277405" RelationType="Installed On" ProductReference="CVRFPID-267628">
+      <FullProductName ProductID="CVRFPID-267628:277405">Cisco Firepower Management Center 6.2.2.4 when installed on Cisco FirePOWER 8000 Series Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277507" RelationType="Installed On" ProductReference="CVRFPID-267628">
+      <FullProductName ProductID="CVRFPID-267628:277507">Cisco Firepower Management Center 6.2.2.4 when installed on Cisco Firepower Management Center Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277509" RelationType="Installed On" ProductReference="CVRFPID-267628">
+      <FullProductName ProductID="CVRFPID-267628:277509">Cisco Firepower Management Center 6.2.2.4 when installed on Cisco NGIPS Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277516" RelationType="Installed On" ProductReference="CVRFPID-267628">
+      <FullProductName ProductID="CVRFPID-267628:277516">Cisco Firepower Management Center 6.2.2.4 when installed on Cisco Firepower Management Center Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277391" RelationType="Installed On" ProductReference="CVRFPID-267629">
+      <FullProductName ProductID="CVRFPID-267629:277391">Cisco Firepower Management Center 6.2.3 when installed on Cisco FirePOWER 7000 Series Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277405" RelationType="Installed On" ProductReference="CVRFPID-267629">
+      <FullProductName ProductID="CVRFPID-267629:277405">Cisco Firepower Management Center 6.2.3 when installed on Cisco FirePOWER 8000 Series Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277507" RelationType="Installed On" ProductReference="CVRFPID-267629">
+      <FullProductName ProductID="CVRFPID-267629:277507">Cisco Firepower Management Center 6.2.3 when installed on Cisco Firepower Management Center Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277509" RelationType="Installed On" ProductReference="CVRFPID-267629">
+      <FullProductName ProductID="CVRFPID-267629:277509">Cisco Firepower Management Center 6.2.3 when installed on Cisco NGIPS Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277516" RelationType="Installed On" ProductReference="CVRFPID-267629">
+      <FullProductName ProductID="CVRFPID-267629:277516">Cisco Firepower Management Center 6.2.3 when installed on Cisco Firepower Management Center Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277391" RelationType="Installed On" ProductReference="CVRFPID-267630">
+      <FullProductName ProductID="CVRFPID-267630:277391">Cisco Firepower Management Center 6.2.3.1 when installed on Cisco FirePOWER 7000 Series Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277405" RelationType="Installed On" ProductReference="CVRFPID-267630">
+      <FullProductName ProductID="CVRFPID-267630:277405">Cisco Firepower Management Center 6.2.3.1 when installed on Cisco FirePOWER 8000 Series Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277507" RelationType="Installed On" ProductReference="CVRFPID-267630">
+      <FullProductName ProductID="CVRFPID-267630:277507">Cisco Firepower Management Center 6.2.3.1 when installed on Cisco Firepower Management Center Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277509" RelationType="Installed On" ProductReference="CVRFPID-267630">
+      <FullProductName ProductID="CVRFPID-267630:277509">Cisco Firepower Management Center 6.2.3.1 when installed on Cisco NGIPS Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277516" RelationType="Installed On" ProductReference="CVRFPID-267630">
+      <FullProductName ProductID="CVRFPID-267630:277516">Cisco Firepower Management Center 6.2.3.1 when installed on Cisco Firepower Management Center Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277391" RelationType="Installed On" ProductReference="CVRFPID-267631">
+      <FullProductName ProductID="CVRFPID-267631:277391">Cisco Firepower Management Center 6.2.3.2 when installed on Cisco FirePOWER 7000 Series Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277405" RelationType="Installed On" ProductReference="CVRFPID-267631">
+      <FullProductName ProductID="CVRFPID-267631:277405">Cisco Firepower Management Center 6.2.3.2 when installed on Cisco FirePOWER 8000 Series Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277507" RelationType="Installed On" ProductReference="CVRFPID-267631">
+      <FullProductName ProductID="CVRFPID-267631:277507">Cisco Firepower Management Center 6.2.3.2 when installed on Cisco Firepower Management Center Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277509" RelationType="Installed On" ProductReference="CVRFPID-267631">
+      <FullProductName ProductID="CVRFPID-267631:277509">Cisco Firepower Management Center 6.2.3.2 when installed on Cisco NGIPS Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277516" RelationType="Installed On" ProductReference="CVRFPID-267631">
+      <FullProductName ProductID="CVRFPID-267631:277516">Cisco Firepower Management Center 6.2.3.2 when installed on Cisco Firepower Management Center Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277391" RelationType="Installed On" ProductReference="CVRFPID-267632">
+      <FullProductName ProductID="CVRFPID-267632:277391">Cisco Firepower Management Center 6.2.3.3 when installed on Cisco FirePOWER 7000 Series Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277405" RelationType="Installed On" ProductReference="CVRFPID-267632">
+      <FullProductName ProductID="CVRFPID-267632:277405">Cisco Firepower Management Center 6.2.3.3 when installed on Cisco FirePOWER 8000 Series Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277507" RelationType="Installed On" ProductReference="CVRFPID-267632">
+      <FullProductName ProductID="CVRFPID-267632:277507">Cisco Firepower Management Center 6.2.3.3 when installed on Cisco Firepower Management Center Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277509" RelationType="Installed On" ProductReference="CVRFPID-267632">
+      <FullProductName ProductID="CVRFPID-267632:277509">Cisco Firepower Management Center 6.2.3.3 when installed on Cisco NGIPS Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277516" RelationType="Installed On" ProductReference="CVRFPID-267632">
+      <FullProductName ProductID="CVRFPID-267632:277516">Cisco Firepower Management Center 6.2.3.3 when installed on Cisco Firepower Management Center Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277391" RelationType="Installed On" ProductReference="CVRFPID-267633">
+      <FullProductName ProductID="CVRFPID-267633:277391">Cisco Firepower Management Center 6.2.3.4 when installed on Cisco FirePOWER 7000 Series Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277405" RelationType="Installed On" ProductReference="CVRFPID-267633">
+      <FullProductName ProductID="CVRFPID-267633:277405">Cisco Firepower Management Center 6.2.3.4 when installed on Cisco FirePOWER 8000 Series Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277507" RelationType="Installed On" ProductReference="CVRFPID-267633">
+      <FullProductName ProductID="CVRFPID-267633:277507">Cisco Firepower Management Center 6.2.3.4 when installed on Cisco Firepower Management Center Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277509" RelationType="Installed On" ProductReference="CVRFPID-267633">
+      <FullProductName ProductID="CVRFPID-267633:277509">Cisco Firepower Management Center 6.2.3.4 when installed on Cisco NGIPS Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277516" RelationType="Installed On" ProductReference="CVRFPID-267633">
+      <FullProductName ProductID="CVRFPID-267633:277516">Cisco Firepower Management Center 6.2.3.4 when installed on Cisco Firepower Management Center Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277391" RelationType="Installed On" ProductReference="CVRFPID-267634">
+      <FullProductName ProductID="CVRFPID-267634:277391">Cisco Firepower Management Center 6.2.3.5 when installed on Cisco FirePOWER 7000 Series Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277405" RelationType="Installed On" ProductReference="CVRFPID-267634">
+      <FullProductName ProductID="CVRFPID-267634:277405">Cisco Firepower Management Center 6.2.3.5 when installed on Cisco FirePOWER 8000 Series Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277507" RelationType="Installed On" ProductReference="CVRFPID-267634">
+      <FullProductName ProductID="CVRFPID-267634:277507">Cisco Firepower Management Center 6.2.3.5 when installed on Cisco Firepower Management Center Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277509" RelationType="Installed On" ProductReference="CVRFPID-267634">
+      <FullProductName ProductID="CVRFPID-267634:277509">Cisco Firepower Management Center 6.2.3.5 when installed on Cisco NGIPS Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277516" RelationType="Installed On" ProductReference="CVRFPID-267634">
+      <FullProductName ProductID="CVRFPID-267634:277516">Cisco Firepower Management Center 6.2.3.5 when installed on Cisco Firepower Management Center Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277391" RelationType="Installed On" ProductReference="CVRFPID-267635">
+      <FullProductName ProductID="CVRFPID-267635:277391">Cisco Firepower Management Center 6.2.3.6 when installed on Cisco FirePOWER 7000 Series Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277405" RelationType="Installed On" ProductReference="CVRFPID-267635">
+      <FullProductName ProductID="CVRFPID-267635:277405">Cisco Firepower Management Center 6.2.3.6 when installed on Cisco FirePOWER 8000 Series Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277507" RelationType="Installed On" ProductReference="CVRFPID-267635">
+      <FullProductName ProductID="CVRFPID-267635:277507">Cisco Firepower Management Center 6.2.3.6 when installed on Cisco Firepower Management Center Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277509" RelationType="Installed On" ProductReference="CVRFPID-267635">
+      <FullProductName ProductID="CVRFPID-267635:277509">Cisco Firepower Management Center 6.2.3.6 when installed on Cisco NGIPS Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277516" RelationType="Installed On" ProductReference="CVRFPID-267635">
+      <FullProductName ProductID="CVRFPID-267635:277516">Cisco Firepower Management Center 6.2.3.6 when installed on Cisco Firepower Management Center Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277391" RelationType="Installed On" ProductReference="CVRFPID-267677">
+      <FullProductName ProductID="CVRFPID-267677:277391">Cisco Firepower Management Center 6.2.3.7 when installed on Cisco FirePOWER 7000 Series Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277405" RelationType="Installed On" ProductReference="CVRFPID-267677">
+      <FullProductName ProductID="CVRFPID-267677:277405">Cisco Firepower Management Center 6.2.3.7 when installed on Cisco FirePOWER 8000 Series Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277507" RelationType="Installed On" ProductReference="CVRFPID-267677">
+      <FullProductName ProductID="CVRFPID-267677:277507">Cisco Firepower Management Center 6.2.3.7 when installed on Cisco Firepower Management Center Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277509" RelationType="Installed On" ProductReference="CVRFPID-267677">
+      <FullProductName ProductID="CVRFPID-267677:277509">Cisco Firepower Management Center 6.2.3.7 when installed on Cisco NGIPS Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277516" RelationType="Installed On" ProductReference="CVRFPID-267677">
+      <FullProductName ProductID="CVRFPID-267677:277516">Cisco Firepower Management Center 6.2.3.7 when installed on Cisco Firepower Management Center Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277391" RelationType="Installed On" ProductReference="CVRFPID-267678">
+      <FullProductName ProductID="CVRFPID-267678:277391">Cisco Firepower Management Center 6.2.3.9 when installed on Cisco FirePOWER 7000 Series Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277405" RelationType="Installed On" ProductReference="CVRFPID-267678">
+      <FullProductName ProductID="CVRFPID-267678:277405">Cisco Firepower Management Center 6.2.3.9 when installed on Cisco FirePOWER 8000 Series Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277507" RelationType="Installed On" ProductReference="CVRFPID-267678">
+      <FullProductName ProductID="CVRFPID-267678:277507">Cisco Firepower Management Center 6.2.3.9 when installed on Cisco Firepower Management Center Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277509" RelationType="Installed On" ProductReference="CVRFPID-267678">
+      <FullProductName ProductID="CVRFPID-267678:277509">Cisco Firepower Management Center 6.2.3.9 when installed on Cisco NGIPS Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277516" RelationType="Installed On" ProductReference="CVRFPID-267678">
+      <FullProductName ProductID="CVRFPID-267678:277516">Cisco Firepower Management Center 6.2.3.9 when installed on Cisco Firepower Management Center Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277391" RelationType="Installed On" ProductReference="CVRFPID-267679">
+      <FullProductName ProductID="CVRFPID-267679:277391">Cisco Firepower Management Center 6.2.3.10 when installed on Cisco FirePOWER 7000 Series Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277405" RelationType="Installed On" ProductReference="CVRFPID-267679">
+      <FullProductName ProductID="CVRFPID-267679:277405">Cisco Firepower Management Center 6.2.3.10 when installed on Cisco FirePOWER 8000 Series Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277507" RelationType="Installed On" ProductReference="CVRFPID-267679">
+      <FullProductName ProductID="CVRFPID-267679:277507">Cisco Firepower Management Center 6.2.3.10 when installed on Cisco Firepower Management Center Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277509" RelationType="Installed On" ProductReference="CVRFPID-267679">
+      <FullProductName ProductID="CVRFPID-267679:277509">Cisco Firepower Management Center 6.2.3.10 when installed on Cisco NGIPS Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277516" RelationType="Installed On" ProductReference="CVRFPID-267679">
+      <FullProductName ProductID="CVRFPID-267679:277516">Cisco Firepower Management Center 6.2.3.10 when installed on Cisco Firepower Management Center Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277391" RelationType="Installed On" ProductReference="CVRFPID-267680">
+      <FullProductName ProductID="CVRFPID-267680:277391">Cisco Firepower Management Center 6.2.3.11 when installed on Cisco FirePOWER 7000 Series Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277405" RelationType="Installed On" ProductReference="CVRFPID-267680">
+      <FullProductName ProductID="CVRFPID-267680:277405">Cisco Firepower Management Center 6.2.3.11 when installed on Cisco FirePOWER 8000 Series Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277507" RelationType="Installed On" ProductReference="CVRFPID-267680">
+      <FullProductName ProductID="CVRFPID-267680:277507">Cisco Firepower Management Center 6.2.3.11 when installed on Cisco Firepower Management Center Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277509" RelationType="Installed On" ProductReference="CVRFPID-267680">
+      <FullProductName ProductID="CVRFPID-267680:277509">Cisco Firepower Management Center 6.2.3.11 when installed on Cisco NGIPS Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277516" RelationType="Installed On" ProductReference="CVRFPID-267680">
+      <FullProductName ProductID="CVRFPID-267680:277516">Cisco Firepower Management Center 6.2.3.11 when installed on Cisco Firepower Management Center Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277391" RelationType="Installed On" ProductReference="CVRFPID-267681">
+      <FullProductName ProductID="CVRFPID-267681:277391">Cisco Firepower Management Center 6.2.3.12 when installed on Cisco FirePOWER 7000 Series Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277405" RelationType="Installed On" ProductReference="CVRFPID-267681">
+      <FullProductName ProductID="CVRFPID-267681:277405">Cisco Firepower Management Center 6.2.3.12 when installed on Cisco FirePOWER 8000 Series Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277507" RelationType="Installed On" ProductReference="CVRFPID-267681">
+      <FullProductName ProductID="CVRFPID-267681:277507">Cisco Firepower Management Center 6.2.3.12 when installed on Cisco Firepower Management Center Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277509" RelationType="Installed On" ProductReference="CVRFPID-267681">
+      <FullProductName ProductID="CVRFPID-267681:277509">Cisco Firepower Management Center 6.2.3.12 when installed on Cisco NGIPS Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277516" RelationType="Installed On" ProductReference="CVRFPID-267681">
+      <FullProductName ProductID="CVRFPID-267681:277516">Cisco Firepower Management Center 6.2.3.12 when installed on Cisco Firepower Management Center Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277391" RelationType="Installed On" ProductReference="CVRFPID-267682">
+      <FullProductName ProductID="CVRFPID-267682:277391">Cisco Firepower Management Center 6.2.3.13 when installed on Cisco FirePOWER 7000 Series Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277405" RelationType="Installed On" ProductReference="CVRFPID-267682">
+      <FullProductName ProductID="CVRFPID-267682:277405">Cisco Firepower Management Center 6.2.3.13 when installed on Cisco FirePOWER 8000 Series Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277507" RelationType="Installed On" ProductReference="CVRFPID-267682">
+      <FullProductName ProductID="CVRFPID-267682:277507">Cisco Firepower Management Center 6.2.3.13 when installed on Cisco Firepower Management Center Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277509" RelationType="Installed On" ProductReference="CVRFPID-267682">
+      <FullProductName ProductID="CVRFPID-267682:277509">Cisco Firepower Management Center 6.2.3.13 when installed on Cisco NGIPS Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277516" RelationType="Installed On" ProductReference="CVRFPID-267682">
+      <FullProductName ProductID="CVRFPID-267682:277516">Cisco Firepower Management Center 6.2.3.13 when installed on Cisco Firepower Management Center Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277391" RelationType="Installed On" ProductReference="CVRFPID-267683">
+      <FullProductName ProductID="CVRFPID-267683:277391">Cisco Firepower Management Center 6.2.3.14 when installed on Cisco FirePOWER 7000 Series Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277405" RelationType="Installed On" ProductReference="CVRFPID-267683">
+      <FullProductName ProductID="CVRFPID-267683:277405">Cisco Firepower Management Center 6.2.3.14 when installed on Cisco FirePOWER 8000 Series Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277507" RelationType="Installed On" ProductReference="CVRFPID-267683">
+      <FullProductName ProductID="CVRFPID-267683:277507">Cisco Firepower Management Center 6.2.3.14 when installed on Cisco Firepower Management Center Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277509" RelationType="Installed On" ProductReference="CVRFPID-267683">
+      <FullProductName ProductID="CVRFPID-267683:277509">Cisco Firepower Management Center 6.2.3.14 when installed on Cisco NGIPS Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277516" RelationType="Installed On" ProductReference="CVRFPID-267683">
+      <FullProductName ProductID="CVRFPID-267683:277516">Cisco Firepower Management Center 6.2.3.14 when installed on Cisco Firepower Management Center Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277391" RelationType="Installed On" ProductReference="CVRFPID-278486">
+      <FullProductName ProductID="CVRFPID-278486:277391">Cisco Firepower Management Center 6.2.2.5 when installed on Cisco FirePOWER 7000 Series Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277405" RelationType="Installed On" ProductReference="CVRFPID-278486">
+      <FullProductName ProductID="CVRFPID-278486:277405">Cisco Firepower Management Center 6.2.2.5 when installed on Cisco FirePOWER 8000 Series Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277507" RelationType="Installed On" ProductReference="CVRFPID-278486">
+      <FullProductName ProductID="CVRFPID-278486:277507">Cisco Firepower Management Center 6.2.2.5 when installed on Cisco Firepower Management Center Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277509" RelationType="Installed On" ProductReference="CVRFPID-278486">
+      <FullProductName ProductID="CVRFPID-278486:277509">Cisco Firepower Management Center 6.2.2.5 when installed on Cisco NGIPS Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277516" RelationType="Installed On" ProductReference="CVRFPID-278486">
+      <FullProductName ProductID="CVRFPID-278486:277516">Cisco Firepower Management Center 6.2.2.5 when installed on Cisco Firepower Management Center Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277391" RelationType="Installed On" ProductReference="CVRFPID-278487">
+      <FullProductName ProductID="CVRFPID-278487:277391">Cisco Firepower Management Center 6.2.3.15 when installed on Cisco FirePOWER 7000 Series Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277405" RelationType="Installed On" ProductReference="CVRFPID-278487">
+      <FullProductName ProductID="CVRFPID-278487:277405">Cisco Firepower Management Center 6.2.3.15 when installed on Cisco FirePOWER 8000 Series Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277507" RelationType="Installed On" ProductReference="CVRFPID-278487">
+      <FullProductName ProductID="CVRFPID-278487:277507">Cisco Firepower Management Center 6.2.3.15 when installed on Cisco Firepower Management Center Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277509" RelationType="Installed On" ProductReference="CVRFPID-278487">
+      <FullProductName ProductID="CVRFPID-278487:277509">Cisco Firepower Management Center 6.2.3.15 when installed on Cisco NGIPS Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277516" RelationType="Installed On" ProductReference="CVRFPID-278487">
+      <FullProductName ProductID="CVRFPID-278487:277516">Cisco Firepower Management Center 6.2.3.15 when installed on Cisco Firepower Management Center Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277391" RelationType="Installed On" ProductReference="CVRFPID-278488">
+      <FullProductName ProductID="CVRFPID-278488:277391">Cisco Firepower Management Center 6.2.3.8 when installed on Cisco FirePOWER 7000 Series Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277405" RelationType="Installed On" ProductReference="CVRFPID-278488">
+      <FullProductName ProductID="CVRFPID-278488:277405">Cisco Firepower Management Center 6.2.3.8 when installed on Cisco FirePOWER 8000 Series Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277507" RelationType="Installed On" ProductReference="CVRFPID-278488">
+      <FullProductName ProductID="CVRFPID-278488:277507">Cisco Firepower Management Center 6.2.3.8 when installed on Cisco Firepower Management Center Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277509" RelationType="Installed On" ProductReference="CVRFPID-278488">
+      <FullProductName ProductID="CVRFPID-278488:277509">Cisco Firepower Management Center 6.2.3.8 when installed on Cisco NGIPS Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277516" RelationType="Installed On" ProductReference="CVRFPID-278488">
+      <FullProductName ProductID="CVRFPID-278488:277516">Cisco Firepower Management Center 6.2.3.8 when installed on Cisco Firepower Management Center Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277391" RelationType="Installed On" ProductReference="CVRFPID-278806">
+      <FullProductName ProductID="CVRFPID-278806:277391">Cisco Firepower Management Center 6.2.3.16 when installed on Cisco FirePOWER 7000 Series Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277405" RelationType="Installed On" ProductReference="CVRFPID-278806">
+      <FullProductName ProductID="CVRFPID-278806:277405">Cisco Firepower Management Center 6.2.3.16 when installed on Cisco FirePOWER 8000 Series Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277507" RelationType="Installed On" ProductReference="CVRFPID-278806">
+      <FullProductName ProductID="CVRFPID-278806:277507">Cisco Firepower Management Center 6.2.3.16 when installed on Cisco Firepower Management Center Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277509" RelationType="Installed On" ProductReference="CVRFPID-278806">
+      <FullProductName ProductID="CVRFPID-278806:277509">Cisco Firepower Management Center 6.2.3.16 when installed on Cisco NGIPS Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277516" RelationType="Installed On" ProductReference="CVRFPID-278806">
+      <FullProductName ProductID="CVRFPID-278806:277516">Cisco Firepower Management Center 6.2.3.16 when installed on Cisco Firepower Management Center Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277391" RelationType="Installed On" ProductReference="CVRFPID-284308">
+      <FullProductName ProductID="CVRFPID-284308:277391">Cisco Firepower Management Center 6.2.3.17 when installed on Cisco FirePOWER 7000 Series Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277405" RelationType="Installed On" ProductReference="CVRFPID-284308">
+      <FullProductName ProductID="CVRFPID-284308:277405">Cisco Firepower Management Center 6.2.3.17 when installed on Cisco FirePOWER 8000 Series Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277507" RelationType="Installed On" ProductReference="CVRFPID-284308">
+      <FullProductName ProductID="CVRFPID-284308:277507">Cisco Firepower Management Center 6.2.3.17 when installed on Cisco Firepower Management Center Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277509" RelationType="Installed On" ProductReference="CVRFPID-284308">
+      <FullProductName ProductID="CVRFPID-284308:277509">Cisco Firepower Management Center 6.2.3.17 when installed on Cisco NGIPS Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277516" RelationType="Installed On" ProductReference="CVRFPID-284308">
+      <FullProductName ProductID="CVRFPID-284308:277516">Cisco Firepower Management Center 6.2.3.17 when installed on Cisco Firepower Management Center Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277391" RelationType="Installed On" ProductReference="CVRFPID-267645">
+      <FullProductName ProductID="CVRFPID-267645:277391">Cisco Firepower Management Center 6.3.0 when installed on Cisco FirePOWER 7000 Series Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277405" RelationType="Installed On" ProductReference="CVRFPID-267645">
+      <FullProductName ProductID="CVRFPID-267645:277405">Cisco Firepower Management Center 6.3.0 when installed on Cisco FirePOWER 8000 Series Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277507" RelationType="Installed On" ProductReference="CVRFPID-267645">
+      <FullProductName ProductID="CVRFPID-267645:277507">Cisco Firepower Management Center 6.3.0 when installed on Cisco Firepower Management Center Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277509" RelationType="Installed On" ProductReference="CVRFPID-267645">
+      <FullProductName ProductID="CVRFPID-267645:277509">Cisco Firepower Management Center 6.3.0 when installed on Cisco NGIPS Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277516" RelationType="Installed On" ProductReference="CVRFPID-267645">
+      <FullProductName ProductID="CVRFPID-267645:277516">Cisco Firepower Management Center 6.3.0 when installed on Cisco Firepower Management Center Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277391" RelationType="Installed On" ProductReference="CVRFPID-267646">
+      <FullProductName ProductID="CVRFPID-267646:277391">Cisco Firepower Management Center 6.3.0.1 when installed on Cisco FirePOWER 7000 Series Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277405" RelationType="Installed On" ProductReference="CVRFPID-267646">
+      <FullProductName ProductID="CVRFPID-267646:277405">Cisco Firepower Management Center 6.3.0.1 when installed on Cisco FirePOWER 8000 Series Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277507" RelationType="Installed On" ProductReference="CVRFPID-267646">
+      <FullProductName ProductID="CVRFPID-267646:277507">Cisco Firepower Management Center 6.3.0.1 when installed on Cisco Firepower Management Center Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277509" RelationType="Installed On" ProductReference="CVRFPID-267646">
+      <FullProductName ProductID="CVRFPID-267646:277509">Cisco Firepower Management Center 6.3.0.1 when installed on Cisco NGIPS Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277516" RelationType="Installed On" ProductReference="CVRFPID-267646">
+      <FullProductName ProductID="CVRFPID-267646:277516">Cisco Firepower Management Center 6.3.0.1 when installed on Cisco Firepower Management Center Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277391" RelationType="Installed On" ProductReference="CVRFPID-267647">
+      <FullProductName ProductID="CVRFPID-267647:277391">Cisco Firepower Management Center 6.3.0.2 when installed on Cisco FirePOWER 7000 Series Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277405" RelationType="Installed On" ProductReference="CVRFPID-267647">
+      <FullProductName ProductID="CVRFPID-267647:277405">Cisco Firepower Management Center 6.3.0.2 when installed on Cisco FirePOWER 8000 Series Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277507" RelationType="Installed On" ProductReference="CVRFPID-267647">
+      <FullProductName ProductID="CVRFPID-267647:277507">Cisco Firepower Management Center 6.3.0.2 when installed on Cisco Firepower Management Center Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277509" RelationType="Installed On" ProductReference="CVRFPID-267647">
+      <FullProductName ProductID="CVRFPID-267647:277509">Cisco Firepower Management Center 6.3.0.2 when installed on Cisco NGIPS Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277516" RelationType="Installed On" ProductReference="CVRFPID-267647">
+      <FullProductName ProductID="CVRFPID-267647:277516">Cisco Firepower Management Center 6.3.0.2 when installed on Cisco Firepower Management Center Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277391" RelationType="Installed On" ProductReference="CVRFPID-267648">
+      <FullProductName ProductID="CVRFPID-267648:277391">Cisco Firepower Management Center 6.3.0.3 when installed on Cisco FirePOWER 7000 Series Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277405" RelationType="Installed On" ProductReference="CVRFPID-267648">
+      <FullProductName ProductID="CVRFPID-267648:277405">Cisco Firepower Management Center 6.3.0.3 when installed on Cisco FirePOWER 8000 Series Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277507" RelationType="Installed On" ProductReference="CVRFPID-267648">
+      <FullProductName ProductID="CVRFPID-267648:277507">Cisco Firepower Management Center 6.3.0.3 when installed on Cisco Firepower Management Center Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277509" RelationType="Installed On" ProductReference="CVRFPID-267648">
+      <FullProductName ProductID="CVRFPID-267648:277509">Cisco Firepower Management Center 6.3.0.3 when installed on Cisco NGIPS Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277516" RelationType="Installed On" ProductReference="CVRFPID-267648">
+      <FullProductName ProductID="CVRFPID-267648:277516">Cisco Firepower Management Center 6.3.0.3 when installed on Cisco Firepower Management Center Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277391" RelationType="Installed On" ProductReference="CVRFPID-278489">
+      <FullProductName ProductID="CVRFPID-278489:277391">Cisco Firepower Management Center 6.3.0.4 when installed on Cisco FirePOWER 7000 Series Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277405" RelationType="Installed On" ProductReference="CVRFPID-278489">
+      <FullProductName ProductID="CVRFPID-278489:277405">Cisco Firepower Management Center 6.3.0.4 when installed on Cisco FirePOWER 8000 Series Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277507" RelationType="Installed On" ProductReference="CVRFPID-278489">
+      <FullProductName ProductID="CVRFPID-278489:277507">Cisco Firepower Management Center 6.3.0.4 when installed on Cisco Firepower Management Center Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277509" RelationType="Installed On" ProductReference="CVRFPID-278489">
+      <FullProductName ProductID="CVRFPID-278489:277509">Cisco Firepower Management Center 6.3.0.4 when installed on Cisco NGIPS Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277516" RelationType="Installed On" ProductReference="CVRFPID-278489">
+      <FullProductName ProductID="CVRFPID-278489:277516">Cisco Firepower Management Center 6.3.0.4 when installed on Cisco Firepower Management Center Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277391" RelationType="Installed On" ProductReference="CVRFPID-278490">
+      <FullProductName ProductID="CVRFPID-278490:277391">Cisco Firepower Management Center 6.3.0.5 when installed on Cisco FirePOWER 7000 Series Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277405" RelationType="Installed On" ProductReference="CVRFPID-278490">
+      <FullProductName ProductID="CVRFPID-278490:277405">Cisco Firepower Management Center 6.3.0.5 when installed on Cisco FirePOWER 8000 Series Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277507" RelationType="Installed On" ProductReference="CVRFPID-278490">
+      <FullProductName ProductID="CVRFPID-278490:277507">Cisco Firepower Management Center 6.3.0.5 when installed on Cisco Firepower Management Center Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277509" RelationType="Installed On" ProductReference="CVRFPID-278490">
+      <FullProductName ProductID="CVRFPID-278490:277509">Cisco Firepower Management Center 6.3.0.5 when installed on Cisco NGIPS Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277516" RelationType="Installed On" ProductReference="CVRFPID-278490">
+      <FullProductName ProductID="CVRFPID-278490:277516">Cisco Firepower Management Center 6.3.0.5 when installed on Cisco Firepower Management Center Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277391" RelationType="Installed On" ProductReference="CVRFPID-267650">
+      <FullProductName ProductID="CVRFPID-267650:277391">Cisco Firepower Management Center 6.4.0 when installed on Cisco FirePOWER 7000 Series Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277405" RelationType="Installed On" ProductReference="CVRFPID-267650">
+      <FullProductName ProductID="CVRFPID-267650:277405">Cisco Firepower Management Center 6.4.0 when installed on Cisco FirePOWER 8000 Series Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277507" RelationType="Installed On" ProductReference="CVRFPID-267650">
+      <FullProductName ProductID="CVRFPID-267650:277507">Cisco Firepower Management Center 6.4.0 when installed on Cisco Firepower Management Center Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277509" RelationType="Installed On" ProductReference="CVRFPID-267650">
+      <FullProductName ProductID="CVRFPID-267650:277509">Cisco Firepower Management Center 6.4.0 when installed on Cisco NGIPS Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277516" RelationType="Installed On" ProductReference="CVRFPID-267650">
+      <FullProductName ProductID="CVRFPID-267650:277516">Cisco Firepower Management Center 6.4.0 when installed on Cisco Firepower Management Center Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277391" RelationType="Installed On" ProductReference="CVRFPID-267651">
+      <FullProductName ProductID="CVRFPID-267651:277391">Cisco Firepower Management Center 6.4.0.1 when installed on Cisco FirePOWER 7000 Series Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277405" RelationType="Installed On" ProductReference="CVRFPID-267651">
+      <FullProductName ProductID="CVRFPID-267651:277405">Cisco Firepower Management Center 6.4.0.1 when installed on Cisco FirePOWER 8000 Series Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277507" RelationType="Installed On" ProductReference="CVRFPID-267651">
+      <FullProductName ProductID="CVRFPID-267651:277507">Cisco Firepower Management Center 6.4.0.1 when installed on Cisco Firepower Management Center Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277509" RelationType="Installed On" ProductReference="CVRFPID-267651">
+      <FullProductName ProductID="CVRFPID-267651:277509">Cisco Firepower Management Center 6.4.0.1 when installed on Cisco NGIPS Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277516" RelationType="Installed On" ProductReference="CVRFPID-267651">
+      <FullProductName ProductID="CVRFPID-267651:277516">Cisco Firepower Management Center 6.4.0.1 when installed on Cisco Firepower Management Center Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277391" RelationType="Installed On" ProductReference="CVRFPID-267652">
+      <FullProductName ProductID="CVRFPID-267652:277391">Cisco Firepower Management Center 6.4.0.3 when installed on Cisco FirePOWER 7000 Series Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277405" RelationType="Installed On" ProductReference="CVRFPID-267652">
+      <FullProductName ProductID="CVRFPID-267652:277405">Cisco Firepower Management Center 6.4.0.3 when installed on Cisco FirePOWER 8000 Series Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277507" RelationType="Installed On" ProductReference="CVRFPID-267652">
+      <FullProductName ProductID="CVRFPID-267652:277507">Cisco Firepower Management Center 6.4.0.3 when installed on Cisco Firepower Management Center Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277509" RelationType="Installed On" ProductReference="CVRFPID-267652">
+      <FullProductName ProductID="CVRFPID-267652:277509">Cisco Firepower Management Center 6.4.0.3 when installed on Cisco NGIPS Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277516" RelationType="Installed On" ProductReference="CVRFPID-267652">
+      <FullProductName ProductID="CVRFPID-267652:277516">Cisco Firepower Management Center 6.4.0.3 when installed on Cisco Firepower Management Center Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277391" RelationType="Installed On" ProductReference="CVRFPID-278491">
+      <FullProductName ProductID="CVRFPID-278491:277391">Cisco Firepower Management Center 6.4.0.2 when installed on Cisco FirePOWER 7000 Series Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277405" RelationType="Installed On" ProductReference="CVRFPID-278491">
+      <FullProductName ProductID="CVRFPID-278491:277405">Cisco Firepower Management Center 6.4.0.2 when installed on Cisco FirePOWER 8000 Series Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277507" RelationType="Installed On" ProductReference="CVRFPID-278491">
+      <FullProductName ProductID="CVRFPID-278491:277507">Cisco Firepower Management Center 6.4.0.2 when installed on Cisco Firepower Management Center Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277509" RelationType="Installed On" ProductReference="CVRFPID-278491">
+      <FullProductName ProductID="CVRFPID-278491:277509">Cisco Firepower Management Center 6.4.0.2 when installed on Cisco NGIPS Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277516" RelationType="Installed On" ProductReference="CVRFPID-278491">
+      <FullProductName ProductID="CVRFPID-278491:277516">Cisco Firepower Management Center 6.4.0.2 when installed on Cisco Firepower Management Center Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277391" RelationType="Installed On" ProductReference="CVRFPID-278492">
+      <FullProductName ProductID="CVRFPID-278492:277391">Cisco Firepower Management Center 6.4.0.4 when installed on Cisco FirePOWER 7000 Series Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277405" RelationType="Installed On" ProductReference="CVRFPID-278492">
+      <FullProductName ProductID="CVRFPID-278492:277405">Cisco Firepower Management Center 6.4.0.4 when installed on Cisco FirePOWER 8000 Series Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277507" RelationType="Installed On" ProductReference="CVRFPID-278492">
+      <FullProductName ProductID="CVRFPID-278492:277507">Cisco Firepower Management Center 6.4.0.4 when installed on Cisco Firepower Management Center Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277509" RelationType="Installed On" ProductReference="CVRFPID-278492">
+      <FullProductName ProductID="CVRFPID-278492:277509">Cisco Firepower Management Center 6.4.0.4 when installed on Cisco NGIPS Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277516" RelationType="Installed On" ProductReference="CVRFPID-278492">
+      <FullProductName ProductID="CVRFPID-278492:277516">Cisco Firepower Management Center 6.4.0.4 when installed on Cisco Firepower Management Center Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277391" RelationType="Installed On" ProductReference="CVRFPID-278493">
+      <FullProductName ProductID="CVRFPID-278493:277391">Cisco Firepower Management Center 6.4.0.5 when installed on Cisco FirePOWER 7000 Series Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277405" RelationType="Installed On" ProductReference="CVRFPID-278493">
+      <FullProductName ProductID="CVRFPID-278493:277405">Cisco Firepower Management Center 6.4.0.5 when installed on Cisco FirePOWER 8000 Series Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277507" RelationType="Installed On" ProductReference="CVRFPID-278493">
+      <FullProductName ProductID="CVRFPID-278493:277507">Cisco Firepower Management Center 6.4.0.5 when installed on Cisco Firepower Management Center Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277509" RelationType="Installed On" ProductReference="CVRFPID-278493">
+      <FullProductName ProductID="CVRFPID-278493:277509">Cisco Firepower Management Center 6.4.0.5 when installed on Cisco NGIPS Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277516" RelationType="Installed On" ProductReference="CVRFPID-278493">
+      <FullProductName ProductID="CVRFPID-278493:277516">Cisco Firepower Management Center 6.4.0.5 when installed on Cisco Firepower Management Center Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277391" RelationType="Installed On" ProductReference="CVRFPID-278494">
+      <FullProductName ProductID="CVRFPID-278494:277391">Cisco Firepower Management Center 6.4.0.6 when installed on Cisco FirePOWER 7000 Series Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277405" RelationType="Installed On" ProductReference="CVRFPID-278494">
+      <FullProductName ProductID="CVRFPID-278494:277405">Cisco Firepower Management Center 6.4.0.6 when installed on Cisco FirePOWER 8000 Series Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277507" RelationType="Installed On" ProductReference="CVRFPID-278494">
+      <FullProductName ProductID="CVRFPID-278494:277507">Cisco Firepower Management Center 6.4.0.6 when installed on Cisco Firepower Management Center Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277509" RelationType="Installed On" ProductReference="CVRFPID-278494">
+      <FullProductName ProductID="CVRFPID-278494:277509">Cisco Firepower Management Center 6.4.0.6 when installed on Cisco NGIPS Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277516" RelationType="Installed On" ProductReference="CVRFPID-278494">
+      <FullProductName ProductID="CVRFPID-278494:277516">Cisco Firepower Management Center 6.4.0.6 when installed on Cisco Firepower Management Center Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277391" RelationType="Installed On" ProductReference="CVRFPID-278495">
+      <FullProductName ProductID="CVRFPID-278495:277391">Cisco Firepower Management Center 6.4.0.7 when installed on Cisco FirePOWER 7000 Series Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277405" RelationType="Installed On" ProductReference="CVRFPID-278495">
+      <FullProductName ProductID="CVRFPID-278495:277405">Cisco Firepower Management Center 6.4.0.7 when installed on Cisco FirePOWER 8000 Series Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277507" RelationType="Installed On" ProductReference="CVRFPID-278495">
+      <FullProductName ProductID="CVRFPID-278495:277507">Cisco Firepower Management Center 6.4.0.7 when installed on Cisco Firepower Management Center Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277509" RelationType="Installed On" ProductReference="CVRFPID-278495">
+      <FullProductName ProductID="CVRFPID-278495:277509">Cisco Firepower Management Center 6.4.0.7 when installed on Cisco NGIPS Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277516" RelationType="Installed On" ProductReference="CVRFPID-278495">
+      <FullProductName ProductID="CVRFPID-278495:277516">Cisco Firepower Management Center 6.4.0.7 when installed on Cisco Firepower Management Center Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277391" RelationType="Installed On" ProductReference="CVRFPID-278496">
+      <FullProductName ProductID="CVRFPID-278496:277391">Cisco Firepower Management Center 6.4.0.8 when installed on Cisco FirePOWER 7000 Series Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277405" RelationType="Installed On" ProductReference="CVRFPID-278496">
+      <FullProductName ProductID="CVRFPID-278496:277405">Cisco Firepower Management Center 6.4.0.8 when installed on Cisco FirePOWER 8000 Series Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277507" RelationType="Installed On" ProductReference="CVRFPID-278496">
+      <FullProductName ProductID="CVRFPID-278496:277507">Cisco Firepower Management Center 6.4.0.8 when installed on Cisco Firepower Management Center Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277509" RelationType="Installed On" ProductReference="CVRFPID-278496">
+      <FullProductName ProductID="CVRFPID-278496:277509">Cisco Firepower Management Center 6.4.0.8 when installed on Cisco NGIPS Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277516" RelationType="Installed On" ProductReference="CVRFPID-278496">
+      <FullProductName ProductID="CVRFPID-278496:277516">Cisco Firepower Management Center 6.4.0.8 when installed on Cisco Firepower Management Center Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277391" RelationType="Installed On" ProductReference="CVRFPID-278497">
+      <FullProductName ProductID="CVRFPID-278497:277391">Cisco Firepower Management Center 6.4.0.9 when installed on Cisco FirePOWER 7000 Series Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277405" RelationType="Installed On" ProductReference="CVRFPID-278497">
+      <FullProductName ProductID="CVRFPID-278497:277405">Cisco Firepower Management Center 6.4.0.9 when installed on Cisco FirePOWER 8000 Series Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277507" RelationType="Installed On" ProductReference="CVRFPID-278497">
+      <FullProductName ProductID="CVRFPID-278497:277507">Cisco Firepower Management Center 6.4.0.9 when installed on Cisco Firepower Management Center Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277509" RelationType="Installed On" ProductReference="CVRFPID-278497">
+      <FullProductName ProductID="CVRFPID-278497:277509">Cisco Firepower Management Center 6.4.0.9 when installed on Cisco NGIPS Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277516" RelationType="Installed On" ProductReference="CVRFPID-278497">
+      <FullProductName ProductID="CVRFPID-278497:277516">Cisco Firepower Management Center 6.4.0.9 when installed on Cisco Firepower Management Center Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277391" RelationType="Installed On" ProductReference="CVRFPID-280641">
+      <FullProductName ProductID="CVRFPID-280641:277391">Cisco Firepower Management Center 6.4.0.10 when installed on Cisco FirePOWER 7000 Series Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277405" RelationType="Installed On" ProductReference="CVRFPID-280641">
+      <FullProductName ProductID="CVRFPID-280641:277405">Cisco Firepower Management Center 6.4.0.10 when installed on Cisco FirePOWER 8000 Series Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277507" RelationType="Installed On" ProductReference="CVRFPID-280641">
+      <FullProductName ProductID="CVRFPID-280641:277507">Cisco Firepower Management Center 6.4.0.10 when installed on Cisco Firepower Management Center Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277509" RelationType="Installed On" ProductReference="CVRFPID-280641">
+      <FullProductName ProductID="CVRFPID-280641:277509">Cisco Firepower Management Center 6.4.0.10 when installed on Cisco NGIPS Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277516" RelationType="Installed On" ProductReference="CVRFPID-280641">
+      <FullProductName ProductID="CVRFPID-280641:277516">Cisco Firepower Management Center 6.4.0.10 when installed on Cisco Firepower Management Center Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277391" RelationType="Installed On" ProductReference="CVRFPID-281469">
+      <FullProductName ProductID="CVRFPID-281469:277391">Cisco Firepower Management Center 6.4.0.11 when installed on Cisco FirePOWER 7000 Series Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277405" RelationType="Installed On" ProductReference="CVRFPID-281469">
+      <FullProductName ProductID="CVRFPID-281469:277405">Cisco Firepower Management Center 6.4.0.11 when installed on Cisco FirePOWER 8000 Series Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277507" RelationType="Installed On" ProductReference="CVRFPID-281469">
+      <FullProductName ProductID="CVRFPID-281469:277507">Cisco Firepower Management Center 6.4.0.11 when installed on Cisco Firepower Management Center Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277509" RelationType="Installed On" ProductReference="CVRFPID-281469">
+      <FullProductName ProductID="CVRFPID-281469:277509">Cisco Firepower Management Center 6.4.0.11 when installed on Cisco NGIPS Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277516" RelationType="Installed On" ProductReference="CVRFPID-281469">
+      <FullProductName ProductID="CVRFPID-281469:277516">Cisco Firepower Management Center 6.4.0.11 when installed on Cisco Firepower Management Center Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277391" RelationType="Installed On" ProductReference="CVRFPID-284309">
+      <FullProductName ProductID="CVRFPID-284309:277391">Cisco Firepower Management Center 6.4.0.12 when installed on Cisco FirePOWER 7000 Series Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277405" RelationType="Installed On" ProductReference="CVRFPID-284309">
+      <FullProductName ProductID="CVRFPID-284309:277405">Cisco Firepower Management Center 6.4.0.12 when installed on Cisco FirePOWER 8000 Series Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277507" RelationType="Installed On" ProductReference="CVRFPID-284309">
+      <FullProductName ProductID="CVRFPID-284309:277507">Cisco Firepower Management Center 6.4.0.12 when installed on Cisco Firepower Management Center Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277509" RelationType="Installed On" ProductReference="CVRFPID-284309">
+      <FullProductName ProductID="CVRFPID-284309:277509">Cisco Firepower Management Center 6.4.0.12 when installed on Cisco NGIPS Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277516" RelationType="Installed On" ProductReference="CVRFPID-284309">
+      <FullProductName ProductID="CVRFPID-284309:277516">Cisco Firepower Management Center 6.4.0.12 when installed on Cisco Firepower Management Center Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277507" RelationType="Installed On" ProductReference="CVRFPID-267654">
+      <FullProductName ProductID="CVRFPID-267654:277507">Cisco Firepower Management Center 6.5.0 when installed on Cisco Firepower Management Center Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277509" RelationType="Installed On" ProductReference="CVRFPID-267654">
+      <FullProductName ProductID="CVRFPID-267654:277509">Cisco Firepower Management Center 6.5.0 when installed on Cisco NGIPS Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277516" RelationType="Installed On" ProductReference="CVRFPID-267654">
+      <FullProductName ProductID="CVRFPID-267654:277516">Cisco Firepower Management Center 6.5.0 when installed on Cisco Firepower Management Center Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277507" RelationType="Installed On" ProductReference="CVRFPID-278498">
+      <FullProductName ProductID="CVRFPID-278498:277507">Cisco Firepower Management Center 6.5.0.1 when installed on Cisco Firepower Management Center Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277509" RelationType="Installed On" ProductReference="CVRFPID-278498">
+      <FullProductName ProductID="CVRFPID-278498:277509">Cisco Firepower Management Center 6.5.0.1 when installed on Cisco NGIPS Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277516" RelationType="Installed On" ProductReference="CVRFPID-278498">
+      <FullProductName ProductID="CVRFPID-278498:277516">Cisco Firepower Management Center 6.5.0.1 when installed on Cisco Firepower Management Center Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277507" RelationType="Installed On" ProductReference="CVRFPID-278499">
+      <FullProductName ProductID="CVRFPID-278499:277507">Cisco Firepower Management Center 6.5.0.2 when installed on Cisco Firepower Management Center Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277509" RelationType="Installed On" ProductReference="CVRFPID-278499">
+      <FullProductName ProductID="CVRFPID-278499:277509">Cisco Firepower Management Center 6.5.0.2 when installed on Cisco NGIPS Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277516" RelationType="Installed On" ProductReference="CVRFPID-278499">
+      <FullProductName ProductID="CVRFPID-278499:277516">Cisco Firepower Management Center 6.5.0.2 when installed on Cisco Firepower Management Center Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277507" RelationType="Installed On" ProductReference="CVRFPID-278500">
+      <FullProductName ProductID="CVRFPID-278500:277507">Cisco Firepower Management Center 6.5.0.3 when installed on Cisco Firepower Management Center Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277509" RelationType="Installed On" ProductReference="CVRFPID-278500">
+      <FullProductName ProductID="CVRFPID-278500:277509">Cisco Firepower Management Center 6.5.0.3 when installed on Cisco NGIPS Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277516" RelationType="Installed On" ProductReference="CVRFPID-278500">
+      <FullProductName ProductID="CVRFPID-278500:277516">Cisco Firepower Management Center 6.5.0.3 when installed on Cisco Firepower Management Center Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277507" RelationType="Installed On" ProductReference="CVRFPID-278501">
+      <FullProductName ProductID="CVRFPID-278501:277507">Cisco Firepower Management Center 6.5.0.4 when installed on Cisco Firepower Management Center Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277509" RelationType="Installed On" ProductReference="CVRFPID-278501">
+      <FullProductName ProductID="CVRFPID-278501:277509">Cisco Firepower Management Center 6.5.0.4 when installed on Cisco NGIPS Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277516" RelationType="Installed On" ProductReference="CVRFPID-278501">
+      <FullProductName ProductID="CVRFPID-278501:277516">Cisco Firepower Management Center 6.5.0.4 when installed on Cisco Firepower Management Center Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277507" RelationType="Installed On" ProductReference="CVRFPID-281470">
+      <FullProductName ProductID="CVRFPID-281470:277507">Cisco Firepower Management Center 6.5.0.5 when installed on Cisco Firepower Management Center Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277509" RelationType="Installed On" ProductReference="CVRFPID-281470">
+      <FullProductName ProductID="CVRFPID-281470:277509">Cisco Firepower Management Center 6.5.0.5 when installed on Cisco NGIPS Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277516" RelationType="Installed On" ProductReference="CVRFPID-281470">
+      <FullProductName ProductID="CVRFPID-281470:277516">Cisco Firepower Management Center 6.5.0.5 when installed on Cisco Firepower Management Center Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277507" RelationType="Installed On" ProductReference="CVRFPID-277314">
+      <FullProductName ProductID="CVRFPID-277314:277507">Cisco Firepower Management Center 6.6.0 when installed on Cisco Firepower Management Center Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277509" RelationType="Installed On" ProductReference="CVRFPID-277314">
+      <FullProductName ProductID="CVRFPID-277314:277509">Cisco Firepower Management Center 6.6.0 when installed on Cisco NGIPS Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277516" RelationType="Installed On" ProductReference="CVRFPID-277314">
+      <FullProductName ProductID="CVRFPID-277314:277516">Cisco Firepower Management Center 6.6.0 when installed on Cisco Firepower Management Center Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277507" RelationType="Installed On" ProductReference="CVRFPID-279342">
+      <FullProductName ProductID="CVRFPID-279342:277507">Cisco Firepower Management Center 6.6.0.1 when installed on Cisco Firepower Management Center Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277509" RelationType="Installed On" ProductReference="CVRFPID-279342">
+      <FullProductName ProductID="CVRFPID-279342:277509">Cisco Firepower Management Center 6.6.0.1 when installed on Cisco NGIPS Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277516" RelationType="Installed On" ProductReference="CVRFPID-279342">
+      <FullProductName ProductID="CVRFPID-279342:277516">Cisco Firepower Management Center 6.6.0.1 when installed on Cisco Firepower Management Center Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277507" RelationType="Installed On" ProductReference="CVRFPID-280017">
+      <FullProductName ProductID="CVRFPID-280017:277507">Cisco Firepower Management Center 6.6.1 when installed on Cisco Firepower Management Center Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277509" RelationType="Installed On" ProductReference="CVRFPID-280017">
+      <FullProductName ProductID="CVRFPID-280017:277509">Cisco Firepower Management Center 6.6.1 when installed on Cisco NGIPS Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277516" RelationType="Installed On" ProductReference="CVRFPID-280017">
+      <FullProductName ProductID="CVRFPID-280017:277516">Cisco Firepower Management Center 6.6.1 when installed on Cisco Firepower Management Center Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277507" RelationType="Installed On" ProductReference="CVRFPID-281983">
+      <FullProductName ProductID="CVRFPID-281983:277507">Cisco Firepower Management Center 6.6.3 when installed on Cisco Firepower Management Center Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277509" RelationType="Installed On" ProductReference="CVRFPID-281983">
+      <FullProductName ProductID="CVRFPID-281983:277509">Cisco Firepower Management Center 6.6.3 when installed on Cisco NGIPS Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277516" RelationType="Installed On" ProductReference="CVRFPID-281983">
+      <FullProductName ProductID="CVRFPID-281983:277516">Cisco Firepower Management Center 6.6.3 when installed on Cisco Firepower Management Center Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277507" RelationType="Installed On" ProductReference="CVRFPID-282175">
+      <FullProductName ProductID="CVRFPID-282175:277507">Cisco Firepower Management Center 6.6.4 when installed on Cisco Firepower Management Center Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277509" RelationType="Installed On" ProductReference="CVRFPID-282175">
+      <FullProductName ProductID="CVRFPID-282175:277509">Cisco Firepower Management Center 6.6.4 when installed on Cisco NGIPS Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277516" RelationType="Installed On" ProductReference="CVRFPID-282175">
+      <FullProductName ProductID="CVRFPID-282175:277516">Cisco Firepower Management Center 6.6.4 when installed on Cisco Firepower Management Center Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277507" RelationType="Installed On" ProductReference="CVRFPID-284594">
+      <FullProductName ProductID="CVRFPID-284594:277507">Cisco Firepower Management Center 6.6.5 when installed on Cisco Firepower Management Center Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277509" RelationType="Installed On" ProductReference="CVRFPID-284594">
+      <FullProductName ProductID="CVRFPID-284594:277509">Cisco Firepower Management Center 6.6.5 when installed on Cisco NGIPS Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277516" RelationType="Installed On" ProductReference="CVRFPID-284594">
+      <FullProductName ProductID="CVRFPID-284594:277516">Cisco Firepower Management Center 6.6.5 when installed on Cisco Firepower Management Center Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277507" RelationType="Installed On" ProductReference="CVRFPID-280643">
+      <FullProductName ProductID="CVRFPID-280643:277507">Cisco Firepower Management Center 6.7.0 when installed on Cisco Firepower Management Center Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277509" RelationType="Installed On" ProductReference="CVRFPID-280643">
+      <FullProductName ProductID="CVRFPID-280643:277509">Cisco Firepower Management Center 6.7.0 when installed on Cisco NGIPS Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277516" RelationType="Installed On" ProductReference="CVRFPID-280643">
+      <FullProductName ProductID="CVRFPID-280643:277516">Cisco Firepower Management Center 6.7.0 when installed on Cisco Firepower Management Center Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277507" RelationType="Installed On" ProductReference="CVRFPID-282064">
+      <FullProductName ProductID="CVRFPID-282064:277507">Cisco Firepower Management Center 6.7.0.1 when installed on Cisco Firepower Management Center Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277509" RelationType="Installed On" ProductReference="CVRFPID-282064">
+      <FullProductName ProductID="CVRFPID-282064:277509">Cisco Firepower Management Center 6.7.0.1 when installed on Cisco NGIPS Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277516" RelationType="Installed On" ProductReference="CVRFPID-282064">
+      <FullProductName ProductID="CVRFPID-282064:277516">Cisco Firepower Management Center 6.7.0.1 when installed on Cisco Firepower Management Center Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277507" RelationType="Installed On" ProductReference="CVRFPID-284310">
+      <FullProductName ProductID="CVRFPID-284310:277507">Cisco Firepower Management Center 6.7.0.2 when installed on Cisco Firepower Management Center Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277509" RelationType="Installed On" ProductReference="CVRFPID-284310">
+      <FullProductName ProductID="CVRFPID-284310:277509">Cisco Firepower Management Center 6.7.0.2 when installed on Cisco NGIPS Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277516" RelationType="Installed On" ProductReference="CVRFPID-284310">
+      <FullProductName ProductID="CVRFPID-284310:277516">Cisco Firepower Management Center 6.7.0.2 when installed on Cisco Firepower Management Center Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277507" RelationType="Installed On" ProductReference="CVRFPID-284312">
+      <FullProductName ProductID="CVRFPID-284312:277507">Cisco Firepower Management Center 7.0.0 when installed on Cisco Firepower Management Center Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277509" RelationType="Installed On" ProductReference="CVRFPID-284312">
+      <FullProductName ProductID="CVRFPID-284312:277509">Cisco Firepower Management Center 7.0.0 when installed on Cisco NGIPS Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277516" RelationType="Installed On" ProductReference="CVRFPID-284312">
+      <FullProductName ProductID="CVRFPID-284312:277516">Cisco Firepower Management Center 7.0.0 when installed on Cisco Firepower Management Center Appliances</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277507" RelationType="Installed On" ProductReference="CVRFPID-284313">
+      <FullProductName ProductID="CVRFPID-284313:277507">Cisco Firepower Management Center 7.0.0.1 when installed on Cisco Firepower Management Center Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277509" RelationType="Installed On" ProductReference="CVRFPID-284313">
+      <FullProductName ProductID="CVRFPID-284313:277509">Cisco Firepower Management Center 7.0.0.1 when installed on Cisco NGIPS Virtual Appliance</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277516" RelationType="Installed On" ProductReference="CVRFPID-284313">
+      <FullProductName ProductID="CVRFPID-284313:277516">Cisco Firepower Management Center 7.0.0.1 when installed on Cisco Firepower Management Center Appliances</FullProductName>
+    </Relationship>
+  </ProductTree>
+  <Vulnerability Ordinal="1" xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln">
+    <Title>vuln-CVE-2021-34750</Title>
+    <ID SystemName="Cisco Bug ID">CSCvy69730</ID>
+    <Notes>
+      <Note Title="Cisco Bug IDs" Type="Other" Ordinal="1">CSCvy69730</Note>
+      <Note Title="Affected Product Comprehensiveness" Type="Other" Ordinal="2">Complete.</Note>
+    </Notes>
+    <CVE>CVE-2021-34750</CVE>
+    <ProductStatuses>
+      <Status Type="Known Affected">
+        <ProductID>CVRFPID-212162</ProductID>
+        <ProductID>CVRFPID-212172:277391</ProductID>
+        <ProductID>CVRFPID-212172:277405</ProductID>
+        <ProductID>CVRFPID-212172:277507</ProductID>
+        <ProductID>CVRFPID-212172:277509</ProductID>
+        <ProductID>CVRFPID-212172:277516</ProductID>
+        <ProductID>CVRFPID-213676:277391</ProductID>
+        <ProductID>CVRFPID-213676:277405</ProductID>
+        <ProductID>CVRFPID-213676:277507</ProductID>
+        <ProductID>CVRFPID-213676:277509</ProductID>
+        <ProductID>CVRFPID-213676:277516</ProductID>
+        <ProductID>CVRFPID-213754:277391</ProductID>
+        <ProductID>CVRFPID-213754:277405</ProductID>
+        <ProductID>CVRFPID-213754:277507</ProductID>
+        <ProductID>CVRFPID-213754:277509</ProductID>
+        <ProductID>CVRFPID-213754:277516</ProductID>
+        <ProductID>CVRFPID-216309:277391</ProductID>
+        <ProductID>CVRFPID-216309:277405</ProductID>
+        <ProductID>CVRFPID-216309:277507</ProductID>
+        <ProductID>CVRFPID-216309:277509</ProductID>
+        <ProductID>CVRFPID-216309:277516</ProductID>
+        <ProductID>CVRFPID-222771:277391</ProductID>
+        <ProductID>CVRFPID-222771:277405</ProductID>
+        <ProductID>CVRFPID-222771:277507</ProductID>
+        <ProductID>CVRFPID-222771:277509</ProductID>
+        <ProductID>CVRFPID-222771:277516</ProductID>
+        <ProductID>CVRFPID-224894:277391</ProductID>
+        <ProductID>CVRFPID-224894:277405</ProductID>
+        <ProductID>CVRFPID-224894:277507</ProductID>
+        <ProductID>CVRFPID-224894:277509</ProductID>
+        <ProductID>CVRFPID-224894:277516</ProductID>
+        <ProductID>CVRFPID-225378:277507</ProductID>
+        <ProductID>CVRFPID-225378:277516</ProductID>
+        <ProductID>CVRFPID-226361:277391</ProductID>
+        <ProductID>CVRFPID-226361:277405</ProductID>
+        <ProductID>CVRFPID-226361:277507</ProductID>
+        <ProductID>CVRFPID-226361:277509</ProductID>
+        <ProductID>CVRFPID-226361:277516</ProductID>
+        <ProductID>CVRFPID-226362:277391</ProductID>
+        <ProductID>CVRFPID-226362:277405</ProductID>
+        <ProductID>CVRFPID-226362:277507</ProductID>
+        <ProductID>CVRFPID-226362:277509</ProductID>
+        <ProductID>CVRFPID-226362:277516</ProductID>
+        <ProductID>CVRFPID-227815:277391</ProductID>
+        <ProductID>CVRFPID-227815:277405</ProductID>
+        <ProductID>CVRFPID-227815:277507</ProductID>
+        <ProductID>CVRFPID-227815:277509</ProductID>
+        <ProductID>CVRFPID-227815:277516</ProductID>
+        <ProductID>CVRFPID-227816:277391</ProductID>
+        <ProductID>CVRFPID-227816:277405</ProductID>
+        <ProductID>CVRFPID-227816:277507</ProductID>
+        <ProductID>CVRFPID-227816:277509</ProductID>
+        <ProductID>CVRFPID-227816:277516</ProductID>
+        <ProductID>CVRFPID-267611:277391</ProductID>
+        <ProductID>CVRFPID-267611:277405</ProductID>
+        <ProductID>CVRFPID-267611:277507</ProductID>
+        <ProductID>CVRFPID-267611:277509</ProductID>
+        <ProductID>CVRFPID-267611:277516</ProductID>
+        <ProductID>CVRFPID-267612:277391</ProductID>
+        <ProductID>CVRFPID-267612:277405</ProductID>
+        <ProductID>CVRFPID-267612:277507</ProductID>
+        <ProductID>CVRFPID-267612:277509</ProductID>
+        <ProductID>CVRFPID-267612:277516</ProductID>
+        <ProductID>CVRFPID-267613:277391</ProductID>
+        <ProductID>CVRFPID-267613:277405</ProductID>
+        <ProductID>CVRFPID-267613:277507</ProductID>
+        <ProductID>CVRFPID-267613:277509</ProductID>
+        <ProductID>CVRFPID-267613:277516</ProductID>
+        <ProductID>CVRFPID-267614:277391</ProductID>
+        <ProductID>CVRFPID-267614:277405</ProductID>
+        <ProductID>CVRFPID-267614:277507</ProductID>
+        <ProductID>CVRFPID-267614:277509</ProductID>
+        <ProductID>CVRFPID-267614:277516</ProductID>
+        <ProductID>CVRFPID-267615:277391</ProductID>
+        <ProductID>CVRFPID-267615:277405</ProductID>
+        <ProductID>CVRFPID-267615:277507</ProductID>
+        <ProductID>CVRFPID-267615:277509</ProductID>
+        <ProductID>CVRFPID-267615:277516</ProductID>
+        <ProductID>CVRFPID-267616:277391</ProductID>
+        <ProductID>CVRFPID-267616:277405</ProductID>
+        <ProductID>CVRFPID-267616:277507</ProductID>
+        <ProductID>CVRFPID-267616:277509</ProductID>
+        <ProductID>CVRFPID-267616:277516</ProductID>
+        <ProductID>CVRFPID-267617:277391</ProductID>
+        <ProductID>CVRFPID-267617:277405</ProductID>
+        <ProductID>CVRFPID-267617:277507</ProductID>
+        <ProductID>CVRFPID-267617:277509</ProductID>
+        <ProductID>CVRFPID-267617:277516</ProductID>
+        <ProductID>CVRFPID-267618:277391</ProductID>
+        <ProductID>CVRFPID-267618:277405</ProductID>
+        <ProductID>CVRFPID-267618:277507</ProductID>
+        <ProductID>CVRFPID-267618:277509</ProductID>
+        <ProductID>CVRFPID-267618:277516</ProductID>
+        <ProductID>CVRFPID-267619:277391</ProductID>
+        <ProductID>CVRFPID-267619:277405</ProductID>
+        <ProductID>CVRFPID-267619:277507</ProductID>
+        <ProductID>CVRFPID-267619:277509</ProductID>
+        <ProductID>CVRFPID-267619:277516</ProductID>
+        <ProductID>CVRFPID-267620:277391</ProductID>
+        <ProductID>CVRFPID-267620:277405</ProductID>
+        <ProductID>CVRFPID-267620:277507</ProductID>
+        <ProductID>CVRFPID-267620:277509</ProductID>
+        <ProductID>CVRFPID-267620:277516</ProductID>
+        <ProductID>CVRFPID-267621:277391</ProductID>
+        <ProductID>CVRFPID-267621:277405</ProductID>
+        <ProductID>CVRFPID-267621:277507</ProductID>
+        <ProductID>CVRFPID-267621:277509</ProductID>
+        <ProductID>CVRFPID-267621:277516</ProductID>
+        <ProductID>CVRFPID-267622:277391</ProductID>
+        <ProductID>CVRFPID-267622:277405</ProductID>
+        <ProductID>CVRFPID-267622:277507</ProductID>
+        <ProductID>CVRFPID-267622:277509</ProductID>
+        <ProductID>CVRFPID-267622:277516</ProductID>
+        <ProductID>CVRFPID-267623:277391</ProductID>
+        <ProductID>CVRFPID-267623:277405</ProductID>
+        <ProductID>CVRFPID-267623:277507</ProductID>
+        <ProductID>CVRFPID-267623:277509</ProductID>
+        <ProductID>CVRFPID-267623:277516</ProductID>
+        <ProductID>CVRFPID-267625:277391</ProductID>
+        <ProductID>CVRFPID-267625:277405</ProductID>
+        <ProductID>CVRFPID-267625:277507</ProductID>
+        <ProductID>CVRFPID-267625:277509</ProductID>
+        <ProductID>CVRFPID-267625:277516</ProductID>
+        <ProductID>CVRFPID-267626:277391</ProductID>
+        <ProductID>CVRFPID-267626:277405</ProductID>
+        <ProductID>CVRFPID-267626:277507</ProductID>
+        <ProductID>CVRFPID-267626:277509</ProductID>
+        <ProductID>CVRFPID-267626:277516</ProductID>
+        <ProductID>CVRFPID-267627:277391</ProductID>
+        <ProductID>CVRFPID-267627:277405</ProductID>
+        <ProductID>CVRFPID-267627:277507</ProductID>
+        <ProductID>CVRFPID-267627:277509</ProductID>
+        <ProductID>CVRFPID-267627:277516</ProductID>
+        <ProductID>CVRFPID-267628:277391</ProductID>
+        <ProductID>CVRFPID-267628:277405</ProductID>
+        <ProductID>CVRFPID-267628:277507</ProductID>
+        <ProductID>CVRFPID-267628:277509</ProductID>
+        <ProductID>CVRFPID-267628:277516</ProductID>
+        <ProductID>CVRFPID-267629:277391</ProductID>
+        <ProductID>CVRFPID-267629:277405</ProductID>
+        <ProductID>CVRFPID-267629:277507</ProductID>
+        <ProductID>CVRFPID-267629:277509</ProductID>
+        <ProductID>CVRFPID-267629:277516</ProductID>
+        <ProductID>CVRFPID-267630:277391</ProductID>
+        <ProductID>CVRFPID-267630:277405</ProductID>
+        <ProductID>CVRFPID-267630:277507</ProductID>
+        <ProductID>CVRFPID-267630:277509</ProductID>
+        <ProductID>CVRFPID-267630:277516</ProductID>
+        <ProductID>CVRFPID-267631:277391</ProductID>
+        <ProductID>CVRFPID-267631:277405</ProductID>
+        <ProductID>CVRFPID-267631:277507</ProductID>
+        <ProductID>CVRFPID-267631:277509</ProductID>
+        <ProductID>CVRFPID-267631:277516</ProductID>
+        <ProductID>CVRFPID-267632:277391</ProductID>
+        <ProductID>CVRFPID-267632:277405</ProductID>
+        <ProductID>CVRFPID-267632:277507</ProductID>
+        <ProductID>CVRFPID-267632:277509</ProductID>
+        <ProductID>CVRFPID-267632:277516</ProductID>
+        <ProductID>CVRFPID-267633:277391</ProductID>
+        <ProductID>CVRFPID-267633:277405</ProductID>
+        <ProductID>CVRFPID-267633:277507</ProductID>
+        <ProductID>CVRFPID-267633:277509</ProductID>
+        <ProductID>CVRFPID-267633:277516</ProductID>
+        <ProductID>CVRFPID-267634:277391</ProductID>
+        <ProductID>CVRFPID-267634:277405</ProductID>
+        <ProductID>CVRFPID-267634:277507</ProductID>
+        <ProductID>CVRFPID-267634:277509</ProductID>
+        <ProductID>CVRFPID-267634:277516</ProductID>
+        <ProductID>CVRFPID-267635:277391</ProductID>
+        <ProductID>CVRFPID-267635:277405</ProductID>
+        <ProductID>CVRFPID-267635:277507</ProductID>
+        <ProductID>CVRFPID-267635:277509</ProductID>
+        <ProductID>CVRFPID-267635:277516</ProductID>
+        <ProductID>CVRFPID-267645:277391</ProductID>
+        <ProductID>CVRFPID-267645:277405</ProductID>
+        <ProductID>CVRFPID-267645:277507</ProductID>
+        <ProductID>CVRFPID-267645:277509</ProductID>
+        <ProductID>CVRFPID-267645:277516</ProductID>
+        <ProductID>CVRFPID-267646:277391</ProductID>
+        <ProductID>CVRFPID-267646:277405</ProductID>
+        <ProductID>CVRFPID-267646:277507</ProductID>
+        <ProductID>CVRFPID-267646:277509</ProductID>
+        <ProductID>CVRFPID-267646:277516</ProductID>
+        <ProductID>CVRFPID-267647:277391</ProductID>
+        <ProductID>CVRFPID-267647:277405</ProductID>
+        <ProductID>CVRFPID-267647:277507</ProductID>
+        <ProductID>CVRFPID-267647:277509</ProductID>
+        <ProductID>CVRFPID-267647:277516</ProductID>
+        <ProductID>CVRFPID-267648:277391</ProductID>
+        <ProductID>CVRFPID-267648:277405</ProductID>
+        <ProductID>CVRFPID-267648:277507</ProductID>
+        <ProductID>CVRFPID-267648:277509</ProductID>
+        <ProductID>CVRFPID-267648:277516</ProductID>
+        <ProductID>CVRFPID-267650:277391</ProductID>
+        <ProductID>CVRFPID-267650:277405</ProductID>
+        <ProductID>CVRFPID-267650:277507</ProductID>
+        <ProductID>CVRFPID-267650:277509</ProductID>
+        <ProductID>CVRFPID-267650:277516</ProductID>
+        <ProductID>CVRFPID-267651:277391</ProductID>
+        <ProductID>CVRFPID-267651:277405</ProductID>
+        <ProductID>CVRFPID-267651:277507</ProductID>
+        <ProductID>CVRFPID-267651:277509</ProductID>
+        <ProductID>CVRFPID-267651:277516</ProductID>
+        <ProductID>CVRFPID-267652:277391</ProductID>
+        <ProductID>CVRFPID-267652:277405</ProductID>
+        <ProductID>CVRFPID-267652:277507</ProductID>
+        <ProductID>CVRFPID-267652:277509</ProductID>
+        <ProductID>CVRFPID-267652:277516</ProductID>
+        <ProductID>CVRFPID-267654:277507</ProductID>
+        <ProductID>CVRFPID-267654:277509</ProductID>
+        <ProductID>CVRFPID-267654:277516</ProductID>
+        <ProductID>CVRFPID-267677:277391</ProductID>
+        <ProductID>CVRFPID-267677:277405</ProductID>
+        <ProductID>CVRFPID-267677:277507</ProductID>
+        <ProductID>CVRFPID-267677:277509</ProductID>
+        <ProductID>CVRFPID-267677:277516</ProductID>
+        <ProductID>CVRFPID-267678:277391</ProductID>
+        <ProductID>CVRFPID-267678:277405</ProductID>
+        <ProductID>CVRFPID-267678:277507</ProductID>
+        <ProductID>CVRFPID-267678:277509</ProductID>
+        <ProductID>CVRFPID-267678:277516</ProductID>
+        <ProductID>CVRFPID-267679:277391</ProductID>
+        <ProductID>CVRFPID-267679:277405</ProductID>
+        <ProductID>CVRFPID-267679:277507</ProductID>
+        <ProductID>CVRFPID-267679:277509</ProductID>
+        <ProductID>CVRFPID-267679:277516</ProductID>
+        <ProductID>CVRFPID-267680:277391</ProductID>
+        <ProductID>CVRFPID-267680:277405</ProductID>
+        <ProductID>CVRFPID-267680:277507</ProductID>
+        <ProductID>CVRFPID-267680:277509</ProductID>
+        <ProductID>CVRFPID-267680:277516</ProductID>
+        <ProductID>CVRFPID-267681:277391</ProductID>
+        <ProductID>CVRFPID-267681:277405</ProductID>
+        <ProductID>CVRFPID-267681:277507</ProductID>
+        <ProductID>CVRFPID-267681:277509</ProductID>
+        <ProductID>CVRFPID-267681:277516</ProductID>
+        <ProductID>CVRFPID-267682:277391</ProductID>
+        <ProductID>CVRFPID-267682:277405</ProductID>
+        <ProductID>CVRFPID-267682:277507</ProductID>
+        <ProductID>CVRFPID-267682:277509</ProductID>
+        <ProductID>CVRFPID-267682:277516</ProductID>
+        <ProductID>CVRFPID-267683:277391</ProductID>
+        <ProductID>CVRFPID-267683:277405</ProductID>
+        <ProductID>CVRFPID-267683:277507</ProductID>
+        <ProductID>CVRFPID-267683:277509</ProductID>
+        <ProductID>CVRFPID-267683:277516</ProductID>
+        <ProductID>CVRFPID-277314:277507</ProductID>
+        <ProductID>CVRFPID-277314:277509</ProductID>
+        <ProductID>CVRFPID-277314:277516</ProductID>
+        <ProductID>CVRFPID-278486:277391</ProductID>
+        <ProductID>CVRFPID-278486:277405</ProductID>
+        <ProductID>CVRFPID-278486:277507</ProductID>
+        <ProductID>CVRFPID-278486:277509</ProductID>
+        <ProductID>CVRFPID-278486:277516</ProductID>
+        <ProductID>CVRFPID-278487:277391</ProductID>
+        <ProductID>CVRFPID-278487:277405</ProductID>
+        <ProductID>CVRFPID-278487:277507</ProductID>
+        <ProductID>CVRFPID-278487:277509</ProductID>
+        <ProductID>CVRFPID-278487:277516</ProductID>
+        <ProductID>CVRFPID-278488:277391</ProductID>
+        <ProductID>CVRFPID-278488:277405</ProductID>
+        <ProductID>CVRFPID-278488:277507</ProductID>
+        <ProductID>CVRFPID-278488:277509</ProductID>
+        <ProductID>CVRFPID-278488:277516</ProductID>
+        <ProductID>CVRFPID-278489:277391</ProductID>
+        <ProductID>CVRFPID-278489:277405</ProductID>
+        <ProductID>CVRFPID-278489:277507</ProductID>
+        <ProductID>CVRFPID-278489:277509</ProductID>
+        <ProductID>CVRFPID-278489:277516</ProductID>
+        <ProductID>CVRFPID-278490:277391</ProductID>
+        <ProductID>CVRFPID-278490:277405</ProductID>
+        <ProductID>CVRFPID-278490:277507</ProductID>
+        <ProductID>CVRFPID-278490:277509</ProductID>
+        <ProductID>CVRFPID-278490:277516</ProductID>
+        <ProductID>CVRFPID-278491:277391</ProductID>
+        <ProductID>CVRFPID-278491:277405</ProductID>
+        <ProductID>CVRFPID-278491:277507</ProductID>
+        <ProductID>CVRFPID-278491:277509</ProductID>
+        <ProductID>CVRFPID-278491:277516</ProductID>
+        <ProductID>CVRFPID-278492:277391</ProductID>
+        <ProductID>CVRFPID-278492:277405</ProductID>
+        <ProductID>CVRFPID-278492:277507</ProductID>
+        <ProductID>CVRFPID-278492:277509</ProductID>
+        <ProductID>CVRFPID-278492:277516</ProductID>
+        <ProductID>CVRFPID-278493:277391</ProductID>
+        <ProductID>CVRFPID-278493:277405</ProductID>
+        <ProductID>CVRFPID-278493:277507</ProductID>
+        <ProductID>CVRFPID-278493:277509</ProductID>
+        <ProductID>CVRFPID-278493:277516</ProductID>
+        <ProductID>CVRFPID-278494:277391</ProductID>
+        <ProductID>CVRFPID-278494:277405</ProductID>
+        <ProductID>CVRFPID-278494:277507</ProductID>
+        <ProductID>CVRFPID-278494:277509</ProductID>
+        <ProductID>CVRFPID-278494:277516</ProductID>
+        <ProductID>CVRFPID-278495:277391</ProductID>
+        <ProductID>CVRFPID-278495:277405</ProductID>
+        <ProductID>CVRFPID-278495:277507</ProductID>
+        <ProductID>CVRFPID-278495:277509</ProductID>
+        <ProductID>CVRFPID-278495:277516</ProductID>
+        <ProductID>CVRFPID-278496:277391</ProductID>
+        <ProductID>CVRFPID-278496:277405</ProductID>
+        <ProductID>CVRFPID-278496:277507</ProductID>
+        <ProductID>CVRFPID-278496:277509</ProductID>
+        <ProductID>CVRFPID-278496:277516</ProductID>
+        <ProductID>CVRFPID-278497:277391</ProductID>
+        <ProductID>CVRFPID-278497:277405</ProductID>
+        <ProductID>CVRFPID-278497:277507</ProductID>
+        <ProductID>CVRFPID-278497:277509</ProductID>
+        <ProductID>CVRFPID-278497:277516</ProductID>
+        <ProductID>CVRFPID-278498:277507</ProductID>
+        <ProductID>CVRFPID-278498:277509</ProductID>
+        <ProductID>CVRFPID-278498:277516</ProductID>
+        <ProductID>CVRFPID-278499:277507</ProductID>
+        <ProductID>CVRFPID-278499:277509</ProductID>
+        <ProductID>CVRFPID-278499:277516</ProductID>
+        <ProductID>CVRFPID-278500:277507</ProductID>
+        <ProductID>CVRFPID-278500:277509</ProductID>
+        <ProductID>CVRFPID-278500:277516</ProductID>
+        <ProductID>CVRFPID-278501:277507</ProductID>
+        <ProductID>CVRFPID-278501:277509</ProductID>
+        <ProductID>CVRFPID-278501:277516</ProductID>
+        <ProductID>CVRFPID-278806:277391</ProductID>
+        <ProductID>CVRFPID-278806:277405</ProductID>
+        <ProductID>CVRFPID-278806:277507</ProductID>
+        <ProductID>CVRFPID-278806:277509</ProductID>
+        <ProductID>CVRFPID-278806:277516</ProductID>
+        <ProductID>CVRFPID-279342:277507</ProductID>
+        <ProductID>CVRFPID-279342:277509</ProductID>
+        <ProductID>CVRFPID-279342:277516</ProductID>
+        <ProductID>CVRFPID-280017:277507</ProductID>
+        <ProductID>CVRFPID-280017:277509</ProductID>
+        <ProductID>CVRFPID-280017:277516</ProductID>
+        <ProductID>CVRFPID-280641:277391</ProductID>
+        <ProductID>CVRFPID-280641:277405</ProductID>
+        <ProductID>CVRFPID-280641:277507</ProductID>
+        <ProductID>CVRFPID-280641:277509</ProductID>
+        <ProductID>CVRFPID-280641:277516</ProductID>
+        <ProductID>CVRFPID-280643:277507</ProductID>
+        <ProductID>CVRFPID-280643:277509</ProductID>
+        <ProductID>CVRFPID-280643:277516</ProductID>
+        <ProductID>CVRFPID-281469:277391</ProductID>
+        <ProductID>CVRFPID-281469:277405</ProductID>
+        <ProductID>CVRFPID-281469:277507</ProductID>
+        <ProductID>CVRFPID-281469:277509</ProductID>
+        <ProductID>CVRFPID-281469:277516</ProductID>
+        <ProductID>CVRFPID-281470:277507</ProductID>
+        <ProductID>CVRFPID-281470:277509</ProductID>
+        <ProductID>CVRFPID-281470:277516</ProductID>
+        <ProductID>CVRFPID-281983:277507</ProductID>
+        <ProductID>CVRFPID-281983:277509</ProductID>
+        <ProductID>CVRFPID-281983:277516</ProductID>
+        <ProductID>CVRFPID-282064:277507</ProductID>
+        <ProductID>CVRFPID-282064:277509</ProductID>
+        <ProductID>CVRFPID-282064:277516</ProductID>
+        <ProductID>CVRFPID-282175:277507</ProductID>
+        <ProductID>CVRFPID-282175:277509</ProductID>
+        <ProductID>CVRFPID-282175:277516</ProductID>
+        <ProductID>CVRFPID-284308:277391</ProductID>
+        <ProductID>CVRFPID-284308:277405</ProductID>
+        <ProductID>CVRFPID-284308:277507</ProductID>
+        <ProductID>CVRFPID-284308:277509</ProductID>
+        <ProductID>CVRFPID-284308:277516</ProductID>
+        <ProductID>CVRFPID-284309:277391</ProductID>
+        <ProductID>CVRFPID-284309:277405</ProductID>
+        <ProductID>CVRFPID-284309:277507</ProductID>
+        <ProductID>CVRFPID-284309:277509</ProductID>
+        <ProductID>CVRFPID-284309:277516</ProductID>
+        <ProductID>CVRFPID-284310:277507</ProductID>
+        <ProductID>CVRFPID-284310:277509</ProductID>
+        <ProductID>CVRFPID-284310:277516</ProductID>
+        <ProductID>CVRFPID-284312:277507</ProductID>
+        <ProductID>CVRFPID-284312:277509</ProductID>
+        <ProductID>CVRFPID-284312:277516</ProductID>
+        <ProductID>CVRFPID-284313:277507</ProductID>
+        <ProductID>CVRFPID-284313:277509</ProductID>
+        <ProductID>CVRFPID-284313:277516</ProductID>
+        <ProductID>CVRFPID-284594:277507</ProductID>
+        <ProductID>CVRFPID-284594:277509</ProductID>
+        <ProductID>CVRFPID-284594:277516</ProductID>
+      </Status>
+    </ProductStatuses>
+    <CVSSScoreSets>
+      <ScoreSetV3>
+        <BaseScoreV3>4.3</BaseScoreV3>
+        <VectorV3>CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:L/I:N/A:N</VectorV3>
+      </ScoreSetV3>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Workaround">
+        <Description>There are no workarounds that address these vulnerabilities.</Description>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference Type="Self">
+        <URL>https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-fmc-infodisc-Ft2WVmNU</URL>
+        <Description>Cisco Firepower Management Center Software Configuration Information Disclosure Vulnerabilities</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+  <Vulnerability Ordinal="2" xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln">
+    <Title>vuln-CVE-2021-34751</Title>
+    <ID SystemName="Cisco Bug ID">CSCvy72194</ID>
+    <Notes>
+      <Note Title="Cisco Bug IDs" Type="Other" Ordinal="1">CSCvy72194</Note>
+      <Note Title="Affected Product Comprehensiveness" Type="Other" Ordinal="2">Complete.</Note>
+    </Notes>
+    <CVE>CVE-2021-34751</CVE>
+    <ProductStatuses>
+      <Status Type="Known Affected">
+        <ProductID>CVRFPID-212162</ProductID>
+        <ProductID>CVRFPID-212172:277391</ProductID>
+        <ProductID>CVRFPID-212172:277405</ProductID>
+        <ProductID>CVRFPID-212172:277507</ProductID>
+        <ProductID>CVRFPID-212172:277509</ProductID>
+        <ProductID>CVRFPID-212172:277516</ProductID>
+        <ProductID>CVRFPID-213676:277391</ProductID>
+        <ProductID>CVRFPID-213676:277405</ProductID>
+        <ProductID>CVRFPID-213676:277507</ProductID>
+        <ProductID>CVRFPID-213676:277509</ProductID>
+        <ProductID>CVRFPID-213676:277516</ProductID>
+        <ProductID>CVRFPID-213754:277391</ProductID>
+        <ProductID>CVRFPID-213754:277405</ProductID>
+        <ProductID>CVRFPID-213754:277507</ProductID>
+        <ProductID>CVRFPID-213754:277509</ProductID>
+        <ProductID>CVRFPID-213754:277516</ProductID>
+        <ProductID>CVRFPID-216309:277391</ProductID>
+        <ProductID>CVRFPID-216309:277405</ProductID>
+        <ProductID>CVRFPID-216309:277507</ProductID>
+        <ProductID>CVRFPID-216309:277509</ProductID>
+        <ProductID>CVRFPID-216309:277516</ProductID>
+        <ProductID>CVRFPID-222771:277391</ProductID>
+        <ProductID>CVRFPID-222771:277405</ProductID>
+        <ProductID>CVRFPID-222771:277507</ProductID>
+        <ProductID>CVRFPID-222771:277509</ProductID>
+        <ProductID>CVRFPID-222771:277516</ProductID>
+        <ProductID>CVRFPID-224894:277391</ProductID>
+        <ProductID>CVRFPID-224894:277405</ProductID>
+        <ProductID>CVRFPID-224894:277507</ProductID>
+        <ProductID>CVRFPID-224894:277509</ProductID>
+        <ProductID>CVRFPID-224894:277516</ProductID>
+        <ProductID>CVRFPID-225378:277507</ProductID>
+        <ProductID>CVRFPID-225378:277516</ProductID>
+        <ProductID>CVRFPID-226361:277391</ProductID>
+        <ProductID>CVRFPID-226361:277405</ProductID>
+        <ProductID>CVRFPID-226361:277507</ProductID>
+        <ProductID>CVRFPID-226361:277509</ProductID>
+        <ProductID>CVRFPID-226361:277516</ProductID>
+        <ProductID>CVRFPID-226362:277391</ProductID>
+        <ProductID>CVRFPID-226362:277405</ProductID>
+        <ProductID>CVRFPID-226362:277507</ProductID>
+        <ProductID>CVRFPID-226362:277509</ProductID>
+        <ProductID>CVRFPID-226362:277516</ProductID>
+        <ProductID>CVRFPID-227815:277391</ProductID>
+        <ProductID>CVRFPID-227815:277405</ProductID>
+        <ProductID>CVRFPID-227815:277507</ProductID>
+        <ProductID>CVRFPID-227815:277509</ProductID>
+        <ProductID>CVRFPID-227815:277516</ProductID>
+        <ProductID>CVRFPID-227816:277391</ProductID>
+        <ProductID>CVRFPID-227816:277405</ProductID>
+        <ProductID>CVRFPID-227816:277507</ProductID>
+        <ProductID>CVRFPID-227816:277509</ProductID>
+        <ProductID>CVRFPID-227816:277516</ProductID>
+        <ProductID>CVRFPID-267611:277391</ProductID>
+        <ProductID>CVRFPID-267611:277405</ProductID>
+        <ProductID>CVRFPID-267611:277507</ProductID>
+        <ProductID>CVRFPID-267611:277509</ProductID>
+        <ProductID>CVRFPID-267611:277516</ProductID>
+        <ProductID>CVRFPID-267612:277391</ProductID>
+        <ProductID>CVRFPID-267612:277405</ProductID>
+        <ProductID>CVRFPID-267612:277507</ProductID>
+        <ProductID>CVRFPID-267612:277509</ProductID>
+        <ProductID>CVRFPID-267612:277516</ProductID>
+        <ProductID>CVRFPID-267613:277391</ProductID>
+        <ProductID>CVRFPID-267613:277405</ProductID>
+        <ProductID>CVRFPID-267613:277507</ProductID>
+        <ProductID>CVRFPID-267613:277509</ProductID>
+        <ProductID>CVRFPID-267613:277516</ProductID>
+        <ProductID>CVRFPID-267614:277391</ProductID>
+        <ProductID>CVRFPID-267614:277405</ProductID>
+        <ProductID>CVRFPID-267614:277507</ProductID>
+        <ProductID>CVRFPID-267614:277509</ProductID>
+        <ProductID>CVRFPID-267614:277516</ProductID>
+        <ProductID>CVRFPID-267615:277391</ProductID>
+        <ProductID>CVRFPID-267615:277405</ProductID>
+        <ProductID>CVRFPID-267615:277507</ProductID>
+        <ProductID>CVRFPID-267615:277509</ProductID>
+        <ProductID>CVRFPID-267615:277516</ProductID>
+        <ProductID>CVRFPID-267616:277391</ProductID>
+        <ProductID>CVRFPID-267616:277405</ProductID>
+        <ProductID>CVRFPID-267616:277507</ProductID>
+        <ProductID>CVRFPID-267616:277509</ProductID>
+        <ProductID>CVRFPID-267616:277516</ProductID>
+        <ProductID>CVRFPID-267617:277391</ProductID>
+        <ProductID>CVRFPID-267617:277405</ProductID>
+        <ProductID>CVRFPID-267617:277507</ProductID>
+        <ProductID>CVRFPID-267617:277509</ProductID>
+        <ProductID>CVRFPID-267617:277516</ProductID>
+        <ProductID>CVRFPID-267618:277391</ProductID>
+        <ProductID>CVRFPID-267618:277405</ProductID>
+        <ProductID>CVRFPID-267618:277507</ProductID>
+        <ProductID>CVRFPID-267618:277509</ProductID>
+        <ProductID>CVRFPID-267618:277516</ProductID>
+        <ProductID>CVRFPID-267619:277391</ProductID>
+        <ProductID>CVRFPID-267619:277405</ProductID>
+        <ProductID>CVRFPID-267619:277507</ProductID>
+        <ProductID>CVRFPID-267619:277509</ProductID>
+        <ProductID>CVRFPID-267619:277516</ProductID>
+        <ProductID>CVRFPID-267620:277391</ProductID>
+        <ProductID>CVRFPID-267620:277405</ProductID>
+        <ProductID>CVRFPID-267620:277507</ProductID>
+        <ProductID>CVRFPID-267620:277509</ProductID>
+        <ProductID>CVRFPID-267620:277516</ProductID>
+        <ProductID>CVRFPID-267621:277391</ProductID>
+        <ProductID>CVRFPID-267621:277405</ProductID>
+        <ProductID>CVRFPID-267621:277507</ProductID>
+        <ProductID>CVRFPID-267621:277509</ProductID>
+        <ProductID>CVRFPID-267621:277516</ProductID>
+        <ProductID>CVRFPID-267622:277391</ProductID>
+        <ProductID>CVRFPID-267622:277405</ProductID>
+        <ProductID>CVRFPID-267622:277507</ProductID>
+        <ProductID>CVRFPID-267622:277509</ProductID>
+        <ProductID>CVRFPID-267622:277516</ProductID>
+        <ProductID>CVRFPID-267623:277391</ProductID>
+        <ProductID>CVRFPID-267623:277405</ProductID>
+        <ProductID>CVRFPID-267623:277507</ProductID>
+        <ProductID>CVRFPID-267623:277509</ProductID>
+        <ProductID>CVRFPID-267623:277516</ProductID>
+        <ProductID>CVRFPID-267625:277391</ProductID>
+        <ProductID>CVRFPID-267625:277405</ProductID>
+        <ProductID>CVRFPID-267625:277507</ProductID>
+        <ProductID>CVRFPID-267625:277509</ProductID>
+        <ProductID>CVRFPID-267625:277516</ProductID>
+        <ProductID>CVRFPID-267626:277391</ProductID>
+        <ProductID>CVRFPID-267626:277405</ProductID>
+        <ProductID>CVRFPID-267626:277507</ProductID>
+        <ProductID>CVRFPID-267626:277509</ProductID>
+        <ProductID>CVRFPID-267626:277516</ProductID>
+        <ProductID>CVRFPID-267627:277391</ProductID>
+        <ProductID>CVRFPID-267627:277405</ProductID>
+        <ProductID>CVRFPID-267627:277507</ProductID>
+        <ProductID>CVRFPID-267627:277509</ProductID>
+        <ProductID>CVRFPID-267627:277516</ProductID>
+        <ProductID>CVRFPID-267628:277391</ProductID>
+        <ProductID>CVRFPID-267628:277405</ProductID>
+        <ProductID>CVRFPID-267628:277507</ProductID>
+        <ProductID>CVRFPID-267628:277509</ProductID>
+        <ProductID>CVRFPID-267628:277516</ProductID>
+        <ProductID>CVRFPID-267629:277391</ProductID>
+        <ProductID>CVRFPID-267629:277405</ProductID>
+        <ProductID>CVRFPID-267629:277507</ProductID>
+        <ProductID>CVRFPID-267629:277509</ProductID>
+        <ProductID>CVRFPID-267629:277516</ProductID>
+        <ProductID>CVRFPID-267630:277391</ProductID>
+        <ProductID>CVRFPID-267630:277405</ProductID>
+        <ProductID>CVRFPID-267630:277507</ProductID>
+        <ProductID>CVRFPID-267630:277509</ProductID>
+        <ProductID>CVRFPID-267630:277516</ProductID>
+        <ProductID>CVRFPID-267631:277391</ProductID>
+        <ProductID>CVRFPID-267631:277405</ProductID>
+        <ProductID>CVRFPID-267631:277507</ProductID>
+        <ProductID>CVRFPID-267631:277509</ProductID>
+        <ProductID>CVRFPID-267631:277516</ProductID>
+        <ProductID>CVRFPID-267632:277391</ProductID>
+        <ProductID>CVRFPID-267632:277405</ProductID>
+        <ProductID>CVRFPID-267632:277507</ProductID>
+        <ProductID>CVRFPID-267632:277509</ProductID>
+        <ProductID>CVRFPID-267632:277516</ProductID>
+        <ProductID>CVRFPID-267633:277391</ProductID>
+        <ProductID>CVRFPID-267633:277405</ProductID>
+        <ProductID>CVRFPID-267633:277507</ProductID>
+        <ProductID>CVRFPID-267633:277509</ProductID>
+        <ProductID>CVRFPID-267633:277516</ProductID>
+        <ProductID>CVRFPID-267634:277391</ProductID>
+        <ProductID>CVRFPID-267634:277405</ProductID>
+        <ProductID>CVRFPID-267634:277507</ProductID>
+        <ProductID>CVRFPID-267634:277509</ProductID>
+        <ProductID>CVRFPID-267634:277516</ProductID>
+        <ProductID>CVRFPID-267635:277391</ProductID>
+        <ProductID>CVRFPID-267635:277405</ProductID>
+        <ProductID>CVRFPID-267635:277507</ProductID>
+        <ProductID>CVRFPID-267635:277509</ProductID>
+        <ProductID>CVRFPID-267635:277516</ProductID>
+        <ProductID>CVRFPID-267645:277391</ProductID>
+        <ProductID>CVRFPID-267645:277405</ProductID>
+        <ProductID>CVRFPID-267645:277507</ProductID>
+        <ProductID>CVRFPID-267645:277509</ProductID>
+        <ProductID>CVRFPID-267645:277516</ProductID>
+        <ProductID>CVRFPID-267646:277391</ProductID>
+        <ProductID>CVRFPID-267646:277405</ProductID>
+        <ProductID>CVRFPID-267646:277507</ProductID>
+        <ProductID>CVRFPID-267646:277509</ProductID>
+        <ProductID>CVRFPID-267646:277516</ProductID>
+        <ProductID>CVRFPID-267647:277391</ProductID>
+        <ProductID>CVRFPID-267647:277405</ProductID>
+        <ProductID>CVRFPID-267647:277507</ProductID>
+        <ProductID>CVRFPID-267647:277509</ProductID>
+        <ProductID>CVRFPID-267647:277516</ProductID>
+        <ProductID>CVRFPID-267648:277391</ProductID>
+        <ProductID>CVRFPID-267648:277405</ProductID>
+        <ProductID>CVRFPID-267648:277507</ProductID>
+        <ProductID>CVRFPID-267648:277509</ProductID>
+        <ProductID>CVRFPID-267648:277516</ProductID>
+        <ProductID>CVRFPID-267650:277391</ProductID>
+        <ProductID>CVRFPID-267650:277405</ProductID>
+        <ProductID>CVRFPID-267650:277507</ProductID>
+        <ProductID>CVRFPID-267650:277509</ProductID>
+        <ProductID>CVRFPID-267650:277516</ProductID>
+        <ProductID>CVRFPID-267651:277391</ProductID>
+        <ProductID>CVRFPID-267651:277405</ProductID>
+        <ProductID>CVRFPID-267651:277507</ProductID>
+        <ProductID>CVRFPID-267651:277509</ProductID>
+        <ProductID>CVRFPID-267651:277516</ProductID>
+        <ProductID>CVRFPID-267652:277391</ProductID>
+        <ProductID>CVRFPID-267652:277405</ProductID>
+        <ProductID>CVRFPID-267652:277507</ProductID>
+        <ProductID>CVRFPID-267652:277509</ProductID>
+        <ProductID>CVRFPID-267652:277516</ProductID>
+        <ProductID>CVRFPID-267654:277507</ProductID>
+        <ProductID>CVRFPID-267654:277509</ProductID>
+        <ProductID>CVRFPID-267654:277516</ProductID>
+        <ProductID>CVRFPID-267677:277391</ProductID>
+        <ProductID>CVRFPID-267677:277405</ProductID>
+        <ProductID>CVRFPID-267677:277507</ProductID>
+        <ProductID>CVRFPID-267677:277509</ProductID>
+        <ProductID>CVRFPID-267677:277516</ProductID>
+        <ProductID>CVRFPID-267678:277391</ProductID>
+        <ProductID>CVRFPID-267678:277405</ProductID>
+        <ProductID>CVRFPID-267678:277507</ProductID>
+        <ProductID>CVRFPID-267678:277509</ProductID>
+        <ProductID>CVRFPID-267678:277516</ProductID>
+        <ProductID>CVRFPID-267679:277391</ProductID>
+        <ProductID>CVRFPID-267679:277405</ProductID>
+        <ProductID>CVRFPID-267679:277507</ProductID>
+        <ProductID>CVRFPID-267679:277509</ProductID>
+        <ProductID>CVRFPID-267679:277516</ProductID>
+        <ProductID>CVRFPID-267680:277391</ProductID>
+        <ProductID>CVRFPID-267680:277405</ProductID>
+        <ProductID>CVRFPID-267680:277507</ProductID>
+        <ProductID>CVRFPID-267680:277509</ProductID>
+        <ProductID>CVRFPID-267680:277516</ProductID>
+        <ProductID>CVRFPID-267681:277391</ProductID>
+        <ProductID>CVRFPID-267681:277405</ProductID>
+        <ProductID>CVRFPID-267681:277507</ProductID>
+        <ProductID>CVRFPID-267681:277509</ProductID>
+        <ProductID>CVRFPID-267681:277516</ProductID>
+        <ProductID>CVRFPID-267682:277391</ProductID>
+        <ProductID>CVRFPID-267682:277405</ProductID>
+        <ProductID>CVRFPID-267682:277507</ProductID>
+        <ProductID>CVRFPID-267682:277509</ProductID>
+        <ProductID>CVRFPID-267682:277516</ProductID>
+        <ProductID>CVRFPID-267683:277391</ProductID>
+        <ProductID>CVRFPID-267683:277405</ProductID>
+        <ProductID>CVRFPID-267683:277507</ProductID>
+        <ProductID>CVRFPID-267683:277509</ProductID>
+        <ProductID>CVRFPID-267683:277516</ProductID>
+        <ProductID>CVRFPID-277314:277507</ProductID>
+        <ProductID>CVRFPID-277314:277509</ProductID>
+        <ProductID>CVRFPID-277314:277516</ProductID>
+        <ProductID>CVRFPID-278486:277391</ProductID>
+        <ProductID>CVRFPID-278486:277405</ProductID>
+        <ProductID>CVRFPID-278486:277507</ProductID>
+        <ProductID>CVRFPID-278486:277509</ProductID>
+        <ProductID>CVRFPID-278486:277516</ProductID>
+        <ProductID>CVRFPID-278487:277391</ProductID>
+        <ProductID>CVRFPID-278487:277405</ProductID>
+        <ProductID>CVRFPID-278487:277507</ProductID>
+        <ProductID>CVRFPID-278487:277509</ProductID>
+        <ProductID>CVRFPID-278487:277516</ProductID>
+        <ProductID>CVRFPID-278488:277391</ProductID>
+        <ProductID>CVRFPID-278488:277405</ProductID>
+        <ProductID>CVRFPID-278488:277507</ProductID>
+        <ProductID>CVRFPID-278488:277509</ProductID>
+        <ProductID>CVRFPID-278488:277516</ProductID>
+        <ProductID>CVRFPID-278489:277391</ProductID>
+        <ProductID>CVRFPID-278489:277405</ProductID>
+        <ProductID>CVRFPID-278489:277507</ProductID>
+        <ProductID>CVRFPID-278489:277509</ProductID>
+        <ProductID>CVRFPID-278489:277516</ProductID>
+        <ProductID>CVRFPID-278490:277391</ProductID>
+        <ProductID>CVRFPID-278490:277405</ProductID>
+        <ProductID>CVRFPID-278490:277507</ProductID>
+        <ProductID>CVRFPID-278490:277509</ProductID>
+        <ProductID>CVRFPID-278490:277516</ProductID>
+        <ProductID>CVRFPID-278491:277391</ProductID>
+        <ProductID>CVRFPID-278491:277405</ProductID>
+        <ProductID>CVRFPID-278491:277507</ProductID>
+        <ProductID>CVRFPID-278491:277509</ProductID>
+        <ProductID>CVRFPID-278491:277516</ProductID>
+        <ProductID>CVRFPID-278492:277391</ProductID>
+        <ProductID>CVRFPID-278492:277405</ProductID>
+        <ProductID>CVRFPID-278492:277507</ProductID>
+        <ProductID>CVRFPID-278492:277509</ProductID>
+        <ProductID>CVRFPID-278492:277516</ProductID>
+        <ProductID>CVRFPID-278493:277391</ProductID>
+        <ProductID>CVRFPID-278493:277405</ProductID>
+        <ProductID>CVRFPID-278493:277507</ProductID>
+        <ProductID>CVRFPID-278493:277509</ProductID>
+        <ProductID>CVRFPID-278493:277516</ProductID>
+        <ProductID>CVRFPID-278494:277391</ProductID>
+        <ProductID>CVRFPID-278494:277405</ProductID>
+        <ProductID>CVRFPID-278494:277507</ProductID>
+        <ProductID>CVRFPID-278494:277509</ProductID>
+        <ProductID>CVRFPID-278494:277516</ProductID>
+        <ProductID>CVRFPID-278495:277391</ProductID>
+        <ProductID>CVRFPID-278495:277405</ProductID>
+        <ProductID>CVRFPID-278495:277507</ProductID>
+        <ProductID>CVRFPID-278495:277509</ProductID>
+        <ProductID>CVRFPID-278495:277516</ProductID>
+        <ProductID>CVRFPID-278496:277391</ProductID>
+        <ProductID>CVRFPID-278496:277405</ProductID>
+        <ProductID>CVRFPID-278496:277507</ProductID>
+        <ProductID>CVRFPID-278496:277509</ProductID>
+        <ProductID>CVRFPID-278496:277516</ProductID>
+        <ProductID>CVRFPID-278497:277391</ProductID>
+        <ProductID>CVRFPID-278497:277405</ProductID>
+        <ProductID>CVRFPID-278497:277507</ProductID>
+        <ProductID>CVRFPID-278497:277509</ProductID>
+        <ProductID>CVRFPID-278497:277516</ProductID>
+        <ProductID>CVRFPID-278498:277507</ProductID>
+        <ProductID>CVRFPID-278498:277509</ProductID>
+        <ProductID>CVRFPID-278498:277516</ProductID>
+        <ProductID>CVRFPID-278499:277507</ProductID>
+        <ProductID>CVRFPID-278499:277509</ProductID>
+        <ProductID>CVRFPID-278499:277516</ProductID>
+        <ProductID>CVRFPID-278500:277507</ProductID>
+        <ProductID>CVRFPID-278500:277509</ProductID>
+        <ProductID>CVRFPID-278500:277516</ProductID>
+        <ProductID>CVRFPID-278501:277507</ProductID>
+        <ProductID>CVRFPID-278501:277509</ProductID>
+        <ProductID>CVRFPID-278501:277516</ProductID>
+        <ProductID>CVRFPID-278806:277391</ProductID>
+        <ProductID>CVRFPID-278806:277405</ProductID>
+        <ProductID>CVRFPID-278806:277507</ProductID>
+        <ProductID>CVRFPID-278806:277509</ProductID>
+        <ProductID>CVRFPID-278806:277516</ProductID>
+        <ProductID>CVRFPID-279342:277507</ProductID>
+        <ProductID>CVRFPID-279342:277509</ProductID>
+        <ProductID>CVRFPID-279342:277516</ProductID>
+        <ProductID>CVRFPID-280017:277507</ProductID>
+        <ProductID>CVRFPID-280017:277509</ProductID>
+        <ProductID>CVRFPID-280017:277516</ProductID>
+        <ProductID>CVRFPID-280641:277391</ProductID>
+        <ProductID>CVRFPID-280641:277405</ProductID>
+        <ProductID>CVRFPID-280641:277507</ProductID>
+        <ProductID>CVRFPID-280641:277509</ProductID>
+        <ProductID>CVRFPID-280641:277516</ProductID>
+        <ProductID>CVRFPID-280643:277507</ProductID>
+        <ProductID>CVRFPID-280643:277509</ProductID>
+        <ProductID>CVRFPID-280643:277516</ProductID>
+        <ProductID>CVRFPID-281469:277391</ProductID>
+        <ProductID>CVRFPID-281469:277405</ProductID>
+        <ProductID>CVRFPID-281469:277507</ProductID>
+        <ProductID>CVRFPID-281469:277509</ProductID>
+        <ProductID>CVRFPID-281469:277516</ProductID>
+        <ProductID>CVRFPID-281470:277507</ProductID>
+        <ProductID>CVRFPID-281470:277509</ProductID>
+        <ProductID>CVRFPID-281470:277516</ProductID>
+        <ProductID>CVRFPID-281983:277507</ProductID>
+        <ProductID>CVRFPID-281983:277509</ProductID>
+        <ProductID>CVRFPID-281983:277516</ProductID>
+        <ProductID>CVRFPID-282064:277507</ProductID>
+        <ProductID>CVRFPID-282064:277509</ProductID>
+        <ProductID>CVRFPID-282064:277516</ProductID>
+        <ProductID>CVRFPID-282175:277507</ProductID>
+        <ProductID>CVRFPID-282175:277509</ProductID>
+        <ProductID>CVRFPID-282175:277516</ProductID>
+        <ProductID>CVRFPID-284308:277391</ProductID>
+        <ProductID>CVRFPID-284308:277405</ProductID>
+        <ProductID>CVRFPID-284308:277507</ProductID>
+        <ProductID>CVRFPID-284308:277509</ProductID>
+        <ProductID>CVRFPID-284308:277516</ProductID>
+        <ProductID>CVRFPID-284309:277391</ProductID>
+        <ProductID>CVRFPID-284309:277405</ProductID>
+        <ProductID>CVRFPID-284309:277507</ProductID>
+        <ProductID>CVRFPID-284309:277509</ProductID>
+        <ProductID>CVRFPID-284309:277516</ProductID>
+        <ProductID>CVRFPID-284310:277507</ProductID>
+        <ProductID>CVRFPID-284310:277509</ProductID>
+        <ProductID>CVRFPID-284310:277516</ProductID>
+        <ProductID>CVRFPID-284312:277507</ProductID>
+        <ProductID>CVRFPID-284312:277509</ProductID>
+        <ProductID>CVRFPID-284312:277516</ProductID>
+        <ProductID>CVRFPID-284313:277507</ProductID>
+        <ProductID>CVRFPID-284313:277509</ProductID>
+        <ProductID>CVRFPID-284313:277516</ProductID>
+        <ProductID>CVRFPID-284594:277507</ProductID>
+        <ProductID>CVRFPID-284594:277509</ProductID>
+        <ProductID>CVRFPID-284594:277516</ProductID>
+      </Status>
+    </ProductStatuses>
+    <CVSSScoreSets>
+      <ScoreSetV3>
+        <BaseScoreV3>4.3</BaseScoreV3>
+        <VectorV3>CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:L/I:N/A:N</VectorV3>
+      </ScoreSetV3>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Workaround">
+        <Description>There are no workarounds that address these vulnerabilities.</Description>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference Type="Self">
+        <URL>https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-fmc-infodisc-Ft2WVmNU</URL>
+        <Description>Cisco Firepower Management Center Software Configuration Information Disclosure Vulnerabilities</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+</cvrf:cvrfdoc>

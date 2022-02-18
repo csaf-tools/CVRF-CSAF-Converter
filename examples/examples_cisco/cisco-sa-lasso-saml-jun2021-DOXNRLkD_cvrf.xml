@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cvrf:cvrfdoc xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:cvrf-common="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/common" xmlns:cvrf="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/cvrf">
+  <cvrf:DocumentTitle>Lasso SAML Implementation Vulnerability Affecting Cisco Products: June 2021</cvrf:DocumentTitle>
+  <cvrf:DocumentType>Cisco Security Advisory</cvrf:DocumentType>
+  <cvrf:DocumentPublisher Type="Vendor">
+    <cvrf:ContactDetails>Emergency Support:
++1 877 228 7302 (toll-free within North America)
++1 408 525 6532 (International direct-dial)
+Non-emergency Support:
+Email: psirt@cisco.com
+Support requests that are received via e-mail are typically acknowledged within 48 hours.</cvrf:ContactDetails>
+    <cvrf:IssuingAuthority>Cisco product security incident response is the responsibility of the Cisco Product Security Incident Response Team (PSIRT). The Cisco PSIRT is a dedicated, global team that manages the receipt, investigation, and public reporting of security vulnerability information that is related to Cisco products and networks. The on-call Cisco PSIRT works 24x7 with Cisco customers, independent security researchers, consultants, industry organizations, and other vendors to identify possible security issues with Cisco products and networks.
+More information can be found in Cisco Security Vulnerability Policy available at http://www.cisco.com/web/about/security/psirt/security_vulnerability_policy.html</cvrf:IssuingAuthority>
+  </cvrf:DocumentPublisher>
+  <cvrf:DocumentTracking>
+    <cvrf:Identification>
+      <cvrf:ID>cisco-sa-lasso-saml-jun2021-DOXNRLkD</cvrf:ID>
+    </cvrf:Identification>
+    <cvrf:Status>Final</cvrf:Status>
+    <cvrf:Version>1.4</cvrf:Version>
+    <cvrf:RevisionHistory>
+      <cvrf:Revision>
+        <cvrf:Number>1.0</cvrf:Number>
+        <cvrf:Date>2021-06-01T12:29:22</cvrf:Date>
+        <cvrf:Description>Initial public release.</cvrf:Description>
+      </cvrf:Revision>
+      <cvrf:Revision>
+        <cvrf:Number>1.1</cvrf:Number>
+        <cvrf:Date>2021-06-01T21:19:11</cvrf:Date>
+        <cvrf:Description>Updated availability of first fixed releases for Cisco FXOS Software.</cvrf:Description>
+      </cvrf:Revision>
+      <cvrf:Revision>
+        <cvrf:Number>1.2</cvrf:Number>
+        <cvrf:Date>2021-06-09T15:03:47</cvrf:Date>
+        <cvrf:Description>Updated FTD feature impact.</cvrf:Description>
+      </cvrf:Revision>
+      <cvrf:Revision>
+        <cvrf:Number>1.3</cvrf:Number>
+        <cvrf:Date>2021-06-15T21:37:02</cvrf:Date>
+        <cvrf:Description>Updated ASA fixed release availability.</cvrf:Description>
+      </cvrf:Revision>
+      <cvrf:Revision>
+        <cvrf:Number>1.4</cvrf:Number>
+        <cvrf:Date>2021-09-30T14:51:31</cvrf:Date>
+        <cvrf:Description>Updated the advisory throughout to reflect that the investigation is complete.  Updated fixed release availability information.</cvrf:Description>
+      </cvrf:Revision>
+    </cvrf:RevisionHistory>
+    <cvrf:InitialReleaseDate>2021-06-01T12:30:00</cvrf:InitialReleaseDate>
+    <cvrf:CurrentReleaseDate>2021-09-30T14:51:31</cvrf:CurrentReleaseDate>
+    <cvrf:Generator>
+      <cvrf:Engine>TVCE</cvrf:Engine>
+    </cvrf:Generator>
+  </cvrf:DocumentTracking>
+  <cvrf:DocumentNotes>
+    <cvrf:Note Title="Summary" Type="Summary" Ordinal="1">On June 1, 2021, Lasso disclosed a security vulnerability in the Lasso Security Assertion Markup Language (SAML) Single Sign-On (SSO) library. This vulnerability could allow an authenticated attacker to impersonate another authorized user when interacting with an application.
+
+For a description of this vulnerability, see lasso.git NEWS ["https://git.entrouvert.org/lasso.git/tree/NEWS?id=v2.7.0"].
+
+This advisory is available at the following link:
+https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-lasso-saml-jun2021-DOXNRLkD ["https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-lasso-saml-jun2021-DOXNRLkD"]</cvrf:Note>
+    <cvrf:Note Title="Affected Products" Type="General" Ordinal="2">Cisco investigated its product line to determine which products and services may be affected by this vulnerability.
+
+The Vulnerable Products section includes Cisco bug IDs for each affected product. The bugs are accessible through the Cisco Bug Search Tool ["https://bst.cloudapps.cisco.com/bugsearch/bug/BUGID"] and contain additional platform-specific information, including workarounds (if available) and fixed software releases.</cvrf:Note>
+    <cvrf:Note Title="Vulnerable Products" Type="General" Ordinal="3">The following table lists Cisco products that are affected by the vulnerability that is described in this advisory. If a future release date is indicated for software, the date provided represents an estimate based on all information known to Cisco as of the Last Updated date at the top of the advisory. Availability dates are subject to change based on a number of factors, including satisfactory testing results and delivery of other priority features and fixes. If no version or date is listed for an affected component (indicated by a blank field and/or an advisory designation of Interim), Cisco is continuing to evaluate the fix and will update the advisory as additional information becomes available. After the advisory is marked Final, customers should refer to the associated Cisco bug(s) for further details.
+        Product  Cisco Bug ID  Fixed Release Availability ["https://tools.cisco.com/security/center/resources/security_vulnerability_policy.html#fixes"]      Network and Content Security Devices      Cisco Adaptive Security Appliance (ASA) Software
+Affected features: Clientless WebVPN and AnyConnect VPN (only when SSO is enabled)  CSCvx73164 ["https://tools.cisco.com/bugsearch/bug/CSCvx73164"]  9.8.4.39 (available)
+9.12.4.24 (available)
+9.14.3 (available)
+9.15.1.15 (available)
+9.16.1.3 (available)      Cisco Content Security Management Appliance (SMA)
+Affected feature: Web-based management interface (only when SSO is enabled)  CSCvx73156 ["https://tools.cisco.com/bugsearch/bug/CSCvx73156"]  13.8.1-074 (available)
+14.0.0-404 (available)      Cisco Email Security Appliance (ESA)
+Affected feature: Web-based management interface (only when SSO is enabled)  CSCvx73154 ["https://tools.cisco.com/bugsearch/bug/CSCvx73154"]  14.0.0-692 GD (available)      Cisco FXOS Software  CSCvx73164 ["https://tools.cisco.com/bugsearch/bug/CSCvx73164"]  2.2.2.149 (available)
+2.3.1.216 (available)
+2.6.1.230 (available)
+2.7.1.143 (available)
+2.8.1.152 (available)
+2.9.1.143 (available)
+Cisco Web Security Appliance (WSA)
+    CSCvx73157 ["https://tools.cisco.com/bugsearch/bug/CSCvx73157"]  14.0.1-053 (available)
+Cisco Firepower Threat Defense (FTD) Software
+Affected feature: AnyConnect VPN (only when SSO is enabled)1
+    CSCvx73164 ["https://tools.cisco.com/bugsearch/bug/CSCvx73164"]  6.4.0.12 (available)
+6.6.5 (available)
+6.7.0.2 (available)
+7.0.0 (available)      Network Management and Provisioning      Cisco Prime Collaboration Assurance  CSCvx73162 ["https://tools.cisco.com/bugsearch/bug/CSCvx73162"]  None planned
+1. The AnyConnect VPN is configurable only through FlexConfig for Cisco FTD releases earlier than Release 6.7.
+The Cisco software releases listed in the following table have reached end of software maintenance ["https://www.cisco.com/c/en/us/products/eos-eol-listing.html"]. Customers are advised to migrate to a supported release that includes the fix for this vulnerability.
+        Cisco Software  End-of-Life Releases          ASA Software  9.7 and earlier
+9.9
+9.10
+9.13      FXOS Software  2.4.1
+2.7.1      FTD Software  6.0.1 and earlier
+6.2.0
+6.2.1
+6.5</cvrf:Note>
+    <cvrf:Note Title="Products Confirmed Not Vulnerable" Type="General" Ordinal="4">Only products listed in the Vulnerable Products ["#vp"] section of this advisory are known to be affected by this vulnerability.
+
+Cisco has confirmed that this vulnerability does not affect the following products and services:
+
+Network and Content Security Devices
+
+Cisco AMP Virtual Private Cloud Appliance
+
+Network Management and Provisioning
+
+Cisco Prime Collaboration Provisioning
+
+Unified Computing
+
+Cisco UCS B-Series M5 Blade Servers
+Cisco UCS C-Series M5 Rack Servers - Managed
+
+Video, Streaming, TelePresence, and Transcoding Devices
+
+Cisco Video Surveillance Media Server
+Cisco Video Surveillance Operations Manager
+Cisco Vision Dynamic Signage Director</cvrf:Note>
+    <cvrf:Note Title="Workarounds" Type="General" Ordinal="5">There are no workarounds that address this vulnerability.</cvrf:Note>
+    <cvrf:Note Title="Fixed Software" Type="General" Ordinal="6">For information about fixed software releases ["https://tools.cisco.com/security/center/resources/security_vulnerability_policy.html#fixes"], consult the Cisco bugs identified in the Vulnerable Products ["#vp"] section of this advisory.
+
+When considering software upgrades ["https://tools.cisco.com/security/center/resources/security_vulnerability_policy.html#fixes"], customers are advised to regularly consult the advisories for Cisco products, which are available from the Cisco Security Advisories page ["https://www.cisco.com/go/psirt"], to determine exposure and a complete upgrade solution.
+
+In all cases, customers should ensure that the devices to be upgraded contain sufficient memory and confirm that current hardware and software configurations will continue to be supported properly by the new release. If the information is not clear, customers are advised to contact the Cisco Technical Assistance Center (TAC) or their contracted maintenance providers.
+
+The Cisco Product Security Incident Response Team (PSIRT) validates only the affected and fixed release information that is documented in this advisory.</cvrf:Note>
+    <cvrf:Note Title="Vulnerability Policy" Type="General" Ordinal="7">To learn about Cisco security vulnerability disclosure policies and publications, see the Security Vulnerability Policy ["http://www.cisco.com/web/about/security/psirt/security_vulnerability_policy.html"]. This document also contains instructions for obtaining fixed software and receiving security vulnerability information from Cisco.</cvrf:Note>
+    <cvrf:Note Title="Exploitation and Public Announcements" Type="General" Ordinal="8">The Cisco Product Security Incident Response Team (PSIRT) is aware that proof-of-concept exploit code is available for the vulnerability that is described in this advisory.
+
+The Cisco PSIRT is not aware of any malicious use of the vulnerability that is described in this advisory.</cvrf:Note>
+    <cvrf:Note Title="Source" Type="General" Ordinal="9">Cisco would like to thank the Best Buy Enterprise Information Protection team and Sam Tinklenberg for discovering this vulnerability.
+
+Cisco would also like to thank Akamai for bringing this vulnerability to our attention and working with us on it.</cvrf:Note>
+    <cvrf:Note Title="Legal Disclaimer" Type="Legal Disclaimer" Ordinal="10">THIS DOCUMENT IS PROVIDED ON AN "AS IS" BASIS AND DOES NOT IMPLY ANY KIND OF GUARANTEE OR WARRANTY, INCLUDING THE WARRANTIES OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR USE. YOUR USE OF THE INFORMATION ON THE DOCUMENT OR MATERIALS LINKED FROM THE DOCUMENT IS AT YOUR OWN RISK. CISCO RESERVES THE RIGHT TO CHANGE OR UPDATE THIS DOCUMENT AT ANY TIME.
+
+A standalone copy or paraphrase of the text of this document that omits the distribution URL is an uncontrolled copy and may lack important information or contain factual errors. The information in this document is intended for end users of Cisco products.</cvrf:Note>
+  </cvrf:DocumentNotes>
+  <cvrf:DocumentReferences>
+    <cvrf:Reference Type="Self">
+      <cvrf:URL>https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-lasso-saml-jun2021-DOXNRLkD</cvrf:URL>
+      <cvrf:Description>Lasso SAML Implementation Vulnerability Affecting Cisco Products: June 2021</cvrf:Description>
+    </cvrf:Reference>
+  </cvrf:DocumentReferences>
+  <ProductTree xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/prod">
+    <Branch Name="Cisco" Type="Vendor">
+      <Branch Name="Cisco Email Security Appliance (ESA)" Type="Product Name">
+        <FullProductName ProductID="CVRFPID-189790">Cisco Email Security Appliance (ESA) </FullProductName>
+      </Branch>
+    </Branch>
+  </ProductTree>
+  <Vulnerability Ordinal="1" xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln">
+    <Title>vuln-CVE-2021-28091</Title>
+    <ID SystemName="Cisco Bug ID">CSCvx73154</ID>
+    <Notes>
+      <Note Title="Cisco Bug IDs" Type="Other" Ordinal="1">CSCvx73154</Note>
+      <Note Title="Affected Product Comprehensiveness" Type="Other" Ordinal="2">Complete.</Note>
+    </Notes>
+    <CVE>CVE-2021-28091</CVE>
+    <ProductStatuses>
+      <Status Type="Known Affected">
+        <ProductID>CVRFPID-189790</ProductID>
+      </Status>
+    </ProductStatuses>
+    <CVSSScoreSets>
+      <ScoreSetV3>
+        <BaseScoreV3>8.8</BaseScoreV3>
+        <VectorV3>CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H</VectorV3>
+      </ScoreSetV3>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Workaround">
+        <Description>There are no workarounds that address this vulnerability.</Description>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference Type="Self">
+        <URL>https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-lasso-saml-jun2021-DOXNRLkD</URL>
+        <Description>Lasso SAML Implementation Vulnerability Affecting Cisco Products: June 2021</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+</cvrf:cvrfdoc>

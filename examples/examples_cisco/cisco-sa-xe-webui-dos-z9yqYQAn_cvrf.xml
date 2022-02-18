@@ -1,0 +1,372 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cvrf:cvrfdoc xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:cvrf-common="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/common" xmlns:cvrf="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/cvrf">
+  <cvrf:DocumentTitle>Cisco IOS XE Software Web UI Denial of Service Vulnerabilities</cvrf:DocumentTitle>
+  <cvrf:DocumentType>Cisco Security Advisory</cvrf:DocumentType>
+  <cvrf:DocumentPublisher Type="Vendor">
+    <cvrf:ContactDetails>Emergency Support:
++1 877 228 7302 (toll-free within North America)
++1 408 525 6532 (International direct-dial)
+Non-emergency Support:
+Email: psirt@cisco.com
+Support requests that are received via e-mail are typically acknowledged within 48 hours.</cvrf:ContactDetails>
+    <cvrf:IssuingAuthority>Cisco product security incident response is the responsibility of the Cisco Product Security Incident Response Team (PSIRT). The Cisco PSIRT is a dedicated, global team that manages the receipt, investigation, and public reporting of security vulnerability information that is related to Cisco products and networks. The on-call Cisco PSIRT works 24x7 with Cisco customers, independent security researchers, consultants, industry organizations, and other vendors to identify possible security issues with Cisco products and networks.
+More information can be found in Cisco Security Vulnerability Policy available at http://www.cisco.com/web/about/security/psirt/security_vulnerability_policy.html</cvrf:IssuingAuthority>
+  </cvrf:DocumentPublisher>
+  <cvrf:DocumentTracking>
+    <cvrf:Identification>
+      <cvrf:ID>cisco-sa-xe-webui-dos-z9yqYQAn</cvrf:ID>
+    </cvrf:Identification>
+    <cvrf:Status>Final</cvrf:Status>
+    <cvrf:Version>1.0</cvrf:Version>
+    <cvrf:RevisionHistory>
+      <cvrf:Revision>
+        <cvrf:Number>1.0</cvrf:Number>
+        <cvrf:Date>2021-03-24T15:30:37</cvrf:Date>
+        <cvrf:Description>Initial public release.</cvrf:Description>
+      </cvrf:Revision>
+    </cvrf:RevisionHistory>
+    <cvrf:InitialReleaseDate>2021-03-24T16:00:00</cvrf:InitialReleaseDate>
+    <cvrf:CurrentReleaseDate>2021-03-24T16:00:00</cvrf:CurrentReleaseDate>
+    <cvrf:Generator>
+      <cvrf:Engine>TVCE</cvrf:Engine>
+    </cvrf:Generator>
+  </cvrf:DocumentTracking>
+  <cvrf:DocumentNotes>
+    <cvrf:Note Title="Summary" Type="Summary" Ordinal="1">Multiple vulnerabilities in the web UI of Cisco IOS XE Software could allow an authenticated, remote attacker with read-only privileges to cause the web UI software to become unresponsive and consume vty line instances, resulting in a denial of service (DoS) condition.
+
+These vulnerabilities are due to insufficient error handling in the web UI. An attacker could exploit these vulnerabilities by sending crafted HTTP packets to an affected device. A successful exploit could allow the attacker to cause the web UI software to become unresponsive and consume all available vty lines, preventing new session establishment and resulting in a DoS condition. Manual intervention would be required to regain web UI and vty session functionality.
+
+Note: These vulnerabilities do not affect the console connection.
+
+Cisco has released software updates that address these vulnerabilities. There are no workarounds that address these vulnerabilities.
+
+This advisory is available at the following link:
+https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-xe-webui-dos-z9yqYQAn ["https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-xe-webui-dos-z9yqYQAn"]</cvrf:Note>
+    <cvrf:Note Title="Vulnerable Products" Type="General" Ordinal="2">At the time of publication, these vulnerabilities affected Cisco devices if they were running a vulnerable release of Cisco IOS XE Software and had the HTTP Server feature enabled. The default state of the HTTP Server feature in Cisco IOS XE Software is version and platform dependent.
+
+For information about which Cisco software releases are vulnerable, see the Fixed Software ["#fs"] section of this advisory.
+    Determine the HTTP Server Configuration
+To determine whether the HTTP Server feature is enabled for a device, log in to the device and use the show running-config | include ip http server|secure|active command in the CLI to check for the presence of the ip http server command or the ip http secure-server command in the global configuration. If either command is present and configured, the HTTP Server feature is enabled for the device.
+
+The following example shows the output of the show running-config | include ip http server|secure|active command for a device that has the HTTP Server feature enabled:
+
+
+Router# show running-config | include ip http server|secure|active
+ip http server
+ip http secure-server
+
+Note: The presence of either command or both commands in the device configuration indicates that the web UI feature is enabled.
+
+If the ip http server command is present and the configuration also contains ip http active-session-modules none, these vulnerabilities are not exploitable over HTTP.
+
+If the ip http secure-server command is present and the configuration also contains ip http secure-active-session-modules none, these vulnerabilities are not exploitable over HTTPS.</cvrf:Note>
+    <cvrf:Note Title="Products Confirmed Not Vulnerable" Type="General" Ordinal="3">Only products listed in the Vulnerable Products ["#vp"] section of this advisory are known to be affected by these vulnerabilities.
+
+Cisco has confirmed that these vulnerabilities do not affect the following Cisco products:
+
+IOS Software
+IOS XR Software
+NX-OS Software</cvrf:Note>
+    <cvrf:Note Title="Indicators of Compromise" Type="General" Ordinal="4">Unexpected idle vty sessions may be an indicator that these vulnerabilities have been exploited. Use the show user command to display console and vty sessions. The initial session that causes these vulnerabilities could appear as an idle vty connection with a valid username, such as user1 in the examples below. If the attack persists, additional idle vty sessions will be displayed in the Host(s) column as HTTP CP. The following example shows output from the show user command on a device that has been compromised:
+
+
+eWLC#show user
+  Line      User     Host(s)      Idle       Location
+*  0 con 0            idle         00:00:00
+ 2 vty 0   user1    idle         00:31:45
+ 3 vty 1            HTTP CP      00:47:15
+ 4 vty 2            HTTP CP      00:47:15
+
+If the web UI is not responding and unexpected idle vty sessions are identified, the administrator may be able to clear these lines. Use the Idle time as an indicator and not the Host(s) value. Start at the first idle vty session and clear each line in succession until all have been cleared. All idle lines must be cleared before any listed sessions will disappear from the list. Once the last session is cleared, all of these vty lines should be freed.
+
+Use the clear line x command to clear the idle vty sessions. The vty line is the left-most number. In this example, the CLI command clear line 2 will clear the user1 user session:
+
+
+eWLC#clear line 2
+  Line      User     Host(s)      Idle       Location
+*  0 con 0            idle         00:00:00
+ 2 vty 0   user1    idle         00:31:45
+ 3 vty 1            HTTP CP      00:47:15
+ 4 vty 2            HTTP CP      00:47:15
+
+If the vty lines cannot be cleared, the device may need to be reloaded in order to restore the web UI and vty session functionality.</cvrf:Note>
+    <cvrf:Note Title="Workarounds" Type="General" Ordinal="5">There are no workarounds that address these vulnerabilities.
+
+Disabling the HTTP Server feature eliminates the attack vector for these vulnerabilities and may be a suitable mitigation until affected devices can be upgraded. To disable the HTTP Server feature, use the no ip http server  or no ip http secure-server  command in global configuration mode. If both the HTTP server and HTTPS server are in use, both commands are required to disable the HTTP Server feature.
+
+While this mitigation has been deployed and was proven successful in a test environment, customers should determine the applicability and effectiveness in their own environment and under their own use conditions. Customers should be aware that any workaround or mitigation that is implemented may negatively impact the functionality or performance of their network based on intrinsic customer deployment scenarios and limitations. Customers should not deploy any workarounds or mitigations before first evaluating the applicability to their own environment and any impact to such environment.</cvrf:Note>
+    <cvrf:Note Title="Fixed Software" Type="General" Ordinal="6">When considering software upgrades ["https://tools.cisco.com/security/center/resources/security_vulnerability_policy.html#fixes"], customers are advised to regularly consult the advisories for Cisco products, which are available from the Cisco Security Advisories page ["https://www.cisco.com/go/psirt"], to determine exposure and a complete upgrade solution.
+
+In all cases, customers should ensure that the devices to be upgraded contain sufficient memory and confirm that current hardware and software configurations will continue to be supported properly by the new release. If the information is not clear, customers are advised to contact the Cisco Technical Assistance Center (TAC) or their contracted maintenance providers.
+        Cisco IOS and IOS XE Software
+To help customers determine their exposure to vulnerabilities in Cisco IOS and IOS XE Software, Cisco provides the Cisco Software Checker ["https://tools.cisco.com/security/center/softwarechecker.x"] to identify any Cisco Security Advisories that impact a specific software release and the earliest release that fixes the vulnerabilities described in each advisory (“First Fixed”). If applicable, the tool also returns the earliest release that fixes all the vulnerabilities described in all the advisories identified (“Combined First Fixed”).
+
+Customers can use the Cisco Software Checker ["https://tools.cisco.com/security/center/softwarechecker.x"] to search advisories in the following ways:
+
+Choose the software and one or more releases
+Upload a .txt file that includes a list of specific releases
+Enter the output of the show version command
+
+After initiating a search, customers can customize the search to include all Cisco Security Advisories, a specific advisory, or all advisories in the most recent bundled publication.
+
+Customers can also use the following form to determine whether a release is affected by any Cisco Security Advisory by entering a Cisco IOS or IOS XE Software release—for example, 15.1(4)M2 or 3.13.8S:
+
+
+
+By default, the Cisco Software Checker ["https://tools.cisco.com/security/center/softwarechecker.x"] includes results only for vulnerabilities that have a Critical or High Security Impact Rating (SIR). To include results for Medium SIR vulnerabilities, customers can use the Cisco Software Checker on Cisco.com and check the Medium check box in the drop-down list under Impact Rating when customizing a search.</cvrf:Note>
+    <cvrf:Note Title="Vulnerability Policy" Type="General" Ordinal="7">To learn about Cisco security vulnerability disclosure policies and publications, see the Security Vulnerability Policy ["http://www.cisco.com/web/about/security/psirt/security_vulnerability_policy.html"]. This document also contains instructions for obtaining fixed software and receiving security vulnerability information from Cisco.</cvrf:Note>
+    <cvrf:Note Title="Exploitation and Public Announcements" Type="General" Ordinal="8">The Cisco Product Security Incident Response Team (PSIRT) is not aware of any public announcements or malicious use of the vulnerabilities that are described in this advisory.</cvrf:Note>
+    <cvrf:Note Title="Source" Type="General" Ordinal="9">Cisco would like to thank Marcin Kopec, Fabian Beck, and Jiri Kulda from Deutsche Telekom for reporting these vulnerabilities.</cvrf:Note>
+    <cvrf:Note Title="Legal Disclaimer" Type="Legal Disclaimer" Ordinal="10">THIS DOCUMENT IS PROVIDED ON AN "AS IS" BASIS AND DOES NOT IMPLY ANY KIND OF GUARANTEE OR WARRANTY, INCLUDING THE WARRANTIES OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR USE. YOUR USE OF THE INFORMATION ON THE DOCUMENT OR MATERIALS LINKED FROM THE DOCUMENT IS AT YOUR OWN RISK. CISCO RESERVES THE RIGHT TO CHANGE OR UPDATE THIS DOCUMENT AT ANY TIME.
+
+A standalone copy or paraphrase of the text of this document that omits the distribution URL is an uncontrolled copy and may lack important information or contain factual errors. The information in this document is intended for end users of Cisco products.</cvrf:Note>
+  </cvrf:DocumentNotes>
+  <cvrf:DocumentReferences>
+    <cvrf:Reference Type="Self">
+      <cvrf:URL>https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-xe-webui-dos-z9yqYQAn</cvrf:URL>
+      <cvrf:Description>Cisco IOS XE Software Web UI Denial of Service Vulnerabilities</cvrf:Description>
+    </cvrf:Reference>
+  </cvrf:DocumentReferences>
+  <ProductTree xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/prod">
+    <Branch Name="Cisco" Type="Vendor">
+      <Branch Name="Cisco IOS XE Software" Type="Product Name">
+        <Branch Name="3.15S" Type="Product Version">
+          <Branch Name="3.15.1xbS" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-213662">Cisco IOS XE Software 3.15.1xbS</FullProductName>
+          </Branch>
+          <Branch Name="3.15.2xbS" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-213701">Cisco IOS XE Software 3.15.2xbS</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="16.11" Type="Product Version">
+          <Branch Name="16.11.1" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-227918">Cisco IOS XE Software 16.11.1</FullProductName>
+          </Branch>
+          <Branch Name="16.11.1a" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-252271">Cisco IOS XE Software 16.11.1a</FullProductName>
+          </Branch>
+          <Branch Name="16.11.1b" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-260741">Cisco IOS XE Software 16.11.1b</FullProductName>
+          </Branch>
+          <Branch Name="16.11.2" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-261240">Cisco IOS XE Software 16.11.2</FullProductName>
+          </Branch>
+          <Branch Name="16.11.1s" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-261465">Cisco IOS XE Software 16.11.1s</FullProductName>
+          </Branch>
+          <Branch Name="16.11.1c" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-264096">Cisco IOS XE Software 16.11.1c</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="16.12" Type="Product Version">
+          <Branch Name="16.12.1" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-227920">Cisco IOS XE Software 16.12.1</FullProductName>
+          </Branch>
+          <Branch Name="16.12.1s" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-265735">Cisco IOS XE Software 16.12.1s</FullProductName>
+          </Branch>
+          <Branch Name="16.12.1a" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-265841">Cisco IOS XE Software 16.12.1a</FullProductName>
+          </Branch>
+          <Branch Name="16.12.1c" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-267110">Cisco IOS XE Software 16.12.1c</FullProductName>
+          </Branch>
+          <Branch Name="16.12.1w" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-267240">Cisco IOS XE Software 16.12.1w</FullProductName>
+          </Branch>
+          <Branch Name="16.12.2" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-267605">Cisco IOS XE Software 16.12.2</FullProductName>
+          </Branch>
+          <Branch Name="16.12.1y" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-271938">Cisco IOS XE Software 16.12.1y</FullProductName>
+          </Branch>
+          <Branch Name="16.12.2a" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-272047">Cisco IOS XE Software 16.12.2a</FullProductName>
+          </Branch>
+          <Branch Name="16.12.3" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-273445">Cisco IOS XE Software 16.12.3</FullProductName>
+          </Branch>
+          <Branch Name="16.12.2s" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-273509">Cisco IOS XE Software 16.12.2s</FullProductName>
+          </Branch>
+          <Branch Name="16.12.1x" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-273649">Cisco IOS XE Software 16.12.1x</FullProductName>
+          </Branch>
+          <Branch Name="16.12.1t" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-274832">Cisco IOS XE Software 16.12.1t</FullProductName>
+          </Branch>
+          <Branch Name="16.12.2t" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-275538">Cisco IOS XE Software 16.12.2t</FullProductName>
+          </Branch>
+          <Branch Name="16.12.4" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-277147">Cisco IOS XE Software 16.12.4</FullProductName>
+          </Branch>
+          <Branch Name="16.12.3s" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-277255">Cisco IOS XE Software 16.12.3s</FullProductName>
+          </Branch>
+          <Branch Name="16.12.1z" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-277256">Cisco IOS XE Software 16.12.1z</FullProductName>
+          </Branch>
+          <Branch Name="16.12.3a" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-277321">Cisco IOS XE Software 16.12.3a</FullProductName>
+          </Branch>
+          <Branch Name="16.12.4a" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-278881">Cisco IOS XE Software 16.12.4a</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="17.1" Type="Product Version">
+          <Branch Name="17.1.1" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-245377">Cisco IOS XE Software 17.1.1</FullProductName>
+          </Branch>
+          <Branch Name="17.1.1a" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-272932">Cisco IOS XE Software 17.1.1a</FullProductName>
+          </Branch>
+          <Branch Name="17.1.1s" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-274818">Cisco IOS XE Software 17.1.1s</FullProductName>
+          </Branch>
+          <Branch Name="17.1.2" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-277338">Cisco IOS XE Software 17.1.2</FullProductName>
+          </Branch>
+          <Branch Name="17.1.1t" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-277348">Cisco IOS XE Software 17.1.1t</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="17.2" Type="Product Version">
+          <Branch Name="17.2.1" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-251225">Cisco IOS XE Software 17.2.1</FullProductName>
+          </Branch>
+          <Branch Name="17.2.1r" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-277194">Cisco IOS XE Software 17.2.1r</FullProductName>
+          </Branch>
+          <Branch Name="17.2.1a" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-277343">Cisco IOS XE Software 17.2.1a</FullProductName>
+          </Branch>
+          <Branch Name="17.2.1v" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-278002">Cisco IOS XE Software 17.2.1v</FullProductName>
+          </Branch>
+          <Branch Name="17.2.2" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-278504">Cisco IOS XE Software 17.2.2</FullProductName>
+          </Branch>
+        </Branch>
+      </Branch>
+      <Branch Name="Cisco IOS XE Software" Type="Product Name">
+        <FullProductName ProductID="CVRFPID-93036">Cisco IOS XE Software </FullProductName>
+      </Branch>
+    </Branch>
+  </ProductTree>
+  <Vulnerability Ordinal="1" xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln">
+    <Title>vuln-CVE-2021-1220</Title>
+    <ID SystemName="Cisco Bug ID">CSCvu99729</ID>
+    <Notes>
+      <Note Title="Cisco Bug IDs" Type="Other" Ordinal="1">CSCvu99729</Note>
+    </Notes>
+    <CVE>CVE-2021-1220</CVE>
+    <ProductStatuses>
+      <Status Type="Known Affected">
+        <ProductID>CVRFPID-213662</ProductID>
+        <ProductID>CVRFPID-213701</ProductID>
+        <ProductID>CVRFPID-227918</ProductID>
+        <ProductID>CVRFPID-227920</ProductID>
+        <ProductID>CVRFPID-245377</ProductID>
+        <ProductID>CVRFPID-251225</ProductID>
+        <ProductID>CVRFPID-252271</ProductID>
+        <ProductID>CVRFPID-260741</ProductID>
+        <ProductID>CVRFPID-261240</ProductID>
+        <ProductID>CVRFPID-261465</ProductID>
+        <ProductID>CVRFPID-264096</ProductID>
+        <ProductID>CVRFPID-265735</ProductID>
+        <ProductID>CVRFPID-265841</ProductID>
+        <ProductID>CVRFPID-267110</ProductID>
+        <ProductID>CVRFPID-267240</ProductID>
+        <ProductID>CVRFPID-267605</ProductID>
+        <ProductID>CVRFPID-271938</ProductID>
+        <ProductID>CVRFPID-272047</ProductID>
+        <ProductID>CVRFPID-272932</ProductID>
+        <ProductID>CVRFPID-273445</ProductID>
+        <ProductID>CVRFPID-273509</ProductID>
+        <ProductID>CVRFPID-273649</ProductID>
+        <ProductID>CVRFPID-274818</ProductID>
+        <ProductID>CVRFPID-274832</ProductID>
+        <ProductID>CVRFPID-275538</ProductID>
+        <ProductID>CVRFPID-277147</ProductID>
+        <ProductID>CVRFPID-277194</ProductID>
+        <ProductID>CVRFPID-277255</ProductID>
+        <ProductID>CVRFPID-277256</ProductID>
+        <ProductID>CVRFPID-277321</ProductID>
+        <ProductID>CVRFPID-277338</ProductID>
+        <ProductID>CVRFPID-277343</ProductID>
+        <ProductID>CVRFPID-277348</ProductID>
+        <ProductID>CVRFPID-278002</ProductID>
+        <ProductID>CVRFPID-278881</ProductID>
+        <ProductID>CVRFPID-93036</ProductID>
+      </Status>
+    </ProductStatuses>
+    <CVSSScoreSets>
+      <ScoreSetV3>
+        <BaseScoreV3>4.3</BaseScoreV3>
+        <VectorV3>CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:N/I:N/A:L</VectorV3>
+      </ScoreSetV3>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Workaround">
+        <Description>There are no workarounds that address these vulnerabilities.
+
+Disabling the HTTP Server feature eliminates the attack vector for these vulnerabilities and may be a suitable mitigation until affected devices can be upgraded. To disable the HTTP Server feature, use the no ip http server  or no ip http secure-server  command in global configuration mode. If both the HTTP server and HTTPS server are in use, both commands are required to disable the HTTP Server feature.
+
+While this mitigation has been deployed and was proven successful in a test environment, customers should determine the applicability and effectiveness in their own environment and under their own use conditions. Customers should be aware that any workaround or mitigation that is implemented may negatively impact the functionality or performance of their network based on intrinsic customer deployment scenarios and limitations. Customers should not deploy any workarounds or mitigations before first evaluating the applicability to their own environment and any impact to such environment.</Description>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference Type="Self">
+        <URL>https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-xe-webui-dos-z9yqYQAn</URL>
+        <Description>Cisco IOS XE Software Web UI Denial of Service Vulnerabilities</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+  <Vulnerability Ordinal="2" xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln">
+    <Title>vuln-CVE-2021-1356</Title>
+    <ID SystemName="Cisco Bug ID">CSCvu94117</ID>
+    <Notes>
+      <Note Title="Cisco Bug IDs" Type="Other" Ordinal="1">CSCvu94117</Note>
+    </Notes>
+    <CVE>CVE-2021-1356</CVE>
+    <ProductStatuses>
+      <Status Type="Known Affected">
+        <ProductID>CVRFPID-213662</ProductID>
+        <ProductID>CVRFPID-213701</ProductID>
+        <ProductID>CVRFPID-245377</ProductID>
+        <ProductID>CVRFPID-251225</ProductID>
+        <ProductID>CVRFPID-272932</ProductID>
+        <ProductID>CVRFPID-274818</ProductID>
+        <ProductID>CVRFPID-277194</ProductID>
+        <ProductID>CVRFPID-277338</ProductID>
+        <ProductID>CVRFPID-277343</ProductID>
+        <ProductID>CVRFPID-277348</ProductID>
+        <ProductID>CVRFPID-278002</ProductID>
+        <ProductID>CVRFPID-278504</ProductID>
+        <ProductID>CVRFPID-93036</ProductID>
+      </Status>
+    </ProductStatuses>
+    <CVSSScoreSets>
+      <ScoreSetV3>
+        <BaseScoreV3>4.3</BaseScoreV3>
+        <VectorV3>CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:N/I:N/A:L</VectorV3>
+      </ScoreSetV3>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Workaround">
+        <Description>There are no workarounds that address these vulnerabilities.
+
+Disabling the HTTP Server feature eliminates the attack vector for these vulnerabilities and may be a suitable mitigation until affected devices can be upgraded. To disable the HTTP Server feature, use the no ip http server  or no ip http secure-server  command in global configuration mode. If both the HTTP server and HTTPS server are in use, both commands are required to disable the HTTP Server feature.
+
+While this mitigation has been deployed and was proven successful in a test environment, customers should determine the applicability and effectiveness in their own environment and under their own use conditions. Customers should be aware that any workaround or mitigation that is implemented may negatively impact the functionality or performance of their network based on intrinsic customer deployment scenarios and limitations. Customers should not deploy any workarounds or mitigations before first evaluating the applicability to their own environment and any impact to such environment.</Description>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference Type="Self">
+        <URL>https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-xe-webui-dos-z9yqYQAn</URL>
+        <Description>Cisco IOS XE Software Web UI Denial of Service Vulnerabilities</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+</cvrf:cvrfdoc>

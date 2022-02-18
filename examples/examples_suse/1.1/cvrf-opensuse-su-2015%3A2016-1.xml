@@ -1,0 +1,789 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cvrfdoc xmlns="http://www.icasi.org/CVRF/schema/cvrf/1.1" xmlns:cvrf="http://www.icasi.org/CVRF/schema/cvrf/1.1">
+  <DocumentTitle xml:lang="en">Security update for ntp</DocumentTitle>
+  <DocumentType>SUSE Patch</DocumentType>
+  <DocumentPublisher Type="Vendor">
+    <ContactDetails>security@suse.de</ContactDetails>
+    <IssuingAuthority>SUSE Security Team</IssuingAuthority>
+  </DocumentPublisher>
+  <DocumentTracking>
+    <Identification>
+      <ID>openSUSE-SU-2015:2016-1</ID>
+    </Identification>
+    <Status>Final</Status>
+    <Version>1</Version>
+    <RevisionHistory>
+      <Revision>
+        <Number>1</Number>
+        <Date>2015-11-10T14:50:30Z</Date>
+        <Description>current</Description>
+      </Revision>
+    </RevisionHistory>
+    <InitialReleaseDate>2015-11-10T14:50:30Z</InitialReleaseDate>
+    <CurrentReleaseDate>2015-11-10T14:50:30Z</CurrentReleaseDate>
+    <Generator>
+      <Engine>cve-database/bin/generate-cvrf.pl</Engine>
+      <Date>2017-02-24T01:00:00Z</Date>
+    </Generator>
+  </DocumentTracking>
+  <DocumentNotes>
+    <Note Title="Topic" Type="Summary" Ordinal="1" xml:lang="en">Security update for ntp</Note>
+    <Note Title="Details" Type="General" Ordinal="2" xml:lang="en">This ntp update provides the following security and non security fixes:
+
+- Update to 4.2.8p4 to fix several security issues (bsc#951608):
+  * CVE-2015-7871: NAK to the Future: Symmetric association
+    authentication bypass via crypto-NAK
+  * CVE-2015-7855: decodenetnum() will ASSERT botch instead of
+    returning FAIL on some bogus values
+  * CVE-2015-7854: Password Length Memory Corruption Vulnerability
+  * CVE-2015-7853: Invalid length data provided by a custom
+    refclock driver could cause a buffer overflow
+  * CVE-2015-7852 ntpq atoascii() Memory Corruption Vulnerability
+  * CVE-2015-7851 saveconfig Directory Traversal Vulnerability
+  * CVE-2015-7850 remote config logfile-keyfile
+  * CVE-2015-7849 trusted key use-after-free
+  * CVE-2015-7848 mode 7 loop counter underrun
+  * CVE-2015-7701 Slow memory leak in CRYPTO_ASSOC
+  * CVE-2015-7703 configuration directives 'pidfile' and
+    'driftfile' should only be allowed locally
+  * CVE-2015-7704, CVE-2015-7705 Clients that receive a KoD should
+    validate the origin timestamp field
+  * CVE-2015-7691, CVE-2015-7692, CVE-2015-7702 Incomplete autokey
+    data packet length checks
+  * obsoletes ntp-memlock.patch.
+- Add a controlkey line to /etc/ntp.conf if one does not already
+  exist to allow runtime configuuration via ntpq.
+</Note>
+    <Note Title="Terms of Use" Type="Legal Disclaimer" Ordinal="3" xml:lang="en">The CVRF data is provided by SUSE under the Creative Commons License 4.0 with Attribution for Non-Commercial usage (CC-BY-NC-4.0).</Note>
+  </DocumentNotes>
+  <DocumentDistribution xml:lang="en">Copyright SUSE LLC under the Creative Commons License 4.0 with Attribution for Non-Commercial usage (CC-BY-NC-4.0)</DocumentDistribution>
+  <DocumentReferences>
+    <Reference Type="Self">
+      <URL>https://lists.opensuse.org/opensuse-updates/2015-11/msg00093.html</URL>
+      <Description>E-Mail link for openSUSE-SU-2015:2016-1</Description>
+    </Reference>
+    <Reference Type="Self">
+      <URL>https://www.suse.com/support/security/rating/</URL>
+      <Description>SUSE Security Ratings</Description>
+    </Reference>
+  </DocumentReferences>
+  <ProductTree xmlns="http://www.icasi.org/CVRF/schema/prod/1.1">
+    <Branch Type="Product Family" Name="openSUSE Leap 42.1">
+      <Branch Type="Product Name" Name="openSUSE Leap 42.1">
+        <FullProductName ProductID="openSUSE Leap 42.1">openSUSE Leap 42.1</FullProductName>
+      </Branch>
+    </Branch>
+    <Branch Type="Product Version" Name="ntp-4.2.8p4-9.2">
+      <FullProductName ProductID="ntp-4.2.8p4-9.2">ntp-4.2.8p4-9.2</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="ntp-doc-4.2.8p4-9.2">
+      <FullProductName ProductID="ntp-doc-4.2.8p4-9.2">ntp-doc-4.2.8p4-9.2</FullProductName>
+    </Branch>
+    <Relationship ProductReference="ntp-4.2.8p4-9.2" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:ntp-4.2.8p4-9.2">ntp-4.2.8p4-9.2 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="ntp-doc-4.2.8p4-9.2" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:ntp-doc-4.2.8p4-9.2">ntp-doc-4.2.8p4-9.2 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+  </ProductTree>
+  <Vulnerability xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1" Ordinal="1">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">The crypto_xmit function in ntpd in NTP 4.2.x before 4.2.8p4, and 4.3.x before 4.3.77 allows remote attackers to cause a denial of service (crash) via crafted packets containing particular autokey operations.  NOTE: This vulnerability exists due to an incomplete fix for CVE-2014-9750.</Note>
+    </Notes>
+    <CVE>CVE-2015-7691</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed">
+        <ProductID>openSUSE Leap 42.1:ntp-4.2.8p4-9.2</ProductID>
+        <ProductID>openSUSE Leap 42.1:ntp-doc-4.2.8p4-9.2</ProductID>
+      </Status>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>important</Description>
+      </Threat>
+    </Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-updates/2015-11/msg00093.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-7691.html</URL>
+        <Description>CVE-2015-7691</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/1010964</URL>
+        <Description>SUSE Bug 1010964</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/911792</URL>
+        <Description>SUSE Bug 911792</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/951608</URL>
+        <Description>SUSE Bug 951608</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/959243</URL>
+        <Description>SUSE Bug 959243</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+  <Vulnerability xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1" Ordinal="2">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">The crypto_xmit function in ntpd in NTP 4.2.x before 4.2.8p4, and 4.3.x before 4.3.77 allows remote attackers to cause a denial of service (crash).  NOTE: This vulnerability exists due to an incomplete fix for CVE-2014-9750.</Note>
+    </Notes>
+    <CVE>CVE-2015-7692</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed">
+        <ProductID>openSUSE Leap 42.1:ntp-4.2.8p4-9.2</ProductID>
+        <ProductID>openSUSE Leap 42.1:ntp-doc-4.2.8p4-9.2</ProductID>
+      </Status>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>important</Description>
+      </Threat>
+    </Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-updates/2015-11/msg00093.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-7692.html</URL>
+        <Description>CVE-2015-7692</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/1010964</URL>
+        <Description>SUSE Bug 1010964</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/911792</URL>
+        <Description>SUSE Bug 911792</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/951608</URL>
+        <Description>SUSE Bug 951608</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/959243</URL>
+        <Description>SUSE Bug 959243</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+  <Vulnerability xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1" Ordinal="3">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">Memory leak in the CRYPTO_ASSOC function in ntpd in NTP 4.2.x before 4.2.8p4, and 4.3.x before 4.3.77 allows remote attackers to cause a denial of service (memory consumption).</Note>
+    </Notes>
+    <CVE>CVE-2015-7701</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed">
+        <ProductID>openSUSE Leap 42.1:ntp-4.2.8p4-9.2</ProductID>
+        <ProductID>openSUSE Leap 42.1:ntp-doc-4.2.8p4-9.2</ProductID>
+      </Status>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-updates/2015-11/msg00093.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-7701.html</URL>
+        <Description>CVE-2015-7701</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/1010964</URL>
+        <Description>SUSE Bug 1010964</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/951608</URL>
+        <Description>SUSE Bug 951608</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/959243</URL>
+        <Description>SUSE Bug 959243</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+  <Vulnerability xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1" Ordinal="4">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">The crypto_xmit function in ntpd in NTP 4.2.x before 4.2.8p4, and 4.3.x before 4.3.77 allows remote attackers to cause a denial of service (crash).  NOTE: This vulnerability exists due to an incomplete fix for CVE-2014-9750.</Note>
+    </Notes>
+    <CVE>CVE-2015-7702</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed">
+        <ProductID>openSUSE Leap 42.1:ntp-4.2.8p4-9.2</ProductID>
+        <ProductID>openSUSE Leap 42.1:ntp-doc-4.2.8p4-9.2</ProductID>
+      </Status>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>important</Description>
+      </Threat>
+    </Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-updates/2015-11/msg00093.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-7702.html</URL>
+        <Description>CVE-2015-7702</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/1010964</URL>
+        <Description>SUSE Bug 1010964</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/911792</URL>
+        <Description>SUSE Bug 911792</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/951608</URL>
+        <Description>SUSE Bug 951608</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/959243</URL>
+        <Description>SUSE Bug 959243</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+  <Vulnerability xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1" Ordinal="5">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">The "pidfile" or "driftfile" directives in NTP ntpd 4.2.x before 4.2.8p4, and 4.3.x before 4.3.77, when ntpd is configured to allow remote configuration, allows remote attackers with an IP address that is allowed to send configuration requests, and with knowledge of the remote configuration password to write to arbitrary files via the :config command.</Note>
+    </Notes>
+    <CVE>CVE-2015-7703</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed">
+        <ProductID>openSUSE Leap 42.1:ntp-4.2.8p4-9.2</ProductID>
+        <ProductID>openSUSE Leap 42.1:ntp-doc-4.2.8p4-9.2</ProductID>
+      </Status>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-updates/2015-11/msg00093.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-7703.html</URL>
+        <Description>CVE-2015-7703</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/1010964</URL>
+        <Description>SUSE Bug 1010964</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/943216</URL>
+        <Description>SUSE Bug 943216</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/943218</URL>
+        <Description>SUSE Bug 943218</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/943219</URL>
+        <Description>SUSE Bug 943219</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/943221</URL>
+        <Description>SUSE Bug 943221</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/951608</URL>
+        <Description>SUSE Bug 951608</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/959243</URL>
+        <Description>SUSE Bug 959243</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+  <Vulnerability xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1" Ordinal="6">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">The ntpd client in NTP 4.x before 4.2.8p4 and 4.3.x before 4.3.77 allows remote attackers to cause a denial of service via a number of crafted "KOD" messages.</Note>
+    </Notes>
+    <CVE>CVE-2015-7704</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed">
+        <ProductID>openSUSE Leap 42.1:ntp-4.2.8p4-9.2</ProductID>
+        <ProductID>openSUSE Leap 42.1:ntp-doc-4.2.8p4-9.2</ProductID>
+      </Status>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-updates/2015-11/msg00093.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-7704.html</URL>
+        <Description>CVE-2015-7704</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/1010964</URL>
+        <Description>SUSE Bug 1010964</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/951608</URL>
+        <Description>SUSE Bug 951608</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/952611</URL>
+        <Description>SUSE Bug 952611</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/959243</URL>
+        <Description>SUSE Bug 959243</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/977446</URL>
+        <Description>SUSE Bug 977446</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+  <Vulnerability xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1" Ordinal="7">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">The rate limiting feature in NTP 4.x before 4.2.8p4 and 4.3.x before 4.3.77 allows remote attackers to have unspecified impact via a large number of crafted requests.</Note>
+    </Notes>
+    <CVE>CVE-2015-7705</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed">
+        <ProductID>openSUSE Leap 42.1:ntp-4.2.8p4-9.2</ProductID>
+        <ProductID>openSUSE Leap 42.1:ntp-doc-4.2.8p4-9.2</ProductID>
+      </Status>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-updates/2015-11/msg00093.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-7705.html</URL>
+        <Description>CVE-2015-7705</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/1010964</URL>
+        <Description>SUSE Bug 1010964</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/951608</URL>
+        <Description>SUSE Bug 951608</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/952611</URL>
+        <Description>SUSE Bug 952611</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/959243</URL>
+        <Description>SUSE Bug 959243</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+  <Vulnerability xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1" Ordinal="8">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">An integer overflow can occur in NTP-dev.4.3.70 leading to an out-of-bounds memory copy operation when processing a specially crafted private mode packet. The crafted packet needs to have the correct message authentication code and a valid timestamp. When processed by the NTP daemon, it leads to an immediate crash.</Note>
+    </Notes>
+    <CVE>CVE-2015-7848</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed">
+        <ProductID>openSUSE Leap 42.1:ntp-4.2.8p4-9.2</ProductID>
+        <ProductID>openSUSE Leap 42.1:ntp-doc-4.2.8p4-9.2</ProductID>
+      </Status>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-updates/2015-11/msg00093.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-7848.html</URL>
+        <Description>CVE-2015-7848</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/1010964</URL>
+        <Description>SUSE Bug 1010964</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/951608</URL>
+        <Description>SUSE Bug 951608</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/959243</URL>
+        <Description>SUSE Bug 959243</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+  <Vulnerability xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1" Ordinal="9">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">Use-after-free vulnerability in ntpd in NTP 4.2.x before 4.2.8p4, and 4.3.x before 4.3.77 allows remote authenticated users to possibly execute arbitrary code or cause a denial of service (crash) via crafted packets.</Note>
+    </Notes>
+    <CVE>CVE-2015-7849</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed">
+        <ProductID>openSUSE Leap 42.1:ntp-4.2.8p4-9.2</ProductID>
+        <ProductID>openSUSE Leap 42.1:ntp-doc-4.2.8p4-9.2</ProductID>
+      </Status>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-updates/2015-11/msg00093.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-7849.html</URL>
+        <Description>CVE-2015-7849</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/1010964</URL>
+        <Description>SUSE Bug 1010964</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/951608</URL>
+        <Description>SUSE Bug 951608</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/959243</URL>
+        <Description>SUSE Bug 959243</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+  <Vulnerability xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1" Ordinal="10">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">ntpd in NTP 4.2.x before 4.2.8p4, and 4.3.x before 4.3.77 allows remote authenticated users to cause a denial of service (infinite loop or crash) by pointing the key file at the log file.</Note>
+    </Notes>
+    <CVE>CVE-2015-7850</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed">
+        <ProductID>openSUSE Leap 42.1:ntp-4.2.8p4-9.2</ProductID>
+        <ProductID>openSUSE Leap 42.1:ntp-doc-4.2.8p4-9.2</ProductID>
+      </Status>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-updates/2015-11/msg00093.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-7850.html</URL>
+        <Description>CVE-2015-7850</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/1010964</URL>
+        <Description>SUSE Bug 1010964</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/951608</URL>
+        <Description>SUSE Bug 951608</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/959243</URL>
+        <Description>SUSE Bug 959243</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+  <Vulnerability xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1" Ordinal="11">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">Directory traversal vulnerability in the save_config function in ntpd in ntp_control.c in NTP before 4.2.8p4, when used on systems that do not use '\' or '/' characters for directory separation such as OpenVMS, allows remote authenticated users to overwrite arbitrary files.</Note>
+    </Notes>
+    <CVE>CVE-2015-7851</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed">
+        <ProductID>openSUSE Leap 42.1:ntp-4.2.8p4-9.2</ProductID>
+        <ProductID>openSUSE Leap 42.1:ntp-doc-4.2.8p4-9.2</ProductID>
+      </Status>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-updates/2015-11/msg00093.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-7851.html</URL>
+        <Description>CVE-2015-7851</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/1010964</URL>
+        <Description>SUSE Bug 1010964</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/951608</URL>
+        <Description>SUSE Bug 951608</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/959243</URL>
+        <Description>SUSE Bug 959243</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+  <Vulnerability xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1" Ordinal="12">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">ntpq in NTP 4.2.x before 4.2.8p4, and 4.3.x before 4.3.77 allows remote attackers to cause a denial of service (crash) via crafted mode 6 response packets.</Note>
+    </Notes>
+    <CVE>CVE-2015-7852</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed">
+        <ProductID>openSUSE Leap 42.1:ntp-4.2.8p4-9.2</ProductID>
+        <ProductID>openSUSE Leap 42.1:ntp-doc-4.2.8p4-9.2</ProductID>
+      </Status>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-updates/2015-11/msg00093.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-7852.html</URL>
+        <Description>CVE-2015-7852</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/1010964</URL>
+        <Description>SUSE Bug 1010964</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/951608</URL>
+        <Description>SUSE Bug 951608</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/959243</URL>
+        <Description>SUSE Bug 959243</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+  <Vulnerability xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1" Ordinal="13">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">The datalen parameter in the refclock driver in NTP 4.2.x before 4.2.8p4, and 4.3.x before 4.3.77 allows remote attackers to execute arbitrary code or cause a denial of service (crash) via a negative input value.</Note>
+    </Notes>
+    <CVE>CVE-2015-7853</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed">
+        <ProductID>openSUSE Leap 42.1:ntp-4.2.8p4-9.2</ProductID>
+        <ProductID>openSUSE Leap 42.1:ntp-doc-4.2.8p4-9.2</ProductID>
+      </Status>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-updates/2015-11/msg00093.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-7853.html</URL>
+        <Description>CVE-2015-7853</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/1010964</URL>
+        <Description>SUSE Bug 1010964</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/951608</URL>
+        <Description>SUSE Bug 951608</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/959243</URL>
+        <Description>SUSE Bug 959243</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+  <Vulnerability xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1" Ordinal="14">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">Buffer overflow in the password management functionality in NTP 4.2.x before 4.2.8p4, and 4.3.x before 4.3.77 allows remote authenticated users to cause a denial of service (daemon crash) or possibly execute arbitrary code via a crafted key file.</Note>
+    </Notes>
+    <CVE>CVE-2015-7854</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed">
+        <ProductID>openSUSE Leap 42.1:ntp-4.2.8p4-9.2</ProductID>
+        <ProductID>openSUSE Leap 42.1:ntp-doc-4.2.8p4-9.2</ProductID>
+      </Status>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-updates/2015-11/msg00093.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-7854.html</URL>
+        <Description>CVE-2015-7854</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/1010964</URL>
+        <Description>SUSE Bug 1010964</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/951608</URL>
+        <Description>SUSE Bug 951608</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/959243</URL>
+        <Description>SUSE Bug 959243</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+  <Vulnerability xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1" Ordinal="15">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">The decodenetnum function in ntpd in NTP 4.2.x before 4.2.8p4, and 4.3.x before 4.3.77 allows remote attackers to cause a denial of service (assertion failure) via a 6 or mode 7 packet containing a long data value.</Note>
+    </Notes>
+    <CVE>CVE-2015-7855</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed">
+        <ProductID>openSUSE Leap 42.1:ntp-4.2.8p4-9.2</ProductID>
+        <ProductID>openSUSE Leap 42.1:ntp-doc-4.2.8p4-9.2</ProductID>
+      </Status>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-updates/2015-11/msg00093.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-7855.html</URL>
+        <Description>CVE-2015-7855</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/1010964</URL>
+        <Description>SUSE Bug 1010964</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/951608</URL>
+        <Description>SUSE Bug 951608</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/959243</URL>
+        <Description>SUSE Bug 959243</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+  <Vulnerability xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1" Ordinal="16">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">Crypto-NAK packets in ntpd in NTP 4.2.x before 4.2.8p4, and 4.3.x before 4.3.77 allows remote attackers to bypass authentication.</Note>
+    </Notes>
+    <CVE>CVE-2015-7871</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed">
+        <ProductID>openSUSE Leap 42.1:ntp-4.2.8p4-9.2</ProductID>
+        <ProductID>openSUSE Leap 42.1:ntp-doc-4.2.8p4-9.2</ProductID>
+      </Status>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-updates/2015-11/msg00093.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-7871.html</URL>
+        <Description>CVE-2015-7871</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/1010964</URL>
+        <Description>SUSE Bug 1010964</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/951608</URL>
+        <Description>SUSE Bug 951608</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/952606</URL>
+        <Description>SUSE Bug 952606</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/959243</URL>
+        <Description>SUSE Bug 959243</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+</cvrfdoc>

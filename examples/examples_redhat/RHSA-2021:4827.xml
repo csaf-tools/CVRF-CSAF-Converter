@@ -1,0 +1,991 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cvrfdoc xmlns="http://www.icasi.org/CVRF/schema/cvrf/1.1" xmlns:cvrf="http://www.icasi.org/CVRF/schema/cvrf/1.1">
+  <DocumentTitle xml:lang="en">Red Hat Security Advisory: OpenShift Container Platform 3.11.569 security update</DocumentTitle>
+  <DocumentType>Security Advisory</DocumentType>
+  <DocumentPublisher Type="Vendor">
+    <ContactDetails>secalert@redhat.com</ContactDetails>
+    <IssuingAuthority>Red Hat Product Security</IssuingAuthority>
+  </DocumentPublisher>
+  <DocumentTracking>
+    <Identification><ID>RHSA-2021:4827</ID></Identification>
+    <Status>Final</Status>
+    <Version>1</Version>
+    <RevisionHistory>
+       <Revision>
+         <Number>1</Number>
+         <Date>2021-12-02T22:04:00Z</Date>
+         <Description>Current version</Description>
+       </Revision>
+    </RevisionHistory>
+    <InitialReleaseDate>2021-12-02T22:04:00Z</InitialReleaseDate>
+    <CurrentReleaseDate>2021-12-02T22:04:00Z</CurrentReleaseDate>
+    <Generator>
+      <Engine>Red Hat SDEngine 3.3.0</Engine>
+      <Date>2021-12-03T02:17:00Z</Date>
+    </Generator>
+  </DocumentTracking>
+  <DocumentNotes>
+    <Note Title="Topic" Type="Summary" Ordinal="1" xml:lang="en">
+Red Hat OpenShift Container Platform release 3.11.569 is now available with updates to packages and images that fix several bugs and add enhancements.
+
+Red Hat Product Security has rated this update as having a security impact of Important. A Common Vulnerability Scoring System (CVSS) base score, which gives a detailed severity rating, is available for each vulnerability from the CVE link(s) in the References section.
+    </Note>
+    <Note Title="Details" Type="General" Ordinal="2" xml:lang="en">
+Red Hat OpenShift Container Platform is Red Hat's cloud computing Kubernetes application platform solution designed for on-premise or private cloud deployments.
+
+Security Fix(es):
+
+* jenkins-2-plugins/subversion: does not restrict the name of a file when looking up a subversion key (CVE-2021-21698)
+* jenkins: FilePath#mkdirs does not check permission to create parent directories (CVE-2021-21685)
+* jenkins: File path filters do not canonicalize paths, allowing operations
+to follow symbolic links to outside allowed directories (CVE-2021-21686)
+* jenkins: FilePath#untar does not check permission to create symbolic links when unarchiving a symbolic link (CVE-2021-21687)
+* jenkins: FilePath#reading(FileVisitor) does not reject any operations allowing users to have unrestricted read access (CVE-2021-21688)
+* jenkins: FilePath#unzip and FilePath#untar were not subject to any access control (CVE-2021-21689)
+* jenkins: Agent processes are able to completely bypass file path filtering by wrapping the file operation in an agent file path
+(CVE-2021-21690)
+* jenkins: Creating symbolic links is possible without the symlink permission (CVE-2021-21691)
+* jenkins: The operations FilePath#renameTo and FilePath#moveAllChildrenTo only check read permission on the source path (CVE-2021-21692)
+* jenkins: When creating temporary files, permission to create files is only checked after they’ve been created. (CVE-2021-21693)
+* jenkins: FilePath#toURI, FilePath#hasSymlink, FilePath#absolutize, FilePath#isDescendant, and FilePath#get*DiskSpace do not check any
+permissions (CVE-2021-21694)
+* jenkins: FilePath#listFiles lists files outside directories with agent read access when following symbolic links. (CVE-2021-21695)
+* jenkins: Agent-to-controller access control allowed writing to sensitive directory used by Pipeline: Shared Groovy Libraries Plugin (CVE-2021-21696)
+* jenkins: Agent-to-controller access control allows reading/writing most content of build directories (CVE-2021-21697)
+
+For more details about the security issue(s), including the impact, a CVSS score, acknowledgments, and other related information, refer to the CVE page(s) listed in the References section.
+    </Note>
+    <Note Title="Terms of Use" Ordinal="3" Type="Legal Disclaimer" xml:lang="en">This content is licensed under the Creative Commons Attribution 4.0 International License (https://creativecommons.org/licenses/by/4.0/). If you distribute this content, or a modified version of it, you must provide attribution to Red Hat Inc. and provide a link to the original.</Note>
+  </DocumentNotes>
+  <DocumentDistribution xml:lang="en">Copyright © 2021 Red Hat, Inc. All rights reserved.</DocumentDistribution>
+  <AggregateSeverity Namespace="https://access.redhat.com/security/updates/classification/">Important</AggregateSeverity>
+  <DocumentReferences>
+    <Reference Type="Self">
+       <URL>https://access.redhat.com/errata/RHSA-2021:4827</URL>
+       <Description>https://access.redhat.com/errata/RHSA-2021:4827</Description>
+    </Reference>
+    <Reference Type="External">
+       <URL>https://access.redhat.com/security/updates/classification/#important</URL>
+       <Description>https://access.redhat.com/security/updates/classification/#important</Description>
+    </Reference>
+  </DocumentReferences>
+  <ProductTree xmlns="http://www.icasi.org/CVRF/schema/prod/1.1">
+    <Branch Type="Product Family" Name="Red Hat OpenShift Enterprise">
+      <Branch Type="Product Name" Name="Red Hat OpenShift Container Platform 3.11">
+        <FullProductName ProductID="7Server-RH7-RHOSE-3.11" CPE="cpe:/a:redhat:openshift:3.11::el7">Red Hat OpenShift Container Platform 3.11</FullProductName>
+      </Branch>
+    </Branch>
+    <Branch Type="Product Version" Name="atomic-enterprise-service-catalog-1:3.11.569-1.g2e6be86.el7">
+      <FullProductName ProductID="atomic-enterprise-service-catalog-1:3.11.569-1.g2e6be86.el7" CPE="cpe:/a:redhat:openshift:3.11::el7">atomic-enterprise-service-catalog-3.11.569-1.g2e6be86.el7.src.rpm</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="atomic-openshift-0:3.11.569-1.git.0.9dc951a.el7">
+      <FullProductName ProductID="atomic-openshift-0:3.11.569-1.git.0.9dc951a.el7" CPE="cpe:/a:redhat:openshift:3.11::el7">atomic-openshift-3.11.569-1.git.0.9dc951a.el7.src.rpm</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="atomic-openshift-cluster-autoscaler-0:3.11.569-1.g99b2acf.el7">
+      <FullProductName ProductID="atomic-openshift-cluster-autoscaler-0:3.11.569-1.g99b2acf.el7" CPE="cpe:/a:redhat:openshift:3.11::el7">atomic-openshift-cluster-autoscaler-3.11.569-1.g99b2acf.el7.src.rpm</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="atomic-openshift-descheduler-0:3.11.569-1.gd435537.el7">
+      <FullProductName ProductID="atomic-openshift-descheduler-0:3.11.569-1.gd435537.el7" CPE="cpe:/a:redhat:openshift:3.11::el7">atomic-openshift-descheduler-3.11.569-1.gd435537.el7.src.rpm</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="atomic-openshift-dockerregistry-0:3.11.569-1.g3571208.el7">
+      <FullProductName ProductID="atomic-openshift-dockerregistry-0:3.11.569-1.g3571208.el7" CPE="cpe:/a:redhat:openshift:3.11::el7">atomic-openshift-dockerregistry-3.11.569-1.g3571208.el7.src.rpm</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="atomic-openshift-metrics-server-0:3.11.569-1.gf8bf728.el7">
+      <FullProductName ProductID="atomic-openshift-metrics-server-0:3.11.569-1.gf8bf728.el7" CPE="cpe:/a:redhat:openshift:3.11::el7">atomic-openshift-metrics-server-3.11.569-1.gf8bf728.el7.src.rpm</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="atomic-openshift-node-problem-detector-0:3.11.569-1.gc8f26da.el7">
+      <FullProductName ProductID="atomic-openshift-node-problem-detector-0:3.11.569-1.gc8f26da.el7" CPE="cpe:/a:redhat:openshift:3.11::el7">atomic-openshift-node-problem-detector-3.11.569-1.gc8f26da.el7.src.rpm</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="atomic-openshift-service-idler-0:3.11.569-1.g39cfc66.el7">
+      <FullProductName ProductID="atomic-openshift-service-idler-0:3.11.569-1.g39cfc66.el7" CPE="cpe:/a:redhat:openshift:3.11::el7">atomic-openshift-service-idler-3.11.569-1.g39cfc66.el7.src.rpm</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="atomic-openshift-web-console-0:3.11.569-1.g3e485e6.el7">
+      <FullProductName ProductID="atomic-openshift-web-console-0:3.11.569-1.g3e485e6.el7" CPE="cpe:/a:redhat:openshift:3.11::el7">atomic-openshift-web-console-3.11.569-1.g3e485e6.el7.src.rpm</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="golang-github-openshift-oauth-proxy-0:3.11.569-1.gedebe84.el7">
+      <FullProductName ProductID="golang-github-openshift-oauth-proxy-0:3.11.569-1.gedebe84.el7" CPE="cpe:/a:redhat:openshift:3.11::el7">golang-github-openshift-oauth-proxy-3.11.569-1.gedebe84.el7.src.rpm</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="golang-github-prometheus-alertmanager-0:3.11.569-1.g13de638.el7">
+      <FullProductName ProductID="golang-github-prometheus-alertmanager-0:3.11.569-1.g13de638.el7" CPE="cpe:/a:redhat:openshift:3.11::el7">golang-github-prometheus-alertmanager-3.11.569-1.g13de638.el7.src.rpm</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="golang-github-prometheus-node_exporter-0:3.11.569-1.g609cd20.el7">
+      <FullProductName ProductID="golang-github-prometheus-node_exporter-0:3.11.569-1.g609cd20.el7" CPE="cpe:/a:redhat:openshift:3.11::el7">golang-github-prometheus-node_exporter-3.11.569-1.g609cd20.el7.src.rpm</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="golang-github-prometheus-prometheus-0:3.11.569-1.g99aae51.el7">
+      <FullProductName ProductID="golang-github-prometheus-prometheus-0:3.11.569-1.g99aae51.el7" CPE="cpe:/a:redhat:openshift:3.11::el7">golang-github-prometheus-prometheus-3.11.569-1.g99aae51.el7.src.rpm</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="jenkins-0:2.303.3.1637698110-1.el7">
+      <FullProductName ProductID="jenkins-0:2.303.3.1637698110-1.el7" CPE="cpe:/a:redhat:openshift:3.11::el7">jenkins-2.303.3.1637698110-1.el7.src.rpm</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="jenkins-2-plugins-0:3.11.1637699107-1.el7">
+      <FullProductName ProductID="jenkins-2-plugins-0:3.11.1637699107-1.el7" CPE="cpe:/a:redhat:openshift:3.11::el7">jenkins-2-plugins-3.11.1637699107-1.el7.src.rpm</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="openshift-ansible-0:3.11.569-1.git.0.9620ba1.el7">
+      <FullProductName ProductID="openshift-ansible-0:3.11.569-1.git.0.9620ba1.el7" CPE="cpe:/a:redhat:openshift:3.11::el7">openshift-ansible-3.11.569-1.git.0.9620ba1.el7.src.rpm</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="openshift-enterprise-autoheal-0:3.11.569-1.gf2f435d.el7">
+      <FullProductName ProductID="openshift-enterprise-autoheal-0:3.11.569-1.gf2f435d.el7" CPE="cpe:/a:redhat:openshift:3.11::el7">openshift-enterprise-autoheal-3.11.569-1.gf2f435d.el7.src.rpm</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="openshift-enterprise-cluster-capacity-0:3.11.569-1.g22be164.el7">
+      <FullProductName ProductID="openshift-enterprise-cluster-capacity-0:3.11.569-1.g22be164.el7" CPE="cpe:/a:redhat:openshift:3.11::el7">openshift-enterprise-cluster-capacity-3.11.569-1.g22be164.el7.src.rpm</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="openshift-kuryr-0:3.11.569-1.g0c4bf66.el7">
+      <FullProductName ProductID="openshift-kuryr-0:3.11.569-1.g0c4bf66.el7" CPE="cpe:/a:redhat:openshift:3.11::el7">openshift-kuryr-3.11.569-1.g0c4bf66.el7.src.rpm</FullProductName>
+    </Branch>
+    <Relationship ProductReference="atomic-enterprise-service-catalog-1:3.11.569-1.g2e6be86.el7" RelationType="Default Component Of" RelatesToProductReference="7Server-RH7-RHOSE-3.11">
+      <FullProductName ProductID="7Server-RH7-RHOSE-3.11:atomic-enterprise-service-catalog-1:3.11.569-1.g2e6be86.el7" CPE="cpe:/a:redhat:openshift:3.11::el7">atomic-enterprise-service-catalog-1:3.11.569-1.g2e6be86.el7 as a component of Red Hat OpenShift Container Platform 3.11</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="atomic-openshift-0:3.11.569-1.git.0.9dc951a.el7" RelationType="Default Component Of" RelatesToProductReference="7Server-RH7-RHOSE-3.11">
+      <FullProductName ProductID="7Server-RH7-RHOSE-3.11:atomic-openshift-0:3.11.569-1.git.0.9dc951a.el7" CPE="cpe:/a:redhat:openshift:3.11::el7">atomic-openshift-0:3.11.569-1.git.0.9dc951a.el7 as a component of Red Hat OpenShift Container Platform 3.11</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="atomic-openshift-cluster-autoscaler-0:3.11.569-1.g99b2acf.el7" RelationType="Default Component Of" RelatesToProductReference="7Server-RH7-RHOSE-3.11">
+      <FullProductName ProductID="7Server-RH7-RHOSE-3.11:atomic-openshift-cluster-autoscaler-0:3.11.569-1.g99b2acf.el7" CPE="cpe:/a:redhat:openshift:3.11::el7">atomic-openshift-cluster-autoscaler-0:3.11.569-1.g99b2acf.el7 as a component of Red Hat OpenShift Container Platform 3.11</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="atomic-openshift-descheduler-0:3.11.569-1.gd435537.el7" RelationType="Default Component Of" RelatesToProductReference="7Server-RH7-RHOSE-3.11">
+      <FullProductName ProductID="7Server-RH7-RHOSE-3.11:atomic-openshift-descheduler-0:3.11.569-1.gd435537.el7" CPE="cpe:/a:redhat:openshift:3.11::el7">atomic-openshift-descheduler-0:3.11.569-1.gd435537.el7 as a component of Red Hat OpenShift Container Platform 3.11</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="atomic-openshift-dockerregistry-0:3.11.569-1.g3571208.el7" RelationType="Default Component Of" RelatesToProductReference="7Server-RH7-RHOSE-3.11">
+      <FullProductName ProductID="7Server-RH7-RHOSE-3.11:atomic-openshift-dockerregistry-0:3.11.569-1.g3571208.el7" CPE="cpe:/a:redhat:openshift:3.11::el7">atomic-openshift-dockerregistry-0:3.11.569-1.g3571208.el7 as a component of Red Hat OpenShift Container Platform 3.11</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="atomic-openshift-metrics-server-0:3.11.569-1.gf8bf728.el7" RelationType="Default Component Of" RelatesToProductReference="7Server-RH7-RHOSE-3.11">
+      <FullProductName ProductID="7Server-RH7-RHOSE-3.11:atomic-openshift-metrics-server-0:3.11.569-1.gf8bf728.el7" CPE="cpe:/a:redhat:openshift:3.11::el7">atomic-openshift-metrics-server-0:3.11.569-1.gf8bf728.el7 as a component of Red Hat OpenShift Container Platform 3.11</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="atomic-openshift-node-problem-detector-0:3.11.569-1.gc8f26da.el7" RelationType="Default Component Of" RelatesToProductReference="7Server-RH7-RHOSE-3.11">
+      <FullProductName ProductID="7Server-RH7-RHOSE-3.11:atomic-openshift-node-problem-detector-0:3.11.569-1.gc8f26da.el7" CPE="cpe:/a:redhat:openshift:3.11::el7">atomic-openshift-node-problem-detector-0:3.11.569-1.gc8f26da.el7 as a component of Red Hat OpenShift Container Platform 3.11</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="atomic-openshift-service-idler-0:3.11.569-1.g39cfc66.el7" RelationType="Default Component Of" RelatesToProductReference="7Server-RH7-RHOSE-3.11">
+      <FullProductName ProductID="7Server-RH7-RHOSE-3.11:atomic-openshift-service-idler-0:3.11.569-1.g39cfc66.el7" CPE="cpe:/a:redhat:openshift:3.11::el7">atomic-openshift-service-idler-0:3.11.569-1.g39cfc66.el7 as a component of Red Hat OpenShift Container Platform 3.11</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="atomic-openshift-web-console-0:3.11.569-1.g3e485e6.el7" RelationType="Default Component Of" RelatesToProductReference="7Server-RH7-RHOSE-3.11">
+      <FullProductName ProductID="7Server-RH7-RHOSE-3.11:atomic-openshift-web-console-0:3.11.569-1.g3e485e6.el7" CPE="cpe:/a:redhat:openshift:3.11::el7">atomic-openshift-web-console-0:3.11.569-1.g3e485e6.el7 as a component of Red Hat OpenShift Container Platform 3.11</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="golang-github-openshift-oauth-proxy-0:3.11.569-1.gedebe84.el7" RelationType="Default Component Of" RelatesToProductReference="7Server-RH7-RHOSE-3.11">
+      <FullProductName ProductID="7Server-RH7-RHOSE-3.11:golang-github-openshift-oauth-proxy-0:3.11.569-1.gedebe84.el7" CPE="cpe:/a:redhat:openshift:3.11::el7">golang-github-openshift-oauth-proxy-0:3.11.569-1.gedebe84.el7 as a component of Red Hat OpenShift Container Platform 3.11</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="golang-github-prometheus-alertmanager-0:3.11.569-1.g13de638.el7" RelationType="Default Component Of" RelatesToProductReference="7Server-RH7-RHOSE-3.11">
+      <FullProductName ProductID="7Server-RH7-RHOSE-3.11:golang-github-prometheus-alertmanager-0:3.11.569-1.g13de638.el7" CPE="cpe:/a:redhat:openshift:3.11::el7">golang-github-prometheus-alertmanager-0:3.11.569-1.g13de638.el7 as a component of Red Hat OpenShift Container Platform 3.11</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="golang-github-prometheus-node_exporter-0:3.11.569-1.g609cd20.el7" RelationType="Default Component Of" RelatesToProductReference="7Server-RH7-RHOSE-3.11">
+      <FullProductName ProductID="7Server-RH7-RHOSE-3.11:golang-github-prometheus-node_exporter-0:3.11.569-1.g609cd20.el7" CPE="cpe:/a:redhat:openshift:3.11::el7">golang-github-prometheus-node_exporter-0:3.11.569-1.g609cd20.el7 as a component of Red Hat OpenShift Container Platform 3.11</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="golang-github-prometheus-prometheus-0:3.11.569-1.g99aae51.el7" RelationType="Default Component Of" RelatesToProductReference="7Server-RH7-RHOSE-3.11">
+      <FullProductName ProductID="7Server-RH7-RHOSE-3.11:golang-github-prometheus-prometheus-0:3.11.569-1.g99aae51.el7" CPE="cpe:/a:redhat:openshift:3.11::el7">golang-github-prometheus-prometheus-0:3.11.569-1.g99aae51.el7 as a component of Red Hat OpenShift Container Platform 3.11</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="jenkins-0:2.303.3.1637698110-1.el7" RelationType="Default Component Of" RelatesToProductReference="7Server-RH7-RHOSE-3.11">
+      <FullProductName ProductID="7Server-RH7-RHOSE-3.11:jenkins-0:2.303.3.1637698110-1.el7" CPE="cpe:/a:redhat:openshift:3.11::el7">jenkins-0:2.303.3.1637698110-1.el7 as a component of Red Hat OpenShift Container Platform 3.11</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="jenkins-2-plugins-0:3.11.1637699107-1.el7" RelationType="Default Component Of" RelatesToProductReference="7Server-RH7-RHOSE-3.11">
+      <FullProductName ProductID="7Server-RH7-RHOSE-3.11:jenkins-2-plugins-0:3.11.1637699107-1.el7" CPE="cpe:/a:redhat:openshift:3.11::el7">jenkins-2-plugins-0:3.11.1637699107-1.el7 as a component of Red Hat OpenShift Container Platform 3.11</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="openshift-ansible-0:3.11.569-1.git.0.9620ba1.el7" RelationType="Default Component Of" RelatesToProductReference="7Server-RH7-RHOSE-3.11">
+      <FullProductName ProductID="7Server-RH7-RHOSE-3.11:openshift-ansible-0:3.11.569-1.git.0.9620ba1.el7" CPE="cpe:/a:redhat:openshift:3.11::el7">openshift-ansible-0:3.11.569-1.git.0.9620ba1.el7 as a component of Red Hat OpenShift Container Platform 3.11</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="openshift-enterprise-autoheal-0:3.11.569-1.gf2f435d.el7" RelationType="Default Component Of" RelatesToProductReference="7Server-RH7-RHOSE-3.11">
+      <FullProductName ProductID="7Server-RH7-RHOSE-3.11:openshift-enterprise-autoheal-0:3.11.569-1.gf2f435d.el7" CPE="cpe:/a:redhat:openshift:3.11::el7">openshift-enterprise-autoheal-0:3.11.569-1.gf2f435d.el7 as a component of Red Hat OpenShift Container Platform 3.11</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="openshift-enterprise-cluster-capacity-0:3.11.569-1.g22be164.el7" RelationType="Default Component Of" RelatesToProductReference="7Server-RH7-RHOSE-3.11">
+      <FullProductName ProductID="7Server-RH7-RHOSE-3.11:openshift-enterprise-cluster-capacity-0:3.11.569-1.g22be164.el7" CPE="cpe:/a:redhat:openshift:3.11::el7">openshift-enterprise-cluster-capacity-0:3.11.569-1.g22be164.el7 as a component of Red Hat OpenShift Container Platform 3.11</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="openshift-kuryr-0:3.11.569-1.g0c4bf66.el7" RelationType="Default Component Of" RelatesToProductReference="7Server-RH7-RHOSE-3.11">
+      <FullProductName ProductID="7Server-RH7-RHOSE-3.11:openshift-kuryr-0:3.11.569-1.g0c4bf66.el7" CPE="cpe:/a:redhat:openshift:3.11::el7">openshift-kuryr-0:3.11.569-1.g0c4bf66.el7 as a component of Red Hat OpenShift Container Platform 3.11</FullProductName>
+    </Relationship>
+  </ProductTree>
+
+  <Vulnerability Ordinal="1" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">jenkins: FilePath#mkdirs does not check permission to create parent directories</Note></Notes>
+    <DiscoveryDate>2021-11-04T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-11-04T14:20:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-21685</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>7Server-RH7-RHOSE-3.11:atomic-enterprise-service-catalog-1:3.11.569-1.g2e6be86.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:atomic-openshift-0:3.11.569-1.git.0.9dc951a.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:atomic-openshift-cluster-autoscaler-0:3.11.569-1.g99b2acf.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:atomic-openshift-descheduler-0:3.11.569-1.gd435537.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:atomic-openshift-dockerregistry-0:3.11.569-1.g3571208.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:atomic-openshift-metrics-server-0:3.11.569-1.gf8bf728.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:atomic-openshift-node-problem-detector-0:3.11.569-1.gc8f26da.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:atomic-openshift-service-idler-0:3.11.569-1.g39cfc66.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:atomic-openshift-web-console-0:3.11.569-1.g3e485e6.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:golang-github-openshift-oauth-proxy-0:3.11.569-1.gedebe84.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:golang-github-prometheus-alertmanager-0:3.11.569-1.g13de638.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:golang-github-prometheus-node_exporter-0:3.11.569-1.g609cd20.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:golang-github-prometheus-prometheus-0:3.11.569-1.g99aae51.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:jenkins-0:2.303.3.1637698110-1.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:jenkins-2-plugins-0:3.11.1637699107-1.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:openshift-ansible-0:3.11.569-1.git.0.9620ba1.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:openshift-enterprise-autoheal-0:3.11.569-1.gf2f435d.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:openshift-enterprise-cluster-capacity-0:3.11.569-1.g22be164.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:openshift-kuryr-0:3.11.569-1.g0c4bf66.el7</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Important</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+Before applying this update, ensure all previously released errata relevant to your system is applied.
+
+See the following documentation, which will be updated shortly for release 3.11.569, for important instructions on how to upgrade your cluster and fully apply this asynchronous errata update:
+
+https://docs.openshift.com/container-platform/3.11/release_notes/ocp_3_11_release_notes.html
+
+This update is available via the Red Hat Network. Details on how to use the Red Hat Network to apply this update are available at
+https://access.redhat.com/articles/11258.
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:4827</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.jenkins.io/security/advisory/2021-11-04/#SECURITY-2455</URL>
+        <Description>https://www.jenkins.io/security/advisory/2021-11-04/#SECURITY-2455</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-21685</URL>
+        <Description>CVE-2021-21685</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=2020322</URL>
+        <Description>bz#2020322: CVE-2021-21685 jenkins: FilePath#mkdirs does not check permission to create parent directories</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="2" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">jenkins: File path filters do not canonicalize paths, allowing operations to follow symbolic links to outside allowed directories</Note></Notes>
+    <DiscoveryDate>2021-11-04T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-11-04T14:20:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-21686</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>7Server-RH7-RHOSE-3.11:atomic-enterprise-service-catalog-1:3.11.569-1.g2e6be86.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:atomic-openshift-0:3.11.569-1.git.0.9dc951a.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:atomic-openshift-cluster-autoscaler-0:3.11.569-1.g99b2acf.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:atomic-openshift-descheduler-0:3.11.569-1.gd435537.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:atomic-openshift-dockerregistry-0:3.11.569-1.g3571208.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:atomic-openshift-metrics-server-0:3.11.569-1.gf8bf728.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:atomic-openshift-node-problem-detector-0:3.11.569-1.gc8f26da.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:atomic-openshift-service-idler-0:3.11.569-1.g39cfc66.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:atomic-openshift-web-console-0:3.11.569-1.g3e485e6.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:golang-github-openshift-oauth-proxy-0:3.11.569-1.gedebe84.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:golang-github-prometheus-alertmanager-0:3.11.569-1.g13de638.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:golang-github-prometheus-node_exporter-0:3.11.569-1.g609cd20.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:golang-github-prometheus-prometheus-0:3.11.569-1.g99aae51.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:jenkins-0:2.303.3.1637698110-1.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:jenkins-2-plugins-0:3.11.1637699107-1.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:openshift-ansible-0:3.11.569-1.git.0.9620ba1.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:openshift-enterprise-autoheal-0:3.11.569-1.gf2f435d.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:openshift-enterprise-cluster-capacity-0:3.11.569-1.g22be164.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:openshift-kuryr-0:3.11.569-1.g0c4bf66.el7</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Important</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+Before applying this update, ensure all previously released errata relevant to your system is applied.
+
+See the following documentation, which will be updated shortly for release 3.11.569, for important instructions on how to upgrade your cluster and fully apply this asynchronous errata update:
+
+https://docs.openshift.com/container-platform/3.11/release_notes/ocp_3_11_release_notes.html
+
+This update is available via the Red Hat Network. Details on how to use the Red Hat Network to apply this update are available at
+https://access.redhat.com/articles/11258.
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:4827</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.jenkins.io/security/advisory/2021-11-04/#SECURITY-2455</URL>
+        <Description>https://www.jenkins.io/security/advisory/2021-11-04/#SECURITY-2455</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-21686</URL>
+        <Description>CVE-2021-21686</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=2020323</URL>
+        <Description>bz#2020323: CVE-2021-21686 jenkins: File path filters do not canonicalize paths, allowing operations to follow symbolic links to outside allowed directories</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="3" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">jenkins: FilePath#untar does not check permission to create symbolic links when unarchiving a symbolic link</Note></Notes>
+    <DiscoveryDate>2021-11-04T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-11-04T14:20:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-21687</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>7Server-RH7-RHOSE-3.11:atomic-enterprise-service-catalog-1:3.11.569-1.g2e6be86.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:atomic-openshift-0:3.11.569-1.git.0.9dc951a.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:atomic-openshift-cluster-autoscaler-0:3.11.569-1.g99b2acf.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:atomic-openshift-descheduler-0:3.11.569-1.gd435537.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:atomic-openshift-dockerregistry-0:3.11.569-1.g3571208.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:atomic-openshift-metrics-server-0:3.11.569-1.gf8bf728.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:atomic-openshift-node-problem-detector-0:3.11.569-1.gc8f26da.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:atomic-openshift-service-idler-0:3.11.569-1.g39cfc66.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:atomic-openshift-web-console-0:3.11.569-1.g3e485e6.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:golang-github-openshift-oauth-proxy-0:3.11.569-1.gedebe84.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:golang-github-prometheus-alertmanager-0:3.11.569-1.g13de638.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:golang-github-prometheus-node_exporter-0:3.11.569-1.g609cd20.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:golang-github-prometheus-prometheus-0:3.11.569-1.g99aae51.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:jenkins-0:2.303.3.1637698110-1.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:jenkins-2-plugins-0:3.11.1637699107-1.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:openshift-ansible-0:3.11.569-1.git.0.9620ba1.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:openshift-enterprise-autoheal-0:3.11.569-1.gf2f435d.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:openshift-enterprise-cluster-capacity-0:3.11.569-1.g22be164.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:openshift-kuryr-0:3.11.569-1.g0c4bf66.el7</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Important</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+Before applying this update, ensure all previously released errata relevant to your system is applied.
+
+See the following documentation, which will be updated shortly for release 3.11.569, for important instructions on how to upgrade your cluster and fully apply this asynchronous errata update:
+
+https://docs.openshift.com/container-platform/3.11/release_notes/ocp_3_11_release_notes.html
+
+This update is available via the Red Hat Network. Details on how to use the Red Hat Network to apply this update are available at
+https://access.redhat.com/articles/11258.
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:4827</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.jenkins.io/security/advisory/2021-11-04/#SECURITY-2455</URL>
+        <Description>https://www.jenkins.io/security/advisory/2021-11-04/#SECURITY-2455</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-21687</URL>
+        <Description>CVE-2021-21687</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=2020324</URL>
+        <Description>bz#2020324: CVE-2021-21687 jenkins: FilePath#untar does not check permission to create symbolic links when unarchiving a symbolic link</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="4" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">jenkins: FilePath#reading(FileVisitor) does not reject any operations allowing users to have unrestricted read access</Note></Notes>
+    <DiscoveryDate>2021-11-04T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-11-04T14:20:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-21688</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>7Server-RH7-RHOSE-3.11:atomic-enterprise-service-catalog-1:3.11.569-1.g2e6be86.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:atomic-openshift-0:3.11.569-1.git.0.9dc951a.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:atomic-openshift-cluster-autoscaler-0:3.11.569-1.g99b2acf.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:atomic-openshift-descheduler-0:3.11.569-1.gd435537.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:atomic-openshift-dockerregistry-0:3.11.569-1.g3571208.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:atomic-openshift-metrics-server-0:3.11.569-1.gf8bf728.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:atomic-openshift-node-problem-detector-0:3.11.569-1.gc8f26da.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:atomic-openshift-service-idler-0:3.11.569-1.g39cfc66.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:atomic-openshift-web-console-0:3.11.569-1.g3e485e6.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:golang-github-openshift-oauth-proxy-0:3.11.569-1.gedebe84.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:golang-github-prometheus-alertmanager-0:3.11.569-1.g13de638.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:golang-github-prometheus-node_exporter-0:3.11.569-1.g609cd20.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:golang-github-prometheus-prometheus-0:3.11.569-1.g99aae51.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:jenkins-0:2.303.3.1637698110-1.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:jenkins-2-plugins-0:3.11.1637699107-1.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:openshift-ansible-0:3.11.569-1.git.0.9620ba1.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:openshift-enterprise-autoheal-0:3.11.569-1.gf2f435d.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:openshift-enterprise-cluster-capacity-0:3.11.569-1.g22be164.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:openshift-kuryr-0:3.11.569-1.g0c4bf66.el7</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Important</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+Before applying this update, ensure all previously released errata relevant to your system is applied.
+
+See the following documentation, which will be updated shortly for release 3.11.569, for important instructions on how to upgrade your cluster and fully apply this asynchronous errata update:
+
+https://docs.openshift.com/container-platform/3.11/release_notes/ocp_3_11_release_notes.html
+
+This update is available via the Red Hat Network. Details on how to use the Red Hat Network to apply this update are available at
+https://access.redhat.com/articles/11258.
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:4827</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.jenkins.io/security/advisory/2021-11-04/#SECURITY-2455</URL>
+        <Description>https://www.jenkins.io/security/advisory/2021-11-04/#SECURITY-2455</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-21688</URL>
+        <Description>CVE-2021-21688</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=2020327</URL>
+        <Description>bz#2020327: CVE-2021-21688 jenkins: FilePath#reading(FileVisitor) does not reject any operations allowing users to have unrestricted read access</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="5" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">jenkins: FilePath#unzip and FilePath#untar were not subject to any access control</Note></Notes>
+    <DiscoveryDate>2021-11-04T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-11-04T14:20:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-21689</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>7Server-RH7-RHOSE-3.11:atomic-enterprise-service-catalog-1:3.11.569-1.g2e6be86.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:atomic-openshift-0:3.11.569-1.git.0.9dc951a.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:atomic-openshift-cluster-autoscaler-0:3.11.569-1.g99b2acf.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:atomic-openshift-descheduler-0:3.11.569-1.gd435537.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:atomic-openshift-dockerregistry-0:3.11.569-1.g3571208.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:atomic-openshift-metrics-server-0:3.11.569-1.gf8bf728.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:atomic-openshift-node-problem-detector-0:3.11.569-1.gc8f26da.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:atomic-openshift-service-idler-0:3.11.569-1.g39cfc66.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:atomic-openshift-web-console-0:3.11.569-1.g3e485e6.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:golang-github-openshift-oauth-proxy-0:3.11.569-1.gedebe84.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:golang-github-prometheus-alertmanager-0:3.11.569-1.g13de638.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:golang-github-prometheus-node_exporter-0:3.11.569-1.g609cd20.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:golang-github-prometheus-prometheus-0:3.11.569-1.g99aae51.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:jenkins-0:2.303.3.1637698110-1.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:jenkins-2-plugins-0:3.11.1637699107-1.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:openshift-ansible-0:3.11.569-1.git.0.9620ba1.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:openshift-enterprise-autoheal-0:3.11.569-1.gf2f435d.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:openshift-enterprise-cluster-capacity-0:3.11.569-1.g22be164.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:openshift-kuryr-0:3.11.569-1.g0c4bf66.el7</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Important</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+Before applying this update, ensure all previously released errata relevant to your system is applied.
+
+See the following documentation, which will be updated shortly for release 3.11.569, for important instructions on how to upgrade your cluster and fully apply this asynchronous errata update:
+
+https://docs.openshift.com/container-platform/3.11/release_notes/ocp_3_11_release_notes.html
+
+This update is available via the Red Hat Network. Details on how to use the Red Hat Network to apply this update are available at
+https://access.redhat.com/articles/11258.
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:4827</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.jenkins.io/security/advisory/2021-11-04/#SECURITY-2455</URL>
+        <Description>https://www.jenkins.io/security/advisory/2021-11-04/#SECURITY-2455</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-21689</URL>
+        <Description>CVE-2021-21689</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=2020335</URL>
+        <Description>bz#2020335: CVE-2021-21689 jenkins: FilePath#unzip and FilePath#untar were not subject to any access control</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="6" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">jenkins: Agent processes are able to completely bypass file path filtering by wrapping the file operation in an agent file path</Note></Notes>
+    <DiscoveryDate>2021-11-04T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-11-04T14:20:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-21690</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>7Server-RH7-RHOSE-3.11:atomic-enterprise-service-catalog-1:3.11.569-1.g2e6be86.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:atomic-openshift-0:3.11.569-1.git.0.9dc951a.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:atomic-openshift-cluster-autoscaler-0:3.11.569-1.g99b2acf.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:atomic-openshift-descheduler-0:3.11.569-1.gd435537.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:atomic-openshift-dockerregistry-0:3.11.569-1.g3571208.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:atomic-openshift-metrics-server-0:3.11.569-1.gf8bf728.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:atomic-openshift-node-problem-detector-0:3.11.569-1.gc8f26da.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:atomic-openshift-service-idler-0:3.11.569-1.g39cfc66.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:atomic-openshift-web-console-0:3.11.569-1.g3e485e6.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:golang-github-openshift-oauth-proxy-0:3.11.569-1.gedebe84.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:golang-github-prometheus-alertmanager-0:3.11.569-1.g13de638.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:golang-github-prometheus-node_exporter-0:3.11.569-1.g609cd20.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:golang-github-prometheus-prometheus-0:3.11.569-1.g99aae51.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:jenkins-0:2.303.3.1637698110-1.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:jenkins-2-plugins-0:3.11.1637699107-1.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:openshift-ansible-0:3.11.569-1.git.0.9620ba1.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:openshift-enterprise-autoheal-0:3.11.569-1.gf2f435d.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:openshift-enterprise-cluster-capacity-0:3.11.569-1.g22be164.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:openshift-kuryr-0:3.11.569-1.g0c4bf66.el7</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Important</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+Before applying this update, ensure all previously released errata relevant to your system is applied.
+
+See the following documentation, which will be updated shortly for release 3.11.569, for important instructions on how to upgrade your cluster and fully apply this asynchronous errata update:
+
+https://docs.openshift.com/container-platform/3.11/release_notes/ocp_3_11_release_notes.html
+
+This update is available via the Red Hat Network. Details on how to use the Red Hat Network to apply this update are available at
+https://access.redhat.com/articles/11258.
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:4827</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.jenkins.io/security/advisory/2021-11-04/#SECURITY-2455</URL>
+        <Description>https://www.jenkins.io/security/advisory/2021-11-04/#SECURITY-2455</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-21690</URL>
+        <Description>CVE-2021-21690</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=2020336</URL>
+        <Description>bz#2020336: CVE-2021-21690 jenkins: Agent processes are able to completely bypass file path filtering by wrapping the file operation in an agent file path</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="7" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">jenkins: Creating symbolic links is possible without the symlink permission</Note></Notes>
+    <DiscoveryDate>2021-11-04T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-11-04T14:20:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-21691</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>7Server-RH7-RHOSE-3.11:atomic-enterprise-service-catalog-1:3.11.569-1.g2e6be86.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:atomic-openshift-0:3.11.569-1.git.0.9dc951a.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:atomic-openshift-cluster-autoscaler-0:3.11.569-1.g99b2acf.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:atomic-openshift-descheduler-0:3.11.569-1.gd435537.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:atomic-openshift-dockerregistry-0:3.11.569-1.g3571208.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:atomic-openshift-metrics-server-0:3.11.569-1.gf8bf728.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:atomic-openshift-node-problem-detector-0:3.11.569-1.gc8f26da.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:atomic-openshift-service-idler-0:3.11.569-1.g39cfc66.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:atomic-openshift-web-console-0:3.11.569-1.g3e485e6.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:golang-github-openshift-oauth-proxy-0:3.11.569-1.gedebe84.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:golang-github-prometheus-alertmanager-0:3.11.569-1.g13de638.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:golang-github-prometheus-node_exporter-0:3.11.569-1.g609cd20.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:golang-github-prometheus-prometheus-0:3.11.569-1.g99aae51.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:jenkins-0:2.303.3.1637698110-1.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:jenkins-2-plugins-0:3.11.1637699107-1.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:openshift-ansible-0:3.11.569-1.git.0.9620ba1.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:openshift-enterprise-autoheal-0:3.11.569-1.gf2f435d.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:openshift-enterprise-cluster-capacity-0:3.11.569-1.g22be164.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:openshift-kuryr-0:3.11.569-1.g0c4bf66.el7</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Important</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+Before applying this update, ensure all previously released errata relevant to your system is applied.
+
+See the following documentation, which will be updated shortly for release 3.11.569, for important instructions on how to upgrade your cluster and fully apply this asynchronous errata update:
+
+https://docs.openshift.com/container-platform/3.11/release_notes/ocp_3_11_release_notes.html
+
+This update is available via the Red Hat Network. Details on how to use the Red Hat Network to apply this update are available at
+https://access.redhat.com/articles/11258.
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:4827</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.jenkins.io/security/advisory/2021-11-04/#SECURITY-2455</URL>
+        <Description>https://www.jenkins.io/security/advisory/2021-11-04/#SECURITY-2455</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-21691</URL>
+        <Description>CVE-2021-21691</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=2020338</URL>
+        <Description>bz#2020338: CVE-2021-21691 jenkins: Creating symbolic links is possible without the symlink permission</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="8" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">jenkins: The operations FilePath#renameTo and FilePath#moveAllChildrenTo only check read permission on the source path</Note></Notes>
+    <DiscoveryDate>2021-11-04T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-11-04T14:20:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-21692</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>7Server-RH7-RHOSE-3.11:atomic-enterprise-service-catalog-1:3.11.569-1.g2e6be86.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:atomic-openshift-0:3.11.569-1.git.0.9dc951a.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:atomic-openshift-cluster-autoscaler-0:3.11.569-1.g99b2acf.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:atomic-openshift-descheduler-0:3.11.569-1.gd435537.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:atomic-openshift-dockerregistry-0:3.11.569-1.g3571208.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:atomic-openshift-metrics-server-0:3.11.569-1.gf8bf728.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:atomic-openshift-node-problem-detector-0:3.11.569-1.gc8f26da.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:atomic-openshift-service-idler-0:3.11.569-1.g39cfc66.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:atomic-openshift-web-console-0:3.11.569-1.g3e485e6.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:golang-github-openshift-oauth-proxy-0:3.11.569-1.gedebe84.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:golang-github-prometheus-alertmanager-0:3.11.569-1.g13de638.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:golang-github-prometheus-node_exporter-0:3.11.569-1.g609cd20.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:golang-github-prometheus-prometheus-0:3.11.569-1.g99aae51.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:jenkins-0:2.303.3.1637698110-1.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:jenkins-2-plugins-0:3.11.1637699107-1.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:openshift-ansible-0:3.11.569-1.git.0.9620ba1.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:openshift-enterprise-autoheal-0:3.11.569-1.gf2f435d.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:openshift-enterprise-cluster-capacity-0:3.11.569-1.g22be164.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:openshift-kuryr-0:3.11.569-1.g0c4bf66.el7</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Important</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+Before applying this update, ensure all previously released errata relevant to your system is applied.
+
+See the following documentation, which will be updated shortly for release 3.11.569, for important instructions on how to upgrade your cluster and fully apply this asynchronous errata update:
+
+https://docs.openshift.com/container-platform/3.11/release_notes/ocp_3_11_release_notes.html
+
+This update is available via the Red Hat Network. Details on how to use the Red Hat Network to apply this update are available at
+https://access.redhat.com/articles/11258.
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:4827</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.jenkins.io/security/advisory/2021-11-04/#SECURITY-2455</URL>
+        <Description>https://www.jenkins.io/security/advisory/2021-11-04/#SECURITY-2455</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-21692</URL>
+        <Description>CVE-2021-21692</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=2020339</URL>
+        <Description>bz#2020339: CVE-2021-21692 jenkins: The operations FilePath#renameTo and FilePath#moveAllChildrenTo only check read permission on the source path</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="9" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">jenkins: When creating temporary files, permission to create files is only checked after they’ve been created.</Note></Notes>
+    <DiscoveryDate>2021-11-04T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-11-04T14:20:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-21693</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>7Server-RH7-RHOSE-3.11:atomic-enterprise-service-catalog-1:3.11.569-1.g2e6be86.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:atomic-openshift-0:3.11.569-1.git.0.9dc951a.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:atomic-openshift-cluster-autoscaler-0:3.11.569-1.g99b2acf.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:atomic-openshift-descheduler-0:3.11.569-1.gd435537.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:atomic-openshift-dockerregistry-0:3.11.569-1.g3571208.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:atomic-openshift-metrics-server-0:3.11.569-1.gf8bf728.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:atomic-openshift-node-problem-detector-0:3.11.569-1.gc8f26da.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:atomic-openshift-service-idler-0:3.11.569-1.g39cfc66.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:atomic-openshift-web-console-0:3.11.569-1.g3e485e6.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:golang-github-openshift-oauth-proxy-0:3.11.569-1.gedebe84.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:golang-github-prometheus-alertmanager-0:3.11.569-1.g13de638.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:golang-github-prometheus-node_exporter-0:3.11.569-1.g609cd20.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:golang-github-prometheus-prometheus-0:3.11.569-1.g99aae51.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:jenkins-0:2.303.3.1637698110-1.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:jenkins-2-plugins-0:3.11.1637699107-1.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:openshift-ansible-0:3.11.569-1.git.0.9620ba1.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:openshift-enterprise-autoheal-0:3.11.569-1.gf2f435d.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:openshift-enterprise-cluster-capacity-0:3.11.569-1.g22be164.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:openshift-kuryr-0:3.11.569-1.g0c4bf66.el7</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Important</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+Before applying this update, ensure all previously released errata relevant to your system is applied.
+
+See the following documentation, which will be updated shortly for release 3.11.569, for important instructions on how to upgrade your cluster and fully apply this asynchronous errata update:
+
+https://docs.openshift.com/container-platform/3.11/release_notes/ocp_3_11_release_notes.html
+
+This update is available via the Red Hat Network. Details on how to use the Red Hat Network to apply this update are available at
+https://access.redhat.com/articles/11258.
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:4827</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.jenkins.io/security/advisory/2021-11-04/#SECURITY-2455</URL>
+        <Description>https://www.jenkins.io/security/advisory/2021-11-04/#SECURITY-2455</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-21693</URL>
+        <Description>CVE-2021-21693</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=2020341</URL>
+        <Description>bz#2020341: CVE-2021-21693 jenkins: When creating temporary files, permission to create files is only checked after they’ve been created.</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="10" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">jenkins: FilePath#toURI, FilePath#hasSymlink, FilePath#absolutize, FilePath#isDescendant, and FilePath#get*DiskSpace do not check any permissions</Note></Notes>
+    <DiscoveryDate>2021-11-04T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-11-04T14:20:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-21694</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>7Server-RH7-RHOSE-3.11:atomic-enterprise-service-catalog-1:3.11.569-1.g2e6be86.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:atomic-openshift-0:3.11.569-1.git.0.9dc951a.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:atomic-openshift-cluster-autoscaler-0:3.11.569-1.g99b2acf.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:atomic-openshift-descheduler-0:3.11.569-1.gd435537.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:atomic-openshift-dockerregistry-0:3.11.569-1.g3571208.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:atomic-openshift-metrics-server-0:3.11.569-1.gf8bf728.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:atomic-openshift-node-problem-detector-0:3.11.569-1.gc8f26da.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:atomic-openshift-service-idler-0:3.11.569-1.g39cfc66.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:atomic-openshift-web-console-0:3.11.569-1.g3e485e6.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:golang-github-openshift-oauth-proxy-0:3.11.569-1.gedebe84.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:golang-github-prometheus-alertmanager-0:3.11.569-1.g13de638.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:golang-github-prometheus-node_exporter-0:3.11.569-1.g609cd20.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:golang-github-prometheus-prometheus-0:3.11.569-1.g99aae51.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:jenkins-0:2.303.3.1637698110-1.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:jenkins-2-plugins-0:3.11.1637699107-1.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:openshift-ansible-0:3.11.569-1.git.0.9620ba1.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:openshift-enterprise-autoheal-0:3.11.569-1.gf2f435d.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:openshift-enterprise-cluster-capacity-0:3.11.569-1.g22be164.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:openshift-kuryr-0:3.11.569-1.g0c4bf66.el7</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Important</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+Before applying this update, ensure all previously released errata relevant to your system is applied.
+
+See the following documentation, which will be updated shortly for release 3.11.569, for important instructions on how to upgrade your cluster and fully apply this asynchronous errata update:
+
+https://docs.openshift.com/container-platform/3.11/release_notes/ocp_3_11_release_notes.html
+
+This update is available via the Red Hat Network. Details on how to use the Red Hat Network to apply this update are available at
+https://access.redhat.com/articles/11258.
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:4827</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.jenkins.io/security/advisory/2021-11-04/#SECURITY-2455</URL>
+        <Description>https://www.jenkins.io/security/advisory/2021-11-04/#SECURITY-2455</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-21694</URL>
+        <Description>CVE-2021-21694</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=2020342</URL>
+        <Description>bz#2020342: CVE-2021-21694 jenkins: FilePath#toURI, FilePath#hasSymlink, FilePath#absolutize, FilePath#isDescendant, and FilePath#get*DiskSpace do not check any permissions</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="11" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">jenkins: FilePath#listFiles lists files outside directories with agent read access when following symbolic links.</Note></Notes>
+    <DiscoveryDate>2021-11-04T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-11-04T14:20:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-21695</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>7Server-RH7-RHOSE-3.11:atomic-enterprise-service-catalog-1:3.11.569-1.g2e6be86.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:atomic-openshift-0:3.11.569-1.git.0.9dc951a.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:atomic-openshift-cluster-autoscaler-0:3.11.569-1.g99b2acf.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:atomic-openshift-descheduler-0:3.11.569-1.gd435537.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:atomic-openshift-dockerregistry-0:3.11.569-1.g3571208.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:atomic-openshift-metrics-server-0:3.11.569-1.gf8bf728.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:atomic-openshift-node-problem-detector-0:3.11.569-1.gc8f26da.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:atomic-openshift-service-idler-0:3.11.569-1.g39cfc66.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:atomic-openshift-web-console-0:3.11.569-1.g3e485e6.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:golang-github-openshift-oauth-proxy-0:3.11.569-1.gedebe84.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:golang-github-prometheus-alertmanager-0:3.11.569-1.g13de638.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:golang-github-prometheus-node_exporter-0:3.11.569-1.g609cd20.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:golang-github-prometheus-prometheus-0:3.11.569-1.g99aae51.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:jenkins-0:2.303.3.1637698110-1.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:jenkins-2-plugins-0:3.11.1637699107-1.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:openshift-ansible-0:3.11.569-1.git.0.9620ba1.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:openshift-enterprise-autoheal-0:3.11.569-1.gf2f435d.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:openshift-enterprise-cluster-capacity-0:3.11.569-1.g22be164.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:openshift-kuryr-0:3.11.569-1.g0c4bf66.el7</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Important</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+Before applying this update, ensure all previously released errata relevant to your system is applied.
+
+See the following documentation, which will be updated shortly for release 3.11.569, for important instructions on how to upgrade your cluster and fully apply this asynchronous errata update:
+
+https://docs.openshift.com/container-platform/3.11/release_notes/ocp_3_11_release_notes.html
+
+This update is available via the Red Hat Network. Details on how to use the Red Hat Network to apply this update are available at
+https://access.redhat.com/articles/11258.
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:4827</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.jenkins.io/security/advisory/2021-11-04/#SECURITY-2455</URL>
+        <Description>https://www.jenkins.io/security/advisory/2021-11-04/#SECURITY-2455</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-21695</URL>
+        <Description>CVE-2021-21695</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=2020343</URL>
+        <Description>bz#2020343: CVE-2021-21695 jenkins: FilePath#listFiles lists files outside directories with agent read access when following symbolic links.</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="12" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">jenkins: Agent-to-controller access control allowed writing to sensitive directory used by Pipeline: Shared Groovy Libraries Plugin</Note></Notes>
+    <DiscoveryDate>2021-11-04T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-11-04T14:20:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-21696</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>7Server-RH7-RHOSE-3.11:atomic-enterprise-service-catalog-1:3.11.569-1.g2e6be86.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:atomic-openshift-0:3.11.569-1.git.0.9dc951a.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:atomic-openshift-cluster-autoscaler-0:3.11.569-1.g99b2acf.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:atomic-openshift-descheduler-0:3.11.569-1.gd435537.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:atomic-openshift-dockerregistry-0:3.11.569-1.g3571208.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:atomic-openshift-metrics-server-0:3.11.569-1.gf8bf728.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:atomic-openshift-node-problem-detector-0:3.11.569-1.gc8f26da.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:atomic-openshift-service-idler-0:3.11.569-1.g39cfc66.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:atomic-openshift-web-console-0:3.11.569-1.g3e485e6.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:golang-github-openshift-oauth-proxy-0:3.11.569-1.gedebe84.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:golang-github-prometheus-alertmanager-0:3.11.569-1.g13de638.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:golang-github-prometheus-node_exporter-0:3.11.569-1.g609cd20.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:golang-github-prometheus-prometheus-0:3.11.569-1.g99aae51.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:jenkins-0:2.303.3.1637698110-1.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:jenkins-2-plugins-0:3.11.1637699107-1.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:openshift-ansible-0:3.11.569-1.git.0.9620ba1.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:openshift-enterprise-autoheal-0:3.11.569-1.gf2f435d.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:openshift-enterprise-cluster-capacity-0:3.11.569-1.g22be164.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:openshift-kuryr-0:3.11.569-1.g0c4bf66.el7</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Important</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+Before applying this update, ensure all previously released errata relevant to your system is applied.
+
+See the following documentation, which will be updated shortly for release 3.11.569, for important instructions on how to upgrade your cluster and fully apply this asynchronous errata update:
+
+https://docs.openshift.com/container-platform/3.11/release_notes/ocp_3_11_release_notes.html
+
+This update is available via the Red Hat Network. Details on how to use the Red Hat Network to apply this update are available at
+https://access.redhat.com/articles/11258.
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:4827</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.jenkins.io/security/advisory/2021-11-04/#SECURITY-2423</URL>
+        <Description>https://www.jenkins.io/security/advisory/2021-11-04/#SECURITY-2423</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-21696</URL>
+        <Description>CVE-2021-21696</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=2020344</URL>
+        <Description>bz#2020344: CVE-2021-21696 jenkins: Agent-to-controller access control allowed writing to sensitive directory used by Pipeline: Shared Groovy Libraries Plugin</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="13" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">jenkins: Agent-to-controller access control allows reading/writing most content of build directories</Note></Notes>
+    <DiscoveryDate>2021-11-04T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-11-04T14:20:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-21697</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>7Server-RH7-RHOSE-3.11:atomic-enterprise-service-catalog-1:3.11.569-1.g2e6be86.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:atomic-openshift-0:3.11.569-1.git.0.9dc951a.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:atomic-openshift-cluster-autoscaler-0:3.11.569-1.g99b2acf.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:atomic-openshift-descheduler-0:3.11.569-1.gd435537.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:atomic-openshift-dockerregistry-0:3.11.569-1.g3571208.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:atomic-openshift-metrics-server-0:3.11.569-1.gf8bf728.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:atomic-openshift-node-problem-detector-0:3.11.569-1.gc8f26da.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:atomic-openshift-service-idler-0:3.11.569-1.g39cfc66.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:atomic-openshift-web-console-0:3.11.569-1.g3e485e6.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:golang-github-openshift-oauth-proxy-0:3.11.569-1.gedebe84.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:golang-github-prometheus-alertmanager-0:3.11.569-1.g13de638.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:golang-github-prometheus-node_exporter-0:3.11.569-1.g609cd20.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:golang-github-prometheus-prometheus-0:3.11.569-1.g99aae51.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:jenkins-0:2.303.3.1637698110-1.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:jenkins-2-plugins-0:3.11.1637699107-1.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:openshift-ansible-0:3.11.569-1.git.0.9620ba1.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:openshift-enterprise-autoheal-0:3.11.569-1.gf2f435d.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:openshift-enterprise-cluster-capacity-0:3.11.569-1.g22be164.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:openshift-kuryr-0:3.11.569-1.g0c4bf66.el7</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Important</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+Before applying this update, ensure all previously released errata relevant to your system is applied.
+
+See the following documentation, which will be updated shortly for release 3.11.569, for important instructions on how to upgrade your cluster and fully apply this asynchronous errata update:
+
+https://docs.openshift.com/container-platform/3.11/release_notes/ocp_3_11_release_notes.html
+
+This update is available via the Red Hat Network. Details on how to use the Red Hat Network to apply this update are available at
+https://access.redhat.com/articles/11258.
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:4827</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.jenkins.io/security/advisory/2021-11-04/#SECURITY-2428</URL>
+        <Description>https://www.jenkins.io/security/advisory/2021-11-04/#SECURITY-2428</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-21697</URL>
+        <Description>CVE-2021-21697</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=2020345</URL>
+        <Description>bz#2020345: CVE-2021-21697 jenkins: Agent-to-controller access control allows reading/writing most content of build directories</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="14" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">jenkins-2-plugins/subversion: does not restrict the name of a file when looking up a subversion key</Note></Notes>
+    <DiscoveryDate>2021-11-04T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-11-04T14:20:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-21698</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>7Server-RH7-RHOSE-3.11:atomic-enterprise-service-catalog-1:3.11.569-1.g2e6be86.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:atomic-openshift-0:3.11.569-1.git.0.9dc951a.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:atomic-openshift-cluster-autoscaler-0:3.11.569-1.g99b2acf.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:atomic-openshift-descheduler-0:3.11.569-1.gd435537.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:atomic-openshift-dockerregistry-0:3.11.569-1.g3571208.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:atomic-openshift-metrics-server-0:3.11.569-1.gf8bf728.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:atomic-openshift-node-problem-detector-0:3.11.569-1.gc8f26da.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:atomic-openshift-service-idler-0:3.11.569-1.g39cfc66.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:atomic-openshift-web-console-0:3.11.569-1.g3e485e6.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:golang-github-openshift-oauth-proxy-0:3.11.569-1.gedebe84.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:golang-github-prometheus-alertmanager-0:3.11.569-1.g13de638.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:golang-github-prometheus-node_exporter-0:3.11.569-1.g609cd20.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:golang-github-prometheus-prometheus-0:3.11.569-1.g99aae51.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:jenkins-0:2.303.3.1637698110-1.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:jenkins-2-plugins-0:3.11.1637699107-1.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:openshift-ansible-0:3.11.569-1.git.0.9620ba1.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:openshift-enterprise-autoheal-0:3.11.569-1.gf2f435d.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:openshift-enterprise-cluster-capacity-0:3.11.569-1.g22be164.el7</ProductID>
+      <ProductID>7Server-RH7-RHOSE-3.11:openshift-kuryr-0:3.11.569-1.g0c4bf66.el7</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+Before applying this update, ensure all previously released errata relevant to your system is applied.
+
+See the following documentation, which will be updated shortly for release 3.11.569, for important instructions on how to upgrade your cluster and fully apply this asynchronous errata update:
+
+https://docs.openshift.com/container-platform/3.11/release_notes/ocp_3_11_release_notes.html
+
+This update is available via the Red Hat Network. Details on how to use the Red Hat Network to apply this update are available at
+https://access.redhat.com/articles/11258.
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:4827</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.jenkins.io/security/advisory/2021-11-04/#SECURITY-2506</URL>
+        <Description>https://www.jenkins.io/security/advisory/2021-11-04/#SECURITY-2506</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-21698</URL>
+        <Description>CVE-2021-21698</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=2020385</URL>
+        <Description>bz#2020385: CVE-2021-21698 jenkins-2-plugins/subversion: does not restrict the name of a file when looking up a subversion key</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+</cvrfdoc>

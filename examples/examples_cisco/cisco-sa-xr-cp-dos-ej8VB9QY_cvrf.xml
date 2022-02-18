@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cvrf:cvrfdoc xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:cvrf-common="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/common" xmlns:cvrf="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/cvrf">
+  <cvrf:DocumentTitle>Cisco IOS XR Software Slow Path Forwarding Denial of Service Vulnerability</cvrf:DocumentTitle>
+  <cvrf:DocumentType>Cisco Security Advisory</cvrf:DocumentType>
+  <cvrf:DocumentPublisher Type="Vendor">
+    <cvrf:ContactDetails>Emergency Support:
++1 877 228 7302 (toll-free within North America)
++1 408 525 6532 (International direct-dial)
+Non-emergency Support:
+Email: psirt@cisco.com
+Support requests that are received via e-mail are typically acknowledged within 48 hours.</cvrf:ContactDetails>
+    <cvrf:IssuingAuthority>Cisco product security incident response is the responsibility of the Cisco Product Security Incident Response Team (PSIRT). The Cisco PSIRT is a dedicated, global team that manages the receipt, investigation, and public reporting of security vulnerability information that is related to Cisco products and networks. The on-call Cisco PSIRT works 24x7 with Cisco customers, independent security researchers, consultants, industry organizations, and other vendors to identify possible security issues with Cisco products and networks.
+More information can be found in Cisco Security Vulnerability Policy available at http://www.cisco.com/web/about/security/psirt/security_vulnerability_policy.html</cvrf:IssuingAuthority>
+  </cvrf:DocumentPublisher>
+  <cvrf:DocumentTracking>
+    <cvrf:Identification>
+      <cvrf:ID>cisco-sa-xr-cp-dos-ej8VB9QY</cvrf:ID>
+    </cvrf:Identification>
+    <cvrf:Status>Final</cvrf:Status>
+    <cvrf:Version>2.0</cvrf:Version>
+    <cvrf:RevisionHistory>
+      <cvrf:Revision>
+        <cvrf:Number>1.0</cvrf:Number>
+        <cvrf:Date>2020-11-10T15:56:31</cvrf:Date>
+        <cvrf:Description>Initial public release.</cvrf:Description>
+      </cvrf:Revision>
+      <cvrf:Revision>
+        <cvrf:Number>1.1</cvrf:Number>
+        <cvrf:Date>2020-11-11T16:02:17</cvrf:Date>
+        <cvrf:Description>Added SMU information.</cvrf:Description>
+      </cvrf:Revision>
+      <cvrf:Revision>
+        <cvrf:Number>1.2</cvrf:Number>
+        <cvrf:Date>2020-11-13T16:33:06</cvrf:Date>
+        <cvrf:Description>Summary update.</cvrf:Description>
+      </cvrf:Revision>
+      <cvrf:Revision>
+        <cvrf:Number>1.3</cvrf:Number>
+        <cvrf:Date>2020-11-16T15:29:06</cvrf:Date>
+        <cvrf:Description>Added SMU information. Updated the release date for version 1.2.</cvrf:Description>
+      </cvrf:Revision>
+      <cvrf:Revision>
+        <cvrf:Number>1.4</cvrf:Number>
+        <cvrf:Date>2020-11-30T17:49:33</cvrf:Date>
+        <cvrf:Description>Added SMU information.</cvrf:Description>
+      </cvrf:Revision>
+      <cvrf:Revision>
+        <cvrf:Number>1.5</cvrf:Number>
+        <cvrf:Date>2020-12-01T13:01:38</cvrf:Date>
+        <cvrf:Description>Added SMU information.</cvrf:Description>
+      </cvrf:Revision>
+      <cvrf:Revision>
+        <cvrf:Number>2.0</cvrf:Number>
+        <cvrf:Date>2021-02-10T16:47:03</cvrf:Date>
+        <cvrf:Description>Added Cisco Network Convergence System (NCS) 5000 Series Routers as an affected product. Added products that have been confirmed not vulnerable. Added fixed software and SMU releases for Cisco NCS 5000 Series Routers.</cvrf:Description>
+      </cvrf:Revision>
+    </cvrf:RevisionHistory>
+    <cvrf:InitialReleaseDate>2020-11-10T16:00:00</cvrf:InitialReleaseDate>
+    <cvrf:CurrentReleaseDate>2021-02-10T16:47:03</cvrf:CurrentReleaseDate>
+    <cvrf:Generator>
+      <cvrf:Engine>TVCE</cvrf:Engine>
+    </cvrf:Generator>
+  </cvrf:DocumentTracking>
+  <cvrf:DocumentNotes>
+    <cvrf:Note Title="Summary" Type="Summary" Ordinal="1">A vulnerability in the egress packet processing function of Cisco IOS XR Software for Cisco ASR 9000 Series Aggregation Services Routers and Cisco Network Convergence System (NCS) 5000 Series Routers could allow an unauthenticated, remote attacker to cause a denial of service (DoS) condition on an affected device.
+
+The vulnerability is due to improper resource allocation when an affected device processes network traffic in software switching mode. An attacker could exploit this vulnerability by sending specific streams of Layer 2 or Layer 3 protocol data units (PDUs) to an affected device. A successful exploit could cause the affected device to run out of buffer resources, which could make the device unable to process or forward traffic, resulting in a DoS condition. The device would need to be restarted to regain functionality.
+
+Cisco has released software updates that address this vulnerability. There are no workarounds that address this vulnerability.
+
+This advisory is available at the following link:
+https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-xr-cp-dos-ej8VB9QY ["https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-xr-cp-dos-ej8VB9QY"]</cvrf:Note>
+    <cvrf:Note Title="Vulnerable Products" Type="General" Ordinal="2">This vulnerability affects Cisco ASR 9000 Series Aggregation Services Routers and Cisco NCS 5000 Series Routers if they are running a vulnerable release of Cisco IOS XR Software.
+
+For information about which Cisco software releases are vulnerable, see the Fixed Software ["#fs"] section of this advisory.</cvrf:Note>
+    <cvrf:Note Title="Products Confirmed Not Vulnerable" Type="General" Ordinal="3">Only products listed in the Vulnerable Products ["#vp"] section of this advisory are known to be affected by this vulnerability.
+
+Cisco has confirmed that this vulnerability does not affect the following Cisco products:
+
+Carrier Routing System (CRS)
+IOS Software
+IOS XE Software
+IOS XRv 9000 Router
+Network Convergence System (NCS) 520 Series Routers
+NCS 540 Series Routers
+NCS 560 Series Routers
+NCS 5500 Series
+NCS 6000 Series Routers
+NX-OS Software</cvrf:Note>
+    <cvrf:Note Title="Indicators of Compromise" Type="General" Ordinal="4">Exploitation of this vulnerability can result in the exhaustion of buffer resources. When a device is experiencing buffer resources exhaustion, the following message may be seen in the system logs:
+
+
+%PKT_INFRA-spp-4-PKT_ALLOC_FAIL : Failed to allocate n packets for sending
+
+This error message indicates that the device is not able to allocate buffer resources and forward network traffic in software switching mode. However, buffer resource exhaustion may happen for a reason other than the exploitation of this vulnerability. Customers are advised to contact their support organization to review the error messages and determine whether the device has been compromised by an exploitation of this vulnerability.</cvrf:Note>
+    <cvrf:Note Title="Workarounds" Type="General" Ordinal="5">There are no workarounds that address this vulnerability.</cvrf:Note>
+    <cvrf:Note Title="Fixed Software" Type="General" Ordinal="6">Cisco has released free software updates that address the vulnerability described in this advisory. Customers may only install and expect support for software versions and feature sets for which they have purchased a license. By installing, downloading, accessing, or otherwise using such software upgrades, customers agree to follow the terms of the Cisco software license:
+https://www.cisco.com/c/en/us/products/end-user-license-agreement.html ["https://www.cisco.com/c/en/us/products/end-user-license-agreement.html"]
+
+Additionally, customers may only download software for which they have a valid license, procured from Cisco directly, or through a Cisco authorized reseller or partner. In most cases this will be a maintenance upgrade to software that was previously purchased. Free security software updates do not entitle customers to a new software license, additional software feature sets, or major revision upgrades.
+
+When considering software upgrades ["https://tools.cisco.com/security/center/resources/security_vulnerability_policy.html#fixes"], customers are advised to regularly consult the advisories for Cisco products, which are available from the Cisco Security Advisories page ["https://www.cisco.com/go/psirt"], to determine exposure and a complete upgrade solution.
+
+In all cases, customers should ensure that the devices to be upgraded contain sufficient memory and confirm that current hardware and software configurations will continue to be supported properly by the new release. If the information is not clear, customers are advised to contact the Cisco Technical Assistance Center (TAC) or their contracted maintenance providers.
+  Customers Without Service Contracts
+Customers who purchase directly from Cisco but do not hold a Cisco service contract and customers who make purchases through third-party vendors but are unsuccessful in obtaining fixed software through their point of sale should obtain upgrades by contacting the Cisco TAC: https://www.cisco.com/c/en/us/support/web/tsd-cisco-worldwide-contacts.html ["https://www.cisco.com/c/en/us/support/web/tsd-cisco-worldwide-contacts.html"]
+
+Customers should have the product serial number available and be prepared to provide the URL of this advisory as evidence of entitlement to a free upgrade.
+      ASR 9000 Series Aggregation Services Routers: CSCvv09115 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCvv09115"]
+Cisco fixed this vulnerability in Cisco IOS XR Software releases 6.7.2, 7.1.2, and 7.1.3.
+  NCS 5000 Series Routers: CSCvw46865 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCvw46865"]
+Cisco fixed this vulnerability in Cisco IOS XR Software Release 7.1.3.
+
+Cisco also released the following SMUs to address this vulnerability. Customers who require SMUs for platforms or releases that are not listed are advised to contact their support organization.
+
+The following tables provide the SMU name for each release based on platform.
+
+ASR9K-PX
+        Cisco IOS XR Software Release  SMU Name          5.3.2  asr9k-px-5.3.2.CSCvv09115      5.3.3  asr9k-px-5.3.3.CSCvv09115      5.3.4  asr9k-px-5.3.4.CSCvv09115      6.1.4  asr9k-px-6.1.4.CSCvv09115      6.2.1  asr9k-px-6.2.1.CSCvv09115      6.2.2  asr9k-px-6.2.2.CSCvv09115      6.2.3  asr9k-px-6.2.3.CSCvv09115      6.3.2  asr9k-px-6.3.2.CSCvv09115      6.3.3  asr9k-px-6.3.3.CSCvv09115      6.4.2  asr9k-px-6.4.2.CSCvv09115      6.5.2  asr9k-px-6.5.2.CSCvv09115      6.5.3  asr9k-px-6.5.3.CSCvv09115      6.6.2  asr9k-px-6.6.2.CSCvv09115      6.6.3  asr9k-px-6.6.3.CSCvv09115
+ASR9K-X64
+        Cisco IOS XR Software Release  SMU Name          6.2.3  asr9k-x64-6.2.3.CSCvv09115      6.3.3  asr9k-x64-6.3.3.CSCvv09115      6.4.1  asr9k-x64-6.4.1.CSCvv09115      6.4.2  asr9k-x64-6.4.2.CSCvv09115      6.5.3  asr9k-x64-6.5.3.CSCvv09115      6.6.2  asr9k-x64-6.6.2.CSCvv09115      6.6.3  asr9k-x64-6.6.3.CSCvv09115      7.0.2  asr9k-x64-7.0.2.CSCvv09115      7.1.15  asr9k-x64-7.1.15.CSCvv09115
+NCS5K
+        Cisco IOS XR Software Release  SMU Name          6.5.3  ncs5k-6.5.3.CSCvw46865      6.6.3  ncs5k-6.6.3.CSCvw46865      7.1.2  ncs5k-7.1.2.CSCvw46865</cvrf:Note>
+    <cvrf:Note Title="Vulnerability Policy" Type="General" Ordinal="7">To learn about Cisco security vulnerability disclosure policies and publications, see the Security Vulnerability Policy ["http://www.cisco.com/web/about/security/psirt/security_vulnerability_policy.html"]. This document also contains instructions for obtaining fixed software and receiving security vulnerability information from Cisco.</cvrf:Note>
+    <cvrf:Note Title="Exploitation and Public Announcements" Type="General" Ordinal="8">The Cisco Product Security Incident Response Team (PSIRT) is not aware of any public announcements or malicious use of the vulnerability that is described in this advisory.</cvrf:Note>
+    <cvrf:Note Title="Source" Type="General" Ordinal="9">This vulnerability was found during the resolution of a Cisco TAC support case.</cvrf:Note>
+    <cvrf:Note Title="Legal Disclaimer" Type="Legal Disclaimer" Ordinal="10">THIS DOCUMENT IS PROVIDED ON AN "AS IS" BASIS AND DOES NOT IMPLY ANY KIND OF GUARANTEE OR WARRANTY, INCLUDING THE WARRANTIES OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR USE. YOUR USE OF THE INFORMATION ON THE DOCUMENT OR MATERIALS LINKED FROM THE DOCUMENT IS AT YOUR OWN RISK. CISCO RESERVES THE RIGHT TO CHANGE OR UPDATE THIS DOCUMENT AT ANY TIME.
+
+A standalone copy or paraphrase of the text of this document that omits the distribution URL is an uncontrolled copy and may lack important information or contain factual errors. The information in this document is intended for end users of Cisco products.</cvrf:Note>
+  </cvrf:DocumentNotes>
+  <cvrf:DocumentReferences>
+    <cvrf:Reference Type="Self">
+      <cvrf:URL>https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-xr-cp-dos-ej8VB9QY</cvrf:URL>
+      <cvrf:Description>Cisco IOS XR Software Slow Path Forwarding Denial of Service Vulnerability</cvrf:Description>
+    </cvrf:Reference>
+  </cvrf:DocumentReferences>
+  <ProductTree xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/prod">
+    <Branch Name="Cisco" Type="Vendor">
+      <Branch Name="Cisco IOS XR Software" Type="Product Name">
+        <FullProductName ProductID="CVRFPID-5834">Cisco IOS XR Software </FullProductName>
+      </Branch>
+    </Branch>
+  </ProductTree>
+  <Vulnerability Ordinal="1" xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln">
+    <Title>vuln-CVE-2020-26070</Title>
+    <ID SystemName="Cisco Bug ID">CSCvv09115</ID>
+    <Notes>
+      <Note Title="Cisco Bug IDs" Type="Other" Ordinal="1">CSCvv09115,CSCvw46865</Note>
+    </Notes>
+    <CVE>CVE-2020-26070</CVE>
+    <ProductStatuses>
+      <Status Type="Known Affected">
+        <ProductID>CVRFPID-5834</ProductID>
+      </Status>
+    </ProductStatuses>
+    <CVSSScoreSets>
+      <ScoreSetV3>
+        <BaseScoreV3>8.6</BaseScoreV3>
+        <VectorV3>CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:N/I:N/A:H</VectorV3>
+      </ScoreSetV3>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Workaround">
+        <Description>There are no workarounds that address this vulnerability.</Description>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference Type="Self">
+        <URL>https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-xr-cp-dos-ej8VB9QY</URL>
+        <Description>Cisco IOS XR Software Slow Path Forwarding Denial of Service Vulnerability</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+</cvrf:cvrfdoc>

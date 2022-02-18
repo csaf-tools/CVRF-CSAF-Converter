@@ -1,0 +1,473 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cvrf:cvrfdoc xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:cvrf-common="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/common" xmlns:cvrf="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/cvrf">
+  <cvrf:DocumentTitle>Cisco IOx Application Environment Path Traversal Vulnerability</cvrf:DocumentTitle>
+  <cvrf:DocumentType>Cisco Security Advisory</cvrf:DocumentType>
+  <cvrf:DocumentPublisher Type="Vendor">
+    <cvrf:ContactDetails>Emergency Support:
++1 877 228 7302 (toll-free within North America)
++1 408 525 6532 (International direct-dial)
+Non-emergency Support:
+Email: psirt@cisco.com
+Support requests that are received via e-mail are typically acknowledged within 48 hours.</cvrf:ContactDetails>
+    <cvrf:IssuingAuthority>Cisco product security incident response is the responsibility of the Cisco Product Security Incident Response Team (PSIRT). The Cisco PSIRT is a dedicated, global team that manages the receipt, investigation, and public reporting of security vulnerability information that is related to Cisco products and networks. The on-call Cisco PSIRT works 24x7 with Cisco customers, independent security researchers, consultants, industry organizations, and other vendors to identify possible security issues with Cisco products and networks.
+More information can be found in Cisco Security Vulnerability Policy available at http://www.cisco.com/web/about/security/psirt/security_vulnerability_policy.html</cvrf:IssuingAuthority>
+  </cvrf:DocumentPublisher>
+  <cvrf:DocumentTracking>
+    <cvrf:Identification>
+      <cvrf:ID>cisco-sa-iox-pt-hWGcPf7g</cvrf:ID>
+    </cvrf:Identification>
+    <cvrf:Status>Final</cvrf:Status>
+    <cvrf:Version>1.1</cvrf:Version>
+    <cvrf:RevisionHistory>
+      <cvrf:Revision>
+        <cvrf:Number>1.0</cvrf:Number>
+        <cvrf:Date>2021-03-24T15:31:13</cvrf:Date>
+        <cvrf:Description>Initial public release.</cvrf:Description>
+      </cvrf:Revision>
+      <cvrf:Revision>
+        <cvrf:Number>1.1</cvrf:Number>
+        <cvrf:Date>2021-03-30T22:12:35</cvrf:Date>
+        <cvrf:Description>Corrected Cisco IOS XE affected release number.</cvrf:Description>
+      </cvrf:Revision>
+    </cvrf:RevisionHistory>
+    <cvrf:InitialReleaseDate>2021-03-24T16:00:00</cvrf:InitialReleaseDate>
+    <cvrf:CurrentReleaseDate>2021-03-30T22:12:35</cvrf:CurrentReleaseDate>
+    <cvrf:Generator>
+      <cvrf:Engine>TVCE</cvrf:Engine>
+    </cvrf:Generator>
+  </cvrf:DocumentTracking>
+  <cvrf:DocumentNotes>
+    <cvrf:Note Title="Summary" Type="Summary" Ordinal="1">A vulnerability in the Cisco IOx application hosting environment of multiple Cisco platforms could allow an authenticated, remote attacker to conduct directory traversal attacks and read and write files on the underlying operating system or host system.
+
+This vulnerability occurs because the device does not properly validate URIs in IOx API requests. An attacker could exploit this vulnerability by sending a crafted API request that contains directory traversal character sequences to an affected device. A successful exploit could allow the attacker to read or write arbitrary files on the underlying operating system.
+
+Cisco has released software updates that address this vulnerability. There are no workarounds that address this vulnerability.
+
+This advisory is available at the following link:
+https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-iox-pt-hWGcPf7g ["https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-iox-pt-hWGcPf7g"]</cvrf:Note>
+    <cvrf:Note Title="Vulnerable Products" Type="General" Ordinal="2">At the time of publication, this vulnerability affected the following Cisco products if they were running a vulnerable software release and configured with the Cisco IOx application hosting environment.
+        Cisco Product  Cisco Software  Vulnerable Releases          809 Industrial Integrated Services Routers (ISRs)  IOS Software  15.8(3)M2 and later, earlier than the first fixed release      829 Industrial ISRs  IOS Software  15.8(3)M2 and later, earlier than the first fixed release      CGR 1000 Compute Module  CGR 1000 IOx Compute Platform Firmware  1.9 and later, earlier than the first fixed release      IC3000 Industrial Compute Gateway  Industrial Compute Gateway Software  All releases earlier than the first fixed release      Devices running Cisco IOS XE Software  IOS XE Software  16.11.1 and later, earlier than the first fixed release
+
+For additional information about which Cisco software releases are vulnerable, see the Fixed Software ["#fs"] section of this advisory.
+
+See the Details section in the bug ID(s) at the top of this advisory for the most complete and current information.
+  Assess the Cisco IOx Application Hosting Environment
+Use the following subsections to determine whether a device is configured with the Cisco IOx application hosting environment.
+
+Cisco 809 and 829 Industrial Integrated Services Routers
+
+To determine whether the Cisco IOx application hosting environment is enabled on a device, use the show iox host list detail | include OS status command at the device CLI.
+
+The following example shows the output of the command for a device that has the Cisco IOx application hosting environment enabled:
+
+
+Router#show iox host list detail | include OS status
+OS status: 		RUNNING
+
+If this command does not exist, or if it produces output that does not show RUNNING in the OS status field, the device is not affected by this vulnerability.
+
+Cisco CGR 1000 Compute Module
+
+To determine the status of IOx functionality, use the show iox host list detail | include IOX Server is running CLI command, as shown in the following example:
+
+
+CGR1000#show iox host list detail | include IOX Server is running
+     IOX Server is running.  Process ID: 305  CGR1000#
+
+Cisco IC3000 Industrial Compute Gateway
+
+On the Cisco IC3000 Industrial Compute Gateway, Cisco IOx functionality is enabled by default.
+
+To determine the status of IOx functionality, use the show iox summary CLI command, as shown in the following example:
+
+
+ic3k#show iox summary
+IOx Infrastructure Summary:  ---------------------------  eid: IC3000-2C2F-K9+FOC2227Y304  pfm: IC3000-2C2F-K9  s/n: FOC2227Y304  images: Lnx: 1.0.1., IOx: 1.7.0:r/1.7.0.0:fc6e9cf  boot: 2018-09-17 17:37:55  time: 2018-09-18 18:07:28  load: 18:07:28 up 1 day, 29 min, 0 users, load average: 0.32, 0.11, 0.02  memory: ok, used: 481/7854 (6%)  disk: ok, used: /:270305/338869 (79%), /software:57272/87462892 (0%)  process: warning, running: 4/5, failed: sshd  networking: ok  logs: ok, errors: caf (0)  apps: ok,
+
+Cisco Platforms That Use Cisco IOS XE Software
+
+The IOx application hosting infrastructure is not enabled by default.
+
+There are two methods for assessing the Cisco IOx application hosting environment in Cisco IOS XE Software:
+
+Option 1: Use the show iox-service Command
+
+To determine the status of Cisco IOx functionality, use the show iox-service command in privileged EXEC mode, as shown in the following example:
+
+
+Router#show iox-service
+  IOx Infrastructure Summary:  ---------------------------  IOx service (CAF)         : Running  IOx service (HA)          : Running  IOx service (IOxman)      : Running  Libvirtd                  : Running    Router#
+
+The device is vulnerable if IOx service (CAF) is in the Running state. If any statement in the following list is true, the device is not affected by the vulnerability described in this advisory:
+
+IOx service (CAF) is in the Not Running state
+The show iox-service privileged EXEC mode command returns no output
+The show iox-service privileged EXEC mode command returns an error
+
+Option 2: Use the iox Configuration Command
+
+As an alternative, check the running configuration for the iox configuration command, as shown in the following example:
+
+
+Router#sh run | include iox
+iox  Router#
+
+The device is vulnerable if the output contains a line with only iox, as shown in the preceding example. If the iox configuration command does not return output or this command returns an error, the device is not affected by the vulnerability described in this advisory.</cvrf:Note>
+    <cvrf:Note Title="Products Confirmed Not Vulnerable" Type="General" Ordinal="3">Only products listed in the Vulnerable Products ["#vp"] section of this advisory are known to be affected by this vulnerability.
+
+Cisco has confirmed that this vulnerability does not affect the following Cisco products:
+
+510 WPAN Industrial Routers
+Industrial Ethernet (IE) 4000 Series Switches
+IOS XR Software
+NX-OS Software</cvrf:Note>
+    <cvrf:Note Title="Workarounds" Type="General" Ordinal="4">There are no workarounds that address this vulnerability.
+
+Cisco recommends that customers who do not want to use the Cisco IOx application hosting environment can mitigate this vulnerability by disabling IOx permanently on the device by using the no iox configuration command.
+
+While this mitigation has been deployed and was proven successful in a test environment, customers should determine the applicability and effectiveness in their own environment and under their own use conditions. Customers should be aware that any workaround or mitigation that is implemented may negatively impact the functionality or performance of their network based on intrinsic customer deployment scenarios and limitations. Customers should not deploy any workarounds or mitigations before first evaluating the applicability to their own environment and any impact to such environment.</cvrf:Note>
+    <cvrf:Note Title="Fixed Software" Type="General" Ordinal="5">When considering software upgrades ["https://tools.cisco.com/security/center/resources/security_vulnerability_policy.html#fixes"], customers are advised to regularly consult the advisories for Cisco products, which are available from the Cisco Security Advisories page ["https://www.cisco.com/go/psirt"], to determine exposure and a complete upgrade solution.
+
+In all cases, customers should ensure that the devices to be upgraded contain sufficient memory and confirm that current hardware and software configurations will continue to be supported properly by the new release. If the information is not clear, customers are advised to contact the Cisco Technical Assistance Center (TAC) or their contracted maintenance providers.
+      Fixed Releases
+At the time of publication, the following Cisco IOS XE Software releases contained the fix for this vulnerability:
+
+17.3.2
+17.4.2 (scheduled for late March)
+17.5.1 and later
+
+At the time of publication, Cisco expected to fix this vulnerability in the following releases:
+
+Cisco 800 Series Industrial Integrated Services Routers: Cisco IOS Software releases 15.9(3)M4 and later (scheduled for July).
+Cisco CGR 1000 Compute Module: CGR 1000 IOx Compute Platform Firmware will be addressed in the next release (scheduled for late August).
+Cisco IC3000 Industrial Compute Gateway: Industrial Compute Gateway Software releases 1.4.1 and later.
+
+See the Details section in the bug ID(s) at the top of this advisory for the most complete and current information.
+  Cisco IOS and IOS XE Software
+To help customers determine their exposure to vulnerabilities in Cisco IOS and IOS XE Software, Cisco provides the Cisco Software Checker ["https://tools.cisco.com/security/center/softwarechecker.x"] to identify any Cisco Security Advisories that impact a specific software release and the earliest release that fixes the vulnerabilities described in each advisory (“First Fixed”). If applicable, the tool also returns the earliest release that fixes all the vulnerabilities described in all the advisories identified (“Combined First Fixed”).
+
+Customers can use the Cisco Software Checker ["https://tools.cisco.com/security/center/softwarechecker.x"] to search advisories in the following ways:
+
+Choose the software and one or more releases
+Upload a .txt file that includes a list of specific releases
+Enter the output of the show version command
+
+After initiating a search, customers can customize the search to include all Cisco Security Advisories, a specific advisory, or all advisories in the most recent bundled publication.
+
+Customers can also use the following form to determine whether a release is affected by any Cisco Security Advisory by entering a Cisco IOS or IOS XE Software release—for example, 15.1(4)M2 or 3.13.8S:
+
+
+
+By default, the Cisco Software Checker ["https://tools.cisco.com/security/center/softwarechecker.x"] includes results only for vulnerabilities that have a Critical or High Security Impact Rating (SIR). To include results for Medium SIR vulnerabilities, customers can use the Cisco Software Checker on Cisco.com and check the Medium check box in the drop-down list under Impact Rating when customizing a search.</cvrf:Note>
+    <cvrf:Note Title="Vulnerability Policy" Type="General" Ordinal="6">To learn about Cisco security vulnerability disclosure policies and publications, see the Security Vulnerability Policy ["http://www.cisco.com/web/about/security/psirt/security_vulnerability_policy.html"]. This document also contains instructions for obtaining fixed software and receiving security vulnerability information from Cisco.</cvrf:Note>
+    <cvrf:Note Title="Exploitation and Public Announcements" Type="General" Ordinal="7">The Cisco Product Security Incident Response Team (PSIRT) is not aware of any public announcements or malicious use of the vulnerability that is described in this advisory.</cvrf:Note>
+    <cvrf:Note Title="Source" Type="General" Ordinal="8">Cisco would like to thank Orange Group for reporting this vulnerability.</cvrf:Note>
+    <cvrf:Note Title="Legal Disclaimer" Type="Legal Disclaimer" Ordinal="9">THIS DOCUMENT IS PROVIDED ON AN "AS IS" BASIS AND DOES NOT IMPLY ANY KIND OF GUARANTEE OR WARRANTY, INCLUDING THE WARRANTIES OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR USE. YOUR USE OF THE INFORMATION ON THE DOCUMENT OR MATERIALS LINKED FROM THE DOCUMENT IS AT YOUR OWN RISK. CISCO RESERVES THE RIGHT TO CHANGE OR UPDATE THIS DOCUMENT AT ANY TIME.
+
+A standalone copy or paraphrase of the text of this document that omits the distribution URL is an uncontrolled copy and may lack important information or contain factual errors. The information in this document is intended for end users of Cisco products.</cvrf:Note>
+  </cvrf:DocumentNotes>
+  <cvrf:DocumentReferences>
+    <cvrf:Reference Type="Self">
+      <cvrf:URL>https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-iox-pt-hWGcPf7g</cvrf:URL>
+      <cvrf:Description>Cisco IOx Application Environment Path Traversal Vulnerability</cvrf:Description>
+    </cvrf:Reference>
+  </cvrf:DocumentReferences>
+  <ProductTree xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/prod">
+    <Branch Name="Cisco" Type="Vendor">
+      <Branch Name="IOS" Type="Product Name">
+        <Branch Name="15.8M" Type="Product Version">
+          <Branch Name="15.8(3)M3" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-259870">Cisco IOS 15.8(3)M3</FullProductName>
+          </Branch>
+          <Branch Name="15.8(3)M2a" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-260804">Cisco IOS 15.8(3)M2a</FullProductName>
+          </Branch>
+          <Branch Name="15.8(3)M4" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-267415">Cisco IOS 15.8(3)M4</FullProductName>
+          </Branch>
+          <Branch Name="15.8(3)M5" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-277095">Cisco IOS 15.8(3)M5</FullProductName>
+          </Branch>
+          <Branch Name="15.8(3)M6" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-279384">Cisco IOS 15.8(3)M6</FullProductName>
+          </Branch>
+          <Branch Name="15.8(3)M7" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-281976">Cisco IOS 15.8(3)M7</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="15.9M" Type="Product Version">
+          <Branch Name="15.9(3)M" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-252162">Cisco IOS 15.9(3)M</FullProductName>
+          </Branch>
+          <Branch Name="15.9(3)M1" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-267065">Cisco IOS 15.9(3)M1</FullProductName>
+          </Branch>
+          <Branch Name="15.9(3)M2" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-274204">Cisco IOS 15.9(3)M2</FullProductName>
+          </Branch>
+          <Branch Name="15.9(3)M3" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-279111">Cisco IOS 15.9(3)M3</FullProductName>
+          </Branch>
+          <Branch Name="15.9(3)M2a" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-279383">Cisco IOS 15.9(3)M2a</FullProductName>
+          </Branch>
+        </Branch>
+      </Branch>
+      <Branch Name="IOS" Type="Product Name">
+        <FullProductName ProductID="CVRFPID-2097">Cisco IOS </FullProductName>
+      </Branch>
+      <Branch Name="Cisco IOS XE Software" Type="Product Name">
+        <Branch Name="16.11" Type="Product Version">
+          <Branch Name="16.11.1" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-227918">Cisco IOS XE Software 16.11.1</FullProductName>
+          </Branch>
+          <Branch Name="16.11.1a" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-252271">Cisco IOS XE Software 16.11.1a</FullProductName>
+          </Branch>
+          <Branch Name="16.11.1b" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-260741">Cisco IOS XE Software 16.11.1b</FullProductName>
+          </Branch>
+          <Branch Name="16.11.2" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-261240">Cisco IOS XE Software 16.11.2</FullProductName>
+          </Branch>
+          <Branch Name="16.11.1s" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-261465">Cisco IOS XE Software 16.11.1s</FullProductName>
+          </Branch>
+          <Branch Name="16.11.1c" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-264096">Cisco IOS XE Software 16.11.1c</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="16.12" Type="Product Version">
+          <Branch Name="16.12.1" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-227920">Cisco IOS XE Software 16.12.1</FullProductName>
+          </Branch>
+          <Branch Name="16.12.1s" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-265735">Cisco IOS XE Software 16.12.1s</FullProductName>
+          </Branch>
+          <Branch Name="16.12.1a" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-265841">Cisco IOS XE Software 16.12.1a</FullProductName>
+          </Branch>
+          <Branch Name="16.12.1c" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-267110">Cisco IOS XE Software 16.12.1c</FullProductName>
+          </Branch>
+          <Branch Name="16.12.1w" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-267240">Cisco IOS XE Software 16.12.1w</FullProductName>
+          </Branch>
+          <Branch Name="16.12.2" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-267605">Cisco IOS XE Software 16.12.2</FullProductName>
+          </Branch>
+          <Branch Name="16.12.1y" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-271938">Cisco IOS XE Software 16.12.1y</FullProductName>
+          </Branch>
+          <Branch Name="16.12.2a" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-272047">Cisco IOS XE Software 16.12.2a</FullProductName>
+          </Branch>
+          <Branch Name="16.12.3" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-273445">Cisco IOS XE Software 16.12.3</FullProductName>
+          </Branch>
+          <Branch Name="16.12.2s" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-273509">Cisco IOS XE Software 16.12.2s</FullProductName>
+          </Branch>
+          <Branch Name="16.12.1x" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-273649">Cisco IOS XE Software 16.12.1x</FullProductName>
+          </Branch>
+          <Branch Name="16.12.1t" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-274832">Cisco IOS XE Software 16.12.1t</FullProductName>
+          </Branch>
+          <Branch Name="16.12.2t" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-275538">Cisco IOS XE Software 16.12.2t</FullProductName>
+          </Branch>
+          <Branch Name="16.12.4" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-277147">Cisco IOS XE Software 16.12.4</FullProductName>
+          </Branch>
+          <Branch Name="16.12.3s" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-277255">Cisco IOS XE Software 16.12.3s</FullProductName>
+          </Branch>
+          <Branch Name="16.12.1z" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-277256">Cisco IOS XE Software 16.12.1z</FullProductName>
+          </Branch>
+          <Branch Name="16.12.3a" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-277321">Cisco IOS XE Software 16.12.3a</FullProductName>
+          </Branch>
+          <Branch Name="16.12.4a" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-278881">Cisco IOS XE Software 16.12.4a</FullProductName>
+          </Branch>
+          <Branch Name="16.12.5" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-280463">Cisco IOS XE Software 16.12.5</FullProductName>
+          </Branch>
+          <Branch Name="16.12.1z1" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-281320">Cisco IOS XE Software 16.12.1z1</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="17.1" Type="Product Version">
+          <Branch Name="17.1.1" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-245377">Cisco IOS XE Software 17.1.1</FullProductName>
+          </Branch>
+          <Branch Name="17.1.1a" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-272932">Cisco IOS XE Software 17.1.1a</FullProductName>
+          </Branch>
+          <Branch Name="17.1.1s" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-274818">Cisco IOS XE Software 17.1.1s</FullProductName>
+          </Branch>
+          <Branch Name="17.1.2" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-277338">Cisco IOS XE Software 17.1.2</FullProductName>
+          </Branch>
+          <Branch Name="17.1.1t" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-277348">Cisco IOS XE Software 17.1.1t</FullProductName>
+          </Branch>
+          <Branch Name="17.1.3" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-280652">Cisco IOS XE Software 17.1.3</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="17.2" Type="Product Version">
+          <Branch Name="17.2.1" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-251225">Cisco IOS XE Software 17.2.1</FullProductName>
+          </Branch>
+          <Branch Name="17.2.1r" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-277194">Cisco IOS XE Software 17.2.1r</FullProductName>
+          </Branch>
+          <Branch Name="17.2.1a" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-277343">Cisco IOS XE Software 17.2.1a</FullProductName>
+          </Branch>
+          <Branch Name="17.2.1v" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-278002">Cisco IOS XE Software 17.2.1v</FullProductName>
+          </Branch>
+          <Branch Name="17.2.2" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-278504">Cisco IOS XE Software 17.2.2</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="17.3" Type="Product Version">
+          <Branch Name="17.3.1" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-254712">Cisco IOS XE Software 17.3.1</FullProductName>
+          </Branch>
+          <Branch Name="17.3.2" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-277099">Cisco IOS XE Software 17.3.2</FullProductName>
+          </Branch>
+          <Branch Name="17.3.1a" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-279338">Cisco IOS XE Software 17.3.1a</FullProductName>
+          </Branch>
+          <Branch Name="17.3.1w" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-279339">Cisco IOS XE Software 17.3.1w</FullProductName>
+          </Branch>
+          <Branch Name="17.3.2a" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-280555">Cisco IOS XE Software 17.3.2a</FullProductName>
+          </Branch>
+          <Branch Name="17.3.1x" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-280783">Cisco IOS XE Software 17.3.1x</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="17.4" Type="Product Version">
+          <Branch Name="17.4.1" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-262588">Cisco IOS XE Software 17.4.1</FullProductName>
+          </Branch>
+          <Branch Name="17.4.1a" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-280770">Cisco IOS XE Software 17.4.1a</FullProductName>
+          </Branch>
+          <Branch Name="17.4.1b" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-280899">Cisco IOS XE Software 17.4.1b</FullProductName>
+          </Branch>
+        </Branch>
+      </Branch>
+      <Branch Name="Cisco IOS XE Software" Type="Product Name">
+        <FullProductName ProductID="CVRFPID-93036">Cisco IOS XE Software </FullProductName>
+      </Branch>
+      <Branch Name="Cisco CGR1000 Compute Module" Type="Product Name">
+        <FullProductName ProductID="CVRFPID-281479">Cisco CGR1000 Compute Module </FullProductName>
+      </Branch>
+    </Branch>
+  </ProductTree>
+  <Vulnerability Ordinal="1" xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln">
+    <Title>vuln-CVE-2021-1385</Title>
+    <ID SystemName="Cisco Bug ID">CSCvx21776</ID>
+    <Notes>
+      <Note Title="Cisco Bug IDs" Type="Other" Ordinal="1">CSCvx21776,CSCvw64810,CSCvx21783</Note>
+      <Note Title="Affected Product Comprehensiveness" Type="Other" Ordinal="2">Complete.</Note>
+    </Notes>
+    <CVE>CVE-2021-1385</CVE>
+    <ProductStatuses>
+      <Status Type="Known Affected">
+        <ProductID>CVRFPID-2097</ProductID>
+        <ProductID>CVRFPID-252162</ProductID>
+        <ProductID>CVRFPID-259870</ProductID>
+        <ProductID>CVRFPID-260804</ProductID>
+        <ProductID>CVRFPID-267065</ProductID>
+        <ProductID>CVRFPID-267415</ProductID>
+        <ProductID>CVRFPID-274204</ProductID>
+        <ProductID>CVRFPID-277095</ProductID>
+        <ProductID>CVRFPID-279111</ProductID>
+        <ProductID>CVRFPID-279383</ProductID>
+        <ProductID>CVRFPID-279384</ProductID>
+        <ProductID>CVRFPID-281976</ProductID>
+        <ProductID>CVRFPID-227918</ProductID>
+        <ProductID>CVRFPID-227920</ProductID>
+        <ProductID>CVRFPID-245377</ProductID>
+        <ProductID>CVRFPID-251225</ProductID>
+        <ProductID>CVRFPID-252271</ProductID>
+        <ProductID>CVRFPID-254712</ProductID>
+        <ProductID>CVRFPID-260741</ProductID>
+        <ProductID>CVRFPID-261240</ProductID>
+        <ProductID>CVRFPID-261465</ProductID>
+        <ProductID>CVRFPID-262588</ProductID>
+        <ProductID>CVRFPID-264096</ProductID>
+        <ProductID>CVRFPID-265735</ProductID>
+        <ProductID>CVRFPID-265841</ProductID>
+        <ProductID>CVRFPID-267110</ProductID>
+        <ProductID>CVRFPID-267240</ProductID>
+        <ProductID>CVRFPID-267605</ProductID>
+        <ProductID>CVRFPID-271938</ProductID>
+        <ProductID>CVRFPID-272047</ProductID>
+        <ProductID>CVRFPID-272932</ProductID>
+        <ProductID>CVRFPID-273445</ProductID>
+        <ProductID>CVRFPID-273509</ProductID>
+        <ProductID>CVRFPID-273649</ProductID>
+        <ProductID>CVRFPID-274818</ProductID>
+        <ProductID>CVRFPID-274832</ProductID>
+        <ProductID>CVRFPID-275538</ProductID>
+        <ProductID>CVRFPID-277099</ProductID>
+        <ProductID>CVRFPID-277147</ProductID>
+        <ProductID>CVRFPID-277194</ProductID>
+        <ProductID>CVRFPID-277255</ProductID>
+        <ProductID>CVRFPID-277256</ProductID>
+        <ProductID>CVRFPID-277321</ProductID>
+        <ProductID>CVRFPID-277338</ProductID>
+        <ProductID>CVRFPID-277343</ProductID>
+        <ProductID>CVRFPID-277348</ProductID>
+        <ProductID>CVRFPID-278002</ProductID>
+        <ProductID>CVRFPID-278504</ProductID>
+        <ProductID>CVRFPID-278881</ProductID>
+        <ProductID>CVRFPID-279338</ProductID>
+        <ProductID>CVRFPID-279339</ProductID>
+        <ProductID>CVRFPID-280463</ProductID>
+        <ProductID>CVRFPID-280555</ProductID>
+        <ProductID>CVRFPID-280652</ProductID>
+        <ProductID>CVRFPID-280770</ProductID>
+        <ProductID>CVRFPID-280783</ProductID>
+        <ProductID>CVRFPID-280899</ProductID>
+        <ProductID>CVRFPID-281320</ProductID>
+        <ProductID>CVRFPID-93036</ProductID>
+        <ProductID>CVRFPID-281479</ProductID>
+      </Status>
+    </ProductStatuses>
+    <CVSSScoreSets>
+      <ScoreSetV3>
+        <BaseScoreV3>6.5</BaseScoreV3>
+        <VectorV3>CVSS:3.1/AV:N/AC:L/PR:H/UI:N/S:U/C:H/I:H/A:N</VectorV3>
+      </ScoreSetV3>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Workaround">
+        <Description>There are no workarounds that address this vulnerability.
+
+Cisco recommends that customers who do not want to use the Cisco IOx application hosting environment can mitigate this vulnerability by disabling IOx permanently on the device by using the no iox configuration command.
+
+While this mitigation has been deployed and was proven successful in a test environment, customers should determine the applicability and effectiveness in their own environment and under their own use conditions. Customers should be aware that any workaround or mitigation that is implemented may negatively impact the functionality or performance of their network based on intrinsic customer deployment scenarios and limitations. Customers should not deploy any workarounds or mitigations before first evaluating the applicability to their own environment and any impact to such environment.</Description>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference Type="Self">
+        <URL>https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-iox-pt-hWGcPf7g</URL>
+        <Description>Cisco IOx Application Environment Path Traversal Vulnerability</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+</cvrf:cvrfdoc>

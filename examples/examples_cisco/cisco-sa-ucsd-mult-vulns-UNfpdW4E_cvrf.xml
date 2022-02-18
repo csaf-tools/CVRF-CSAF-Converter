@@ -1,0 +1,584 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cvrf:cvrfdoc xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:cvrf-common="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/common" xmlns:cvrf="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/cvrf">
+  <cvrf:DocumentTitle>Multiple Vulnerabilities in Cisco UCS Director and Cisco UCS Director Express for Big Data</cvrf:DocumentTitle>
+  <cvrf:DocumentType>Cisco Security Advisory</cvrf:DocumentType>
+  <cvrf:DocumentPublisher Type="Vendor">
+    <cvrf:ContactDetails>Emergency Support:
++1 877 228 7302 (toll-free within North America)
++1 408 525 6532 (International direct-dial)
+Non-emergency Support:
+Email: psirt@cisco.com
+Support requests that are received via e-mail are typically acknowledged within 48 hours.</cvrf:ContactDetails>
+    <cvrf:IssuingAuthority>Cisco product security incident response is the responsibility of the Cisco Product Security Incident Response Team (PSIRT). The Cisco PSIRT is a dedicated, global team that manages the receipt, investigation, and public reporting of security vulnerability information that is related to Cisco products and networks. The on-call Cisco PSIRT works 24x7 with Cisco customers, independent security researchers, consultants, industry organizations, and other vendors to identify possible security issues with Cisco products and networks.
+More information can be found in Cisco Security Vulnerability Policy available at http://www.cisco.com/web/about/security/psirt/security_vulnerability_policy.html</cvrf:IssuingAuthority>
+  </cvrf:DocumentPublisher>
+  <cvrf:DocumentTracking>
+    <cvrf:Identification>
+      <cvrf:ID>cisco-sa-ucsd-mult-vulns-UNfpdW4E</cvrf:ID>
+    </cvrf:Identification>
+    <cvrf:Status>Final</cvrf:Status>
+    <cvrf:Version>1.1</cvrf:Version>
+    <cvrf:RevisionHistory>
+      <cvrf:Revision>
+        <cvrf:Number>1.0</cvrf:Number>
+        <cvrf:Date>2020-04-15T15:45:00</cvrf:Date>
+        <cvrf:Description>Initial public release.</cvrf:Description>
+      </cvrf:Revision>
+      <cvrf:Revision>
+        <cvrf:Number>1.1</cvrf:Number>
+        <cvrf:Date>2020-04-17T19:27:24</cvrf:Date>
+        <cvrf:Description>Updated information about the availability of exploit code.</cvrf:Description>
+      </cvrf:Revision>
+    </cvrf:RevisionHistory>
+    <cvrf:InitialReleaseDate>2020-04-15T16:00:00</cvrf:InitialReleaseDate>
+    <cvrf:CurrentReleaseDate>2020-04-17T19:27:24</cvrf:CurrentReleaseDate>
+    <cvrf:Generator>
+      <cvrf:Engine>TVCE</cvrf:Engine>
+    </cvrf:Generator>
+  </cvrf:DocumentTracking>
+  <cvrf:DocumentNotes>
+    <cvrf:Note Title="Summary" Type="Summary" Ordinal="1">Multiple vulnerabilities in the REST API of Cisco UCS Director and Cisco UCS Director Express for Big Data may allow a remote attacker to bypass authentication or conduct directory traversal attacks on an affected device.
+
+For more information about these vulnerabilities, see the Details ["#details"] section of this advisory.
+
+Cisco has released software updates that address these vulnerabilities. There are no workarounds that address these vulnerabilities.
+
+This advisory is available at the following link:
+https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-ucsd-mult-vulns-UNfpdW4E ["https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-ucsd-mult-vulns-UNfpdW4E"]</cvrf:Note>
+    <cvrf:Note Title="Vulnerable Products" Type="General" Ordinal="2">The following table lists Cisco products that are affected by one or more of the vulnerabilities that are described in this advisory:
+        Product  Cisco Bug IDs  Vulnerable Release(s)  Fixed Release      Cisco UCS Director  CSCvs53496 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCvs53496"], CSCvs53493 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCvs53493"] CSCvs53500 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCvs53500"], CSCvs53502 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCvs53502"] CSCvs56400 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCvs56400"], CSCvs56401 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCvs56401"] CSCvs56399 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCvs56399"], CSCvs69171 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCvs69171"] CSCvs69022 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCvs69022"]
+6.0.0.0, 6.0.0.1, 6.0.1.0, 6.0.1.1, 6.0.1.2, 6.0.1.3
+
+6.5.0.0, 6.5.0.1, 6.5.0.2, 6.5.0.3, 6.5.0.4
+
+6.6.0.0, 6.6.1.0, 6.6.2.0
+
+6.7.0.0, 6.7.1.0, 6.7.2.0, 6.7.3.0
+    6.7.4.0      Cisco UCS Director Express for Big Data  CSCvt39561 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCvt39561"], CSCvt39555 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCvt39555"] CSCvt39580 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCvt39580"], CSCvt39565 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCvt39565"] CSCvt39535 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCvt39535"], CSCvt39526 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCvt39526"] CSCvt39575 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCvt39575"], CSCvt39489 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCvt39489"]  3.7.3.0 and earlier  3.7.4.0</cvrf:Note>
+    <cvrf:Note Title="Products Confirmed Not Vulnerable" Type="General" Ordinal="3">Only products listed in the Vulnerable Products ["#vp"] section of this advisory are known to be affected by these vulnerabilities.</cvrf:Note>
+    <cvrf:Note Title="Details" Type="General" Ordinal="4">Vulnerability Details
+Details about the vulnerabilities are as follows.
+
+Cisco UCS Director and UCS Director Express for Big Data Authentication Bypass Vulnerability
+
+A vulnerability in the REST API of Cisco UCS Director and UCS Director Express for Big Data could allow an unauthenticated, remote attacker to bypass authentication and execute arbitrary actions with administrative privileges on an affected device.
+
+The vulnerability is due to insufficient access control validation. An attacker could exploit this vulnerability by sending a crafted request to the REST API. A successful exploit could allow the attacker to interact with the REST API with administrative privileges.
+
+Bug ID(s): CSCvs53496 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCvs53496"], CSCvt39580 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCvt39580"]
+CVE ID: CVE-2020-3243
+Security Impact Rating (SIR): Critical
+CVSS Base Score: 9.8
+CVSS Vector: CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H
+
+
+Cisco UCS Director and UCS Director Express for Big Data Remote Code Execution Vulnerability
+
+A vulnerability in the REST API of Cisco UCS Director and UCS Director Express for Big Data could allow an authenticated, remote attacker to execute arbitrary code with root privileges on the underlying operating system.
+
+The vulnerability is due to improper input validation. An attacker could exploit this vulnerability by crafting a malicious file and sending it to the REST API. A successful exploit could allow the attacker to open a remote shell and execute code with root privileges.
+
+Bug ID(s): CSCvs56399 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCvs56399"], CSCvt39555 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCvt39555"]
+CVE ID: CVE-2020-3240
+Security Impact Rating (SIR): High
+CVSS Base Score: 8.8
+CVSS Vector: CVSS:3.0/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H
+
+Cisco UCS Director and UCS Director Express for Big Data Authentication Bypass Vulnerability
+
+A vulnerability in the REST API of Cisco UCS Director and UCS Director Express for Big Data could allow an unauthenticated, remote attacker to bypass authentication and execute API calls on an affected device.
+
+The vulnerability is due to insufficient access control validation. An attacker could exploit this vulnerability by sending a request to the REST API endpoint. A successful exploit could allow the attacker to interact with the REST API and cause a potential Denial of Service (DoS) condition on the affected device.
+
+Bug ID(s): CSCvs53493 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCvs53493"], CSCvt39575 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCvt39575"]
+CVE ID: CVE-2020-3250
+Security Impact Rating (SIR): High
+CVSS Base Score: 8.6
+CVSS Vector: CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:L/A:H
+
+Cisco UCS Director and UCS Director Express for Big Data Directory Traversal Vulnerability
+
+A vulnerability in the REST API of Cisco UCS Director and UCS Director Express for Big Data could allow an authenticated, remote attacker to conduct directory traversal attacks on an affected device.
+
+The vulnerability is due to insufficient validation of user-supplied input to the REST API of the affected software. An attacker could exploit this vulnerability by sending a crafted request to the REST API. A successful exploit could allow the attacker to execute code on the system.
+
+Bug ID(s): CSCvs69171 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCvs69171"], CSCvt39489 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCvt39489"]
+CVE ID: CVE-2020-3251
+Security Impact Rating (SIR): High
+CVSS Base Score: 8.1
+CVSS Vector: CVSS:3.0/AV:N/AC:L/PR:L/UI:N/S:U/C:N/I:H/A:H
+
+Cisco UCS Director and UCS Director Express for Big Data Directory Traversal Vulnerability
+
+A vulnerability in the REST API of Cisco UCS Director and UCS Director Express for Big Data could allow an authenticated, remote attacker to conduct directory traversal attacks on an affected device.
+
+The vulnerability is due to insufficient validation of user-supplied input to the REST API of the affected software. An attacker could exploit this vulnerability by sending a crafted request to the REST API. A successful exploit could allow the attacker to perform a Denial of Service (DoS) attack on the affected device.
+
+Bug ID(s): CSCvs56401 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCvs56401"], CSCvt39526 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCvt39526"]
+CVE ID: CVE-2020-3249
+Security Impact Rating (SIR): High
+CVSS Base Score: 8.1
+CVSS Vector: CVSS:3.0/AV:N/AC:L/PR:L/UI:N/S:U/C:N/I:H/A:H
+
+Cisco UCS Director and UCS Director Express for Big Data Directory Traversal Vulnerability
+
+A vulnerability in the REST API of Cisco UCS Director and UCS Director Express for Big Data could allow an authenticated, remote attacker to conduct directory traversal attacks on an affected device.
+
+The vulnerability is due to insufficient validation of user-supplied input to the REST API of the affected software. An attacker could exploit this vulnerability by sending a crafted request to the REST API. A successful exploit could allow the attacker to execute code with root privileges.
+
+Bug ID(s): CSCvs56400 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCvs56400"], CSCvt39535 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCvt39535"]
+CVE ID: CVE-2020-3248
+Security Impact Rating (SIR): High
+CVSS Base Score: 8.1
+CVSS Vector: CVSS:3.0/AV:N/AC:L/PR:L/UI:N/S:U/C:N/I:H/A:H
+
+Cisco UCS Director and UCS Director Express for Big Data Directory Traversal Vulnerability
+
+A vulnerability in the REST API of Cisco UCS Director and UCS Director Express for Big Data could allow an authenticated, remote attacker to conduct directory traversal attacks on an affected device.
+
+The vulnerability is due to insufficient validation of user-supplied input to the REST API of the affected software. An attacker could exploit this vulnerability by sending a malicious file to the REST API. A successful exploit could allow the attacker to write or execute arbitrary files on the system.
+
+Bug ID(s): CSCvs53502 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCvs53502"], CSCvt39565 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCvt39565"]
+CVE ID: CVE-2020-3247
+Security Impact Rating (SIR): High
+CVSS Base Score: 8.1
+CVSS Vector: CVSS:3.0/AV:N/AC:L/PR:L/UI:N/S:U/C:N/I:H/A:H
+
+Cisco UCS Director and UCS Director Express for Big Data Directory Traversal Vulnerability
+
+A vulnerability in the REST API of Cisco UCS Director and UCS Director Express for Big Data could allow an authenticated, remote attacker to conduct directory traversal attacks on an affected device.
+
+The vulnerability is due to insufficient validation of user-supplied input to the REST API of the affected software. An attacker could exploit this vulnerability by sending a malicious zip file to the REST API. A successful exploit could allow the attacker to write or execute arbitrary files on the system with full administrative privileges.
+
+Bug ID(s): CSCvs53500 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCvs53500"], CSCvt39561 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCvt39561"]
+CVE ID: CVE-2020-3239
+Security Impact Rating (SIR): High
+CVSS Base Score: 8.1
+CVSS Vector: CVSS:3.0/AV:N/AC:L/PR:L/UI:N/S:U/C:N/I:H/A:H
+
+Cisco UCS Director Directory Traversal Vulnerability
+
+A vulnerability in the REST API endpoint of Cisco UCS Director could allow an authenticated, remote attacker to conduct directory traversal attacks on an affected device.
+
+The vulnerability is due to insufficient validation of user-supplied input to the REST API of the affected software. An attacker could exploit this vulnerability by sending a crafted request to the REST API. A successful exploit could allow the attacker to read arbitrary files on the system.
+
+Bug ID(s): CSCvs69022 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCvs69022"]
+CVE ID: CVE-2020-3252
+Security Impact Rating (SIR): Medium
+CVSS Base Score: 6.5
+CVSS Vector: CVSS:3.0/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:N/A:N</cvrf:Note>
+    <cvrf:Note Title="Workarounds" Type="General" Ordinal="5">There are no workarounds that address these vulnerabilities.</cvrf:Note>
+    <cvrf:Note Title="Fixed Software" Type="General" Ordinal="6">Cisco has released free software updates that address the vulnerabilities described in this advisory. Customers may only install and expect support for software versions and feature sets for which they have purchased a license. By installing, downloading, accessing, or otherwise using such software upgrades, customers agree to follow the terms of the Cisco software license: https://www.cisco.com/c/en/us/products/end-user-license-agreement.html ["https://www.cisco.com/c/en/us/products/end-user-license-agreement.html"]
+
+Additionally, customers may only download software for which they have a valid license, procured from Cisco directly, or through a Cisco authorized reseller or partner. In most cases this will be a maintenance upgrade to software that was previously purchased. Free security software updates do not entitle customers to a new software license, additional software feature sets, or major revision upgrades.
+
+When considering software upgrades ["https://tools.cisco.com/security/center/resources/security_vulnerability_policy.html#fixes"], customers are advised to regularly consult the advisories for Cisco products, which are available from the Cisco Security Advisories and Alerts page ["https://www.cisco.com/go/psirt"], to determine exposure and a complete upgrade solution.
+
+In all cases, customers should ensure that the devices to be upgraded contain sufficient memory and confirm that current hardware and software configurations will continue to be supported properly by the new release. If the information is not clear, customers are advised to contact the Cisco Technical Assistance Center (TAC) or their contracted maintenance providers.
+  Customers Without Service Contracts
+Customers who purchase directly from Cisco but do not hold a Cisco service contract and customers who make purchases through third-party vendors but are unsuccessful in obtaining fixed software through their point of sale should obtain upgrades by contacting the Cisco TAC: https://www.cisco.com/c/en/us/support/web/tsd-cisco-worldwide-contacts.html ["https://www.cisco.com/c/en/us/support/web/tsd-cisco-worldwide-contacts.html"]
+
+Customers should have the product serial number available and be prepared to provide the URL of this advisory as evidence of entitlement to a free upgrade.
+      Fixed Releases
+Cisco fixed this vulnerability in UCS Director Release 6.7.4.0 and UCS Director Express for Big Data Release 3.7.4.0.</cvrf:Note>
+    <cvrf:Note Title="Vulnerability Policy" Type="General" Ordinal="7">To learn about Cisco security vulnerability disclosure policies and publications, see the Security Vulnerability Policy ["http://www.cisco.com/web/about/security/psirt/security_vulnerability_policy.html"]. This document also contains instructions for obtaining fixed software and receiving security vulnerability information from Cisco.</cvrf:Note>
+    <cvrf:Note Title="Exploitation and Public Announcements" Type="General" Ordinal="8">The Cisco Product Security Incident Response Team (PSIRT) is aware that proof-of-concept exploit code is available for the vulnerabilities that are described in this advisory.</cvrf:Note>
+    <cvrf:Note Title="Source" Type="General" Ordinal="9">Cisco would like to thank Steven Seeley (mr_me) of Source Incite working with Trend Micro Zero Day Initiative for reporting the following vulnerabilities:
+
+CVE-2020-3243
+CVE-2020-3240
+CVE-2020-3250
+CVE-2020-3239
+CVE-2020-3247
+CVE-2020-3248
+CVE-2020-3249
+
+Cisco would like to thank Steven Seeley (mr_me) of Source Incite for reporting the following vulnerabilities:
+
+CVE-2020-3251
+CVE-2020-3252</cvrf:Note>
+    <cvrf:Note Title="Legal Disclaimer" Type="Legal Disclaimer" Ordinal="10">THIS DOCUMENT IS PROVIDED ON AN "AS IS" BASIS AND DOES NOT IMPLY ANY KIND OF GUARANTEE OR WARRANTY, INCLUDING THE WARRANTIES OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR USE. YOUR USE OF THE INFORMATION ON THE DOCUMENT OR MATERIALS LINKED FROM THE DOCUMENT IS AT YOUR OWN RISK. CISCO RESERVES THE RIGHT TO CHANGE OR UPDATE THIS DOCUMENT AT ANY TIME.
+
+A standalone copy or paraphrase of the text of this document that omits the distribution URL is an uncontrolled copy and may lack important information or contain factual errors. The information in this document is intended for end users of Cisco products.</cvrf:Note>
+  </cvrf:DocumentNotes>
+  <cvrf:DocumentReferences>
+    <cvrf:Reference Type="Self">
+      <cvrf:URL>https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-ucsd-mult-vulns-UNfpdW4E</cvrf:URL>
+      <cvrf:Description>Multiple Vulnerabilities in Cisco UCS Director and Cisco UCS Director Express for Big Data</cvrf:Description>
+    </cvrf:Reference>
+  </cvrf:DocumentReferences>
+  <ProductTree xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/prod">
+    <Branch Name="Cisco" Type="Vendor">
+      <Branch Name="Cisco UCS Director" Type="Product Name">
+        <FullProductName ProductID="CVRFPID-197112">Cisco UCS Director </FullProductName>
+      </Branch>
+      <Branch Name="Cisco Unified Computing System Director Express for Big Data" Type="Product Name">
+        <FullProductName ProductID="CVRFPID-265076">Cisco Unified Computing System Director Express for Big Data </FullProductName>
+      </Branch>
+    </Branch>
+  </ProductTree>
+  <Vulnerability Ordinal="1" xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln">
+    <Title>vuln-CVE-2020-3243</Title>
+    <ID SystemName="Cisco Bug ID">CSCvs53496</ID>
+    <Notes>
+      <Note Title="Summary" Type="Summary" Ordinal="1">A
+vulnerability in the REST API endpoint of Cisco UCS Director could allow
+an unauthenticated remote attacker to bypass authentication and execute
+arbitrary actions with administrative privileges on an affected device.
+The vulnerability is due to insufficient access control validation.
+An attacker could exploit this vulnerability by sending a crafted
+request to the API. A successful exploit could allow the attacker to
+interact with the API with administrative privileges.
+</Note>
+      <Note Title="Cisco Bug IDs" Type="Other" Ordinal="2">CSCvs53496,CSCvt39580</Note>
+    </Notes>
+    <CVE>CVE-2020-3243</CVE>
+    <ProductStatuses>
+      <Status Type="Known Affected">
+        <ProductID>CVRFPID-197112</ProductID>
+        <ProductID>CVRFPID-265076</ProductID>
+      </Status>
+    </ProductStatuses>
+    <CVSSScoreSets>
+      <ScoreSetV3>
+        <BaseScoreV3>9.8</BaseScoreV3>
+        <VectorV3>CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H</VectorV3>
+      </ScoreSetV3>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Workaround">
+        <Description>There are no workarounds that address these vulnerabilities.</Description>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference Type="Self">
+        <URL>https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-ucsd-mult-vulns-UNfpdW4E</URL>
+        <Description>Multiple Vulnerabilities in Cisco UCS Director and Cisco UCS Director Express for Big Data</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+  <Vulnerability Ordinal="2" xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln">
+    <Title>vuln-CVE-2020-3248</Title>
+    <ID SystemName="Cisco Bug ID">CSCvs56400</ID>
+    <Notes>
+      <Note Title="Summary" Type="Summary" Ordinal="1">A vulnerability in the REST API endpoint of Cisco UCS Director could
+allow an authenticated remote attacker to conduct directory traversal
+attacks on an affected device.
+
+The vulnerability is due to insufficient validation of user-supplied
+input to the REST API of the affected software. An attacker could
+exploit this vulnerability by sending a crafted request to the REST API.
+A successful exploit could allow the attacker to execute code as root.
+</Note>
+      <Note Title="Cisco Bug IDs" Type="Other" Ordinal="2">CSCvs56400,CSCvt39535</Note>
+    </Notes>
+    <CVE>CVE-2020-3248</CVE>
+    <ProductStatuses>
+      <Status Type="Known Affected">
+        <ProductID>CVRFPID-197112</ProductID>
+        <ProductID>CVRFPID-265076</ProductID>
+      </Status>
+    </ProductStatuses>
+    <CVSSScoreSets>
+      <ScoreSetV3>
+        <BaseScoreV3>8.1</BaseScoreV3>
+        <VectorV3>CVSS:3.0/AV:N/AC:L/PR:L/UI:N/S:U/C:N/I:H/A:H</VectorV3>
+      </ScoreSetV3>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Workaround">
+        <Description>There are no workarounds that address these vulnerabilities.</Description>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference Type="Self">
+        <URL>https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-ucsd-mult-vulns-UNfpdW4E</URL>
+        <Description>Multiple Vulnerabilities in Cisco UCS Director and Cisco UCS Director Express for Big Data</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+  <Vulnerability Ordinal="3" xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln">
+    <Title>vuln-CVE-2020-3251</Title>
+    <ID SystemName="Cisco Bug ID">CSCvs69171</ID>
+    <Notes>
+      <Note Title="Summary" Type="Summary" Ordinal="1">A vulnerability in the REST API endpoint of Cisco UCS Director could
+allow an authenticated remote attacker to conduct directory traversal
+attacks on an affected device.
+
+The vulnerability is due to insufficient validation of user-supplied
+input to the REST API of the affected software. An attacker could
+exploit this vulnerability by sending a crafted request to the REST API.
+A successful exploit could allow the attacker to execute code as the
+tomcat user.
+</Note>
+      <Note Title="Cisco Bug IDs" Type="Other" Ordinal="2">CSCvs69171,CSCvt39489</Note>
+    </Notes>
+    <CVE>CVE-2020-3251</CVE>
+    <ProductStatuses>
+      <Status Type="Known Affected">
+        <ProductID>CVRFPID-197112</ProductID>
+        <ProductID>CVRFPID-265076</ProductID>
+      </Status>
+    </ProductStatuses>
+    <CVSSScoreSets>
+      <ScoreSetV3>
+        <BaseScoreV3>8.1</BaseScoreV3>
+        <VectorV3>CVSS:3.0/AV:N/AC:L/PR:L/UI:N/S:U/C:N/I:H/A:H</VectorV3>
+      </ScoreSetV3>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Workaround">
+        <Description>There are no workarounds that address these vulnerabilities.</Description>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference Type="Self">
+        <URL>https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-ucsd-mult-vulns-UNfpdW4E</URL>
+        <Description>Multiple Vulnerabilities in Cisco UCS Director and Cisco UCS Director Express for Big Data</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+  <Vulnerability Ordinal="4" xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln">
+    <Title>vuln-CVE-2020-3249</Title>
+    <ID SystemName="Cisco Bug ID">CSCvs56401</ID>
+    <Notes>
+      <Note Title="Summary" Type="Summary" Ordinal="1">A vulnerability in the REST API endpoint of Cisco UCS Director could
+allow an authenticated remote attacker to conduct directory traversal
+attacks on an affected device.
+
+The vulnerability is due to insufficient validation of user-supplied
+input to the REST API of the affected software. An attacker could
+exploit this vulnerability by sending a crafted request to the REST API.
+A successful exploit could allow the attacker to perform a Denial of
+Service.
+</Note>
+      <Note Title="Cisco Bug IDs" Type="Other" Ordinal="2">CSCvs56401,CSCvt39526</Note>
+    </Notes>
+    <CVE>CVE-2020-3249</CVE>
+    <ProductStatuses>
+      <Status Type="Known Affected">
+        <ProductID>CVRFPID-197112</ProductID>
+        <ProductID>CVRFPID-265076</ProductID>
+      </Status>
+    </ProductStatuses>
+    <CVSSScoreSets>
+      <ScoreSetV3>
+        <BaseScoreV3>8.1</BaseScoreV3>
+        <VectorV3>CVSS:3.0/AV:N/AC:L/PR:L/UI:N/S:U/C:N/I:H/A:H</VectorV3>
+      </ScoreSetV3>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Workaround">
+        <Description>There are no workarounds that address these vulnerabilities.</Description>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference Type="Self">
+        <URL>https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-ucsd-mult-vulns-UNfpdW4E</URL>
+        <Description>Multiple Vulnerabilities in Cisco UCS Director and Cisco UCS Director Express for Big Data</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+  <Vulnerability Ordinal="5" xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln">
+    <Title>vuln-CVE-2020-3247</Title>
+    <ID SystemName="Cisco Bug ID">CSCvs53502</ID>
+    <Notes>
+      <Note Title="Summary" Type="Summary" Ordinal="1">A vulnerability in the REST API endpoint of Cisco UCS Director could
+allow an authenticated remote attacker to conduct directory traversal
+attacks on an affected device.
+
+The vulnerability is due to insufficient validation of user-supplied
+input to the REST API of the affected software. An attacker could
+exploit this vulnerability by sending a malicious file to the REST API. A
+successful exploit could allow the attacker to write, or execute
+arbitrary files as the tomcat user.
+</Note>
+      <Note Title="Cisco Bug IDs" Type="Other" Ordinal="2">CSCvs53502,CSCvt39565</Note>
+    </Notes>
+    <CVE>CVE-2020-3247</CVE>
+    <ProductStatuses>
+      <Status Type="Known Affected">
+        <ProductID>CVRFPID-197112</ProductID>
+        <ProductID>CVRFPID-265076</ProductID>
+      </Status>
+    </ProductStatuses>
+    <CVSSScoreSets>
+      <ScoreSetV3>
+        <BaseScoreV3>8.1</BaseScoreV3>
+        <VectorV3>CVSS:3.0/AV:N/AC:L/PR:L/UI:N/S:U/C:N/I:H/A:H</VectorV3>
+      </ScoreSetV3>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Workaround">
+        <Description>There are no workarounds that address these vulnerabilities.</Description>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference Type="Self">
+        <URL>https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-ucsd-mult-vulns-UNfpdW4E</URL>
+        <Description>Multiple Vulnerabilities in Cisco UCS Director and Cisco UCS Director Express for Big Data</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+  <Vulnerability Ordinal="6" xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln">
+    <Title>vuln-CVE-2020-3252</Title>
+    <ID SystemName="Cisco Bug ID">CSCvs69022</ID>
+    <Notes>
+      <Note Title="Summary" Type="Summary" Ordinal="1">A vulnerability in the REST API endpoint of Cisco UCS Director could
+allow an authenticated remote attacker to conduct directory traversal
+attacks on an affected device.
+
+The vulnerability is due to insufficient validation of user-supplied
+input to the REST API of the affected software. An attacker could
+exploit this vulnerability by sending a crafted request to the REST API.
+A successful exploit could allow the attacker to read files as the
+tomcat user.
+</Note>
+      <Note Title="Cisco Bug IDs" Type="Other" Ordinal="2">CSCvs69022</Note>
+    </Notes>
+    <CVE>CVE-2020-3252</CVE>
+    <ProductStatuses>
+      <Status Type="Known Affected">
+        <ProductID>CVRFPID-197112</ProductID>
+      </Status>
+    </ProductStatuses>
+    <CVSSScoreSets>
+      <ScoreSetV3>
+        <BaseScoreV3>6.5</BaseScoreV3>
+        <VectorV3>CVSS:3.0/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:N/A:N</VectorV3>
+      </ScoreSetV3>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Workaround">
+        <Description>There are no workarounds that address these vulnerabilities.</Description>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference Type="Self">
+        <URL>https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-ucsd-mult-vulns-UNfpdW4E</URL>
+        <Description>Multiple Vulnerabilities in Cisco UCS Director and Cisco UCS Director Express for Big Data</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+  <Vulnerability Ordinal="7" xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln">
+    <Title>vuln-CVE-2020-3239</Title>
+    <ID SystemName="Cisco Bug ID">CSCvs53500</ID>
+    <Notes>
+      <Note Title="Summary" Type="Summary" Ordinal="1">A vulnerability in the REST API endpoint of Cisco UCS Director could
+allow an authenticated remote attacker to conduct directory traversal
+attacks on an affected device. 
+
+The vulnerability is due to insufficient validation of user-supplied
+input to the REST API of the affected software. An attacker could
+exploit this vulnerability by sending a malicious zip file to the REST
+API. A successful exploit could allow the attacker to write, or execute
+arbitrary files in the system with full administrative privileges.
+</Note>
+      <Note Title="Cisco Bug IDs" Type="Other" Ordinal="2">CSCvs53500,CSCvt39561</Note>
+    </Notes>
+    <CVE>CVE-2020-3239</CVE>
+    <ProductStatuses>
+      <Status Type="Known Affected">
+        <ProductID>CVRFPID-197112</ProductID>
+        <ProductID>CVRFPID-265076</ProductID>
+      </Status>
+    </ProductStatuses>
+    <CVSSScoreSets>
+      <ScoreSetV3>
+        <BaseScoreV3>8.1</BaseScoreV3>
+        <VectorV3>CVSS:3.0/AV:N/AC:L/PR:L/UI:N/S:U/C:N/I:H/A:H</VectorV3>
+      </ScoreSetV3>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Workaround">
+        <Description>There are no workarounds that address these vulnerabilities.</Description>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference Type="Self">
+        <URL>https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-ucsd-mult-vulns-UNfpdW4E</URL>
+        <Description>Multiple Vulnerabilities in Cisco UCS Director and Cisco UCS Director Express for Big Data</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+  <Vulnerability Ordinal="8" xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln">
+    <Title>vuln-CVE-2020-3240</Title>
+    <ID SystemName="Cisco Bug ID">CSCvs56399</ID>
+    <Notes>
+      <Note Title="Summary" Type="Summary" Ordinal="1">A vulnerability in the REST API endpoint of Cisco UCS Director could
+allow an authenticated remote attacker to execute arbitrary code with
+root privileges on the underlying operating system.
+
+The vulnerability is due to improper input validation. An attacker
+could exploit this vulnerability by crafting a malicious file and
+sending to the REST API. A successful exploit could allow the attacker
+to open a remote shell and execute code as root.
+</Note>
+      <Note Title="Cisco Bug IDs" Type="Other" Ordinal="2">CSCvs56399,CSCvt39555</Note>
+    </Notes>
+    <CVE>CVE-2020-3240</CVE>
+    <ProductStatuses>
+      <Status Type="Known Affected">
+        <ProductID>CVRFPID-197112</ProductID>
+        <ProductID>CVRFPID-265076</ProductID>
+      </Status>
+    </ProductStatuses>
+    <CVSSScoreSets>
+      <ScoreSetV3>
+        <BaseScoreV3>8.8</BaseScoreV3>
+        <VectorV3>CVSS:3.0/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H</VectorV3>
+      </ScoreSetV3>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Workaround">
+        <Description>There are no workarounds that address these vulnerabilities.</Description>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference Type="Self">
+        <URL>https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-ucsd-mult-vulns-UNfpdW4E</URL>
+        <Description>Multiple Vulnerabilities in Cisco UCS Director and Cisco UCS Director Express for Big Data</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+  <Vulnerability Ordinal="9" xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln">
+    <Title>vuln-CVE-2020-3250</Title>
+    <ID SystemName="Cisco Bug ID">CSCvs53493</ID>
+    <Notes>
+      <Note Title="Summary" Type="Summary" Ordinal="1">A vulnerability in the REST API endpoint of Cisco UCS Director could
+allow an unauthenticated remote attacker to bypass authentication and
+execute API calls on an affected device.
+
+The vulnerability is due to insufficient access control validation.
+An attacker could exploit this vulnerability by sending a request to the
+API endpoint. A successful exploit could allow the attacker to interact
+with the API and cause a potential Denial of Service.
+</Note>
+      <Note Title="Cisco Bug IDs" Type="Other" Ordinal="2">CSCvs53493,CSCvt39575</Note>
+    </Notes>
+    <CVE>CVE-2020-3250</CVE>
+    <ProductStatuses>
+      <Status Type="Known Affected">
+        <ProductID>CVRFPID-197112</ProductID>
+        <ProductID>CVRFPID-265076</ProductID>
+      </Status>
+    </ProductStatuses>
+    <CVSSScoreSets>
+      <ScoreSetV3>
+        <BaseScoreV3>8.6</BaseScoreV3>
+        <VectorV3>CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:L/A:H</VectorV3>
+      </ScoreSetV3>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Workaround">
+        <Description>There are no workarounds that address these vulnerabilities.</Description>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference Type="Self">
+        <URL>https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-ucsd-mult-vulns-UNfpdW4E</URL>
+        <Description>Multiple Vulnerabilities in Cisco UCS Director and Cisco UCS Director Express for Big Data</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+</cvrf:cvrfdoc>

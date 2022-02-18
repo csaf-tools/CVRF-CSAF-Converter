@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cvrf:cvrfdoc xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:cvrf-common="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/common" xmlns:cvrf="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/cvrf">
+  <cvrf:DocumentTitle>Texas Instruments Bluetooth Low Energy Denial of Service and Remote Code Execution Vulnerability</cvrf:DocumentTitle>
+  <cvrf:DocumentType>Cisco Security Advisory</cvrf:DocumentType>
+  <cvrf:DocumentPublisher Type="Vendor">
+    <cvrf:ContactDetails>Emergency Support:
++1 877 228 7302 (toll-free within North America)
++1 408 525 6532 (International direct-dial)
+Non-emergency Support:
+Email: psirt@cisco.com
+Support requests that are received via e-mail are typically acknowledged within 48 hours.</cvrf:ContactDetails>
+    <cvrf:IssuingAuthority>Cisco product security incident response is the responsibility of the Cisco Product Security Incident Response Team (PSIRT). The Cisco PSIRT is a dedicated, global team that manages the receipt, investigation, and public reporting of security vulnerability information that is related to Cisco products and networks. The on-call Cisco PSIRT works 24x7 with Cisco customers, independent security researchers, consultants, industry organizations, and other vendors to identify possible security issues with Cisco products and networks.
+More information can be found in Cisco Security Vulnerability Policy available at http://www.cisco.com/web/about/security/psirt/security_vulnerability_policy.html</cvrf:IssuingAuthority>
+  </cvrf:DocumentPublisher>
+  <cvrf:DocumentTracking>
+    <cvrf:Identification>
+      <cvrf:ID>cisco-sa-20181101-ap</cvrf:ID>
+    </cvrf:Identification>
+    <cvrf:Status>Final</cvrf:Status>
+    <cvrf:Version>1.4</cvrf:Version>
+    <cvrf:RevisionHistory>
+      <cvrf:Revision>
+        <cvrf:Number>1.0</cvrf:Number>
+        <cvrf:Date>2018-11-01T15:07:13</cvrf:Date>
+        <cvrf:Description>Initial public release.</cvrf:Description>
+      </cvrf:Revision>
+      <cvrf:Revision>
+        <cvrf:Number>1.0</cvrf:Number>
+        <cvrf:Date>2018-11-01T15:14:35</cvrf:Date>
+        <cvrf:Description>Initial public release.</cvrf:Description>
+      </cvrf:Revision>
+      <cvrf:Revision>
+        <cvrf:Number>1.1</cvrf:Number>
+        <cvrf:Date>2018-11-02T20:10:22</cvrf:Date>
+        <cvrf:Description>Added Cisco Aironet 1560 Series Outdoor Access Points as not vulnerable.</cvrf:Description>
+      </cvrf:Revision>
+      <cvrf:Revision>
+        <cvrf:Number>1.2</cvrf:Number>
+        <cvrf:Date>2018-12-13T20:58:56</cvrf:Date>
+        <cvrf:Description>Added the WLC command "show advanced ble summary" to get the BLE status from the WLC controller.</cvrf:Description>
+      </cvrf:Revision>
+      <cvrf:Revision>
+        <cvrf:Number>1.3</cvrf:Number>
+        <cvrf:Date>2019-01-02T16:48:21</cvrf:Date>
+        <cvrf:Description>The internal release mapping was updated.</cvrf:Description>
+      </cvrf:Revision>
+      <cvrf:Revision>
+        <cvrf:Number>1.4</cvrf:Number>
+        <cvrf:Date>2019-01-23T22:50:35</cvrf:Date>
+        <cvrf:Description>The Meraki product names and firmware versions were updated.</cvrf:Description>
+      </cvrf:Revision>
+    </cvrf:RevisionHistory>
+    <cvrf:InitialReleaseDate>2018-11-01T15:00:00</cvrf:InitialReleaseDate>
+    <cvrf:CurrentReleaseDate>2019-01-23T22:50:35</cvrf:CurrentReleaseDate>
+    <cvrf:Generator>
+      <cvrf:Engine>TVCE</cvrf:Engine>
+    </cvrf:Generator>
+  </cvrf:DocumentTracking>
+  <cvrf:DocumentNotes>
+    <cvrf:Note Title="Summary" Type="Summary" Ordinal="1">On November 1st, 2018, Armis announced the presence of a Remote Code  Execution (RCE) or Denial of Service (DoS) vulnerability in the Bluetooth Low Energy (BLE) Stack on Texas  Instruments (TI) chips CC2640 and CC2650. This vulnerability has been assigned the Common Vulnerabilities and Exposures (CVE) ID of CVE-2018-16986.
+
+The vulnerability is due to a memory corruption condition that may occur when processing malformed BLE frames. An attacker in close proximity to an affected device that is actively scanning could exploit the issue by broadcasting malformed BLE frames.  A successful exploit may result in the attacker gaining the ability to execute arbitrary code or cause a denial of service condition on an affected device.
+There are no workarounds that address this vulnerability.
+
+This advisory is available at the following link:
+https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20181101-ap ["https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20181101-ap"]</cvrf:Note>
+    <cvrf:Note Title="Vulnerable Products" Type="General" Ordinal="2">The following table lists Cisco products that are affected by the vulnerability described in this advisory:
+                                Product              Cisco Bug ID
+              Fixed Release Availability
+                                              Cisco 1540 Aironet Series Outdoor Access Points              CSCvk44163 ["https://tools.cisco.com/bugsearch/bug/CSCvk44163"]              8.8.100.0                                  Cisco 1800i Aironet Access Points
+              CSCvk44163 ["https://tools.cisco.com/bugsearch/bug/CSCvk44163"]              8.8.100.0
+                                  Cisco 1810 Aironet Access Points              CSCvk44163 ["https://tools.cisco.com/bugsearch/bug/CSCvk44163"]              8.8.100.0
+                                  Cisco 1815i Aironet Access Points              CSCvk44163 ["https://tools.cisco.com/bugsearch/bug/CSCvk44163"]               8.8.100.0                                  Cisco 1815m Aironet Access Points              CSCvk44163 ["https://tools.cisco.com/bugsearch/bug/CSCvk44163"]              8.8.100.0                                  Cisco 1815w Aironet Access Points              CSCvk44163 ["https://tools.cisco.com/bugsearch/bug/CSCvk44163"]              8.8.100.0                                  Cisco 4800 Aironet Access Points              CSCvk44163 ["https://tools.cisco.com/bugsearch/bug/CSCvk44163"]              8.8.100.0                                  Meraki MR30H Access Point              N/A              MR 25.13 and later                                  Meraki MR33 Access Point
+              N/A              MR 25.13 and later                                  Meraki MR74 Access Point              N/A
+              MR 25.13 and later                                   Meraki MR42E Access Point
+              N/A
+              MR 26.1 and later                                  Meraki MR53E Access Point              N/A
+              MR 26.1 and later
+Determining if the Cisco Aironet Access Point Supports BLE
+Cisco Aironet Access Points first supported the BLE feature in software release 8.7, which means an Access Point is only vulnerable if running software release 8.7.102.0 or 8.7.106.0. To determine if a device supports BLE, the administrator can issue the show controllers bleRadio 0 interface command. If the command is not recognized or the error message BLE not supported on this platform is displayed, the Access Point does not support BLE and is considered not vulnerable.
+
+
+ap# show controllers bleRadio 0 interface
+% Unrecognized command
+
+
+ap# show controllers bleRadio 0 interface
+BLE not supported on this platform
+
+Determining if the Cisco Aironet Access Point with BLE Support is Vulnerable
+If a Cisco Aironet Access Point does support BLE, it is only vulnerable if BLE is active and BLE scan mode is enabled (BLE scan mode is disabled by default). The administrator can issue the show controllers bleRadio 0 interface command and if the Device Status is Unknown the Access Point is not vulnerable.
+
+
+ap# show controllers bleRadio 0 interface
+
+Active BLE host interface       : /dev/ttyMSM1
+Device Status                   : Unknown
+Device resets                   : 0
+Heart beat status               : Off
+
+The Cisco Aironet Access Points have BLE scan mode disabled by default. The administrator can issue show controllers bleRadio 0 timers and if the Scan timer status is Not Running, the Access Point is not vulnerable.
+
+
+ap# show controllers bleRadio 0 timers
+
+Timers
+------
+Scan timer status       : Not Running
+
+In addition, if the administrator issues the show controllers bleRadio 0 scan brief and there are no entries displayed, the Access Point is not vulnerable.
+
+
+ap# show controllers bleRadio 0 scan brief
+Profile MAC  RSSI(-dBm)  RSSI@1meter(-dBm)  Last-heard
+
+Determining the BLE Status from the WLC Controller  The administrator can also issue the WLC controller command show advanced ble summary to get the BLE status of the Access Point from the WLC controller.
+
+wlc# show advanced ble summary
+Global BLE Mgmt Admin State: DOWN
+BLE summary for all APs
+AP Name                       Interface        Admin State  Operation State
+--------------------------    ---------        -----------  ---------------
+ap1800i-r2sw1-te-1-0-11       Integrated       DOWN         Non Operational
+ap3800i_r2-sw1-Te1-0-5        USB dongle       DOWN         Non Operational
+
+Determining the Cisco Wireless LAN Controller Software Release
+To determine which Cisco Wireless LAN Controller (WLC) Software release is running on a device, administrators can use the controller’s web interface or the CLI.
+
+To use the web interface, do the following:
+
+In a browser, log in to the controller’s web interface
+Click the Monitor tab
+Click Summary in the left pane
+Under Controller Summary, the Software Version field shows the release number of the software that is currently running on the device
+
+To use the CLI, log in to the controller via Telnet, issue the show sysinfo command, and then refer to the value in the Product Version field of the command output. The following example shows the command output for a device that is running Cisco WLC Software Release 8.7.106.0:
+
+
+(wlc)&gt; show sysinfo
+
+Manufacturer's Name.............................. Cisco Systems Inc.
+Product Name..................................... Cisco Controller
+Product Version.................................. 8.7.106.0
+Bootloader Version............................... 1.0.1
+Field Recovery Image Version..................... 6.0.182.0
+Firmware Version................................. FPGA 1.3, Env 1.6, USB console 1.27
+Build Type....................................... DATA + WPS
+.
+.
+.</cvrf:Note>
+    <cvrf:Note Title="Products Confirmed Not Vulnerable" Type="General" Ordinal="3">Only products listed in the Vulnerable Products ["#vp"] section of this advisory are known to be affected by this vulnerability.
+
+Cisco has confirmed that this vulnerability does not affect the following Cisco products:
+
+Aironet 1800s Active Sensor
+Aironet 1815t Series Access Points
+Aironet 1830 Series Access Points
+Aironet 1850 Series Access Points
+Aironet 1560 Series Outdoor Access Points
+Aironet 2800 Series Access Points
+Aironet 3800 Series Access Points
+Aironet Access Points - Running Cisco IOS Software</cvrf:Note>
+    <cvrf:Note Title="Workarounds" Type="General" Ordinal="4">There are no workarounds that address this vulnerability.</cvrf:Note>
+    <cvrf:Note Title="Fixed Software" Type="General" Ordinal="5">For information about fixed software releases, consult the Cisco bugs identified in the Vulnerable Products ["https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20181101-ap#vp"] section of this advisory.
+
+When considering software upgrades, customers are advised to regularly consult the advisories for Cisco products, which are available from the Cisco Security Advisories and Alerts ["https://www.cisco.com/go/psirt"] page, to determine exposure and a complete upgrade solution.
+
+In all cases, customers should ensure that the devices to be upgraded contain sufficient memory and confirm that current hardware and software configurations will continue to be supported properly by the new release. If the information is not clear, customers are advised to contact the Cisco TAC or their contracted maintenance providers.</cvrf:Note>
+    <cvrf:Note Title="Vulnerability Policy" Type="General" Ordinal="6">To learn about Cisco security vulnerability disclosure policies and publications, see the Security Vulnerability Policy ["http://www.cisco.com/web/about/security/psirt/security_vulnerability_policy.html"]. This document also contains instructions for obtaining fixed software and receiving security vulnerability information from Cisco.</cvrf:Note>
+    <cvrf:Note Title="Exploitation and Public Announcements" Type="General" Ordinal="7">The Cisco Product Security Incident Response Team (PSIRT) is not aware of any malicious use of the vulnerability that is described in this advisory.</cvrf:Note>
+    <cvrf:Note Title="Source" Type="General" Ordinal="8">Cisco would like to thank Ben Seri, VP of Research at Armis, for finding and reporting this vulnerability.</cvrf:Note>
+    <cvrf:Note Title="Legal Disclaimer" Type="Legal Disclaimer" Ordinal="9">THIS DOCUMENT IS PROVIDED ON AN "AS IS" BASIS AND DOES NOT IMPLY ANY KIND OF GUARANTEE OR WARRANTY, INCLUDING THE WARRANTIES OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR USE. YOUR USE OF THE INFORMATION ON THE DOCUMENT OR MATERIALS LINKED FROM THE DOCUMENT IS AT YOUR OWN RISK. CISCO RESERVES THE RIGHT TO CHANGE OR UPDATE THIS DOCUMENT AT ANY TIME.
+
+A standalone copy or paraphrase of the text of this document that omits the distribution URL is an uncontrolled copy and may lack important information or contain factual errors. The information in this document is intended for end users of Cisco products.</cvrf:Note>
+  </cvrf:DocumentNotes>
+  <cvrf:DocumentReferences>
+    <cvrf:Reference Type="Self">
+      <cvrf:URL>https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20181101-ap</cvrf:URL>
+      <cvrf:Description>Texas Instruments Bluetooth Low Energy Denial of Service and Remote Code Execution Vulnerability</cvrf:Description>
+    </cvrf:Reference>
+  </cvrf:DocumentReferences>
+  <ProductTree xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/prod">
+    <Branch Name="Cisco" Type="Vendor">
+      <Branch Name="Cisco Aironet Access Point Software" Type="Product Name">
+        <FullProductName ProductID="CVRFPID-190024">Cisco Aironet Access Point Software </FullProductName>
+      </Branch>
+    </Branch>
+  </ProductTree>
+  <Vulnerability Ordinal="1" xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln">
+    <Title>Texas Instrument Bluetooth Low Energy Remote Code Execution Vulnerability</Title>
+    <ID SystemName="Cisco Bug ID">CSCvk44163</ID>
+    <Notes>
+      <Note Title="Summary" Type="Summary" Ordinal="1">On November 1st, 2018, Armis announced the presence of a Remote Code
+Execution (RCE) or Denial of Service (DoS) vulnerability in the Bluetooth Low Energy (BLE) Stack on Texas
+Instruments (TI) chips CC2640 and CC2650. This vulnerability has been assigned the Common Vulnerabilities and Exposures (CVE) ID of CVE-2018-16986.
+
+
+
+The vulnerability is due to a memory corruption condition that may occur when processing malformed BLE frames. An attacker in close proximity to an affected device that is actively scanning could exploit the issue by broadcasting malformed BLE frames.  A successful exploit may result in the attacker gaining the ability to execute arbitrary code or cause a denial of service condition on an affected device.</Note>
+      <Note Title="Cisco Bug IDs" Type="Other" Ordinal="2">CSCvk44163</Note>
+    </Notes>
+    <CVE>CVE-2018-16986</CVE>
+    <ProductStatuses>
+      <Status Type="Known Affected">
+        <ProductID>CVRFPID-190024</ProductID>
+      </Status>
+    </ProductStatuses>
+    <CVSSScoreSets>
+      <ScoreSetV3>
+        <BaseScoreV3>8.8</BaseScoreV3>
+        <VectorV3>CVSS:3.0/AV:A/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H</VectorV3>
+      </ScoreSetV3>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Workaround">
+        <Description>There are no workarounds that address this vulnerability.</Description>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference Type="Self">
+        <URL>https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20181101-ap</URL>
+        <Description>Texas Instruments Bluetooth Low Energy Denial of Service and Remote Code Execution Vulnerability</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+</cvrf:cvrfdoc>

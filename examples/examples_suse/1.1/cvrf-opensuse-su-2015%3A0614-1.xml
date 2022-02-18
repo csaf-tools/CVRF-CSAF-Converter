@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cvrfdoc xmlns="http://www.icasi.org/CVRF/schema/cvrf/1.1" xmlns:cvrf="http://www.icasi.org/CVRF/schema/cvrf/1.1">
+  <DocumentTitle xml:lang="en">Security update for libXfont</DocumentTitle>
+  <DocumentType>SUSE Patch</DocumentType>
+  <DocumentPublisher Type="Vendor">
+    <ContactDetails>security@suse.de</ContactDetails>
+    <IssuingAuthority>SUSE Security Team</IssuingAuthority>
+  </DocumentPublisher>
+  <DocumentTracking>
+    <Identification>
+      <ID>openSUSE-SU-2015:0614-1</ID>
+    </Identification>
+    <Status>Final</Status>
+    <Version>1</Version>
+    <RevisionHistory>
+      <Revision>
+        <Number>1</Number>
+        <Date>2015-03-20T12:09:17Z</Date>
+        <Description>current</Description>
+      </Revision>
+    </RevisionHistory>
+    <InitialReleaseDate>2015-03-20T12:09:17Z</InitialReleaseDate>
+    <CurrentReleaseDate>2015-03-20T12:09:17Z</CurrentReleaseDate>
+    <Generator>
+      <Engine>cve-database/bin/generate-cvrf.pl</Engine>
+      <Date>2017-02-24T01:00:00Z</Date>
+    </Generator>
+  </DocumentTracking>
+  <DocumentNotes>
+    <Note Title="Topic" Type="Summary" Ordinal="1" xml:lang="en">Security update for libXfont</Note>
+    <Note Title="Details" Type="General" Ordinal="2" xml:lang="en">libXFont was updated to fix three vulnerabilities when parsing BDF files (bnc#921978)
+
+As libXfont is used by the X server to read font files, and an unprivileged user with access to the X server can tell the X server to read a given font file from a path of their choosing, these vulnerabilities have the potential to allow unprivileged users to run code with the privileges of the X server.
+
+The following vulnerabilities were fixed:
+* The BDF parser could allocate the a wrong buffer size, leading to out of bound writes (CVE-2015-1802)
+* The BDF parser could crash when trying to read an invalid pointer (CVE-2015-1803)
+* The BDF parser could read 32 bit metrics values into 16 bit integers, causing an out-of-bound memory access though integer overflow (CVE-2015-1804)</Note>
+    <Note Title="Terms of Use" Type="Legal Disclaimer" Ordinal="3" xml:lang="en">The CVRF data is provided by SUSE under the Creative Commons License 4.0 with Attribution for Non-Commercial usage (CC-BY-NC-4.0).</Note>
+  </DocumentNotes>
+  <DocumentDistribution xml:lang="en">Copyright SUSE LLC under the Creative Commons License 4.0 with Attribution for Non-Commercial usage (CC-BY-NC-4.0)</DocumentDistribution>
+  <DocumentReferences>
+    <Reference Type="Self">
+      <URL>https://lists.opensuse.org/opensuse-security-announce/2015-03/msg00032.html</URL>
+      <Description>E-Mail link for openSUSE-SU-2015:0614-1</Description>
+    </Reference>
+    <Reference Type="Self">
+      <URL>https://www.suse.com/support/security/rating/</URL>
+      <Description>SUSE Security Ratings</Description>
+    </Reference>
+  </DocumentReferences>
+  <ProductTree xmlns="http://www.icasi.org/CVRF/schema/prod/1.1">
+    <Branch Type="Product Version" Name="libXfont-1.4.6-2.12.1">
+      <FullProductName ProductID="libXfont-1.4.6-2.12.1">libXfont-1.4.6-2.12.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libXfont-devel-1.4.6-2.12.1">
+      <FullProductName ProductID="libXfont-devel-1.4.6-2.12.1">libXfont-devel-1.4.6-2.12.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libXfont-devel-32bit-1.4.6-2.12.1">
+      <FullProductName ProductID="libXfont-devel-32bit-1.4.6-2.12.1">libXfont-devel-32bit-1.4.6-2.12.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libXfont1-1.4.6-2.12.1">
+      <FullProductName ProductID="libXfont1-1.4.6-2.12.1">libXfont1-1.4.6-2.12.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libXfont1-32bit-1.4.6-2.12.1">
+      <FullProductName ProductID="libXfont1-32bit-1.4.6-2.12.1">libXfont1-32bit-1.4.6-2.12.1</FullProductName>
+    </Branch>
+  </ProductTree>
+  <Vulnerability xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1" Ordinal="1">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">The bdfReadProperties function in bitmap/bdfread.c in X.Org libXfont before 1.4.9 and 1.5.x before 1.5.1 allows remote authenticated users to cause a denial of service (out-of-bounds write and crash) or possibly execute arbitrary code via a (1) negative or (2) large property count in a BDF font file.</Note>
+    </Notes>
+    <CVE>CVE-2015-1802</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed"/>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-security-announce/2015-03/msg00032.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-1802.html</URL>
+        <Description>CVE-2015-1802</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/921978</URL>
+        <Description>SUSE Bug 921978</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+  <Vulnerability xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1" Ordinal="2">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">The bdfReadCharacters function in bitmap/bdfread.c in X.Org libXfont before 1.4.9 and 1.5.x before 1.5.1 does not properly handle character bitmaps it cannot read, which allows remote authenticated users to cause a denial of service (NULL pointer dereference and crash) and possibly execute arbitrary code via a crafted BDF font file.</Note>
+    </Notes>
+    <CVE>CVE-2015-1803</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed"/>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-security-announce/2015-03/msg00032.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-1803.html</URL>
+        <Description>CVE-2015-1803</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/921978</URL>
+        <Description>SUSE Bug 921978</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+  <Vulnerability xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1" Ordinal="3">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">The bdfReadCharacters function in bitmap/bdfread.c in X.Org libXfont before 1.4.9 and 1.5.x before 1.5.1 does not properly perform type conversion for metrics values, which allows remote authenticated users to cause a denial of service (out-of-bounds memory access) and possibly execute arbitrary code via a crafted BDF font file.</Note>
+    </Notes>
+    <CVE>CVE-2015-1804</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed"/>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-security-announce/2015-03/msg00032.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-1804.html</URL>
+        <Description>CVE-2015-1804</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/921978</URL>
+        <Description>SUSE Bug 921978</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+</cvrfdoc>

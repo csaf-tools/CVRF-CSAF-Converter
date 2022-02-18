@@ -1,0 +1,590 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cvrfdoc xmlns="http://www.icasi.org/CVRF/schema/cvrf/1.1" xmlns:cvrf="http://www.icasi.org/CVRF/schema/cvrf/1.1">
+  <DocumentTitle xml:lang="en">Security update for MozillaThunderbird</DocumentTitle>
+  <DocumentType>SUSE Patch</DocumentType>
+  <DocumentPublisher Type="Vendor">
+    <ContactDetails>security@suse.de</ContactDetails>
+    <IssuingAuthority>SUSE Security Team</IssuingAuthority>
+  </DocumentPublisher>
+  <DocumentTracking>
+    <Identification>
+      <ID>openSUSE-SU-2015:1454-1</ID>
+    </Identification>
+    <Status>Final</Status>
+    <Version>1</Version>
+    <RevisionHistory>
+      <Revision>
+        <Number>1</Number>
+        <Date>2015-08-19T12:58:33Z</Date>
+        <Description>current</Description>
+      </Revision>
+    </RevisionHistory>
+    <InitialReleaseDate>2015-08-19T12:58:33Z</InitialReleaseDate>
+    <CurrentReleaseDate>2015-08-19T12:58:33Z</CurrentReleaseDate>
+    <Generator>
+      <Engine>cve-database/bin/generate-cvrf.pl</Engine>
+      <Date>2017-02-24T01:00:00Z</Date>
+    </Generator>
+  </DocumentTracking>
+  <DocumentNotes>
+    <Note Title="Topic" Type="Summary" Ordinal="1" xml:lang="en">Security update for MozillaThunderbird</Note>
+    <Note Title="Details" Type="General" Ordinal="2" xml:lang="en">
+This update to Thunderbird 38.2.0 fixes the following issues (bnc#940806):
+
+  * MFSA 2015-79/CVE-2015-4473
+    Miscellaneous memory safety hazards
+  * MFSA 2015-80/CVE-2015-4475 (bmo#1175396)
+    Out-of-bounds read with malformed MP3 file
+  * MFSA 2015-82/CVE-2015-4478 (bmo#1105914)
+    Redefinition of non-configurable JavaScript object properties
+  * MFSA 2015-83/CVE-2015-4479/CVE-2015-4480/CVE-2015-4493
+    Overflow issues in libstagefright
+  * MFSA 2015-84/CVE-2015-4481 (bmo1171518)
+    Arbitrary file overwriting through Mozilla Maintenance Service
+    with hard links (only affected Windows)
+  * MFSA 2015-85/CVE-2015-4482 (bmo#1184500)
+    Out-of-bounds write with Updater and malicious MAR file
+    (does not affect openSUSE RPM packages which do not ship the
+     updater)
+  * MFSA 2015-87/CVE-2015-4484 (bmo#1171540)
+    Crash when using shared memory in JavaScript
+  * MFSA 2015-88/CVE-2015-4491 (bmo#1184009)
+    Heap overflow in gdk-pixbuf when scaling bitmap images
+  * MFSA 2015-89/CVE-2015-4485/CVE-2015-4486 (bmo#1177948, bmo#1178148)
+    Buffer overflows on Libvpx when decoding WebM video
+  * MFSA 2015-90/CVE-2015-4487/CVE-2015-4488/CVE-2015-4489
+    Vulnerabilities found through code inspection
+  * MFSA 2015-92/CVE-2015-4492 (bmo#1185820)
+    Use-after-free in XMLHttpRequest with shared workers
+</Note>
+    <Note Title="Terms of Use" Type="Legal Disclaimer" Ordinal="3" xml:lang="en">The CVRF data is provided by SUSE under the Creative Commons License 4.0 with Attribution for Non-Commercial usage (CC-BY-NC-4.0).</Note>
+  </DocumentNotes>
+  <DocumentDistribution xml:lang="en">Copyright SUSE LLC under the Creative Commons License 4.0 with Attribution for Non-Commercial usage (CC-BY-NC-4.0)</DocumentDistribution>
+  <DocumentReferences>
+    <Reference Type="Self">
+      <URL>https://lists.opensuse.org/opensuse-updates/2015-08/msg00031.html</URL>
+      <Description>E-Mail link for openSUSE-SU-2015:1454-1</Description>
+    </Reference>
+    <Reference Type="Self">
+      <URL>https://www.suse.com/support/security/rating/</URL>
+      <Description>SUSE Security Ratings</Description>
+    </Reference>
+  </DocumentReferences>
+  <ProductTree xmlns="http://www.icasi.org/CVRF/schema/prod/1.1">
+    <Branch Type="Product Version" Name="MozillaThunderbird-38.2.0-70.60.2">
+      <FullProductName ProductID="MozillaThunderbird-38.2.0-70.60.2">MozillaThunderbird-38.2.0-70.60.2</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="MozillaThunderbird-buildsymbols-38.2.0-70.60.2">
+      <FullProductName ProductID="MozillaThunderbird-buildsymbols-38.2.0-70.60.2">MozillaThunderbird-buildsymbols-38.2.0-70.60.2</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="MozillaThunderbird-devel-38.2.0-70.60.2">
+      <FullProductName ProductID="MozillaThunderbird-devel-38.2.0-70.60.2">MozillaThunderbird-devel-38.2.0-70.60.2</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="MozillaThunderbird-translations-common-38.2.0-70.60.2">
+      <FullProductName ProductID="MozillaThunderbird-translations-common-38.2.0-70.60.2">MozillaThunderbird-translations-common-38.2.0-70.60.2</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="MozillaThunderbird-translations-other-38.2.0-70.60.2">
+      <FullProductName ProductID="MozillaThunderbird-translations-other-38.2.0-70.60.2">MozillaThunderbird-translations-other-38.2.0-70.60.2</FullProductName>
+    </Branch>
+  </ProductTree>
+  <Vulnerability xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1" Ordinal="1">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">Multiple unspecified vulnerabilities in the browser engine in Mozilla Firefox before 40.0 and Firefox ESR 38.x before 38.2 allow remote attackers to cause a denial of service (memory corruption and application crash) or possibly execute arbitrary code via unknown vectors.</Note>
+    </Notes>
+    <CVE>CVE-2015-4473</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed"/>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>important</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSet>
+        <BaseScore>6.8</BaseScore>
+        <Vector>AV:N/AC:M/Au:N/C:P/I:P/A:P</Vector>
+      </ScoreSet>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-updates/2015-08/msg00031.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-4473.html</URL>
+        <Description>CVE-2015-4473</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/940806</URL>
+        <Description>SUSE Bug 940806</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+  <Vulnerability xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1" Ordinal="2">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">The mozilla::AudioSink function in Mozilla Firefox before 40.0 and Firefox ESR 38.x before 38.2 mishandles inconsistent sample formats within MP3 audio data, which allows remote attackers to execute arbitrary code or cause a denial of service (out-of-bounds read) via a malformed file.</Note>
+    </Notes>
+    <CVE>CVE-2015-4475</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed"/>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-updates/2015-08/msg00031.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-4475.html</URL>
+        <Description>CVE-2015-4475</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/940806</URL>
+        <Description>SUSE Bug 940806</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+  <Vulnerability xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1" Ordinal="3">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">Mozilla Firefox before 40.0 and Firefox ESR 38.x before 38.2 do not impose certain ECMAScript 6 requirements on JavaScript object properties, which allows remote attackers to bypass the Same Origin Policy via the reviver parameter to the JSON.parse method.</Note>
+    </Notes>
+    <CVE>CVE-2015-4478</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed"/>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-updates/2015-08/msg00031.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-4478.html</URL>
+        <Description>CVE-2015-4478</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/940806</URL>
+        <Description>SUSE Bug 940806</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+  <Vulnerability xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1" Ordinal="4">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">Multiple integer overflows in libstagefright in Mozilla Firefox before 40.0 and Firefox ESR 38.x before 38.2 allow remote attackers to execute arbitrary code via a crafted saio chunk in MPEG-4 video data.</Note>
+    </Notes>
+    <CVE>CVE-2015-4479</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed"/>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>important</Description>
+      </Threat>
+    </Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-updates/2015-08/msg00031.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-4479.html</URL>
+        <Description>CVE-2015-4479</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/940806</URL>
+        <Description>SUSE Bug 940806</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+  <Vulnerability xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1" Ordinal="5">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">Integer overflow in the stagefright::SampleTable::isValid function in libstagefright in Mozilla Firefox before 40.0 and Firefox ESR 38.x before 38.2 allows remote attackers to execute arbitrary code via crafted MPEG-4 video data with H.264 encoding.</Note>
+    </Notes>
+    <CVE>CVE-2015-4480</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed"/>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>important</Description>
+      </Threat>
+    </Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-updates/2015-08/msg00031.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-4480.html</URL>
+        <Description>CVE-2015-4480</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/940806</URL>
+        <Description>SUSE Bug 940806</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+  <Vulnerability xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1" Ordinal="6">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">Race condition in the Mozilla Maintenance Service in Mozilla Firefox before 40.0 and Firefox ESR 38.x before 38.2 on Windows allows local users to write to arbitrary files and consequently gain privileges via vectors involving a hard link to a log file during an update.</Note>
+    </Notes>
+    <CVE>CVE-2015-4481</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed"/>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>low</Description>
+      </Threat>
+    </Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-updates/2015-08/msg00031.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-4481.html</URL>
+        <Description>CVE-2015-4481</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/940806</URL>
+        <Description>SUSE Bug 940806</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+  <Vulnerability xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1" Ordinal="7">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">mar_read.c in the Updater in Mozilla Firefox before 40.0 and Firefox ESR 38.x before 38.2 allows local users to gain privileges or cause a denial of service (out-of-bounds write) via a crafted name of a Mozilla Archive (aka MAR) file.</Note>
+    </Notes>
+    <CVE>CVE-2015-4482</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed"/>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-updates/2015-08/msg00031.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-4482.html</URL>
+        <Description>CVE-2015-4482</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/940806</URL>
+        <Description>SUSE Bug 940806</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+  <Vulnerability xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1" Ordinal="8">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">The js::jit::AssemblerX86Shared::lock_addl function in the JavaScript implementation in Mozilla Firefox before 40.0 and Firefox ESR 38.x before 38.2 allows remote attackers to cause a denial of service (application crash) by leveraging the use of shared memory and accessing (1) an Atomics object or (2) a SharedArrayBuffer object.</Note>
+    </Notes>
+    <CVE>CVE-2015-4484</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed"/>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-updates/2015-08/msg00031.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-4484.html</URL>
+        <Description>CVE-2015-4484</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/940806</URL>
+        <Description>SUSE Bug 940806</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+  <Vulnerability xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1" Ordinal="9">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">Heap-based buffer overflow in the resize_context_buffers function in libvpx in Mozilla Firefox before 40.0 and Firefox ESR 38.x before 38.2 allows remote attackers to execute arbitrary code via malformed WebM video data.</Note>
+    </Notes>
+    <CVE>CVE-2015-4485</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed"/>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>important</Description>
+      </Threat>
+    </Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-updates/2015-08/msg00031.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-4485.html</URL>
+        <Description>CVE-2015-4485</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/940806</URL>
+        <Description>SUSE Bug 940806</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+  <Vulnerability xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1" Ordinal="10">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">The decrease_ref_count function in libvpx in Mozilla Firefox before 40.0 and Firefox ESR 38.x before 38.2 allows remote attackers to execute arbitrary code or cause a denial of service (out-of-bounds read) via malformed WebM video data.</Note>
+    </Notes>
+    <CVE>CVE-2015-4486</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed"/>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>important</Description>
+      </Threat>
+    </Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-updates/2015-08/msg00031.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-4486.html</URL>
+        <Description>CVE-2015-4486</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/940806</URL>
+        <Description>SUSE Bug 940806</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+  <Vulnerability xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1" Ordinal="11">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">The nsTSubstring::ReplacePrep function in Mozilla Firefox before 40.0, Firefox ESR 38.x before 38.2, and Firefox OS before 2.2 might allow remote attackers to cause a denial of service (memory corruption) or possibly have unspecified other impact via unknown vectors, related to an "overflow."</Note>
+    </Notes>
+    <CVE>CVE-2015-4487</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed"/>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-updates/2015-08/msg00031.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-4487.html</URL>
+        <Description>CVE-2015-4487</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/940806</URL>
+        <Description>SUSE Bug 940806</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+  <Vulnerability xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1" Ordinal="12">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">Use-after-free vulnerability in the StyleAnimationValue class in Mozilla Firefox before 40.0, Firefox ESR 38.x before 38.2, and Firefox OS before 2.2 allows remote attackers to have an unspecified impact by leveraging a StyleAnimationValue::operator self assignment.</Note>
+    </Notes>
+    <CVE>CVE-2015-4488</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed"/>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-updates/2015-08/msg00031.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-4488.html</URL>
+        <Description>CVE-2015-4488</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/940806</URL>
+        <Description>SUSE Bug 940806</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+  <Vulnerability xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1" Ordinal="13">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">The nsTArray_Impl class in Mozilla Firefox before 40.0, Firefox ESR 38.x before 38.2, and Firefox OS before 2.2 might allow remote attackers to cause a denial of service (memory corruption) or possibly have unspecified other impact by leveraging a self assignment.</Note>
+    </Notes>
+    <CVE>CVE-2015-4489</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed"/>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-updates/2015-08/msg00031.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-4489.html</URL>
+        <Description>CVE-2015-4489</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/940806</URL>
+        <Description>SUSE Bug 940806</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+  <Vulnerability xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1" Ordinal="14">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">Integer overflow in the make_filter_table function in pixops/pixops.c in gdk-pixbuf before 2.31.5, as used in Mozilla Firefox before 40.0 and Firefox ESR 38.x before 38.2 on Linux, Google Chrome on Linux, and other products, allows remote attackers to execute arbitrary code or cause a denial of service (heap-based buffer overflow and application crash) via crafted bitmap dimensions that are mishandled during scaling.</Note>
+    </Notes>
+    <CVE>CVE-2015-4491</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed"/>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSet>
+        <BaseScore>6.8</BaseScore>
+        <Vector>AV:N/AC:M/Au:N/C:P/I:P/A:P</Vector>
+      </ScoreSet>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-updates/2015-08/msg00031.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-4491.html</URL>
+        <Description>CVE-2015-4491</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/940806</URL>
+        <Description>SUSE Bug 940806</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/942801</URL>
+        <Description>SUSE Bug 942801</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/948790</URL>
+        <Description>SUSE Bug 948790</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+  <Vulnerability xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1" Ordinal="15">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">Use-after-free vulnerability in the XMLHttpRequest::Open implementation in Mozilla Firefox before 40.0 and Firefox ESR 38.x before 38.2 might allow remote attackers to execute arbitrary code via a SharedWorker object that makes recursive calls to the open method of an XMLHttpRequest object.</Note>
+    </Notes>
+    <CVE>CVE-2015-4492</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed"/>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-updates/2015-08/msg00031.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-4492.html</URL>
+        <Description>CVE-2015-4492</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/940806</URL>
+        <Description>SUSE Bug 940806</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+  <Vulnerability xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1" Ordinal="16">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">Heap-based buffer overflow in the stagefright::ESDS::parseESDescriptor function in libstagefright in Mozilla Firefox before 40.0 and Firefox ESR 38.x before 38.2 allows remote attackers to execute arbitrary code via an invalid size field in an esds chunk in MPEG-4 video data, a related issue to CVE-2015-1539.</Note>
+    </Notes>
+    <CVE>CVE-2015-4493</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed"/>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>important</Description>
+      </Threat>
+    </Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-updates/2015-08/msg00031.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-4493.html</URL>
+        <Description>CVE-2015-4493</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/940806</URL>
+        <Description>SUSE Bug 940806</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+</cvrfdoc>

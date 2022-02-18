@@ -1,0 +1,714 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cvrf:cvrfdoc xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:cvrf-common="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/common" xmlns:cvrf="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/cvrf">
+  <cvrf:DocumentTitle>Vulnerability in Java Deserialization Affecting Cisco Products</cvrf:DocumentTitle>
+  <cvrf:DocumentType>Cisco Security Advisory</cvrf:DocumentType>
+  <cvrf:DocumentPublisher Type="Vendor">
+    <cvrf:ContactDetails>Emergency Support:
++1 877 228 7302 (toll-free within North America)
++1 408 525 6532 (International direct-dial)
+Non-emergency Support:
+Email: psirt@cisco.com
+Support requests that are received via e-mail are typically acknowledged within 48 hours.</cvrf:ContactDetails>
+    <cvrf:IssuingAuthority>Cisco product security incident response is the responsibility of the Cisco Product Security Incident Response Team (PSIRT). The Cisco PSIRT is a dedicated, global team that manages the receipt, investigation, and public reporting of security vulnerability information that is related to Cisco products and networks. The on-call Cisco PSIRT works 24x7 with Cisco customers, independent security researchers, consultants, industry organizations, and other vendors to identify possible security issues with Cisco products and networks.
+More information can be found in Cisco Security Vulnerability Policy available at http://www.cisco.com/web/about/security/psirt/security_vulnerability_policy.html</cvrf:IssuingAuthority>
+  </cvrf:DocumentPublisher>
+  <cvrf:DocumentTracking>
+    <cvrf:Identification>
+      <cvrf:ID>cisco-sa-20151209-java-deserialization</cvrf:ID>
+    </cvrf:Identification>
+    <cvrf:Status>Interim</cvrf:Status>
+    <cvrf:Version>1.10</cvrf:Version>
+    <cvrf:RevisionHistory>
+      <cvrf:Revision>
+        <cvrf:Number>1.0</cvrf:Number>
+        <cvrf:Date>2015-12-09T15:34:34</cvrf:Date>
+        <cvrf:Description>Initial public release.</cvrf:Description>
+      </cvrf:Revision>
+      <cvrf:Revision>
+        <cvrf:Number>1.1</cvrf:Number>
+        <cvrf:Date>2015-12-10T19:45:58</cvrf:Date>
+        <cvrf:Description>Assigned a unique CVE ID for Cisco products and updated the affected products.</cvrf:Description>
+      </cvrf:Revision>
+      <cvrf:Revision>
+        <cvrf:Number>1.2</cvrf:Number>
+        <cvrf:Date>2015-12-15T13:55:39</cvrf:Date>
+        <cvrf:Description>Updated the affected products.</cvrf:Description>
+      </cvrf:Revision>
+      <cvrf:Revision>
+        <cvrf:Number>1.3</cvrf:Number>
+        <cvrf:Date>2015-12-17T13:57:58</cvrf:Date>
+        <cvrf:Description>Updated the affected products.</cvrf:Description>
+      </cvrf:Revision>
+      <cvrf:Revision>
+        <cvrf:Number>1.4</cvrf:Number>
+        <cvrf:Date>2015-12-18T13:26:59</cvrf:Date>
+        <cvrf:Description>Updated the affected products.</cvrf:Description>
+      </cvrf:Revision>
+      <cvrf:Revision>
+        <cvrf:Number>1.5</cvrf:Number>
+        <cvrf:Date>2015-12-22T13:48:53</cvrf:Date>
+        <cvrf:Description>Updated the affected products.</cvrf:Description>
+      </cvrf:Revision>
+      <cvrf:Revision>
+        <cvrf:Number>1.6</cvrf:Number>
+        <cvrf:Date>2015-12-23T21:06:11</cvrf:Date>
+        <cvrf:Description>Updated the affected products.</cvrf:Description>
+      </cvrf:Revision>
+      <cvrf:Revision>
+        <cvrf:Number>1.7</cvrf:Number>
+        <cvrf:Date>2016-01-05T19:53:06</cvrf:Date>
+        <cvrf:Description>Updated the affected products.</cvrf:Description>
+      </cvrf:Revision>
+      <cvrf:Revision>
+        <cvrf:Number>1.8</cvrf:Number>
+        <cvrf:Date>2016-01-12T13:51:14</cvrf:Date>
+        <cvrf:Description>Updated the affected products.</cvrf:Description>
+      </cvrf:Revision>
+      <cvrf:Revision>
+        <cvrf:Number>1.9</cvrf:Number>
+        <cvrf:Date>2016-02-02T14:52:21</cvrf:Date>
+        <cvrf:Description>Updated the affected products.</cvrf:Description>
+      </cvrf:Revision>
+      <cvrf:Revision>
+        <cvrf:Number>1.9</cvrf:Number>
+        <cvrf:Date>2016-02-18T21:49:55</cvrf:Date>
+        <cvrf:Description>Updated the affected products.</cvrf:Description>
+      </cvrf:Revision>
+      <cvrf:Revision>
+        <cvrf:Number>1.10</cvrf:Number>
+        <cvrf:Date>2016-02-25T15:11:22</cvrf:Date>
+        <cvrf:Description>Updated the affected products.</cvrf:Description>
+      </cvrf:Revision>
+      <cvrf:Revision>
+        <cvrf:Number>1.10</cvrf:Number>
+        <cvrf:Date>2019-01-07T19:53:07</cvrf:Date>
+        <cvrf:Description>Updated the affected products.</cvrf:Description>
+      </cvrf:Revision>
+    </cvrf:RevisionHistory>
+    <cvrf:InitialReleaseDate>2015-12-09T16:00:00</cvrf:InitialReleaseDate>
+    <cvrf:CurrentReleaseDate>2019-01-07T19:53:07</cvrf:CurrentReleaseDate>
+    <cvrf:Generator>
+      <cvrf:Engine>TVCE</cvrf:Engine>
+    </cvrf:Generator>
+  </cvrf:DocumentTracking>
+  <cvrf:DocumentNotes>
+    <cvrf:Note Title="Summary" Type="Summary" Ordinal="1">A vulnerability in the Java deserialization used by the Apache Commons Collections (ACC) library could allow an unauthenticated, remote attacker to execute arbitrary code.
+
+The vulnerability is due to insecure deserialization of user-supplied content by the affected software. An attacker could exploit this vulnerability by submitting crafted input to an application on a targeted system that uses the ACC library. After the vulnerable library on the affected system deserializes the content, the attacker could execute arbitrary code on the system, which could be used to conduct further attacks.
+
+On November 6, 2015, Foxglove Security Group published information about a remote code execution vulnerability that affects multiple releases of the ACC library. The report contains detailed proof-of-concept code for a number of applications, including WebSphere Application Server, JBoss, Jenkins, OpenNMS, and WebLogic. This is a remotely exploitable vulnerability that allows an attacker to inject any malicious code or execute any commands that exist on the server. A wide range of potential impacts includes allowing the attacker to obtain sensitive information.
+
+Object serialization is a technique that many programming languages use to convert an object into a sequence of bits for transfer purposes. Deserialization is a technique that reassembles those bits back to an object. This vulnerability occurs in Java object serialization for network transport and object deserialization on the receiving side.
+
+Many applications accept serialized objects from the network without performing input validation checks before deserializing it. Crafted serialized objects can therefore lead to execution of arbitrary attacker code.
+
+Although the problem itself is in the serialization and deserialization functionality of the Java programming language, the ACC library is known to be affected by this vulnerability. Any application or application framework could be vulnerable if it uses the ACC library and deserializes arbitrary, user-supplied Java serialized data.
+
+Additional details about the vulnerability are available at the following links:
+
+  Official Vulnerability Note from CERT ["http://www.kb.cert.org/vuls/id/576313"]
+Foxglove Security ["http://foxglovesecurity.com/2015/11/06/what-do-weblogic-websphere-jboss-jenkins-opennms-and-your-application-have-in-common-this-vulnerability/"]
+Apache Commons Statement ["https://blogs.apache.org/foundation/entry/apache_commons_statement_to_widespread"]
+Oracle Security Alert ["https://blogs.oracle.com/security/entry/security_alert_cve_2015_4852"]
+
+  Cisco will release software updates that address this vulnerability. There are no workarounds that address this vulnerability.
+
+This advisory is available at the following link:
+http://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20151209-java-deserialization ["http://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20151209-java-deserialization"]</cvrf:Note>
+    <cvrf:Note Title="Affected Products" Type="General" Ordinal="2">Products Under Investigation
+
+The following products are under active investigation to determine whether they are affected by the vulnerability that is described in this advisory.
+
+Voice and Unified Communications Devices
+
+Cisco Unified Integration for IBM Sametime
+Cisco Unified Workforce Optimization
+Video, Streaming, TelePresence, and Transcoding Devices
+
+Cisco TelePresence 1310
+Cisco TelePresence System 1000
+Cisco TelePresence System 1100
+Cisco TelePresence System 1300
+Cisco TelePresence System 3000 Series
+Cisco TelePresence System 500-32
+Cisco TelePresence System 500-37
+Cisco TelePresence TX 9000 Series</cvrf:Note>
+    <cvrf:Note Title="Vulnerable Products" Type="General" Ordinal="3">The following table lists Cisco products that are affected by the vulnerability that is described in this advisory.
+
+                              Product              Defect              Fixed releases availability                                  Cable Modems                                  Cisco WebEx Meetings Server versions 1.x              CSCux17638 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCux17638"]                                                Cisco WebEx Meetings Server versions 2.x              CSCux17638 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCux17638"]                                                Digital Life RMS 1.8.1.1              Cisco Broadband Access Center Telco Wireless 3.8.1              CSCux34660 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCux34660"]                                                Collaboration and Social Media                                  Cisco SocialMiner              CSCux34833 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCux34833"]                                                Cisco WebEx Meetings              CSCux21425 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCux21425"]                                                Network Application, Service, and Acceleration                                  Cisco InTracer              CSCux35041 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCux35041"]                                                Cisco Network Admission Control (NAC)              CSCux35101 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCux35101"]                                                Cisco Visual Quality Experience Server              CSCux34725 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCux34725"]                                                Cisco Visual Quality Experience Tools Server              CSCux34725 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCux34725"]                                                Network and Content Security Devices                                  Cisco ASA CX and Cisco Prime Security Manager              CSCux34742 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCux34742"]                                                Cisco Clean Access Manager              CSCux34981 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCux34981"]                                                Cisco Identity Services Engine (ISE)              CSCux35116 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCux35116"]                                                Cisco NAC Appliance (Clean Access Server)              CSCux34982 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCux34982"]                                                Cisco NAC Server              CSCux34983 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCux34983"]                                                Cisco Secure Access Control System (ACS)              CSCux34781 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCux34781"]                                                Network Management and Provisioning                                  Cisco Access Registrar Appliance              CSCux34652 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCux34652"]                                                Cisco Cloupia Unified Infrastructure Controller              CSCux35070 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCux35070"]                                                Cisco Configuration Professional              CSCux35040 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCux35040"]                                                Cisco Digital Media Manager              CSCux34692 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCux34692"]                                                Cisco Insight Reporter              CSCux34694 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCux34694"]                                                Cisco Prime Access Registrar Appliance              CSCux34652 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCux34652"]                                                Cisco Prime Access Registrar              CSCux34955 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCux34955"]                                                Cisco Prime Central for SPs              CSCux34667 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCux34667"]                                                Cisco Prime Collaboration Provisioning              CSCux34669 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCux34669"]                                                Cisco Prime Home              CSCux34666 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCux34666"]                                                Cisco Prime Infrastructure              CSCux34665 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCux34665"]                                                Cisco Prime LAN Management Solution (LMS - Solaris)              CSCux34647 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCux34647"]                                                Cisco Prime License Manager              CSCux34705 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCux34705"]                                                Cisco Prime Network Services Controller              CSCux34672 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCux34672"]                                                Cisco Prime Optical for SPs              CSCux34656 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCux34656"]                                                Cisco Prime Performance Manager              CSCux34953 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCux34953"]                                                Cisco Prime Provisioning for SPs              CSCux34664 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCux34664"]                                                Cisco Prime Provisioning              CSCux35084 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCux35084"]                                                Cisco Prime Security Manager              CSCux35106 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCux35106"]                                                Cisco Prime Service Catalog Virtual Appliance              CSCux34715 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCux34715"]                                                Cisco Security Manager              CSCux34671 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCux34671"]                                                Cisco Unified Intelligent Center              CSCux35044 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCux35044"]                                                Local Collector Appliance (LCA)              CSCux34812 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCux34812"]                                                Unified Communications Deployment Tools              CSCux34584 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCux34584"]                                                Routing and Switching - Enterprise and Service Provider                                  Cisco Broadband Access Center Telco Wireless              CSCux34645 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCux34645"]                                                Unified Computing                                  Cisco UCS Director              CSCux34942 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCux34942"]                                                Voice and Unified Communications Devices                                  Cisco Computer Telephony Integration Object Server (CTIOS)              CSCux34589 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCux34589"]              A fix will be available May 6
+2016                                  Cisco Emergency Responder              CSCux34852 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCux34852"]                                                Cisco Hosted Collaboration Mediation Fulfillment              CSCux34859 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCux34859"]                                                Cisco IM and Presence Service (CUPS)              CSCux34855 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCux34855"]                                                Cisco IP Interoperability and Collaboration System (IPICS)              CSCux34720 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCux34720"]                                                Cisco Management Heartbeat Server              CSCux35009 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCux35009"]                                                Cisco MediaSense              CSCux34874 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCux34874"]              11.0
+10.5 (March 2016)
+11.5 (June 2016)                                  Cisco MeetingPlace              CSCux35147 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCux35147"]                                                Cisco USC8088              CSCux35125 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCux35125"]                                                Cisco Unified Attendant Console Advanced              CSCux34827 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCux34827"]                                                Cisco Unified Attendant Console Business Edition              CSCux34827 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCux34827"]                                                Cisco Unified Attendant Console Department Edition              CSCux34827 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCux34827"]                                                Cisco Unified Attendant Console Enterprise Edition              CSCux34827 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCux34827"]                                                Cisco Unified Attendant Console Premium Edition              CSCux34827 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCux34827"]                                                Cisco Unified Communications Domain Manager              CSCux35022 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCux35022"]                                                Cisco Unified Communications Manager (UCM)              CSCux34835 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCux34835"]                                                Cisco Unified Communications Manager Session Management Edition (SME)              CSCux34835 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCux34835"]                                                Cisco Unified Contact Center Enterprise              CSCux34589 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCux34589"]              A fix will be available May 6
+2016                                  Cisco Unified Contact Center Express              CSCux34844 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCux34844"]                                                Cisco Unified E-Mail Interaction Manager              CSCux34853 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCux34853"]                                                Cisco Unified Intelligent Contact Management Enterprise              CSCux34589 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCux34589"]              A fix will be available May 6
+2016                                  Cisco Unified Sip Proxy              CSCux34567 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCux34567"]                                                Cisco Unified Web Interaction Manager              CSCux34853 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCux34853"]                                                Cisco Unity Connection (UC)              CSCux35135 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCux35135"]                                                Cisco Voice Portal (CVP)              CSCux35046 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCux35046"]                                                Video, Streaming, TelePresence, and Transcoding Devices                                  Cisco Digital Transport Adapter Control System (DTACS)              CSCux34796 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCux34796"]                                                Cisco Media Experience Engines (MXE)              CSCux34968 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCux34968"]                                                Cisco Show and Share              CSCux34708 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCux34708"]                                                Cisco TelePresence Exchange System (CTX)              CSCux34690 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCux34690"]                                                Cisco VDS Service Broker              CSCux34804 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCux34804"]                                                Cisco Video Distribution Suite for Internet Streaming (VDS-IS/CDS-IS)              CSCux34724 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCux34724"]                                                Cisco Videoscape Conductor              CSCux34792 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCux34792"]                                                Cisco Videoscape Control Suite              CSCux34974 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCux34974"]                                                Explorer Controller (EC) system              CSCux34795 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCux34795"]                                                Wireless                                  Cisco Mobility Services Engine (MSE)              CSCux35085 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCux35085"]                                                Cisco Hosted Services                                  Business Video Services Automation Software (BV)              CSCux34572 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCux34572"]                                                Cisco Cloud Email Security              CSCux34593 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCux34593"]                                                Cisco Cloud Services              CSCux34688 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCux34688"]                                                Cisco Cloud Web Security              CSCux35002 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCux35002"]                                                Cisco Cloud and Systems Management              CSCux34926 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCux34926"]                                                Cisco Proactive Network Operations Center              CSCux34582 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCux34582"]                                                Cisco Registered Envelope Service (CRES)              CSCux34591 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCux34591"]                                                Cisco Services Provisioning Platform (SPP)              CSCux34885 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCux34885"]              3.2.2 (Jan 2016)                                  Cisco Smart Care              CSCux34985 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCux34985"]                                                Cisco Unified Services Delivery Platform (CUSDP)              CSCux34779 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCux34779"]                                                Communication/Collaboration Sizing Tool, Virtue Machine Placement Tool, Cisco Unified Communications Upgrade Readiness Assessment              CSCux34881 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCux34881"]                                                DCAF UCS Collector              CSCux34924 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCux34924"]                                                Data Center Analytics Framework (DCAF)              CSCux34575 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCux34575"]                                                Life Cycle Management Agent Manager (LCM)              CSCux34927 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCux34927"]                                                Network Change and Configuration Management              CSCux34580 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCux34580"]                                                Partner Supporting Service (PSS) 1.x              CSCux34739 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCux34739"]                                                SI component of Partner Supporting Service              CSCux34738 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCux34738"]                                                Serial Number Assessment Service (SNAS)              CSCux34991 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCux34991"]                                                Services Analytic Platform              CSCux35043 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCux35043"]                                                Smart Net Total Care (SNTC)              CSCux34987 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCux34987"]                                                Smart Net Total Care              CSCux34730 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCux34730"]</cvrf:Note>
+    <cvrf:Note Title="Products Confirmed Not Vulnerable" Type="General" Ordinal="4">The following products are not affected by the vulnerability that is described in this advisory.
+
+Cable Modems
+
+Cisco 3G Femtocell Wireless
+Cisco Unified IP Phone 6921
+Collaboration and Social Media
+
+Cisco WebEx Node for MCS
+Endpoint Clients and Client Software
+
+Cisco Agent for OpenFlow
+Cisco AnyConnect Secure Mobility Client for Android
+Cisco AnyConnect Secure Mobility Client for Linux
+Cisco AnyConnect Secure Mobility Client for Windows
+Cisco AnyConnect Secure Mobility Client for iOS
+Cisco IP Communicator
+Cisco Jabber Guest 10.0(2)
+Cisco Jabber Software Development Kit
+Cisco Jabber for Android
+Cisco Jabber for Mac
+Cisco Jabber for Windows
+Cisco Jabber for iOS
+Cisco MMP server
+Cisco NAC Agent for Mac
+Cisco NAC Agent for Web
+Cisco NAC Agent for Windows
+Cisco UC Integration for Microsoft Lync
+Cisco Virtualization Experience Media Engine
+Cisco WebEx Meetings Client - Hosted
+Cisco WebEx Meetings Client - On Premises
+Cisco WebEx Meetings for Android
+Cisco WebEx Meetings for BlackBerry
+Cisco WebEx Meetings for WP8
+Cisco WebEx Productivity Tools
+JCF components
+WebEx Meetings Server - SSL Gateway
+WebEx Recording Playback Client
+Network Application, Service, and Acceleration
+
+Cisco ACE 30 Application Control Engine Module
+Cisco ACE 4710 Application Control Engine (A5)
+Cisco Adaptive Security Appliance (ASA) Software
+Cisco Application Control Engine (ACE30/ ACE 4710)
+Cisco Application and Content Networking System (ACNS)
+Cisco Extensible Network Controller (XNC)
+Cisco Nexus Data Broker (NDB)
+Content Services Switch
+Network and Content Security Devices
+
+Cisco ASA Content Security and Control (CSC) Security Services Module
+Cisco ASA Next-Generation Firewall Services
+Cisco Adaptive Security Appliance (ASA)
+Cisco Adaptive Security Device Manager
+Cisco Content Security Appliance Updater Servers
+Cisco Content Security Management Appliance (SMA)
+Cisco Email Security Appliance (ESA)
+Cisco IPS
+Cisco Intrusion Prevention System Solutions (IPS)
+Cisco IronPort Encryption Appliance (IEA)
+Cisco NAC Guest Server
+Cisco Physical Access Control Gateway
+Cisco Physical Access Manager
+Cisco Security Management Appliance (SMA)
+Cisco Virtual Security Gateway for Microsoft Hyper-V
+Cisco Web Security Appliance (WSA)
+Network Management and Provisioning
+
+Cisco Application Networking Manager
+Cisco Connected Grid Device Manager
+Cisco Connected Grid Network Management System
+Cisco Linear Stream Manager
+Cisco MGC Node Manager (CMNM)
+Cisco Multicast Manager
+Cisco Netflow Collection Agent
+Cisco Network Analysis Module
+Cisco Packet Tracer
+Cisco Prime Analytics
+Cisco Prime Cable Provisioning
+Cisco Prime Collaboration Assurance
+Cisco Prime Collaboration Deployment
+Cisco Prime Collaboration Manager
+Cisco Prime Data Center Network Manager (.ova and .iso installers)
+Cisco Prime Data Center Network Manager (DCNM)
+Cisco Prime IP Express
+Cisco Prime Infrastructure Standalone Plug and Play Gateway
+Cisco Prime Network Registrar (CPNR) virtual appliance
+Cisco Prime Network Registrar (CPNR)
+Cisco Prime Network Registrar IP Address Manager (IPAM)
+Cisco Prime Network
+Cisco UCS Central
+Cisco Unified Provisioning Manager (CUPM)
+Cisco Virtual Topology System (formally Virtual Systems Operations Center)
+CiscoWorks Network Compliance Manager
+Virtual Systems Operations Center for vPE project
+Routing and Switching - Enterprise and Service Provider
+
+CRS-CGSE-PLIM
+CRS-CGSE-PLUS
+Cisco ASR 5000 Series
+Cisco ASR 9000 Series Integrated Service Module
+Cisco Application Policy Infrastructure Controller (APIC)
+Cisco Connected Grid Router - CGOS
+Cisco Connected Grid Router
+Cisco IOS Software
+Cisco IOS-XE for ASR1k, ASR903, ISR4400, CSR1000v
+Cisco IOS-XE for Catalyst 3k, 4k, AIR-CT5760, and Cisco RF Gateway 10 (RFGW-10)
+Cisco IOS-XR
+Cisco MDS 9000 Series Multilayer Switches
+Cisco Metro Ethernet 1200 Series Access Devices
+Cisco Nexus 1000V Series Switches (ESX)
+Cisco Nexus 1010
+Cisco Nexus 3000 Series Switches
+Cisco Nexus 4000 Series
+Cisco Nexus 5000 Series Switches
+Cisco Nexus 6000 Series Switches
+Cisco Nexus 7000 Series Switches
+Cisco Nexus 9000 (ACI/Fabric Switch)
+Cisco Nexus 9000 Series (standalone, running NxOS)
+Cisco Nexus 9000 Series Switches
+Cisco ONS 15454 Series Multiservice Provisioning Platforms
+Cisco OnePK All-in-One VM
+Cisco Service Control Application for Broadband
+Cisco Service Control Collection Manager
+Cisco Service Control Operating System
+Cisco Service Control Subscriber Manager
+Cisco VPN Acceleration Engine
+IOS-XR for Cisco Network Convergence System (NCS) 6000
+Routing and Switching - Small Business
+
+Cisco Small Business AP500 Series Wireless Access Points
+Cisco Small Business RV 120W Wireless-N VPN Firewall
+Cisco Small Business RV Series Routers 0xxv3
+Cisco Small Business RV Series Routers RV110W
+Cisco Small Business RV Series Routers RV130x
+Cisco Small Business RV Series Routers RV215W
+Cisco Small Business RV Series Routers RV220W
+Cisco Small Business RV Series Routers RV315W
+Cisco Small Business RV Series Routers RV320
+Cisco Sx220 switches
+Cisco Sx300 switches
+Cisco Sx500 switches
+Cisco WAP4410N Wireless-N Access Point
+Unified Computing
+
+Cisco Common Services Platform Collector
+Cisco Standalone rack server CIMC
+Cisco UCS ADA
+Cisco UCS Invicta Series Solid State Systems
+Cisco UCS Invicta Series
+Cisco UCS Manager
+Cisco Unified Computing System B-Series (Blade) Servers
+Cisco Unified Computing System E-Series Blade Server
+Cisco Virtual Security Gateway
+UCS IO Modules
+Voice and Unified Communications Devices
+
+Cisco 190 ATA Series Analog Terminal Adaptor
+Cisco 7937 IP Phone
+Cisco 8800 Series IP Phones - VPN Feature
+Cisco ATA 187 Analog Telephone Adaptor
+Cisco Agent Desktop for Cisco Unified Contact Center Express
+Cisco Agent Desktop
+Cisco Billing and Measurements Server
+Cisco Broadband Access Center for Cable Tools Suite 4.1
+Cisco Broadband Access Center for Cable Tools Suite 4.2
+Cisco DX Series IP Phones
+Cisco Desktop Collaboration Experience DX70 and DX80
+Cisco H.323 Signaling Interface
+Cisco Paging Server (Informacast)
+Cisco Paging Server
+Cisco Prime Cable Provisioning Tools Suite 5.0
+Cisco Prime Cable Provisioning Tools Suite 5.1
+Cisco Quantum Virtualized Packet Core
+Cisco Remote Silent Monitoring
+Cisco SPA112 2-Port Phone Adapter
+Cisco SPA122 ATA with Router
+Cisco SPA232D Multi-Line DECT ATA
+Cisco SPA30X Series IP Phones
+Cisco SPA50X Series IP Phones
+Cisco SPA51X Series IP Phones
+Cisco SPA525G
+Cisco SPA8000 8-port IP Telephony Gateway
+Cisco SPA8800 IP Telephony Gateway with 4 FXS and 4 FXO Ports
+Cisco TAPI Service Provider (TSP)
+Cisco Unified 3900 series IP Phones
+Cisco Unified 6901 IP Phones
+Cisco Unified 6945 IP Phones
+Cisco Unified 7800 Series IP Phones
+Cisco Unified 8831 series IP Conference Phone
+Cisco Unified 8961 IP Phone
+Cisco Unified 9951 IP Phone
+Cisco Unified 9971 IP Phone
+Cisco Unified Attendant Console Standard
+Cisco Unified Client Services Framework
+Cisco Unified IP Conference Phone 8831 for Third-Party Call Control
+Cisco Unified IP Phone 7900 Series
+Cisco Unified IP Phone 8941 and 8945 (SIP)
+Cisco Unified Operations Manager (CUOM)
+Cisco Unified Wireless IP Phone
+Cisco Unity Express
+Cisco Universal Small Cell RAN Management System Wireless
+Cisco Virtual PGW 2200 Softswitch
+xony VIM/CCDM/CCMP
+Video, Streaming, TelePresence, and Transcoding Devices
+
+Cisco 910 Industrial Router
+Cisco AnyRes Live (CAL)
+Cisco AnyRes VOD (CAL)
+Cisco Command 2000 Server (cmd2k) (RH Based)
+Cisco D9824 Advanced Multi Decryption Receiver
+Cisco D9854/D9854-I Advanced Program Receiver
+Cisco D9858 Advanced Receiver Transcoder
+Cisco D9859 Advanced Receiver Transcoder
+Cisco D9865 Satellite Receiver
+Cisco DCM Series 9900-Digital Content Manager
+Cisco DNCS Application Server (AppServer)
+Cisco Digital Media Players (DMP) 4300 Series
+Cisco Digital Media Players (DMP) 4400 Series
+Cisco Download Server (DLS) (Solaris)
+Cisco Edge 300 Digital Media Player
+Cisco Edge 340 Digital Media Player
+Cisco Enterprise Content Delivery System (ECDS)
+Cisco Expressway Series
+Cisco Headend System Release
+Cisco IPTV Service Delivery System (ISDS)
+Cisco International Digital Network Control System (iDNCS)
+Cisco Media Services Interface
+Cisco Model D9485 DAVIC QPSK
+Cisco Powerkey CAS Gateway (PCG)
+Cisco Powerkey Encryption Server (PKES)
+Cisco TelePresence Advanced Media Gateway Series
+Cisco TelePresence Conductor
+Cisco TelePresence Content Server (TCS)
+Cisco TelePresence EX Series
+Cisco TelePresence ISDN GW 3241
+Cisco TelePresence ISDN GW MSE 8321
+Cisco TelePresence ISDN Link
+Cisco TelePresence MCU (8510, 8420, 4200, 4500 and 5300)
+Cisco TelePresence MX Series
+Cisco TelePresence Management Suite (TMS)
+Cisco TelePresence Management Suite Analytics Extension (TMSAE)
+Cisco TelePresence Management Suite Extension (TMSXE)
+Cisco TelePresence Management Suite Extension for IBM
+Cisco TelePresence Management Suite Provisioning Extension
+Cisco TelePresence Profile Series
+Cisco TelePresence SX Series
+Cisco TelePresence Serial Gateway Series
+Cisco TelePresence Server 8710, 7010
+Cisco TelePresence Server on Multiparty Media 310, 320
+Cisco TelePresence Server on Virtual Machine
+Cisco TelePresence Supervisor MSE 8050
+Cisco TelePresence Video Communication Server (VCS)
+Cisco Telepresence Integrator C Series
+Cisco Transaction Encryption Device (TED)
+Cisco VEN501 Wireless Access Point
+Cisco Video Delivery System Recorder
+Cisco Video Surveillance 3000 Series IP Cameras
+Cisco Video Surveillance 4000 Series High-Definition IP Cameras
+Cisco Video Surveillance 4300E/4500E High-Definition IP Cameras
+Cisco Video Surveillance 6000 Series IP Cameras
+Cisco Video Surveillance 7000 Series IP Cameras
+Cisco Video Surveillance Media Server
+Cisco Video Surveillance PTZ IP Cameras
+Cisco Videoscape Distribution Suite Transparent Caching
+Cloud Object Store (COS)
+Tandberg Codian ISDN GW 3210/3220/3240
+Tandberg Codian MSE 8320 model
+VDS-Recorder
+VDS-TV Caching GW
+VDS-TV Streamer
+VDS-TV Vault
+Wireless
+
+Cisco IOS Access Points
+Cisco RF Gateway 1 (RFGW-1)
+Cisco Small Business 121 Series Wireless Access Points
+Cisco Small Business 321 Series Wireless Access Points
+Cisco Small Business 500 Series Wireless Access Points
+Cisco WAP371 wireless access point
+Cisco Wireless Control System (WCS)
+Cisco Wireless LAN Controller (WLC)
+Cisco Wireless Security Gateway Application (WSG)
+Cisco Hosted Services
+
+Cisco Connected Analytics For Collaboration
+Cisco DC Health Check
+Cisco Intelligent Automation for Cloud
+Cisco Partner Supporting Service
+Cisco SmartConnection
+Cisco SmartReports
+Cisco UCS Invicta Series Autosupport Portal
+Cisco Universal Small Cell 5000 Series running V3.4.2.x software
+Cisco Universal Small Cell 7000 Series running V3.4.2.x software
+Cisco Universal Small Cell CloudBase
+Cisco WebEx Messenger Service
+Cisco WebEx Node
+Cisco WebEx11 Application Server
+IMS
+MACD Process Controller (MPC)
+Network Device Security Assessment
+Network Performance Analytics (NPA)
+Partner Supporting Service (PSS) 2.x
+Sentinel
+Small Cell factory recovery root filesystem V2.99.4 or later
+Web Element Manager</cvrf:Note>
+    <cvrf:Note Title="Indicators of Compromise" Type="General" Ordinal="5">An attacker could cause a Java application or library that has the Apache Commons Collections library in its classpath to execute arbitrary Java functions or bytecode.</cvrf:Note>
+    <cvrf:Note Title="Workarounds" Type="General" Ordinal="6">There are no workarounds that address this vulnerability.</cvrf:Note>
+    <cvrf:Note Title="Fixed Software" Type="General" Ordinal="7">When considering software upgrades, customers are advised to consult the Cisco Security Advisories and Responses archive at http://www.cisco.com/go/psirt ["http://www.cisco.com/go/psirt"] and review subsequent advisories to determine exposure and a complete upgrade solution.
+
+In all cases, customers should ensure that the devices to upgrade contain sufficient memory and  confirm that current hardware and software configurations will continue to be supported properly by the new release. If the information is not clear, customers are advised to contact the Cisco Technical Assistance Center (TAC) or their contracted maintenance providers.</cvrf:Note>
+    <cvrf:Note Title="Vulnerability Policy" Type="General" Ordinal="8">To learn about Cisco security vulnerability disclosure policies and publications, see the Security Vulnerability Policy ["http://www.cisco.com/web/about/security/psirt/security_vulnerability_policy.html"]. This document also contains instructions for obtaining fixed software and receiving security vulnerability information from Cisco.</cvrf:Note>
+    <cvrf:Note Title="Exploitation and Public Announcements" Type="General" Ordinal="9">The Cisco Product Security Incident Response Team (PSIRT) is not aware of any public announcements or malicious use of the vulnerability that is described in this advisory.</cvrf:Note>
+    <cvrf:Note Title="Source" Type="General" Ordinal="10">January 2015: Researchers Gabriel Lawrence and Chris Frohoff disclosed a potential data deserialization vulnerability that could lead to arbitrary code execution. The vulnerability is in the Java Object Serialization used in Java applications and libraries.
+
+November 2015: Stephen Breen of Foxglove Security identified the ACC Java library as being vulnerable to insecure data deserialization.</cvrf:Note>
+    <cvrf:Note Title="Legal Disclaimer" Type="Legal Disclaimer" Ordinal="11">THIS DOCUMENT IS PROVIDED ON AN "AS IS" BASIS AND DOES NOT IMPLY ANY KIND OF GUARANTEE OR WARRANTY, INCLUDING THE WARRANTIES OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR USE. YOUR USE OF THE INFORMATION ON THE DOCUMENT OR MATERIALS LINKED FROM THE DOCUMENT IS AT YOUR OWN RISK. CISCO RESERVES THE RIGHT TO CHANGE OR UPDATE THIS DOCUMENT AT ANY TIME. CISCO EXPECTS TO UPDATE THIS DOCUMENT AS NEW INFORMATION BECOMES AVAILABLE.
+
+A standalone copy or paraphrase of the text of this document that omits the distribution URL is an uncontrolled copy and may lack important information or contain factual errors. The information in this document is intended for end users of Cisco products.</cvrf:Note>
+  </cvrf:DocumentNotes>
+  <cvrf:DocumentReferences>
+    <cvrf:Reference Type="Self">
+      <cvrf:URL>http://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20151209-java-deserialization</cvrf:URL>
+      <cvrf:Description>Vulnerability in Java Deserialization Affecting Cisco Products</cvrf:Description>
+    </cvrf:Reference>
+  </cvrf:DocumentReferences>
+  <ProductTree xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/prod">
+    <Branch Name="Cisco" Type="Vendor">
+      <Branch Name="Cisco Secure Access Control System (ACS)" Type="Product Name">
+        <FullProductName ProductID="CVRFPID-2074">Cisco Secure Access Control System (ACS) </FullProductName>
+      </Branch>
+      <Branch Name="Cisco Unity" Type="Product Name">
+        <FullProductName ProductID="CVRFPID-2078">Cisco Unity </FullProductName>
+      </Branch>
+      <Branch Name="Cisco Prime Access Registrar" Type="Product Name">
+        <FullProductName ProductID="CVRFPID-4432">Cisco Prime Access Registrar </FullProductName>
+      </Branch>
+      <Branch Name="Cisco Emergency Responder" Type="Product Name">
+        <FullProductName ProductID="CVRFPID-4844">Cisco Emergency Responder </FullProductName>
+      </Branch>
+      <Branch Name="Cisco Unity Express" Type="Product Name">
+        <FullProductName ProductID="CVRFPID-6046">Cisco Unity Express </FullProductName>
+      </Branch>
+      <Branch Name="Cisco NAC Appliance Software" Type="Product Name">
+        <FullProductName ProductID="CVRFPID-6407">Cisco NAC Appliance Software </FullProductName>
+      </Branch>
+      <Branch Name="Cisco Unified Contact Center Enterprise" Type="Product Name">
+        <FullProductName ProductID="CVRFPID-7500">Cisco Unified Contact Center Enterprise </FullProductName>
+      </Branch>
+      <Branch Name="Cisco Unified Customer Voice Portal (CVP)" Type="Product Name">
+        <FullProductName ProductID="CVRFPID-8027">Cisco Unified Customer Voice Portal (CVP) </FullProductName>
+      </Branch>
+      <Branch Name="Cisco IP Interoperability and Collaboration System (IPICS)" Type="Product Name">
+        <FullProductName ProductID="CVRFPID-8043">Cisco IP Interoperability and Collaboration System (IPICS) </FullProductName>
+      </Branch>
+      <Branch Name="Cisco Unity Connection" Type="Product Name">
+        <FullProductName ProductID="CVRFPID-73608">Cisco Unity Connection </FullProductName>
+      </Branch>
+      <Branch Name="Cisco TelePresence" Type="Product Name">
+        <FullProductName ProductID="CVRFPID-77997">Cisco TelePresence </FullProductName>
+      </Branch>
+      <Branch Name="Cisco Security Manager " Type="Product Name">
+        <FullProductName ProductID="CVRFPID-79783">Cisco Security Manager  </FullProductName>
+      </Branch>
+      <Branch Name="Cisco Unified Communications Manager" Type="Product Name">
+        <FullProductName ProductID="CVRFPID-88444">Cisco Unified Communications Manager </FullProductName>
+      </Branch>
+      <Branch Name="Cisco Digital Media Manager Software" Type="Product Name">
+        <FullProductName ProductID="CVRFPID-95918">Cisco Digital Media Manager Software </FullProductName>
+      </Branch>
+      <Branch Name="Cisco MeetingPlace Server" Type="Product Name">
+        <FullProductName ProductID="CVRFPID-96265">Cisco MeetingPlace Server </FullProductName>
+      </Branch>
+      <Branch Name="Cisco WebEx Meeting Center" Type="Product Name">
+        <FullProductName ProductID="CVRFPID-97151">Cisco WebEx Meeting Center </FullProductName>
+      </Branch>
+      <Branch Name="Cisco Show and Share" Type="Product Name">
+        <FullProductName ProductID="CVRFPID-111580">Cisco Show and Share </FullProductName>
+      </Branch>
+      <Branch Name="Cisco Mobility Services Engine" Type="Product Name">
+        <FullProductName ProductID="CVRFPID-111803">Cisco Mobility Services Engine </FullProductName>
+      </Branch>
+      <Branch Name="Cisco Identity Services Engine Software" Type="Product Name">
+        <FullProductName ProductID="CVRFPID-111903">Cisco Identity Services Engine Software </FullProductName>
+      </Branch>
+      <Branch Name="Cisco ASA CX Context-Aware Security Software" Type="Product Name">
+        <FullProductName ProductID="CVRFPID-184512">Cisco ASA CX Context-Aware Security Software </FullProductName>
+      </Branch>
+      <Branch Name="Cisco Prime Security Manager (PRSM)" Type="Product Name">
+        <FullProductName ProductID="CVRFPID-184690">Cisco Prime Security Manager (PRSM) </FullProductName>
+      </Branch>
+      <Branch Name="Cisco Prime LAN Management Solution (LMS)" Type="Product Name">
+        <FullProductName ProductID="CVRFPID-188426">Cisco Prime LAN Management Solution (LMS) </FullProductName>
+      </Branch>
+      <Branch Name="Cisco Unified Communications Domain Manager" Type="Product Name">
+        <FullProductName ProductID="CVRFPID-188989">Cisco Unified Communications Domain Manager </FullProductName>
+      </Branch>
+      <Branch Name="Cisco Prime Infrastructure" Type="Product Name">
+        <FullProductName ProductID="CVRFPID-190324">Cisco Prime Infrastructure </FullProductName>
+      </Branch>
+      <Branch Name="Cisco WebEx Meetings Server" Type="Product Name">
+        <FullProductName ProductID="CVRFPID-190702">Cisco WebEx Meetings Server </FullProductName>
+      </Branch>
+      <Branch Name="Cisco Prime Central" Type="Product Name">
+        <FullProductName ProductID="CVRFPID-192280">Cisco Prime Central </FullProductName>
+      </Branch>
+      <Branch Name="Cisco SocialMiner" Type="Product Name">
+        <FullProductName ProductID="CVRFPID-194456">Cisco SocialMiner </FullProductName>
+      </Branch>
+      <Branch Name="Cisco MediaSense" Type="Product Name">
+        <FullProductName ProductID="CVRFPID-194833">Cisco MediaSense </FullProductName>
+      </Branch>
+      <Branch Name="Cisco Unified SIP Proxy" Type="Product Name">
+        <FullProductName ProductID="CVRFPID-195223">Cisco Unified SIP Proxy </FullProductName>
+      </Branch>
+      <Branch Name="Cisco UCS Director" Type="Product Name">
+        <FullProductName ProductID="CVRFPID-197112">Cisco UCS Director </FullProductName>
+      </Branch>
+      <Branch Name="Cisco Unified Intelligence Center" Type="Product Name">
+        <FullProductName ProductID="CVRFPID-198393">Cisco Unified Intelligence Center </FullProductName>
+      </Branch>
+      <Branch Name="Cisco Broadband Access Center Telco Wireless Software" Type="Product Name">
+        <FullProductName ProductID="CVRFPID-199605">Cisco Broadband Access Center Telco Wireless Software </FullProductName>
+      </Branch>
+      <Branch Name="Cisco Prime Service Catalog" Type="Product Name">
+        <FullProductName ProductID="CVRFPID-202401">Cisco Prime Service Catalog </FullProductName>
+      </Branch>
+      <Branch Name="Cisco Prime Optical" Type="Product Name">
+        <FullProductName ProductID="CVRFPID-203051">Cisco Prime Optical </FullProductName>
+      </Branch>
+      <Branch Name="Cisco Prime Provisioning" Type="Product Name">
+        <FullProductName ProductID="CVRFPID-203409">Cisco Prime Provisioning </FullProductName>
+      </Branch>
+      <Branch Name="Cisco Visual Quality Experience" Type="Product Name">
+        <FullProductName ProductID="CVRFPID-203442">Cisco Visual Quality Experience </FullProductName>
+      </Branch>
+      <Branch Name="Cisco Prime License Manager" Type="Product Name">
+        <FullProductName ProductID="CVRFPID-203607">Cisco Prime License Manager </FullProductName>
+      </Branch>
+      <Branch Name="Cisco Prime Network Services Controller" Type="Product Name">
+        <FullProductName ProductID="CVRFPID-203737">Cisco Prime Network Services Controller </FullProductName>
+      </Branch>
+      <Branch Name="Cisco Videoscape Conductor" Type="Product Name">
+        <FullProductName ProductID="CVRFPID-203870">Cisco Videoscape Conductor </FullProductName>
+      </Branch>
+      <Branch Name="Cisco WebEx Meetings for Android" Type="Product Name">
+        <FullProductName ProductID="CVRFPID-203919">Cisco WebEx Meetings for Android </FullProductName>
+      </Branch>
+      <Branch Name="Cisco WebEx Meetings for Windows Phone 8" Type="Product Name">
+        <FullProductName ProductID="CVRFPID-203922">Cisco WebEx Meetings for Windows Phone 8 </FullProductName>
+      </Branch>
+      <Branch Name="Unified E-Mail Interaction Manager" Type="Product Name">
+        <FullProductName ProductID="CVRFPID-207964">Cisco Unified E-Mail Interaction Manager </FullProductName>
+      </Branch>
+      <Branch Name="Cisco Data Center Analytics Framework" Type="Product Name">
+        <FullProductName ProductID="CVRFPID-208310">Cisco Data Center Analytics Framework </FullProductName>
+      </Branch>
+      <Branch Name="Cisco Prime Collaboration Provisioning" Type="Product Name">
+        <FullProductName ProductID="CVRFPID-209583">Cisco Prime Collaboration Provisioning </FullProductName>
+      </Branch>
+      <Branch Name="Cisco Cloupia Unified Infrastructure Controller" Type="Product Name">
+        <FullProductName ProductID="CVRFPID-210583">Cisco Cloupia Unified Infrastructure Controller </FullProductName>
+      </Branch>
+      <Branch Name="Cisco Prime Performance Manager" Type="Product Name">
+        <FullProductName ProductID="CVRFPID-210610">Cisco Prime Performance Manager </FullProductName>
+      </Branch>
+      <Branch Name="Cisco Unified Attendant Console" Type="Product Name">
+        <FullProductName ProductID="CVRFPID-210834">Cisco Unified Attendant Console </FullProductName>
+      </Branch>
+      <Branch Name="Cisco Videoscape Control Suite" Type="Product Name">
+        <FullProductName ProductID="CVRFPID-210903">Cisco Videoscape Control Suite </FullProductName>
+      </Branch>
+      <Branch Name="Cisco Small Business Video Surveillance Cameras Firmware" Type="Product Name">
+        <FullProductName ProductID="CVRFPID-211646">Cisco Small Business Video Surveillance Cameras Firmware </FullProductName>
+      </Branch>
+      <Branch Name="Cisco Hosted Collaboration Mediation Fulfillment" Type="Product Name">
+        <FullProductName ProductID="CVRFPID-220254">Cisco Hosted Collaboration Mediation Fulfillment </FullProductName>
+      </Branch>
+      <Branch Name="Cisco Cloud Services Platform 2100 " Type="Product Name">
+        <FullProductName ProductID="CVRFPID-220301">Cisco Cloud Services Platform 2100  </FullProductName>
+      </Branch>
+      <Branch Name="Cisco Prime Home " Type="Product Name">
+        <FullProductName ProductID="CVRFPID-220486">Cisco Prime Home  </FullProductName>
+      </Branch>
+      <Branch Name="Cisco Registered Envelope Service" Type="Product Name">
+        <FullProductName ProductID="CVRFPID-225817">Cisco Registered Envelope Service </FullProductName>
+      </Branch>
+    </Branch>
+  </ProductTree>
+  <Vulnerability Ordinal="1" xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln">
+    <Title>Vulnerability in Java Deserialization Affecting Cisco Products</Title>
+    <ID SystemName="Cisco Bug ID">CSCux34612</ID>
+    <Notes>
+      <Note Title="Summary" Type="Summary" Ordinal="1">A vulnerability in the Java deserialization used by the Apache Commons Collections (ACC) library could allow an unauthenticated, remote attacker to execute arbitrary code.
+
+
+
+The vulnerability is due to insecure deserialization of user-supplied content by the affected software. An attacker could exploit this vulnerability by submitting crafted input to an application on a targeted system that uses the ACC library. After the vulnerable library on the affected system deserializes the content, the attacker could execute arbitrary code on the system, which could be used to conduct further attacks.</Note>
+      <Note Title="Cisco Bug IDs" Type="Other" Ordinal="2">CSCux34612,CSCux34725,CSCux34742,CSCux34982,CSCux34781,CSCux34692,CSCux34652,CSCux34669,CSCux34647,CSCux34953,CSCux35084,CSCux34671,CSCux34575,CSCux34572,CSCux34645,CSCux34688,CSCux35070,CSCux34589,CSCux34852,CSCux34859,CSCux34754,CSCux34720,CSCux34874,CSCux35147,CSCux35085,CSCux34955,CSCux34667,CSCux34668,CSCux34665,CSCux34705,CSCux34672,CSCux34656,CSCux34664,CSCux35106,CSCux34715,CSCux34591,CSCux34708,CSCux34833,CSCux34690,CSCux34942,CSCux34827,CSCux35022,CSCux34835,CSCux34853,CSCux35044,CSCux34567,CSCux35135,CSCux34922,CSCux34792,CSCux34974,CSCux35046,CSCux18412,CSCux17638,CSCux21425</Note>
+    </Notes>
+    <CVE>CVE-2015-6420</CVE>
+    <ProductStatuses>
+      <Status Type="Known Affected">
+        <ProductID>CVRFPID-190702</ProductID>
+        <ProductID>CVRFPID-203442</ProductID>
+        <ProductID>CVRFPID-184512</ProductID>
+        <ProductID>CVRFPID-184690</ProductID>
+        <ProductID>CVRFPID-6407</ProductID>
+        <ProductID>CVRFPID-2074</ProductID>
+        <ProductID>CVRFPID-95918</ProductID>
+        <ProductID>CVRFPID-4432</ProductID>
+        <ProductID>CVRFPID-209583</ProductID>
+        <ProductID>CVRFPID-188426</ProductID>
+        <ProductID>CVRFPID-210610</ProductID>
+        <ProductID>CVRFPID-203409</ProductID>
+        <ProductID>CVRFPID-79783</ProductID>
+        <ProductID>CVRFPID-208310</ProductID>
+        <ProductID>CVRFPID-111580</ProductID>
+        <ProductID>CVRFPID-111803</ProductID>
+        <ProductID>CVRFPID-111903</ProductID>
+        <ProductID>CVRFPID-188989</ProductID>
+        <ProductID>CVRFPID-190324</ProductID>
+        <ProductID>CVRFPID-192280</ProductID>
+        <ProductID>CVRFPID-194456</ProductID>
+        <ProductID>CVRFPID-194833</ProductID>
+        <ProductID>CVRFPID-195223</ProductID>
+        <ProductID>CVRFPID-197112</ProductID>
+        <ProductID>CVRFPID-198393</ProductID>
+        <ProductID>CVRFPID-199605</ProductID>
+        <ProductID>CVRFPID-202401</ProductID>
+        <ProductID>CVRFPID-203051</ProductID>
+        <ProductID>CVRFPID-203607</ProductID>
+        <ProductID>CVRFPID-203737</ProductID>
+        <ProductID>CVRFPID-203870</ProductID>
+        <ProductID>CVRFPID-203919</ProductID>
+        <ProductID>CVRFPID-203922</ProductID>
+        <ProductID>CVRFPID-2078</ProductID>
+        <ProductID>CVRFPID-207964</ProductID>
+        <ProductID>CVRFPID-210583</ProductID>
+        <ProductID>CVRFPID-210834</ProductID>
+        <ProductID>CVRFPID-210903</ProductID>
+        <ProductID>CVRFPID-211646</ProductID>
+        <ProductID>CVRFPID-220254</ProductID>
+        <ProductID>CVRFPID-220301</ProductID>
+        <ProductID>CVRFPID-220486</ProductID>
+        <ProductID>CVRFPID-225817</ProductID>
+        <ProductID>CVRFPID-4844</ProductID>
+        <ProductID>CVRFPID-6046</ProductID>
+        <ProductID>CVRFPID-73608</ProductID>
+        <ProductID>CVRFPID-7500</ProductID>
+        <ProductID>CVRFPID-77997</ProductID>
+        <ProductID>CVRFPID-8027</ProductID>
+        <ProductID>CVRFPID-8043</ProductID>
+        <ProductID>CVRFPID-88444</ProductID>
+        <ProductID>CVRFPID-96265</ProductID>
+        <ProductID>CVRFPID-97151</ProductID>
+      </Status>
+    </ProductStatuses>
+    <Remediations>
+      <Remediation Type="Workaround">
+        <Description>There are no workarounds that address this vulnerability.</Description>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference Type="Self">
+        <URL>http://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20151209-java-deserialization</URL>
+        <Description>Vulnerability in Java Deserialization Affecting Cisco Products</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+</cvrf:cvrfdoc>

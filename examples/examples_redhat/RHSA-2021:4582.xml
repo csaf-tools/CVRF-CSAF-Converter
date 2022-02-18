@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cvrfdoc xmlns="http://www.icasi.org/CVRF/schema/cvrf/1.1" xmlns:cvrf="http://www.icasi.org/CVRF/schema/cvrf/1.1">
+  <DocumentTitle xml:lang="en">Red Hat Security Advisory: Release of components for Service Telemetry Framework 1.3.3 - Container Images</DocumentTitle>
+  <DocumentType>Security Advisory</DocumentType>
+  <DocumentPublisher Type="Vendor">
+    <ContactDetails>secalert@redhat.com</ContactDetails>
+    <IssuingAuthority>Red Hat Product Security</IssuingAuthority>
+  </DocumentPublisher>
+  <DocumentTracking>
+    <Identification><ID>RHSA-2021:4582</ID></Identification>
+    <Status>Final</Status>
+    <Version>1</Version>
+    <RevisionHistory>
+       <Revision>
+         <Number>1</Number>
+         <Date>2021-11-10T11:52:00Z</Date>
+         <Description>Current version</Description>
+       </Revision>
+    </RevisionHistory>
+    <InitialReleaseDate>2021-11-10T11:52:00Z</InitialReleaseDate>
+    <CurrentReleaseDate>2021-11-10T11:52:00Z</CurrentReleaseDate>
+    <Generator>
+      <Engine>Red Hat SDEngine 3.3.0</Engine>
+      <Date>2021-11-10T15:40:00Z</Date>
+    </Generator>
+  </DocumentTracking>
+  <DocumentNotes>
+    <Note Title="Topic" Type="Summary" Ordinal="1" xml:lang="en">
+Release of components for the Service Telemetry Framework
+    </Note>
+    <Note Title="Details" Type="General" Ordinal="2" xml:lang="en">
+Service Telemetry Framework (STF) provides automated collection of measurements and data from remote clients, such as Red Hat OpenStack Platform or third-party nodes. STF then transmits the information to a centralized, receiving Red Hat OpenShift Container Platform (OCP) deployment for storage, retrieval, and monitoring.
+
+Security fixes:
+
+* golang: crypto/tls: certificate of wrong type is causing TLS client to panic (CVE-2021-34558)
+
+For more details about the security issue(s), including the impact, a CVSS score, and other related information, refer to the CVE page(s) listed in the References section.
+
+Bug fixes:
+
+* STF 1.3.3 now supports OpenShift Container Platform 4.8 as an installation platform. (BZ#2013268)
+
+* With this update, the servicetelemetrys.infra.watch CRD has a validation that limits the clouds[].name to 10 characters and alphanumeric to avoid issues with extra characters in the cloud name and names being too long. (BZ#2011603)
+
+* Previously, when you installed STF without having Elastic Cloud on Kubernetes (ECK) Operator installed, the following error message was returned: &quot;Failed to find exact match for elasticsearch.k8s.elastic.co/v1beta1.Elasticsearch&quot;. The error was as a result of Service Telemetry Operator trying to look up information from a non-existent API interface.
+
+With this update, the Service Telemetry Operator verifies that the API exists before it attempts to make requests to the API interface that is provided by ECK. (BZ#1959166)
+    </Note>
+    <Note Title="Terms of Use" Ordinal="3" Type="Legal Disclaimer" xml:lang="en">This content is licensed under the Creative Commons Attribution 4.0 International License (https://creativecommons.org/licenses/by/4.0/). If you distribute this content, or a modified version of it, you must provide attribution to Red Hat Inc. and provide a link to the original.</Note>
+  </DocumentNotes>
+  <DocumentDistribution xml:lang="en">Copyright © 2021 Red Hat, Inc. All rights reserved.</DocumentDistribution>
+  <AggregateSeverity Namespace="https://access.redhat.com/security/updates/classification/">Moderate</AggregateSeverity>
+  <DocumentReferences>
+    <Reference Type="Self">
+       <URL>https://access.redhat.com/errata/RHSA-2021:4582</URL>
+       <Description>https://access.redhat.com/errata/RHSA-2021:4582</Description>
+    </Reference>
+    <Reference Type="External">
+       <URL>https://access.redhat.com/security/updates/classification/#moderate</URL>
+       <Description>https://access.redhat.com/security/updates/classification/#moderate</Description>
+    </Reference>
+  </DocumentReferences>
+  <ProductTree xmlns="http://www.icasi.org/CVRF/schema/prod/1.1">
+    <Branch Type="Product Family" Name="Red Hat OpenStack Platform">
+      <Branch Type="Product Name" Name="Service Telemetry Framework 1.3 for RHEL 8">
+        <FullProductName ProductID="8Base-STF-1.3" CPE="cpe:/a:redhat:service_telemetry_framework:1.3::el8">Service Telemetry Framework 1.3 for RHEL 8</FullProductName>
+      </Branch>
+    </Branch>
+    <Branch Type="Product Version" Name="stf/service-telemetry-operator-bundle:1.3.1635451892-1">
+      <FullProductName ProductID="stf/service-telemetry-operator-bundle:1.3.1635451892-1" CPE="cpe:/a:redhat:service_telemetry_framework:1.3::el8">stf/service-telemetry-operator-bundle:1.3.1635451892-1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="stf/service-telemetry-rhel8-operator:1.3.7-1">
+      <FullProductName ProductID="stf/service-telemetry-rhel8-operator:1.3.7-1" CPE="cpe:/a:redhat:service_telemetry_framework:1.3::el8">stf/service-telemetry-rhel8-operator:1.3.7-1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="stf/sg-core-rhel8:4.0.3-8">
+      <FullProductName ProductID="stf/sg-core-rhel8:4.0.3-8" CPE="cpe:/a:redhat:service_telemetry_framework:1.3::el8">stf/sg-core-rhel8:4.0.3-8</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="stf/smart-gateway-operator-bundle:3.0.1635451893-1">
+      <FullProductName ProductID="stf/smart-gateway-operator-bundle:3.0.1635451893-1" CPE="cpe:/a:redhat:service_telemetry_framework:1.3::el8">stf/smart-gateway-operator-bundle:3.0.1635451893-1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="stf/smart-gateway-rhel8-operator:3.0.4-1">
+      <FullProductName ProductID="stf/smart-gateway-rhel8-operator:3.0.4-1" CPE="cpe:/a:redhat:service_telemetry_framework:1.3::el8">stf/smart-gateway-rhel8-operator:3.0.4-1</FullProductName>
+    </Branch>
+    <Relationship ProductReference="service-telemetry-operator-bundle-container-1.3.1635451892-1" RelationType="Default Component Of" RelatesToProductReference="8Base-STF-1.3">
+      <FullProductName ProductID="8Base-STF-1.3:service-telemetry-operator-bundle-container-1.3.1635451892-1" CPE="cpe:/a:redhat:service_telemetry_framework:1.3::el8">service-telemetry-operator-bundle-container-1.3.1635451892-1 as a component of Service Telemetry Framework 1.3 for RHEL 8</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="service-telemetry-operator-container-1.3.7-1" RelationType="Default Component Of" RelatesToProductReference="8Base-STF-1.3">
+      <FullProductName ProductID="8Base-STF-1.3:service-telemetry-operator-container-1.3.7-1" CPE="cpe:/a:redhat:service_telemetry_framework:1.3::el8">service-telemetry-operator-container-1.3.7-1 as a component of Service Telemetry Framework 1.3 for RHEL 8</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="sg-core-container-4.0.3-8" RelationType="Default Component Of" RelatesToProductReference="8Base-STF-1.3">
+      <FullProductName ProductID="8Base-STF-1.3:sg-core-container-4.0.3-8" CPE="cpe:/a:redhat:service_telemetry_framework:1.3::el8">sg-core-container-4.0.3-8 as a component of Service Telemetry Framework 1.3 for RHEL 8</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="smart-gateway-operator-bundle-container-3.0.1635451893-1" RelationType="Default Component Of" RelatesToProductReference="8Base-STF-1.3">
+      <FullProductName ProductID="8Base-STF-1.3:smart-gateway-operator-bundle-container-3.0.1635451893-1" CPE="cpe:/a:redhat:service_telemetry_framework:1.3::el8">smart-gateway-operator-bundle-container-3.0.1635451893-1 as a component of Service Telemetry Framework 1.3 for RHEL 8</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="smart-gateway-operator-container-3.0.4-1" RelationType="Default Component Of" RelatesToProductReference="8Base-STF-1.3">
+      <FullProductName ProductID="8Base-STF-1.3:smart-gateway-operator-container-3.0.4-1" CPE="cpe:/a:redhat:service_telemetry_framework:1.3::el8">smart-gateway-operator-container-3.0.4-1 as a component of Service Telemetry Framework 1.3 for RHEL 8</FullProductName>
+    </Relationship>
+  </ProductTree>
+
+  <Vulnerability Ordinal="1" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">golang: crypto/tls: certificate of wrong type is causing TLS client to panic</Note></Notes>
+    <DiscoveryDate>2021-07-14T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-07-13T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-34558</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>8Base-STF-1.3:service-telemetry-operator-bundle-container-1.3.1635451892-1</ProductID>
+      <ProductID>8Base-STF-1.3:service-telemetry-operator-container-1.3.7-1</ProductID>
+      <ProductID>8Base-STF-1.3:sg-core-container-4.0.3-8</ProductID>
+      <ProductID>8Base-STF-1.3:smart-gateway-operator-bundle-container-3.0.1635451893-1</ProductID>
+      <ProductID>8Base-STF-1.3:smart-gateway-operator-container-3.0.4-1</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+The Service Telemetry Framework container image provided by this update can be downloaded from the Red Hat Container Registry at registry.access.redhat.com. Installation instructions for your platform are available at Red Hat Container Catalog. See References.
+Dockerfiles and scripts should be amended either to refer to this new image specifically, or to the latest image generally.
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:4582</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://golang.org/doc/devel/release#go1.15.minor</URL>
+        <Description>https://golang.org/doc/devel/release#go1.15.minor</Description>
+      </Reference>
+      <Reference>
+        <URL>https://golang.org/doc/devel/release#go1.16.minor</URL>
+        <Description>https://golang.org/doc/devel/release#go1.16.minor</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-34558</URL>
+        <Description>CVE-2021-34558</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1983596</URL>
+        <Description>bz#1983596: CVE-2021-34558 golang: crypto/tls: certificate of wrong type is causing TLS client to panic</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+</cvrfdoc>

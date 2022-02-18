@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cvrfdoc xmlns="http://www.icasi.org/CVRF/schema/cvrf/1.1" xmlns:cvrf="http://www.icasi.org/CVRF/schema/cvrf/1.1">
+  <DocumentTitle xml:lang="en">Red Hat Security Advisory: curl security and bug fix update</DocumentTitle>
+  <DocumentType>Security Advisory</DocumentType>
+  <DocumentPublisher Type="Vendor">
+    <ContactDetails>secalert@redhat.com</ContactDetails>
+    <IssuingAuthority>Red Hat Product Security</IssuingAuthority>
+  </DocumentPublisher>
+  <DocumentTracking>
+    <Identification><ID>RHSA-2021:1610</ID></Identification>
+    <Status>Final</Status>
+    <Version>1</Version>
+    <RevisionHistory>
+       <Revision>
+         <Number>1</Number>
+         <Date>2021-05-18T15:28:00Z</Date>
+         <Description>Current version</Description>
+       </Revision>
+    </RevisionHistory>
+    <InitialReleaseDate>2021-05-18T15:28:00Z</InitialReleaseDate>
+    <CurrentReleaseDate>2021-05-18T15:28:00Z</CurrentReleaseDate>
+    <Generator>
+      <Engine>Red Hat SDEngine 3.0.0</Engine>
+      <Date>2021-08-23T04:57:00Z</Date>
+    </Generator>
+  </DocumentTracking>
+  <DocumentNotes>
+    <Note Title="Topic" Type="Summary" Ordinal="1" xml:lang="en">
+An update for curl is now available for Red Hat Enterprise Linux 8.
+
+Red Hat Product Security has rated this update as having a security impact of Moderate. A Common Vulnerability Scoring System (CVSS) base score, which gives a detailed severity rating, is available for each vulnerability from the CVE link(s) in the References section.
+    </Note>
+    <Note Title="Details" Type="General" Ordinal="2" xml:lang="en">
+The curl packages provide the libcurl library and the curl utility for downloading files from servers using various protocols, including HTTP, FTP, and LDAP.
+
+Security Fix(es):
+
+* curl: FTP PASV command response can cause curl to connect to arbitrary host (CVE-2020-8284)
+
+* curl: Malicious FTP server can trigger stack overflow when CURLOPT_CHUNK_BGN_FUNCTION is used (CVE-2020-8285)
+
+* curl: Inferior OCSP verification (CVE-2020-8286)
+
+* curl: Expired pointer dereference via multi API with CURLOPT_CONNECT_ONLY option set (CVE-2020-8231)
+
+For more details about the security issue(s), including the impact, a CVSS score, acknowledgments, and other related information, refer to the CVE page(s) listed in the References section.
+
+Additional Changes:
+
+For detailed information on changes in this release, see the Red Hat Enterprise Linux 8.4 Release Notes linked from the References section.
+    </Note>
+    <Note Title="Terms of Use" Ordinal="3" Type="Legal Disclaimer" xml:lang="en">This content is licensed under the Creative Commons Attribution 4.0 International License (https://creativecommons.org/licenses/by/4.0/). If you distribute this content, or a modified version of it, you must provide attribution to Red Hat Inc. and provide a link to the original.</Note>
+  </DocumentNotes>
+  <DocumentDistribution xml:lang="en">Copyright © 2021 Red Hat, Inc. All rights reserved.</DocumentDistribution>
+  <AggregateSeverity Namespace="https://access.redhat.com/security/updates/classification/">Moderate</AggregateSeverity>
+  <DocumentReferences>
+    <Reference Type="Self">
+       <URL>https://access.redhat.com/errata/RHSA-2021:1610</URL>
+       <Description>https://access.redhat.com/errata/RHSA-2021:1610</Description>
+    </Reference>
+    <Reference Type="External">
+       <URL>https://access.redhat.com/security/updates/classification/#moderate</URL>
+       <Description>https://access.redhat.com/security/updates/classification/#moderate</Description>
+    </Reference>
+    <Reference Type="External">
+       <URL>https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/8.4_release_notes/</URL>
+       <Description>https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/8.4_release_notes/</Description>
+    </Reference>
+  </DocumentReferences>
+  <ProductTree xmlns="http://www.icasi.org/CVRF/schema/prod/1.1">
+    <Branch Type="Product Family" Name="Red Hat Enterprise Linux">
+      <Branch Type="Product Name" Name="Red Hat Enterprise Linux BaseOS (v. 8)">
+        <FullProductName ProductID="BaseOS-8.4.0.GA" CPE="cpe:/o:redhat:enterprise_linux:8::baseos">Red Hat Enterprise Linux BaseOS (v. 8)</FullProductName>
+      </Branch>
+    </Branch>
+    <Branch Type="Product Version" Name="curl-0:7.61.1-18.el8">
+      <FullProductName ProductID="curl-0:7.61.1-18.el8" CPE="cpe:/o:redhat:enterprise_linux:8::baseos">curl-7.61.1-18.el8.src.rpm</FullProductName>
+    </Branch>
+    <Relationship ProductReference="curl-0:7.61.1-18.el8" RelationType="Default Component Of" RelatesToProductReference="BaseOS-8.4.0.GA">
+      <FullProductName ProductID="BaseOS-8.4.0.GA:curl-0:7.61.1-18.el8" CPE="cpe:/o:redhat:enterprise_linux:8::baseos">curl-0:7.61.1-18.el8 as a component of Red Hat Enterprise Linux BaseOS (v. 8)</FullProductName>
+    </Relationship>
+  </ProductTree>
+
+  <Vulnerability Ordinal="1" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">curl: Expired pointer dereference via multi API with CURLOPT_CONNECT_ONLY option set</Note></Notes>
+    <DiscoveryDate>2020-08-11T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2020-08-19T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2020-8231</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>BaseOS-8.4.0.GA:curl-0:7.61.1-18.el8</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Low</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:1610</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2020-8231</URL>
+        <Description>CVE-2020-8231</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1868032</URL>
+        <Description>bz#1868032: CVE-2020-8231 curl: Expired pointer dereference via multi API with CURLOPT_CONNECT_ONLY option set</Description>
+      </Reference>
+    </References>
+    <Acknowledgments><Acknowledgment><Description>Red Hat would like to thank the Curl project for reporting this issue. Upstream acknowledges Marc Aldorasi as the original reporter.</Description></Acknowledgment></Acknowledgments>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="2" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">curl: FTP PASV command response can cause curl to connect to arbitrary host</Note></Notes>
+    <DiscoveryDate>2020-11-30T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2020-12-09T08:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2020-8284</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>BaseOS-8.4.0.GA:curl-0:7.61.1-18.el8</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:1610</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://curl.se/docs/CVE-2020-8284.html</URL>
+        <Description>https://curl.se/docs/CVE-2020-8284.html</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2020-8284</URL>
+        <Description>CVE-2020-8284</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1902667</URL>
+        <Description>bz#1902667: CVE-2020-8284 curl: FTP PASV command response can cause curl to connect to arbitrary host</Description>
+      </Reference>
+    </References>
+    <Acknowledgments><Acknowledgment><Description>Red Hat would like to thank Varnavas Papaioannou for reporting this issue.</Description></Acknowledgment></Acknowledgments>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="3" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">curl: Malicious FTP server can trigger stack overflow when CURLOPT_CHUNK_BGN_FUNCTION is used</Note></Notes>
+    <DiscoveryDate>2020-11-30T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2020-12-09T08:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2020-8285</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>BaseOS-8.4.0.GA:curl-0:7.61.1-18.el8</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:1610</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://curl.se/docs/CVE-2020-8285.html</URL>
+        <Description>https://curl.se/docs/CVE-2020-8285.html</Description>
+      </Reference>
+      <Reference>
+        <URL>https://github.com/curl/curl/issues/6255</URL>
+        <Description>https://github.com/curl/curl/issues/6255</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2020-8285</URL>
+        <Description>CVE-2020-8285</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1902687</URL>
+        <Description>bz#1902687: CVE-2020-8285 curl: Malicious FTP server can trigger stack overflow when CURLOPT_CHUNK_BGN_FUNCTION is used</Description>
+      </Reference>
+    </References>
+    <Acknowledgments><Acknowledgment><Description>Red Hat would like to thank Varnavas Papaioannou for reporting this issue.</Description></Acknowledgment></Acknowledgments>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="4" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">curl: Inferior OCSP verification</Note></Notes>
+    <DiscoveryDate>2020-12-09T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2020-12-09T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2020-8286</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>BaseOS-8.4.0.GA:curl-0:7.61.1-18.el8</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:1610</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://curl.se/docs/CVE-2020-8286.html</URL>
+        <Description>https://curl.se/docs/CVE-2020-8286.html</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2020-8286</URL>
+        <Description>CVE-2020-8286</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1906096</URL>
+        <Description>bz#1906096: CVE-2020-8286 curl: Inferior OCSP verification</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+</cvrfdoc>

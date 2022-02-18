@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cvrf:cvrfdoc xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:cvrf-common="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/common" xmlns:cvrf="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/cvrf">
+  <cvrf:DocumentTitle>Cisco Firepower Threat Defense Software SMB Protocol Preprocessor Detection Engine Denial of Service Vulnerabilities</cvrf:DocumentTitle>
+  <cvrf:DocumentType>Cisco Security Advisory</cvrf:DocumentType>
+  <cvrf:DocumentPublisher Type="Vendor">
+    <cvrf:ContactDetails>Emergency Support:
++1 877 228 7302 (toll-free within North America)
++1 408 525 6532 (International direct-dial)
+Non-emergency Support:
+Email: psirt@cisco.com
+Support requests that are received via e-mail are typically acknowledged within 48 hours.</cvrf:ContactDetails>
+    <cvrf:IssuingAuthority>Cisco product security incident response is the responsibility of the Cisco Product Security Incident Response Team (PSIRT). The Cisco PSIRT is a dedicated, global team that manages the receipt, investigation, and public reporting of security vulnerability information that is related to Cisco products and networks. The on-call Cisco PSIRT works 24x7 with Cisco customers, independent security researchers, consultants, industry organizations, and other vendors to identify possible security issues with Cisco products and networks.
+More information can be found in Cisco Security Vulnerability Policy available at http://www.cisco.com/web/about/security/psirt/security_vulnerability_policy.html</cvrf:IssuingAuthority>
+  </cvrf:DocumentPublisher>
+  <cvrf:DocumentTracking>
+    <cvrf:Identification>
+      <cvrf:ID>cisco-sa-20190501-frpwr-smb-snort</cvrf:ID>
+    </cvrf:Identification>
+    <cvrf:Status>Final</cvrf:Status>
+    <cvrf:Version>1.1</cvrf:Version>
+    <cvrf:RevisionHistory>
+      <cvrf:Revision>
+        <cvrf:Number>1.0</cvrf:Number>
+        <cvrf:Date>2019-05-01T15:23:24</cvrf:Date>
+        <cvrf:Description>Initial public release.</cvrf:Description>
+      </cvrf:Revision>
+      <cvrf:Revision>
+        <cvrf:Number>1.1</cvrf:Number>
+        <cvrf:Date>2019-05-02T17:54:49</cvrf:Date>
+        <cvrf:Description>Updated the FTD fixed releases table to indicate that FTD Software Release 6.3.0.3 is available.</cvrf:Description>
+      </cvrf:Revision>
+    </cvrf:RevisionHistory>
+    <cvrf:InitialReleaseDate>2019-05-01T16:00:00</cvrf:InitialReleaseDate>
+    <cvrf:CurrentReleaseDate>2019-05-02T17:54:49</cvrf:CurrentReleaseDate>
+    <cvrf:Generator>
+      <cvrf:Engine>TVCE</cvrf:Engine>
+    </cvrf:Generator>
+  </cvrf:DocumentTracking>
+  <cvrf:DocumentNotes>
+    <cvrf:Note Title="Summary" Type="Summary" Ordinal="1">Multiple vulnerabilities in the Server Message Block (SMB) Protocol preprocessor detection engine for Cisco Firepower Threat Defense (FTD) Software could allow an unauthenticated, adjacent or remote attacker to cause a denial of service (DoS) condition.
+
+For more information about these vulnerabilities, see the Details ["#details"] section of this advisory.
+
+Cisco has released software updates that address these vulnerabilities. There are no workarounds that address these vulnerabilities.
+
+This advisory is available at the following link:
+https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20190501-frpwr-smb-snort ["https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20190501-frpwr-smb-snort"]</cvrf:Note>
+    <cvrf:Note Title="Vulnerable Products" Type="General" Ordinal="2">These vulnerabilities affect the following Cisco products that are running a vulnerable release of Cisco FTD Software:
+
+3000 Series Industrial Security Appliances (ISAs)
+Adaptive Security Appliance (ASA) 5500-X Series Firewalls
+ASA 5500-X Series with FirePOWER Services
+Advanced Malware Protection (AMP) for Networks for FirePOWER 7000 Series Appliances
+AMP for Networks for FirePOWER 8000 Series Appliances
+Firepower 2100 Series
+Firepower 4100 Series
+FirePOWER 7000 Series Appliances
+FirePOWER 8000 Series Appliances
+Firepower 9300 Security Appliances
+Firepower Threat Defense for Integrated Services Routers (ISRs)
+FTD Virtual (FTDv)
+Next-Generation Intrusion Prevention System (NGIPS)
+
+For information about which Cisco FTD Software releases are vulnerable, see the Fixed Software ["#fs"] section of this advisory.
+
+These vulnerabilities may also affect the open-source Snort project. For more information, see the Snort website ["https://www.snort.org/"].
+  Determining the Cisco FTD Software Release
+To determine which Cisco FTD Software release is running on a device, administrators can log in to the device, use the show version command in the CLI, and refer to the output of the command. The following example shows the output of the command for a device that is running Cisco FTD Software Release 6.2.0:
+
+
+&gt; show version
+  ---------------------[ ftd ]---------------------  Model : Cisco ASA5525-X Threat Defense (75) Version 6.2.0 (Build 362)  UUID : 2849ba3c-ecb8-11e6-98ca-b9fc2975893c  Rules update version : 2017-03-15-001-vrt  VDB version : 279  ----------------------------------------------------</cvrf:Note>
+    <cvrf:Note Title="Products Confirmed Not Vulnerable" Type="General" Ordinal="3">Only products listed in the Vulnerable Products ["#vp"] section of this advisory are known to be affected by these vulnerabilities.
+
+Cisco has confirmed that these vulnerabilities do not affect the following Cisco products:
+
+Adaptive Security Appliance (ASA) Software
+Firepower Management Center
+Meraki MX Security Appliances</cvrf:Note>
+    <cvrf:Note Title="Details" Type="General" Ordinal="4">Two vulnerabilities in the SMB Protocol preprocessor detection engine for Cisco FTD Software could allow an adjacent or remote attacker to cause a DoS condition.
+
+The vulnerabilities are not dependent on one another; exploitation of one of the vulnerabilities is not required to exploit the other vulnerability.
+
+Details about the vulnerabilities are as follows.
+
+Cisco Firepower Threat Defense Software SMB Protocol Preprocessor Detection Engine Low System Memory Denial of Service Vulnerability
+
+A vulnerability in the SMB Protocol preprocessor detection engine for Cisco FTD Software could allow an unauthenticated, adjacent attacker to cause the device to run low on system memory, which may cause the device to stop forwarding traffic. A manual reload of the device may be required to clear the condition.
+
+The vulnerability is due to incorrect SMB ingress packet processing for specific SMB packet types. An attacker could exploit this vulnerability by sending a steady stream of crafted SMB packets to the targeted device from the local subnet. A successful exploit could allow the attacker to cause the device to run low on system memory, which could prevent the Snort process from forwarding traffic. This vulnerability can be exploited using IPv4 or IPv6 with either SMB Version 2 (SMBv2) or SMB Version 3 (SMBv3) network traffic.
+
+The Common Vulnerabilities and Exposures (CVE) ID for this vulnerability is: CVE-2019-1696
+
+The Security Impact Rating (SIR) for this vulnerability is: High
+
+Cisco Firepower Threat Defense Software SMB Protocol Preprocessor Detection Engine Denial of Service Vulnerability
+
+A vulnerability in the SMB Protocol preprocessor detection engine for Cisco FTD Software could allow an unauthenticated, remote attacker to cause the Snort process to unexpectedly restart, resulting in a denial of service (DoS) condition.
+
+The vulnerability is due to incorrect SMB ingress packet processing for specific SMB packet types. An attacker could exploit this vulnerability by sending a crafted SMB connection to the targeted device. A successful exploit could allow the attacker to cause the Snort process to crash.  This vulnerability can be exploited using IPv4 or IPv6 with either SMBv2 or SMBv3 network traffic.
+
+The CVE ID for this vulnerability is: CVE-2019-1704
+
+The SIR for this vulnerability is: High</cvrf:Note>
+    <cvrf:Note Title="Indicators of Compromise" Type="General" Ordinal="5">The Cisco Firepower Threat Defense Software SMB Protocol Preprocessor Detection Engine Low System Memory Denial of Service Vulnerability could cause the device to run low on system memory, which could cause the Snort process to restart unexpectedly. If the following error log is observed, customers are advised to contact the Cisco Technical Assistance Center (TAC) to determine whether the vulnerability has been exploited on the device.
+
+
+Firepower-module1 kernel: [1111040.969265] snort invoked oom-killer: gfp_mask=0xd0, order=0, oom_score_adj=0</cvrf:Note>
+    <cvrf:Note Title="Workarounds" Type="General" Ordinal="6">There are no workarounds that address these vulnerabilities.</cvrf:Note>
+    <cvrf:Note Title="Fixed Software" Type="General" Ordinal="7">Cisco has released free software updates that address the vulnerabilities described in this advisory. Customers may only install and expect support for software versions and feature sets for which they have purchased a license. By installing, downloading, accessing, or otherwise using such software upgrades, customers agree to follow the terms of the Cisco software license:  https://www.cisco.com/c/en/us/products/end-user-license-agreement.html ["https://www.cisco.com/c/en/us/products/end-user-license-agreement.html"]
+
+Additionally, customers may only download software for which they have a valid license, procured from Cisco directly, or through a Cisco authorized reseller or partner. In most cases this will be a maintenance upgrade to software that was previously purchased. Free security software updates do not entitle customers to a new software license, additional software feature sets, or major revision upgrades.
+
+When considering software upgrades, customers are advised to regularly consult the advisories for Cisco products, which are available from the Cisco Security Advisories and Alerts page ["https://www.cisco.com/go/psirt"], to determine exposure and a complete upgrade solution.
+
+In all cases, customers should ensure that the devices to be upgraded contain sufficient memory and confirm that current hardware and software configurations will continue to be supported properly by the new release. If the information is not clear, customers are advised to contact the Cisco Technical Assistance Center (TAC) or their contracted maintenance providers.
+  Customers Without Service Contracts
+Customers who purchase directly from Cisco but do not hold a Cisco service contract and customers who make purchases through third-party vendors but are unsuccessful in obtaining fixed software through their point of sale should obtain upgrades by contacting the Cisco TAC: https://www.cisco.com/c/en/us/support/web/tsd-cisco-worldwide-contacts.html ["https://www.cisco.com/c/en/us/support/web/tsd-cisco-worldwide-contacts.html"]
+
+Customers should have the product serial number available and be prepared to provide the URL of this advisory as evidence of entitlement to a free upgrade.
+  Fixed Releases
+Customers are advised to upgrade to an appropriate release ["https://tools.cisco.com/security/center/resources/security_vulnerability_policy.html#fixes"] as indicated in the applicable table in this section. To ensure a complete upgrade solution, customers should consider that this advisory is part of a collection that includes the following advisories:
+
+cisco-sa-20190501-asa-csrf ["https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20190501-asa-csrf"]: Cisco Adaptive Security Appliance Software Cross-Site Request Forgery Vulnerability
+cisco-sa-20190501-asa-frpwrtd-dos ["https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20190501-asa-frpwrtd-dos"]: Cisco Adaptive Security Appliance Software and Cisco Firepower Threat Defense Software TCP Timer Handling Denial of Service Vulnerability
+cisco-sa-20190501-asa-ftd-dos ["https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20190501-asa-ftd-dos"]: Cisco Adaptive Security Appliance Software and Firepower Threat Defense Software WebVPN Denial of Service Vulnerability
+cisco-sa-20190501-asa-ftd-entropy ["https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20190501-asa-ftd-entropy"]: Cisco Adaptive Security Appliance Software and Firepower Threat Defense Software Low-Entropy Keys Vulnerability
+cisco-sa-20190501-asa-ftd-ike-dos ["https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20190501-asa-ftd-ike-dos"]: Cisco      Adaptive Security Appliance Software and Cisco Firepower Threat Defense      Software MOBIKE Denial of Service Vulnerability
+cisco-sa-20190501-asaftd-saml-vpn ["https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20190501-asaftd-saml-vpn"]: Cisco      Adaptive Security Appliance Software and Firepower Threat Defense      Software VPN SAML Authentication Bypass Vulnerability
+cisco-sa-20190501-asa-ipsec-dos ["https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20190501-asa-ipsec-dos"]: Cisco Adaptive Security Appliance Software IPsec Denial of Service Vulnerability
+cisco-sa-20190501-firepower-dos ["https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20190501-firepower-dos"]: Cisco Firepower Threat Defense Software TCP Ingress Handler Denial of Service Vulnerability
+cisco-sa-20190501-frpwr-dos: ["http://https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20190501-frpwr-dos"] Cisco Firepower Threat Defense Software Packet Processing Denial of Service Vulnerability
+cisco-sa-20190501-frpwr-smb-snort ["https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20190501-frpwr-smb-snort"]: Cisco Firepower Threat Defense Software SMB Protocol Preprocessor Detection Engine Denial of Service Vulnerabilities
+cisco-sa-20190501-sd-cpu-dos ["https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20190501-sd-cpu-dos"]: Cisco Adaptive Security Appliance Software and Firepower Threat Defense Software WebVPN Denial of Service Vulnerability
+
+In the following table(s), the left column lists Cisco software releases. The center column indicates whether a release is affected by the vulnerabilities described in this advisory and the release that includes the fix for these vulnerabilities. The right column indicates whether a release is affected by all the vulnerabilities described in this collection of advisories and which release includes fixes for those vulnerabilities.
+
+Cisco FTD Software
+                                Cisco FTD Software Release              Recommended Release for These Vulnerabilities
+              Recommended Release for All Vulnerabilities Described in the Collection of Advisories                                              6.0
+              6.2.3.12              6.2.3.12                                  6.0.1              6.2.3.12              6.2.3.12                                  6.1.0              6.2.3.12
+              6.2.3.12                                  6.2.0              6.2.3.12
+              6.2.3.12                                  6.2.1              6.2.3.12              6.2.3.12                                  6.2.2              6.2.3.12              6.2.3.12                                  6.2.3              6.2.3.12              6.2.3.12                                  6.3.0              Not vulnerable              6.3.0.3
+                                  6.4.0              Not vulnerable              Not vulnerable
+To upgrade to a fixed release of Cisco FTD Software, customers can do one of the following:
+
+For devices that are managed by using Cisco Firepower Management Center (FMC), use the FMC interface to install the upgrade. After installation is complete, reapply the access control policy.
+For devices that are managed by using Cisco Firepower Device Manager (FDM), use the FDM interface to install the upgrade. After installation is complete, reapply the access control policy.
+
+The Snort version that is installed depends on the FMC release.</cvrf:Note>
+    <cvrf:Note Title="Vulnerability Policy" Type="General" Ordinal="8">To learn about Cisco security vulnerability disclosure policies and publications, see the Security Vulnerability Policy ["http://www.cisco.com/web/about/security/psirt/security_vulnerability_policy.html"]. This document also contains instructions for obtaining fixed software and receiving security vulnerability information from Cisco.</cvrf:Note>
+    <cvrf:Note Title="Exploitation and Public Announcements" Type="General" Ordinal="9">The Cisco Product Security Incident Response Team (PSIRT) is not aware of any public announcements or malicious use of the vulnerabilities that are described in this advisory.</cvrf:Note>
+    <cvrf:Note Title="Source" Type="General" Ordinal="10">These vulnerabilities were found during the resolution of a Cisco TAC support case.</cvrf:Note>
+    <cvrf:Note Title="Legal Disclaimer" Type="Legal Disclaimer" Ordinal="11">THIS DOCUMENT IS PROVIDED ON AN "AS IS" BASIS AND DOES NOT IMPLY ANY KIND OF GUARANTEE OR WARRANTY, INCLUDING THE WARRANTIES OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR USE. YOUR USE OF THE INFORMATION ON THE DOCUMENT OR MATERIALS LINKED FROM THE DOCUMENT IS AT YOUR OWN RISK. CISCO RESERVES THE RIGHT TO CHANGE OR UPDATE THIS DOCUMENT AT ANY TIME.
+
+A standalone copy or paraphrase of the text of this document that omits the distribution URL is an uncontrolled copy and may lack important information or contain factual errors. The information in this document is intended for end users of Cisco products.</cvrf:Note>
+  </cvrf:DocumentNotes>
+  <cvrf:DocumentReferences>
+    <cvrf:Reference Type="Self">
+      <cvrf:URL>https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20190501-frpwr-smb-snort</cvrf:URL>
+      <cvrf:Description>Cisco Firepower Threat Defense Software SMB Protocol Preprocessor Detection Engine Denial of Service Vulnerabilities</cvrf:Description>
+    </cvrf:Reference>
+  </cvrf:DocumentReferences>
+  <ProductTree xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/prod">
+    <Branch Name="Cisco" Type="Vendor">
+      <Branch Name="Cisco Firepower Threat Defense Software" Type="Product Name">
+        <FullProductName ProductID="CVRFPID-220203">Cisco Firepower Threat Defense Software </FullProductName>
+      </Branch>
+    </Branch>
+  </ProductTree>
+  <Vulnerability Ordinal="1" xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln">
+    <Title>Cisco Firepower Threat Defense Software SMB Protocol Preprocessor Detection Engine Low System Memory Denial of Service Vulnerability</Title>
+    <ID SystemName="Cisco Bug ID">CSCvj91418</ID>
+    <Notes>
+      <Note Title="Summary" Type="Summary" Ordinal="1">A vulnerability in the SMB Protocol preprocessor detection engine for Cisco FTD Software could allow an unauthenticated, adjacent attacker to cause the device to run low on system memory, which may cause the device to stop forwarding traffic. A manual reload of the device may be required to clear the condition.
+
+The vulnerability is due to incorrect SMB ingress packet processing for specific SMB packet types. An attacker could exploit this vulnerability by sending a steady stream of crafted SMB packets to the targeted device from the local subnet. A successful exploit could allow the attacker to cause the device to run low on system memory, which could prevent the Snort process from forwarding traffic. This vulnerability can be exploited using IPv4 or IPv6 with either SMB Version 2 (SMBv2) or SMB Version 3 (SMBv3) network traffic.
+</Note>
+      <Note Title="Cisco Bug IDs" Type="Other" Ordinal="2">CSCvj91418</Note>
+    </Notes>
+    <CVE>CVE-2019-1696</CVE>
+    <ProductStatuses>
+      <Status Type="Known Affected">
+        <ProductID>CVRFPID-220203</ProductID>
+      </Status>
+    </ProductStatuses>
+    <CVSSScoreSets>
+      <ScoreSetV3>
+        <BaseScoreV3>7.5</BaseScoreV3>
+        <VectorV3>CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H</VectorV3>
+      </ScoreSetV3>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Workaround">
+        <Description>There are no workarounds that address these vulnerabilities.</Description>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference Type="Self">
+        <URL>https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20190501-frpwr-smb-snort</URL>
+        <Description>Cisco Firepower Threat Defense Software SMB Protocol Preprocessor Detection Engine Denial of Service Vulnerabilities</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+  <Vulnerability Ordinal="2" xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln">
+    <Title>Cisco Firepower Threat Defense Software SMB Protocol Preprocessor Detection Engine Denial of Service Vulnerability</Title>
+    <ID SystemName="Cisco Bug ID">CSCvj83264</ID>
+    <Notes>
+      <Note Title="Summary" Type="Summary" Ordinal="1">A vulnerability in the SMB Protocol preprocessor detection engine for Cisco FTD Software could allow an unauthenticated, remote attacker to cause the Snort process to unexpectedly restart, resulting in a denial of service (DoS) condition.
+
+The vulnerability is due to incorrect SMB ingress packet processing for specific SMB packet types. An attacker could exploit this vulnerability by sending a crafted SMB connection to the targeted device. A successful exploit could allow the attacker to cause the Snort process to crash.  This vulnerability can be exploited using IPv4 or IPv6 with either SMBv2 or SMBv3 network traffic.
+</Note>
+      <Note Title="Cisco Bug IDs" Type="Other" Ordinal="2">CSCvj83264</Note>
+    </Notes>
+    <CVE>CVE-2019-1704</CVE>
+    <ProductStatuses>
+      <Status Type="Known Affected">
+        <ProductID>CVRFPID-220203</ProductID>
+      </Status>
+    </ProductStatuses>
+    <CVSSScoreSets>
+      <ScoreSetV3>
+        <BaseScoreV3>7.5</BaseScoreV3>
+        <VectorV3>CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H</VectorV3>
+      </ScoreSetV3>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Workaround">
+        <Description>There are no workarounds that address these vulnerabilities.</Description>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference Type="Self">
+        <URL>https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20190501-frpwr-smb-snort</URL>
+        <Description>Cisco Firepower Threat Defense Software SMB Protocol Preprocessor Detection Engine Denial of Service Vulnerabilities</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+</cvrf:cvrfdoc>

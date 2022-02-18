@@ -1,0 +1,562 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cvrf:cvrfdoc xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:cvrf-common="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/common" xmlns:cvrf="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/cvrf">
+  <cvrf:DocumentTitle>Cisco Access Points SSH Management Privilege Escalation Vulnerability</cvrf:DocumentTitle>
+  <cvrf:DocumentType>Cisco Security Advisory</cvrf:DocumentType>
+  <cvrf:DocumentPublisher Type="Vendor">
+    <cvrf:ContactDetails>Emergency Support:
++1 877 228 7302 (toll-free within North America)
++1 408 525 6532 (International direct-dial)
+Non-emergency Support:
+Email: psirt@cisco.com
+Support requests that are received via e-mail are typically acknowledged within 48 hours.</cvrf:ContactDetails>
+    <cvrf:IssuingAuthority>Cisco product security incident response is the responsibility of the Cisco Product Security Incident Response Team (PSIRT). The Cisco PSIRT is a dedicated, global team that manages the receipt, investigation, and public reporting of security vulnerability information that is related to Cisco products and networks. The on-call Cisco PSIRT works 24x7 with Cisco customers, independent security researchers, consultants, industry organizations, and other vendors to identify possible security issues with Cisco products and networks.
+More information can be found in Cisco Security Vulnerability Policy available at http://www.cisco.com/web/about/security/psirt/security_vulnerability_policy.html</cvrf:IssuingAuthority>
+  </cvrf:DocumentPublisher>
+  <cvrf:DocumentTracking>
+    <cvrf:Identification>
+      <cvrf:ID>cisco-sa-cisco-ap-LLjsGxv</cvrf:ID>
+    </cvrf:Identification>
+    <cvrf:Status>Final</cvrf:Status>
+    <cvrf:Version>1.0</cvrf:Version>
+    <cvrf:RevisionHistory>
+      <cvrf:Revision>
+        <cvrf:Number>1.0</cvrf:Number>
+        <cvrf:Date>2021-09-22T15:48:15</cvrf:Date>
+        <cvrf:Description>Initial public release.</cvrf:Description>
+      </cvrf:Revision>
+    </cvrf:RevisionHistory>
+    <cvrf:InitialReleaseDate>2021-09-22T16:00:00</cvrf:InitialReleaseDate>
+    <cvrf:CurrentReleaseDate>2021-09-22T16:00:00</cvrf:CurrentReleaseDate>
+    <cvrf:Generator>
+      <cvrf:Engine>TVCE</cvrf:Engine>
+    </cvrf:Generator>
+  </cvrf:DocumentTracking>
+  <cvrf:DocumentNotes>
+    <cvrf:Note Title="Summary" Type="Summary" Ordinal="1">A vulnerability in the SSH management feature of multiple Cisco Access Points (APs) platforms could allow a local, authenticated user to modify files on the affected device and possibly gain escalated privileges.
+
+The vulnerability is due to improper checking on file operations within the SSH management interface. A network administrator user could exploit this vulnerability by accessing an affected device through SSH management to make a configuration change. A successful exploit could allow the attacker to gain privileges equivalent to the root user.
+
+Cisco has released software updates that address this vulnerability. There are no workarounds that address this vulnerability.
+
+This advisory is available at the following link:
+https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-cisco-ap-LLjsGxv ["https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-cisco-ap-LLjsGxv"]</cvrf:Note>
+    <cvrf:Note Title="Vulnerable Products" Type="General" Ordinal="2">This vulnerability affects the following Cisco products if they are running a vulnerable software release with the access point SSH management feature enabled:
+Aironet 1540 Series APs
+Aironet 1560 Series APs
+Aironet 1800 Series APs
+Aironet 2800 Series APs
+Aironet 3800 Series APs
+Aironet 4800 APs
+Catalyst 9100 APs
+Catalyst IW 6300 APs
+ESW6300 Series APs
+Integrated Access Point on 1100 Integrated Services Routers
+
+Determine Whether SSH Management is Enabled
+
+Note: The SSH management feature is not enabled by default.
+
+Customers using Cisco IOS XE Software can verify whether SSH management is enabled on the access point by checking the following settings in the Cisco Wireless LAN Controller web-based management interface:
+
+Configuration &gt; Tags &amp; Profiles &gt; AP Join &gt; Click on profile name &gt; Verify SSH Configuration
+
+If the SSH box is checked, the SSH management feature is enabled.
+
+Customers using Cisco AireOS Software can verify whether SSH management has been enabled globally on managed access points by checking Wireless &gt; Global Configuration and verifying the Global Telnet SSH setting.
+
+Customers can also verify whether SSH management is enabled on the access point by running the show running-config command and examining the SSH State value.</cvrf:Note>
+    <cvrf:Note Title="Products Confirmed Not Vulnerable" Type="General" Ordinal="3">Only products listed in the Vulnerable Products ["#vp"] section of this advisory are known to be affected by this vulnerability.
+
+Cisco Wireless LAN Controller devices that run either Cisco AireOS Software or Cisco IOS XE Software are not affected by this vulnerability.
+
+Cisco has confirmed that this vulnerability does not affect any Cisco Access Point series that is not listed in the Vulnerable Products section of this advisory. Access points that run Cisco IOS Software are not affected by this vulnerability.</cvrf:Note>
+    <cvrf:Note Title="Details" Type="General" Ordinal="4">Exploitation of this vulnerability requires the SSH feature to be enabled. Devices without SSH management enabled are not vulnerable to exploitation. The SSH management feature is not required to remotely administer an access point from a Cisco Wireless LAN Controller device.
+
+An attacker must know the SSH management credentials locally defined on the access point in order to log in to an affected access point to exploit this vulnerability.</cvrf:Note>
+    <cvrf:Note Title="Workarounds" Type="General" Ordinal="5">There are no workarounds that address this vulnerability.
+
+However, customers who do not use the SSH management feature can disable it to close the attack vector on affected devices.
+
+While this mitigation has been deployed and was proven successful in a test environment, customers should determine the applicability and effectiveness in their own environment and under their own use conditions. Customers should be aware that any workaround or mitigation that is implemented may negatively impact the functionality or performance of their network based on intrinsic customer deployment scenarios and limitations. Customers should not deploy any workarounds or mitigations before first evaluating the applicability to their own environment and any impact to such environment.</cvrf:Note>
+    <cvrf:Note Title="Fixed Software" Type="General" Ordinal="6">Cisco has released free software updates that address the vulnerability described in this advisory. Customers may only install and expect support for software versions and feature sets for which they have purchased a license. By installing, downloading, accessing, or otherwise using such software upgrades, customers agree to follow the terms of the Cisco software license:
+https://www.cisco.com/c/en/us/products/end-user-license-agreement.html ["https://www.cisco.com/c/en/us/products/end-user-license-agreement.html"]
+
+Additionally, customers may only download software for which they have a valid license, procured from Cisco directly, or through a Cisco authorized reseller or partner. In most cases this will be a maintenance upgrade to software that was previously purchased. Free security software updates do not entitle customers to a new software license, additional software feature sets, or major revision upgrades.
+
+When considering software upgrades ["https://tools.cisco.com/security/center/resources/security_vulnerability_policy.html#fixes"], customers are advised to regularly consult the advisories for Cisco products, which are available from the Cisco Security Advisories page ["https://www.cisco.com/go/psirt"], to determine exposure and a complete upgrade solution.
+
+In all cases, customers should ensure that the devices to be upgraded contain sufficient memory and confirm that current hardware and software configurations will continue to be supported properly by the new release. If the information is not clear, customers are advised to contact the Cisco Technical Assistance Center (TAC) or their contracted maintenance providers.
+  Customers Without Service Contracts
+Customers who purchase directly from Cisco but do not hold a Cisco service contract and customers who make purchases through third-party vendors but are unsuccessful in obtaining fixed software through their point of sale should obtain upgrades by contacting the Cisco TAC: https://www.cisco.com/c/en/us/support/web/tsd-cisco-worldwide-contacts.html ["https://www.cisco.com/c/en/us/support/web/tsd-cisco-worldwide-contacts.html"]
+
+Customers should have the product serial number available and be prepared to provide the URL of this advisory as evidence of entitlement to a free upgrade.
+      Fixed Releases
+The process to upgrade the APs requires administrators to upgrade the wireless controller to which the APs are registered.
+
+
+Customers are advised to upgrade to an appropriate fixed software release as indicated in the following table(s):
+    Access Points Managed by Wireless LAN Controller        Cisco Wireless LAN Controller Software Release  First Fixed Release for This Vulnerability          8.5 and earlier  Not affected.      8.10  8.10.151.0        Access Points Managed by Catalyst 9800 Wireless Controller        Cisco Catalyst 9800 Wireless Controller Software Release  First Fixed Release for This Vulnerability          16.12  16.12.6      17.2 and earlier  Migrate to a fixed release.      17.3  17.3.3      17.4  Migrate to a fixed release.      17.5  Not affected.      17.6  Not affected.</cvrf:Note>
+    <cvrf:Note Title="Vulnerability Policy" Type="General" Ordinal="7">To learn about Cisco security vulnerability disclosure policies and publications, see the Security Vulnerability Policy ["http://www.cisco.com/web/about/security/psirt/security_vulnerability_policy.html"]. This document also contains instructions for obtaining fixed software and receiving security vulnerability information from Cisco.</cvrf:Note>
+    <cvrf:Note Title="Exploitation and Public Announcements" Type="General" Ordinal="8">The Cisco Product Security Incident Response Team (PSIRT) is not aware of any public announcements or malicious use of the vulnerability that is described in this advisory.</cvrf:Note>
+    <cvrf:Note Title="Source" Type="General" Ordinal="9">Cisco would like to thank Richard Atkin of ITGL for reporting this vulnerability.</cvrf:Note>
+    <cvrf:Note Title="Legal Disclaimer" Type="Legal Disclaimer" Ordinal="10">THIS DOCUMENT IS PROVIDED ON AN "AS IS" BASIS AND DOES NOT IMPLY ANY KIND OF GUARANTEE OR WARRANTY, INCLUDING THE WARRANTIES OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR USE. YOUR USE OF THE INFORMATION ON THE DOCUMENT OR MATERIALS LINKED FROM THE DOCUMENT IS AT YOUR OWN RISK. CISCO RESERVES THE RIGHT TO CHANGE OR UPDATE THIS DOCUMENT AT ANY TIME.
+
+A standalone copy or paraphrase of the text of this document that omits the distribution URL is an uncontrolled copy and may lack important information or contain factual errors. The information in this document is intended for end users of Cisco products.</cvrf:Note>
+  </cvrf:DocumentNotes>
+  <cvrf:DocumentReferences>
+    <cvrf:Reference Type="Self">
+      <cvrf:URL>https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-cisco-ap-LLjsGxv</cvrf:URL>
+      <cvrf:Description>Cisco Access Points SSH Management Privilege Escalation Vulnerability</cvrf:Description>
+    </cvrf:Reference>
+  </cvrf:DocumentReferences>
+  <ProductTree xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/prod">
+    <Branch Name="Cisco" Type="Vendor">
+      <Branch Name="Cisco Wireless LAN Controller (WLC)" Type="Product Name">
+        <Branch Name="8.6" Type="Product Version">
+          <Branch Name="8.6.101.0" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-247201">Cisco Wireless LAN Controller (WLC) 8.6.101.0</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="8.7" Type="Product Version">
+          <Branch Name="8.7.102.0" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-247203">Cisco Wireless LAN Controller (WLC) 8.7.102.0</FullProductName>
+          </Branch>
+          <Branch Name="8.7.106.0" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-247204">Cisco Wireless LAN Controller (WLC) 8.7.106.0</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="8.8" Type="Product Version">
+          <Branch Name="8.8.100.0" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-247206">Cisco Wireless LAN Controller (WLC) 8.8.100.0</FullProductName>
+          </Branch>
+          <Branch Name="8.8.111.0" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-270352">Cisco Wireless LAN Controller (WLC) 8.8.111.0</FullProductName>
+          </Branch>
+          <Branch Name="8.8.120.0" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-270353">Cisco Wireless LAN Controller (WLC) 8.8.120.0</FullProductName>
+          </Branch>
+          <Branch Name="8.8.125.0" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-270354">Cisco Wireless LAN Controller (WLC) 8.8.125.0</FullProductName>
+          </Branch>
+          <Branch Name="8.8.130.0" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-279048">Cisco Wireless LAN Controller (WLC) 8.8.130.0</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="8.9" Type="Product Version">
+          <Branch Name="8.9.100.0" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-270356">Cisco Wireless LAN Controller (WLC) 8.9.100.0</FullProductName>
+          </Branch>
+          <Branch Name="8.9.111.0" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-270357">Cisco Wireless LAN Controller (WLC) 8.9.111.0</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="8.10" Type="Product Version">
+          <Branch Name="8.10.105.0" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-277158">Cisco Wireless LAN Controller (WLC) 8.10.105.0</FullProductName>
+          </Branch>
+          <Branch Name="8.10.112.0" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-277159">Cisco Wireless LAN Controller (WLC) 8.10.112.0</FullProductName>
+          </Branch>
+          <Branch Name="8.10.113.0" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-278995">Cisco Wireless LAN Controller (WLC) 8.10.113.0</FullProductName>
+          </Branch>
+          <Branch Name="8.10.120.0" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-278998">Cisco Wireless LAN Controller (WLC) 8.10.120.0</FullProductName>
+          </Branch>
+          <Branch Name="8.10.121.0" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-279001">Cisco Wireless LAN Controller (WLC) 8.10.121.0</FullProductName>
+          </Branch>
+          <Branch Name="8.10.122.0" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-279003">Cisco Wireless LAN Controller (WLC) 8.10.122.0</FullProductName>
+          </Branch>
+          <Branch Name="8.10.130.0" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-279748">Cisco Wireless LAN Controller (WLC) 8.10.130.0</FullProductName>
+          </Branch>
+          <Branch Name="8.10.141.0" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-284588">Cisco Wireless LAN Controller (WLC) 8.10.141.0</FullProductName>
+          </Branch>
+          <Branch Name="8.10.150.0" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-284592">Cisco Wireless LAN Controller (WLC) 8.10.150.0</FullProductName>
+          </Branch>
+          <Branch Name="8.10.142.0" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-284593">Cisco Wireless LAN Controller (WLC) 8.10.142.0</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="Cisco 5500 Series Wireless Controllers" Type="Product Name">
+          <FullProductName ProductID="CVRFPID-277401">Cisco Wireless LAN Controller (WLC) Platform Cisco 5500 Series Wireless Controllers</FullProductName>
+        </Branch>
+        <Branch Name="Cisco 3500 Series Wireless Controllers" Type="Product Name">
+          <FullProductName ProductID="CVRFPID-277402">Cisco Wireless LAN Controller (WLC) Platform Cisco 3500 Series Wireless Controllers</FullProductName>
+        </Branch>
+        <Branch Name="Cisco 8500 Series Wireless Controllers" Type="Product Name">
+          <FullProductName ProductID="CVRFPID-277478">Cisco Wireless LAN Controller (WLC) Platform Cisco 8500 Series Wireless Controllers</FullProductName>
+        </Branch>
+        <Branch Name="Cisco Virtual Wireless Controller" Type="Product Name">
+          <FullProductName ProductID="CVRFPID-277486">Cisco Wireless LAN Controller (WLC) Platform Cisco Virtual Wireless Controller</FullProductName>
+        </Branch>
+      </Branch>
+      <Branch Name="Cisco Wireless LAN Controller (WLC)" Type="Product Name">
+        <FullProductName ProductID="CVRFPID-7368">Cisco Wireless LAN Controller (WLC) </FullProductName>
+      </Branch>
+      <Branch Name="Cisco Aironet Access Point Software (IOS XE Controller)" Type="Product Name">
+        <FullProductName ProductID="CVRFPID-280019">Cisco Aironet Access Point Software (IOS XE Controller) </FullProductName>
+      </Branch>
+    </Branch>
+    <Relationship RelatesToProductReference="CVRFPID-277401" RelationType="Installed On" ProductReference="CVRFPID-247201">
+      <FullProductName ProductID="CVRFPID-247201:277401">Cisco Wireless LAN Controller (WLC) 8.6.101.0 when installed on Cisco 5500 Series Wireless Controllers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277402" RelationType="Installed On" ProductReference="CVRFPID-247201">
+      <FullProductName ProductID="CVRFPID-247201:277402">Cisco Wireless LAN Controller (WLC) 8.6.101.0 when installed on Cisco 3500 Series Wireless Controllers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277478" RelationType="Installed On" ProductReference="CVRFPID-247201">
+      <FullProductName ProductID="CVRFPID-247201:277478">Cisco Wireless LAN Controller (WLC) 8.6.101.0 when installed on Cisco 8500 Series Wireless Controllers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277486" RelationType="Installed On" ProductReference="CVRFPID-247201">
+      <FullProductName ProductID="CVRFPID-247201:277486">Cisco Wireless LAN Controller (WLC) 8.6.101.0 when installed on Cisco Virtual Wireless Controller</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277401" RelationType="Installed On" ProductReference="CVRFPID-247203">
+      <FullProductName ProductID="CVRFPID-247203:277401">Cisco Wireless LAN Controller (WLC) 8.7.102.0 when installed on Cisco 5500 Series Wireless Controllers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277402" RelationType="Installed On" ProductReference="CVRFPID-247203">
+      <FullProductName ProductID="CVRFPID-247203:277402">Cisco Wireless LAN Controller (WLC) 8.7.102.0 when installed on Cisco 3500 Series Wireless Controllers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277478" RelationType="Installed On" ProductReference="CVRFPID-247203">
+      <FullProductName ProductID="CVRFPID-247203:277478">Cisco Wireless LAN Controller (WLC) 8.7.102.0 when installed on Cisco 8500 Series Wireless Controllers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277486" RelationType="Installed On" ProductReference="CVRFPID-247203">
+      <FullProductName ProductID="CVRFPID-247203:277486">Cisco Wireless LAN Controller (WLC) 8.7.102.0 when installed on Cisco Virtual Wireless Controller</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277401" RelationType="Installed On" ProductReference="CVRFPID-247204">
+      <FullProductName ProductID="CVRFPID-247204:277401">Cisco Wireless LAN Controller (WLC) 8.7.106.0 when installed on Cisco 5500 Series Wireless Controllers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277402" RelationType="Installed On" ProductReference="CVRFPID-247204">
+      <FullProductName ProductID="CVRFPID-247204:277402">Cisco Wireless LAN Controller (WLC) 8.7.106.0 when installed on Cisco 3500 Series Wireless Controllers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277478" RelationType="Installed On" ProductReference="CVRFPID-247204">
+      <FullProductName ProductID="CVRFPID-247204:277478">Cisco Wireless LAN Controller (WLC) 8.7.106.0 when installed on Cisco 8500 Series Wireless Controllers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277486" RelationType="Installed On" ProductReference="CVRFPID-247204">
+      <FullProductName ProductID="CVRFPID-247204:277486">Cisco Wireless LAN Controller (WLC) 8.7.106.0 when installed on Cisco Virtual Wireless Controller</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277401" RelationType="Installed On" ProductReference="CVRFPID-247206">
+      <FullProductName ProductID="CVRFPID-247206:277401">Cisco Wireless LAN Controller (WLC) 8.8.100.0 when installed on Cisco 5500 Series Wireless Controllers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277402" RelationType="Installed On" ProductReference="CVRFPID-247206">
+      <FullProductName ProductID="CVRFPID-247206:277402">Cisco Wireless LAN Controller (WLC) 8.8.100.0 when installed on Cisco 3500 Series Wireless Controllers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277478" RelationType="Installed On" ProductReference="CVRFPID-247206">
+      <FullProductName ProductID="CVRFPID-247206:277478">Cisco Wireless LAN Controller (WLC) 8.8.100.0 when installed on Cisco 8500 Series Wireless Controllers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277486" RelationType="Installed On" ProductReference="CVRFPID-247206">
+      <FullProductName ProductID="CVRFPID-247206:277486">Cisco Wireless LAN Controller (WLC) 8.8.100.0 when installed on Cisco Virtual Wireless Controller</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277401" RelationType="Installed On" ProductReference="CVRFPID-270352">
+      <FullProductName ProductID="CVRFPID-270352:277401">Cisco Wireless LAN Controller (WLC) 8.8.111.0 when installed on Cisco 5500 Series Wireless Controllers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277402" RelationType="Installed On" ProductReference="CVRFPID-270352">
+      <FullProductName ProductID="CVRFPID-270352:277402">Cisco Wireless LAN Controller (WLC) 8.8.111.0 when installed on Cisco 3500 Series Wireless Controllers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277478" RelationType="Installed On" ProductReference="CVRFPID-270352">
+      <FullProductName ProductID="CVRFPID-270352:277478">Cisco Wireless LAN Controller (WLC) 8.8.111.0 when installed on Cisco 8500 Series Wireless Controllers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277486" RelationType="Installed On" ProductReference="CVRFPID-270352">
+      <FullProductName ProductID="CVRFPID-270352:277486">Cisco Wireless LAN Controller (WLC) 8.8.111.0 when installed on Cisco Virtual Wireless Controller</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277401" RelationType="Installed On" ProductReference="CVRFPID-270353">
+      <FullProductName ProductID="CVRFPID-270353:277401">Cisco Wireless LAN Controller (WLC) 8.8.120.0 when installed on Cisco 5500 Series Wireless Controllers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277402" RelationType="Installed On" ProductReference="CVRFPID-270353">
+      <FullProductName ProductID="CVRFPID-270353:277402">Cisco Wireless LAN Controller (WLC) 8.8.120.0 when installed on Cisco 3500 Series Wireless Controllers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277478" RelationType="Installed On" ProductReference="CVRFPID-270353">
+      <FullProductName ProductID="CVRFPID-270353:277478">Cisco Wireless LAN Controller (WLC) 8.8.120.0 when installed on Cisco 8500 Series Wireless Controllers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277486" RelationType="Installed On" ProductReference="CVRFPID-270353">
+      <FullProductName ProductID="CVRFPID-270353:277486">Cisco Wireless LAN Controller (WLC) 8.8.120.0 when installed on Cisco Virtual Wireless Controller</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277401" RelationType="Installed On" ProductReference="CVRFPID-270354">
+      <FullProductName ProductID="CVRFPID-270354:277401">Cisco Wireless LAN Controller (WLC) 8.8.125.0 when installed on Cisco 5500 Series Wireless Controllers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277402" RelationType="Installed On" ProductReference="CVRFPID-270354">
+      <FullProductName ProductID="CVRFPID-270354:277402">Cisco Wireless LAN Controller (WLC) 8.8.125.0 when installed on Cisco 3500 Series Wireless Controllers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277478" RelationType="Installed On" ProductReference="CVRFPID-270354">
+      <FullProductName ProductID="CVRFPID-270354:277478">Cisco Wireless LAN Controller (WLC) 8.8.125.0 when installed on Cisco 8500 Series Wireless Controllers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277486" RelationType="Installed On" ProductReference="CVRFPID-270354">
+      <FullProductName ProductID="CVRFPID-270354:277486">Cisco Wireless LAN Controller (WLC) 8.8.125.0 when installed on Cisco Virtual Wireless Controller</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277401" RelationType="Installed On" ProductReference="CVRFPID-279048">
+      <FullProductName ProductID="CVRFPID-279048:277401">Cisco Wireless LAN Controller (WLC) 8.8.130.0 when installed on Cisco 5500 Series Wireless Controllers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277402" RelationType="Installed On" ProductReference="CVRFPID-279048">
+      <FullProductName ProductID="CVRFPID-279048:277402">Cisco Wireless LAN Controller (WLC) 8.8.130.0 when installed on Cisco 3500 Series Wireless Controllers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277478" RelationType="Installed On" ProductReference="CVRFPID-279048">
+      <FullProductName ProductID="CVRFPID-279048:277478">Cisco Wireless LAN Controller (WLC) 8.8.130.0 when installed on Cisco 8500 Series Wireless Controllers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277486" RelationType="Installed On" ProductReference="CVRFPID-279048">
+      <FullProductName ProductID="CVRFPID-279048:277486">Cisco Wireless LAN Controller (WLC) 8.8.130.0 when installed on Cisco Virtual Wireless Controller</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277401" RelationType="Installed On" ProductReference="CVRFPID-270356">
+      <FullProductName ProductID="CVRFPID-270356:277401">Cisco Wireless LAN Controller (WLC) 8.9.100.0 when installed on Cisco 5500 Series Wireless Controllers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277402" RelationType="Installed On" ProductReference="CVRFPID-270356">
+      <FullProductName ProductID="CVRFPID-270356:277402">Cisco Wireless LAN Controller (WLC) 8.9.100.0 when installed on Cisco 3500 Series Wireless Controllers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277478" RelationType="Installed On" ProductReference="CVRFPID-270356">
+      <FullProductName ProductID="CVRFPID-270356:277478">Cisco Wireless LAN Controller (WLC) 8.9.100.0 when installed on Cisco 8500 Series Wireless Controllers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277486" RelationType="Installed On" ProductReference="CVRFPID-270356">
+      <FullProductName ProductID="CVRFPID-270356:277486">Cisco Wireless LAN Controller (WLC) 8.9.100.0 when installed on Cisco Virtual Wireless Controller</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277401" RelationType="Installed On" ProductReference="CVRFPID-270357">
+      <FullProductName ProductID="CVRFPID-270357:277401">Cisco Wireless LAN Controller (WLC) 8.9.111.0 when installed on Cisco 5500 Series Wireless Controllers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277402" RelationType="Installed On" ProductReference="CVRFPID-270357">
+      <FullProductName ProductID="CVRFPID-270357:277402">Cisco Wireless LAN Controller (WLC) 8.9.111.0 when installed on Cisco 3500 Series Wireless Controllers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277478" RelationType="Installed On" ProductReference="CVRFPID-270357">
+      <FullProductName ProductID="CVRFPID-270357:277478">Cisco Wireless LAN Controller (WLC) 8.9.111.0 when installed on Cisco 8500 Series Wireless Controllers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277486" RelationType="Installed On" ProductReference="CVRFPID-270357">
+      <FullProductName ProductID="CVRFPID-270357:277486">Cisco Wireless LAN Controller (WLC) 8.9.111.0 when installed on Cisco Virtual Wireless Controller</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277401" RelationType="Installed On" ProductReference="CVRFPID-277158">
+      <FullProductName ProductID="CVRFPID-277158:277401">Cisco Wireless LAN Controller (WLC) 8.10.105.0 when installed on Cisco 5500 Series Wireless Controllers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277402" RelationType="Installed On" ProductReference="CVRFPID-277158">
+      <FullProductName ProductID="CVRFPID-277158:277402">Cisco Wireless LAN Controller (WLC) 8.10.105.0 when installed on Cisco 3500 Series Wireless Controllers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277478" RelationType="Installed On" ProductReference="CVRFPID-277158">
+      <FullProductName ProductID="CVRFPID-277158:277478">Cisco Wireless LAN Controller (WLC) 8.10.105.0 when installed on Cisco 8500 Series Wireless Controllers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277486" RelationType="Installed On" ProductReference="CVRFPID-277158">
+      <FullProductName ProductID="CVRFPID-277158:277486">Cisco Wireless LAN Controller (WLC) 8.10.105.0 when installed on Cisco Virtual Wireless Controller</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277401" RelationType="Installed On" ProductReference="CVRFPID-277159">
+      <FullProductName ProductID="CVRFPID-277159:277401">Cisco Wireless LAN Controller (WLC) 8.10.112.0 when installed on Cisco 5500 Series Wireless Controllers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277402" RelationType="Installed On" ProductReference="CVRFPID-277159">
+      <FullProductName ProductID="CVRFPID-277159:277402">Cisco Wireless LAN Controller (WLC) 8.10.112.0 when installed on Cisco 3500 Series Wireless Controllers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277478" RelationType="Installed On" ProductReference="CVRFPID-277159">
+      <FullProductName ProductID="CVRFPID-277159:277478">Cisco Wireless LAN Controller (WLC) 8.10.112.0 when installed on Cisco 8500 Series Wireless Controllers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277486" RelationType="Installed On" ProductReference="CVRFPID-277159">
+      <FullProductName ProductID="CVRFPID-277159:277486">Cisco Wireless LAN Controller (WLC) 8.10.112.0 when installed on Cisco Virtual Wireless Controller</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277401" RelationType="Installed On" ProductReference="CVRFPID-278995">
+      <FullProductName ProductID="CVRFPID-278995:277401">Cisco Wireless LAN Controller (WLC) 8.10.113.0 when installed on Cisco 5500 Series Wireless Controllers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277402" RelationType="Installed On" ProductReference="CVRFPID-278995">
+      <FullProductName ProductID="CVRFPID-278995:277402">Cisco Wireless LAN Controller (WLC) 8.10.113.0 when installed on Cisco 3500 Series Wireless Controllers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277478" RelationType="Installed On" ProductReference="CVRFPID-278995">
+      <FullProductName ProductID="CVRFPID-278995:277478">Cisco Wireless LAN Controller (WLC) 8.10.113.0 when installed on Cisco 8500 Series Wireless Controllers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277486" RelationType="Installed On" ProductReference="CVRFPID-278995">
+      <FullProductName ProductID="CVRFPID-278995:277486">Cisco Wireless LAN Controller (WLC) 8.10.113.0 when installed on Cisco Virtual Wireless Controller</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277401" RelationType="Installed On" ProductReference="CVRFPID-278998">
+      <FullProductName ProductID="CVRFPID-278998:277401">Cisco Wireless LAN Controller (WLC) 8.10.120.0 when installed on Cisco 5500 Series Wireless Controllers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277402" RelationType="Installed On" ProductReference="CVRFPID-278998">
+      <FullProductName ProductID="CVRFPID-278998:277402">Cisco Wireless LAN Controller (WLC) 8.10.120.0 when installed on Cisco 3500 Series Wireless Controllers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277478" RelationType="Installed On" ProductReference="CVRFPID-278998">
+      <FullProductName ProductID="CVRFPID-278998:277478">Cisco Wireless LAN Controller (WLC) 8.10.120.0 when installed on Cisco 8500 Series Wireless Controllers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277486" RelationType="Installed On" ProductReference="CVRFPID-278998">
+      <FullProductName ProductID="CVRFPID-278998:277486">Cisco Wireless LAN Controller (WLC) 8.10.120.0 when installed on Cisco Virtual Wireless Controller</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277401" RelationType="Installed On" ProductReference="CVRFPID-279001">
+      <FullProductName ProductID="CVRFPID-279001:277401">Cisco Wireless LAN Controller (WLC) 8.10.121.0 when installed on Cisco 5500 Series Wireless Controllers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277402" RelationType="Installed On" ProductReference="CVRFPID-279001">
+      <FullProductName ProductID="CVRFPID-279001:277402">Cisco Wireless LAN Controller (WLC) 8.10.121.0 when installed on Cisco 3500 Series Wireless Controllers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277478" RelationType="Installed On" ProductReference="CVRFPID-279001">
+      <FullProductName ProductID="CVRFPID-279001:277478">Cisco Wireless LAN Controller (WLC) 8.10.121.0 when installed on Cisco 8500 Series Wireless Controllers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277486" RelationType="Installed On" ProductReference="CVRFPID-279001">
+      <FullProductName ProductID="CVRFPID-279001:277486">Cisco Wireless LAN Controller (WLC) 8.10.121.0 when installed on Cisco Virtual Wireless Controller</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277401" RelationType="Installed On" ProductReference="CVRFPID-279003">
+      <FullProductName ProductID="CVRFPID-279003:277401">Cisco Wireless LAN Controller (WLC) 8.10.122.0 when installed on Cisco 5500 Series Wireless Controllers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277402" RelationType="Installed On" ProductReference="CVRFPID-279003">
+      <FullProductName ProductID="CVRFPID-279003:277402">Cisco Wireless LAN Controller (WLC) 8.10.122.0 when installed on Cisco 3500 Series Wireless Controllers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277478" RelationType="Installed On" ProductReference="CVRFPID-279003">
+      <FullProductName ProductID="CVRFPID-279003:277478">Cisco Wireless LAN Controller (WLC) 8.10.122.0 when installed on Cisco 8500 Series Wireless Controllers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277486" RelationType="Installed On" ProductReference="CVRFPID-279003">
+      <FullProductName ProductID="CVRFPID-279003:277486">Cisco Wireless LAN Controller (WLC) 8.10.122.0 when installed on Cisco Virtual Wireless Controller</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277401" RelationType="Installed On" ProductReference="CVRFPID-279748">
+      <FullProductName ProductID="CVRFPID-279748:277401">Cisco Wireless LAN Controller (WLC) 8.10.130.0 when installed on Cisco 5500 Series Wireless Controllers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277402" RelationType="Installed On" ProductReference="CVRFPID-279748">
+      <FullProductName ProductID="CVRFPID-279748:277402">Cisco Wireless LAN Controller (WLC) 8.10.130.0 when installed on Cisco 3500 Series Wireless Controllers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277478" RelationType="Installed On" ProductReference="CVRFPID-279748">
+      <FullProductName ProductID="CVRFPID-279748:277478">Cisco Wireless LAN Controller (WLC) 8.10.130.0 when installed on Cisco 8500 Series Wireless Controllers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277486" RelationType="Installed On" ProductReference="CVRFPID-279748">
+      <FullProductName ProductID="CVRFPID-279748:277486">Cisco Wireless LAN Controller (WLC) 8.10.130.0 when installed on Cisco Virtual Wireless Controller</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277401" RelationType="Installed On" ProductReference="CVRFPID-284588">
+      <FullProductName ProductID="CVRFPID-284588:277401">Cisco Wireless LAN Controller (WLC) 8.10.141.0 when installed on Cisco 5500 Series Wireless Controllers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277402" RelationType="Installed On" ProductReference="CVRFPID-284588">
+      <FullProductName ProductID="CVRFPID-284588:277402">Cisco Wireless LAN Controller (WLC) 8.10.141.0 when installed on Cisco 3500 Series Wireless Controllers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277478" RelationType="Installed On" ProductReference="CVRFPID-284588">
+      <FullProductName ProductID="CVRFPID-284588:277478">Cisco Wireless LAN Controller (WLC) 8.10.141.0 when installed on Cisco 8500 Series Wireless Controllers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277486" RelationType="Installed On" ProductReference="CVRFPID-284588">
+      <FullProductName ProductID="CVRFPID-284588:277486">Cisco Wireless LAN Controller (WLC) 8.10.141.0 when installed on Cisco Virtual Wireless Controller</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277401" RelationType="Installed On" ProductReference="CVRFPID-284592">
+      <FullProductName ProductID="CVRFPID-284592:277401">Cisco Wireless LAN Controller (WLC) 8.10.150.0 when installed on Cisco 5500 Series Wireless Controllers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277402" RelationType="Installed On" ProductReference="CVRFPID-284592">
+      <FullProductName ProductID="CVRFPID-284592:277402">Cisco Wireless LAN Controller (WLC) 8.10.150.0 when installed on Cisco 3500 Series Wireless Controllers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277478" RelationType="Installed On" ProductReference="CVRFPID-284592">
+      <FullProductName ProductID="CVRFPID-284592:277478">Cisco Wireless LAN Controller (WLC) 8.10.150.0 when installed on Cisco 8500 Series Wireless Controllers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277486" RelationType="Installed On" ProductReference="CVRFPID-284592">
+      <FullProductName ProductID="CVRFPID-284592:277486">Cisco Wireless LAN Controller (WLC) 8.10.150.0 when installed on Cisco Virtual Wireless Controller</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277401" RelationType="Installed On" ProductReference="CVRFPID-284593">
+      <FullProductName ProductID="CVRFPID-284593:277401">Cisco Wireless LAN Controller (WLC) 8.10.142.0 when installed on Cisco 5500 Series Wireless Controllers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277402" RelationType="Installed On" ProductReference="CVRFPID-284593">
+      <FullProductName ProductID="CVRFPID-284593:277402">Cisco Wireless LAN Controller (WLC) 8.10.142.0 when installed on Cisco 3500 Series Wireless Controllers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277478" RelationType="Installed On" ProductReference="CVRFPID-284593">
+      <FullProductName ProductID="CVRFPID-284593:277478">Cisco Wireless LAN Controller (WLC) 8.10.142.0 when installed on Cisco 8500 Series Wireless Controllers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277486" RelationType="Installed On" ProductReference="CVRFPID-284593">
+      <FullProductName ProductID="CVRFPID-284593:277486">Cisco Wireless LAN Controller (WLC) 8.10.142.0 when installed on Cisco Virtual Wireless Controller</FullProductName>
+    </Relationship>
+  </ProductTree>
+  <Vulnerability Ordinal="1" xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln">
+    <Title>vuln-CVE-2021-1419</Title>
+    <ID SystemName="Cisco Bug ID">CSCvw71885</ID>
+    <Notes>
+      <Note Title="Cisco Bug IDs" Type="Other" Ordinal="1">CSCvw71885</Note>
+      <Note Title="Affected Product Comprehensiveness" Type="Other" Ordinal="2">Complete.</Note>
+    </Notes>
+    <CVE>CVE-2021-1419</CVE>
+    <ProductStatuses>
+      <Status Type="Known Affected">
+        <ProductID>CVRFPID-280019</ProductID>
+        <ProductID>CVRFPID-247201:277401</ProductID>
+        <ProductID>CVRFPID-247201:277402</ProductID>
+        <ProductID>CVRFPID-247201:277478</ProductID>
+        <ProductID>CVRFPID-247201:277486</ProductID>
+        <ProductID>CVRFPID-247203:277401</ProductID>
+        <ProductID>CVRFPID-247203:277402</ProductID>
+        <ProductID>CVRFPID-247203:277478</ProductID>
+        <ProductID>CVRFPID-247203:277486</ProductID>
+        <ProductID>CVRFPID-247204:277401</ProductID>
+        <ProductID>CVRFPID-247204:277402</ProductID>
+        <ProductID>CVRFPID-247204:277478</ProductID>
+        <ProductID>CVRFPID-247204:277486</ProductID>
+        <ProductID>CVRFPID-247206:277401</ProductID>
+        <ProductID>CVRFPID-247206:277402</ProductID>
+        <ProductID>CVRFPID-247206:277478</ProductID>
+        <ProductID>CVRFPID-247206:277486</ProductID>
+        <ProductID>CVRFPID-270352:277401</ProductID>
+        <ProductID>CVRFPID-270352:277402</ProductID>
+        <ProductID>CVRFPID-270352:277478</ProductID>
+        <ProductID>CVRFPID-270352:277486</ProductID>
+        <ProductID>CVRFPID-270353:277401</ProductID>
+        <ProductID>CVRFPID-270353:277402</ProductID>
+        <ProductID>CVRFPID-270353:277478</ProductID>
+        <ProductID>CVRFPID-270353:277486</ProductID>
+        <ProductID>CVRFPID-270354:277401</ProductID>
+        <ProductID>CVRFPID-270354:277402</ProductID>
+        <ProductID>CVRFPID-270354:277478</ProductID>
+        <ProductID>CVRFPID-270354:277486</ProductID>
+        <ProductID>CVRFPID-270356:277401</ProductID>
+        <ProductID>CVRFPID-270356:277402</ProductID>
+        <ProductID>CVRFPID-270356:277478</ProductID>
+        <ProductID>CVRFPID-270356:277486</ProductID>
+        <ProductID>CVRFPID-270357:277401</ProductID>
+        <ProductID>CVRFPID-270357:277402</ProductID>
+        <ProductID>CVRFPID-270357:277478</ProductID>
+        <ProductID>CVRFPID-270357:277486</ProductID>
+        <ProductID>CVRFPID-277158:277401</ProductID>
+        <ProductID>CVRFPID-277158:277402</ProductID>
+        <ProductID>CVRFPID-277158:277478</ProductID>
+        <ProductID>CVRFPID-277158:277486</ProductID>
+        <ProductID>CVRFPID-277159:277401</ProductID>
+        <ProductID>CVRFPID-277159:277402</ProductID>
+        <ProductID>CVRFPID-277159:277478</ProductID>
+        <ProductID>CVRFPID-277159:277486</ProductID>
+        <ProductID>CVRFPID-278995:277401</ProductID>
+        <ProductID>CVRFPID-278995:277402</ProductID>
+        <ProductID>CVRFPID-278995:277478</ProductID>
+        <ProductID>CVRFPID-278995:277486</ProductID>
+        <ProductID>CVRFPID-278998:277401</ProductID>
+        <ProductID>CVRFPID-278998:277402</ProductID>
+        <ProductID>CVRFPID-278998:277478</ProductID>
+        <ProductID>CVRFPID-278998:277486</ProductID>
+        <ProductID>CVRFPID-279001:277401</ProductID>
+        <ProductID>CVRFPID-279001:277402</ProductID>
+        <ProductID>CVRFPID-279001:277478</ProductID>
+        <ProductID>CVRFPID-279001:277486</ProductID>
+        <ProductID>CVRFPID-279003:277401</ProductID>
+        <ProductID>CVRFPID-279003:277402</ProductID>
+        <ProductID>CVRFPID-279003:277478</ProductID>
+        <ProductID>CVRFPID-279003:277486</ProductID>
+        <ProductID>CVRFPID-279048:277401</ProductID>
+        <ProductID>CVRFPID-279048:277402</ProductID>
+        <ProductID>CVRFPID-279048:277478</ProductID>
+        <ProductID>CVRFPID-279048:277486</ProductID>
+        <ProductID>CVRFPID-279748:277401</ProductID>
+        <ProductID>CVRFPID-279748:277402</ProductID>
+        <ProductID>CVRFPID-279748:277478</ProductID>
+        <ProductID>CVRFPID-279748:277486</ProductID>
+        <ProductID>CVRFPID-284588:277401</ProductID>
+        <ProductID>CVRFPID-284588:277402</ProductID>
+        <ProductID>CVRFPID-284588:277478</ProductID>
+        <ProductID>CVRFPID-284588:277486</ProductID>
+        <ProductID>CVRFPID-284592:277401</ProductID>
+        <ProductID>CVRFPID-284592:277402</ProductID>
+        <ProductID>CVRFPID-284592:277478</ProductID>
+        <ProductID>CVRFPID-284592:277486</ProductID>
+        <ProductID>CVRFPID-284593:277401</ProductID>
+        <ProductID>CVRFPID-284593:277402</ProductID>
+        <ProductID>CVRFPID-284593:277478</ProductID>
+        <ProductID>CVRFPID-284593:277486</ProductID>
+        <ProductID>CVRFPID-7368</ProductID>
+      </Status>
+    </ProductStatuses>
+    <CVSSScoreSets>
+      <ScoreSetV3>
+        <BaseScoreV3>7.8</BaseScoreV3>
+        <VectorV3>CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H</VectorV3>
+      </ScoreSetV3>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Workaround">
+        <Description>There are no workarounds that address this vulnerability.
+
+However, customers who do not use the SSH management feature can disable it to close the attack vector on affected devices.
+
+While this mitigation has been deployed and was proven successful in a test environment, customers should determine the applicability and effectiveness in their own environment and under their own use conditions. Customers should be aware that any workaround or mitigation that is implemented may negatively impact the functionality or performance of their network based on intrinsic customer deployment scenarios and limitations. Customers should not deploy any workarounds or mitigations before first evaluating the applicability to their own environment and any impact to such environment.</Description>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference Type="Self">
+        <URL>https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-cisco-ap-LLjsGxv</URL>
+        <Description>Cisco Access Points SSH Management Privilege Escalation Vulnerability</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+</cvrf:cvrfdoc>

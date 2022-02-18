@@ -1,0 +1,446 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cvrf:cvrfdoc xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:cvrf-common="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/common" xmlns:cvrf="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/cvrf">
+  <cvrf:DocumentTitle>Cisco Nexus 5600 and 6000 Series Switches Fibre Channel over Ethernet Denial of Service Vulnerability</cvrf:DocumentTitle>
+  <cvrf:DocumentType>Cisco Security Advisory</cvrf:DocumentType>
+  <cvrf:DocumentPublisher Type="Vendor">
+    <cvrf:ContactDetails>Emergency Support:
++1 877 228 7302 (toll-free within North America)
++1 408 525 6532 (International direct-dial)
+Non-emergency Support:
+Email: psirt@cisco.com
+Support requests that are received via e-mail are typically acknowledged within 48 hours.</cvrf:ContactDetails>
+    <cvrf:IssuingAuthority>Cisco product security incident response is the responsibility of the Cisco Product Security Incident Response Team (PSIRT). The Cisco PSIRT is a dedicated, global team that manages the receipt, investigation, and public reporting of security vulnerability information that is related to Cisco products and networks. The on-call Cisco PSIRT works 24x7 with Cisco customers, independent security researchers, consultants, industry organizations, and other vendors to identify possible security issues with Cisco products and networks.
+More information can be found in Cisco Security Vulnerability Policy available at http://www.cisco.com/web/about/security/psirt/security_vulnerability_policy.html</cvrf:IssuingAuthority>
+  </cvrf:DocumentPublisher>
+  <cvrf:DocumentTracking>
+    <cvrf:Identification>
+      <cvrf:ID>cisco-sa-20190306-nexus-fbr-dos</cvrf:ID>
+    </cvrf:Identification>
+    <cvrf:Status>Final</cvrf:Status>
+    <cvrf:Version>1.0</cvrf:Version>
+    <cvrf:RevisionHistory>
+      <cvrf:Revision>
+        <cvrf:Number>1.0</cvrf:Number>
+        <cvrf:Date>2019-03-06T15:36:51</cvrf:Date>
+        <cvrf:Description>Initial public release.</cvrf:Description>
+      </cvrf:Revision>
+    </cvrf:RevisionHistory>
+    <cvrf:InitialReleaseDate>2019-03-06T16:00:00</cvrf:InitialReleaseDate>
+    <cvrf:CurrentReleaseDate>2019-03-06T15:36:51</cvrf:CurrentReleaseDate>
+    <cvrf:Generator>
+      <cvrf:Engine>TVCE</cvrf:Engine>
+    </cvrf:Generator>
+  </cvrf:DocumentTracking>
+  <cvrf:DocumentNotes>
+    <cvrf:Note Title="Summary" Type="Summary" Ordinal="1">A vulnerability in the Fibre Channel over Ethernet (FCoE) protocol implementation in Cisco NX-OS Software could allow an unauthenticated, adjacent attacker to cause a denial of service (DoS) condition on an affected device.
+
+The vulnerability is due to an incorrect allocation of an internal interface index. An adjacent attacker with the ability to submit a crafted FCoE packet that crosses affected interfaces could trigger this vulnerability. A successful exploit could allow the attacker to cause a packet loop and high throughput on the affected interfaces, resulting in a DoS condition.
+
+Cisco has released software updates that address this vulnerability. There are no workarounds that address this vulnerability.
+
+This advisory is available at the following link:
+https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20190306-nexus-fbr-dos ["https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20190306-nexus-fbr-dos"]</cvrf:Note>
+    <cvrf:Note Title="Vulnerable Products" Type="General" Ordinal="2">This vulnerability affects the following Cisco products if they are running a vulnerable release of Cisco NX-OS Software:
+
+Nexus 5600 Platform Switches
+Nexus 6000 Series Switches
+
+Note: For this vulnerability to occur, all of the following conditions must be met:
+
+Two vulnerable products need to be connected to each other via Ethernet ports with an incorrect internal mapping.
+The fcoe OR fcoe-npv feature must enabled.
+The vulnerable ports must not be configured for FCoE.
+
+See the Details ["#details"] section for more information.
+
+For information about which Cisco NX-OS Software releases are vulnerable, see the Fixed Software ["#fs"] section of this advisory.
+  Determining the Cisco NX-OS Software Release
+Administrators can check the release of Cisco NX-OS Software that is running on a device by using the show version command in the device CLI. The following example shows the output of the command for a device that is running Cisco NX-OS Software Release 7.3(4)N1(1):
+
+
+nxos-switch#show version
+Cisco Nexus Operating System (NX-OS) Software  TAC support: http://www.cisco.com/tac  Documents: http://www.cisco.com/en/US/products/ps9372/tsd_products_support_series_home.html  Copyright (c) 2002-2018, Cisco Systems, Inc. All rights reserved.  The copyrights to certain works contained herein are owned by  other third parties and are used and distributed under license.  Some parts of this software are covered under the GNU Public  License. A copy of the license is available at  http://www.gnu.org/licenses/gpl.html.    Software  BIOS: version 3.6.0  Power Sequencer Firmware:  Module 1: v3.0  Module 2: v5.0  Microcontroller Firmware: version v1.2.0.1  QSFP Microcontroller Firmware:  Module not detected  CXP Microcontroller Firmware:  Module not detected  kickstart: version 7.3(4)N1(1)  system: version 7.3(4)N1(1)  BIOS compile time: 05/09/2012  kickstart image file is: bootflash:///n5000-uk9-kickstart.7.3.4.N1.1.bin  kickstart compile time: 9/10/2018 0:00:00 [09/10/2018 08:29:28]  system image file is: bootflash:///n5000-uk9.7.3.4.N1.1.bin  system compile time: 9/10/2018 0:00:00 [09/10/2018 12:41:33]  .
+.
+.</cvrf:Note>
+    <cvrf:Note Title="Products Confirmed Not Vulnerable" Type="General" Ordinal="3">Only products listed in the Vulnerable Products ["#vp"] section of this advisory are known to be affected by this vulnerability.
+
+Cisco has confirmed that this vulnerability does not affect the following Cisco products:
+
+Firepower 2100 Series Firewalls
+Firepower 4100 Series Next-Generation Firewalls
+Firepower 9300 Security Appliance
+MDS 9000 Series Multilayer Switches
+Nexus 1000V Switch for Microsoft Hyper-V
+Nexus 1000V Switch for VMware vSphere
+Nexus 2000 Series Fabric Extenders
+Nexus 3000 Series Switches
+Nexus 3500 Platform Switches
+Nexus 3600 Platform Switches
+Nexus 5500 Platform Switches
+Nexus 7000 Series Switches
+Nexus 7700 Series Switches
+Nexus 9000 Series Fabric Switches in Application Centric Infrastructure (ACI) mode
+Nexus 9000 Series Switches in standalone NX-OS mode
+UCS 6200 Series Fabric Interconnects
+UCS 6300 Series Fabric Interconnects
+UCS 6400 Series Fabric Interconnects</cvrf:Note>
+    <cvrf:Note Title="Details" Type="General" Ordinal="4">This vulnerability requires fcoe to be enabled. To see if the fcoe or fcoe-npv feature is configured, use the show feature | include fcoe CLI command:
+
+
+N5K-A# show feature | include fcoe
+fcoe                  1         enabled
+fcoe-npv              1         disabled
+This vulnerability also requires that an Ethernet interface not be bound to an FCoE virtual Fibre Channel (vFC) interface. To see if an Ethernet interface is bound to a vFC interface, use the show interface brief CLI command:
+N5K-A# show interface brief
+
+-------------------------------------------------------------------------------
+Interface  Vsan   Admin  Admin   Status          SFP    Oper  Oper   Port
+Mode   Trunk                          Mode  Speed  Channel
+Mode                                 (Gbps)
+-------------------------------------------------------------------------------
+fc1/29     200    F      off     notConnected     swl    --           200
+fc1/30     200    F      off     notConnected     swl    --           200
+fc1/31     100    F      off     notConnected     swl    --           100
+fc1/32     100    F      off     notConnected     swl    --           100
+
+--------------------------------------------------------------------------------
+Ethernet      VLAN    Type Mode   Status  Reason                   Speed     Port
+Interface                                                                    Ch #
+--------------------------------------------------------------------------------
+Eth1/1        1       eth  trunk  down    SFP not inserted            10G(D) --
+Eth1/2        1       eth  access down    SFP not inserted            10G(D) --
+
+&lt;snip&gt;
+
+--------------------------------------------------------------------------------
+Port   VRF          Status IP Address                              Speed    MTU
+--------------------------------------------------------------------------------
+mgmt0  --           up     192.168.1.2                           100      1500
+
+-------------------------------------------------------------------------------
+Interface   Vsan  Admin Admin   Status      Bind                 Oper     Oper
+Mode  Trunk               Info                 Mode     Speed
+Mode                                             (Gbps)
+-------------------------------------------------------------------------------
+vfc100       100  F     on     trunking    00:10:94:00:00:02        TF   auto
+vfc111       100  F     on     trunking    Eth1/1                   TF   auto
+vfc200       200  F     on     trunking    00:20:94:00:00:02        TF   auto
+In this example, Eth1/1 would not be vulnerable because it is bound to a vFC.</cvrf:Note>
+    <cvrf:Note Title="Indicators of Compromise" Type="General" Ordinal="5">If the devices are configured as outlined in the Vulnerable Products ["#vp"] section, a possible indicator of compromise would be a high Rx input rate on a vulnerable interface coupled with a high Tx rate for all enabled interfaces configured for the same VLAN as shown in the following example:
+
+
+N6K-A# show interface eth1/2 counters brief
+
+-------------------------------------------------------------------------------
+Interface         Input Rate (avg)    Output Rate (avg)
+------------------  ------------------
+Rate     Total      Rate     Total        Rate averaging
+MB/s     Frames     MB/s     Frames       interval (seconds)
+-------------------------------------------------------------------------------
+Eth1/2            1140     5482344    1140     5482507      30
+1140     5482321    1140     5482488      300
+
+N6K-A# show interface Ethernet 1/11 counters brief
+
+-------------------------------------------------------------------------------
+Interface         Input Rate (avg)    Output Rate (avg)
+------------------  ------------------
+Rate     Total      Rate     Total        Rate averaging
+MB/s     Frames     MB/s     Frames       interval (seconds)
+-------------------------------------------------------------------------------
+Eth1/11           0        0          1140     5482508      30
+0        0          1140     5482496      300
+
+N6K-A# show interface Ethernet 1/16 counters brief
+
+-------------------------------------------------------------------------------
+Interface         Input Rate (avg)    Output Rate (avg)
+------------------  ------------------
+Rate     Total      Rate     Total        Rate averaging
+MB/s     Frames     MB/s     Frames       interval (seconds)
+-------------------------------------------------------------------------------
+Eth1/16           0        0          1140     5482504      30
+0        0          1140     5482565      300
+
+If there are any questions regarding the output of your device or the information above, please contact Cisco TAC:
+  https://www.cisco.com/c/en/us/support/web/tsd-cisco-worldwide-contacts.html ["https://www.cisco.com/c/en/us/support/web/tsd-cisco-worldwide-contacts.html"]</cvrf:Note>
+    <cvrf:Note Title="Workarounds" Type="General" Ordinal="6">There are no workarounds that address this vulnerability.</cvrf:Note>
+    <cvrf:Note Title="Fixed Software" Type="General" Ordinal="7">Cisco has released free software updates that address the vulnerability described in this advisory. Customers may only install and expect support for software versions and feature sets for which they have purchased a license. By installing, downloading, accessing, or otherwise using such software upgrades, customers agree to follow the terms of the Cisco software license:
+https://www.cisco.com/c/en/us/products/end-user-license-agreement.html ["https://www.cisco.com/c/en/us/products/end-user-license-agreement.html"]
+
+Additionally, customers may only download software for which they have a valid license, procured from Cisco directly, or through a Cisco authorized reseller or partner. In most cases this will be a maintenance upgrade to software that was previously purchased. Free security software updates do not entitle customers to a new software license, additional software feature sets, or major revision upgrades.
+
+When considering software upgrades, customers are advised to regularly consult the advisories for Cisco products, which are available from the Cisco Security Advisories and Alerts page, to determine exposure and a complete upgrade solution.
+
+In all cases, customers should ensure that the devices to be upgraded contain sufficient memory and confirm that current hardware and software configurations will continue to be supported properly by the new release. If the information is not clear, customers are advised to contact the Cisco Technical Assistance Center (TAC) or their contracted maintenance providers.
+  Customers Without Service Contracts
+Customers who purchase directly from Cisco but do not hold a Cisco service contract and customers who make purchases through third-party vendors but are unsuccessful in obtaining fixed software through their point of sale should obtain upgrades by contacting the Cisco TAC: https://www.cisco.com/c/en/us/support/web/tsd-cisco-worldwide-contacts.html ["https://www.cisco.com/c/en/us/support/web/tsd-cisco-worldwide-contacts.html"]
+
+Customers should have the product serial number available and be prepared to provide the URL of this advisory as evidence of entitlement to a free upgrade.
+  Fixed Releases
+In the following table, the left column lists releases of Cisco NX-OS Software. The right column indicates whether a release is affected by the vulnerability described in this advisory and the first release that includes the fix for this vulnerability. Customers are advised to upgrade to an appropriate fixed software release ["https://tools.cisco.com/security/center/resources/security_vulnerability_policy.html#fixes "] as indicated in this section.
+  Nexus 5600 and 6000 Series Switches: CSCvn24414 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCvn24414"]
+                              Cisco NX-OS Software Release              First Fixed Release for This Vulnerability                                              Prior to 5.2              Not vulnerable                                  5.2              Not vulnerable                                  6.0              7.1(5)N1(1b)                                  7.0              7.1(5)N1(1b)                                  7.1              7.1(5)N1(1b)                                  7.2              7.3(5)N1(1)                                  7.3              7.3(5)N1(1)                    Additional Resources
+For help determining the best Cisco NX-OS Software release for a Cisco Nexus Switch, administrators can refer to the following Recommended Releases documents. If a security advisory recommends a later release, Cisco recommends following the advisory guidance.
+
+
+Cisco MDS Series Switches ["https://www.cisco.com/c/en/us/td/docs/switches/datacenter/mds9000/sw/b_MDS_NX-OS_Recommended_Releases.html"]
+Cisco Nexus 1000V for VMware Switch ["http://www.cisco.com/c/en/us/td/docs/switches/datacenter/nexus1000/sw/recommended_releases/b_Cisco_N1KV_VMware_MinRecommendedReleases.html"]
+Cisco Nexus 3000 Series and 3500 Series Switches ["http://www.cisco.com/c/en/us/td/docs/switches/datacenter/nexus3000/sw/recommended_release/b_Minimum_and_Recommended_Cisco_NX-OS_Releases_for_Cisco_Nexus_3000_Series_Switches.html"]
+Cisco Nexus 5000 Series Switches ["http://www.cisco.com/c/en/us/td/docs/switches/datacenter/nexus5000/sw/release/recommended_releases/recommended_nx-os_releases.html"]
+Cisco Nexus 5500 Platform Switches ["http://www.cisco.com/c/en/us/td/docs/switches/datacenter/nexus5500/sw/release/recommended_releases/n5500_recommended_nx-os_releases.html"]
+Cisco Nexus 6000 Series Switches ["http://www.cisco.com/c/en/us/td/docs/switches/datacenter/nexus6000/sw/release/recommended_releases/recommended_nx-os_releases.html"]
+Cisco Nexus 7000 Series Switches ["http://www.cisco.com/c/en/us/td/docs/switches/datacenter/sw/nx-os/recommended_releases/recommended_nx-os_releases.html"]
+Cisco Nexus 9000 Series Switches ["http://www.cisco.com/c/en/us/td/docs/switches/datacenter/nexus9000/sw/recommended_release/b_Minimum_and_Recommended_Cisco_NX-OS_Releases_for_Cisco_Nexus_9000_Series_Switches.html"]
+Cisco Nexus 9000 Series ACI-Mode Switches ["https://www.cisco.com/c/en/us/td/docs/switches/datacenter/aci/apic/sw/recommended-release/b_Recommended_Cisco_ACI_Releases.html"]
+  For help determining the best Cisco NX-OS Software release for Cisco UCS, refer to the Recommended Releases documents in the release notes for the device.</cvrf:Note>
+    <cvrf:Note Title="Vulnerability Policy" Type="General" Ordinal="8">To learn about Cisco security vulnerability disclosure policies and publications, see the Security Vulnerability Policy ["http://www.cisco.com/web/about/security/psirt/security_vulnerability_policy.html"]. This document also contains instructions for obtaining fixed software and receiving security vulnerability information from Cisco.</cvrf:Note>
+    <cvrf:Note Title="Exploitation and Public Announcements" Type="General" Ordinal="9">The Cisco Product Security Incident Response Team (PSIRT) is not aware of any public announcements or malicious use of the vulnerability that is described in this advisory.</cvrf:Note>
+    <cvrf:Note Title="Source" Type="General" Ordinal="10">This vulnerability was found during the resolution of a Cisco TAC support case.</cvrf:Note>
+    <cvrf:Note Title="Legal Disclaimer" Type="Legal Disclaimer" Ordinal="11">THIS DOCUMENT IS PROVIDED ON AN "AS IS" BASIS AND DOES NOT IMPLY ANY KIND OF GUARANTEE OR WARRANTY, INCLUDING THE WARRANTIES OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR USE. YOUR USE OF THE INFORMATION ON THE DOCUMENT OR MATERIALS LINKED FROM THE DOCUMENT IS AT YOUR OWN RISK. CISCO RESERVES THE RIGHT TO CHANGE OR UPDATE THIS DOCUMENT AT ANY TIME.
+
+A standalone copy or paraphrase of the text of this document that omits the distribution URL is an uncontrolled copy and may lack important information or contain factual errors. The information in this document is intended for end users of Cisco products.</cvrf:Note>
+  </cvrf:DocumentNotes>
+  <cvrf:DocumentReferences>
+    <cvrf:Reference Type="Self">
+      <cvrf:URL>https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20190306-nexus-fbr-dos</cvrf:URL>
+      <cvrf:Description>Cisco Nexus 5600 and 6000 Series Switches Fibre Channel over Ethernet Denial of Service Vulnerability</cvrf:Description>
+    </cvrf:Reference>
+  </cvrf:DocumentReferences>
+  <ProductTree xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/prod">
+    <Branch Name="Cisco" Type="Vendor">
+      <Branch Name="Cisco NX-OS Software" Type="Product Name">
+        <Branch Name="6.0(2)N1" Type="Product Version">
+          <Branch Name="6.0(2)N1(1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-201875">Cisco NX-OS Software 6.0(2)N1(1)</FullProductName>
+          </Branch>
+          <Branch Name="6.0(2)N1(2)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-201876">Cisco NX-OS Software 6.0(2)N1(2)</FullProductName>
+          </Branch>
+          <Branch Name="6.0(2)N1(2a)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-201877">Cisco NX-OS Software 6.0(2)N1(2a)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="6.0(2)N2" Type="Product Version">
+          <Branch Name="6.0(2)N2(1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-201878">Cisco NX-OS Software 6.0(2)N2(1)</FullProductName>
+          </Branch>
+          <Branch Name="6.0(2)N2(1b)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-201879">Cisco NX-OS Software 6.0(2)N2(1b)</FullProductName>
+          </Branch>
+          <Branch Name="6.0(2)N2(2)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-201880">Cisco NX-OS Software 6.0(2)N2(2)</FullProductName>
+          </Branch>
+          <Branch Name="6.0(2)N2(3)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-201881">Cisco NX-OS Software 6.0(2)N2(3)</FullProductName>
+          </Branch>
+          <Branch Name="6.0(2)N2(4)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-201882">Cisco NX-OS Software 6.0(2)N2(4)</FullProductName>
+          </Branch>
+          <Branch Name="6.0(2)N2(5)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-201883">Cisco NX-OS Software 6.0(2)N2(5)</FullProductName>
+          </Branch>
+          <Branch Name="6.0(2)N2(5a)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-212034">Cisco NX-OS Software 6.0(2)N2(5a)</FullProductName>
+          </Branch>
+          <Branch Name="6.0(2)N2(6)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-212035">Cisco NX-OS Software 6.0(2)N2(6)</FullProductName>
+          </Branch>
+          <Branch Name="6.0(2)N2(7)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-212036">Cisco NX-OS Software 6.0(2)N2(7)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="7.0(0)N1" Type="Product Version">
+          <Branch Name="7.0(0)N1(1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-201884">Cisco NX-OS Software 7.0(0)N1(1)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="7.0(1)N1" Type="Product Version">
+          <Branch Name="7.0(1)N1(1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-201885">Cisco NX-OS Software 7.0(1)N1(1)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="7.0(2)N1" Type="Product Version">
+          <Branch Name="7.0(2)N1(1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-201886">Cisco NX-OS Software 7.0(2)N1(1)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="7.0(3)N1" Type="Product Version">
+          <Branch Name="7.0(3)N1(1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-201887">Cisco NX-OS Software 7.0(3)N1(1)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="7.0(4)N1" Type="Product Version">
+          <Branch Name="7.0(4)N1(1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-212037">Cisco NX-OS Software 7.0(4)N1(1)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="7.0(5)N1" Type="Product Version">
+          <Branch Name="7.0(5)N1(1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-212038">Cisco NX-OS Software 7.0(5)N1(1)</FullProductName>
+          </Branch>
+          <Branch Name="7.0(5)N1(1a)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-212039">Cisco NX-OS Software 7.0(5)N1(1a)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="7.0(6)N1" Type="Product Version">
+          <Branch Name="7.0(6)N1(1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-208805">Cisco NX-OS Software 7.0(6)N1(1)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="7.0(7)N1" Type="Product Version">
+          <Branch Name="7.0(7)N1(1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-212040">Cisco NX-OS Software 7.0(7)N1(1)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="7.0(8)N1" Type="Product Version">
+          <Branch Name="7.0(8)N1(1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-220727">Cisco NX-OS Software 7.0(8)N1(1)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="7.1(0)N1" Type="Product Version">
+          <Branch Name="7.1(0)N1(1a)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-212041">Cisco NX-OS Software 7.1(0)N1(1a)</FullProductName>
+          </Branch>
+          <Branch Name="7.1(0)N1(1b)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-212042">Cisco NX-OS Software 7.1(0)N1(1b)</FullProductName>
+          </Branch>
+          <Branch Name="7.1(0)N1(1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-230492">Cisco NX-OS Software 7.1(0)N1(1)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="7.1(1)N1" Type="Product Version">
+          <Branch Name="7.1(1)N1(1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-208806">Cisco NX-OS Software 7.1(1)N1(1)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="7.1(2)N1" Type="Product Version">
+          <Branch Name="7.1(2)N1(1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-212043">Cisco NX-OS Software 7.1(2)N1(1)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="7.1(3)N1" Type="Product Version">
+          <Branch Name="7.1(3)N1(1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-212044">Cisco NX-OS Software 7.1(3)N1(1)</FullProductName>
+          </Branch>
+          <Branch Name="7.1(3)N1(2)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-220733">Cisco NX-OS Software 7.1(3)N1(2)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="7.1(4)N1" Type="Product Version">
+          <Branch Name="7.1(4)N1(1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-220734">Cisco NX-OS Software 7.1(4)N1(1)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="7.1(5)N1" Type="Product Version">
+          <Branch Name="7.1(5)N1(1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-230473">Cisco NX-OS Software 7.1(5)N1(1)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="7.2(0)N1" Type="Product Version">
+          <Branch Name="7.2(0)N1(1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-212045">Cisco NX-OS Software 7.2(0)N1(1)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="7.2(1)N1" Type="Product Version">
+          <Branch Name="7.2(1)N1(1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-212046">Cisco NX-OS Software 7.2(1)N1(1)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="7.3(0)N1" Type="Product Version">
+          <Branch Name="7.3(0)N1(1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-220737">Cisco NX-OS Software 7.3(0)N1(1)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="7.3(1)N1" Type="Product Version">
+          <Branch Name="7.3(1)N1(1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-227352">Cisco NX-OS Software 7.3(1)N1(1)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="7.3(2)N1" Type="Product Version">
+          <Branch Name="7.3(2)N1(1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-230467">Cisco NX-OS Software 7.3(2)N1(1)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="7.3(3)N1" Type="Product Version">
+          <Branch Name="7.3(3)N1(1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-239639">Cisco NX-OS Software 7.3(3)N1(1)</FullProductName>
+          </Branch>
+        </Branch>
+      </Branch>
+    </Branch>
+  </ProductTree>
+  <Vulnerability Ordinal="1" xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln">
+    <Title>Cisco Nexus 5600 and 6000 Series Switches Fibre Channel over Ethernet Denial of Service Vulnerability</Title>
+    <ID SystemName="Cisco Bug ID">CSCvn24414</ID>
+    <Notes>
+      <Note Title="Summary" Type="Summary" Ordinal="1">A vulnerability in the Fibre Channel over Ethernet (FCoE) protocol implementation in Cisco NX-OS Software could allow an unauthenticated, adjacent attacker to cause a denial of service (DoS) condition on an affected device.
+
+
+
+The vulnerability is due to an incorrect allocation of an internal interface index. An adjacent attacker with the ability to submit a crafted FCoE packet that crosses affected interfaces could trigger this vulnerability. A successful exploit could allow the attacker to cause a packet loop and high throughput on the affected interfaces, resulting in a DoS condition.
+
+</Note>
+      <Note Title="Cisco Bug IDs" Type="Other" Ordinal="2">CSCvn24414</Note>
+    </Notes>
+    <CVE>CVE-2019-1595</CVE>
+    <ProductStatuses>
+      <Status Type="Known Affected">
+        <ProductID>CVRFPID-201875</ProductID>
+        <ProductID>CVRFPID-201876</ProductID>
+        <ProductID>CVRFPID-201877</ProductID>
+        <ProductID>CVRFPID-201878</ProductID>
+        <ProductID>CVRFPID-201879</ProductID>
+        <ProductID>CVRFPID-201880</ProductID>
+        <ProductID>CVRFPID-201881</ProductID>
+        <ProductID>CVRFPID-201882</ProductID>
+        <ProductID>CVRFPID-201883</ProductID>
+        <ProductID>CVRFPID-201884</ProductID>
+        <ProductID>CVRFPID-201885</ProductID>
+        <ProductID>CVRFPID-201886</ProductID>
+        <ProductID>CVRFPID-201887</ProductID>
+        <ProductID>CVRFPID-208805</ProductID>
+        <ProductID>CVRFPID-208806</ProductID>
+        <ProductID>CVRFPID-212034</ProductID>
+        <ProductID>CVRFPID-212035</ProductID>
+        <ProductID>CVRFPID-212036</ProductID>
+        <ProductID>CVRFPID-212037</ProductID>
+        <ProductID>CVRFPID-212038</ProductID>
+        <ProductID>CVRFPID-212039</ProductID>
+        <ProductID>CVRFPID-212040</ProductID>
+        <ProductID>CVRFPID-212041</ProductID>
+        <ProductID>CVRFPID-212042</ProductID>
+        <ProductID>CVRFPID-212043</ProductID>
+        <ProductID>CVRFPID-212044</ProductID>
+        <ProductID>CVRFPID-212045</ProductID>
+        <ProductID>CVRFPID-212046</ProductID>
+        <ProductID>CVRFPID-220727</ProductID>
+        <ProductID>CVRFPID-220733</ProductID>
+        <ProductID>CVRFPID-220734</ProductID>
+        <ProductID>CVRFPID-220737</ProductID>
+        <ProductID>CVRFPID-227352</ProductID>
+        <ProductID>CVRFPID-230467</ProductID>
+        <ProductID>CVRFPID-230473</ProductID>
+        <ProductID>CVRFPID-230492</ProductID>
+        <ProductID>CVRFPID-239639</ProductID>
+      </Status>
+    </ProductStatuses>
+    <CVSSScoreSets>
+      <ScoreSetV3>
+        <BaseScoreV3>7.4</BaseScoreV3>
+        <VectorV3>CVSS:3.0/AV:A/AC:L/PR:N/UI:N/S:C/C:N/I:N/A:H</VectorV3>
+      </ScoreSetV3>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Workaround">
+        <Description>There are no workarounds that address this vulnerability.</Description>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference Type="Self">
+        <URL>https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20190306-nexus-fbr-dos</URL>
+        <Description>Cisco Nexus 5600 and 6000 Series Switches Fibre Channel over Ethernet Denial of Service Vulnerability</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+</cvrf:cvrfdoc>

@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cvrf:cvrfdoc xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:cvrf-common="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/common" xmlns:cvrf="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/cvrf">
+  <cvrf:DocumentTitle>Cisco Small Business RV320 and RV325 Dual Gigabit WAN Routers Issues</cvrf:DocumentTitle>
+  <cvrf:DocumentType>Cisco Security Advisory</cvrf:DocumentType>
+  <cvrf:DocumentPublisher Type="Vendor">
+    <cvrf:ContactDetails>Emergency Support:
++1 877 228 7302 (toll-free within North America)
++1 408 525 6532 (International direct-dial)
+Non-emergency Support:
+Email: psirt@cisco.com
+Support requests that are received via e-mail are typically acknowledged within 48 hours.</cvrf:ContactDetails>
+    <cvrf:IssuingAuthority>Cisco product security incident response is the responsibility of the Cisco Product Security Incident Response Team (PSIRT). The Cisco PSIRT is a dedicated, global team that manages the receipt, investigation, and public reporting of security vulnerability information that is related to Cisco products and networks. The on-call Cisco PSIRT works 24x7 with Cisco customers, independent security researchers, consultants, industry organizations, and other vendors to identify possible security issues with Cisco products and networks.
+More information can be found in Cisco Security Vulnerability Policy available at http://www.cisco.com/web/about/security/psirt/security_vulnerability_policy.html</cvrf:IssuingAuthority>
+  </cvrf:DocumentPublisher>
+  <cvrf:DocumentTracking>
+    <cvrf:Identification>
+      <cvrf:ID>cisco-sa-20191106-rv32x</cvrf:ID>
+    </cvrf:Identification>
+    <cvrf:Status>Final</cvrf:Status>
+    <cvrf:Version>1.0</cvrf:Version>
+    <cvrf:RevisionHistory>
+      <cvrf:Revision>
+        <cvrf:Number>1.0</cvrf:Number>
+        <cvrf:Date>2019-11-06T15:34:39</cvrf:Date>
+        <cvrf:Description>Initial public release.</cvrf:Description>
+      </cvrf:Revision>
+    </cvrf:RevisionHistory>
+    <cvrf:InitialReleaseDate>2019-11-06T16:00:00</cvrf:InitialReleaseDate>
+    <cvrf:CurrentReleaseDate>2019-11-06T15:34:39</cvrf:CurrentReleaseDate>
+    <cvrf:Generator>
+      <cvrf:Engine>TVCE</cvrf:Engine>
+    </cvrf:Generator>
+  </cvrf:DocumentTracking>
+  <cvrf:DocumentNotes>
+    <cvrf:Note Title="Summary" Type="Summary" Ordinal="1">Cisco firmware for Cisco RV320 and RV325 Dual Gigabit WAN VPN Routers is affected by the following issues:
+
+Static certificates and keys
+Hardcoded password hashes
+Multiple vulnerabilities in third-party software (TPS) components
+  Static Certificates and Keys
+Two static X.509 certificates with the corresponding public/private key pairs and one static Secure Shell (SSH) host key were found in the firmware for Cisco RV320 and RV325 Dual Gigabit WAN VPN Routers. One X.509 certificate was created by the OpenSSL Group for testing purposes and the second certificate is a test certificate created by Cisco.
+
+The X.509 certificates and keys in question are part of the firmware for Cisco RV320 and RV325 Dual Gigabit WAN VPN Routers and were used for their intended testing purpose during the development of that firmware They were never used for live functionality in any shipping version of the product. All shipping versions of this firmware use dynamically created certificates instead.
+
+Cisco bug ID: CSCvq34465 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCvq34465"]
+
+The static SSH host key is part of the tail-f (now part of Cisco) Netconf ConfD package that is included in the firmware for Cisco RV320 and RV325 Dual Gigabit WAN VPN Routers. It was never used for live functionality in any shipping version of the product. Key-based SSH authentication is not supported in any shipping version of this firmware.
+
+Cisco bug ID: CSCvq34469 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCvq34469"]
+
+The inclusion of these certificates and keys in shipping software was an oversight by the development team for these routers.
+  Hardcoded Password Hashes
+The /etc/shadow file included in the firmware for Cisco RV320 and RV325 Dual Gigabit WAN VPN Routers has a hardcoded password hash for the root user.
+
+The /etc/shadow file is not consulted during user authentication by the firmware. Instead, a dedicated alternate user database is used to authenticate users who log in to either the CLI or the web-based management interface of the affected routers.
+
+An attacker with access to the base operating system on an affected device could exploit this issue to obtain root-level privileges. However, Cisco is not currently aware of a way to access the base operating system on these routers.
+
+Cisco bug ID: CSCvq34472 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCvq34472"]
+  Multiple Vulnerabilities in Third-Party Software Components
+Third-party software (TPS) components in the firmware for Cisco RV320 and RV325 Dual Gigabit WAN VPN Routers contain vulnerabilities. Cisco will handle these vulnerabilities by using the regular Cisco process for TPS vulnerabilities in accordance with the Cisco Security Vulnerability Policy ["https://tools.cisco.com/security/center/resources/security_vulnerability_policy.html#3psv"]. For information about known TPS vulnerabilities that affect the firmware for these routers, consult the Cisco Bug Search Tool ["https://bst.cloudapps.cisco.com/bugsearch/"].</cvrf:Note>
+    <cvrf:Note Title="Affected Products" Type="General" Ordinal="2">These issues affect Cisco RV320 and RV325 Dual Gigabit WAN VPN Routers when they are running a firmware release earlier than 1.5.1.05.
+  Products Confirmed Not Affected
+Only products listed in the Affected Products ["#ap"] section of this advisory are known to be affected by these issues.
+  Updated Firmware
+Cisco removed the static certificates and keys and the hardcoded user account in firmware releases 1.5.1.05 and later for the Cisco RV320 and RV325 Dual Gigabit WAN VPN Routers.
+
+Customers can download the firmware from the Software Center on Cisco.com by doing the following:
+
+Click Browse all.
+Choose Routers &gt; Small Business Routers &gt; Small Business RV Series Routers.
+Choose a specific product from the right pane of the product selector.
+Click Small Business Router Firmware.</cvrf:Note>
+    <cvrf:Note Title="Vulnerability Policy" Type="General" Ordinal="3">To learn about Cisco security vulnerability disclosure policies and publications, see the Security Vulnerability Policy ["http://www.cisco.com/web/about/security/psirt/security_vulnerability_policy.html"]. This document also contains instructions for obtaining fixed software and receiving security vulnerability information from Cisco.</cvrf:Note>
+    <cvrf:Note Title="Source" Type="General" Ordinal="4">Cisco would like to thank security researchers Stefan Viehböck and Thomas Weber of SEC Consult/IoT Inspector for reporting these issues.</cvrf:Note>
+    <cvrf:Note Title="Legal Disclaimer" Type="Legal Disclaimer" Ordinal="5">THIS DOCUMENT IS PROVIDED ON AN "AS IS" BASIS AND DOES NOT IMPLY ANY KIND OF GUARANTEE OR WARRANTY, INCLUDING THE WARRANTIES OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR USE. YOUR USE OF THE INFORMATION ON THE DOCUMENT OR MATERIALS LINKED FROM THE DOCUMENT IS AT YOUR OWN RISK. CISCO RESERVES THE RIGHT TO CHANGE OR UPDATE THIS DOCUMENT AT ANY TIME.
+
+A standalone copy or paraphrase of the text of this document that omits the distribution URL is an uncontrolled copy and may lack important information or contain factual errors. The information in this document is intended for end users of Cisco products.</cvrf:Note>
+  </cvrf:DocumentNotes>
+  <cvrf:DocumentReferences>
+    <cvrf:Reference Type="Self">
+      <cvrf:URL>https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20191106-rv32x</cvrf:URL>
+      <cvrf:Description>Cisco Small Business RV320 and RV325 Dual Gigabit WAN Routers Issues</cvrf:Description>
+    </cvrf:Reference>
+  </cvrf:DocumentReferences>
+  <ProductTree xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/prod">
+    <Branch Name="Cisco" Type="Vendor">
+      <Branch Name="Cisco Small Business RV Series Router Firmware" Type="Product Name">
+        <FullProductName ProductID="CVRFPID-183630">Cisco Small Business RV Series Router Firmware </FullProductName>
+      </Branch>
+    </Branch>
+  </ProductTree>
+  <Vulnerability Ordinal="1" xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln">
+    <Title>Cisco Small Business RV320 and RV325 Series Routers Hardcoded Password Hashes</Title>
+    <ID SystemName="Cisco Bug ID">CSCvq34472</ID>
+    <Notes>
+      <Note Title="Summary" Type="Summary" Ordinal="1">The /etc/shadow file included in the firmware for Cisco RV320 and RV325 Dual Gigabit WAN VPN Routers has a hardcoded password hash for the root user.
+
+The /etc/shadow file is not consulted during user authentication by the firmware. Instead, a dedicated alternate user database is used to authenticate users who log in to either the CLI or the web-based management interface of the affected routers.
+
+An attacker with access to the base operating system on an affected device could exploit this issue to obtain root-level privileges. However, Cisco is not currently aware of a way to access the base operating system on these routers.
+
+Cisco bug ID: CSCvq34472 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCvq34472"]
+</Note>
+      <Note Title="Cisco Bug IDs" Type="Other" Ordinal="2">CSCvq34472</Note>
+    </Notes>
+    <ProductStatuses>
+      <Status Type="Known Affected">
+        <ProductID>CVRFPID-183630</ProductID>
+      </Status>
+    </ProductStatuses>
+    <References>
+      <Reference Type="Self">
+        <URL>https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20191106-rv32x</URL>
+        <Description>Cisco Small Business RV320 and RV325 Dual Gigabit WAN Routers Issues</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+  <Vulnerability Ordinal="2" xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln">
+    <Title>Cisco Small Business RV320 and RV325 Series Routers Static Certificates and Keys</Title>
+    <Notes>
+      <Note Title="Summary" Type="Summary" Ordinal="1">Two static X.509 certificates with the corresponding public/private key pairs and one static Secure Shell (SSH) host key were found in the firmware for Cisco RV320 and RV325 Dual Gigabit WAN VPN Routers. One X.509 certificate was created by the OpenSSL Group for testing purposes and the second certificate is a test certificate created by Cisco.
+
+The X.509 certificates and keys in question are part of the firmware for Cisco RV320 and RV325 Dual Gigabit WAN VPN Routers and were used for their intended testing purpose during the development of that firmware They were never used for live functionality in any shipping version of the product. All shipping versions of this firmware use dynamically created certificates instead.
+
+Cisco bug ID: CSCvq34465 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCvq34465"]
+
+The static SSH host key is part of the tail-f (now part of Cisco) Netconf ConfD package that is included in the firmware for Cisco RV320 and RV325 Dual Gigabit WAN VPN Routers. It was never used for live functionality in any shipping version of the product. Key-based SSH authentication is not supported in any shipping version of this firmware. 
+
+Cisco bug ID: CSCvq34469 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCvq34469"]
+
+The inclusion of these certificates and keys in shipping software was an oversight by the development team for these routers.
+</Note>
+    </Notes>
+    <References>
+      <Reference Type="Self">
+        <URL>https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20191106-rv32x</URL>
+        <Description>Cisco Small Business RV320 and RV325 Dual Gigabit WAN Routers Issues</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+</cvrf:cvrfdoc>

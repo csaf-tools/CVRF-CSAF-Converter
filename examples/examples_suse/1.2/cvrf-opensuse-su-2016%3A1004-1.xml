@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cvrfdoc xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:cpe="http://cpe.mitre.org/language/2.0" xmlns:cvrf="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/cvrf" xmlns:cvrf-common="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/common" xmlns:cvssv2="http://scap.nist.gov/schema/cvss-v2/1.0" xmlns:cvssv3="https://www.first.org/cvss/cvss-v3.0.xsd" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:ns0="http://purl.org/dc/elements/1.1/" xmlns:prod="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/prod" xmlns:scap-core="http://scap.nist.gov/schema/scap-core/1.0" xmlns:sch="http://purl.oclc.org/dsdl/schematron" xmlns:vuln="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/cvrf">
+  <DocumentTitle xml:lang="en">Security update for java-1_7_0-openjdk</DocumentTitle>
+  <DocumentType>SUSE Patch</DocumentType>
+  <DocumentPublisher Type="Vendor">
+    <ContactDetails>security@suse.de</ContactDetails>
+    <IssuingAuthority>SUSE Security Team</IssuingAuthority>
+  </DocumentPublisher>
+  <DocumentTracking>
+    <Identification>
+      <ID>openSUSE-SU-2016:1004-1</ID>
+    </Identification>
+    <Status>Final</Status>
+    <Version>1</Version>
+    <RevisionHistory>
+      <Revision>
+        <Number>1</Number>
+        <Date>2016-04-11T15:49:12Z</Date>
+        <Description>current</Description>
+      </Revision>
+    </RevisionHistory>
+    <InitialReleaseDate>2016-04-11T15:49:12Z</InitialReleaseDate>
+    <CurrentReleaseDate>2016-04-11T15:49:12Z</CurrentReleaseDate>
+    <Generator>
+      <Engine>cve-database/bin/generate-cvrf.pl</Engine>
+      <Date>2017-02-24T01:00:00Z</Date>
+    </Generator>
+  </DocumentTracking>
+  <DocumentNotes>
+    <Note Title="Topic" Type="Summary" Ordinal="1" xml:lang="en">Security update for java-1_7_0-openjdk</Note>
+    <Note Title="Details" Type="General" Ordinal="2" xml:lang="en">
+The OpenJDK Java java-1_7_0-openjdk was updated to 2.6.5 to fix the following issues:
+
+Update to 2.6.5 - OpenJDK 7u99 (bsc#972468)
+* Security fixes
+  - S8152335, CVE-2016-0636: Improve MethodHandle consistency
+* Import of OpenJDK 7 u99 build 0
+  - S6425769, PR2858: Allow specifying an address to bind JMX
+    remote connector
+  - S6961123: setWMClass fails to null-terminate WM_CLASS string
+  - S8145982, PR2858: JMXInterfaceBindingTest is failing
+    intermittently
+  - S8146015, PR2858: JMXInterfaceBindingTest is failing
+    intermittently for IPv6 addresses
+* Backports
+  - S8028727, PR2814: [parfait] warnings from b116 for
+   jdk.src.share.native.sun.security.ec: JNI pending exceptions
+  - S8048512, PR2814: Uninitialised memory in
+    jdk/src/share/native/sun/security/ec/ECC_JNI.cpp
+  - S8071705. PR2819, RH1182694: Java application menu misbehaves
+    when running multiple screen stacked vertically
+  - S8150954, PR2866, RH1176206: AWT Robot not compatible with
+    GNOME Shell
+* Bug fixes
+  - PR2803: Make system CUPS optional
+  - PR2886: Location of 'stap' executable is hard-coded
+  - PR2893: test/tapset/jstaptest.pl should be executable
+  - PR2894: Add missing test directory in make check.
+* CACAO
+  - PR2781, CA195: typeinfo.cpp: typeinfo_merge_nonarrays:
+    Assertion `dest &amp;&amp; result &amp;&amp; x.any &amp;&amp; y.any' failed
+* AArch64 port
+  - PR2852: Add support for large code cache
+  - PR2852: Apply ReservedCodeCacheSize default limiting to
+    AArch64 only.
+  - S8081289, PR2852: aarch64: add support for
+    RewriteFrequentPairs in interpreter
+  - S8131483, PR2852: aarch64: illegal stlxr instructions
+  - S8133352, PR2852: aarch64: generates constrained unpredictable
+    instructions
+  - S8133842, PR2852: aarch64: C2 generates illegal instructions
+    with int shifts &gt;=32
+  - S8134322, PR2852: AArch64: Fix several errors in C2 biased
+    locking implementation
+  - S8136615, PR2852: aarch64: elide DecodeN when followed by
+    CmpP 0
+  - S8138575, PR2852: Improve generated code for profile counters
+  - S8138641, PR2852: Disable C2 peephole by default for aarch64
+  - S8138966, PR2852: Intermittent SEGV running ParallelGC
+  - S8143067, PR2852: aarch64: guarantee failure in javac
+  - S8143285, PR2852: aarch64: Missing load acquire when checking
+    if ConstantPoolCacheEntry is resolved
+  - S8143584, PR2852: Load constant pool tag and class status with
+ load acquire
+  - S8144201, PR2852: aarch64:
+    jdk/test/com/sun/net/httpserver/Test6a.java fails with
+    --enable-unlimited-crypto
+  - S8144582, PR2852: AArch64 does not generate correct branch
+    profile data
+  - S8146709, PR2852: AArch64: Incorrect use of ADRP for
+    byte_map_base
+  - S8147805, PR2852: aarch64: C1 segmentation fault due to inline
+    Unsafe.getAndSetObject
+  - S8148240, PR2852: aarch64: random infrequent null pointer
+    exceptions in javac
+* PPC &amp; AIX port
+  - S8034797, PR2851: AIX: Fix os::naked_short_sleep() in
+    os_aix.cpp after 8028280
+  - S8139258, PR2851: PPC64LE: argument passing problem when
+    passing 15 floats in native call
+  - S8139421, PR2851: PPC64LE: MacroAssembler::bxx64_patchable
+    kill register R12
+
+Update to 2.6.5 - OpenJDK 7u99 (bsc#972468)
+* Security fixes
+  - S8152335, CVE-2016-0636: Improve MethodHandle consistency
+* Import of OpenJDK 7 u99 build 0
+  - S6425769, PR2858: Allow specifying an address to bind JMX
+    remote connector
+  - S6961123: setWMClass fails to null-terminate WM_CLASS string
+  - S8145982, PR2858: JMXInterfaceBindingTest is failing
+    intermittently
+  - S8146015, PR2858: JMXInterfaceBindingTest is failing
+    intermittently for IPv6 addresses
+* Backports
+  - S8028727, PR2814: [parfait] warnings from b116 for
+   jdk.src.share.native.sun.security.ec: JNI pending exceptions
+  - S8048512, PR2814: Uninitialised memory in
+    jdk/src/share/native/sun/security/ec/ECC_JNI.cpp
+  - S8071705. PR2819, RH1182694: Java application menu misbehaves
+    when running multiple screen stacked vertically
+  - S8150954, PR2866, RH1176206: AWT Robot not compatible with
+    GNOME Shell
+* Bug fixes
+  - PR2803: Make system CUPS optional
+  - PR2886: Location of 'stap' executable is hard-coded
+  - PR2893: test/tapset/jstaptest.pl should be executable
+  - PR2894: Add missing test directory in make check.
+* CACAO
+  - PR2781, CA195: typeinfo.cpp: typeinfo_merge_nonarrays:
+    Assertion `dest &amp;&amp; result &amp;&amp; x.any &amp;&amp; y.any' failed
+* AArch64 port
+  - PR2852: Add support for large code cache
+  - PR2852: Apply ReservedCodeCacheSize default limiting to
+    AArch64 only.
+  - S8081289, PR2852: aarch64: add support for
+    RewriteFrequentPairs in interpreter
+  - S8131483, PR2852: aarch64: illegal stlxr instructions
+  - S8133352, PR2852: aarch64: generates constrained unpredictable
+    instructions
+  - S8133842, PR2852: aarch64: C2 generates illegal instructions
+    with int shifts &gt;=32
+  - S8134322, PR2852: AArch64: Fix several errors in C2 biased
+    locking implementation
+  - S8136615, PR2852: aarch64: elide DecodeN when followed by
+    CmpP 0
+  - S8138575, PR2852: Improve generated code for profile counters
+  - S8138641, PR2852: Disable C2 peephole by default for aarch64
+  - S8138966, PR2852: Intermittent SEGV running ParallelGC
+  - S8143067, PR2852: aarch64: guarantee failure in javac
+  - S8143285, PR2852: aarch64: Missing load acquire when checking
+    if ConstantPoolCacheEntry is resolved
+  - S8143584, PR2852: Load constant pool tag and class status with
+ load acquire
+  - S8144201, PR2852: aarch64:
+    jdk/test/com/sun/net/httpserver/Test6a.java fails with
+    --enable-unlimited-crypto
+  - S8144582, PR2852: AArch64 does not generate correct branch
+    profile data
+  - S8146709, PR2852: AArch64: Incorrect use of ADRP for
+    byte_map_base
+  - S8147805, PR2852: aarch64: C1 segmentation fault due to inline
+    Unsafe.getAndSetObject
+  - S8148240, PR2852: aarch64: random infrequent null pointer
+    exceptions in javac
+* PPC &amp; AIX port
+  - S8034797, PR2851: AIX: Fix os::naked_short_sleep() in
+    os_aix.cpp after 8028280
+  - S8139258, PR2851: PPC64LE: argument passing problem when
+    passing 15 floats in native call
+  - S8139421, PR2851: PPC64LE: MacroAssembler::bxx64_patchable
+    kill register R12
+
+This update was imported from the SUSE:SLE-12:Update update project.</Note>
+    <Note Title="Terms of Use" Type="Legal Disclaimer" Ordinal="3" xml:lang="en">The CVRF data is provided by SUSE under the Creative Commons License 4.0 with Attribution for Non-Commercial usage (CC-BY-NC-4.0).</Note>
+  </DocumentNotes>
+  <DocumentDistribution xml:lang="en">Copyright SUSE LLC under the Creative Commons License 4.0 with Attribution for Non-Commercial usage (CC-BY-NC-4.0)</DocumentDistribution>
+  <DocumentReferences>
+    <Reference Type="Self">
+      <URL>https://lists.opensuse.org/opensuse-security-announce/2016-04/msg00013.html</URL>
+      <Description>E-Mail link for openSUSE-SU-2016:1004-1</Description>
+    </Reference>
+    <Reference Type="Self">
+      <URL>https://www.suse.com/support/security/rating/</URL>
+      <Description>SUSE Security Ratings</Description>
+    </Reference>
+  </DocumentReferences>
+  <ProductTree xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/prod">
+    <Branch Type="Product Family" Name="openSUSE Leap 42.1">
+      <Branch Type="Product Name" Name="openSUSE Leap 42.1">
+        <FullProductName ProductID="openSUSE Leap 42.1">openSUSE Leap 42.1</FullProductName>
+      </Branch>
+    </Branch>
+    <Branch Type="Product Version" Name="java-1_7_0-openjdk-1.7.0.99-28.1">
+      <FullProductName ProductID="java-1_7_0-openjdk-1.7.0.99-28.1">java-1_7_0-openjdk-1.7.0.99-28.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="java-1_7_0-openjdk-accessibility-1.7.0.99-28.1">
+      <FullProductName ProductID="java-1_7_0-openjdk-accessibility-1.7.0.99-28.1">java-1_7_0-openjdk-accessibility-1.7.0.99-28.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="java-1_7_0-openjdk-bootstrap-1.7.0.99-28.1">
+      <FullProductName ProductID="java-1_7_0-openjdk-bootstrap-1.7.0.99-28.1">java-1_7_0-openjdk-bootstrap-1.7.0.99-28.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="java-1_7_0-openjdk-bootstrap-devel-1.7.0.99-28.1">
+      <FullProductName ProductID="java-1_7_0-openjdk-bootstrap-devel-1.7.0.99-28.1">java-1_7_0-openjdk-bootstrap-devel-1.7.0.99-28.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="java-1_7_0-openjdk-bootstrap-headless-1.7.0.99-28.1">
+      <FullProductName ProductID="java-1_7_0-openjdk-bootstrap-headless-1.7.0.99-28.1">java-1_7_0-openjdk-bootstrap-headless-1.7.0.99-28.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="java-1_7_0-openjdk-demo-1.7.0.99-28.1">
+      <FullProductName ProductID="java-1_7_0-openjdk-demo-1.7.0.99-28.1">java-1_7_0-openjdk-demo-1.7.0.99-28.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="java-1_7_0-openjdk-devel-1.7.0.99-28.1">
+      <FullProductName ProductID="java-1_7_0-openjdk-devel-1.7.0.99-28.1">java-1_7_0-openjdk-devel-1.7.0.99-28.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="java-1_7_0-openjdk-headless-1.7.0.99-28.1">
+      <FullProductName ProductID="java-1_7_0-openjdk-headless-1.7.0.99-28.1">java-1_7_0-openjdk-headless-1.7.0.99-28.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="java-1_7_0-openjdk-javadoc-1.7.0.99-28.1">
+      <FullProductName ProductID="java-1_7_0-openjdk-javadoc-1.7.0.99-28.1">java-1_7_0-openjdk-javadoc-1.7.0.99-28.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="java-1_7_0-openjdk-src-1.7.0.99-28.1">
+      <FullProductName ProductID="java-1_7_0-openjdk-src-1.7.0.99-28.1">java-1_7_0-openjdk-src-1.7.0.99-28.1</FullProductName>
+    </Branch>
+    <Relationship ProductReference="java-1_7_0-openjdk-1.7.0.99-28.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:java-1_7_0-openjdk-1.7.0.99-28.1">java-1_7_0-openjdk-1.7.0.99-28.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="java-1_7_0-openjdk-accessibility-1.7.0.99-28.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:java-1_7_0-openjdk-accessibility-1.7.0.99-28.1">java-1_7_0-openjdk-accessibility-1.7.0.99-28.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="java-1_7_0-openjdk-bootstrap-1.7.0.99-28.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:java-1_7_0-openjdk-bootstrap-1.7.0.99-28.1">java-1_7_0-openjdk-bootstrap-1.7.0.99-28.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="java-1_7_0-openjdk-bootstrap-devel-1.7.0.99-28.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:java-1_7_0-openjdk-bootstrap-devel-1.7.0.99-28.1">java-1_7_0-openjdk-bootstrap-devel-1.7.0.99-28.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="java-1_7_0-openjdk-bootstrap-headless-1.7.0.99-28.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:java-1_7_0-openjdk-bootstrap-headless-1.7.0.99-28.1">java-1_7_0-openjdk-bootstrap-headless-1.7.0.99-28.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="java-1_7_0-openjdk-demo-1.7.0.99-28.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:java-1_7_0-openjdk-demo-1.7.0.99-28.1">java-1_7_0-openjdk-demo-1.7.0.99-28.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="java-1_7_0-openjdk-devel-1.7.0.99-28.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:java-1_7_0-openjdk-devel-1.7.0.99-28.1">java-1_7_0-openjdk-devel-1.7.0.99-28.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="java-1_7_0-openjdk-headless-1.7.0.99-28.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:java-1_7_0-openjdk-headless-1.7.0.99-28.1">java-1_7_0-openjdk-headless-1.7.0.99-28.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="java-1_7_0-openjdk-javadoc-1.7.0.99-28.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:java-1_7_0-openjdk-javadoc-1.7.0.99-28.1">java-1_7_0-openjdk-javadoc-1.7.0.99-28.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="java-1_7_0-openjdk-src-1.7.0.99-28.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:java-1_7_0-openjdk-src-1.7.0.99-28.1">java-1_7_0-openjdk-src-1.7.0.99-28.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+  </ProductTree>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="1">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">Unspecified vulnerability in Oracle Java SE 7u97, 8u73, and 8u74 allows remote attackers to affect confidentiality, integrity, and availability via unknown vectors related to the Hotspot sub-component.</Note>
+    </Notes>
+    <CVE>CVE-2016-0636</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed">
+        <ProductID>openSUSE Leap 42.1:java-1_7_0-openjdk-1.7.0.99-28.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:java-1_7_0-openjdk-accessibility-1.7.0.99-28.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:java-1_7_0-openjdk-bootstrap-1.7.0.99-28.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:java-1_7_0-openjdk-bootstrap-devel-1.7.0.99-28.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:java-1_7_0-openjdk-bootstrap-headless-1.7.0.99-28.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:java-1_7_0-openjdk-demo-1.7.0.99-28.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:java-1_7_0-openjdk-devel-1.7.0.99-28.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:java-1_7_0-openjdk-headless-1.7.0.99-28.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:java-1_7_0-openjdk-javadoc-1.7.0.99-28.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:java-1_7_0-openjdk-src-1.7.0.99-28.1</ProductID>
+      </Status>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>9.3</BaseScoreV2>
+        <VectorV2>AV:N/AC:M/Au:N/C:C/I:C/A:C</VectorV2>
+      </ScoreSetV2>
+      <ScoreSetV3>
+        <BaseScoreV3>8.1</BaseScoreV3>
+        <VectorV3>CVSS:3.0/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:H</VectorV3>
+      </ScoreSetV3>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-security-announce/2016-04/msg00013.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2016-0636.html</URL>
+        <Description>CVE-2016-0636</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/972468</URL>
+        <Description>SUSE Bug 972468</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/979252</URL>
+        <Description>SUSE Bug 979252</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+</cvrfdoc>

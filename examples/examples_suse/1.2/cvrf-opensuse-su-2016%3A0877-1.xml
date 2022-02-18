@@ -1,0 +1,716 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cvrfdoc xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:cpe="http://cpe.mitre.org/language/2.0" xmlns:cvrf="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/cvrf" xmlns:cvrf-common="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/common" xmlns:cvssv2="http://scap.nist.gov/schema/cvss-v2/1.0" xmlns:cvssv3="https://www.first.org/cvss/cvss-v3.0.xsd" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:ns0="http://purl.org/dc/elements/1.1/" xmlns:prod="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/prod" xmlns:scap-core="http://scap.nist.gov/schema/scap-core/1.0" xmlns:sch="http://purl.oclc.org/dsdl/schematron" xmlns:vuln="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/cvrf">
+  <DocumentTitle xml:lang="en">Security update for samba</DocumentTitle>
+  <DocumentType>SUSE Patch</DocumentType>
+  <DocumentPublisher Type="Vendor">
+    <ContactDetails>security@suse.de</ContactDetails>
+    <IssuingAuthority>SUSE Security Team</IssuingAuthority>
+  </DocumentPublisher>
+  <DocumentTracking>
+    <Identification>
+      <ID>openSUSE-SU-2016:0877-1</ID>
+    </Identification>
+    <Status>Final</Status>
+    <Version>1</Version>
+    <RevisionHistory>
+      <Revision>
+        <Number>1</Number>
+        <Date>2016-03-24T10:42:11Z</Date>
+        <Description>current</Description>
+      </Revision>
+    </RevisionHistory>
+    <InitialReleaseDate>2016-03-24T10:42:11Z</InitialReleaseDate>
+    <CurrentReleaseDate>2016-03-24T10:42:11Z</CurrentReleaseDate>
+    <Generator>
+      <Engine>cve-database/bin/generate-cvrf.pl</Engine>
+      <Date>2017-02-24T01:00:00Z</Date>
+    </Generator>
+  </DocumentTracking>
+  <DocumentNotes>
+    <Note Title="Topic" Type="Summary" Ordinal="1" xml:lang="en">Security update for samba</Note>
+    <Note Title="Details" Type="General" Ordinal="2" xml:lang="en">
+This update for the samba server fixes the following issues:
+
+Security issue fixed:
+- CVE-2015-7560: Getting and setting Windows ACLs on symlinks can change permissions on link 
+  target; (bso#11648); (bsc#968222).
+
+Other bugs fixed:
+- Enable clustering (CTDB) support; (bsc#966271).
+- s3: smbd: Fix timestamp rounding inside SMB2 create; (bso#11703);
+  (bsc#964023).
+- vfs_fruit: Fix renaming directories with open files; (bso#11065).
+- Fix MacOS finder error 36 when copying folder to Samba; (bso#11347).
+- s3:smbd/oplock: Obey kernel oplock setting when releasing oplocks;
+  (bso#11400).
+- Fix copying files with vfs_fruit when using vfs_streams_xattr without
+  stream prefix and type suffix; (bso#11466).
+- s3:libsmb: Correctly initialize the list head when keeping a list of primary
+  followed by DFS connections; (bso#11624).
+- Reduce the memory footprint of empty string options; (bso#11625).
+- lib/async_req: Do not install async_connect_send_test; (bso#11639).
+- docs: Fix typos in man vfs_gpfs; (bso#11641).
+- smbd: make 'hide dot files' option work with 'store dos attributes = yes';
+  (bso#11645).
+- smbcacls: Fix uninitialized variable; (bso#11682).
+- s3:smbd: Ignore initial allocation size for directory creation; (bso#11684).
+- Add quotes around path of update-apparmor-samba-profile; (bsc#962177).
+- Prevent access denied if the share path is '/'; (bso#11647); (bsc#960249).
+- Ensure samlogon fallback requests are rerouted after kerberos failure;
+  (bsc#953972).
+- samba: winbind crash -&gt; netlogon_creds_client_authenticator; (bsc#953972)
+
+This update was imported from the SUSE:SLE-12-SP1:Update update project.</Note>
+    <Note Title="Terms of Use" Type="Legal Disclaimer" Ordinal="3" xml:lang="en">The CVRF data is provided by SUSE under the Creative Commons License 4.0 with Attribution for Non-Commercial usage (CC-BY-NC-4.0).</Note>
+  </DocumentNotes>
+  <DocumentDistribution xml:lang="en">Copyright SUSE LLC under the Creative Commons License 4.0 with Attribution for Non-Commercial usage (CC-BY-NC-4.0)</DocumentDistribution>
+  <DocumentReferences>
+    <Reference Type="Self">
+      <URL>https://lists.opensuse.org/opensuse-security-announce/2016-03/msg00090.html</URL>
+      <Description>E-Mail link for openSUSE-SU-2016:0877-1</Description>
+    </Reference>
+    <Reference Type="Self">
+      <URL>https://www.suse.com/support/security/rating/</URL>
+      <Description>SUSE Security Ratings</Description>
+    </Reference>
+  </DocumentReferences>
+  <ProductTree xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/prod">
+    <Branch Type="Product Family" Name="openSUSE Leap 42.1">
+      <Branch Type="Product Name" Name="openSUSE Leap 42.1">
+        <FullProductName ProductID="openSUSE Leap 42.1">openSUSE Leap 42.1</FullProductName>
+      </Branch>
+    </Branch>
+    <Branch Type="Product Version" Name="ctdb-4.2.4-12.1">
+      <FullProductName ProductID="ctdb-4.2.4-12.1">ctdb-4.2.4-12.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="ctdb-devel-4.2.4-12.1">
+      <FullProductName ProductID="ctdb-devel-4.2.4-12.1">ctdb-devel-4.2.4-12.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="ctdb-tests-4.2.4-12.1">
+      <FullProductName ProductID="ctdb-tests-4.2.4-12.1">ctdb-tests-4.2.4-12.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libdcerpc-atsvc-devel-4.2.4-12.1">
+      <FullProductName ProductID="libdcerpc-atsvc-devel-4.2.4-12.1">libdcerpc-atsvc-devel-4.2.4-12.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libdcerpc-atsvc0-4.2.4-12.1">
+      <FullProductName ProductID="libdcerpc-atsvc0-4.2.4-12.1">libdcerpc-atsvc0-4.2.4-12.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libdcerpc-atsvc0-32bit-4.2.4-12.1">
+      <FullProductName ProductID="libdcerpc-atsvc0-32bit-4.2.4-12.1">libdcerpc-atsvc0-32bit-4.2.4-12.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libdcerpc-binding0-4.2.4-12.1">
+      <FullProductName ProductID="libdcerpc-binding0-4.2.4-12.1">libdcerpc-binding0-4.2.4-12.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libdcerpc-binding0-32bit-4.2.4-12.1">
+      <FullProductName ProductID="libdcerpc-binding0-32bit-4.2.4-12.1">libdcerpc-binding0-32bit-4.2.4-12.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libdcerpc-devel-4.2.4-12.1">
+      <FullProductName ProductID="libdcerpc-devel-4.2.4-12.1">libdcerpc-devel-4.2.4-12.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libdcerpc-samr-devel-4.2.4-12.1">
+      <FullProductName ProductID="libdcerpc-samr-devel-4.2.4-12.1">libdcerpc-samr-devel-4.2.4-12.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libdcerpc-samr0-4.2.4-12.1">
+      <FullProductName ProductID="libdcerpc-samr0-4.2.4-12.1">libdcerpc-samr0-4.2.4-12.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libdcerpc-samr0-32bit-4.2.4-12.1">
+      <FullProductName ProductID="libdcerpc-samr0-32bit-4.2.4-12.1">libdcerpc-samr0-32bit-4.2.4-12.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libdcerpc0-4.2.4-12.1">
+      <FullProductName ProductID="libdcerpc0-4.2.4-12.1">libdcerpc0-4.2.4-12.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libdcerpc0-32bit-4.2.4-12.1">
+      <FullProductName ProductID="libdcerpc0-32bit-4.2.4-12.1">libdcerpc0-32bit-4.2.4-12.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libgensec-devel-4.2.4-12.1">
+      <FullProductName ProductID="libgensec-devel-4.2.4-12.1">libgensec-devel-4.2.4-12.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libgensec0-4.2.4-12.1">
+      <FullProductName ProductID="libgensec0-4.2.4-12.1">libgensec0-4.2.4-12.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libgensec0-32bit-4.2.4-12.1">
+      <FullProductName ProductID="libgensec0-32bit-4.2.4-12.1">libgensec0-32bit-4.2.4-12.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libndr-devel-4.2.4-12.1">
+      <FullProductName ProductID="libndr-devel-4.2.4-12.1">libndr-devel-4.2.4-12.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libndr-krb5pac-devel-4.2.4-12.1">
+      <FullProductName ProductID="libndr-krb5pac-devel-4.2.4-12.1">libndr-krb5pac-devel-4.2.4-12.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libndr-krb5pac0-4.2.4-12.1">
+      <FullProductName ProductID="libndr-krb5pac0-4.2.4-12.1">libndr-krb5pac0-4.2.4-12.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libndr-krb5pac0-32bit-4.2.4-12.1">
+      <FullProductName ProductID="libndr-krb5pac0-32bit-4.2.4-12.1">libndr-krb5pac0-32bit-4.2.4-12.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libndr-nbt-devel-4.2.4-12.1">
+      <FullProductName ProductID="libndr-nbt-devel-4.2.4-12.1">libndr-nbt-devel-4.2.4-12.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libndr-nbt0-4.2.4-12.1">
+      <FullProductName ProductID="libndr-nbt0-4.2.4-12.1">libndr-nbt0-4.2.4-12.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libndr-nbt0-32bit-4.2.4-12.1">
+      <FullProductName ProductID="libndr-nbt0-32bit-4.2.4-12.1">libndr-nbt0-32bit-4.2.4-12.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libndr-standard-devel-4.2.4-12.1">
+      <FullProductName ProductID="libndr-standard-devel-4.2.4-12.1">libndr-standard-devel-4.2.4-12.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libndr-standard0-4.2.4-12.1">
+      <FullProductName ProductID="libndr-standard0-4.2.4-12.1">libndr-standard0-4.2.4-12.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libndr-standard0-32bit-4.2.4-12.1">
+      <FullProductName ProductID="libndr-standard0-32bit-4.2.4-12.1">libndr-standard0-32bit-4.2.4-12.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libndr0-4.2.4-12.1">
+      <FullProductName ProductID="libndr0-4.2.4-12.1">libndr0-4.2.4-12.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libndr0-32bit-4.2.4-12.1">
+      <FullProductName ProductID="libndr0-32bit-4.2.4-12.1">libndr0-32bit-4.2.4-12.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libnetapi-devel-4.2.4-12.1">
+      <FullProductName ProductID="libnetapi-devel-4.2.4-12.1">libnetapi-devel-4.2.4-12.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libnetapi0-4.2.4-12.1">
+      <FullProductName ProductID="libnetapi0-4.2.4-12.1">libnetapi0-4.2.4-12.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libnetapi0-32bit-4.2.4-12.1">
+      <FullProductName ProductID="libnetapi0-32bit-4.2.4-12.1">libnetapi0-32bit-4.2.4-12.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libregistry-devel-4.2.4-12.1">
+      <FullProductName ProductID="libregistry-devel-4.2.4-12.1">libregistry-devel-4.2.4-12.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libregistry0-4.2.4-12.1">
+      <FullProductName ProductID="libregistry0-4.2.4-12.1">libregistry0-4.2.4-12.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libregistry0-32bit-4.2.4-12.1">
+      <FullProductName ProductID="libregistry0-32bit-4.2.4-12.1">libregistry0-32bit-4.2.4-12.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libsamba-credentials-devel-4.2.4-12.1">
+      <FullProductName ProductID="libsamba-credentials-devel-4.2.4-12.1">libsamba-credentials-devel-4.2.4-12.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libsamba-credentials0-4.2.4-12.1">
+      <FullProductName ProductID="libsamba-credentials0-4.2.4-12.1">libsamba-credentials0-4.2.4-12.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libsamba-credentials0-32bit-4.2.4-12.1">
+      <FullProductName ProductID="libsamba-credentials0-32bit-4.2.4-12.1">libsamba-credentials0-32bit-4.2.4-12.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libsamba-hostconfig-devel-4.2.4-12.1">
+      <FullProductName ProductID="libsamba-hostconfig-devel-4.2.4-12.1">libsamba-hostconfig-devel-4.2.4-12.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libsamba-hostconfig0-4.2.4-12.1">
+      <FullProductName ProductID="libsamba-hostconfig0-4.2.4-12.1">libsamba-hostconfig0-4.2.4-12.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libsamba-hostconfig0-32bit-4.2.4-12.1">
+      <FullProductName ProductID="libsamba-hostconfig0-32bit-4.2.4-12.1">libsamba-hostconfig0-32bit-4.2.4-12.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libsamba-passdb-devel-4.2.4-12.1">
+      <FullProductName ProductID="libsamba-passdb-devel-4.2.4-12.1">libsamba-passdb-devel-4.2.4-12.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libsamba-passdb0-4.2.4-12.1">
+      <FullProductName ProductID="libsamba-passdb0-4.2.4-12.1">libsamba-passdb0-4.2.4-12.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libsamba-passdb0-32bit-4.2.4-12.1">
+      <FullProductName ProductID="libsamba-passdb0-32bit-4.2.4-12.1">libsamba-passdb0-32bit-4.2.4-12.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libsamba-policy-devel-4.2.4-12.1">
+      <FullProductName ProductID="libsamba-policy-devel-4.2.4-12.1">libsamba-policy-devel-4.2.4-12.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libsamba-policy0-4.2.4-12.1">
+      <FullProductName ProductID="libsamba-policy0-4.2.4-12.1">libsamba-policy0-4.2.4-12.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libsamba-policy0-32bit-4.2.4-12.1">
+      <FullProductName ProductID="libsamba-policy0-32bit-4.2.4-12.1">libsamba-policy0-32bit-4.2.4-12.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libsamba-util-devel-4.2.4-12.1">
+      <FullProductName ProductID="libsamba-util-devel-4.2.4-12.1">libsamba-util-devel-4.2.4-12.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libsamba-util0-4.2.4-12.1">
+      <FullProductName ProductID="libsamba-util0-4.2.4-12.1">libsamba-util0-4.2.4-12.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libsamba-util0-32bit-4.2.4-12.1">
+      <FullProductName ProductID="libsamba-util0-32bit-4.2.4-12.1">libsamba-util0-32bit-4.2.4-12.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libsamdb-devel-4.2.4-12.1">
+      <FullProductName ProductID="libsamdb-devel-4.2.4-12.1">libsamdb-devel-4.2.4-12.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libsamdb0-4.2.4-12.1">
+      <FullProductName ProductID="libsamdb0-4.2.4-12.1">libsamdb0-4.2.4-12.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libsamdb0-32bit-4.2.4-12.1">
+      <FullProductName ProductID="libsamdb0-32bit-4.2.4-12.1">libsamdb0-32bit-4.2.4-12.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libsmbclient-devel-4.2.4-12.1">
+      <FullProductName ProductID="libsmbclient-devel-4.2.4-12.1">libsmbclient-devel-4.2.4-12.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libsmbclient-raw-devel-4.2.4-12.1">
+      <FullProductName ProductID="libsmbclient-raw-devel-4.2.4-12.1">libsmbclient-raw-devel-4.2.4-12.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libsmbclient-raw0-4.2.4-12.1">
+      <FullProductName ProductID="libsmbclient-raw0-4.2.4-12.1">libsmbclient-raw0-4.2.4-12.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libsmbclient-raw0-32bit-4.2.4-12.1">
+      <FullProductName ProductID="libsmbclient-raw0-32bit-4.2.4-12.1">libsmbclient-raw0-32bit-4.2.4-12.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libsmbclient0-4.2.4-12.1">
+      <FullProductName ProductID="libsmbclient0-4.2.4-12.1">libsmbclient0-4.2.4-12.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libsmbclient0-32bit-4.2.4-12.1">
+      <FullProductName ProductID="libsmbclient0-32bit-4.2.4-12.1">libsmbclient0-32bit-4.2.4-12.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libsmbconf-devel-4.2.4-12.1">
+      <FullProductName ProductID="libsmbconf-devel-4.2.4-12.1">libsmbconf-devel-4.2.4-12.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libsmbconf0-4.2.4-12.1">
+      <FullProductName ProductID="libsmbconf0-4.2.4-12.1">libsmbconf0-4.2.4-12.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libsmbconf0-32bit-4.2.4-12.1">
+      <FullProductName ProductID="libsmbconf0-32bit-4.2.4-12.1">libsmbconf0-32bit-4.2.4-12.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libsmbldap-devel-4.2.4-12.1">
+      <FullProductName ProductID="libsmbldap-devel-4.2.4-12.1">libsmbldap-devel-4.2.4-12.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libsmbldap0-4.2.4-12.1">
+      <FullProductName ProductID="libsmbldap0-4.2.4-12.1">libsmbldap0-4.2.4-12.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libsmbldap0-32bit-4.2.4-12.1">
+      <FullProductName ProductID="libsmbldap0-32bit-4.2.4-12.1">libsmbldap0-32bit-4.2.4-12.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libtevent-util-devel-4.2.4-12.1">
+      <FullProductName ProductID="libtevent-util-devel-4.2.4-12.1">libtevent-util-devel-4.2.4-12.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libtevent-util0-4.2.4-12.1">
+      <FullProductName ProductID="libtevent-util0-4.2.4-12.1">libtevent-util0-4.2.4-12.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libtevent-util0-32bit-4.2.4-12.1">
+      <FullProductName ProductID="libtevent-util0-32bit-4.2.4-12.1">libtevent-util0-32bit-4.2.4-12.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libwbclient-devel-4.2.4-12.1">
+      <FullProductName ProductID="libwbclient-devel-4.2.4-12.1">libwbclient-devel-4.2.4-12.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libwbclient0-4.2.4-12.1">
+      <FullProductName ProductID="libwbclient0-4.2.4-12.1">libwbclient0-4.2.4-12.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libwbclient0-32bit-4.2.4-12.1">
+      <FullProductName ProductID="libwbclient0-32bit-4.2.4-12.1">libwbclient0-32bit-4.2.4-12.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="samba-4.2.4-12.1">
+      <FullProductName ProductID="samba-4.2.4-12.1">samba-4.2.4-12.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="samba-32bit-4.2.4-12.1">
+      <FullProductName ProductID="samba-32bit-4.2.4-12.1">samba-32bit-4.2.4-12.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="samba-client-4.2.4-12.1">
+      <FullProductName ProductID="samba-client-4.2.4-12.1">samba-client-4.2.4-12.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="samba-client-32bit-4.2.4-12.1">
+      <FullProductName ProductID="samba-client-32bit-4.2.4-12.1">samba-client-32bit-4.2.4-12.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="samba-core-devel-4.2.4-12.1">
+      <FullProductName ProductID="samba-core-devel-4.2.4-12.1">samba-core-devel-4.2.4-12.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="samba-doc-4.2.4-12.1">
+      <FullProductName ProductID="samba-doc-4.2.4-12.1">samba-doc-4.2.4-12.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="samba-libs-4.2.4-12.1">
+      <FullProductName ProductID="samba-libs-4.2.4-12.1">samba-libs-4.2.4-12.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="samba-libs-32bit-4.2.4-12.1">
+      <FullProductName ProductID="samba-libs-32bit-4.2.4-12.1">samba-libs-32bit-4.2.4-12.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="samba-pidl-4.2.4-12.1">
+      <FullProductName ProductID="samba-pidl-4.2.4-12.1">samba-pidl-4.2.4-12.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="samba-python-4.2.4-12.1">
+      <FullProductName ProductID="samba-python-4.2.4-12.1">samba-python-4.2.4-12.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="samba-test-4.2.4-12.1">
+      <FullProductName ProductID="samba-test-4.2.4-12.1">samba-test-4.2.4-12.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="samba-test-devel-4.2.4-12.1">
+      <FullProductName ProductID="samba-test-devel-4.2.4-12.1">samba-test-devel-4.2.4-12.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="samba-winbind-4.2.4-12.1">
+      <FullProductName ProductID="samba-winbind-4.2.4-12.1">samba-winbind-4.2.4-12.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="samba-winbind-32bit-4.2.4-12.1">
+      <FullProductName ProductID="samba-winbind-32bit-4.2.4-12.1">samba-winbind-32bit-4.2.4-12.1</FullProductName>
+    </Branch>
+    <Relationship ProductReference="ctdb-4.2.4-12.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:ctdb-4.2.4-12.1">ctdb-4.2.4-12.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="ctdb-devel-4.2.4-12.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:ctdb-devel-4.2.4-12.1">ctdb-devel-4.2.4-12.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="ctdb-tests-4.2.4-12.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:ctdb-tests-4.2.4-12.1">ctdb-tests-4.2.4-12.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="libdcerpc-atsvc-devel-4.2.4-12.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:libdcerpc-atsvc-devel-4.2.4-12.1">libdcerpc-atsvc-devel-4.2.4-12.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="libdcerpc-atsvc0-4.2.4-12.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:libdcerpc-atsvc0-4.2.4-12.1">libdcerpc-atsvc0-4.2.4-12.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="libdcerpc-atsvc0-32bit-4.2.4-12.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:libdcerpc-atsvc0-32bit-4.2.4-12.1">libdcerpc-atsvc0-32bit-4.2.4-12.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="libdcerpc-binding0-4.2.4-12.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:libdcerpc-binding0-4.2.4-12.1">libdcerpc-binding0-4.2.4-12.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="libdcerpc-binding0-32bit-4.2.4-12.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:libdcerpc-binding0-32bit-4.2.4-12.1">libdcerpc-binding0-32bit-4.2.4-12.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="libdcerpc-devel-4.2.4-12.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:libdcerpc-devel-4.2.4-12.1">libdcerpc-devel-4.2.4-12.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="libdcerpc-samr-devel-4.2.4-12.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:libdcerpc-samr-devel-4.2.4-12.1">libdcerpc-samr-devel-4.2.4-12.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="libdcerpc-samr0-4.2.4-12.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:libdcerpc-samr0-4.2.4-12.1">libdcerpc-samr0-4.2.4-12.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="libdcerpc-samr0-32bit-4.2.4-12.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:libdcerpc-samr0-32bit-4.2.4-12.1">libdcerpc-samr0-32bit-4.2.4-12.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="libdcerpc0-4.2.4-12.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:libdcerpc0-4.2.4-12.1">libdcerpc0-4.2.4-12.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="libdcerpc0-32bit-4.2.4-12.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:libdcerpc0-32bit-4.2.4-12.1">libdcerpc0-32bit-4.2.4-12.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="libgensec-devel-4.2.4-12.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:libgensec-devel-4.2.4-12.1">libgensec-devel-4.2.4-12.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="libgensec0-4.2.4-12.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:libgensec0-4.2.4-12.1">libgensec0-4.2.4-12.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="libgensec0-32bit-4.2.4-12.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:libgensec0-32bit-4.2.4-12.1">libgensec0-32bit-4.2.4-12.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="libndr-devel-4.2.4-12.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:libndr-devel-4.2.4-12.1">libndr-devel-4.2.4-12.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="libndr-krb5pac-devel-4.2.4-12.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:libndr-krb5pac-devel-4.2.4-12.1">libndr-krb5pac-devel-4.2.4-12.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="libndr-krb5pac0-4.2.4-12.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:libndr-krb5pac0-4.2.4-12.1">libndr-krb5pac0-4.2.4-12.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="libndr-krb5pac0-32bit-4.2.4-12.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:libndr-krb5pac0-32bit-4.2.4-12.1">libndr-krb5pac0-32bit-4.2.4-12.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="libndr-nbt-devel-4.2.4-12.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:libndr-nbt-devel-4.2.4-12.1">libndr-nbt-devel-4.2.4-12.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="libndr-nbt0-4.2.4-12.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:libndr-nbt0-4.2.4-12.1">libndr-nbt0-4.2.4-12.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="libndr-nbt0-32bit-4.2.4-12.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:libndr-nbt0-32bit-4.2.4-12.1">libndr-nbt0-32bit-4.2.4-12.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="libndr-standard-devel-4.2.4-12.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:libndr-standard-devel-4.2.4-12.1">libndr-standard-devel-4.2.4-12.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="libndr-standard0-4.2.4-12.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:libndr-standard0-4.2.4-12.1">libndr-standard0-4.2.4-12.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="libndr-standard0-32bit-4.2.4-12.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:libndr-standard0-32bit-4.2.4-12.1">libndr-standard0-32bit-4.2.4-12.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="libndr0-4.2.4-12.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:libndr0-4.2.4-12.1">libndr0-4.2.4-12.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="libndr0-32bit-4.2.4-12.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:libndr0-32bit-4.2.4-12.1">libndr0-32bit-4.2.4-12.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="libnetapi-devel-4.2.4-12.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:libnetapi-devel-4.2.4-12.1">libnetapi-devel-4.2.4-12.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="libnetapi0-4.2.4-12.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:libnetapi0-4.2.4-12.1">libnetapi0-4.2.4-12.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="libnetapi0-32bit-4.2.4-12.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:libnetapi0-32bit-4.2.4-12.1">libnetapi0-32bit-4.2.4-12.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="libregistry-devel-4.2.4-12.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:libregistry-devel-4.2.4-12.1">libregistry-devel-4.2.4-12.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="libregistry0-4.2.4-12.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:libregistry0-4.2.4-12.1">libregistry0-4.2.4-12.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="libregistry0-32bit-4.2.4-12.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:libregistry0-32bit-4.2.4-12.1">libregistry0-32bit-4.2.4-12.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="libsamba-credentials-devel-4.2.4-12.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:libsamba-credentials-devel-4.2.4-12.1">libsamba-credentials-devel-4.2.4-12.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="libsamba-credentials0-4.2.4-12.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:libsamba-credentials0-4.2.4-12.1">libsamba-credentials0-4.2.4-12.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="libsamba-credentials0-32bit-4.2.4-12.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:libsamba-credentials0-32bit-4.2.4-12.1">libsamba-credentials0-32bit-4.2.4-12.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="libsamba-hostconfig-devel-4.2.4-12.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:libsamba-hostconfig-devel-4.2.4-12.1">libsamba-hostconfig-devel-4.2.4-12.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="libsamba-hostconfig0-4.2.4-12.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:libsamba-hostconfig0-4.2.4-12.1">libsamba-hostconfig0-4.2.4-12.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="libsamba-hostconfig0-32bit-4.2.4-12.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:libsamba-hostconfig0-32bit-4.2.4-12.1">libsamba-hostconfig0-32bit-4.2.4-12.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="libsamba-passdb-devel-4.2.4-12.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:libsamba-passdb-devel-4.2.4-12.1">libsamba-passdb-devel-4.2.4-12.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="libsamba-passdb0-4.2.4-12.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:libsamba-passdb0-4.2.4-12.1">libsamba-passdb0-4.2.4-12.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="libsamba-passdb0-32bit-4.2.4-12.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:libsamba-passdb0-32bit-4.2.4-12.1">libsamba-passdb0-32bit-4.2.4-12.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="libsamba-policy-devel-4.2.4-12.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:libsamba-policy-devel-4.2.4-12.1">libsamba-policy-devel-4.2.4-12.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="libsamba-policy0-4.2.4-12.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:libsamba-policy0-4.2.4-12.1">libsamba-policy0-4.2.4-12.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="libsamba-policy0-32bit-4.2.4-12.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:libsamba-policy0-32bit-4.2.4-12.1">libsamba-policy0-32bit-4.2.4-12.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="libsamba-util-devel-4.2.4-12.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:libsamba-util-devel-4.2.4-12.1">libsamba-util-devel-4.2.4-12.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="libsamba-util0-4.2.4-12.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:libsamba-util0-4.2.4-12.1">libsamba-util0-4.2.4-12.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="libsamba-util0-32bit-4.2.4-12.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:libsamba-util0-32bit-4.2.4-12.1">libsamba-util0-32bit-4.2.4-12.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="libsamdb-devel-4.2.4-12.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:libsamdb-devel-4.2.4-12.1">libsamdb-devel-4.2.4-12.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="libsamdb0-4.2.4-12.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:libsamdb0-4.2.4-12.1">libsamdb0-4.2.4-12.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="libsamdb0-32bit-4.2.4-12.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:libsamdb0-32bit-4.2.4-12.1">libsamdb0-32bit-4.2.4-12.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="libsmbclient-devel-4.2.4-12.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:libsmbclient-devel-4.2.4-12.1">libsmbclient-devel-4.2.4-12.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="libsmbclient-raw-devel-4.2.4-12.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:libsmbclient-raw-devel-4.2.4-12.1">libsmbclient-raw-devel-4.2.4-12.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="libsmbclient-raw0-4.2.4-12.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:libsmbclient-raw0-4.2.4-12.1">libsmbclient-raw0-4.2.4-12.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="libsmbclient-raw0-32bit-4.2.4-12.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:libsmbclient-raw0-32bit-4.2.4-12.1">libsmbclient-raw0-32bit-4.2.4-12.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="libsmbclient0-4.2.4-12.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:libsmbclient0-4.2.4-12.1">libsmbclient0-4.2.4-12.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="libsmbclient0-32bit-4.2.4-12.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:libsmbclient0-32bit-4.2.4-12.1">libsmbclient0-32bit-4.2.4-12.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="libsmbconf-devel-4.2.4-12.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:libsmbconf-devel-4.2.4-12.1">libsmbconf-devel-4.2.4-12.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="libsmbconf0-4.2.4-12.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:libsmbconf0-4.2.4-12.1">libsmbconf0-4.2.4-12.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="libsmbconf0-32bit-4.2.4-12.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:libsmbconf0-32bit-4.2.4-12.1">libsmbconf0-32bit-4.2.4-12.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="libsmbldap-devel-4.2.4-12.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:libsmbldap-devel-4.2.4-12.1">libsmbldap-devel-4.2.4-12.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="libsmbldap0-4.2.4-12.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:libsmbldap0-4.2.4-12.1">libsmbldap0-4.2.4-12.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="libsmbldap0-32bit-4.2.4-12.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:libsmbldap0-32bit-4.2.4-12.1">libsmbldap0-32bit-4.2.4-12.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="libtevent-util-devel-4.2.4-12.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:libtevent-util-devel-4.2.4-12.1">libtevent-util-devel-4.2.4-12.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="libtevent-util0-4.2.4-12.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:libtevent-util0-4.2.4-12.1">libtevent-util0-4.2.4-12.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="libtevent-util0-32bit-4.2.4-12.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:libtevent-util0-32bit-4.2.4-12.1">libtevent-util0-32bit-4.2.4-12.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="libwbclient-devel-4.2.4-12.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:libwbclient-devel-4.2.4-12.1">libwbclient-devel-4.2.4-12.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="libwbclient0-4.2.4-12.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:libwbclient0-4.2.4-12.1">libwbclient0-4.2.4-12.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="libwbclient0-32bit-4.2.4-12.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:libwbclient0-32bit-4.2.4-12.1">libwbclient0-32bit-4.2.4-12.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="samba-4.2.4-12.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:samba-4.2.4-12.1">samba-4.2.4-12.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="samba-32bit-4.2.4-12.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:samba-32bit-4.2.4-12.1">samba-32bit-4.2.4-12.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="samba-client-4.2.4-12.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:samba-client-4.2.4-12.1">samba-client-4.2.4-12.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="samba-client-32bit-4.2.4-12.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:samba-client-32bit-4.2.4-12.1">samba-client-32bit-4.2.4-12.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="samba-core-devel-4.2.4-12.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:samba-core-devel-4.2.4-12.1">samba-core-devel-4.2.4-12.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="samba-doc-4.2.4-12.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:samba-doc-4.2.4-12.1">samba-doc-4.2.4-12.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="samba-libs-4.2.4-12.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:samba-libs-4.2.4-12.1">samba-libs-4.2.4-12.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="samba-libs-32bit-4.2.4-12.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:samba-libs-32bit-4.2.4-12.1">samba-libs-32bit-4.2.4-12.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="samba-pidl-4.2.4-12.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:samba-pidl-4.2.4-12.1">samba-pidl-4.2.4-12.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="samba-python-4.2.4-12.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:samba-python-4.2.4-12.1">samba-python-4.2.4-12.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="samba-test-4.2.4-12.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:samba-test-4.2.4-12.1">samba-test-4.2.4-12.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="samba-test-devel-4.2.4-12.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:samba-test-devel-4.2.4-12.1">samba-test-devel-4.2.4-12.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="samba-winbind-4.2.4-12.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:samba-winbind-4.2.4-12.1">samba-winbind-4.2.4-12.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="samba-winbind-32bit-4.2.4-12.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:samba-winbind-32bit-4.2.4-12.1">samba-winbind-32bit-4.2.4-12.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+  </ProductTree>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="1">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">The SMB1 implementation in smbd in Samba 3.x and 4.x before 4.1.23, 4.2.x before 4.2.9, 4.3.x before 4.3.6, and 4.4.x before 4.4.0rc4 allows remote authenticated users to modify arbitrary ACLs by using a UNIX SMB1 call to create a symlink, and then using a non-UNIX SMB1 call to write to the ACL content.</Note>
+    </Notes>
+    <CVE>CVE-2015-7560</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed">
+        <ProductID>openSUSE Leap 42.1:ctdb-4.2.4-12.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:ctdb-devel-4.2.4-12.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:ctdb-tests-4.2.4-12.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libdcerpc-atsvc-devel-4.2.4-12.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libdcerpc-atsvc0-32bit-4.2.4-12.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libdcerpc-atsvc0-4.2.4-12.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libdcerpc-binding0-32bit-4.2.4-12.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libdcerpc-binding0-4.2.4-12.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libdcerpc-devel-4.2.4-12.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libdcerpc-samr-devel-4.2.4-12.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libdcerpc-samr0-32bit-4.2.4-12.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libdcerpc-samr0-4.2.4-12.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libdcerpc0-32bit-4.2.4-12.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libdcerpc0-4.2.4-12.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libgensec-devel-4.2.4-12.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libgensec0-32bit-4.2.4-12.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libgensec0-4.2.4-12.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libndr-devel-4.2.4-12.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libndr-krb5pac-devel-4.2.4-12.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libndr-krb5pac0-32bit-4.2.4-12.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libndr-krb5pac0-4.2.4-12.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libndr-nbt-devel-4.2.4-12.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libndr-nbt0-32bit-4.2.4-12.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libndr-nbt0-4.2.4-12.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libndr-standard-devel-4.2.4-12.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libndr-standard0-32bit-4.2.4-12.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libndr-standard0-4.2.4-12.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libndr0-32bit-4.2.4-12.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libndr0-4.2.4-12.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libnetapi-devel-4.2.4-12.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libnetapi0-32bit-4.2.4-12.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libnetapi0-4.2.4-12.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libregistry-devel-4.2.4-12.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libregistry0-32bit-4.2.4-12.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libregistry0-4.2.4-12.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libsamba-credentials-devel-4.2.4-12.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libsamba-credentials0-32bit-4.2.4-12.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libsamba-credentials0-4.2.4-12.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libsamba-hostconfig-devel-4.2.4-12.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libsamba-hostconfig0-32bit-4.2.4-12.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libsamba-hostconfig0-4.2.4-12.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libsamba-passdb-devel-4.2.4-12.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libsamba-passdb0-32bit-4.2.4-12.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libsamba-passdb0-4.2.4-12.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libsamba-policy-devel-4.2.4-12.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libsamba-policy0-32bit-4.2.4-12.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libsamba-policy0-4.2.4-12.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libsamba-util-devel-4.2.4-12.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libsamba-util0-32bit-4.2.4-12.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libsamba-util0-4.2.4-12.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libsamdb-devel-4.2.4-12.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libsamdb0-32bit-4.2.4-12.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libsamdb0-4.2.4-12.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libsmbclient-devel-4.2.4-12.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libsmbclient-raw-devel-4.2.4-12.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libsmbclient-raw0-32bit-4.2.4-12.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libsmbclient-raw0-4.2.4-12.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libsmbclient0-32bit-4.2.4-12.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libsmbclient0-4.2.4-12.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libsmbconf-devel-4.2.4-12.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libsmbconf0-32bit-4.2.4-12.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libsmbconf0-4.2.4-12.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libsmbldap-devel-4.2.4-12.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libsmbldap0-32bit-4.2.4-12.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libsmbldap0-4.2.4-12.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libtevent-util-devel-4.2.4-12.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libtevent-util0-32bit-4.2.4-12.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libtevent-util0-4.2.4-12.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libwbclient-devel-4.2.4-12.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libwbclient0-32bit-4.2.4-12.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libwbclient0-4.2.4-12.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:samba-32bit-4.2.4-12.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:samba-4.2.4-12.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:samba-client-32bit-4.2.4-12.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:samba-client-4.2.4-12.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:samba-core-devel-4.2.4-12.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:samba-doc-4.2.4-12.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:samba-libs-32bit-4.2.4-12.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:samba-libs-4.2.4-12.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:samba-pidl-4.2.4-12.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:samba-python-4.2.4-12.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:samba-test-4.2.4-12.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:samba-test-devel-4.2.4-12.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:samba-winbind-32bit-4.2.4-12.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:samba-winbind-4.2.4-12.1</ProductID>
+      </Status>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>4.9</BaseScoreV2>
+        <VectorV2>AV:A/AC:M/Au:S/C:P/I:P/A:P</VectorV2>
+      </ScoreSetV2>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-security-announce/2016-03/msg00090.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-7560.html</URL>
+        <Description>CVE-2015-7560</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/968222</URL>
+        <Description>SUSE Bug 968222</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+</cvrfdoc>

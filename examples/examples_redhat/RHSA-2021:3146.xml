@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cvrfdoc xmlns="http://www.icasi.org/CVRF/schema/cvrf/1.1" xmlns:cvrf="http://www.icasi.org/CVRF/schema/cvrf/1.1">
+  <DocumentTitle xml:lang="en">Red Hat Security Advisory: ACS 3.64 security and enhancement update</DocumentTitle>
+  <DocumentType>Security Advisory</DocumentType>
+  <DocumentPublisher Type="Vendor">
+    <ContactDetails>secalert@redhat.com</ContactDetails>
+    <IssuingAuthority>Red Hat Product Security</IssuingAuthority>
+  </DocumentPublisher>
+  <DocumentTracking>
+    <Identification><ID>RHSA-2021:3146</ID></Identification>
+    <Status>Final</Status>
+    <Version>1</Version>
+    <RevisionHistory>
+       <Revision>
+         <Number>1</Number>
+         <Date>2021-08-12T01:53:00Z</Date>
+         <Description>Current version</Description>
+       </Revision>
+    </RevisionHistory>
+    <InitialReleaseDate>2021-08-12T01:53:00Z</InitialReleaseDate>
+    <CurrentReleaseDate>2021-08-12T01:53:00Z</CurrentReleaseDate>
+    <Generator>
+      <Engine>Red Hat SDEngine 3.0.0</Engine>
+      <Date>2021-08-23T04:58:00Z</Date>
+    </Generator>
+  </DocumentTracking>
+  <DocumentNotes>
+    <Note Title="Topic" Type="Summary" Ordinal="1" xml:lang="en">
+Updated images are now available for Red Hat Advanced Cluster Security for Kubernetes (RHACS).
+
+* Red Hat Product Security has rated this update as having a &quot;Moderate&quot; security impact.
+* A Common Vulnerability Scoring System (CVSS) base score, which gives a detailed severity rating, is available for each vulnerability from the CVE links in the references section.
+    </Note>
+    <Note Title="Details" Type="General" Ordinal="2" xml:lang="en">
+New Features
+The release of RHACS 3.64 provides the following new features:
+
+1. You can now use deployment and namespace annotations to define where RHACS sends the violation notifications when configuring your notifiers such as Slack, Microsoft Teams, Email, and others.
+2. The Red Hat Advanced Cluster Security Operator now supports the ability to allow users to set the enforcement behavior of the admission controller as part of their custom resource.
+3. RHACS now supports kernel modules for Ubuntu 16.04 LTS with extended security maintenance (ESM).
+
+Security Fixes
+The release of RHACS 3.64 provides the following security fixes:
+
+* golang: `net` lookup functions may return invalid hostnames (CVE-2021-33195)
+* golang: `net/http/httputil` ReverseProxy forwards connection headers if the first one is empty (CVE-2021-33197)
+* golang: `math/big.Rat` may cause panic or an unrecoverable fatal error if passed inputs with very large exponents (CVE-2021-33198)
+* golang: `crypto/tls` certificate of the wrong type is causing TLS client to panic (CVE-2021-34558)
+
+For more details about the security issues, including the impact, a CVSS score, acknowledgments, and other related information, refer to the CVE pages in the references section.
+
+System changes
+The release of RHACS 3.64 includes the following system changes:
+
+1. RHACS now pre-fixes the optional security context constraint name with `stackrox` to avoid global naming conflicts.
+2. Previously, violations for `port forwards` and `exec` events did not contain information about the user who performed the action that generated the events. The violations now include the user context.
+3. The cluster init bundles contain the secrets required for internal RHACS services to communicate with each other. You can delete these to rotate secrets, which have previously sometimes caused outages. This update includes a new deletion workflow that warns about the possible impact of deletion on your environment.
+4. The OpenShift compliance operator uses `rpm` only for querying, and it does not install any packages. Therefore, this update includes a policy exception for this pod by default to reduce the violations count.
+    </Note>
+    <Note Title="Terms of Use" Ordinal="3" Type="Legal Disclaimer" xml:lang="en">This content is licensed under the Creative Commons Attribution 4.0 International License (https://creativecommons.org/licenses/by/4.0/). If you distribute this content, or a modified version of it, you must provide attribution to Red Hat Inc. and provide a link to the original.</Note>
+  </DocumentNotes>
+  <DocumentDistribution xml:lang="en">Copyright © 2021 Red Hat, Inc. All rights reserved.</DocumentDistribution>
+  <AggregateSeverity Namespace="https://access.redhat.com/security/updates/classification/">Moderate</AggregateSeverity>
+  <DocumentReferences>
+    <Reference Type="Self">
+       <URL>https://access.redhat.com/errata/RHSA-2021:3146</URL>
+       <Description>https://access.redhat.com/errata/RHSA-2021:3146</Description>
+    </Reference>
+    <Reference Type="External">
+       <URL>https://docs.openshift.com/acs/release_notes/364-release-notes.html</URL>
+       <Description>https://docs.openshift.com/acs/release_notes/364-release-notes.html</Description>
+    </Reference>
+    <Reference Type="External">
+       <URL>https://access.redhat.com/security/updates/classification/#moderate</URL>
+       <Description>https://access.redhat.com/security/updates/classification/#moderate</Description>
+    </Reference>
+  </DocumentReferences>
+  <ProductTree xmlns="http://www.icasi.org/CVRF/schema/prod/1.1">
+    <Branch Type="Product Family" Name="RHACS">
+      <Branch Type="Product Name" Name="RHACS 3.64 for RHEL 8">
+        <FullProductName ProductID="8Base-RHACS-3.64" CPE="cpe:/a:redhat:advanced_cluster_security:3.64::el8">RHACS 3.64 for RHEL 8</FullProductName>
+      </Branch>
+    </Branch>
+    <Branch Type="Product Version" Name="advanced-cluster-security/rhacs-operator-bundle:3.64.0-1">
+      <FullProductName ProductID="advanced-cluster-security/rhacs-operator-bundle:3.64.0-1" CPE="cpe:/a:redhat:advanced_cluster_security:3.64::el8">advanced-cluster-security/rhacs-operator-bundle:3.64.0-1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="advanced-cluster-security/rhacs-rhel8-operator:3.64.0-2">
+      <FullProductName ProductID="advanced-cluster-security/rhacs-rhel8-operator:3.64.0-2" CPE="cpe:/a:redhat:advanced_cluster_security:3.64::el8">advanced-cluster-security/rhacs-rhel8-operator:3.64.0-2</FullProductName>
+    </Branch>
+    <Relationship ProductReference="rhacs-operator-bundle-container-3.64.0-1" RelationType="Default Component Of" RelatesToProductReference="8Base-RHACS-3.64">
+      <FullProductName ProductID="8Base-RHACS-3.64:rhacs-operator-bundle-container-3.64.0-1" CPE="cpe:/a:redhat:advanced_cluster_security:3.64::el8">rhacs-operator-bundle-container-3.64.0-1 as a component of RHACS 3.64 for RHEL 8</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="rhacs-operator-container-3.64.0-2" RelationType="Default Component Of" RelatesToProductReference="8Base-RHACS-3.64">
+      <FullProductName ProductID="8Base-RHACS-3.64:rhacs-operator-container-3.64.0-2" CPE="cpe:/a:redhat:advanced_cluster_security:3.64::el8">rhacs-operator-container-3.64.0-2 as a component of RHACS 3.64 for RHEL 8</FullProductName>
+    </Relationship>
+  </ProductTree>
+
+  <Vulnerability Ordinal="1" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">golang: net: lookup functions may return invalid host names</Note></Notes>
+    <DiscoveryDate>2021-08-02T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-05-18T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-33195</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>8Base-RHACS-3.64:rhacs-operator-bundle-container-3.64.0-1</ProductID>
+      <ProductID>8Base-RHACS-3.64:rhacs-operator-container-3.64.0-2</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+To take advantage of these new features and changes, please upgrade Red Hat Advanced Cluster Security for Kubernetes to version 3.64
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:3146</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://groups.google.com/g/golang-announce/c/RgCMkAEQjSI</URL>
+        <Description>https://groups.google.com/g/golang-announce/c/RgCMkAEQjSI</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-33195</URL>
+        <Description>CVE-2021-33195</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1989564</URL>
+        <Description>bz#1989564: CVE-2021-33195 golang: net: lookup functions may return invalid host names</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="2" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">golang: net/http/httputil: ReverseProxy forwards connection headers if first one is empty</Note></Notes>
+    <DiscoveryDate>2021-08-02T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-05-21T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-33197</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>8Base-RHACS-3.64:rhacs-operator-bundle-container-3.64.0-1</ProductID>
+      <ProductID>8Base-RHACS-3.64:rhacs-operator-container-3.64.0-2</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+To take advantage of these new features and changes, please upgrade Red Hat Advanced Cluster Security for Kubernetes to version 3.64
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:3146</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://groups.google.com/g/golang-announce/c/RgCMkAEQjSI</URL>
+        <Description>https://groups.google.com/g/golang-announce/c/RgCMkAEQjSI</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-33197</URL>
+        <Description>CVE-2021-33197</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1989570</URL>
+        <Description>bz#1989570: CVE-2021-33197 golang: net/http/httputil: ReverseProxy forwards connection headers if first one is empty</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="3" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">golang: math/big.Rat: may cause a panic or an unrecoverable fatal error if passed inputs with very large exponents</Note></Notes>
+    <DiscoveryDate>2021-08-02T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-03-10T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-33198</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>8Base-RHACS-3.64:rhacs-operator-bundle-container-3.64.0-1</ProductID>
+      <ProductID>8Base-RHACS-3.64:rhacs-operator-container-3.64.0-2</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+To take advantage of these new features and changes, please upgrade Red Hat Advanced Cluster Security for Kubernetes to version 3.64
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:3146</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://groups.google.com/g/golang-announce/c/RgCMkAEQjSI</URL>
+        <Description>https://groups.google.com/g/golang-announce/c/RgCMkAEQjSI</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-33198</URL>
+        <Description>CVE-2021-33198</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1989575</URL>
+        <Description>bz#1989575: CVE-2021-33198 golang: math/big.Rat: may cause a panic or an unrecoverable fatal error if passed inputs with very large exponents</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="4" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">golang: crypto/tls: certificate of wrong type is causing TLS client to panic</Note></Notes>
+    <DiscoveryDate>2021-07-14T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-07-13T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-34558</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>8Base-RHACS-3.64:rhacs-operator-bundle-container-3.64.0-1</ProductID>
+      <ProductID>8Base-RHACS-3.64:rhacs-operator-container-3.64.0-2</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+To take advantage of these new features and changes, please upgrade Red Hat Advanced Cluster Security for Kubernetes to version 3.64
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:3146</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://golang.org/doc/devel/release#go1.15.minor</URL>
+        <Description>https://golang.org/doc/devel/release#go1.15.minor</Description>
+      </Reference>
+      <Reference>
+        <URL>https://golang.org/doc/devel/release#go1.16.minor</URL>
+        <Description>https://golang.org/doc/devel/release#go1.16.minor</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-34558</URL>
+        <Description>CVE-2021-34558</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1983596</URL>
+        <Description>bz#1983596: CVE-2021-34558 golang: crypto/tls: certificate of wrong type is causing TLS client to panic</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+</cvrfdoc>

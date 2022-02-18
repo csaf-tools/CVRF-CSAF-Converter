@@ -1,0 +1,1702 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cvrfdoc xmlns="http://www.icasi.org/CVRF/schema/cvrf/1.1" xmlns:cvrf="http://www.icasi.org/CVRF/schema/cvrf/1.1">
+  <DocumentTitle xml:lang="en">Red Hat Security Advisory: kernel-rt security and bug fix update</DocumentTitle>
+  <DocumentType>Security Advisory</DocumentType>
+  <DocumentPublisher Type="Vendor">
+    <ContactDetails>secalert@redhat.com</ContactDetails>
+    <IssuingAuthority>Red Hat Product Security</IssuingAuthority>
+  </DocumentPublisher>
+  <DocumentTracking>
+    <Identification><ID>RHSA-2020:4609</ID></Identification>
+    <Status>Final</Status>
+    <Version>1</Version>
+    <RevisionHistory>
+       <Revision>
+         <Number>1</Number>
+         <Date>2021-11-10T13:06:00Z</Date>
+         <Description>Current version</Description>
+       </Revision>
+    </RevisionHistory>
+    <InitialReleaseDate>2020-11-04T01:14:00Z</InitialReleaseDate>
+    <CurrentReleaseDate>2021-11-10T13:06:00Z</CurrentReleaseDate>
+    <Generator>
+      <Engine>Red Hat SDEngine 3.3.0</Engine>
+      <Date>2021-11-13T14:30:00Z</Date>
+    </Generator>
+  </DocumentTracking>
+  <DocumentNotes>
+    <Note Title="Topic" Type="Summary" Ordinal="1" xml:lang="en">
+An update for kernel-rt is now available for Red Hat Enterprise Linux 8.
+
+Red Hat Product Security has rated this update as having a security impact of Moderate. A Common Vulnerability Scoring System (CVSS) base score, which gives a detailed severity rating, is available for each vulnerability from the CVE link(s) in the References section.
+    </Note>
+    <Note Title="Details" Type="General" Ordinal="2" xml:lang="en">
+The kernel-rt packages provide the Real Time Linux Kernel, which enables fine-tuning for systems with extremely high determinism requirements.
+
+Security Fix(es):
+
+* kernel: use after free due to race condition in the video driver leads to local privilege escalation (CVE-2019-9458)
+
+* kernel: use-after-free in drivers/bluetooth/hci_ldisc.c (CVE-2019-15917)
+
+* kernel: out-of-bounds access in function hclge_tm_schd_mode_vnet_base_cfg (CVE-2019-15925)
+
+* kernel: memory leak in ccp_run_sha_cmd() (CVE-2019-18808)
+
+* kernel: Denial Of Service in the __ipmi_bmc_register()  (CVE-2019-19046)
+
+* kernel: out-of-bounds write in ext4_xattr_set_entry in fs/ext4/xattr.c (CVE-2019-19319)
+
+* Kernel: kvm: OOB memory write via kvm_dev_ioctl_get_cpuid (CVE-2019-19332)
+
+* kernel: use-after-free in ext4_put_super (CVE-2019-19447)
+
+* kernel: a malicious USB device in the drivers/input/ff-memless.c leads to use-after-free (CVE-2019-19524)
+
+* kernel: race condition caused by a malicious USB device in the USB character device driver layer (CVE-2019-19537)
+
+* kernel: use-after-free in serial_ir_init_module() (CVE-2019-19543)
+
+* kernel: use-after-free in __ext4_expand_extra_isize and ext4_xattr_set_entry (CVE-2019-19767)
+
+* kernel: use-after-free in debugfs_remove (CVE-2019-19770)
+
+* kernel: out-of-bounds write via crafted keycode table (CVE-2019-20636)
+
+* kernel: possible use-after-free due to a race condition in cdev_get of char_dev.c (CVE-2020-0305)
+
+* kernel: out-of-bounds read in in vc_do_resize (CVE-2020-8647)
+
+* kernel: use-after-free in n_tty_receive_buf_common (CVE-2020-8648)
+
+* kernel: invalid read location in vgacon_invert_region (CVE-2020-8649)
+
+* kernel: uninitialized kernel data leak in userspace coredumps (CVE-2020-10732)
+
+* kernel: SELinux netlink permission check bypass (CVE-2020-10751)
+
+* kernel: out-of-bounds write in mpol_parse_str function in mm/mempolicy.c (CVE-2020-11565)
+
+* kernel: mishandles invalid descriptors in drivers/media/usb/gspca/xirlink_cit.c (CVE-2020-11668)
+
+* kernel: out-of-bounds write in xdp_umem_reg (CVE-2020-12659)
+
+* kernel: sg_write function lacks an sg_remove_request call in a certain failure case (CVE-2020-12770)
+
+* kernel: possible to send arbitrary signals to a privileged (suidroot) parent process (CVE-2020-12826)
+
+* kernel: referencing inode of removed superblock in get_futex_key() causes UAF (CVE-2020-14381)
+
+* kernel: soft-lockups in iov_iter_copy_from_user_atomic() could result in DoS (CVE-2020-25641)
+
+* kernel: kernel pointer leak due to WARN_ON statement in video driver leads to local information disclosure (CVE-2019-9455)
+
+* kernel: null-pointer dereference in drivers/net/fjes/fjes_main.c (CVE-2019-16231)
+
+* kernel: null pointer dereference in drivers/scsi/qla2xxx/qla_os.c (CVE-2019-16233)
+
+* kernel: memory leak in  af9005_identify_state() function in drivers/media/usb/dvb-usb/af9005.c (CVE-2019-18809)
+
+* kernel: A memory leak in the mwifiex_pcie_alloc_cmdrsp_buf() (CVE-2019-19056)
+
+* kernel: memory leak in the crypto_report() function in crypto/crypto_user_base.c allows for DoS (CVE-2019-19062)
+
+* kernel: Two memory leaks in the rtl_usb_probe() (CVE-2019-19063)
+
+* kernel: A memory leak in the rtl8xxxu_submit_int_urb() (CVE-2019-19068)
+
+* kernel: A memory leak in the predicate_parse() function in kernel/trace/trace_events_filter.c allows for a DoS (CVE-2019-19072)
+
+* kernel: information leak bug caused  by a malicious USB device in the drivers/media/usb/ttusb-dec/ttusb_dec.c (CVE-2019-19533)
+
+* kernel: Null pointer dereference in drop_sysctl_table() in fs/proc/proc_sysctl.c (CVE-2019-20054)
+
+* kernel: possibility of memory disclosure when reading the file /proc/sys/kernel/rh_features (CVE-2020-10774)
+
+* kernel: vhost-net: stack overflow in get_raw_socket while checking sk_family field (CVE-2020-10942)
+
+* kernel: sync of excessive duration via an XFS v5 image with crafted metadata (CVE-2020-12655)
+    </Note>
+    <Note Title="Terms of Use" Ordinal="3" Type="Legal Disclaimer" xml:lang="en">This content is licensed under the Creative Commons Attribution 4.0 International License (https://creativecommons.org/licenses/by/4.0/). If you distribute this content, or a modified version of it, you must provide attribution to Red Hat Inc. and provide a link to the original.</Note>
+  </DocumentNotes>
+  <DocumentDistribution xml:lang="en">Copyright © 2021 Red Hat, Inc. All rights reserved.</DocumentDistribution>
+  <AggregateSeverity Namespace="https://access.redhat.com/security/updates/classification/">Moderate</AggregateSeverity>
+  <DocumentReferences>
+    <Reference Type="Self">
+       <URL>https://access.redhat.com/errata/RHSA-2020:4609</URL>
+       <Description>https://access.redhat.com/errata/RHSA-2020:4609</Description>
+    </Reference>
+    <Reference Type="External">
+       <URL>https://access.redhat.com/security/updates/classification/#moderate</URL>
+       <Description>https://access.redhat.com/security/updates/classification/#moderate</Description>
+    </Reference>
+    <Reference Type="External">
+       <URL>https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/8.3_release_notes/index</URL>
+       <Description>https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/8.3_release_notes/index</Description>
+    </Reference>
+  </DocumentReferences>
+  <ProductTree xmlns="http://www.icasi.org/CVRF/schema/prod/1.1">
+    <Branch Type="Product Family" Name="Red Hat Enterprise Linux">
+      <Branch Type="Product Name" Name="Red Hat Enterprise Linux Real Time for NFV (v. 8)">
+        <FullProductName ProductID="NFV-8.3.0.GA" CPE="cpe:/a:redhat:enterprise_linux:8::nfv">Red Hat Enterprise Linux Real Time for NFV (v. 8)</FullProductName>
+      </Branch>
+      <Branch Type="Product Name" Name="Red Hat Enterprise Linux Real Time (v. 8)">
+        <FullProductName ProductID="RT-8.3.0.GA" CPE="cpe:/a:redhat:enterprise_linux:8::realtime">Red Hat Enterprise Linux Real Time (v. 8)</FullProductName>
+      </Branch>
+    </Branch>
+    <Branch Type="Product Version" Name="kernel-rt-0:4.18.0-240.rt7.54.el8">
+      <FullProductName ProductID="kernel-rt-0:4.18.0-240.rt7.54.el8" CPE="cpe:/a:redhat:enterprise_linux:8::nfv">kernel-rt-4.18.0-240.rt7.54.el8.src.rpm</FullProductName>
+    </Branch>
+    <Relationship ProductReference="kernel-rt-0:4.18.0-240.rt7.54.el8" RelationType="Default Component Of" RelatesToProductReference="NFV-8.3.0.GA">
+      <FullProductName ProductID="NFV-8.3.0.GA:kernel-rt-0:4.18.0-240.rt7.54.el8" CPE="cpe:/a:redhat:enterprise_linux:8::nfv">kernel-rt-0:4.18.0-240.rt7.54.el8 as a component of Red Hat Enterprise Linux Real Time for NFV (v. 8)</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="kernel-rt-0:4.18.0-240.rt7.54.el8" RelationType="Default Component Of" RelatesToProductReference="RT-8.3.0.GA">
+      <FullProductName ProductID="RT-8.3.0.GA:kernel-rt-0:4.18.0-240.rt7.54.el8" CPE="cpe:/a:redhat:enterprise_linux:8::realtime">kernel-rt-0:4.18.0-240.rt7.54.el8 as a component of Red Hat Enterprise Linux Real Time (v. 8)</FullProductName>
+    </Relationship>
+  </ProductTree>
+
+  <Vulnerability Ordinal="1" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">kernel: kernel pointer leak due to WARN_ON statement in video driver leads to local information disclosure</Note></Notes>
+    <DiscoveryDate>2019-09-07T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2019-09-03T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2019-9455</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>NFV-8.3.0.GA:kernel-rt-0:4.18.0-240.rt7.54.el8</ProductID>
+      <ProductID>RT-8.3.0.GA:kernel-rt-0:4.18.0-240.rt7.54.el8</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Low</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For detailed information on changes in this release, see the Red Hat Enterprise Linux 8.3 Release Notes linked from the References section.
+
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+
+The system must be rebooted for this update to take effect.
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2020:4609</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2019-9455</URL>
+        <Description>CVE-2019-9455</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1819399</URL>
+        <Description>bz#1819399: CVE-2019-9455 kernel: kernel pointer leak due to WARN_ON statement in video driver leads to local information disclosure</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="2" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">kernel: use after free due to race condition in the video driver leads to local privilege escalation</Note></Notes>
+    <DiscoveryDate>2019-09-07T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2019-09-03T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2019-9458</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>NFV-8.3.0.GA:kernel-rt-0:4.18.0-240.rt7.54.el8</ProductID>
+      <ProductID>RT-8.3.0.GA:kernel-rt-0:4.18.0-240.rt7.54.el8</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For detailed information on changes in this release, see the Red Hat Enterprise Linux 8.3 Release Notes linked from the References section.
+
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+
+The system must be rebooted for this update to take effect.
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2020:4609</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2019-9458</URL>
+        <Description>CVE-2019-9458</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1819377</URL>
+        <Description>bz#1819377: CVE-2019-9458 kernel: use after free due to race condition in the video driver leads to local privilege escalation</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="3" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">kernel: use-after-free in drivers/bluetooth/hci_ldisc.c</Note></Notes>
+    <DiscoveryDate>2019-10-09T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2019-09-04T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2019-15917</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>NFV-8.3.0.GA:kernel-rt-0:4.18.0-240.rt7.54.el8</ProductID>
+      <ProductID>RT-8.3.0.GA:kernel-rt-0:4.18.0-240.rt7.54.el8</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For detailed information on changes in this release, see the Red Hat Enterprise Linux 8.3 Release Notes linked from the References section.
+
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+
+The system must be rebooted for this update to take effect.
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2020:4609</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2019-15917</URL>
+        <Description>CVE-2019-15917</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1760100</URL>
+        <Description>bz#1760100: CVE-2019-15917 kernel: use-after-free in drivers/bluetooth/hci_ldisc.c</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="4" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">kernel: out-of-bounds access in function hclge_tm_schd_mode_vnet_base_cfg</Note></Notes>
+    <DiscoveryDate>2019-09-05T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2019-09-04T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2019-15925</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>NFV-8.3.0.GA:kernel-rt-0:4.18.0-240.rt7.54.el8</ProductID>
+      <ProductID>RT-8.3.0.GA:kernel-rt-0:4.18.0-240.rt7.54.el8</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For detailed information on changes in this release, see the Red Hat Enterprise Linux 8.3 Release Notes linked from the References section.
+
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+
+The system must be rebooted for this update to take effect.
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2020:4609</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2019-15925</URL>
+        <Description>CVE-2019-15925</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1759052</URL>
+        <Description>bz#1759052: CVE-2019-15925 kernel: out-of-bounds access in function hclge_tm_schd_mode_vnet_base_cfg</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="5" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">kernel: null-pointer dereference in drivers/net/fjes/fjes_main.c</Note></Notes>
+    <DiscoveryDate>2019-10-10T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2019-09-11T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2019-16231</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>NFV-8.3.0.GA:kernel-rt-0:4.18.0-240.rt7.54.el8</ProductID>
+      <ProductID>RT-8.3.0.GA:kernel-rt-0:4.18.0-240.rt7.54.el8</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Low</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For detailed information on changes in this release, see the Red Hat Enterprise Linux 8.3 Release Notes linked from the References section.
+
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+
+The system must be rebooted for this update to take effect.
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2020:4609</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://lkml.org/lkml/2019/9/9/487</URL>
+        <Description>https://lkml.org/lkml/2019/9/9/487</Description>
+      </Reference>
+      <Reference>
+        <URL>https://security.netapp.com/advisory/ntap-20191004-0001/</URL>
+        <Description>https://security.netapp.com/advisory/ntap-20191004-0001/</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2019-16231</URL>
+        <Description>CVE-2019-16231</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1760310</URL>
+        <Description>bz#1760310: CVE-2019-16231 kernel: null-pointer dereference in drivers/net/fjes/fjes_main.c</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="6" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">kernel: null pointer dereference in drivers/scsi/qla2xxx/qla_os.c</Note></Notes>
+    <DiscoveryDate>2019-10-10T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2019-09-09T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2019-16233</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>NFV-8.3.0.GA:kernel-rt-0:4.18.0-240.rt7.54.el8</ProductID>
+      <ProductID>RT-8.3.0.GA:kernel-rt-0:4.18.0-240.rt7.54.el8</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Low</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For detailed information on changes in this release, see the Red Hat Enterprise Linux 8.3 Release Notes linked from the References section.
+
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+
+The system must be rebooted for this update to take effect.
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2020:4609</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://lkml.org/lkml/2019/9/9/487</URL>
+        <Description>https://lkml.org/lkml/2019/9/9/487</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2019-16233</URL>
+        <Description>CVE-2019-16233</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1760420</URL>
+        <Description>bz#1760420: CVE-2019-16233 kernel: null pointer dereference in drivers/scsi/qla2xxx/qla_os.c</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="7" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">kernel: memory leak in ccp_run_sha_cmd() function in drivers/crypto/ccp/ccp-ops.c</Note></Notes>
+    <DiscoveryDate>2019-11-18T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2019-11-18T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2019-18808</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>NFV-8.3.0.GA:kernel-rt-0:4.18.0-240.rt7.54.el8</ProductID>
+      <ProductID>RT-8.3.0.GA:kernel-rt-0:4.18.0-240.rt7.54.el8</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For detailed information on changes in this release, see the Red Hat Enterprise Linux 8.3 Release Notes linked from the References section.
+
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+
+The system must be rebooted for this update to take effect.
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2020:4609</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2019-18808</URL>
+        <Description>CVE-2019-18808</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1777418</URL>
+        <Description>bz#1777418: CVE-2019-18808 kernel: memory leak in ccp_run_sha_cmd() function in drivers/crypto/ccp/ccp-ops.c</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="8" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">kernel: memory leak in  af9005_identify_state() function in drivers/media/usb/dvb-usb/af9005.c</Note></Notes>
+    <DiscoveryDate>2019-10-09T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2019-11-27T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2019-18809</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>NFV-8.3.0.GA:kernel-rt-0:4.18.0-240.rt7.54.el8</ProductID>
+      <ProductID>RT-8.3.0.GA:kernel-rt-0:4.18.0-240.rt7.54.el8</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Low</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For detailed information on changes in this release, see the Red Hat Enterprise Linux 8.3 Release Notes linked from the References section.
+
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+
+The system must be rebooted for this update to take effect.
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2020:4609</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2019-18809</URL>
+        <Description>CVE-2019-18809</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1777449</URL>
+        <Description>bz#1777449: CVE-2019-18809 kernel: memory leak in  af9005_identify_state() function in drivers/media/usb/dvb-usb/af9005.c</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="9" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">kernel: Denial Of Service in the __ipmi_bmc_register() function in drivers/char/ipmi/ipmi_msghandler.c</Note></Notes>
+    <DiscoveryDate>2019-11-18T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2019-11-18T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2019-19046</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>NFV-8.3.0.GA:kernel-rt-0:4.18.0-240.rt7.54.el8</ProductID>
+      <ProductID>RT-8.3.0.GA:kernel-rt-0:4.18.0-240.rt7.54.el8</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For detailed information on changes in this release, see the Red Hat Enterprise Linux 8.3 Release Notes linked from the References section.
+
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+
+The system must be rebooted for this update to take effect.
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2020:4609</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2019-19046</URL>
+        <Description>CVE-2019-19046</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1774988</URL>
+        <Description>bz#1774988: CVE-2019-19046 kernel: Denial Of Service in the __ipmi_bmc_register() function in drivers/char/ipmi/ipmi_msghandler.c</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="10" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">kernel: A memory leak in the mwifiex_pcie_alloc_cmdrsp_buf() function in drivers/net/wireless/marvell/mwifiex/pcie.c allows to cause DoS</Note></Notes>
+    <DiscoveryDate>2019-11-19T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2019-10-05T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2019-19056</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>NFV-8.3.0.GA:kernel-rt-0:4.18.0-240.rt7.54.el8</ProductID>
+      <ProductID>RT-8.3.0.GA:kernel-rt-0:4.18.0-240.rt7.54.el8</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Low</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For detailed information on changes in this release, see the Red Hat Enterprise Linux 8.3 Release Notes linked from the References section.
+
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+
+The system must be rebooted for this update to take effect.
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2020:4609</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2019-19056</URL>
+        <Description>CVE-2019-19056</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1775097</URL>
+        <Description>bz#1775097: CVE-2019-19056 kernel: A memory leak in the mwifiex_pcie_alloc_cmdrsp_buf() function in drivers/net/wireless/marvell/mwifiex/pcie.c allows to cause DoS</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="11" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">kernel: memory leak in the crypto_report() function in crypto/crypto_user_base.c allows for DoS</Note></Notes>
+    <DiscoveryDate>2019-11-18T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2019-11-21T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2019-19062</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>NFV-8.3.0.GA:kernel-rt-0:4.18.0-240.rt7.54.el8</ProductID>
+      <ProductID>RT-8.3.0.GA:kernel-rt-0:4.18.0-240.rt7.54.el8</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Low</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For detailed information on changes in this release, see the Red Hat Enterprise Linux 8.3 Release Notes linked from the References section.
+
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+
+The system must be rebooted for this update to take effect.
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2020:4609</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2019-19062</URL>
+        <Description>CVE-2019-19062</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1775021</URL>
+        <Description>bz#1775021: CVE-2019-19062 kernel: memory leak in the crypto_report() function in crypto/crypto_user_base.c allows for DoS</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="12" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">kernel: Two memory leaks in the rtl_usb_probe() function in drivers/net/wireless/realtek/rtlwifi/usb.c allow for a DoS</Note></Notes>
+    <DiscoveryDate>2019-11-18T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2019-11-21T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2019-19063</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>NFV-8.3.0.GA:kernel-rt-0:4.18.0-240.rt7.54.el8</ProductID>
+      <ProductID>RT-8.3.0.GA:kernel-rt-0:4.18.0-240.rt7.54.el8</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Low</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For detailed information on changes in this release, see the Red Hat Enterprise Linux 8.3 Release Notes linked from the References section.
+
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+
+The system must be rebooted for this update to take effect.
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2020:4609</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2019-19063</URL>
+        <Description>CVE-2019-19063</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1775015</URL>
+        <Description>bz#1775015: CVE-2019-19063 kernel: Two memory leaks in the rtl_usb_probe() function in drivers/net/wireless/realtek/rtlwifi/usb.c allow for a DoS</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="13" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">kernel: A memory leak in the rtl8xxxu_submit_int_urb() function in drivers/net/wireless/realtek/rtl8xxxu/rtl8xxxu_core.c allows for a DoS</Note></Notes>
+    <DiscoveryDate>2019-11-18T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2019-11-21T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2019-19068</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>NFV-8.3.0.GA:kernel-rt-0:4.18.0-240.rt7.54.el8</ProductID>
+      <ProductID>RT-8.3.0.GA:kernel-rt-0:4.18.0-240.rt7.54.el8</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Low</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For detailed information on changes in this release, see the Red Hat Enterprise Linux 8.3 Release Notes linked from the References section.
+
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+
+The system must be rebooted for this update to take effect.
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2020:4609</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2019-19068</URL>
+        <Description>CVE-2019-19068</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1774963</URL>
+        <Description>bz#1774963: CVE-2019-19068 kernel: A memory leak in the rtl8xxxu_submit_int_urb() function in drivers/net/wireless/realtek/rtl8xxxu/rtl8xxxu_core.c allows for a DoS</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="14" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">kernel: A memory leak in the predicate_parse() function in kernel/trace/trace_events_filter.c allows for a DoS</Note></Notes>
+    <DiscoveryDate>2019-11-18T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2019-11-21T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2019-19072</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>NFV-8.3.0.GA:kernel-rt-0:4.18.0-240.rt7.54.el8</ProductID>
+      <ProductID>RT-8.3.0.GA:kernel-rt-0:4.18.0-240.rt7.54.el8</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Low</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For detailed information on changes in this release, see the Red Hat Enterprise Linux 8.3 Release Notes linked from the References section.
+
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+
+The system must be rebooted for this update to take effect.
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2020:4609</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2019-19072</URL>
+        <Description>CVE-2019-19072</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1774946</URL>
+        <Description>bz#1774946: CVE-2019-19072 kernel: A memory leak in the predicate_parse() function in kernel/trace/trace_events_filter.c allows for a DoS</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="15" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">kernel: out-of-bounds write in ext4_xattr_set_entry in fs/ext4/xattr.c</Note></Notes>
+    <DiscoveryDate>2019-12-16T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2019-11-27T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2019-19319</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>NFV-8.3.0.GA:kernel-rt-0:4.18.0-240.rt7.54.el8</ProductID>
+      <ProductID>RT-8.3.0.GA:kernel-rt-0:4.18.0-240.rt7.54.el8</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For detailed information on changes in this release, see the Red Hat Enterprise Linux 8.3 Release Notes linked from the References section.
+
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+
+The system must be rebooted for this update to take effect.
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2020:4609</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2019-19319</URL>
+        <Description>CVE-2019-19319</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1784130</URL>
+        <Description>bz#1784130: CVE-2019-19319 kernel: out-of-bounds write in ext4_xattr_set_entry in fs/ext4/xattr.c</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="16" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">Kernel: kvm: OOB memory write via kvm_dev_ioctl_get_cpuid</Note></Notes>
+    <DiscoveryDate>2019-12-04T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2019-12-03T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2019-19332</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>NFV-8.3.0.GA:kernel-rt-0:4.18.0-240.rt7.54.el8</ProductID>
+      <ProductID>RT-8.3.0.GA:kernel-rt-0:4.18.0-240.rt7.54.el8</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For detailed information on changes in this release, see the Red Hat Enterprise Linux 8.3 Release Notes linked from the References section.
+
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+
+The system must be rebooted for this update to take effect.
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2020:4609</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://lore.kernel.org/kvm/000000000000ea5ec20598d90e50@google.com/</URL>
+        <Description>https://lore.kernel.org/kvm/000000000000ea5ec20598d90e50@google.com/</Description>
+      </Reference>
+      <Reference>
+        <URL>https://www.openwall.com/lists/oss-security/2019/12/16/1</URL>
+        <Description>https://www.openwall.com/lists/oss-security/2019/12/16/1</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2019-19332</URL>
+        <Description>CVE-2019-19332</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1779594</URL>
+        <Description>bz#1779594: CVE-2019-19332 Kernel: kvm: OOB memory write via kvm_dev_ioctl_get_cpuid</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="17" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">kernel: mounting a crafted ext4 filesystem image, performing some operations, and unmounting can lead to a use-after-free in ext4_put_super in fs/ext4/super.c</Note></Notes>
+    <DiscoveryDate>2019-12-10T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2019-12-10T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2019-19447</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>NFV-8.3.0.GA:kernel-rt-0:4.18.0-240.rt7.54.el8</ProductID>
+      <ProductID>RT-8.3.0.GA:kernel-rt-0:4.18.0-240.rt7.54.el8</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For detailed information on changes in this release, see the Red Hat Enterprise Linux 8.3 Release Notes linked from the References section.
+
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+
+The system must be rebooted for this update to take effect.
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2020:4609</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://bugzilla.kernel.org/show_bug.cgi?id=205433</URL>
+        <Description>https://bugzilla.kernel.org/show_bug.cgi?id=205433</Description>
+      </Reference>
+      <Reference>
+        <URL>https://github.com/bobfuzzer/CVE/tree/master/CVE-2019-19447</URL>
+        <Description>https://github.com/bobfuzzer/CVE/tree/master/CVE-2019-19447</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2019-19447</URL>
+        <Description>CVE-2019-19447</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1781679</URL>
+        <Description>bz#1781679: CVE-2019-19447 kernel: mounting a crafted ext4 filesystem image, performing some operations, and unmounting can lead to a use-after-free in ext4_put_super in fs/ext4/super.c</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="18" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">kernel: a malicious USB device in the drivers/input/ff-memless.c leads to use-after-free</Note></Notes>
+    <DiscoveryDate>2019-12-04T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2019-11-15T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2019-19524</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>NFV-8.3.0.GA:kernel-rt-0:4.18.0-240.rt7.54.el8</ProductID>
+      <ProductID>RT-8.3.0.GA:kernel-rt-0:4.18.0-240.rt7.54.el8</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For detailed information on changes in this release, see the Red Hat Enterprise Linux 8.3 Release Notes linked from the References section.
+
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+
+The system must be rebooted for this update to take effect.
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2020:4609</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2019-19524</URL>
+        <Description>CVE-2019-19524</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1783459</URL>
+        <Description>bz#1783459: CVE-2019-19524 kernel: a malicious USB device in the drivers/input/ff-memless.c leads to use-after-free</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="19" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">kernel: information leak bug caused  by a malicious USB device in the drivers/media/usb/ttusb-dec/ttusb_dec.c</Note></Notes>
+    <DiscoveryDate>2019-12-03T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2019-08-21T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2019-19533</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>NFV-8.3.0.GA:kernel-rt-0:4.18.0-240.rt7.54.el8</ProductID>
+      <ProductID>RT-8.3.0.GA:kernel-rt-0:4.18.0-240.rt7.54.el8</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Low</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For detailed information on changes in this release, see the Red Hat Enterprise Linux 8.3 Release Notes linked from the References section.
+
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+
+The system must be rebooted for this update to take effect.
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2020:4609</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2019-19533</URL>
+        <Description>CVE-2019-19533</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1783534</URL>
+        <Description>bz#1783534: CVE-2019-19533 kernel: information leak bug caused  by a malicious USB device in the drivers/media/usb/ttusb-dec/ttusb_dec.c</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="20" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">kernel: race condition caused by a malicious USB device in the USB character device driver layer</Note></Notes>
+    <DiscoveryDate>2019-12-03T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2019-08-12T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2019-19537</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>NFV-8.3.0.GA:kernel-rt-0:4.18.0-240.rt7.54.el8</ProductID>
+      <ProductID>RT-8.3.0.GA:kernel-rt-0:4.18.0-240.rt7.54.el8</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For detailed information on changes in this release, see the Red Hat Enterprise Linux 8.3 Release Notes linked from the References section.
+
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+
+The system must be rebooted for this update to take effect.
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2020:4609</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2019-19537</URL>
+        <Description>CVE-2019-19537</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1783561</URL>
+        <Description>bz#1783561: CVE-2019-19537 kernel: race condition caused by a malicious USB device in the USB character device driver layer</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="21" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">kernel: use-after-free in serial_ir_init_module() in drivers/media/rc/serial_ir.c</Note></Notes>
+    <DiscoveryDate>2019-12-10T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2019-03-19T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2019-19543</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>NFV-8.3.0.GA:kernel-rt-0:4.18.0-240.rt7.54.el8</ProductID>
+      <ProductID>RT-8.3.0.GA:kernel-rt-0:4.18.0-240.rt7.54.el8</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For detailed information on changes in this release, see the Red Hat Enterprise Linux 8.3 Release Notes linked from the References section.
+
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+
+The system must be rebooted for this update to take effect.
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2020:4609</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2019-19543</URL>
+        <Description>CVE-2019-19543</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1781810</URL>
+        <Description>bz#1781810: CVE-2019-19543 kernel: use-after-free in serial_ir_init_module() in drivers/media/rc/serial_ir.c</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="22" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">kernel: use-after-free in __ext4_expand_extra_isize and ext4_xattr_set_entry related to fs/ext4/inode.c and fs/ext4/super.c</Note></Notes>
+    <DiscoveryDate>2019-12-23T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2019-11-07T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2019-19767</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>NFV-8.3.0.GA:kernel-rt-0:4.18.0-240.rt7.54.el8</ProductID>
+      <ProductID>RT-8.3.0.GA:kernel-rt-0:4.18.0-240.rt7.54.el8</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For detailed information on changes in this release, see the Red Hat Enterprise Linux 8.3 Release Notes linked from the References section.
+
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+
+The system must be rebooted for this update to take effect.
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2020:4609</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2019-19767</URL>
+        <Description>CVE-2019-19767</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1786160</URL>
+        <Description>bz#1786160: CVE-2019-19767 kernel: use-after-free in __ext4_expand_extra_isize and ext4_xattr_set_entry related to fs/ext4/inode.c and fs/ext4/super.c</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="23" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">kernel: use-after-free in debugfs_remove in fs/debugfs/inode.c</Note></Notes>
+    <DiscoveryDate>2019-12-23T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2019-11-29T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2019-19770</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>NFV-8.3.0.GA:kernel-rt-0:4.18.0-240.rt7.54.el8</ProductID>
+      <ProductID>RT-8.3.0.GA:kernel-rt-0:4.18.0-240.rt7.54.el8</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For detailed information on changes in this release, see the Red Hat Enterprise Linux 8.3 Release Notes linked from the References section.
+
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+
+The system must be rebooted for this update to take effect.
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2020:4609</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2019-19770</URL>
+        <Description>CVE-2019-19770</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1786179</URL>
+        <Description>bz#1786179: CVE-2019-19770 kernel: use-after-free in debugfs_remove in fs/debugfs/inode.c</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="24" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">kernel: Null pointer dereference in drop_sysctl_table() in fs/proc/proc_sysctl.c</Note></Notes>
+    <DiscoveryDate>2019-12-28T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2019-12-28T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2019-20054</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>NFV-8.3.0.GA:kernel-rt-0:4.18.0-240.rt7.54.el8</ProductID>
+      <ProductID>RT-8.3.0.GA:kernel-rt-0:4.18.0-240.rt7.54.el8</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Low</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For detailed information on changes in this release, see the Red Hat Enterprise Linux 8.3 Release Notes linked from the References section.
+
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+
+The system must be rebooted for this update to take effect.
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2020:4609</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2019-20054</URL>
+        <Description>CVE-2019-20054</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1790063</URL>
+        <Description>bz#1790063: CVE-2019-20054 kernel: Null pointer dereference in drop_sysctl_table() in fs/proc/proc_sysctl.c</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="25" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">kernel: out-of-bounds write via crafted keycode table</Note></Notes>
+    <DiscoveryDate>2020-04-08T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2020-04-04T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2019-20636</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>NFV-8.3.0.GA:kernel-rt-0:4.18.0-240.rt7.54.el8</ProductID>
+      <ProductID>RT-8.3.0.GA:kernel-rt-0:4.18.0-240.rt7.54.el8</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For detailed information on changes in this release, see the Red Hat Enterprise Linux 8.3 Release Notes linked from the References section.
+
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+
+The system must be rebooted for this update to take effect.
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2020:4609</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2019-20636</URL>
+        <Description>CVE-2019-20636</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1824059</URL>
+        <Description>bz#1824059: CVE-2019-20636 kernel: out-of-bounds write via crafted keycode table</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="26" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">kernel: possible use-after-free due to a race condition in cdev_get of char_dev.c</Note></Notes>
+    <DiscoveryDate>2020-07-17T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2020-07-17T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2020-0305</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>NFV-8.3.0.GA:kernel-rt-0:4.18.0-240.rt7.54.el8</ProductID>
+      <ProductID>RT-8.3.0.GA:kernel-rt-0:4.18.0-240.rt7.54.el8</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For detailed information on changes in this release, see the Red Hat Enterprise Linux 8.3 Release Notes linked from the References section.
+
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+
+The system must be rebooted for this update to take effect.
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2020:4609</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=68faa679b8be1a74e6663c21c3a9d25d32f1c079</URL>
+        <Description>https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=68faa679b8be1a74e6663c21c3a9d25d32f1c079</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2020-0305</URL>
+        <Description>CVE-2020-0305</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1860065</URL>
+        <Description>bz#1860065: CVE-2020-0305 kernel: possible use-after-free due to a race condition in cdev_get of char_dev.c</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="27" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">kernel: out-of-bounds read in in vc_do_resize function in drivers/tty/vt/vt.c</Note></Notes>
+    <DiscoveryDate>2020-02-06T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2020-01-30T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2020-8647</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>NFV-8.3.0.GA:kernel-rt-0:4.18.0-240.rt7.54.el8</ProductID>
+      <ProductID>RT-8.3.0.GA:kernel-rt-0:4.18.0-240.rt7.54.el8</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For detailed information on changes in this release, see the Red Hat Enterprise Linux 8.3 Release Notes linked from the References section.
+
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+
+The system must be rebooted for this update to take effect.
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2020:4609</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2020-8647</URL>
+        <Description>CVE-2020-8647</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1802563</URL>
+        <Description>bz#1802563: CVE-2020-8647 kernel: out-of-bounds read in in vc_do_resize function in drivers/tty/vt/vt.c</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="28" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">kernel: use-after-free in n_tty_receive_buf_common function in drivers/tty/n_tty.c</Note></Notes>
+    <DiscoveryDate>2020-02-06T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2020-01-30T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2020-8648</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>NFV-8.3.0.GA:kernel-rt-0:4.18.0-240.rt7.54.el8</ProductID>
+      <ProductID>RT-8.3.0.GA:kernel-rt-0:4.18.0-240.rt7.54.el8</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For detailed information on changes in this release, see the Red Hat Enterprise Linux 8.3 Release Notes linked from the References section.
+
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+
+The system must be rebooted for this update to take effect.
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2020:4609</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2020-8648</URL>
+        <Description>CVE-2020-8648</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1802559</URL>
+        <Description>bz#1802559: CVE-2020-8648 kernel: use-after-free in n_tty_receive_buf_common function in drivers/tty/n_tty.c</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="29" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">kernel: invalid read location in vgacon_invert_region function in drivers/video/console/vgacon.c</Note></Notes>
+    <DiscoveryDate>2020-02-06T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2020-01-30T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2020-8649</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>NFV-8.3.0.GA:kernel-rt-0:4.18.0-240.rt7.54.el8</ProductID>
+      <ProductID>RT-8.3.0.GA:kernel-rt-0:4.18.0-240.rt7.54.el8</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For detailed information on changes in this release, see the Red Hat Enterprise Linux 8.3 Release Notes linked from the References section.
+
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+
+The system must be rebooted for this update to take effect.
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2020:4609</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2020-8649</URL>
+        <Description>CVE-2020-8649</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1802555</URL>
+        <Description>bz#1802555: CVE-2020-8649 kernel: invalid read location in vgacon_invert_region function in drivers/video/console/vgacon.c</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="30" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">kernel: uninitialized kernel data leak in userspace coredumps</Note></Notes>
+    <DiscoveryDate>2020-05-05T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2020-05-01T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2020-10732</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>NFV-8.3.0.GA:kernel-rt-0:4.18.0-240.rt7.54.el8</ProductID>
+      <ProductID>RT-8.3.0.GA:kernel-rt-0:4.18.0-240.rt7.54.el8</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For detailed information on changes in this release, see the Red Hat Enterprise Linux 8.3 Release Notes linked from the References section.
+
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+
+The system must be rebooted for this update to take effect.
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2020:4609</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2020-10732</URL>
+        <Description>CVE-2020-10732</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1831399</URL>
+        <Description>bz#1831399: CVE-2020-10732 kernel: uninitialized kernel data leak in userspace coredumps</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="31" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">kernel: SELinux netlink permission check bypass</Note></Notes>
+    <DiscoveryDate>2020-05-25T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2020-04-27T14:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2020-10751</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>NFV-8.3.0.GA:kernel-rt-0:4.18.0-240.rt7.54.el8</ProductID>
+      <ProductID>RT-8.3.0.GA:kernel-rt-0:4.18.0-240.rt7.54.el8</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For detailed information on changes in this release, see the Red Hat Enterprise Linux 8.3 Release Notes linked from the References section.
+
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+
+The system must be rebooted for this update to take effect.
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2020:4609</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=fb73974172ffaaf57a7c42f35424d9aece1a5af6</URL>
+        <Description>https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=fb73974172ffaaf57a7c42f35424d9aece1a5af6</Description>
+      </Reference>
+      <Reference>
+        <URL>https://lore.kernel.org/selinux/CACT4Y+b8HiV6KFuAPysZD=5hmyO4QisgxCKi4DHU3CfMPSP=yg@mail.gmail.com/</URL>
+        <Description>https://lore.kernel.org/selinux/CACT4Y+b8HiV6KFuAPysZD=5hmyO4QisgxCKi4DHU3CfMPSP=yg@mail.gmail.com/</Description>
+      </Reference>
+      <Reference>
+        <URL>https://www.openwall.com/lists/oss-security/2020/04/30/5</URL>
+        <Description>https://www.openwall.com/lists/oss-security/2020/04/30/5</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2020-10751</URL>
+        <Description>CVE-2020-10751</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1839634</URL>
+        <Description>bz#1839634: CVE-2020-10751 kernel: SELinux netlink permission check bypass</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="32" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">kernel: possibility of memory disclosure when reading the file /proc/sys/kernel/rh_features</Note></Notes>
+    <DiscoveryDate>2020-06-02T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2020-06-15T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2020-10774</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>NFV-8.3.0.GA:kernel-rt-0:4.18.0-240.rt7.54.el8</ProductID>
+      <ProductID>RT-8.3.0.GA:kernel-rt-0:4.18.0-240.rt7.54.el8</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Low</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For detailed information on changes in this release, see the Red Hat Enterprise Linux 8.3 Release Notes linked from the References section.
+
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+
+The system must be rebooted for this update to take effect.
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2020:4609</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2020-10774</URL>
+        <Description>CVE-2020-10774</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1846964</URL>
+        <Description>bz#1846964: CVE-2020-10774 kernel: possibility of memory disclosure when reading the file /proc/sys/kernel/rh_features</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="33" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">kernel: vhost-net: stack overflow in get_raw_socket while checking sk_family field</Note></Notes>
+    <DiscoveryDate>2020-03-24T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2020-03-22T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2020-10942</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>NFV-8.3.0.GA:kernel-rt-0:4.18.0-240.rt7.54.el8</ProductID>
+      <ProductID>RT-8.3.0.GA:kernel-rt-0:4.18.0-240.rt7.54.el8</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Low</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For detailed information on changes in this release, see the Red Hat Enterprise Linux 8.3 Release Notes linked from the References section.
+
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+
+The system must be rebooted for this update to take effect.
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2020:4609</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2020-10942</URL>
+        <Description>CVE-2020-10942</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1817718</URL>
+        <Description>bz#1817718: CVE-2020-10942 kernel: vhost-net: stack overflow in get_raw_socket while checking sk_family field</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="34" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">kernel: out-of-bounds write in mpol_parse_str function in mm/mempolicy.c</Note></Notes>
+    <DiscoveryDate>2020-04-06T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2020-04-01T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2020-11565</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>NFV-8.3.0.GA:kernel-rt-0:4.18.0-240.rt7.54.el8</ProductID>
+      <ProductID>RT-8.3.0.GA:kernel-rt-0:4.18.0-240.rt7.54.el8</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For detailed information on changes in this release, see the Red Hat Enterprise Linux 8.3 Release Notes linked from the References section.
+
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+
+The system must be rebooted for this update to take effect.
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2020:4609</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2020-11565</URL>
+        <Description>CVE-2020-11565</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1824918</URL>
+        <Description>bz#1824918: CVE-2020-11565 kernel: out-of-bounds write in mpol_parse_str function in mm/mempolicy.c</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="35" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">kernel: mishandles invalid descriptors in drivers/media/usb/gspca/xirlink_cit.c</Note></Notes>
+    <DiscoveryDate>2020-04-09T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2020-01-03T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2020-11668</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>NFV-8.3.0.GA:kernel-rt-0:4.18.0-240.rt7.54.el8</ProductID>
+      <ProductID>RT-8.3.0.GA:kernel-rt-0:4.18.0-240.rt7.54.el8</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For detailed information on changes in this release, see the Red Hat Enterprise Linux 8.3 Release Notes linked from the References section.
+
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+
+The system must be rebooted for this update to take effect.
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2020:4609</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2020-11668</URL>
+        <Description>CVE-2020-11668</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1824792</URL>
+        <Description>bz#1824792: CVE-2020-11668 kernel: mishandles invalid descriptors in drivers/media/usb/gspca/xirlink_cit.c</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="36" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">kernel: sync of excessive duration via an XFS v5 image with crafted metadata</Note></Notes>
+    <DiscoveryDate>2020-05-05T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2020-03-02T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2020-12655</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>NFV-8.3.0.GA:kernel-rt-0:4.18.0-240.rt7.54.el8</ProductID>
+      <ProductID>RT-8.3.0.GA:kernel-rt-0:4.18.0-240.rt7.54.el8</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Low</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For detailed information on changes in this release, see the Red Hat Enterprise Linux 8.3 Release Notes linked from the References section.
+
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+
+The system must be rebooted for this update to take effect.
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2020:4609</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2020-12655</URL>
+        <Description>CVE-2020-12655</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1832543</URL>
+        <Description>bz#1832543: CVE-2020-12655 kernel: sync of excessive duration via an XFS v5 image with crafted metadata</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="37" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">kernel: xdp_umem_reg in net/xdp/xdp_umem.c has an out-of-bounds write which could result in crash and data coruption</Note></Notes>
+    <DiscoveryDate>2020-05-06T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2020-05-05T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2020-12659</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>NFV-8.3.0.GA:kernel-rt-0:4.18.0-240.rt7.54.el8</ProductID>
+      <ProductID>RT-8.3.0.GA:kernel-rt-0:4.18.0-240.rt7.54.el8</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For detailed information on changes in this release, see the Red Hat Enterprise Linux 8.3 Release Notes linked from the References section.
+
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+
+The system must be rebooted for this update to take effect.
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2020:4609</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2020-12659</URL>
+        <Description>CVE-2020-12659</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1832876</URL>
+        <Description>bz#1832876: CVE-2020-12659 kernel: xdp_umem_reg in net/xdp/xdp_umem.c has an out-of-bounds write which could result in crash and data coruption</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="38" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">kernel: sg_write function lacks an sg_remove_request call in a certain failure case</Note></Notes>
+    <DiscoveryDate>2020-05-09T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2020-04-14T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2020-12770</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>NFV-8.3.0.GA:kernel-rt-0:4.18.0-240.rt7.54.el8</ProductID>
+      <ProductID>RT-8.3.0.GA:kernel-rt-0:4.18.0-240.rt7.54.el8</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For detailed information on changes in this release, see the Red Hat Enterprise Linux 8.3 Release Notes linked from the References section.
+
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+
+The system must be rebooted for this update to take effect.
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2020:4609</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2020-12770</URL>
+        <Description>CVE-2020-12770</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1834845</URL>
+        <Description>bz#1834845: CVE-2020-12770 kernel: sg_write function lacks an sg_remove_request call in a certain failure case</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="39" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">kernel: possible to send arbitrary signals to a privileged (suidroot) parent process</Note></Notes>
+    <DiscoveryDate>2020-03-27T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2020-05-12T05:40:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2020-12826</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>NFV-8.3.0.GA:kernel-rt-0:4.18.0-240.rt7.54.el8</ProductID>
+      <ProductID>RT-8.3.0.GA:kernel-rt-0:4.18.0-240.rt7.54.el8</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For detailed information on changes in this release, see the Red Hat Enterprise Linux 8.3 Release Notes linked from the References section.
+
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+
+The system must be rebooted for this update to take effect.
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2020:4609</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=d1e7fd6462ca9fc76650fbe6ca800e35b24267da</URL>
+        <Description>https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=d1e7fd6462ca9fc76650fbe6ca800e35b24267da</Description>
+      </Reference>
+      <Reference>
+        <URL>https://lists.openwall.net/linux-kernel/2020/03/24/1803</URL>
+        <Description>https://lists.openwall.net/linux-kernel/2020/03/24/1803</Description>
+      </Reference>
+      <Reference>
+        <URL>https://www.openwall.com/lists/kernel-hardening/2020/03/25/1</URL>
+        <Description>https://www.openwall.com/lists/kernel-hardening/2020/03/25/1</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2020-12826</URL>
+        <Description>CVE-2020-12826</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1822077</URL>
+        <Description>bz#1822077: CVE-2020-12826 kernel: possible to send arbitrary signals to a privileged (suidroot) parent process</Description>
+      </Reference>
+    </References>
+    <Acknowledgments><Acknowledgment><Description>Red Hat would like to thank Adam Zabrocki for reporting this issue.</Description></Acknowledgment></Acknowledgments>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="40" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">kernel: referencing inode of removed superblock in get_futex_key() causes UAF</Note></Notes>
+    <DiscoveryDate>2020-09-01T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2020-05-07T19:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2020-14381</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>NFV-8.3.0.GA:kernel-rt-0:4.18.0-240.rt7.54.el8</ProductID>
+      <ProductID>RT-8.3.0.GA:kernel-rt-0:4.18.0-240.rt7.54.el8</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For detailed information on changes in this release, see the Red Hat Enterprise Linux 8.3 Release Notes linked from the References section.
+
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+
+The system must be rebooted for this update to take effect.
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2020:4609</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=8019ad13ef7f64be44d4f892af9c840179009254</URL>
+        <Description>https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=8019ad13ef7f64be44d4f892af9c840179009254</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2020-14381</URL>
+        <Description>CVE-2020-14381</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1874311</URL>
+        <Description>bz#1874311: CVE-2020-14381 kernel: referencing inode of removed superblock in get_futex_key() causes UAF</Description>
+      </Reference>
+    </References>
+    <Acknowledgments><Acknowledgment><Description>Red Hat would like to thank Rakesh Rakesh (Netezza Support) for reporting this issue.</Description></Acknowledgment></Acknowledgments>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="41" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">kernel: soft-lockups in iov_iter_copy_from_user_atomic() could result in DoS</Note></Notes>
+    <DiscoveryDate>2020-09-17T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2020-09-30T00:24:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2020-25641</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>NFV-8.3.0.GA:kernel-rt-0:4.18.0-240.rt7.54.el8</ProductID>
+      <ProductID>RT-8.3.0.GA:kernel-rt-0:4.18.0-240.rt7.54.el8</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For detailed information on changes in this release, see the Red Hat Enterprise Linux 8.3 Release Notes linked from the References section.
+
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+
+The system must be rebooted for this update to take effect.
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2020:4609</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=7e24969022cbd61ddc586f14824fc205661bb124</URL>
+        <Description>https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=7e24969022cbd61ddc586f14824fc205661bb124</Description>
+      </Reference>
+      <Reference>
+        <URL>https://www.kernel.org/doc/html/latest/block/biovecs.html</URL>
+        <Description>https://www.kernel.org/doc/html/latest/block/biovecs.html</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2020-25641</URL>
+        <Description>CVE-2020-25641</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1881424</URL>
+        <Description>bz#1881424: CVE-2020-25641 kernel: soft-lockups in iov_iter_copy_from_user_atomic() could result in DoS</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="42" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">kernel: use-after-free in route4_change() in net/sched/cls_route.c</Note></Notes>
+    <DiscoveryDate>2021-08-12T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-09-07T08:25:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-3715</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>NFV-8.3.0.GA:kernel-rt-0:4.18.0-240.rt7.54.el8</ProductID>
+      <ProductID>RT-8.3.0.GA:kernel-rt-0:4.18.0-240.rt7.54.el8</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Important</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For detailed information on changes in this release, see the Red Hat Enterprise Linux 8.3 Release Notes linked from the References section.
+
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+
+The system must be rebooted for this update to take effect.
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2020:4609</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=ef299cc3fa1a9e1288665a9fdc8bff55629fd359</URL>
+        <Description>https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=ef299cc3fa1a9e1288665a9fdc8bff55629fd359</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-3715</URL>
+        <Description>CVE-2021-3715</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1993988</URL>
+        <Description>bz#1993988: CVE-2021-3715 kernel: use-after-free in route4_change() in net/sched/cls_route.c</Description>
+      </Reference>
+    </References>
+    <Acknowledgments><Acknowledgment><Description>Red Hat would like to thank Zhenpeng Lin for reporting this issue.</Description></Acknowledgment></Acknowledgments>
+  </Vulnerability>
+</cvrfdoc>

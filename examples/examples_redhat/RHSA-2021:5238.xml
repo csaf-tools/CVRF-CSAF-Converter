@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cvrfdoc xmlns="http://www.icasi.org/CVRF/schema/cvrf/1.1" xmlns:cvrf="http://www.icasi.org/CVRF/schema/cvrf/1.1">
+  <DocumentTitle xml:lang="en">Red Hat Security Advisory: virt:rhel and virt-devel:rhel security update</DocumentTitle>
+  <DocumentType>Security Advisory</DocumentType>
+  <DocumentPublisher Type="Vendor">
+    <ContactDetails>secalert@redhat.com</ContactDetails>
+    <IssuingAuthority>Red Hat Product Security</IssuingAuthority>
+  </DocumentPublisher>
+  <DocumentTracking>
+    <Identification><ID>RHSA-2021:5238</ID></Identification>
+    <Status>Final</Status>
+    <Version>1</Version>
+    <RevisionHistory>
+       <Revision>
+         <Number>1</Number>
+         <Date>2021-12-21T10:02:00Z</Date>
+         <Description>Current version</Description>
+       </Revision>
+    </RevisionHistory>
+    <InitialReleaseDate>2021-12-21T10:02:00Z</InitialReleaseDate>
+    <CurrentReleaseDate>2021-12-21T10:02:00Z</CurrentReleaseDate>
+    <Generator>
+      <Engine>Red Hat SDEngine 3.3.0</Engine>
+      <Date>2021-12-21T14:54:00Z</Date>
+    </Generator>
+  </DocumentTracking>
+  <DocumentNotes>
+    <Note Title="Topic" Type="Summary" Ordinal="1" xml:lang="en">
+An update for the virt:rhel and virt-devel:rhel modules is now available for Red Hat Enterprise Linux 8.
+
+Red Hat Product Security has rated this update as having a security impact of Low. A Common Vulnerability Scoring System (CVSS) base score, which gives a detailed severity rating, is available for each vulnerability from the CVE link(s) in the References section.
+    </Note>
+    <Note Title="Details" Type="General" Ordinal="2" xml:lang="en">
+Kernel-based Virtual Machine (KVM) offers a full virtualization solution for Linux on numerous hardware platforms. The virt:rhel module contains packages which provide user-space components used to run virtual machines using KVM. The packages also provide APIs for managing and interacting with the virtualized systems.
+
+Security Fix(es):
+
+* QEMU: off-by-one error in mode_sense_page() in hw/scsi/scsi-disk.c (CVE-2021-3930)
+
+* QEMU: net: e1000: infinite loop while processing transmit descriptors (CVE-2021-20257)
+
+For more details about the security issue(s), including the impact, a CVSS score, acknowledgments, and other related information, refer to the CVE page(s) listed in the References section.
+    </Note>
+    <Note Title="Terms of Use" Ordinal="3" Type="Legal Disclaimer" xml:lang="en">This content is licensed under the Creative Commons Attribution 4.0 International License (https://creativecommons.org/licenses/by/4.0/). If you distribute this content, or a modified version of it, you must provide attribution to Red Hat Inc. and provide a link to the original.</Note>
+  </DocumentNotes>
+  <DocumentDistribution xml:lang="en">Copyright © 2021 Red Hat, Inc. All rights reserved.</DocumentDistribution>
+  <AggregateSeverity Namespace="https://access.redhat.com/security/updates/classification/">Low</AggregateSeverity>
+  <DocumentReferences>
+    <Reference Type="Self">
+       <URL>https://access.redhat.com/errata/RHSA-2021:5238</URL>
+       <Description>https://access.redhat.com/errata/RHSA-2021:5238</Description>
+    </Reference>
+    <Reference Type="External">
+       <URL>https://access.redhat.com/security/updates/classification/#low</URL>
+       <Description>https://access.redhat.com/security/updates/classification/#low</Description>
+    </Reference>
+  </DocumentReferences>
+  <ProductTree xmlns="http://www.icasi.org/CVRF/schema/prod/1.1">
+    <Branch Type="Product Family" Name="Red Hat Enterprise Linux">
+      <Branch Type="Product Name" Name="Red Hat Enterprise Linux AppStream (v. 8)">
+        <FullProductName ProductID="AppStream-8.5.0.Z.MAIN" CPE="cpe:/a:redhat:enterprise_linux:8::appstream">Red Hat Enterprise Linux AppStream (v. 8)</FullProductName>
+      </Branch>
+      <Branch Type="Product Name" Name="Red Hat CodeReady Linux Builder (v. 8)">
+        <FullProductName ProductID="CRB-8.5.0.Z.MAIN" CPE="cpe:/a:redhat:enterprise_linux:8::crb">Red Hat CodeReady Linux Builder (v. 8)</FullProductName>
+      </Branch>
+    </Branch>
+    <Branch Type="Product Version" Name="virt-devel:rhel-8050020211203195115.c5368500">
+      <FullProductName ProductID="virt-devel:rhel-8050020211203195115.c5368500" CPE="cpe:/a:redhat:enterprise_linux:8::crb">virt-devel-rhel-8050020211203195115.c5368500</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="virt:rhel-8050020211203195115.c5368500">
+      <FullProductName ProductID="virt:rhel-8050020211203195115.c5368500" CPE="cpe:/a:redhat:enterprise_linux:8::appstream">virt-rhel-8050020211203195115.c5368500</FullProductName>
+    </Branch>
+    <Relationship ProductReference="virt:rhel-8050020211203195115.c5368500" RelationType="Default Component Of" RelatesToProductReference="AppStream-8.5.0.Z.MAIN">
+      <FullProductName ProductID="AppStream-8.5.0.Z.MAIN:virt:rhel-8050020211203195115.c5368500" CPE="cpe:/a:redhat:enterprise_linux:8::appstream">virt:rhel-8050020211203195115.c5368500 as a component of Red Hat Enterprise Linux AppStream (v. 8)</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="virt-devel:rhel-8050020211203195115.c5368500" RelationType="Default Component Of" RelatesToProductReference="CRB-8.5.0.Z.MAIN">
+      <FullProductName ProductID="CRB-8.5.0.Z.MAIN:virt-devel:rhel-8050020211203195115.c5368500" CPE="cpe:/a:redhat:enterprise_linux:8::crb">virt-devel:rhel-8050020211203195115.c5368500 as a component of Red Hat CodeReady Linux Builder (v. 8)</FullProductName>
+    </Relationship>
+  </ProductTree>
+
+  <Vulnerability Ordinal="1" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">QEMU: off-by-one error in mode_sense_page() in hw/scsi/scsi-disk.c</Note></Notes>
+    <DiscoveryDate>2021-11-03T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-02-04T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-3930</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>AppStream-8.5.0.Z.MAIN:virt:rhel-8050020211203195115.c5368500</ProductID>
+      <ProductID>CRB-8.5.0.Z.MAIN:virt-devel:rhel-8050020211203195115.c5368500</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Low</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:5238</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-3930</URL>
+        <Description>CVE-2021-3930</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=2020588</URL>
+        <Description>bz#2020588: CVE-2021-3930 QEMU: off-by-one error in mode_sense_page() in hw/scsi/scsi-disk.c</Description>
+      </Reference>
+    </References>
+    <Acknowledgments><Acknowledgment><Description>Red Hat would like to thank Alexander Bulekov and Qiuhao Li for reporting this issue.</Description></Acknowledgment></Acknowledgments>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="2" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">QEMU: net: e1000: infinite loop while processing transmit descriptors</Note></Notes>
+    <DiscoveryDate>2020-06-24T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-02-10T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2021-20257</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>AppStream-8.5.0.Z.MAIN:virt:rhel-8050020211203195115.c5368500</ProductID>
+      <ProductID>CRB-8.5.0.Z.MAIN:virt-devel:rhel-8050020211203195115.c5368500</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Low</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:5238</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.openwall.com/lists/oss-security/2021/02/25/2</URL>
+        <Description>https://www.openwall.com/lists/oss-security/2021/02/25/2</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2021-20257</URL>
+        <Description>CVE-2021-20257</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1930087</URL>
+        <Description>bz#1930087: CVE-2021-20257 QEMU: net: e1000: infinite loop while processing transmit descriptors</Description>
+      </Reference>
+    </References>
+    <Acknowledgments><Acknowledgment><Description>Red Hat would like to thank Alexander Bulekov, Cheolwoo Myung (Seoul National University), Cornelius Aschermann (Ruhr-University Bochum), Sergej Schumilo (Ruhr-University Bochum), and Simon Werner (Ruhr-University Bochum) for reporting this issue.</Description></Acknowledgment></Acknowledgments>
+  </Vulnerability>
+</cvrfdoc>

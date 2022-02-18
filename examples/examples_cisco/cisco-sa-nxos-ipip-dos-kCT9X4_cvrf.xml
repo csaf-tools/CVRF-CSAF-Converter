@@ -1,0 +1,2089 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cvrf:cvrfdoc xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:cvrf-common="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/common" xmlns:cvrf="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/cvrf">
+  <cvrf:DocumentTitle>Cisco NX-OS Software Unexpected IP in IP Packet Processing Vulnerability</cvrf:DocumentTitle>
+  <cvrf:DocumentType>Cisco Security Advisory</cvrf:DocumentType>
+  <cvrf:DocumentPublisher Type="Vendor">
+    <cvrf:ContactDetails>Emergency Support:
++1 877 228 7302 (toll-free within North America)
++1 408 525 6532 (International direct-dial)
+Non-emergency Support:
+Email: psirt@cisco.com
+Support requests that are received via e-mail are typically acknowledged within 48 hours.</cvrf:ContactDetails>
+    <cvrf:IssuingAuthority>Cisco product security incident response is the responsibility of the Cisco Product Security Incident Response Team (PSIRT). The Cisco PSIRT is a dedicated, global team that manages the receipt, investigation, and public reporting of security vulnerability information that is related to Cisco products and networks. The on-call Cisco PSIRT works 24x7 with Cisco customers, independent security researchers, consultants, industry organizations, and other vendors to identify possible security issues with Cisco products and networks.
+More information can be found in Cisco Security Vulnerability Policy available at http://www.cisco.com/web/about/security/psirt/security_vulnerability_policy.html</cvrf:IssuingAuthority>
+  </cvrf:DocumentPublisher>
+  <cvrf:DocumentTracking>
+    <cvrf:Identification>
+      <cvrf:ID>cisco-sa-nxos-ipip-dos-kCT9X4</cvrf:ID>
+    </cvrf:Identification>
+    <cvrf:Status>Final</cvrf:Status>
+    <cvrf:Version>1.0</cvrf:Version>
+    <cvrf:RevisionHistory>
+      <cvrf:Revision>
+        <cvrf:Number>1.0</cvrf:Number>
+        <cvrf:Date>2020-06-01T15:51:57</cvrf:Date>
+        <cvrf:Description>Initial public release.</cvrf:Description>
+      </cvrf:Revision>
+    </cvrf:RevisionHistory>
+    <cvrf:InitialReleaseDate>2020-06-01T16:00:00</cvrf:InitialReleaseDate>
+    <cvrf:CurrentReleaseDate>2020-06-01T16:00:00</cvrf:CurrentReleaseDate>
+    <cvrf:Generator>
+      <cvrf:Engine>TVCE</cvrf:Engine>
+    </cvrf:Generator>
+  </cvrf:DocumentTracking>
+  <cvrf:DocumentNotes>
+    <cvrf:Note Title="Summary" Type="Summary" Ordinal="1">A vulnerability in the network stack of Cisco NX-OS Software could allow an unauthenticated, remote attacker to bypass certain security boundaries or cause a denial of service (DoS) condition on an affected device.
+
+The vulnerability is due to the affected device unexpectedly decapsulating and processing IP in IP packets that are destined to a locally configured IP address. An attacker could exploit this vulnerability by sending a crafted IP in IP packet to an affected device. A successful exploit could cause the affected device to unexpectedly decapsulate the IP in IP packet and forward the inner IP packet. This may result in IP packets bypassing input access control lists (ACLs) configured on the affected device or other security boundaries defined elsewhere in the network.
+
+Under certain conditions, an exploit could cause the network stack process to crash and restart multiple times, leading to a reload of the affected device and a DoS condition.
+
+Cisco has released software updates that address this vulnerability. There are workarounds that address this vulnerability.
+
+This advisory is available at the following link:
+https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-nxos-ipip-dos-kCT9X4 ["https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-nxos-ipip-dos-kCT9X4"]</cvrf:Note>
+    <cvrf:Note Title="Vulnerable Products" Type="General" Ordinal="2">This vulnerability affects the following Cisco products if they are running a vulnerable release of Cisco NX-OS Software:
+
+Nexus 1000 Virtual Edge for VMware vSphere (CSCvu10050 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCvu10050"])
+Nexus 1000V Switch for Microsoft Hyper-V (CSCvt67738 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCvt67738"])
+Nexus 1000V Switch for VMware vSphere (CSCvt67738 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCvt67738"])
+Nexus 3000 Series Switches (CSCun53663 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCun53663"])1
+Nexus 5500 Platform Switches (CSCvt67739 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCvt67739"])
+Nexus 5600 Platform Switches (CSCvt67739 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCvt67739"])
+Nexus 6000 Series Switches (CSCvt67739 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCvt67739"])
+Nexus 7000 Series Switches (CSCvt66624 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCvt66624"])
+Nexus 9000 Series Switches in standalone NX-OS mode (CSCun53663 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCun53663"])1
+UCS 6200 Series Fabric Interconnects (CSCvu03158 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCvu03158"])
+UCS 6300 Series Fabric Interconnects (CSCvt67740 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCvt67740"])
+
+1Only a limited set of releases for Nexus 3000 Series and Nexus 9000 Series Switches is affected by this vulnerability. Details are available in the Cisco Software Checker as described in the Fixed Software ["#fs"] section of this advisory.
+
+It is not required to have an IP in IP tunnel interface configured on the device in order to be affected by this vulnerability. Cisco UCS Fabric Interconnects are affected only when NetFlow monitoring is enabled on the device and a flow exporter profile is configured with a source IP address set for the exporter interface. For details about NetFlow configuration for Cisco UCS Fabric Interconnects, see the NetFlow Monitoring ["https://www.cisco.com/c/en/us/td/docs/unified_computing/ucs/ucs-manager/GUI-User-Guides/System-Monitoring/3-2/b_UCSM_GUI_System_Monitoring_Guide_3_2/b_UCSM_GUI_System_Monitoring_Guide_3_2_chapter_01110.html"] section of the Cisco UCS Manager System Monitoring Guide.
+
+
+For information about which Cisco software releases are vulnerable, see the Fixed Software ["#fs"] section of this advisory.</cvrf:Note>
+    <cvrf:Note Title="Products Confirmed Not Vulnerable" Type="General" Ordinal="3">Only products listed in the Vulnerable Products ["#vp"] section of this advisory are known to be affected by this vulnerability.
+
+Cisco has confirmed that this vulnerability does not affect the following products:
+
+Firepower 1000 Series
+Firepower 2100 Series
+Firepower 4100 Series
+Firepower 9300 Security Appliances
+MDS 9000 Series Multilayer Switches
+Nexus 9000 Series Fabric Switches in Application Centric Infrastructure (ACI) mode
+UCS 6400 Series Fabric Interconnects</cvrf:Note>
+    <cvrf:Note Title="Details" Type="General" Ordinal="4">RFC 2003 specifies a method to encapsulate an IPv4 datagram within another IPv4 datagram. The IP protocol number 4 is used to indicate that the payload within a carrier IP packet is a passenger IPv4 packet.
+
+Multiple Cisco products running Cisco NX-OS Software support IP in IP packet encapsulation and decapsulation when a tunnel interface is manually configured on the device using tunnel mode ipip and appropriate tunnel source and tunnel destination. The device is not expected to decapsulate and process any IP in IP traffic that is not destined to such a tunnel interface.
+
+This vulnerability causes an affected device to unexpectedly decapsulate and process IP in IP packets that are destined to a locally configured IP address, even when no tunnel configuration is present. Any input ACL configured on an inbound interface of the affected device is evaluated against the IP fields on the carrier IP packet prior to decapsulation; it would not be evaluated on the passenger IP packet. This may result in the passenger IP packet bypassing the intended ACL filtering. This may also allow the passenger IP packet to bypass other security boundaries that might be defined in the network path to the affected device in the presence of network filtering techniques that only inspect the outer IP header and not the inner IP packet.
+
+Under specific conditions, processing of a crafted IP in IP packet could cause the network stack process to crash on an affected device. Repeated exploitation that causes the network stack process to restart multiple times could lead to a reload of the affected device, resulting in a DoS condition. A crash of the network stack process is followed by creation of a netstack core file on the device, which can be viewed by using the show cores CLI command (or dir cores on the local-mgmt CLI for Cisco UCS Fabric Interconnects). If a netstack core file is present, customers are advised to contact the Cisco Technical Assistance Center (TAC) to review the file and determine whether this vulnerability has been exploited on the device.
+
+This vulnerability can only be triggered by IP in IP traffic that is destined to an affected device and cannot be exploited using traffic that transits an affected device. The vulnerability can only be triggered by IP in IP packets on which both the carrier and the passenger datagrams are IPv4. It cannot be triggered when either carrier, passenger, or both carrier and passenger are IPv6 datagrams, nor can it be triggered by any other tunneling protocol, including but not limited to Generic Routing Encapsulation (GRE).</cvrf:Note>
+    <cvrf:Note Title="Workarounds" Type="General" Ordinal="5">Using infrastructure access control lists (iACLs) to allow only strictly required management and control plane traffic that is destined to the affected device, as recommended in the Cisco Guide to Securing NX-OS Software Devices ["https://tools.cisco.com/security/center/resources/securing_nx_os.html"], would prevent exploitation of this issue on Nexus devices. Customers may also consider explicitly denying all IP packets with protocol number 4 (corresponding to IP in IP packets) as part of their iACLs, if no legitimate IP in IP traffic is used in their network. A customized control plane policing (CoPP) policy may also be used to drop IP in IP traffic that is destined to an affected device; however, support for CoPP customization varies across different Nexus platforms and software releases. Customers are advised to contact their support organization for any assistance required with evaluating the feasibility of a workaround and with implementing a workaround on an affected device.
+
+Exploitation of this issue on Cisco UCS Fabric Interconnects is only possible if NetFlow monitoring is enabled on an affected device. Customers who do not have a strict requirement of using NetFlow monitoring may evaluate the possibility of disabling it until they can perform a software upgrade to a fixed release.
+
+Customers should first evaluate the impact of configuration changes to the device and their security policy. Customers concerned about undesired or unexpected side effects should consult with their support organization before implementing any configuration change.</cvrf:Note>
+    <cvrf:Note Title="Fixed Software" Type="General" Ordinal="6">Cisco has released free software updates that address the vulnerability described in this advisory. Customers may only install and expect support for software versions and feature sets for which they have purchased a license. By installing, downloading, accessing, or otherwise using such software upgrades, customers agree to follow the terms of the Cisco software license: https://www.cisco.com/c/en/us/products/end-user-license-agreement.html ["https://www.cisco.com/c/en/us/products/end-user-license-agreement.html"]
+
+Additionally, customers may only download software for which they have a valid license, procured from Cisco directly, or through a Cisco authorized reseller or partner. In most cases this will be a maintenance upgrade to software that was previously purchased. Free security software updates do not entitle customers to a new software license, additional software feature sets, or major revision upgrades.
+
+When considering software upgrades ["https://tools.cisco.com/security/center/resources/security_vulnerability_policy.html#fixes"], customers are advised to regularly consult the advisories for Cisco products, which are available from the Cisco Security Advisories and Alerts page ["https://www.cisco.com/go/psirt"], to determine exposure and a complete upgrade solution.
+
+In all cases, customers should ensure that the devices to be upgraded contain sufficient memory and confirm that current hardware and software configurations will continue to be supported properly by the new release. If the information is not clear, customers are advised to contact the Cisco Technical Assistance Center (TAC) or their contracted maintenance providers.
+  Customers Without Service Contracts
+Customers who purchase directly from Cisco but do not hold a Cisco service contract and customers who make purchases through third-party vendors but are unsuccessful in obtaining fixed software through their point of sale should obtain upgrades by contacting the Cisco TAC: https://www.cisco.com/c/en/us/support/web/tsd-cisco-worldwide-contacts.html ["https://www.cisco.com/c/en/us/support/web/tsd-cisco-worldwide-contacts.html"]
+
+Customers should have the product serial number available and be prepared to provide the URL of this advisory as evidence of entitlement to a free upgrade.
+
+Cisco NX-OS Software
+To help customers determine their exposure to vulnerabilities in Cisco NX-OS Software, Cisco provides the Cisco Software Checker ["https://tools.cisco.com/security/center/softwarechecker.x"] to identify any Cisco Security Advisories that impact a specific Cisco NX-OS Software release and the earliest release that fixes the vulnerabilities that are described in each advisory (“First Fixed”). If applicable, the tool also returns the earliest release that fixes all the vulnerabilities described in all the advisories identified (“Combined First Fixed”).
+
+Customers can use the Cisco Software Checker ["https://tools.cisco.com/security/center/softwarechecker.x"] to search advisories in the following ways:
+
+Choose the software, platform, and one or more releases
+Upload a .txt file that includes a list of specific releases
+Enter the output of the show version command
+
+After initiating a search, customers can customize the search to include all Cisco Security Advisories or one or more specific advisories.
+
+Customers can also use the following form to determine whether a release is affected by any Cisco Security Advisory by choosing the Cisco NX-OS Software and platform and then entering a release—for example, 7.0(3)I7(5) for Cisco Nexus 3000 Series Switches or 14.0(1h) for Cisco NX-OS Software in ACI mode:
+              Cisco NX-OS Software      Cisco NX-OS Software in ACI Mode                  MDS 9000 Series Multilayer Switches      Nexus 1000V Series Switches      Nexus 3000 Series Switches      Nexus 5000 Series Switches      Nexus 6000 Series Switches      Nexus 7000 Series Switches      Nexus 9000 Series Switches
+
+
+
+
+By default, the Cisco Software Checker ["https://tools.cisco.com/security/center/softwarechecker.x"] includes results only for vulnerabilities that have a Critical or High Security Impact Rating (SIR). To include results for Medium SIR vulnerabilities, customers can use the Cisco Software Checker and check the Medium check box in the drop-down list under Impact Rating when customizing a search.
+
+  Cisco Nexus 7000 Series Switches SMUs
+For Cisco Nexus 7000 Series Switches, software maintenance upgrades (SMUs) are available for Cisco NX-OS Software Release 7.3(6)D1(1). Customers can download the following SMUs from the Software Center ["https://software.cisco.com/download/navigator.html"] on Cisco.com:
+
+n7700-s2-dk9.7.3.6.D1.1.CSCvt66624.bin
+n7000-s2-dk9.7.3.6.D1.1.CSCvt66624.bin
+
+For details about downloading and installing SMUs in Cisco NX-OS Software for Cisco Nexus 7000 Series Switches, see the Performing Software Maintenance Upgrades ["https://www.cisco.com/c/en/us/td/docs/switches/datacenter/nexus7000/sw/system-management/guide/b_Cisco_Nexus_7000_Series_NX-OS_System_Management_Configuration_Guide-RI/b_Cisco_Nexus_7000_Series_NX-OS_System_Management_Configuration_Guide-RI_chapter_011011.html"] section of the Cisco Nexus 7000 Series NX-OS System Management Configuration Guide.
+  Cisco UCS Software
+In the following table(s), the left column lists Cisco software releases, and the right column indicates whether a release was affected by the vulnerability described in this advisory and which release included the fix for this vulnerability.
+
+UCS 6200 and 6300 Series Fabric Interconnects:
+                                Cisco UCS Software Release              First Fixed Release for This Vulnerability                                              Earlier than 3.2              3.2(3o)                                  3.2              3.2(3o)                                  4.0              4.0(4i) (June 2020)                                  4.1              4.1(1d) (June 2020)
+Additional Resources
+For help determining the best Cisco NX-OS Software release for a Cisco Nexus Switch, administrators can refer to the following Recommended Releases documents. If a security advisory recommends a later release, Cisco recommends following the advisory guidance.
+
+
+Cisco MDS Series Switches ["https://www.cisco.com/c/en/us/td/docs/switches/datacenter/mds9000/sw/b_MDS_NX-OS_Recommended_Releases.html"]
+Cisco Nexus 1000V for VMware Switch ["http://www.cisco.com/c/en/us/td/docs/switches/datacenter/nexus1000/sw/recommended_releases/b_Cisco_N1KV_VMware_MinRecommendedReleases.html"]
+Cisco Nexus 3000 Series Switches ["http://www.cisco.com/c/en/us/td/docs/switches/datacenter/nexus3000/sw/recommended_release/b_Minimum_and_Recommended_Cisco_NX-OS_Releases_for_Cisco_Nexus_3000_Series_Switches.html"]
+Cisco Nexus 5500 Platform Switches ["http://www.cisco.com/c/en/us/td/docs/switches/datacenter/nexus5500/sw/release/recommended_releases/n5500_recommended_nx-os_releases.html"]
+Cisco Nexus 5600 Platform Switches ["https://www.cisco.com/c/en/us/td/docs/switches/datacenter/nexus5600/sw/release/recommended_releases/n5600_recommended_nx-os_releases.html"]
+Cisco Nexus 6000 Series Switches ["http://www.cisco.com/c/en/us/td/docs/switches/datacenter/nexus6000/sw/release/recommended_releases/recommended_nx-os_releases.html"]
+Cisco Nexus 7000 Series Switches ["http://www.cisco.com/c/en/us/td/docs/switches/datacenter/sw/nx-os/recommended_releases/recommended_nx-os_releases.html"]
+Cisco Nexus 9000 Series Switches ["http://www.cisco.com/c/en/us/td/docs/switches/datacenter/nexus9000/sw/recommended_release/b_Minimum_and_Recommended_Cisco_NX-OS_Releases_for_Cisco_Nexus_9000_Series_Switches.html"]
+Cisco Nexus 9000 Series ACI-Mode Switches ["https://www.cisco.com/c/en/us/td/docs/switches/datacenter/aci/apic/sw/recommended-release/b_Recommended_Cisco_ACI_Releases.html"]
+  To determine the best release for Cisco UCS, see the Recommended Releases documents in the release notes for the device.</cvrf:Note>
+    <cvrf:Note Title="Vulnerability Policy" Type="General" Ordinal="7">To learn about Cisco security vulnerability disclosure policies and publications, see the Security Vulnerability Policy ["http://www.cisco.com/web/about/security/psirt/security_vulnerability_policy.html"]. This document also contains instructions for obtaining fixed software and receiving security vulnerability information from Cisco.</cvrf:Note>
+    <cvrf:Note Title="Exploitation and Public Announcements" Type="General" Ordinal="8">The Cisco Product Security Incident Response Team (PSIRT) is not aware of any public announcements or malicious use of the vulnerability that is described in this advisory.</cvrf:Note>
+    <cvrf:Note Title="Source" Type="General" Ordinal="9">Cisco would like to thank Yannay Livneh for reporting this vulnerability.</cvrf:Note>
+    <cvrf:Note Title="Legal Disclaimer" Type="Legal Disclaimer" Ordinal="10">THIS DOCUMENT IS PROVIDED ON AN "AS IS" BASIS AND DOES NOT IMPLY ANY KIND OF GUARANTEE OR WARRANTY, INCLUDING THE WARRANTIES OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR USE. YOUR USE OF THE INFORMATION ON THE DOCUMENT OR MATERIALS LINKED FROM THE DOCUMENT IS AT YOUR OWN RISK. CISCO RESERVES THE RIGHT TO CHANGE OR UPDATE THIS DOCUMENT AT ANY TIME.
+
+A standalone copy or paraphrase of the text of this document that omits the distribution URL is an uncontrolled copy and may lack important information or contain factual errors. The information in this document is intended for end users of Cisco products.</cvrf:Note>
+  </cvrf:DocumentNotes>
+  <cvrf:DocumentReferences>
+    <cvrf:Reference Type="Self">
+      <cvrf:URL>https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-nxos-ipip-dos-kCT9X4</cvrf:URL>
+      <cvrf:Description>Cisco NX-OS Software Unexpected IP in IP Packet Processing Vulnerability</cvrf:Description>
+    </cvrf:Reference>
+  </cvrf:DocumentReferences>
+  <ProductTree xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/prod">
+    <Branch Name="Cisco" Type="Vendor">
+      <Branch Name="Cisco NX-OS Software" Type="Product Name">
+        <Branch Name="5.0(3)A1" Type="Product Version">
+          <Branch Name="5.0(3)A1(1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-239579">Cisco NX-OS Software 5.0(3)A1(1)</FullProductName>
+          </Branch>
+          <Branch Name="5.0(3)A1(2)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-239580">Cisco NX-OS Software 5.0(3)A1(2)</FullProductName>
+          </Branch>
+          <Branch Name="5.0(3)A1(2a)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-239581">Cisco NX-OS Software 5.0(3)A1(2a)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="5.0(3)U1" Type="Product Version">
+          <Branch Name="5.0(3)U1(1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-191391">Cisco NX-OS Software 5.0(3)U1(1)</FullProductName>
+          </Branch>
+          <Branch Name="5.0(3)U1(1a)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-191392">Cisco NX-OS Software 5.0(3)U1(1a)</FullProductName>
+          </Branch>
+          <Branch Name="5.0(3)U1(1b)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-191393">Cisco NX-OS Software 5.0(3)U1(1b)</FullProductName>
+          </Branch>
+          <Branch Name="5.0(3)U1(1d)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-191466">Cisco NX-OS Software 5.0(3)U1(1d)</FullProductName>
+          </Branch>
+          <Branch Name="5.0(3)U1(2)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-191467">Cisco NX-OS Software 5.0(3)U1(2)</FullProductName>
+          </Branch>
+          <Branch Name="5.0(3)U1(2a)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-191468">Cisco NX-OS Software 5.0(3)U1(2a)</FullProductName>
+          </Branch>
+          <Branch Name="5.0(3)U1(1c)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-239513">Cisco NX-OS Software 5.0(3)U1(1c)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="5.0(3)U2" Type="Product Version">
+          <Branch Name="5.0(3)U2(1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-191469">Cisco NX-OS Software 5.0(3)U2(1)</FullProductName>
+          </Branch>
+          <Branch Name="5.0(3)U2(2)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-191470">Cisco NX-OS Software 5.0(3)U2(2)</FullProductName>
+          </Branch>
+          <Branch Name="5.0(3)U2(2a)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-191471">Cisco NX-OS Software 5.0(3)U2(2a)</FullProductName>
+          </Branch>
+          <Branch Name="5.0(3)U2(2b)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-191472">Cisco NX-OS Software 5.0(3)U2(2b)</FullProductName>
+          </Branch>
+          <Branch Name="5.0(3)U2(2c)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-191473">Cisco NX-OS Software 5.0(3)U2(2c)</FullProductName>
+          </Branch>
+          <Branch Name="5.0(3)U2(2d)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-191474">Cisco NX-OS Software 5.0(3)U2(2d)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="5.0(3)U3" Type="Product Version">
+          <Branch Name="5.0(3)U3(1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-191475">Cisco NX-OS Software 5.0(3)U3(1)</FullProductName>
+          </Branch>
+          <Branch Name="5.0(3)U3(2)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-191476">Cisco NX-OS Software 5.0(3)U3(2)</FullProductName>
+          </Branch>
+          <Branch Name="5.0(3)U3(2a)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-191477">Cisco NX-OS Software 5.0(3)U3(2a)</FullProductName>
+          </Branch>
+          <Branch Name="5.0(3)U3(2b)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-191478">Cisco NX-OS Software 5.0(3)U3(2b)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="5.0(3)U4" Type="Product Version">
+          <Branch Name="5.0(3)U4(1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-191479">Cisco NX-OS Software 5.0(3)U4(1)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="5.0(3)U5" Type="Product Version">
+          <Branch Name="5.0(3)U5(1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-191480">Cisco NX-OS Software 5.0(3)U5(1)</FullProductName>
+          </Branch>
+          <Branch Name="5.0(3)U5(1a)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-191481">Cisco NX-OS Software 5.0(3)U5(1a)</FullProductName>
+          </Branch>
+          <Branch Name="5.0(3)U5(1b)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-191482">Cisco NX-OS Software 5.0(3)U5(1b)</FullProductName>
+          </Branch>
+          <Branch Name="5.0(3)U5(1c)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-191483">Cisco NX-OS Software 5.0(3)U5(1c)</FullProductName>
+          </Branch>
+          <Branch Name="5.0(3)U5(1d)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-191484">Cisco NX-OS Software 5.0(3)U5(1d)</FullProductName>
+          </Branch>
+          <Branch Name="5.0(3)U5(1e)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-191485">Cisco NX-OS Software 5.0(3)U5(1e)</FullProductName>
+          </Branch>
+          <Branch Name="5.0(3)U5(1f)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-196613">Cisco NX-OS Software 5.0(3)U5(1f)</FullProductName>
+          </Branch>
+          <Branch Name="5.0(3)U5(1g)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-196614">Cisco NX-OS Software 5.0(3)U5(1g)</FullProductName>
+          </Branch>
+          <Branch Name="5.0(3)U5(1h)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-196615">Cisco NX-OS Software 5.0(3)U5(1h)</FullProductName>
+          </Branch>
+          <Branch Name="5.0(3)U5(1i)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-239530">Cisco NX-OS Software 5.0(3)U5(1i)</FullProductName>
+          </Branch>
+          <Branch Name="5.0(3)U5(1j)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-239531">Cisco NX-OS Software 5.0(3)U5(1j)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="5.2(1)SM1" Type="Product Version">
+          <Branch Name="5.2(1)SM1(5.1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-195841">Cisco NX-OS Software 5.2(1)SM1(5.1)</FullProductName>
+          </Branch>
+          <Branch Name="5.2(1)SM1(5.2)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-253287">Cisco NX-OS Software 5.2(1)SM1(5.2)</FullProductName>
+          </Branch>
+          <Branch Name="5.2(1)SM1(5.2a)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-253288">Cisco NX-OS Software 5.2(1)SM1(5.2a)</FullProductName>
+          </Branch>
+          <Branch Name="5.2(1)SM1(5.2b)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-253289">Cisco NX-OS Software 5.2(1)SM1(5.2b)</FullProductName>
+          </Branch>
+          <Branch Name="5.2(1)SM1(5.2c)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-253290">Cisco NX-OS Software 5.2(1)SM1(5.2c)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="5.2(1)SM3" Type="Product Version">
+          <Branch Name="5.2(1)SM3(1.1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-253291">Cisco NX-OS Software 5.2(1)SM3(1.1)</FullProductName>
+          </Branch>
+          <Branch Name="5.2(1)SM3(1.1a)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-253292">Cisco NX-OS Software 5.2(1)SM3(1.1a)</FullProductName>
+          </Branch>
+          <Branch Name="5.2(1)SM3(1.1b)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-253293">Cisco NX-OS Software 5.2(1)SM3(1.1b)</FullProductName>
+          </Branch>
+          <Branch Name="5.2(1)SM3(1.1c)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-253294">Cisco NX-OS Software 5.2(1)SM3(1.1c)</FullProductName>
+          </Branch>
+          <Branch Name="5.2(1)SM3(2.1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-265255">Cisco NX-OS Software 5.2(1)SM3(2.1)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="5.2(1)SV3" Type="Product Version">
+          <Branch Name="5.2(1)SV3(1.4)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-210024">Cisco NX-OS Software 5.2(1)SV3(1.4)</FullProductName>
+          </Branch>
+          <Branch Name="5.2(1)SV3(1.1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-217747">Cisco NX-OS Software 5.2(1)SV3(1.1)</FullProductName>
+          </Branch>
+          <Branch Name="5.2(1)SV3(1.3)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-217748">Cisco NX-OS Software 5.2(1)SV3(1.3)</FullProductName>
+          </Branch>
+          <Branch Name="5.2(1)SV3(1.5a)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-220693">Cisco NX-OS Software 5.2(1)SV3(1.5a)</FullProductName>
+          </Branch>
+          <Branch Name="5.2(1)SV3(1.5b)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-220694">Cisco NX-OS Software 5.2(1)SV3(1.5b)</FullProductName>
+          </Branch>
+          <Branch Name="5.2(1)SV3(1.6)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-220695">Cisco NX-OS Software 5.2(1)SV3(1.6)</FullProductName>
+          </Branch>
+          <Branch Name="5.2(1)SV3(1.10)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-220696">Cisco NX-OS Software 5.2(1)SV3(1.10)</FullProductName>
+          </Branch>
+          <Branch Name="5.2(1)SV3(1.15)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-220697">Cisco NX-OS Software 5.2(1)SV3(1.15)</FullProductName>
+          </Branch>
+          <Branch Name="5.2(1)SV3(2.1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-220698">Cisco NX-OS Software 5.2(1)SV3(2.1)</FullProductName>
+          </Branch>
+          <Branch Name="5.2(1)SV3(2.5)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-230579">Cisco NX-OS Software 5.2(1)SV3(2.5)</FullProductName>
+          </Branch>
+          <Branch Name="5.2(1)SV3(2.8)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-230580">Cisco NX-OS Software 5.2(1)SV3(2.8)</FullProductName>
+          </Branch>
+          <Branch Name="5.2(1)SV3(3.1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-230581">Cisco NX-OS Software 5.2(1)SV3(3.1)</FullProductName>
+          </Branch>
+          <Branch Name="5.2(1)SV3(1.2)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-239814">Cisco NX-OS Software 5.2(1)SV3(1.2)</FullProductName>
+          </Branch>
+          <Branch Name="5.2(1)SV3(1.4b)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-239815">Cisco NX-OS Software 5.2(1)SV3(1.4b)</FullProductName>
+          </Branch>
+          <Branch Name="5.2(1)SV3(3.15)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-239817">Cisco NX-OS Software 5.2(1)SV3(3.15)</FullProductName>
+          </Branch>
+          <Branch Name="5.2(1)SV3(4.1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-239818">Cisco NX-OS Software 5.2(1)SV3(4.1)</FullProductName>
+          </Branch>
+          <Branch Name="5.2(1)SV3(4.1a)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-265259">Cisco NX-OS Software 5.2(1)SV3(4.1a)</FullProductName>
+          </Branch>
+          <Branch Name="5.2(1)SV3(4.1b)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-277000">Cisco NX-OS Software 5.2(1)SV3(4.1b)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="6.0(2)A1" Type="Product Version">
+          <Branch Name="6.0(2)A1(1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-239582">Cisco NX-OS Software 6.0(2)A1(1)</FullProductName>
+          </Branch>
+          <Branch Name="6.0(2)A1(1a)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-239583">Cisco NX-OS Software 6.0(2)A1(1a)</FullProductName>
+          </Branch>
+          <Branch Name="6.0(2)A1(1b)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-239584">Cisco NX-OS Software 6.0(2)A1(1b)</FullProductName>
+          </Branch>
+          <Branch Name="6.0(2)A1(1c)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-239585">Cisco NX-OS Software 6.0(2)A1(1c)</FullProductName>
+          </Branch>
+          <Branch Name="6.0(2)A1(1d)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-239586">Cisco NX-OS Software 6.0(2)A1(1d)</FullProductName>
+          </Branch>
+          <Branch Name="6.0(2)A1(1e)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-239587">Cisco NX-OS Software 6.0(2)A1(1e)</FullProductName>
+          </Branch>
+          <Branch Name="6.0(2)A1(1f)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-239588">Cisco NX-OS Software 6.0(2)A1(1f)</FullProductName>
+          </Branch>
+          <Branch Name="6.0(2)A1(2d)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-239589">Cisco NX-OS Software 6.0(2)A1(2d)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="6.0(2)A3" Type="Product Version">
+          <Branch Name="6.0(2)A3(1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-239590">Cisco NX-OS Software 6.0(2)A3(1)</FullProductName>
+          </Branch>
+          <Branch Name="6.0(2)A3(2)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-239591">Cisco NX-OS Software 6.0(2)A3(2)</FullProductName>
+          </Branch>
+          <Branch Name="6.0(2)A3(4)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-239592">Cisco NX-OS Software 6.0(2)A3(4)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="6.0(2)A4" Type="Product Version">
+          <Branch Name="6.0(2)A4(1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-239593">Cisco NX-OS Software 6.0(2)A4(1)</FullProductName>
+          </Branch>
+          <Branch Name="6.0(2)A4(2)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-239594">Cisco NX-OS Software 6.0(2)A4(2)</FullProductName>
+          </Branch>
+          <Branch Name="6.0(2)A4(3)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-239595">Cisco NX-OS Software 6.0(2)A4(3)</FullProductName>
+          </Branch>
+          <Branch Name="6.0(2)A4(4)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-239596">Cisco NX-OS Software 6.0(2)A4(4)</FullProductName>
+          </Branch>
+          <Branch Name="6.0(2)A4(5)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-239597">Cisco NX-OS Software 6.0(2)A4(5)</FullProductName>
+          </Branch>
+          <Branch Name="6.0(2)A4(6)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-239598">Cisco NX-OS Software 6.0(2)A4(6)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="6.0(2)U1" Type="Product Version">
+          <Branch Name="6.0(2)U1(1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-194693">Cisco NX-OS Software 6.0(2)U1(1)</FullProductName>
+          </Branch>
+          <Branch Name="6.0(2)U1(2)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-194694">Cisco NX-OS Software 6.0(2)U1(2)</FullProductName>
+          </Branch>
+          <Branch Name="6.0(2)U1(1a)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-196616">Cisco NX-OS Software 6.0(2)U1(1a)</FullProductName>
+          </Branch>
+          <Branch Name="6.0(2)U1(3)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-196617">Cisco NX-OS Software 6.0(2)U1(3)</FullProductName>
+          </Branch>
+          <Branch Name="6.0(2)U1(4)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-205076">Cisco NX-OS Software 6.0(2)U1(4)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="6.0(2)U2" Type="Product Version">
+          <Branch Name="6.0(2)U2(1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-205077">Cisco NX-OS Software 6.0(2)U2(1)</FullProductName>
+          </Branch>
+          <Branch Name="6.0(2)U2(2)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-205078">Cisco NX-OS Software 6.0(2)U2(2)</FullProductName>
+          </Branch>
+          <Branch Name="6.0(2)U2(3)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-205079">Cisco NX-OS Software 6.0(2)U2(3)</FullProductName>
+          </Branch>
+          <Branch Name="6.0(2)U2(4)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-205080">Cisco NX-OS Software 6.0(2)U2(4)</FullProductName>
+          </Branch>
+          <Branch Name="6.0(2)U2(5)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-205081">Cisco NX-OS Software 6.0(2)U2(5)</FullProductName>
+          </Branch>
+          <Branch Name="6.0(2)U2(6)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-205082">Cisco NX-OS Software 6.0(2)U2(6)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="6.0(2)U3" Type="Product Version">
+          <Branch Name="6.0(2)U3(1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-205083">Cisco NX-OS Software 6.0(2)U3(1)</FullProductName>
+          </Branch>
+          <Branch Name="6.0(2)U3(2)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-205084">Cisco NX-OS Software 6.0(2)U3(2)</FullProductName>
+          </Branch>
+          <Branch Name="6.0(2)U3(3)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-205085">Cisco NX-OS Software 6.0(2)U3(3)</FullProductName>
+          </Branch>
+          <Branch Name="6.0(2)U3(4)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-205086">Cisco NX-OS Software 6.0(2)U3(4)</FullProductName>
+          </Branch>
+          <Branch Name="6.0(2)U3(5)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-205087">Cisco NX-OS Software 6.0(2)U3(5)</FullProductName>
+          </Branch>
+          <Branch Name="6.0(2)U3(6)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-239536">Cisco NX-OS Software 6.0(2)U3(6)</FullProductName>
+          </Branch>
+          <Branch Name="6.0(2)U3(7)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-239537">Cisco NX-OS Software 6.0(2)U3(7)</FullProductName>
+          </Branch>
+          <Branch Name="6.0(2)U3(8)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-239538">Cisco NX-OS Software 6.0(2)U3(8)</FullProductName>
+          </Branch>
+          <Branch Name="6.0(2)U3(9)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-239539">Cisco NX-OS Software 6.0(2)U3(9)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="6.0(2)U4" Type="Product Version">
+          <Branch Name="6.0(2)U4(1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-203349">Cisco NX-OS Software 6.0(2)U4(1)</FullProductName>
+          </Branch>
+          <Branch Name="6.0(2)U4(2)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-205088">Cisco NX-OS Software 6.0(2)U4(2)</FullProductName>
+          </Branch>
+          <Branch Name="6.0(2)U4(3)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-205089">Cisco NX-OS Software 6.0(2)U4(3)</FullProductName>
+          </Branch>
+          <Branch Name="6.0(2)U4(4)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-239545">Cisco NX-OS Software 6.0(2)U4(4)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="6.1(2)I1" Type="Product Version">
+          <Branch Name="6.1(2)I1(3)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-239450">Cisco NX-OS Software 6.1(2)I1(3)</FullProductName>
+          </Branch>
+          <Branch Name="6.1(2)I1(2)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-240153">Cisco NX-OS Software 6.1(2)I1(2)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="6.1(2)I2" Type="Product Version">
+          <Branch Name="6.1(2)I2(1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-201604">Cisco NX-OS Software 6.1(2)I2(1)</FullProductName>
+          </Branch>
+          <Branch Name="6.1(2)I2(2)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-201605">Cisco NX-OS Software 6.1(2)I2(2)</FullProductName>
+          </Branch>
+          <Branch Name="6.1(2)I2(2a)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-201606">Cisco NX-OS Software 6.1(2)I2(2a)</FullProductName>
+          </Branch>
+          <Branch Name="6.1(2)I2(3)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-201607">Cisco NX-OS Software 6.1(2)I2(3)</FullProductName>
+          </Branch>
+          <Branch Name="6.1(2)I2(2b)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-202737">Cisco NX-OS Software 6.1(2)I2(2b)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="6.1(2)I3" Type="Product Version">
+          <Branch Name="6.1(2)I3(1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-205091">Cisco NX-OS Software 6.1(2)I3(1)</FullProductName>
+          </Branch>
+          <Branch Name="6.1(2)I3(2)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-205092">Cisco NX-OS Software 6.1(2)I3(2)</FullProductName>
+          </Branch>
+          <Branch Name="6.1(2)I3(3)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-205093">Cisco NX-OS Software 6.1(2)I3(3)</FullProductName>
+          </Branch>
+          <Branch Name="6.1(2)I3(3a)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-239451">Cisco NX-OS Software 6.1(2)I3(3a)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="6.2" Type="Product Version">
+          <Branch Name="6.2(2)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-196609">Cisco NX-OS Software 6.2(2)</FullProductName>
+          </Branch>
+          <Branch Name="6.2(2a)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-196610">Cisco NX-OS Software 6.2(2a)</FullProductName>
+          </Branch>
+          <Branch Name="6.2(6)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-202738">Cisco NX-OS Software 6.2(6)</FullProductName>
+          </Branch>
+          <Branch Name="6.2(6b)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-205071">Cisco NX-OS Software 6.2(6b)</FullProductName>
+          </Branch>
+          <Branch Name="6.2(8)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-205072">Cisco NX-OS Software 6.2(8)</FullProductName>
+          </Branch>
+          <Branch Name="6.2(8a)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-205073">Cisco NX-OS Software 6.2(8a)</FullProductName>
+          </Branch>
+          <Branch Name="6.2(8b)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-205074">Cisco NX-OS Software 6.2(8b)</FullProductName>
+          </Branch>
+          <Branch Name="6.2(10)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-205075">Cisco NX-OS Software 6.2(10)</FullProductName>
+          </Branch>
+          <Branch Name="6.2(12)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-208194">Cisco NX-OS Software 6.2(12)</FullProductName>
+          </Branch>
+          <Branch Name="6.2(18)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-230441">Cisco NX-OS Software 6.2(18)</FullProductName>
+          </Branch>
+          <Branch Name="6.2(16)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-230442">Cisco NX-OS Software 6.2(16)</FullProductName>
+          </Branch>
+          <Branch Name="6.2(14b)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-230443">Cisco NX-OS Software 6.2(14b)</FullProductName>
+          </Branch>
+          <Branch Name="6.2(14)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-230527">Cisco NX-OS Software 6.2(14)</FullProductName>
+          </Branch>
+          <Branch Name="6.2(14a)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-230528">Cisco NX-OS Software 6.2(14a)</FullProductName>
+          </Branch>
+          <Branch Name="6.2(6a)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-239437">Cisco NX-OS Software 6.2(6a)</FullProductName>
+          </Branch>
+          <Branch Name="6.2(20)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-239445">Cisco NX-OS Software 6.2(20)</FullProductName>
+          </Branch>
+          <Branch Name="6.2(20a)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-248858">Cisco NX-OS Software 6.2(20a)</FullProductName>
+          </Branch>
+          <Branch Name="6.2(22)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-265098">Cisco NX-OS Software 6.2(22)</FullProductName>
+          </Branch>
+          <Branch Name="6.2(24)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-276904">Cisco NX-OS Software 6.2(24)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="7.0(0)N1" Type="Product Version">
+          <Branch Name="7.0(0)N1(1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-201884">Cisco NX-OS Software 7.0(0)N1(1)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="7.0(1)N1" Type="Product Version">
+          <Branch Name="7.0(1)N1(1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-201885">Cisco NX-OS Software 7.0(1)N1(1)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="7.0(2)N1" Type="Product Version">
+          <Branch Name="7.0(2)N1(1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-201886">Cisco NX-OS Software 7.0(2)N1(1)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="7.0(3)I1" Type="Product Version">
+          <Branch Name="7.0(3)I1(1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-208580">Cisco NX-OS Software 7.0(3)I1(1)</FullProductName>
+          </Branch>
+          <Branch Name="7.0(3)I1(1a)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-208581">Cisco NX-OS Software 7.0(3)I1(1a)</FullProductName>
+          </Branch>
+          <Branch Name="7.0(3)I1(1b)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-208582">Cisco NX-OS Software 7.0(3)I1(1b)</FullProductName>
+          </Branch>
+          <Branch Name="7.0(3)I1(1z)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-265100">Cisco NX-OS Software 7.0(3)I1(1z)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="7.0(3)N1" Type="Product Version">
+          <Branch Name="7.0(3)N1(1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-201887">Cisco NX-OS Software 7.0(3)N1(1)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="7.0(4)N1" Type="Product Version">
+          <Branch Name="7.0(4)N1(1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-212037">Cisco NX-OS Software 7.0(4)N1(1)</FullProductName>
+          </Branch>
+          <Branch Name="7.0(4)N1(1a)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-230505">Cisco NX-OS Software 7.0(4)N1(1a)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="7.0(5)N1" Type="Product Version">
+          <Branch Name="7.0(5)N1(1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-212038">Cisco NX-OS Software 7.0(5)N1(1)</FullProductName>
+          </Branch>
+          <Branch Name="7.0(5)N1(1a)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-212039">Cisco NX-OS Software 7.0(5)N1(1a)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="7.0(6)N1" Type="Product Version">
+          <Branch Name="7.0(6)N1(1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-208805">Cisco NX-OS Software 7.0(6)N1(1)</FullProductName>
+          </Branch>
+          <Branch Name="7.0(6)N1(4s)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-230498">Cisco NX-OS Software 7.0(6)N1(4s)</FullProductName>
+          </Branch>
+          <Branch Name="7.0(6)N1(3s)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-230499">Cisco NX-OS Software 7.0(6)N1(3s)</FullProductName>
+          </Branch>
+          <Branch Name="7.0(6)N1(2s)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-230500">Cisco NX-OS Software 7.0(6)N1(2s)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="7.0(7)N1" Type="Product Version">
+          <Branch Name="7.0(7)N1(1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-212040">Cisco NX-OS Software 7.0(7)N1(1)</FullProductName>
+          </Branch>
+          <Branch Name="7.0(7)N1(1b)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-230495">Cisco NX-OS Software 7.0(7)N1(1b)</FullProductName>
+          </Branch>
+          <Branch Name="7.0(7)N1(1a)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-230496">Cisco NX-OS Software 7.0(7)N1(1a)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="7.0(8)N1" Type="Product Version">
+          <Branch Name="7.0(8)N1(1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-220727">Cisco NX-OS Software 7.0(8)N1(1)</FullProductName>
+          </Branch>
+          <Branch Name="7.0(8)N1(1a)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-230493">Cisco NX-OS Software 7.0(8)N1(1a)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="7.1(0)N1" Type="Product Version">
+          <Branch Name="7.1(0)N1(1a)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-212041">Cisco NX-OS Software 7.1(0)N1(1a)</FullProductName>
+          </Branch>
+          <Branch Name="7.1(0)N1(1b)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-212042">Cisco NX-OS Software 7.1(0)N1(1b)</FullProductName>
+          </Branch>
+          <Branch Name="7.1(0)N1(1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-230492">Cisco NX-OS Software 7.1(0)N1(1)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="7.1(1)N1" Type="Product Version">
+          <Branch Name="7.1(1)N1(1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-208806">Cisco NX-OS Software 7.1(1)N1(1)</FullProductName>
+          </Branch>
+          <Branch Name="7.1(1)N1(1a)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-230487">Cisco NX-OS Software 7.1(1)N1(1a)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="7.1(2)N1" Type="Product Version">
+          <Branch Name="7.1(2)N1(1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-212043">Cisco NX-OS Software 7.1(2)N1(1)</FullProductName>
+          </Branch>
+          <Branch Name="7.1(2)N1(1a)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-230485">Cisco NX-OS Software 7.1(2)N1(1a)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="7.1(3)N1" Type="Product Version">
+          <Branch Name="7.1(3)N1(1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-212044">Cisco NX-OS Software 7.1(3)N1(1)</FullProductName>
+          </Branch>
+          <Branch Name="7.1(3)N1(2)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-220733">Cisco NX-OS Software 7.1(3)N1(2)</FullProductName>
+          </Branch>
+          <Branch Name="7.1(3)N1(5)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-230478">Cisco NX-OS Software 7.1(3)N1(5)</FullProductName>
+          </Branch>
+          <Branch Name="7.1(3)N1(4)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-230479">Cisco NX-OS Software 7.1(3)N1(4)</FullProductName>
+          </Branch>
+          <Branch Name="7.1(3)N1(3)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-230480">Cisco NX-OS Software 7.1(3)N1(3)</FullProductName>
+          </Branch>
+          <Branch Name="7.1(3)N1(2a)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-230481">Cisco NX-OS Software 7.1(3)N1(2a)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="7.1(4)N1" Type="Product Version">
+          <Branch Name="7.1(4)N1(1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-220734">Cisco NX-OS Software 7.1(4)N1(1)</FullProductName>
+          </Branch>
+          <Branch Name="7.1(4)N1(1d)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-230474">Cisco NX-OS Software 7.1(4)N1(1d)</FullProductName>
+          </Branch>
+          <Branch Name="7.1(4)N1(1c)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-230475">Cisco NX-OS Software 7.1(4)N1(1c)</FullProductName>
+          </Branch>
+          <Branch Name="7.1(4)N1(1a)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-230476">Cisco NX-OS Software 7.1(4)N1(1a)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="7.1(5)N1" Type="Product Version">
+          <Branch Name="7.1(5)N1(1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-230473">Cisco NX-OS Software 7.1(5)N1(1)</FullProductName>
+          </Branch>
+          <Branch Name="7.1(5)N1(1b)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-257582">Cisco NX-OS Software 7.1(5)N1(1b)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="7.2(0)D1" Type="Product Version">
+          <Branch Name="7.2(0)D1(1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-230440">Cisco NX-OS Software 7.2(0)D1(1)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="7.2(0)N1" Type="Product Version">
+          <Branch Name="7.2(0)N1(1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-212045">Cisco NX-OS Software 7.2(0)N1(1)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="7.2(1)D1" Type="Product Version">
+          <Branch Name="7.2(1)D1(1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-225659">Cisco NX-OS Software 7.2(1)D1(1)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="7.2(1)N1" Type="Product Version">
+          <Branch Name="7.2(1)N1(1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-212046">Cisco NX-OS Software 7.2(1)N1(1)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="7.2(2)D1" Type="Product Version">
+          <Branch Name="7.2(2)D1(2)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-230438">Cisco NX-OS Software 7.2(2)D1(2)</FullProductName>
+          </Branch>
+          <Branch Name="7.2(2)D1(1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-230439">Cisco NX-OS Software 7.2(2)D1(1)</FullProductName>
+          </Branch>
+          <Branch Name="7.2(2)D1(3)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-265129">Cisco NX-OS Software 7.2(2)D1(3)</FullProductName>
+          </Branch>
+          <Branch Name="7.2(2)D1(4)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-265130">Cisco NX-OS Software 7.2(2)D1(4)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="7.3(0)D1" Type="Product Version">
+          <Branch Name="7.3(0)D1(1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-230437">Cisco NX-OS Software 7.3(0)D1(1)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="7.3(0)DX" Type="Product Version">
+          <Branch Name="7.3(0)DX(1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-230436">Cisco NX-OS Software 7.3(0)DX(1)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="7.3(0)N1" Type="Product Version">
+          <Branch Name="7.3(0)N1(1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-220737">Cisco NX-OS Software 7.3(0)N1(1)</FullProductName>
+          </Branch>
+          <Branch Name="7.3(0)N1(1b)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-230468">Cisco NX-OS Software 7.3(0)N1(1b)</FullProductName>
+          </Branch>
+          <Branch Name="7.3(0)N1(1a)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-230469">Cisco NX-OS Software 7.3(0)N1(1a)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="7.3(1)D1" Type="Product Version">
+          <Branch Name="7.3(1)D1(1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-230435">Cisco NX-OS Software 7.3(1)D1(1)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="7.3(1)N1" Type="Product Version">
+          <Branch Name="7.3(1)N1(1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-227352">Cisco NX-OS Software 7.3(1)N1(1)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="7.3(2)D1" Type="Product Version">
+          <Branch Name="7.3(2)D1(1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-230433">Cisco NX-OS Software 7.3(2)D1(1)</FullProductName>
+          </Branch>
+          <Branch Name="7.3(2)D1(2)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-239439">Cisco NX-OS Software 7.3(2)D1(2)</FullProductName>
+          </Branch>
+          <Branch Name="7.3(2)D1(3)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-256870">Cisco NX-OS Software 7.3(2)D1(3)</FullProductName>
+          </Branch>
+          <Branch Name="7.3(2)D1(3a)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-256871">Cisco NX-OS Software 7.3(2)D1(3a)</FullProductName>
+          </Branch>
+          <Branch Name="7.3(2)D1(1d)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-275060">Cisco NX-OS Software 7.3(2)D1(1d)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="7.3(2)N1" Type="Product Version">
+          <Branch Name="7.3(2)N1(1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-230467">Cisco NX-OS Software 7.3(2)N1(1)</FullProductName>
+          </Branch>
+          <Branch Name="7.3(2)N1(1b)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-265131">Cisco NX-OS Software 7.3(2)N1(1b)</FullProductName>
+          </Branch>
+          <Branch Name="7.3(2)N1(1c)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-265132">Cisco NX-OS Software 7.3(2)N1(1c)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="7.3(3)N1" Type="Product Version">
+          <Branch Name="7.3(3)N1(1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-239639">Cisco NX-OS Software 7.3(3)N1(1)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="7.3(4)N1" Type="Product Version">
+          <Branch Name="7.3(4)N1(1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-257397">Cisco NX-OS Software 7.3(4)N1(1)</FullProductName>
+          </Branch>
+          <Branch Name="7.3(4)N1(1a)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-265135">Cisco NX-OS Software 7.3(4)N1(1a)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="7.3(3)D1" Type="Product Version">
+          <Branch Name="7.3(3)D1(1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-257400">Cisco NX-OS Software 7.3(3)D1(1)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="7.3(4)D1" Type="Product Version">
+          <Branch Name="7.3(4)D1(1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-265134">Cisco NX-OS Software 7.3(4)D1(1)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="7.3(5)N1" Type="Product Version">
+          <Branch Name="7.3(5)N1(1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-265137">Cisco NX-OS Software 7.3(5)N1(1)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="5.2(1)SK3" Type="Product Version">
+          <Branch Name="5.2(1)SK3(1.1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-265253">Cisco NX-OS Software 5.2(1)SK3(1.1)</FullProductName>
+          </Branch>
+          <Branch Name="5.2(1)SK3(2.1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-265254">Cisco NX-OS Software 5.2(1)SK3(2.1)</FullProductName>
+          </Branch>
+          <Branch Name="5.2(1)SK3(2.2)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-267107">Cisco NX-OS Software 5.2(1)SK3(2.2)</FullProductName>
+          </Branch>
+          <Branch Name="5.2(1)SK3(2.2b)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-267108">Cisco NX-OS Software 5.2(1)SK3(2.2b)</FullProductName>
+          </Branch>
+          <Branch Name="5.2(1)SK3(2.1a)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-267109">Cisco NX-OS Software 5.2(1)SK3(2.1a)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="5.2(1)SV5" Type="Product Version">
+          <Branch Name="5.2(1)SV5(1.1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-265261">Cisco NX-OS Software 5.2(1)SV5(1.1)</FullProductName>
+          </Branch>
+          <Branch Name="5.2(1)SV5(1.2)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-265262">Cisco NX-OS Software 5.2(1)SV5(1.2)</FullProductName>
+          </Branch>
+          <Branch Name="5.2(1)SV5(1.3)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-274785">Cisco NX-OS Software 5.2(1)SV5(1.3)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="7.3(6)N1" Type="Product Version">
+          <Branch Name="7.3(6)N1(1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-268938">Cisco NX-OS Software 7.3(6)N1(1)</FullProductName>
+          </Branch>
+          <Branch Name="7.3(6)N1(1a)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-272929">Cisco NX-OS Software 7.3(6)N1(1a)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="7.3(5)D1" Type="Product Version">
+          <Branch Name="7.3(5)D1(1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-272931">Cisco NX-OS Software 7.3(5)D1(1)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="7.3(7)N1" Type="Product Version">
+          <Branch Name="7.3(7)N1(1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-276893">Cisco NX-OS Software 7.3(7)N1(1)</FullProductName>
+          </Branch>
+          <Branch Name="7.3(7)N1(1a)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-277344">Cisco NX-OS Software 7.3(7)N1(1a)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="7.3(6)D1" Type="Product Version">
+          <Branch Name="7.3(6)D1(1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-277336">Cisco NX-OS Software 7.3(6)D1(1)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="Cisco Nexus 7000 Series Switches" Type="Product Name">
+          <FullProductName ProductID="CVRFPID-265088">Cisco NX-OS Software Platform Cisco Nexus 7000 Series Switches</FullProductName>
+        </Branch>
+        <Branch Name="Cisco Nexus 5000 Series Switches" Type="Product Name">
+          <FullProductName ProductID="CVRFPID-265090">Cisco NX-OS Software Platform Cisco Nexus 5000 Series Switches</FullProductName>
+        </Branch>
+        <Branch Name="Cisco Nexus 3000 Series Switches" Type="Product Name">
+          <FullProductName ProductID="CVRFPID-265091">Cisco NX-OS Software Platform Cisco Nexus 3000 Series Switches</FullProductName>
+        </Branch>
+        <Branch Name="Cisco Nexus 6000 Series Switches" Type="Product Name">
+          <FullProductName ProductID="CVRFPID-265094">Cisco NX-OS Software Platform Cisco Nexus 6000 Series Switches</FullProductName>
+        </Branch>
+        <Branch Name="Cisco Nexus 9000 Series Switches" Type="Product Name">
+          <FullProductName ProductID="CVRFPID-265096">Cisco NX-OS Software Platform Cisco Nexus 9000 Series Switches</FullProductName>
+        </Branch>
+        <Branch Name="Cisco Nexus 1000V Series Switches" Type="Product Name">
+          <FullProductName ProductID="CVRFPID-265249">Cisco NX-OS Software Platform Cisco Nexus 1000V Series Switches</FullProductName>
+        </Branch>
+      </Branch>
+      <Branch Name="Cisco Unified Computing System (Managed)" Type="Product Name">
+        <FullProductName ProductID="CVRFPID-112776">Cisco Unified Computing System (Managed) </FullProductName>
+      </Branch>
+    </Branch>
+    <Relationship RelatesToProductReference="CVRFPID-265091" RelationType="Installed On" ProductReference="CVRFPID-239579">
+      <FullProductName ProductID="CVRFPID-239579:265091">Cisco NX-OS Software 5.0(3)A1(1) when installed on Cisco Nexus 3000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265091" RelationType="Installed On" ProductReference="CVRFPID-239580">
+      <FullProductName ProductID="CVRFPID-239580:265091">Cisco NX-OS Software 5.0(3)A1(2) when installed on Cisco Nexus 3000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265091" RelationType="Installed On" ProductReference="CVRFPID-239581">
+      <FullProductName ProductID="CVRFPID-239581:265091">Cisco NX-OS Software 5.0(3)A1(2a) when installed on Cisco Nexus 3000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265091" RelationType="Installed On" ProductReference="CVRFPID-191391">
+      <FullProductName ProductID="CVRFPID-191391:265091">Cisco NX-OS Software 5.0(3)U1(1) when installed on Cisco Nexus 3000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265091" RelationType="Installed On" ProductReference="CVRFPID-191392">
+      <FullProductName ProductID="CVRFPID-191392:265091">Cisco NX-OS Software 5.0(3)U1(1a) when installed on Cisco Nexus 3000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265091" RelationType="Installed On" ProductReference="CVRFPID-191393">
+      <FullProductName ProductID="CVRFPID-191393:265091">Cisco NX-OS Software 5.0(3)U1(1b) when installed on Cisco Nexus 3000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265091" RelationType="Installed On" ProductReference="CVRFPID-191466">
+      <FullProductName ProductID="CVRFPID-191466:265091">Cisco NX-OS Software 5.0(3)U1(1d) when installed on Cisco Nexus 3000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265091" RelationType="Installed On" ProductReference="CVRFPID-191467">
+      <FullProductName ProductID="CVRFPID-191467:265091">Cisco NX-OS Software 5.0(3)U1(2) when installed on Cisco Nexus 3000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265091" RelationType="Installed On" ProductReference="CVRFPID-191468">
+      <FullProductName ProductID="CVRFPID-191468:265091">Cisco NX-OS Software 5.0(3)U1(2a) when installed on Cisco Nexus 3000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265091" RelationType="Installed On" ProductReference="CVRFPID-239513">
+      <FullProductName ProductID="CVRFPID-239513:265091">Cisco NX-OS Software 5.0(3)U1(1c) when installed on Cisco Nexus 3000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265091" RelationType="Installed On" ProductReference="CVRFPID-191469">
+      <FullProductName ProductID="CVRFPID-191469:265091">Cisco NX-OS Software 5.0(3)U2(1) when installed on Cisco Nexus 3000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265091" RelationType="Installed On" ProductReference="CVRFPID-191470">
+      <FullProductName ProductID="CVRFPID-191470:265091">Cisco NX-OS Software 5.0(3)U2(2) when installed on Cisco Nexus 3000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265091" RelationType="Installed On" ProductReference="CVRFPID-191471">
+      <FullProductName ProductID="CVRFPID-191471:265091">Cisco NX-OS Software 5.0(3)U2(2a) when installed on Cisco Nexus 3000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265091" RelationType="Installed On" ProductReference="CVRFPID-191472">
+      <FullProductName ProductID="CVRFPID-191472:265091">Cisco NX-OS Software 5.0(3)U2(2b) when installed on Cisco Nexus 3000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265091" RelationType="Installed On" ProductReference="CVRFPID-191473">
+      <FullProductName ProductID="CVRFPID-191473:265091">Cisco NX-OS Software 5.0(3)U2(2c) when installed on Cisco Nexus 3000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265091" RelationType="Installed On" ProductReference="CVRFPID-191474">
+      <FullProductName ProductID="CVRFPID-191474:265091">Cisco NX-OS Software 5.0(3)U2(2d) when installed on Cisco Nexus 3000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265091" RelationType="Installed On" ProductReference="CVRFPID-191475">
+      <FullProductName ProductID="CVRFPID-191475:265091">Cisco NX-OS Software 5.0(3)U3(1) when installed on Cisco Nexus 3000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265091" RelationType="Installed On" ProductReference="CVRFPID-191476">
+      <FullProductName ProductID="CVRFPID-191476:265091">Cisco NX-OS Software 5.0(3)U3(2) when installed on Cisco Nexus 3000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265091" RelationType="Installed On" ProductReference="CVRFPID-191477">
+      <FullProductName ProductID="CVRFPID-191477:265091">Cisco NX-OS Software 5.0(3)U3(2a) when installed on Cisco Nexus 3000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265091" RelationType="Installed On" ProductReference="CVRFPID-191478">
+      <FullProductName ProductID="CVRFPID-191478:265091">Cisco NX-OS Software 5.0(3)U3(2b) when installed on Cisco Nexus 3000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265091" RelationType="Installed On" ProductReference="CVRFPID-191479">
+      <FullProductName ProductID="CVRFPID-191479:265091">Cisco NX-OS Software 5.0(3)U4(1) when installed on Cisco Nexus 3000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265091" RelationType="Installed On" ProductReference="CVRFPID-191480">
+      <FullProductName ProductID="CVRFPID-191480:265091">Cisco NX-OS Software 5.0(3)U5(1) when installed on Cisco Nexus 3000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265091" RelationType="Installed On" ProductReference="CVRFPID-191481">
+      <FullProductName ProductID="CVRFPID-191481:265091">Cisco NX-OS Software 5.0(3)U5(1a) when installed on Cisco Nexus 3000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265091" RelationType="Installed On" ProductReference="CVRFPID-191482">
+      <FullProductName ProductID="CVRFPID-191482:265091">Cisco NX-OS Software 5.0(3)U5(1b) when installed on Cisco Nexus 3000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265091" RelationType="Installed On" ProductReference="CVRFPID-191483">
+      <FullProductName ProductID="CVRFPID-191483:265091">Cisco NX-OS Software 5.0(3)U5(1c) when installed on Cisco Nexus 3000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265091" RelationType="Installed On" ProductReference="CVRFPID-191484">
+      <FullProductName ProductID="CVRFPID-191484:265091">Cisco NX-OS Software 5.0(3)U5(1d) when installed on Cisco Nexus 3000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265091" RelationType="Installed On" ProductReference="CVRFPID-191485">
+      <FullProductName ProductID="CVRFPID-191485:265091">Cisco NX-OS Software 5.0(3)U5(1e) when installed on Cisco Nexus 3000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265091" RelationType="Installed On" ProductReference="CVRFPID-196613">
+      <FullProductName ProductID="CVRFPID-196613:265091">Cisco NX-OS Software 5.0(3)U5(1f) when installed on Cisco Nexus 3000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265091" RelationType="Installed On" ProductReference="CVRFPID-196614">
+      <FullProductName ProductID="CVRFPID-196614:265091">Cisco NX-OS Software 5.0(3)U5(1g) when installed on Cisco Nexus 3000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265091" RelationType="Installed On" ProductReference="CVRFPID-196615">
+      <FullProductName ProductID="CVRFPID-196615:265091">Cisco NX-OS Software 5.0(3)U5(1h) when installed on Cisco Nexus 3000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265091" RelationType="Installed On" ProductReference="CVRFPID-239530">
+      <FullProductName ProductID="CVRFPID-239530:265091">Cisco NX-OS Software 5.0(3)U5(1i) when installed on Cisco Nexus 3000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265091" RelationType="Installed On" ProductReference="CVRFPID-239531">
+      <FullProductName ProductID="CVRFPID-239531:265091">Cisco NX-OS Software 5.0(3)U5(1j) when installed on Cisco Nexus 3000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265249" RelationType="Installed On" ProductReference="CVRFPID-195841">
+      <FullProductName ProductID="CVRFPID-195841:265249">Cisco NX-OS Software 5.2(1)SM1(5.1) when installed on Cisco Nexus 1000V Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265249" RelationType="Installed On" ProductReference="CVRFPID-253287">
+      <FullProductName ProductID="CVRFPID-253287:265249">Cisco NX-OS Software 5.2(1)SM1(5.2) when installed on Cisco Nexus 1000V Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265249" RelationType="Installed On" ProductReference="CVRFPID-253288">
+      <FullProductName ProductID="CVRFPID-253288:265249">Cisco NX-OS Software 5.2(1)SM1(5.2a) when installed on Cisco Nexus 1000V Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265249" RelationType="Installed On" ProductReference="CVRFPID-253289">
+      <FullProductName ProductID="CVRFPID-253289:265249">Cisco NX-OS Software 5.2(1)SM1(5.2b) when installed on Cisco Nexus 1000V Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265249" RelationType="Installed On" ProductReference="CVRFPID-253290">
+      <FullProductName ProductID="CVRFPID-253290:265249">Cisco NX-OS Software 5.2(1)SM1(5.2c) when installed on Cisco Nexus 1000V Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265249" RelationType="Installed On" ProductReference="CVRFPID-253291">
+      <FullProductName ProductID="CVRFPID-253291:265249">Cisco NX-OS Software 5.2(1)SM3(1.1) when installed on Cisco Nexus 1000V Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265249" RelationType="Installed On" ProductReference="CVRFPID-253292">
+      <FullProductName ProductID="CVRFPID-253292:265249">Cisco NX-OS Software 5.2(1)SM3(1.1a) when installed on Cisco Nexus 1000V Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265249" RelationType="Installed On" ProductReference="CVRFPID-253293">
+      <FullProductName ProductID="CVRFPID-253293:265249">Cisco NX-OS Software 5.2(1)SM3(1.1b) when installed on Cisco Nexus 1000V Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265249" RelationType="Installed On" ProductReference="CVRFPID-253294">
+      <FullProductName ProductID="CVRFPID-253294:265249">Cisco NX-OS Software 5.2(1)SM3(1.1c) when installed on Cisco Nexus 1000V Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265249" RelationType="Installed On" ProductReference="CVRFPID-265255">
+      <FullProductName ProductID="CVRFPID-265255:265249">Cisco NX-OS Software 5.2(1)SM3(2.1) when installed on Cisco Nexus 1000V Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265249" RelationType="Installed On" ProductReference="CVRFPID-210024">
+      <FullProductName ProductID="CVRFPID-210024:265249">Cisco NX-OS Software 5.2(1)SV3(1.4) when installed on Cisco Nexus 1000V Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265249" RelationType="Installed On" ProductReference="CVRFPID-217747">
+      <FullProductName ProductID="CVRFPID-217747:265249">Cisco NX-OS Software 5.2(1)SV3(1.1) when installed on Cisco Nexus 1000V Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265249" RelationType="Installed On" ProductReference="CVRFPID-217748">
+      <FullProductName ProductID="CVRFPID-217748:265249">Cisco NX-OS Software 5.2(1)SV3(1.3) when installed on Cisco Nexus 1000V Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265249" RelationType="Installed On" ProductReference="CVRFPID-220693">
+      <FullProductName ProductID="CVRFPID-220693:265249">Cisco NX-OS Software 5.2(1)SV3(1.5a) when installed on Cisco Nexus 1000V Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265249" RelationType="Installed On" ProductReference="CVRFPID-220694">
+      <FullProductName ProductID="CVRFPID-220694:265249">Cisco NX-OS Software 5.2(1)SV3(1.5b) when installed on Cisco Nexus 1000V Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265249" RelationType="Installed On" ProductReference="CVRFPID-220695">
+      <FullProductName ProductID="CVRFPID-220695:265249">Cisco NX-OS Software 5.2(1)SV3(1.6) when installed on Cisco Nexus 1000V Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265249" RelationType="Installed On" ProductReference="CVRFPID-220696">
+      <FullProductName ProductID="CVRFPID-220696:265249">Cisco NX-OS Software 5.2(1)SV3(1.10) when installed on Cisco Nexus 1000V Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265249" RelationType="Installed On" ProductReference="CVRFPID-220697">
+      <FullProductName ProductID="CVRFPID-220697:265249">Cisco NX-OS Software 5.2(1)SV3(1.15) when installed on Cisco Nexus 1000V Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265249" RelationType="Installed On" ProductReference="CVRFPID-220698">
+      <FullProductName ProductID="CVRFPID-220698:265249">Cisco NX-OS Software 5.2(1)SV3(2.1) when installed on Cisco Nexus 1000V Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265249" RelationType="Installed On" ProductReference="CVRFPID-230579">
+      <FullProductName ProductID="CVRFPID-230579:265249">Cisco NX-OS Software 5.2(1)SV3(2.5) when installed on Cisco Nexus 1000V Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265249" RelationType="Installed On" ProductReference="CVRFPID-230580">
+      <FullProductName ProductID="CVRFPID-230580:265249">Cisco NX-OS Software 5.2(1)SV3(2.8) when installed on Cisco Nexus 1000V Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265249" RelationType="Installed On" ProductReference="CVRFPID-230581">
+      <FullProductName ProductID="CVRFPID-230581:265249">Cisco NX-OS Software 5.2(1)SV3(3.1) when installed on Cisco Nexus 1000V Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265249" RelationType="Installed On" ProductReference="CVRFPID-239814">
+      <FullProductName ProductID="CVRFPID-239814:265249">Cisco NX-OS Software 5.2(1)SV3(1.2) when installed on Cisco Nexus 1000V Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265249" RelationType="Installed On" ProductReference="CVRFPID-239815">
+      <FullProductName ProductID="CVRFPID-239815:265249">Cisco NX-OS Software 5.2(1)SV3(1.4b) when installed on Cisco Nexus 1000V Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265249" RelationType="Installed On" ProductReference="CVRFPID-239817">
+      <FullProductName ProductID="CVRFPID-239817:265249">Cisco NX-OS Software 5.2(1)SV3(3.15) when installed on Cisco Nexus 1000V Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265249" RelationType="Installed On" ProductReference="CVRFPID-239818">
+      <FullProductName ProductID="CVRFPID-239818:265249">Cisco NX-OS Software 5.2(1)SV3(4.1) when installed on Cisco Nexus 1000V Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265249" RelationType="Installed On" ProductReference="CVRFPID-265259">
+      <FullProductName ProductID="CVRFPID-265259:265249">Cisco NX-OS Software 5.2(1)SV3(4.1a) when installed on Cisco Nexus 1000V Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265249" RelationType="Installed On" ProductReference="CVRFPID-277000">
+      <FullProductName ProductID="CVRFPID-277000:265249">Cisco NX-OS Software 5.2(1)SV3(4.1b) when installed on Cisco Nexus 1000V Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265091" RelationType="Installed On" ProductReference="CVRFPID-239582">
+      <FullProductName ProductID="CVRFPID-239582:265091">Cisco NX-OS Software 6.0(2)A1(1) when installed on Cisco Nexus 3000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265091" RelationType="Installed On" ProductReference="CVRFPID-239583">
+      <FullProductName ProductID="CVRFPID-239583:265091">Cisco NX-OS Software 6.0(2)A1(1a) when installed on Cisco Nexus 3000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265091" RelationType="Installed On" ProductReference="CVRFPID-239584">
+      <FullProductName ProductID="CVRFPID-239584:265091">Cisco NX-OS Software 6.0(2)A1(1b) when installed on Cisco Nexus 3000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265091" RelationType="Installed On" ProductReference="CVRFPID-239585">
+      <FullProductName ProductID="CVRFPID-239585:265091">Cisco NX-OS Software 6.0(2)A1(1c) when installed on Cisco Nexus 3000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265091" RelationType="Installed On" ProductReference="CVRFPID-239586">
+      <FullProductName ProductID="CVRFPID-239586:265091">Cisco NX-OS Software 6.0(2)A1(1d) when installed on Cisco Nexus 3000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265091" RelationType="Installed On" ProductReference="CVRFPID-239587">
+      <FullProductName ProductID="CVRFPID-239587:265091">Cisco NX-OS Software 6.0(2)A1(1e) when installed on Cisco Nexus 3000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265091" RelationType="Installed On" ProductReference="CVRFPID-239588">
+      <FullProductName ProductID="CVRFPID-239588:265091">Cisco NX-OS Software 6.0(2)A1(1f) when installed on Cisco Nexus 3000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265091" RelationType="Installed On" ProductReference="CVRFPID-239589">
+      <FullProductName ProductID="CVRFPID-239589:265091">Cisco NX-OS Software 6.0(2)A1(2d) when installed on Cisco Nexus 3000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265091" RelationType="Installed On" ProductReference="CVRFPID-239590">
+      <FullProductName ProductID="CVRFPID-239590:265091">Cisco NX-OS Software 6.0(2)A3(1) when installed on Cisco Nexus 3000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265091" RelationType="Installed On" ProductReference="CVRFPID-239591">
+      <FullProductName ProductID="CVRFPID-239591:265091">Cisco NX-OS Software 6.0(2)A3(2) when installed on Cisco Nexus 3000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265091" RelationType="Installed On" ProductReference="CVRFPID-239592">
+      <FullProductName ProductID="CVRFPID-239592:265091">Cisco NX-OS Software 6.0(2)A3(4) when installed on Cisco Nexus 3000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265091" RelationType="Installed On" ProductReference="CVRFPID-239593">
+      <FullProductName ProductID="CVRFPID-239593:265091">Cisco NX-OS Software 6.0(2)A4(1) when installed on Cisco Nexus 3000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265091" RelationType="Installed On" ProductReference="CVRFPID-239594">
+      <FullProductName ProductID="CVRFPID-239594:265091">Cisco NX-OS Software 6.0(2)A4(2) when installed on Cisco Nexus 3000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265091" RelationType="Installed On" ProductReference="CVRFPID-239595">
+      <FullProductName ProductID="CVRFPID-239595:265091">Cisco NX-OS Software 6.0(2)A4(3) when installed on Cisco Nexus 3000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265091" RelationType="Installed On" ProductReference="CVRFPID-239596">
+      <FullProductName ProductID="CVRFPID-239596:265091">Cisco NX-OS Software 6.0(2)A4(4) when installed on Cisco Nexus 3000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265091" RelationType="Installed On" ProductReference="CVRFPID-239597">
+      <FullProductName ProductID="CVRFPID-239597:265091">Cisco NX-OS Software 6.0(2)A4(5) when installed on Cisco Nexus 3000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265091" RelationType="Installed On" ProductReference="CVRFPID-239598">
+      <FullProductName ProductID="CVRFPID-239598:265091">Cisco NX-OS Software 6.0(2)A4(6) when installed on Cisco Nexus 3000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265091" RelationType="Installed On" ProductReference="CVRFPID-194693">
+      <FullProductName ProductID="CVRFPID-194693:265091">Cisco NX-OS Software 6.0(2)U1(1) when installed on Cisco Nexus 3000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265091" RelationType="Installed On" ProductReference="CVRFPID-194694">
+      <FullProductName ProductID="CVRFPID-194694:265091">Cisco NX-OS Software 6.0(2)U1(2) when installed on Cisco Nexus 3000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265091" RelationType="Installed On" ProductReference="CVRFPID-196616">
+      <FullProductName ProductID="CVRFPID-196616:265091">Cisco NX-OS Software 6.0(2)U1(1a) when installed on Cisco Nexus 3000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265091" RelationType="Installed On" ProductReference="CVRFPID-196617">
+      <FullProductName ProductID="CVRFPID-196617:265091">Cisco NX-OS Software 6.0(2)U1(3) when installed on Cisco Nexus 3000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265091" RelationType="Installed On" ProductReference="CVRFPID-205076">
+      <FullProductName ProductID="CVRFPID-205076:265091">Cisco NX-OS Software 6.0(2)U1(4) when installed on Cisco Nexus 3000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265091" RelationType="Installed On" ProductReference="CVRFPID-205077">
+      <FullProductName ProductID="CVRFPID-205077:265091">Cisco NX-OS Software 6.0(2)U2(1) when installed on Cisco Nexus 3000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265091" RelationType="Installed On" ProductReference="CVRFPID-205078">
+      <FullProductName ProductID="CVRFPID-205078:265091">Cisco NX-OS Software 6.0(2)U2(2) when installed on Cisco Nexus 3000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265091" RelationType="Installed On" ProductReference="CVRFPID-205079">
+      <FullProductName ProductID="CVRFPID-205079:265091">Cisco NX-OS Software 6.0(2)U2(3) when installed on Cisco Nexus 3000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265091" RelationType="Installed On" ProductReference="CVRFPID-205080">
+      <FullProductName ProductID="CVRFPID-205080:265091">Cisco NX-OS Software 6.0(2)U2(4) when installed on Cisco Nexus 3000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265091" RelationType="Installed On" ProductReference="CVRFPID-205081">
+      <FullProductName ProductID="CVRFPID-205081:265091">Cisco NX-OS Software 6.0(2)U2(5) when installed on Cisco Nexus 3000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265091" RelationType="Installed On" ProductReference="CVRFPID-205082">
+      <FullProductName ProductID="CVRFPID-205082:265091">Cisco NX-OS Software 6.0(2)U2(6) when installed on Cisco Nexus 3000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265091" RelationType="Installed On" ProductReference="CVRFPID-205083">
+      <FullProductName ProductID="CVRFPID-205083:265091">Cisco NX-OS Software 6.0(2)U3(1) when installed on Cisco Nexus 3000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265091" RelationType="Installed On" ProductReference="CVRFPID-205084">
+      <FullProductName ProductID="CVRFPID-205084:265091">Cisco NX-OS Software 6.0(2)U3(2) when installed on Cisco Nexus 3000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265091" RelationType="Installed On" ProductReference="CVRFPID-205085">
+      <FullProductName ProductID="CVRFPID-205085:265091">Cisco NX-OS Software 6.0(2)U3(3) when installed on Cisco Nexus 3000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265091" RelationType="Installed On" ProductReference="CVRFPID-205086">
+      <FullProductName ProductID="CVRFPID-205086:265091">Cisco NX-OS Software 6.0(2)U3(4) when installed on Cisco Nexus 3000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265091" RelationType="Installed On" ProductReference="CVRFPID-205087">
+      <FullProductName ProductID="CVRFPID-205087:265091">Cisco NX-OS Software 6.0(2)U3(5) when installed on Cisco Nexus 3000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265091" RelationType="Installed On" ProductReference="CVRFPID-239536">
+      <FullProductName ProductID="CVRFPID-239536:265091">Cisco NX-OS Software 6.0(2)U3(6) when installed on Cisco Nexus 3000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265091" RelationType="Installed On" ProductReference="CVRFPID-239537">
+      <FullProductName ProductID="CVRFPID-239537:265091">Cisco NX-OS Software 6.0(2)U3(7) when installed on Cisco Nexus 3000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265091" RelationType="Installed On" ProductReference="CVRFPID-239538">
+      <FullProductName ProductID="CVRFPID-239538:265091">Cisco NX-OS Software 6.0(2)U3(8) when installed on Cisco Nexus 3000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265091" RelationType="Installed On" ProductReference="CVRFPID-239539">
+      <FullProductName ProductID="CVRFPID-239539:265091">Cisco NX-OS Software 6.0(2)U3(9) when installed on Cisco Nexus 3000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265091" RelationType="Installed On" ProductReference="CVRFPID-203349">
+      <FullProductName ProductID="CVRFPID-203349:265091">Cisco NX-OS Software 6.0(2)U4(1) when installed on Cisco Nexus 3000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265091" RelationType="Installed On" ProductReference="CVRFPID-205088">
+      <FullProductName ProductID="CVRFPID-205088:265091">Cisco NX-OS Software 6.0(2)U4(2) when installed on Cisco Nexus 3000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265091" RelationType="Installed On" ProductReference="CVRFPID-205089">
+      <FullProductName ProductID="CVRFPID-205089:265091">Cisco NX-OS Software 6.0(2)U4(3) when installed on Cisco Nexus 3000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265091" RelationType="Installed On" ProductReference="CVRFPID-239545">
+      <FullProductName ProductID="CVRFPID-239545:265091">Cisco NX-OS Software 6.0(2)U4(4) when installed on Cisco Nexus 3000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-239450">
+      <FullProductName ProductID="CVRFPID-239450:265096">Cisco NX-OS Software 6.1(2)I1(3) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-240153">
+      <FullProductName ProductID="CVRFPID-240153:265096">Cisco NX-OS Software 6.1(2)I1(2) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-201604">
+      <FullProductName ProductID="CVRFPID-201604:265096">Cisco NX-OS Software 6.1(2)I2(1) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-201605">
+      <FullProductName ProductID="CVRFPID-201605:265096">Cisco NX-OS Software 6.1(2)I2(2) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265091" RelationType="Installed On" ProductReference="CVRFPID-201606">
+      <FullProductName ProductID="CVRFPID-201606:265091">Cisco NX-OS Software 6.1(2)I2(2a) when installed on Cisco Nexus 3000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-201606">
+      <FullProductName ProductID="CVRFPID-201606:265096">Cisco NX-OS Software 6.1(2)I2(2a) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-201607">
+      <FullProductName ProductID="CVRFPID-201607:265096">Cisco NX-OS Software 6.1(2)I2(3) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265091" RelationType="Installed On" ProductReference="CVRFPID-202737">
+      <FullProductName ProductID="CVRFPID-202737:265091">Cisco NX-OS Software 6.1(2)I2(2b) when installed on Cisco Nexus 3000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-202737">
+      <FullProductName ProductID="CVRFPID-202737:265096">Cisco NX-OS Software 6.1(2)I2(2b) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265091" RelationType="Installed On" ProductReference="CVRFPID-205091">
+      <FullProductName ProductID="CVRFPID-205091:265091">Cisco NX-OS Software 6.1(2)I3(1) when installed on Cisco Nexus 3000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-205091">
+      <FullProductName ProductID="CVRFPID-205091:265096">Cisco NX-OS Software 6.1(2)I3(1) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265091" RelationType="Installed On" ProductReference="CVRFPID-205092">
+      <FullProductName ProductID="CVRFPID-205092:265091">Cisco NX-OS Software 6.1(2)I3(2) when installed on Cisco Nexus 3000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-205092">
+      <FullProductName ProductID="CVRFPID-205092:265096">Cisco NX-OS Software 6.1(2)I3(2) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265091" RelationType="Installed On" ProductReference="CVRFPID-205093">
+      <FullProductName ProductID="CVRFPID-205093:265091">Cisco NX-OS Software 6.1(2)I3(3) when installed on Cisco Nexus 3000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-205093">
+      <FullProductName ProductID="CVRFPID-205093:265096">Cisco NX-OS Software 6.1(2)I3(3) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265091" RelationType="Installed On" ProductReference="CVRFPID-239451">
+      <FullProductName ProductID="CVRFPID-239451:265091">Cisco NX-OS Software 6.1(2)I3(3a) when installed on Cisco Nexus 3000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-239451">
+      <FullProductName ProductID="CVRFPID-239451:265096">Cisco NX-OS Software 6.1(2)I3(3a) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265088" RelationType="Installed On" ProductReference="CVRFPID-196609">
+      <FullProductName ProductID="CVRFPID-196609:265088">Cisco NX-OS Software 6.2(2) when installed on Cisco Nexus 7000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265088" RelationType="Installed On" ProductReference="CVRFPID-196610">
+      <FullProductName ProductID="CVRFPID-196610:265088">Cisco NX-OS Software 6.2(2a) when installed on Cisco Nexus 7000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265088" RelationType="Installed On" ProductReference="CVRFPID-202738">
+      <FullProductName ProductID="CVRFPID-202738:265088">Cisco NX-OS Software 6.2(6) when installed on Cisco Nexus 7000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265088" RelationType="Installed On" ProductReference="CVRFPID-205071">
+      <FullProductName ProductID="CVRFPID-205071:265088">Cisco NX-OS Software 6.2(6b) when installed on Cisco Nexus 7000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265088" RelationType="Installed On" ProductReference="CVRFPID-205072">
+      <FullProductName ProductID="CVRFPID-205072:265088">Cisco NX-OS Software 6.2(8) when installed on Cisco Nexus 7000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265088" RelationType="Installed On" ProductReference="CVRFPID-205073">
+      <FullProductName ProductID="CVRFPID-205073:265088">Cisco NX-OS Software 6.2(8a) when installed on Cisco Nexus 7000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265088" RelationType="Installed On" ProductReference="CVRFPID-205074">
+      <FullProductName ProductID="CVRFPID-205074:265088">Cisco NX-OS Software 6.2(8b) when installed on Cisco Nexus 7000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265088" RelationType="Installed On" ProductReference="CVRFPID-205075">
+      <FullProductName ProductID="CVRFPID-205075:265088">Cisco NX-OS Software 6.2(10) when installed on Cisco Nexus 7000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265088" RelationType="Installed On" ProductReference="CVRFPID-208194">
+      <FullProductName ProductID="CVRFPID-208194:265088">Cisco NX-OS Software 6.2(12) when installed on Cisco Nexus 7000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265088" RelationType="Installed On" ProductReference="CVRFPID-230441">
+      <FullProductName ProductID="CVRFPID-230441:265088">Cisco NX-OS Software 6.2(18) when installed on Cisco Nexus 7000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265088" RelationType="Installed On" ProductReference="CVRFPID-230442">
+      <FullProductName ProductID="CVRFPID-230442:265088">Cisco NX-OS Software 6.2(16) when installed on Cisco Nexus 7000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265088" RelationType="Installed On" ProductReference="CVRFPID-230443">
+      <FullProductName ProductID="CVRFPID-230443:265088">Cisco NX-OS Software 6.2(14b) when installed on Cisco Nexus 7000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265088" RelationType="Installed On" ProductReference="CVRFPID-230527">
+      <FullProductName ProductID="CVRFPID-230527:265088">Cisco NX-OS Software 6.2(14) when installed on Cisco Nexus 7000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265088" RelationType="Installed On" ProductReference="CVRFPID-230528">
+      <FullProductName ProductID="CVRFPID-230528:265088">Cisco NX-OS Software 6.2(14a) when installed on Cisco Nexus 7000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265088" RelationType="Installed On" ProductReference="CVRFPID-239437">
+      <FullProductName ProductID="CVRFPID-239437:265088">Cisco NX-OS Software 6.2(6a) when installed on Cisco Nexus 7000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265088" RelationType="Installed On" ProductReference="CVRFPID-239445">
+      <FullProductName ProductID="CVRFPID-239445:265088">Cisco NX-OS Software 6.2(20) when installed on Cisco Nexus 7000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265088" RelationType="Installed On" ProductReference="CVRFPID-248858">
+      <FullProductName ProductID="CVRFPID-248858:265088">Cisco NX-OS Software 6.2(20a) when installed on Cisco Nexus 7000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265088" RelationType="Installed On" ProductReference="CVRFPID-265098">
+      <FullProductName ProductID="CVRFPID-265098:265088">Cisco NX-OS Software 6.2(22) when installed on Cisco Nexus 7000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265088" RelationType="Installed On" ProductReference="CVRFPID-276904">
+      <FullProductName ProductID="CVRFPID-276904:265088">Cisco NX-OS Software 6.2(24) when installed on Cisco Nexus 7000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265090" RelationType="Installed On" ProductReference="CVRFPID-201884">
+      <FullProductName ProductID="CVRFPID-201884:265090">Cisco NX-OS Software 7.0(0)N1(1) when installed on Cisco Nexus 5000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265094" RelationType="Installed On" ProductReference="CVRFPID-201884">
+      <FullProductName ProductID="CVRFPID-201884:265094">Cisco NX-OS Software 7.0(0)N1(1) when installed on Cisco Nexus 6000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265090" RelationType="Installed On" ProductReference="CVRFPID-201885">
+      <FullProductName ProductID="CVRFPID-201885:265090">Cisco NX-OS Software 7.0(1)N1(1) when installed on Cisco Nexus 5000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265094" RelationType="Installed On" ProductReference="CVRFPID-201885">
+      <FullProductName ProductID="CVRFPID-201885:265094">Cisco NX-OS Software 7.0(1)N1(1) when installed on Cisco Nexus 6000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265090" RelationType="Installed On" ProductReference="CVRFPID-201886">
+      <FullProductName ProductID="CVRFPID-201886:265090">Cisco NX-OS Software 7.0(2)N1(1) when installed on Cisco Nexus 5000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265094" RelationType="Installed On" ProductReference="CVRFPID-201886">
+      <FullProductName ProductID="CVRFPID-201886:265094">Cisco NX-OS Software 7.0(2)N1(1) when installed on Cisco Nexus 6000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265091" RelationType="Installed On" ProductReference="CVRFPID-208580">
+      <FullProductName ProductID="CVRFPID-208580:265091">Cisco NX-OS Software 7.0(3)I1(1) when installed on Cisco Nexus 3000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-208580">
+      <FullProductName ProductID="CVRFPID-208580:265096">Cisco NX-OS Software 7.0(3)I1(1) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265091" RelationType="Installed On" ProductReference="CVRFPID-208581">
+      <FullProductName ProductID="CVRFPID-208581:265091">Cisco NX-OS Software 7.0(3)I1(1a) when installed on Cisco Nexus 3000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-208581">
+      <FullProductName ProductID="CVRFPID-208581:265096">Cisco NX-OS Software 7.0(3)I1(1a) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265091" RelationType="Installed On" ProductReference="CVRFPID-208582">
+      <FullProductName ProductID="CVRFPID-208582:265091">Cisco NX-OS Software 7.0(3)I1(1b) when installed on Cisco Nexus 3000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-208582">
+      <FullProductName ProductID="CVRFPID-208582:265096">Cisco NX-OS Software 7.0(3)I1(1b) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265091" RelationType="Installed On" ProductReference="CVRFPID-265100">
+      <FullProductName ProductID="CVRFPID-265100:265091">Cisco NX-OS Software 7.0(3)I1(1z) when installed on Cisco Nexus 3000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-265100">
+      <FullProductName ProductID="CVRFPID-265100:265096">Cisco NX-OS Software 7.0(3)I1(1z) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265090" RelationType="Installed On" ProductReference="CVRFPID-201887">
+      <FullProductName ProductID="CVRFPID-201887:265090">Cisco NX-OS Software 7.0(3)N1(1) when installed on Cisco Nexus 5000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265094" RelationType="Installed On" ProductReference="CVRFPID-201887">
+      <FullProductName ProductID="CVRFPID-201887:265094">Cisco NX-OS Software 7.0(3)N1(1) when installed on Cisco Nexus 6000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265090" RelationType="Installed On" ProductReference="CVRFPID-212037">
+      <FullProductName ProductID="CVRFPID-212037:265090">Cisco NX-OS Software 7.0(4)N1(1) when installed on Cisco Nexus 5000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265094" RelationType="Installed On" ProductReference="CVRFPID-212037">
+      <FullProductName ProductID="CVRFPID-212037:265094">Cisco NX-OS Software 7.0(4)N1(1) when installed on Cisco Nexus 6000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265090" RelationType="Installed On" ProductReference="CVRFPID-230505">
+      <FullProductName ProductID="CVRFPID-230505:265090">Cisco NX-OS Software 7.0(4)N1(1a) when installed on Cisco Nexus 5000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265094" RelationType="Installed On" ProductReference="CVRFPID-230505">
+      <FullProductName ProductID="CVRFPID-230505:265094">Cisco NX-OS Software 7.0(4)N1(1a) when installed on Cisco Nexus 6000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265090" RelationType="Installed On" ProductReference="CVRFPID-212038">
+      <FullProductName ProductID="CVRFPID-212038:265090">Cisco NX-OS Software 7.0(5)N1(1) when installed on Cisco Nexus 5000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265094" RelationType="Installed On" ProductReference="CVRFPID-212038">
+      <FullProductName ProductID="CVRFPID-212038:265094">Cisco NX-OS Software 7.0(5)N1(1) when installed on Cisco Nexus 6000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265090" RelationType="Installed On" ProductReference="CVRFPID-212039">
+      <FullProductName ProductID="CVRFPID-212039:265090">Cisco NX-OS Software 7.0(5)N1(1a) when installed on Cisco Nexus 5000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265094" RelationType="Installed On" ProductReference="CVRFPID-212039">
+      <FullProductName ProductID="CVRFPID-212039:265094">Cisco NX-OS Software 7.0(5)N1(1a) when installed on Cisco Nexus 6000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265090" RelationType="Installed On" ProductReference="CVRFPID-208805">
+      <FullProductName ProductID="CVRFPID-208805:265090">Cisco NX-OS Software 7.0(6)N1(1) when installed on Cisco Nexus 5000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265094" RelationType="Installed On" ProductReference="CVRFPID-208805">
+      <FullProductName ProductID="CVRFPID-208805:265094">Cisco NX-OS Software 7.0(6)N1(1) when installed on Cisco Nexus 6000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265090" RelationType="Installed On" ProductReference="CVRFPID-230498">
+      <FullProductName ProductID="CVRFPID-230498:265090">Cisco NX-OS Software 7.0(6)N1(4s) when installed on Cisco Nexus 5000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265094" RelationType="Installed On" ProductReference="CVRFPID-230498">
+      <FullProductName ProductID="CVRFPID-230498:265094">Cisco NX-OS Software 7.0(6)N1(4s) when installed on Cisco Nexus 6000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265090" RelationType="Installed On" ProductReference="CVRFPID-230499">
+      <FullProductName ProductID="CVRFPID-230499:265090">Cisco NX-OS Software 7.0(6)N1(3s) when installed on Cisco Nexus 5000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265094" RelationType="Installed On" ProductReference="CVRFPID-230499">
+      <FullProductName ProductID="CVRFPID-230499:265094">Cisco NX-OS Software 7.0(6)N1(3s) when installed on Cisco Nexus 6000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265090" RelationType="Installed On" ProductReference="CVRFPID-230500">
+      <FullProductName ProductID="CVRFPID-230500:265090">Cisco NX-OS Software 7.0(6)N1(2s) when installed on Cisco Nexus 5000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265094" RelationType="Installed On" ProductReference="CVRFPID-230500">
+      <FullProductName ProductID="CVRFPID-230500:265094">Cisco NX-OS Software 7.0(6)N1(2s) when installed on Cisco Nexus 6000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265090" RelationType="Installed On" ProductReference="CVRFPID-212040">
+      <FullProductName ProductID="CVRFPID-212040:265090">Cisco NX-OS Software 7.0(7)N1(1) when installed on Cisco Nexus 5000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265094" RelationType="Installed On" ProductReference="CVRFPID-212040">
+      <FullProductName ProductID="CVRFPID-212040:265094">Cisco NX-OS Software 7.0(7)N1(1) when installed on Cisco Nexus 6000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265090" RelationType="Installed On" ProductReference="CVRFPID-230495">
+      <FullProductName ProductID="CVRFPID-230495:265090">Cisco NX-OS Software 7.0(7)N1(1b) when installed on Cisco Nexus 5000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265094" RelationType="Installed On" ProductReference="CVRFPID-230495">
+      <FullProductName ProductID="CVRFPID-230495:265094">Cisco NX-OS Software 7.0(7)N1(1b) when installed on Cisco Nexus 6000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265090" RelationType="Installed On" ProductReference="CVRFPID-230496">
+      <FullProductName ProductID="CVRFPID-230496:265090">Cisco NX-OS Software 7.0(7)N1(1a) when installed on Cisco Nexus 5000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265094" RelationType="Installed On" ProductReference="CVRFPID-230496">
+      <FullProductName ProductID="CVRFPID-230496:265094">Cisco NX-OS Software 7.0(7)N1(1a) when installed on Cisco Nexus 6000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265090" RelationType="Installed On" ProductReference="CVRFPID-220727">
+      <FullProductName ProductID="CVRFPID-220727:265090">Cisco NX-OS Software 7.0(8)N1(1) when installed on Cisco Nexus 5000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265094" RelationType="Installed On" ProductReference="CVRFPID-220727">
+      <FullProductName ProductID="CVRFPID-220727:265094">Cisco NX-OS Software 7.0(8)N1(1) when installed on Cisco Nexus 6000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265090" RelationType="Installed On" ProductReference="CVRFPID-230493">
+      <FullProductName ProductID="CVRFPID-230493:265090">Cisco NX-OS Software 7.0(8)N1(1a) when installed on Cisco Nexus 5000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265094" RelationType="Installed On" ProductReference="CVRFPID-230493">
+      <FullProductName ProductID="CVRFPID-230493:265094">Cisco NX-OS Software 7.0(8)N1(1a) when installed on Cisco Nexus 6000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265090" RelationType="Installed On" ProductReference="CVRFPID-212041">
+      <FullProductName ProductID="CVRFPID-212041:265090">Cisco NX-OS Software 7.1(0)N1(1a) when installed on Cisco Nexus 5000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265094" RelationType="Installed On" ProductReference="CVRFPID-212041">
+      <FullProductName ProductID="CVRFPID-212041:265094">Cisco NX-OS Software 7.1(0)N1(1a) when installed on Cisco Nexus 6000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265090" RelationType="Installed On" ProductReference="CVRFPID-212042">
+      <FullProductName ProductID="CVRFPID-212042:265090">Cisco NX-OS Software 7.1(0)N1(1b) when installed on Cisco Nexus 5000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265094" RelationType="Installed On" ProductReference="CVRFPID-212042">
+      <FullProductName ProductID="CVRFPID-212042:265094">Cisco NX-OS Software 7.1(0)N1(1b) when installed on Cisco Nexus 6000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265090" RelationType="Installed On" ProductReference="CVRFPID-230492">
+      <FullProductName ProductID="CVRFPID-230492:265090">Cisco NX-OS Software 7.1(0)N1(1) when installed on Cisco Nexus 5000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265094" RelationType="Installed On" ProductReference="CVRFPID-230492">
+      <FullProductName ProductID="CVRFPID-230492:265094">Cisco NX-OS Software 7.1(0)N1(1) when installed on Cisco Nexus 6000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265090" RelationType="Installed On" ProductReference="CVRFPID-208806">
+      <FullProductName ProductID="CVRFPID-208806:265090">Cisco NX-OS Software 7.1(1)N1(1) when installed on Cisco Nexus 5000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265094" RelationType="Installed On" ProductReference="CVRFPID-208806">
+      <FullProductName ProductID="CVRFPID-208806:265094">Cisco NX-OS Software 7.1(1)N1(1) when installed on Cisco Nexus 6000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265090" RelationType="Installed On" ProductReference="CVRFPID-230487">
+      <FullProductName ProductID="CVRFPID-230487:265090">Cisco NX-OS Software 7.1(1)N1(1a) when installed on Cisco Nexus 5000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265094" RelationType="Installed On" ProductReference="CVRFPID-230487">
+      <FullProductName ProductID="CVRFPID-230487:265094">Cisco NX-OS Software 7.1(1)N1(1a) when installed on Cisco Nexus 6000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265090" RelationType="Installed On" ProductReference="CVRFPID-212043">
+      <FullProductName ProductID="CVRFPID-212043:265090">Cisco NX-OS Software 7.1(2)N1(1) when installed on Cisco Nexus 5000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265094" RelationType="Installed On" ProductReference="CVRFPID-212043">
+      <FullProductName ProductID="CVRFPID-212043:265094">Cisco NX-OS Software 7.1(2)N1(1) when installed on Cisco Nexus 6000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265090" RelationType="Installed On" ProductReference="CVRFPID-230485">
+      <FullProductName ProductID="CVRFPID-230485:265090">Cisco NX-OS Software 7.1(2)N1(1a) when installed on Cisco Nexus 5000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265094" RelationType="Installed On" ProductReference="CVRFPID-230485">
+      <FullProductName ProductID="CVRFPID-230485:265094">Cisco NX-OS Software 7.1(2)N1(1a) when installed on Cisco Nexus 6000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265090" RelationType="Installed On" ProductReference="CVRFPID-212044">
+      <FullProductName ProductID="CVRFPID-212044:265090">Cisco NX-OS Software 7.1(3)N1(1) when installed on Cisco Nexus 5000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265094" RelationType="Installed On" ProductReference="CVRFPID-212044">
+      <FullProductName ProductID="CVRFPID-212044:265094">Cisco NX-OS Software 7.1(3)N1(1) when installed on Cisco Nexus 6000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265090" RelationType="Installed On" ProductReference="CVRFPID-220733">
+      <FullProductName ProductID="CVRFPID-220733:265090">Cisco NX-OS Software 7.1(3)N1(2) when installed on Cisco Nexus 5000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265094" RelationType="Installed On" ProductReference="CVRFPID-220733">
+      <FullProductName ProductID="CVRFPID-220733:265094">Cisco NX-OS Software 7.1(3)N1(2) when installed on Cisco Nexus 6000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265090" RelationType="Installed On" ProductReference="CVRFPID-230478">
+      <FullProductName ProductID="CVRFPID-230478:265090">Cisco NX-OS Software 7.1(3)N1(5) when installed on Cisco Nexus 5000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265094" RelationType="Installed On" ProductReference="CVRFPID-230478">
+      <FullProductName ProductID="CVRFPID-230478:265094">Cisco NX-OS Software 7.1(3)N1(5) when installed on Cisco Nexus 6000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265090" RelationType="Installed On" ProductReference="CVRFPID-230479">
+      <FullProductName ProductID="CVRFPID-230479:265090">Cisco NX-OS Software 7.1(3)N1(4) when installed on Cisco Nexus 5000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265094" RelationType="Installed On" ProductReference="CVRFPID-230479">
+      <FullProductName ProductID="CVRFPID-230479:265094">Cisco NX-OS Software 7.1(3)N1(4) when installed on Cisco Nexus 6000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265090" RelationType="Installed On" ProductReference="CVRFPID-230480">
+      <FullProductName ProductID="CVRFPID-230480:265090">Cisco NX-OS Software 7.1(3)N1(3) when installed on Cisco Nexus 5000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265094" RelationType="Installed On" ProductReference="CVRFPID-230480">
+      <FullProductName ProductID="CVRFPID-230480:265094">Cisco NX-OS Software 7.1(3)N1(3) when installed on Cisco Nexus 6000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265090" RelationType="Installed On" ProductReference="CVRFPID-230481">
+      <FullProductName ProductID="CVRFPID-230481:265090">Cisco NX-OS Software 7.1(3)N1(2a) when installed on Cisco Nexus 5000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265094" RelationType="Installed On" ProductReference="CVRFPID-230481">
+      <FullProductName ProductID="CVRFPID-230481:265094">Cisco NX-OS Software 7.1(3)N1(2a) when installed on Cisco Nexus 6000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265090" RelationType="Installed On" ProductReference="CVRFPID-220734">
+      <FullProductName ProductID="CVRFPID-220734:265090">Cisco NX-OS Software 7.1(4)N1(1) when installed on Cisco Nexus 5000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265094" RelationType="Installed On" ProductReference="CVRFPID-220734">
+      <FullProductName ProductID="CVRFPID-220734:265094">Cisco NX-OS Software 7.1(4)N1(1) when installed on Cisco Nexus 6000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265090" RelationType="Installed On" ProductReference="CVRFPID-230474">
+      <FullProductName ProductID="CVRFPID-230474:265090">Cisco NX-OS Software 7.1(4)N1(1d) when installed on Cisco Nexus 5000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265094" RelationType="Installed On" ProductReference="CVRFPID-230474">
+      <FullProductName ProductID="CVRFPID-230474:265094">Cisco NX-OS Software 7.1(4)N1(1d) when installed on Cisco Nexus 6000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265090" RelationType="Installed On" ProductReference="CVRFPID-230475">
+      <FullProductName ProductID="CVRFPID-230475:265090">Cisco NX-OS Software 7.1(4)N1(1c) when installed on Cisco Nexus 5000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265094" RelationType="Installed On" ProductReference="CVRFPID-230475">
+      <FullProductName ProductID="CVRFPID-230475:265094">Cisco NX-OS Software 7.1(4)N1(1c) when installed on Cisco Nexus 6000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265090" RelationType="Installed On" ProductReference="CVRFPID-230476">
+      <FullProductName ProductID="CVRFPID-230476:265090">Cisco NX-OS Software 7.1(4)N1(1a) when installed on Cisco Nexus 5000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265094" RelationType="Installed On" ProductReference="CVRFPID-230476">
+      <FullProductName ProductID="CVRFPID-230476:265094">Cisco NX-OS Software 7.1(4)N1(1a) when installed on Cisco Nexus 6000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265090" RelationType="Installed On" ProductReference="CVRFPID-230473">
+      <FullProductName ProductID="CVRFPID-230473:265090">Cisco NX-OS Software 7.1(5)N1(1) when installed on Cisco Nexus 5000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265094" RelationType="Installed On" ProductReference="CVRFPID-230473">
+      <FullProductName ProductID="CVRFPID-230473:265094">Cisco NX-OS Software 7.1(5)N1(1) when installed on Cisco Nexus 6000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265090" RelationType="Installed On" ProductReference="CVRFPID-257582">
+      <FullProductName ProductID="CVRFPID-257582:265090">Cisco NX-OS Software 7.1(5)N1(1b) when installed on Cisco Nexus 5000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265094" RelationType="Installed On" ProductReference="CVRFPID-257582">
+      <FullProductName ProductID="CVRFPID-257582:265094">Cisco NX-OS Software 7.1(5)N1(1b) when installed on Cisco Nexus 6000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265088" RelationType="Installed On" ProductReference="CVRFPID-230440">
+      <FullProductName ProductID="CVRFPID-230440:265088">Cisco NX-OS Software 7.2(0)D1(1) when installed on Cisco Nexus 7000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265090" RelationType="Installed On" ProductReference="CVRFPID-212045">
+      <FullProductName ProductID="CVRFPID-212045:265090">Cisco NX-OS Software 7.2(0)N1(1) when installed on Cisco Nexus 5000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265094" RelationType="Installed On" ProductReference="CVRFPID-212045">
+      <FullProductName ProductID="CVRFPID-212045:265094">Cisco NX-OS Software 7.2(0)N1(1) when installed on Cisco Nexus 6000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265088" RelationType="Installed On" ProductReference="CVRFPID-225659">
+      <FullProductName ProductID="CVRFPID-225659:265088">Cisco NX-OS Software 7.2(1)D1(1) when installed on Cisco Nexus 7000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265090" RelationType="Installed On" ProductReference="CVRFPID-212046">
+      <FullProductName ProductID="CVRFPID-212046:265090">Cisco NX-OS Software 7.2(1)N1(1) when installed on Cisco Nexus 5000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265094" RelationType="Installed On" ProductReference="CVRFPID-212046">
+      <FullProductName ProductID="CVRFPID-212046:265094">Cisco NX-OS Software 7.2(1)N1(1) when installed on Cisco Nexus 6000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265088" RelationType="Installed On" ProductReference="CVRFPID-230438">
+      <FullProductName ProductID="CVRFPID-230438:265088">Cisco NX-OS Software 7.2(2)D1(2) when installed on Cisco Nexus 7000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265088" RelationType="Installed On" ProductReference="CVRFPID-230439">
+      <FullProductName ProductID="CVRFPID-230439:265088">Cisco NX-OS Software 7.2(2)D1(1) when installed on Cisco Nexus 7000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265088" RelationType="Installed On" ProductReference="CVRFPID-265129">
+      <FullProductName ProductID="CVRFPID-265129:265088">Cisco NX-OS Software 7.2(2)D1(3) when installed on Cisco Nexus 7000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265088" RelationType="Installed On" ProductReference="CVRFPID-265130">
+      <FullProductName ProductID="CVRFPID-265130:265088">Cisco NX-OS Software 7.2(2)D1(4) when installed on Cisco Nexus 7000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265088" RelationType="Installed On" ProductReference="CVRFPID-230437">
+      <FullProductName ProductID="CVRFPID-230437:265088">Cisco NX-OS Software 7.3(0)D1(1) when installed on Cisco Nexus 7000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265088" RelationType="Installed On" ProductReference="CVRFPID-230436">
+      <FullProductName ProductID="CVRFPID-230436:265088">Cisco NX-OS Software 7.3(0)DX(1) when installed on Cisco Nexus 7000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265090" RelationType="Installed On" ProductReference="CVRFPID-220737">
+      <FullProductName ProductID="CVRFPID-220737:265090">Cisco NX-OS Software 7.3(0)N1(1) when installed on Cisco Nexus 5000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265094" RelationType="Installed On" ProductReference="CVRFPID-220737">
+      <FullProductName ProductID="CVRFPID-220737:265094">Cisco NX-OS Software 7.3(0)N1(1) when installed on Cisco Nexus 6000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265090" RelationType="Installed On" ProductReference="CVRFPID-230468">
+      <FullProductName ProductID="CVRFPID-230468:265090">Cisco NX-OS Software 7.3(0)N1(1b) when installed on Cisco Nexus 5000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265094" RelationType="Installed On" ProductReference="CVRFPID-230468">
+      <FullProductName ProductID="CVRFPID-230468:265094">Cisco NX-OS Software 7.3(0)N1(1b) when installed on Cisco Nexus 6000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265090" RelationType="Installed On" ProductReference="CVRFPID-230469">
+      <FullProductName ProductID="CVRFPID-230469:265090">Cisco NX-OS Software 7.3(0)N1(1a) when installed on Cisco Nexus 5000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265094" RelationType="Installed On" ProductReference="CVRFPID-230469">
+      <FullProductName ProductID="CVRFPID-230469:265094">Cisco NX-OS Software 7.3(0)N1(1a) when installed on Cisco Nexus 6000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265088" RelationType="Installed On" ProductReference="CVRFPID-230435">
+      <FullProductName ProductID="CVRFPID-230435:265088">Cisco NX-OS Software 7.3(1)D1(1) when installed on Cisco Nexus 7000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265090" RelationType="Installed On" ProductReference="CVRFPID-227352">
+      <FullProductName ProductID="CVRFPID-227352:265090">Cisco NX-OS Software 7.3(1)N1(1) when installed on Cisco Nexus 5000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265094" RelationType="Installed On" ProductReference="CVRFPID-227352">
+      <FullProductName ProductID="CVRFPID-227352:265094">Cisco NX-OS Software 7.3(1)N1(1) when installed on Cisco Nexus 6000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265088" RelationType="Installed On" ProductReference="CVRFPID-230433">
+      <FullProductName ProductID="CVRFPID-230433:265088">Cisco NX-OS Software 7.3(2)D1(1) when installed on Cisco Nexus 7000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265088" RelationType="Installed On" ProductReference="CVRFPID-239439">
+      <FullProductName ProductID="CVRFPID-239439:265088">Cisco NX-OS Software 7.3(2)D1(2) when installed on Cisco Nexus 7000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265088" RelationType="Installed On" ProductReference="CVRFPID-256870">
+      <FullProductName ProductID="CVRFPID-256870:265088">Cisco NX-OS Software 7.3(2)D1(3) when installed on Cisco Nexus 7000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265088" RelationType="Installed On" ProductReference="CVRFPID-256871">
+      <FullProductName ProductID="CVRFPID-256871:265088">Cisco NX-OS Software 7.3(2)D1(3a) when installed on Cisco Nexus 7000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265088" RelationType="Installed On" ProductReference="CVRFPID-275060">
+      <FullProductName ProductID="CVRFPID-275060:265088">Cisco NX-OS Software 7.3(2)D1(1d) when installed on Cisco Nexus 7000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265090" RelationType="Installed On" ProductReference="CVRFPID-230467">
+      <FullProductName ProductID="CVRFPID-230467:265090">Cisco NX-OS Software 7.3(2)N1(1) when installed on Cisco Nexus 5000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265094" RelationType="Installed On" ProductReference="CVRFPID-230467">
+      <FullProductName ProductID="CVRFPID-230467:265094">Cisco NX-OS Software 7.3(2)N1(1) when installed on Cisco Nexus 6000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265090" RelationType="Installed On" ProductReference="CVRFPID-265131">
+      <FullProductName ProductID="CVRFPID-265131:265090">Cisco NX-OS Software 7.3(2)N1(1b) when installed on Cisco Nexus 5000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265094" RelationType="Installed On" ProductReference="CVRFPID-265131">
+      <FullProductName ProductID="CVRFPID-265131:265094">Cisco NX-OS Software 7.3(2)N1(1b) when installed on Cisco Nexus 6000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265090" RelationType="Installed On" ProductReference="CVRFPID-265132">
+      <FullProductName ProductID="CVRFPID-265132:265090">Cisco NX-OS Software 7.3(2)N1(1c) when installed on Cisco Nexus 5000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265094" RelationType="Installed On" ProductReference="CVRFPID-265132">
+      <FullProductName ProductID="CVRFPID-265132:265094">Cisco NX-OS Software 7.3(2)N1(1c) when installed on Cisco Nexus 6000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265090" RelationType="Installed On" ProductReference="CVRFPID-239639">
+      <FullProductName ProductID="CVRFPID-239639:265090">Cisco NX-OS Software 7.3(3)N1(1) when installed on Cisco Nexus 5000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265094" RelationType="Installed On" ProductReference="CVRFPID-239639">
+      <FullProductName ProductID="CVRFPID-239639:265094">Cisco NX-OS Software 7.3(3)N1(1) when installed on Cisco Nexus 6000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265090" RelationType="Installed On" ProductReference="CVRFPID-257397">
+      <FullProductName ProductID="CVRFPID-257397:265090">Cisco NX-OS Software 7.3(4)N1(1) when installed on Cisco Nexus 5000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265094" RelationType="Installed On" ProductReference="CVRFPID-257397">
+      <FullProductName ProductID="CVRFPID-257397:265094">Cisco NX-OS Software 7.3(4)N1(1) when installed on Cisco Nexus 6000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265090" RelationType="Installed On" ProductReference="CVRFPID-265135">
+      <FullProductName ProductID="CVRFPID-265135:265090">Cisco NX-OS Software 7.3(4)N1(1a) when installed on Cisco Nexus 5000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265094" RelationType="Installed On" ProductReference="CVRFPID-265135">
+      <FullProductName ProductID="CVRFPID-265135:265094">Cisco NX-OS Software 7.3(4)N1(1a) when installed on Cisco Nexus 6000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265088" RelationType="Installed On" ProductReference="CVRFPID-257400">
+      <FullProductName ProductID="CVRFPID-257400:265088">Cisco NX-OS Software 7.3(3)D1(1) when installed on Cisco Nexus 7000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265088" RelationType="Installed On" ProductReference="CVRFPID-265134">
+      <FullProductName ProductID="CVRFPID-265134:265088">Cisco NX-OS Software 7.3(4)D1(1) when installed on Cisco Nexus 7000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265090" RelationType="Installed On" ProductReference="CVRFPID-265137">
+      <FullProductName ProductID="CVRFPID-265137:265090">Cisco NX-OS Software 7.3(5)N1(1) when installed on Cisco Nexus 5000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265094" RelationType="Installed On" ProductReference="CVRFPID-265137">
+      <FullProductName ProductID="CVRFPID-265137:265094">Cisco NX-OS Software 7.3(5)N1(1) when installed on Cisco Nexus 6000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265249" RelationType="Installed On" ProductReference="CVRFPID-265253">
+      <FullProductName ProductID="CVRFPID-265253:265249">Cisco NX-OS Software 5.2(1)SK3(1.1) when installed on Cisco Nexus 1000V Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265249" RelationType="Installed On" ProductReference="CVRFPID-265254">
+      <FullProductName ProductID="CVRFPID-265254:265249">Cisco NX-OS Software 5.2(1)SK3(2.1) when installed on Cisco Nexus 1000V Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265249" RelationType="Installed On" ProductReference="CVRFPID-267107">
+      <FullProductName ProductID="CVRFPID-267107:265249">Cisco NX-OS Software 5.2(1)SK3(2.2) when installed on Cisco Nexus 1000V Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265249" RelationType="Installed On" ProductReference="CVRFPID-267108">
+      <FullProductName ProductID="CVRFPID-267108:265249">Cisco NX-OS Software 5.2(1)SK3(2.2b) when installed on Cisco Nexus 1000V Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265249" RelationType="Installed On" ProductReference="CVRFPID-267109">
+      <FullProductName ProductID="CVRFPID-267109:265249">Cisco NX-OS Software 5.2(1)SK3(2.1a) when installed on Cisco Nexus 1000V Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265249" RelationType="Installed On" ProductReference="CVRFPID-265261">
+      <FullProductName ProductID="CVRFPID-265261:265249">Cisco NX-OS Software 5.2(1)SV5(1.1) when installed on Cisco Nexus 1000V Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265249" RelationType="Installed On" ProductReference="CVRFPID-265262">
+      <FullProductName ProductID="CVRFPID-265262:265249">Cisco NX-OS Software 5.2(1)SV5(1.2) when installed on Cisco Nexus 1000V Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265249" RelationType="Installed On" ProductReference="CVRFPID-274785">
+      <FullProductName ProductID="CVRFPID-274785:265249">Cisco NX-OS Software 5.2(1)SV5(1.3) when installed on Cisco Nexus 1000V Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265090" RelationType="Installed On" ProductReference="CVRFPID-268938">
+      <FullProductName ProductID="CVRFPID-268938:265090">Cisco NX-OS Software 7.3(6)N1(1) when installed on Cisco Nexus 5000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265094" RelationType="Installed On" ProductReference="CVRFPID-268938">
+      <FullProductName ProductID="CVRFPID-268938:265094">Cisco NX-OS Software 7.3(6)N1(1) when installed on Cisco Nexus 6000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265090" RelationType="Installed On" ProductReference="CVRFPID-272929">
+      <FullProductName ProductID="CVRFPID-272929:265090">Cisco NX-OS Software 7.3(6)N1(1a) when installed on Cisco Nexus 5000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265094" RelationType="Installed On" ProductReference="CVRFPID-272929">
+      <FullProductName ProductID="CVRFPID-272929:265094">Cisco NX-OS Software 7.3(6)N1(1a) when installed on Cisco Nexus 6000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265088" RelationType="Installed On" ProductReference="CVRFPID-272931">
+      <FullProductName ProductID="CVRFPID-272931:265088">Cisco NX-OS Software 7.3(5)D1(1) when installed on Cisco Nexus 7000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265090" RelationType="Installed On" ProductReference="CVRFPID-276893">
+      <FullProductName ProductID="CVRFPID-276893:265090">Cisco NX-OS Software 7.3(7)N1(1) when installed on Cisco Nexus 5000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265094" RelationType="Installed On" ProductReference="CVRFPID-276893">
+      <FullProductName ProductID="CVRFPID-276893:265094">Cisco NX-OS Software 7.3(7)N1(1) when installed on Cisco Nexus 6000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265090" RelationType="Installed On" ProductReference="CVRFPID-277344">
+      <FullProductName ProductID="CVRFPID-277344:265090">Cisco NX-OS Software 7.3(7)N1(1a) when installed on Cisco Nexus 5000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265094" RelationType="Installed On" ProductReference="CVRFPID-277344">
+      <FullProductName ProductID="CVRFPID-277344:265094">Cisco NX-OS Software 7.3(7)N1(1a) when installed on Cisco Nexus 6000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265088" RelationType="Installed On" ProductReference="CVRFPID-277336">
+      <FullProductName ProductID="CVRFPID-277336:265088">Cisco NX-OS Software 7.3(6)D1(1) when installed on Cisco Nexus 7000 Series Switches</FullProductName>
+    </Relationship>
+  </ProductTree>
+  <Vulnerability Ordinal="1" xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln">
+    <Title>vuln-CVE-2020-10136</Title>
+    <ID SystemName="Cisco Bug ID">CSCvt67740</ID>
+    <Notes>
+      <Note Title="Cisco Bug IDs" Type="Other" Ordinal="1">CSCvt67740,CSCvu03158,CSCvt66624,CSCun53663,CSCvt67739,CSCvt67738,CSCvu10050</Note>
+    </Notes>
+    <CVE>CVE-2020-10136</CVE>
+    <ProductStatuses>
+      <Status Type="Known Affected">
+        <ProductID>CVRFPID-112776</ProductID>
+        <ProductID>CVRFPID-191391:265091</ProductID>
+        <ProductID>CVRFPID-191392:265091</ProductID>
+        <ProductID>CVRFPID-191393:265091</ProductID>
+        <ProductID>CVRFPID-191466:265091</ProductID>
+        <ProductID>CVRFPID-191467:265091</ProductID>
+        <ProductID>CVRFPID-191468:265091</ProductID>
+        <ProductID>CVRFPID-191469:265091</ProductID>
+        <ProductID>CVRFPID-191470:265091</ProductID>
+        <ProductID>CVRFPID-191471:265091</ProductID>
+        <ProductID>CVRFPID-191472:265091</ProductID>
+        <ProductID>CVRFPID-191473:265091</ProductID>
+        <ProductID>CVRFPID-191474:265091</ProductID>
+        <ProductID>CVRFPID-191475:265091</ProductID>
+        <ProductID>CVRFPID-191476:265091</ProductID>
+        <ProductID>CVRFPID-191477:265091</ProductID>
+        <ProductID>CVRFPID-191478:265091</ProductID>
+        <ProductID>CVRFPID-191479:265091</ProductID>
+        <ProductID>CVRFPID-191480:265091</ProductID>
+        <ProductID>CVRFPID-191481:265091</ProductID>
+        <ProductID>CVRFPID-191482:265091</ProductID>
+        <ProductID>CVRFPID-191483:265091</ProductID>
+        <ProductID>CVRFPID-191484:265091</ProductID>
+        <ProductID>CVRFPID-191485:265091</ProductID>
+        <ProductID>CVRFPID-194693:265091</ProductID>
+        <ProductID>CVRFPID-194694:265091</ProductID>
+        <ProductID>CVRFPID-195841:265249</ProductID>
+        <ProductID>CVRFPID-196609:265088</ProductID>
+        <ProductID>CVRFPID-196610:265088</ProductID>
+        <ProductID>CVRFPID-196613:265091</ProductID>
+        <ProductID>CVRFPID-196614:265091</ProductID>
+        <ProductID>CVRFPID-196615:265091</ProductID>
+        <ProductID>CVRFPID-196616:265091</ProductID>
+        <ProductID>CVRFPID-196617:265091</ProductID>
+        <ProductID>CVRFPID-201604:265096</ProductID>
+        <ProductID>CVRFPID-201605:265096</ProductID>
+        <ProductID>CVRFPID-201606:265091</ProductID>
+        <ProductID>CVRFPID-201606:265096</ProductID>
+        <ProductID>CVRFPID-201607:265096</ProductID>
+        <ProductID>CVRFPID-201884:265090</ProductID>
+        <ProductID>CVRFPID-201884:265094</ProductID>
+        <ProductID>CVRFPID-201885:265090</ProductID>
+        <ProductID>CVRFPID-201885:265094</ProductID>
+        <ProductID>CVRFPID-201886:265090</ProductID>
+        <ProductID>CVRFPID-201886:265094</ProductID>
+        <ProductID>CVRFPID-201887:265090</ProductID>
+        <ProductID>CVRFPID-201887:265094</ProductID>
+        <ProductID>CVRFPID-202737:265091</ProductID>
+        <ProductID>CVRFPID-202737:265096</ProductID>
+        <ProductID>CVRFPID-202738:265088</ProductID>
+        <ProductID>CVRFPID-203349:265091</ProductID>
+        <ProductID>CVRFPID-205071:265088</ProductID>
+        <ProductID>CVRFPID-205072:265088</ProductID>
+        <ProductID>CVRFPID-205073:265088</ProductID>
+        <ProductID>CVRFPID-205074:265088</ProductID>
+        <ProductID>CVRFPID-205075:265088</ProductID>
+        <ProductID>CVRFPID-205076:265091</ProductID>
+        <ProductID>CVRFPID-205077:265091</ProductID>
+        <ProductID>CVRFPID-205078:265091</ProductID>
+        <ProductID>CVRFPID-205079:265091</ProductID>
+        <ProductID>CVRFPID-205080:265091</ProductID>
+        <ProductID>CVRFPID-205081:265091</ProductID>
+        <ProductID>CVRFPID-205082:265091</ProductID>
+        <ProductID>CVRFPID-205083:265091</ProductID>
+        <ProductID>CVRFPID-205084:265091</ProductID>
+        <ProductID>CVRFPID-205085:265091</ProductID>
+        <ProductID>CVRFPID-205086:265091</ProductID>
+        <ProductID>CVRFPID-205087:265091</ProductID>
+        <ProductID>CVRFPID-205088:265091</ProductID>
+        <ProductID>CVRFPID-205089:265091</ProductID>
+        <ProductID>CVRFPID-205091:265091</ProductID>
+        <ProductID>CVRFPID-205091:265096</ProductID>
+        <ProductID>CVRFPID-205092:265091</ProductID>
+        <ProductID>CVRFPID-205092:265096</ProductID>
+        <ProductID>CVRFPID-205093:265091</ProductID>
+        <ProductID>CVRFPID-205093:265096</ProductID>
+        <ProductID>CVRFPID-208194:265088</ProductID>
+        <ProductID>CVRFPID-208580:265091</ProductID>
+        <ProductID>CVRFPID-208580:265096</ProductID>
+        <ProductID>CVRFPID-208581:265091</ProductID>
+        <ProductID>CVRFPID-208581:265096</ProductID>
+        <ProductID>CVRFPID-208582:265091</ProductID>
+        <ProductID>CVRFPID-208582:265096</ProductID>
+        <ProductID>CVRFPID-208805:265090</ProductID>
+        <ProductID>CVRFPID-208805:265094</ProductID>
+        <ProductID>CVRFPID-208806:265090</ProductID>
+        <ProductID>CVRFPID-208806:265094</ProductID>
+        <ProductID>CVRFPID-210024:265249</ProductID>
+        <ProductID>CVRFPID-212037:265090</ProductID>
+        <ProductID>CVRFPID-212037:265094</ProductID>
+        <ProductID>CVRFPID-212038:265090</ProductID>
+        <ProductID>CVRFPID-212038:265094</ProductID>
+        <ProductID>CVRFPID-212039:265090</ProductID>
+        <ProductID>CVRFPID-212039:265094</ProductID>
+        <ProductID>CVRFPID-212040:265090</ProductID>
+        <ProductID>CVRFPID-212040:265094</ProductID>
+        <ProductID>CVRFPID-212041:265090</ProductID>
+        <ProductID>CVRFPID-212041:265094</ProductID>
+        <ProductID>CVRFPID-212042:265090</ProductID>
+        <ProductID>CVRFPID-212042:265094</ProductID>
+        <ProductID>CVRFPID-212043:265090</ProductID>
+        <ProductID>CVRFPID-212043:265094</ProductID>
+        <ProductID>CVRFPID-212044:265090</ProductID>
+        <ProductID>CVRFPID-212044:265094</ProductID>
+        <ProductID>CVRFPID-212045:265090</ProductID>
+        <ProductID>CVRFPID-212045:265094</ProductID>
+        <ProductID>CVRFPID-212046:265090</ProductID>
+        <ProductID>CVRFPID-212046:265094</ProductID>
+        <ProductID>CVRFPID-217747:265249</ProductID>
+        <ProductID>CVRFPID-217748:265249</ProductID>
+        <ProductID>CVRFPID-220693:265249</ProductID>
+        <ProductID>CVRFPID-220694:265249</ProductID>
+        <ProductID>CVRFPID-220695:265249</ProductID>
+        <ProductID>CVRFPID-220696:265249</ProductID>
+        <ProductID>CVRFPID-220697:265249</ProductID>
+        <ProductID>CVRFPID-220698:265249</ProductID>
+        <ProductID>CVRFPID-220727:265090</ProductID>
+        <ProductID>CVRFPID-220727:265094</ProductID>
+        <ProductID>CVRFPID-220733:265090</ProductID>
+        <ProductID>CVRFPID-220733:265094</ProductID>
+        <ProductID>CVRFPID-220734:265090</ProductID>
+        <ProductID>CVRFPID-220734:265094</ProductID>
+        <ProductID>CVRFPID-220737:265090</ProductID>
+        <ProductID>CVRFPID-220737:265094</ProductID>
+        <ProductID>CVRFPID-225659:265088</ProductID>
+        <ProductID>CVRFPID-227352:265090</ProductID>
+        <ProductID>CVRFPID-227352:265094</ProductID>
+        <ProductID>CVRFPID-230433:265088</ProductID>
+        <ProductID>CVRFPID-230435:265088</ProductID>
+        <ProductID>CVRFPID-230436:265088</ProductID>
+        <ProductID>CVRFPID-230437:265088</ProductID>
+        <ProductID>CVRFPID-230438:265088</ProductID>
+        <ProductID>CVRFPID-230439:265088</ProductID>
+        <ProductID>CVRFPID-230440:265088</ProductID>
+        <ProductID>CVRFPID-230441:265088</ProductID>
+        <ProductID>CVRFPID-230442:265088</ProductID>
+        <ProductID>CVRFPID-230443:265088</ProductID>
+        <ProductID>CVRFPID-230467:265090</ProductID>
+        <ProductID>CVRFPID-230467:265094</ProductID>
+        <ProductID>CVRFPID-230468:265090</ProductID>
+        <ProductID>CVRFPID-230468:265094</ProductID>
+        <ProductID>CVRFPID-230469:265090</ProductID>
+        <ProductID>CVRFPID-230469:265094</ProductID>
+        <ProductID>CVRFPID-230473:265090</ProductID>
+        <ProductID>CVRFPID-230473:265094</ProductID>
+        <ProductID>CVRFPID-230474:265090</ProductID>
+        <ProductID>CVRFPID-230474:265094</ProductID>
+        <ProductID>CVRFPID-230475:265090</ProductID>
+        <ProductID>CVRFPID-230475:265094</ProductID>
+        <ProductID>CVRFPID-230476:265090</ProductID>
+        <ProductID>CVRFPID-230476:265094</ProductID>
+        <ProductID>CVRFPID-230478:265090</ProductID>
+        <ProductID>CVRFPID-230478:265094</ProductID>
+        <ProductID>CVRFPID-230479:265090</ProductID>
+        <ProductID>CVRFPID-230479:265094</ProductID>
+        <ProductID>CVRFPID-230480:265090</ProductID>
+        <ProductID>CVRFPID-230480:265094</ProductID>
+        <ProductID>CVRFPID-230481:265090</ProductID>
+        <ProductID>CVRFPID-230481:265094</ProductID>
+        <ProductID>CVRFPID-230485:265090</ProductID>
+        <ProductID>CVRFPID-230485:265094</ProductID>
+        <ProductID>CVRFPID-230487:265090</ProductID>
+        <ProductID>CVRFPID-230487:265094</ProductID>
+        <ProductID>CVRFPID-230492:265090</ProductID>
+        <ProductID>CVRFPID-230492:265094</ProductID>
+        <ProductID>CVRFPID-230493:265090</ProductID>
+        <ProductID>CVRFPID-230493:265094</ProductID>
+        <ProductID>CVRFPID-230495:265090</ProductID>
+        <ProductID>CVRFPID-230495:265094</ProductID>
+        <ProductID>CVRFPID-230496:265090</ProductID>
+        <ProductID>CVRFPID-230496:265094</ProductID>
+        <ProductID>CVRFPID-230498:265090</ProductID>
+        <ProductID>CVRFPID-230498:265094</ProductID>
+        <ProductID>CVRFPID-230499:265090</ProductID>
+        <ProductID>CVRFPID-230499:265094</ProductID>
+        <ProductID>CVRFPID-230500:265090</ProductID>
+        <ProductID>CVRFPID-230500:265094</ProductID>
+        <ProductID>CVRFPID-230505:265090</ProductID>
+        <ProductID>CVRFPID-230505:265094</ProductID>
+        <ProductID>CVRFPID-230527:265088</ProductID>
+        <ProductID>CVRFPID-230528:265088</ProductID>
+        <ProductID>CVRFPID-230579:265249</ProductID>
+        <ProductID>CVRFPID-230580:265249</ProductID>
+        <ProductID>CVRFPID-230581:265249</ProductID>
+        <ProductID>CVRFPID-239437:265088</ProductID>
+        <ProductID>CVRFPID-239439:265088</ProductID>
+        <ProductID>CVRFPID-239445:265088</ProductID>
+        <ProductID>CVRFPID-239450:265096</ProductID>
+        <ProductID>CVRFPID-239451:265091</ProductID>
+        <ProductID>CVRFPID-239451:265096</ProductID>
+        <ProductID>CVRFPID-239513:265091</ProductID>
+        <ProductID>CVRFPID-239530:265091</ProductID>
+        <ProductID>CVRFPID-239531:265091</ProductID>
+        <ProductID>CVRFPID-239536:265091</ProductID>
+        <ProductID>CVRFPID-239537:265091</ProductID>
+        <ProductID>CVRFPID-239538:265091</ProductID>
+        <ProductID>CVRFPID-239539:265091</ProductID>
+        <ProductID>CVRFPID-239545:265091</ProductID>
+        <ProductID>CVRFPID-239579:265091</ProductID>
+        <ProductID>CVRFPID-239580:265091</ProductID>
+        <ProductID>CVRFPID-239581:265091</ProductID>
+        <ProductID>CVRFPID-239582:265091</ProductID>
+        <ProductID>CVRFPID-239583:265091</ProductID>
+        <ProductID>CVRFPID-239584:265091</ProductID>
+        <ProductID>CVRFPID-239585:265091</ProductID>
+        <ProductID>CVRFPID-239586:265091</ProductID>
+        <ProductID>CVRFPID-239587:265091</ProductID>
+        <ProductID>CVRFPID-239588:265091</ProductID>
+        <ProductID>CVRFPID-239589:265091</ProductID>
+        <ProductID>CVRFPID-239590:265091</ProductID>
+        <ProductID>CVRFPID-239591:265091</ProductID>
+        <ProductID>CVRFPID-239592:265091</ProductID>
+        <ProductID>CVRFPID-239593:265091</ProductID>
+        <ProductID>CVRFPID-239594:265091</ProductID>
+        <ProductID>CVRFPID-239595:265091</ProductID>
+        <ProductID>CVRFPID-239596:265091</ProductID>
+        <ProductID>CVRFPID-239597:265091</ProductID>
+        <ProductID>CVRFPID-239598:265091</ProductID>
+        <ProductID>CVRFPID-239639:265090</ProductID>
+        <ProductID>CVRFPID-239639:265094</ProductID>
+        <ProductID>CVRFPID-239814:265249</ProductID>
+        <ProductID>CVRFPID-239815:265249</ProductID>
+        <ProductID>CVRFPID-239817:265249</ProductID>
+        <ProductID>CVRFPID-239818:265249</ProductID>
+        <ProductID>CVRFPID-240153:265096</ProductID>
+        <ProductID>CVRFPID-248858:265088</ProductID>
+        <ProductID>CVRFPID-253287:265249</ProductID>
+        <ProductID>CVRFPID-253288:265249</ProductID>
+        <ProductID>CVRFPID-253289:265249</ProductID>
+        <ProductID>CVRFPID-253290:265249</ProductID>
+        <ProductID>CVRFPID-253291:265249</ProductID>
+        <ProductID>CVRFPID-253292:265249</ProductID>
+        <ProductID>CVRFPID-253293:265249</ProductID>
+        <ProductID>CVRFPID-253294:265249</ProductID>
+        <ProductID>CVRFPID-256870:265088</ProductID>
+        <ProductID>CVRFPID-256871:265088</ProductID>
+        <ProductID>CVRFPID-257397:265090</ProductID>
+        <ProductID>CVRFPID-257397:265094</ProductID>
+        <ProductID>CVRFPID-257400:265088</ProductID>
+        <ProductID>CVRFPID-257582:265090</ProductID>
+        <ProductID>CVRFPID-257582:265094</ProductID>
+        <ProductID>CVRFPID-265098:265088</ProductID>
+        <ProductID>CVRFPID-265100:265091</ProductID>
+        <ProductID>CVRFPID-265100:265096</ProductID>
+        <ProductID>CVRFPID-265129:265088</ProductID>
+        <ProductID>CVRFPID-265130:265088</ProductID>
+        <ProductID>CVRFPID-265131:265090</ProductID>
+        <ProductID>CVRFPID-265131:265094</ProductID>
+        <ProductID>CVRFPID-265132:265090</ProductID>
+        <ProductID>CVRFPID-265132:265094</ProductID>
+        <ProductID>CVRFPID-265134:265088</ProductID>
+        <ProductID>CVRFPID-265135:265090</ProductID>
+        <ProductID>CVRFPID-265135:265094</ProductID>
+        <ProductID>CVRFPID-265137:265090</ProductID>
+        <ProductID>CVRFPID-265137:265094</ProductID>
+        <ProductID>CVRFPID-265253:265249</ProductID>
+        <ProductID>CVRFPID-265254:265249</ProductID>
+        <ProductID>CVRFPID-265255:265249</ProductID>
+        <ProductID>CVRFPID-265259:265249</ProductID>
+        <ProductID>CVRFPID-265261:265249</ProductID>
+        <ProductID>CVRFPID-265262:265249</ProductID>
+        <ProductID>CVRFPID-267107:265249</ProductID>
+        <ProductID>CVRFPID-267108:265249</ProductID>
+        <ProductID>CVRFPID-267109:265249</ProductID>
+        <ProductID>CVRFPID-268938:265090</ProductID>
+        <ProductID>CVRFPID-268938:265094</ProductID>
+        <ProductID>CVRFPID-272929:265090</ProductID>
+        <ProductID>CVRFPID-272929:265094</ProductID>
+        <ProductID>CVRFPID-272931:265088</ProductID>
+        <ProductID>CVRFPID-274785:265249</ProductID>
+        <ProductID>CVRFPID-275060:265088</ProductID>
+        <ProductID>CVRFPID-276893:265090</ProductID>
+        <ProductID>CVRFPID-276893:265094</ProductID>
+        <ProductID>CVRFPID-276904:265088</ProductID>
+        <ProductID>CVRFPID-277000:265249</ProductID>
+        <ProductID>CVRFPID-277336:265088</ProductID>
+        <ProductID>CVRFPID-277344:265090</ProductID>
+        <ProductID>CVRFPID-277344:265094</ProductID>
+      </Status>
+    </ProductStatuses>
+    <CVSSScoreSets>
+      <ScoreSetV3>
+        <BaseScoreV3>8.6</BaseScoreV3>
+        <VectorV3>CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:C/C:N/I:N/A:H</VectorV3>
+      </ScoreSetV3>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Workaround">
+        <Description>Using infrastructure access control lists (iACLs) to allow only strictly required management and control plane traffic that is destined to the affected device, as recommended in the Cisco Guide to Securing NX-OS Software Devices ["https://tools.cisco.com/security/center/resources/securing_nx_os.html"], would prevent exploitation of this issue on Nexus devices. Customers may also consider explicitly denying all IP packets with protocol number 4 (corresponding to IP in IP packets) as part of their iACLs, if no legitimate IP in IP traffic is used in their network. A customized control plane policing (CoPP) policy may also be used to drop IP in IP traffic that is destined to an affected device; however, support for CoPP customization varies across different Nexus platforms and software releases. Customers are advised to contact their support organization for any assistance required with evaluating the feasibility of a workaround and with implementing a workaround on an affected device.
+
+Exploitation of this issue on Cisco UCS Fabric Interconnects is only possible if NetFlow monitoring is enabled on an affected device. Customers who do not have a strict requirement of using NetFlow monitoring may evaluate the possibility of disabling it until they can perform a software upgrade to a fixed release.
+
+Customers should first evaluate the impact of configuration changes to the device and their security policy. Customers concerned about undesired or unexpected side effects should consult with their support organization before implementing any configuration change.</Description>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference Type="Self">
+        <URL>https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-nxos-ipip-dos-kCT9X4</URL>
+        <Description>Cisco NX-OS Software Unexpected IP in IP Packet Processing Vulnerability</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+</cvrf:cvrfdoc>

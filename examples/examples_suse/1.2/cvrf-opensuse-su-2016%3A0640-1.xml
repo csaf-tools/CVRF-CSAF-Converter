@@ -1,0 +1,2260 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cvrfdoc xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:cpe="http://cpe.mitre.org/language/2.0" xmlns:cvrf="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/cvrf" xmlns:cvrf-common="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/common" xmlns:cvssv2="http://scap.nist.gov/schema/cvss-v2/1.0" xmlns:cvssv3="https://www.first.org/cvss/cvss-v3.0.xsd" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:ns0="http://purl.org/dc/elements/1.1/" xmlns:prod="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/prod" xmlns:scap-core="http://scap.nist.gov/schema/scap-core/1.0" xmlns:sch="http://purl.oclc.org/dsdl/schematron" xmlns:vuln="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/cvrf">
+  <DocumentTitle xml:lang="en">Security update for libopenssl0_9_8</DocumentTitle>
+  <DocumentType>SUSE Patch</DocumentType>
+  <DocumentPublisher Type="Vendor">
+    <ContactDetails>security@suse.de</ContactDetails>
+    <IssuingAuthority>SUSE Security Team</IssuingAuthority>
+  </DocumentPublisher>
+  <DocumentTracking>
+    <Identification>
+      <ID>openSUSE-SU-2016:0640-1</ID>
+    </Identification>
+    <Status>Final</Status>
+    <Version>1</Version>
+    <RevisionHistory>
+      <Revision>
+        <Number>1</Number>
+        <Date>2016-03-03T09:17:42Z</Date>
+        <Description>current</Description>
+      </Revision>
+    </RevisionHistory>
+    <InitialReleaseDate>2016-03-03T09:17:42Z</InitialReleaseDate>
+    <CurrentReleaseDate>2016-03-03T09:17:42Z</CurrentReleaseDate>
+    <Generator>
+      <Engine>cve-database/bin/generate-cvrf.pl</Engine>
+      <Date>2017-02-24T01:00:00Z</Date>
+    </Generator>
+  </DocumentTracking>
+  <DocumentNotes>
+    <Note Title="Topic" Type="Summary" Ordinal="1" xml:lang="en">Security update for libopenssl0_9_8</Note>
+    <Note Title="Details" Type="General" Ordinal="2" xml:lang="en">
+This update for libopenssl0_9_8 fixes the following issues:
+
+- CVE-2016-0800 aka the 'DROWN' attack (bsc#968046):
+  OpenSSL was vulnerable to a cross-protocol attack that could lead to
+  decryption of TLS sessions by using a server supporting SSLv2 and
+  EXPORT cipher suites as a Bleichenbacher RSA padding oracle.
+
+  This update changes the openssl library to:
+
+  * Disable SSLv2 protocol support by default.
+
+    This can be overridden by setting the environment variable
+    'OPENSSL_ALLOW_SSL2' or by using SSL_CTX_clear_options using the
+    SSL_OP_NO_SSLv2 flag.
+
+    Note that various services and clients had already disabled SSL
+    protocol 2 by default previously.
+
+  * Disable all weak EXPORT ciphers by default. These can be reenabled
+    if required by old legacy software using the environment variable
+    'OPENSSL_ALLOW_EXPORT'.
+
+- CVE-2016-0797 (bnc#968048):
+  The BN_hex2bn() and BN_dec2bn() functions had a bug that could
+  result in an attempt to de-reference a NULL pointer leading to crashes.
+  This could have security consequences if these functions were ever called by
+  user applications with large untrusted hex/decimal data. Also,
+  internal usage of these functions in OpenSSL uses data from config
+  files or application command line arguments. If user developed
+  applications generated config file data based on untrusted data,
+  then this could have had security consequences as well.
+
+- CVE-2016-0799 (bnc#968374)
+  On many 64 bit systems, the internal fmtstr() and doapr_outch()
+  functions could miscalculate the length of a string and attempt to
+  access out-of-bounds memory locations. These problems could have
+  enabled attacks where large amounts of untrusted data is passed to
+  the BIO_*printf functions. If applications use these functions in
+  this way then they could have been vulnerable. OpenSSL itself uses
+  these functions when printing out human-readable dumps of ASN.1
+  data. Therefore applications that print this data could have been
+  vulnerable if the data is from untrusted sources. OpenSSL command line
+  applications could also have been vulnerable when they print out ASN.1
+  data, or if untrusted data is passed as command line arguments. Libssl
+  is not considered directly vulnerable.
+
+
+- The package was updated to 0.9.8zh:
+  * fixes many security vulnerabilities (not seperately listed):
+    CVE-2015-3195, CVE-2015-1788, CVE-2015-1789, CVE-2015-1790,
+    CVE-2015-1792, CVE-2015-1791, CVE-2015-0286, CVE-2015-0287,
+    CVE-2015-0289, CVE-2015-0293, CVE-2015-0209, CVE-2015-0288,
+    CVE-2014-3571, CVE-2014-3569, CVE-2014-3572, CVE-2015-0204,
+    CVE-2014-8275, CVE-2014-3570, CVE-2014-3567, CVE-2014-3568,
+    CVE-2014-3566, CVE-2014-3510, CVE-2014-3507, CVE-2014-3506,
+    CVE-2014-3505, CVE-2014-3508, CVE-2014-0224, CVE-2014-0221,
+    CVE-2014-0195, CVE-2014-3470, CVE-2014-0076, CVE-2013-0169,
+    CVE-2013-0166
+
+- avoid running OPENSSL_config twice. This avoids breaking
+  engine loading. (boo#952871, boo#967787)
+
+- fix CVE-2015-3197 (boo#963415)
+  * SSLv2 doesn't block disabled ciphers
+</Note>
+    <Note Title="Terms of Use" Type="Legal Disclaimer" Ordinal="3" xml:lang="en">The CVRF data is provided by SUSE under the Creative Commons License 4.0 with Attribution for Non-Commercial usage (CC-BY-NC-4.0).</Note>
+  </DocumentNotes>
+  <DocumentDistribution xml:lang="en">Copyright SUSE LLC under the Creative Commons License 4.0 with Attribution for Non-Commercial usage (CC-BY-NC-4.0)</DocumentDistribution>
+  <DocumentReferences>
+    <Reference Type="Self">
+      <URL>https://lists.opensuse.org/opensuse-security-announce/2016-03/msg00011.html</URL>
+      <Description>E-Mail link for openSUSE-SU-2016:0640-1</Description>
+    </Reference>
+    <Reference Type="Self">
+      <URL>https://www.suse.com/support/security/rating/</URL>
+      <Description>SUSE Security Ratings</Description>
+    </Reference>
+  </DocumentReferences>
+  <ProductTree xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/prod">
+    <Branch Type="Product Family" Name="openSUSE Leap 42.1">
+      <Branch Type="Product Name" Name="openSUSE Leap 42.1">
+        <FullProductName ProductID="openSUSE Leap 42.1">openSUSE Leap 42.1</FullProductName>
+      </Branch>
+    </Branch>
+    <Branch Type="Product Version" Name="libopenssl0_9_8-0.9.8zh-14.1">
+      <FullProductName ProductID="libopenssl0_9_8-0.9.8zh-14.1">libopenssl0_9_8-0.9.8zh-14.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libopenssl0_9_8-32bit-0.9.8zh-14.1">
+      <FullProductName ProductID="libopenssl0_9_8-32bit-0.9.8zh-14.1">libopenssl0_9_8-32bit-0.9.8zh-14.1</FullProductName>
+    </Branch>
+    <Relationship ProductReference="libopenssl0_9_8-0.9.8zh-14.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:libopenssl0_9_8-0.9.8zh-14.1">libopenssl0_9_8-0.9.8zh-14.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="libopenssl0_9_8-32bit-0.9.8zh-14.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:libopenssl0_9_8-32bit-0.9.8zh-14.1">libopenssl0_9_8-32bit-0.9.8zh-14.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+  </ProductTree>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="1">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">OpenSSL before 0.9.8y, 1.0.0 before 1.0.0k, and 1.0.1 before 1.0.1d does not properly perform signature verification for OCSP responses, which allows remote OCSP servers to cause a denial of service (NULL pointer dereference and application crash) via an invalid key.</Note>
+    </Notes>
+    <CVE>CVE-2013-0166</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed">
+        <ProductID>openSUSE Leap 42.1:libopenssl0_9_8-0.9.8zh-14.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libopenssl0_9_8-32bit-0.9.8zh-14.1</ProductID>
+      </Status>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>5</BaseScoreV2>
+        <VectorV2>AV:N/AC:L/Au:N/C:N/I:N/A:P</VectorV2>
+      </ScoreSetV2>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-security-announce/2016-03/msg00011.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2013-0166.html</URL>
+        <Description>CVE-2013-0166</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/802648</URL>
+        <Description>SUSE Bug 802648</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/802746</URL>
+        <Description>SUSE Bug 802746</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/813366</URL>
+        <Description>SUSE Bug 813366</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/821818</URL>
+        <Description>SUSE Bug 821818</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/833408</URL>
+        <Description>SUSE Bug 833408</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/905106</URL>
+        <Description>SUSE Bug 905106</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/911906</URL>
+        <Description>SUSE Bug 911906</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="2">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">The TLS protocol 1.1 and 1.2 and the DTLS protocol 1.0 and 1.2, as used in OpenSSL, OpenJDK, PolarSSL, and other products, do not properly consider timing side-channel attacks on a MAC check requirement during the processing of malformed CBC padding, which allows remote attackers to conduct distinguishing attacks and plaintext-recovery attacks via statistical analysis of timing data for crafted packets, aka the "Lucky Thirteen" issue.</Note>
+    </Notes>
+    <CVE>CVE-2013-0169</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed">
+        <ProductID>openSUSE Leap 42.1:libopenssl0_9_8-0.9.8zh-14.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libopenssl0_9_8-32bit-0.9.8zh-14.1</ProductID>
+      </Status>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>2.6</BaseScoreV2>
+        <VectorV2>AV:N/AC:H/Au:N/C:P/I:N/A:N</VectorV2>
+      </ScoreSetV2>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-security-announce/2016-03/msg00011.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2013-0169.html</URL>
+        <Description>CVE-2013-0169</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/1070148</URL>
+        <Description>SUSE Bug 1070148</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/1103036</URL>
+        <Description>SUSE Bug 1103036</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/1103597</URL>
+        <Description>SUSE Bug 1103597</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/802184</URL>
+        <Description>SUSE Bug 802184</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/802648</URL>
+        <Description>SUSE Bug 802648</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/802746</URL>
+        <Description>SUSE Bug 802746</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/803379</URL>
+        <Description>SUSE Bug 803379</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/804654</URL>
+        <Description>SUSE Bug 804654</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/809839</URL>
+        <Description>SUSE Bug 809839</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/813366</URL>
+        <Description>SUSE Bug 813366</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/813939</URL>
+        <Description>SUSE Bug 813939</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/821818</URL>
+        <Description>SUSE Bug 821818</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/905106</URL>
+        <Description>SUSE Bug 905106</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/977584</URL>
+        <Description>SUSE Bug 977584</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/977616</URL>
+        <Description>SUSE Bug 977616</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="3">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">The Montgomery ladder implementation in OpenSSL through 1.0.0l does not ensure that certain swap operations have a constant-time behavior, which makes it easier for local users to obtain ECDSA nonces via a FLUSH+RELOAD cache side-channel attack.</Note>
+    </Notes>
+    <CVE>CVE-2014-0076</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed">
+        <ProductID>openSUSE Leap 42.1:libopenssl0_9_8-0.9.8zh-14.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libopenssl0_9_8-32bit-0.9.8zh-14.1</ProductID>
+      </Status>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>important</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>1.9</BaseScoreV2>
+        <VectorV2>AV:L/AC:M/Au:N/C:P/I:N/A:N</VectorV2>
+      </ScoreSetV2>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-security-announce/2016-03/msg00011.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2014-0076.html</URL>
+        <Description>CVE-2014-0076</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/869945</URL>
+        <Description>SUSE Bug 869945</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/880891</URL>
+        <Description>SUSE Bug 880891</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/883126</URL>
+        <Description>SUSE Bug 883126</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/905106</URL>
+        <Description>SUSE Bug 905106</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="4">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">The dtls1_reassemble_fragment function in d1_both.c in OpenSSL before 0.9.8za, 1.0.0 before 1.0.0m, and 1.0.1 before 1.0.1h does not properly validate fragment lengths in DTLS ClientHello messages, which allows remote attackers to execute arbitrary code or cause a denial of service (buffer overflow and application crash) via a long non-initial fragment.</Note>
+    </Notes>
+    <CVE>CVE-2014-0195</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed">
+        <ProductID>openSUSE Leap 42.1:libopenssl0_9_8-0.9.8zh-14.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libopenssl0_9_8-32bit-0.9.8zh-14.1</ProductID>
+      </Status>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>6.8</BaseScoreV2>
+        <VectorV2>AV:N/AC:M/Au:N/C:P/I:P/A:P</VectorV2>
+      </ScoreSetV2>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-security-announce/2016-03/msg00011.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2014-0195.html</URL>
+        <Description>CVE-2014-0195</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/880891</URL>
+        <Description>SUSE Bug 880891</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/915913</URL>
+        <Description>SUSE Bug 915913</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="5">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">The dtls1_get_message_fragment function in d1_both.c in OpenSSL before 0.9.8za, 1.0.0 before 1.0.0m, and 1.0.1 before 1.0.1h allows remote attackers to cause a denial of service (recursion and client crash) via a DTLS hello message in an invalid DTLS handshake.</Note>
+    </Notes>
+    <CVE>CVE-2014-0221</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed">
+        <ProductID>openSUSE Leap 42.1:libopenssl0_9_8-0.9.8zh-14.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libopenssl0_9_8-32bit-0.9.8zh-14.1</ProductID>
+      </Status>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>4.3</BaseScoreV2>
+        <VectorV2>AV:N/AC:M/Au:N/C:N/I:N/A:P</VectorV2>
+      </ScoreSetV2>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-security-announce/2016-03/msg00011.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2014-0221.html</URL>
+        <Description>CVE-2014-0221</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/880891</URL>
+        <Description>SUSE Bug 880891</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/883126</URL>
+        <Description>SUSE Bug 883126</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/905106</URL>
+        <Description>SUSE Bug 905106</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/915913</URL>
+        <Description>SUSE Bug 915913</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="6">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">OpenSSL before 0.9.8za, 1.0.0 before 1.0.0m, and 1.0.1 before 1.0.1h does not properly restrict processing of ChangeCipherSpec messages, which allows man-in-the-middle attackers to trigger use of a zero-length master key in certain OpenSSL-to-OpenSSL communications, and consequently hijack sessions or obtain sensitive information, via a crafted TLS handshake, aka the "CCS Injection" vulnerability.</Note>
+    </Notes>
+    <CVE>CVE-2014-0224</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed">
+        <ProductID>openSUSE Leap 42.1:libopenssl0_9_8-0.9.8zh-14.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libopenssl0_9_8-32bit-0.9.8zh-14.1</ProductID>
+      </Status>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>5.8</BaseScoreV2>
+        <VectorV2>AV:N/AC:M/Au:N/C:P/I:P/A:N</VectorV2>
+      </ScoreSetV2>
+      <ScoreSetV3>
+        <BaseScoreV3>7.4</BaseScoreV3>
+        <VectorV3>CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:N</VectorV3>
+      </ScoreSetV3>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-security-announce/2016-03/msg00011.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2014-0224.html</URL>
+        <Description>CVE-2014-0224</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/1146657</URL>
+        <Description>SUSE Bug 1146657</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/880891</URL>
+        <Description>SUSE Bug 880891</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/883126</URL>
+        <Description>SUSE Bug 883126</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/885777</URL>
+        <Description>SUSE Bug 885777</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/892403</URL>
+        <Description>SUSE Bug 892403</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/901237</URL>
+        <Description>SUSE Bug 901237</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/905018</URL>
+        <Description>SUSE Bug 905018</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/905106</URL>
+        <Description>SUSE Bug 905106</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/914447</URL>
+        <Description>SUSE Bug 914447</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/915913</URL>
+        <Description>SUSE Bug 915913</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/916239</URL>
+        <Description>SUSE Bug 916239</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="7">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">The ssl3_send_client_key_exchange function in s3_clnt.c in OpenSSL before 0.9.8za, 1.0.0 before 1.0.0m, and 1.0.1 before 1.0.1h, when an anonymous ECDH cipher suite is used, allows remote attackers to cause a denial of service (NULL pointer dereference and client crash) by triggering a NULL certificate value.</Note>
+    </Notes>
+    <CVE>CVE-2014-3470</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed">
+        <ProductID>openSUSE Leap 42.1:libopenssl0_9_8-0.9.8zh-14.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libopenssl0_9_8-32bit-0.9.8zh-14.1</ProductID>
+      </Status>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>4.3</BaseScoreV2>
+        <VectorV2>AV:N/AC:M/Au:N/C:N/I:N/A:P</VectorV2>
+      </ScoreSetV2>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-security-announce/2016-03/msg00011.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2014-3470.html</URL>
+        <Description>CVE-2014-3470</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/880891</URL>
+        <Description>SUSE Bug 880891</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/883126</URL>
+        <Description>SUSE Bug 883126</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/885777</URL>
+        <Description>SUSE Bug 885777</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/905106</URL>
+        <Description>SUSE Bug 905106</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/915913</URL>
+        <Description>SUSE Bug 915913</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="8">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">Double free vulnerability in d1_both.c in the DTLS implementation in OpenSSL 0.9.8 before 0.9.8zb, 1.0.0 before 1.0.0n, and 1.0.1 before 1.0.1i allows remote attackers to cause a denial of service (application crash) via crafted DTLS packets that trigger an error condition.</Note>
+    </Notes>
+    <CVE>CVE-2014-3505</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed">
+        <ProductID>openSUSE Leap 42.1:libopenssl0_9_8-0.9.8zh-14.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libopenssl0_9_8-32bit-0.9.8zh-14.1</ProductID>
+      </Status>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>important</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>5</BaseScoreV2>
+        <VectorV2>AV:N/AC:L/Au:N/C:N/I:N/A:P</VectorV2>
+      </ScoreSetV2>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-security-announce/2016-03/msg00011.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2014-3505.html</URL>
+        <Description>CVE-2014-3505</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/890759</URL>
+        <Description>SUSE Bug 890759</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/890764</URL>
+        <Description>SUSE Bug 890764</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/890767</URL>
+        <Description>SUSE Bug 890767</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/905106</URL>
+        <Description>SUSE Bug 905106</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="9">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">d1_both.c in the DTLS implementation in OpenSSL 0.9.8 before 0.9.8zb, 1.0.0 before 1.0.0n, and 1.0.1 before 1.0.1i allows remote attackers to cause a denial of service (memory consumption) via crafted DTLS handshake messages that trigger memory allocations corresponding to large length values.</Note>
+    </Notes>
+    <CVE>CVE-2014-3506</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed">
+        <ProductID>openSUSE Leap 42.1:libopenssl0_9_8-0.9.8zh-14.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libopenssl0_9_8-32bit-0.9.8zh-14.1</ProductID>
+      </Status>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>important</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>5</BaseScoreV2>
+        <VectorV2>AV:N/AC:L/Au:N/C:N/I:N/A:P</VectorV2>
+      </ScoreSetV2>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-security-announce/2016-03/msg00011.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2014-3506.html</URL>
+        <Description>CVE-2014-3506</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/890759</URL>
+        <Description>SUSE Bug 890759</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/890764</URL>
+        <Description>SUSE Bug 890764</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/890768</URL>
+        <Description>SUSE Bug 890768</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/905106</URL>
+        <Description>SUSE Bug 905106</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="10">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">Memory leak in d1_both.c in the DTLS implementation in OpenSSL 0.9.8 before 0.9.8zb, 1.0.0 before 1.0.0n, and 1.0.1 before 1.0.1i allows remote attackers to cause a denial of service (memory consumption) via zero-length DTLS fragments that trigger improper handling of the return value of a certain insert function.</Note>
+    </Notes>
+    <CVE>CVE-2014-3507</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed">
+        <ProductID>openSUSE Leap 42.1:libopenssl0_9_8-0.9.8zh-14.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libopenssl0_9_8-32bit-0.9.8zh-14.1</ProductID>
+      </Status>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>important</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>5</BaseScoreV2>
+        <VectorV2>AV:N/AC:L/Au:N/C:N/I:N/A:P</VectorV2>
+      </ScoreSetV2>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-security-announce/2016-03/msg00011.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2014-3507.html</URL>
+        <Description>CVE-2014-3507</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/890759</URL>
+        <Description>SUSE Bug 890759</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/890764</URL>
+        <Description>SUSE Bug 890764</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/890769</URL>
+        <Description>SUSE Bug 890769</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/905106</URL>
+        <Description>SUSE Bug 905106</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="11">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">The OBJ_obj2txt function in crypto/objects/obj_dat.c in OpenSSL 0.9.8 before 0.9.8zb, 1.0.0 before 1.0.0n, and 1.0.1 before 1.0.1i, when pretty printing is used, does not ensure the presence of '\0' characters, which allows context-dependent attackers to obtain sensitive information from process stack memory by reading output from X509_name_oneline, X509_name_print_ex, and unspecified other functions.</Note>
+    </Notes>
+    <CVE>CVE-2014-3508</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed">
+        <ProductID>openSUSE Leap 42.1:libopenssl0_9_8-0.9.8zh-14.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libopenssl0_9_8-32bit-0.9.8zh-14.1</ProductID>
+      </Status>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>important</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>4.3</BaseScoreV2>
+        <VectorV2>AV:N/AC:M/Au:N/C:P/I:N/A:N</VectorV2>
+      </ScoreSetV2>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-security-announce/2016-03/msg00011.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2014-3508.html</URL>
+        <Description>CVE-2014-3508</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/890759</URL>
+        <Description>SUSE Bug 890759</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/890764</URL>
+        <Description>SUSE Bug 890764</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/905106</URL>
+        <Description>SUSE Bug 905106</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/950708</URL>
+        <Description>SUSE Bug 950708</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="12">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">The ssl3_send_client_key_exchange function in s3_clnt.c in OpenSSL 0.9.8 before 0.9.8zb, 1.0.0 before 1.0.0n, and 1.0.1 before 1.0.1i allows remote DTLS servers to cause a denial of service (NULL pointer dereference and client application crash) via a crafted handshake message in conjunction with a (1) anonymous DH or (2) anonymous ECDH ciphersuite.</Note>
+    </Notes>
+    <CVE>CVE-2014-3510</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed">
+        <ProductID>openSUSE Leap 42.1:libopenssl0_9_8-0.9.8zh-14.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libopenssl0_9_8-32bit-0.9.8zh-14.1</ProductID>
+      </Status>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>important</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>4.3</BaseScoreV2>
+        <VectorV2>AV:N/AC:M/Au:N/C:N/I:N/A:P</VectorV2>
+      </ScoreSetV2>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-security-announce/2016-03/msg00011.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2014-3510.html</URL>
+        <Description>CVE-2014-3510</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/890759</URL>
+        <Description>SUSE Bug 890759</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/890764</URL>
+        <Description>SUSE Bug 890764</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/890770</URL>
+        <Description>SUSE Bug 890770</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/905106</URL>
+        <Description>SUSE Bug 905106</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="13">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">The SSL protocol 3.0, as used in OpenSSL through 1.0.1i and other products, uses nondeterministic CBC padding, which makes it easier for man-in-the-middle attackers to obtain cleartext data via a padding-oracle attack, aka the "POODLE" issue.</Note>
+    </Notes>
+    <CVE>CVE-2014-3566</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed">
+        <ProductID>openSUSE Leap 42.1:libopenssl0_9_8-0.9.8zh-14.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libopenssl0_9_8-32bit-0.9.8zh-14.1</ProductID>
+      </Status>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>5.8</BaseScoreV2>
+        <VectorV2>AV:N/AC:M/Au:N/C:N/I:P/A:P</VectorV2>
+      </ScoreSetV2>
+      <ScoreSetV3>
+        <BaseScoreV3>3.4</BaseScoreV3>
+        <VectorV3>CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:C/C:L/I:N/A:N</VectorV3>
+      </ScoreSetV3>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-security-announce/2016-03/msg00011.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2014-3566.html</URL>
+        <Description>CVE-2014-3566</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/1011293</URL>
+        <Description>SUSE Bug 1011293</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/1031023</URL>
+        <Description>SUSE Bug 1031023</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/901223</URL>
+        <Description>SUSE Bug 901223</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/901254</URL>
+        <Description>SUSE Bug 901254</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/901277</URL>
+        <Description>SUSE Bug 901277</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/901748</URL>
+        <Description>SUSE Bug 901748</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/901757</URL>
+        <Description>SUSE Bug 901757</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/901759</URL>
+        <Description>SUSE Bug 901759</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/901889</URL>
+        <Description>SUSE Bug 901889</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/901968</URL>
+        <Description>SUSE Bug 901968</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/902229</URL>
+        <Description>SUSE Bug 902229</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/902476</URL>
+        <Description>SUSE Bug 902476</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/902912</URL>
+        <Description>SUSE Bug 902912</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/903405</URL>
+        <Description>SUSE Bug 903405</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/903684</URL>
+        <Description>SUSE Bug 903684</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/903690</URL>
+        <Description>SUSE Bug 903690</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/903692</URL>
+        <Description>SUSE Bug 903692</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/904889</URL>
+        <Description>SUSE Bug 904889</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/905106</URL>
+        <Description>SUSE Bug 905106</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/914041</URL>
+        <Description>SUSE Bug 914041</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="14">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">Memory leak in the tls_decrypt_ticket function in t1_lib.c in OpenSSL before 0.9.8zc, 1.0.0 before 1.0.0o, and 1.0.1 before 1.0.1j allows remote attackers to cause a denial of service (memory consumption) via a crafted session ticket that triggers an integrity-check failure.</Note>
+    </Notes>
+    <CVE>CVE-2014-3567</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed">
+        <ProductID>openSUSE Leap 42.1:libopenssl0_9_8-0.9.8zh-14.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libopenssl0_9_8-32bit-0.9.8zh-14.1</ProductID>
+      </Status>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>important</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>7.1</BaseScoreV2>
+        <VectorV2>AV:N/AC:M/Au:N/C:N/I:N/A:C</VectorV2>
+      </ScoreSetV2>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-security-announce/2016-03/msg00011.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2014-3567.html</URL>
+        <Description>CVE-2014-3567</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/877506</URL>
+        <Description>SUSE Bug 877506</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/901277</URL>
+        <Description>SUSE Bug 901277</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/902912</URL>
+        <Description>SUSE Bug 902912</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/903690</URL>
+        <Description>SUSE Bug 903690</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/903692</URL>
+        <Description>SUSE Bug 903692</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/905106</URL>
+        <Description>SUSE Bug 905106</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="15">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">OpenSSL before 0.9.8zc, 1.0.0 before 1.0.0o, and 1.0.1 before 1.0.1j does not properly enforce the no-ssl3 build option, which allows remote attackers to bypass intended access restrictions via an SSL 3.0 handshake, related to s23_clnt.c and s23_srvr.c.</Note>
+    </Notes>
+    <CVE>CVE-2014-3568</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed">
+        <ProductID>openSUSE Leap 42.1:libopenssl0_9_8-0.9.8zh-14.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libopenssl0_9_8-32bit-0.9.8zh-14.1</ProductID>
+      </Status>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>low</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>4.3</BaseScoreV2>
+        <VectorV2>AV:N/AC:M/Au:N/C:N/I:P/A:N</VectorV2>
+      </ScoreSetV2>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-security-announce/2016-03/msg00011.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2014-3568.html</URL>
+        <Description>CVE-2014-3568</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/901277</URL>
+        <Description>SUSE Bug 901277</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/902912</URL>
+        <Description>SUSE Bug 902912</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/905106</URL>
+        <Description>SUSE Bug 905106</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/911399</URL>
+        <Description>SUSE Bug 911399</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/986238</URL>
+        <Description>SUSE Bug 986238</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="16">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">The ssl23_get_client_hello function in s23_srvr.c in OpenSSL 0.9.8zc, 1.0.0o, and 1.0.1j does not properly handle attempts to use unsupported protocols, which allows remote attackers to cause a denial of service (NULL pointer dereference and daemon crash) via an unexpected handshake, as demonstrated by an SSLv3 handshake to a no-ssl3 application with certain error handling.  NOTE: this issue became relevant after the CVE-2014-3568 fix.</Note>
+    </Notes>
+    <CVE>CVE-2014-3569</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed">
+        <ProductID>openSUSE Leap 42.1:libopenssl0_9_8-0.9.8zh-14.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libopenssl0_9_8-32bit-0.9.8zh-14.1</ProductID>
+      </Status>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>important</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>5.7</BaseScoreV2>
+        <VectorV2>AV:N/AC:M/Au:M/C:N/I:N/A:C</VectorV2>
+      </ScoreSetV2>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-security-announce/2016-03/msg00011.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2014-3569.html</URL>
+        <Description>CVE-2014-3569</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/911399</URL>
+        <Description>SUSE Bug 911399</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/920339</URL>
+        <Description>SUSE Bug 920339</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/927623</URL>
+        <Description>SUSE Bug 927623</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/986238</URL>
+        <Description>SUSE Bug 986238</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="17">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">The BN_sqr implementation in OpenSSL before 0.9.8zd, 1.0.0 before 1.0.0p, and 1.0.1 before 1.0.1k does not properly calculate the square of a BIGNUM value, which might make it easier for remote attackers to defeat cryptographic protection mechanisms via unspecified vectors, related to crypto/bn/asm/mips.pl, crypto/bn/asm/x86_64-gcc.c, and crypto/bn/bn_asm.c.</Note>
+    </Notes>
+    <CVE>CVE-2014-3570</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed">
+        <ProductID>openSUSE Leap 42.1:libopenssl0_9_8-0.9.8zh-14.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libopenssl0_9_8-32bit-0.9.8zh-14.1</ProductID>
+      </Status>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>5</BaseScoreV2>
+        <VectorV2>AV:N/AC:L/Au:N/C:P/I:N/A:N</VectorV2>
+      </ScoreSetV2>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-security-announce/2016-03/msg00011.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2014-3570.html</URL>
+        <Description>CVE-2014-3570</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/912296</URL>
+        <Description>SUSE Bug 912296</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/920339</URL>
+        <Description>SUSE Bug 920339</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/927623</URL>
+        <Description>SUSE Bug 927623</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/937891</URL>
+        <Description>SUSE Bug 937891</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/944456</URL>
+        <Description>SUSE Bug 944456</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="18">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">OpenSSL before 0.9.8zd, 1.0.0 before 1.0.0p, and 1.0.1 before 1.0.1k allows remote attackers to cause a denial of service (NULL pointer dereference and application crash) via a crafted DTLS message that is processed with a different read operation for the handshake header than for the handshake body, related to the dtls1_get_record function in d1_pkt.c and the ssl3_read_n function in s3_pkt.c.</Note>
+    </Notes>
+    <CVE>CVE-2014-3571</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed">
+        <ProductID>openSUSE Leap 42.1:libopenssl0_9_8-0.9.8zh-14.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libopenssl0_9_8-32bit-0.9.8zh-14.1</ProductID>
+      </Status>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>5</BaseScoreV2>
+        <VectorV2>AV:N/AC:L/Au:N/C:N/I:N/A:P</VectorV2>
+      </ScoreSetV2>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-security-announce/2016-03/msg00011.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2014-3571.html</URL>
+        <Description>CVE-2014-3571</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/912294</URL>
+        <Description>SUSE Bug 912294</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/920339</URL>
+        <Description>SUSE Bug 920339</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/927623</URL>
+        <Description>SUSE Bug 927623</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="19">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">The ssl3_get_key_exchange function in s3_clnt.c in OpenSSL before 0.9.8zd, 1.0.0 before 1.0.0p, and 1.0.1 before 1.0.1k allows remote SSL servers to conduct ECDHE-to-ECDH downgrade attacks and trigger a loss of forward secrecy by omitting the ServerKeyExchange message.</Note>
+    </Notes>
+    <CVE>CVE-2014-3572</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed">
+        <ProductID>openSUSE Leap 42.1:libopenssl0_9_8-0.9.8zh-14.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libopenssl0_9_8-32bit-0.9.8zh-14.1</ProductID>
+      </Status>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>5</BaseScoreV2>
+        <VectorV2>AV:N/AC:L/Au:N/C:N/I:P/A:N</VectorV2>
+      </ScoreSetV2>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-security-announce/2016-03/msg00011.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2014-3572.html</URL>
+        <Description>CVE-2014-3572</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/912015</URL>
+        <Description>SUSE Bug 912015</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/920339</URL>
+        <Description>SUSE Bug 920339</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/927623</URL>
+        <Description>SUSE Bug 927623</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/937891</URL>
+        <Description>SUSE Bug 937891</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="20">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">OpenSSL before 0.9.8zd, 1.0.0 before 1.0.0p, and 1.0.1 before 1.0.1k does not enforce certain constraints on certificate data, which allows remote attackers to defeat a fingerprint-based certificate-blacklist protection mechanism by including crafted data within a certificate's unsigned portion, related to crypto/asn1/a_verify.c, crypto/dsa/dsa_asn1.c, crypto/ecdsa/ecs_vrf.c, and crypto/x509/x_all.c.</Note>
+    </Notes>
+    <CVE>CVE-2014-8275</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed">
+        <ProductID>openSUSE Leap 42.1:libopenssl0_9_8-0.9.8zh-14.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libopenssl0_9_8-32bit-0.9.8zh-14.1</ProductID>
+      </Status>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>5</BaseScoreV2>
+        <VectorV2>AV:N/AC:L/Au:N/C:N/I:P/A:N</VectorV2>
+      </ScoreSetV2>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-security-announce/2016-03/msg00011.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2014-8275.html</URL>
+        <Description>CVE-2014-8275</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/911906</URL>
+        <Description>SUSE Bug 911906</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/912018</URL>
+        <Description>SUSE Bug 912018</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/920339</URL>
+        <Description>SUSE Bug 920339</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/927623</URL>
+        <Description>SUSE Bug 927623</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/937891</URL>
+        <Description>SUSE Bug 937891</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="21">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">The ssl3_get_key_exchange function in s3_clnt.c in OpenSSL before 0.9.8zd, 1.0.0 before 1.0.0p, and 1.0.1 before 1.0.1k allows remote SSL servers to conduct RSA-to-EXPORT_RSA downgrade attacks and facilitate brute-force decryption by offering a weak ephemeral RSA key in a noncompliant role, related to the "FREAK" issue.  NOTE: the scope of this CVE is only client code based on OpenSSL, not EXPORT_RSA issues associated with servers or other TLS implementations.</Note>
+    </Notes>
+    <CVE>CVE-2015-0204</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed">
+        <ProductID>openSUSE Leap 42.1:libopenssl0_9_8-0.9.8zh-14.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libopenssl0_9_8-32bit-0.9.8zh-14.1</ProductID>
+      </Status>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>critical</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>10</BaseScoreV2>
+        <VectorV2>AV:N/AC:L/Au:N/C:C/I:C/A:C</VectorV2>
+      </ScoreSetV2>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-security-announce/2016-03/msg00011.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-0204.html</URL>
+        <Description>CVE-2015-0204</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/912014</URL>
+        <Description>SUSE Bug 912014</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/920339</URL>
+        <Description>SUSE Bug 920339</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/920482</URL>
+        <Description>SUSE Bug 920482</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/920484</URL>
+        <Description>SUSE Bug 920484</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/927591</URL>
+        <Description>SUSE Bug 927591</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/927623</URL>
+        <Description>SUSE Bug 927623</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/936787</URL>
+        <Description>SUSE Bug 936787</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/952088</URL>
+        <Description>SUSE Bug 952088</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="22">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">Use-after-free vulnerability in the d2i_ECPrivateKey function in crypto/ec/ec_asn1.c in OpenSSL before 0.9.8zf, 1.0.0 before 1.0.0r, 1.0.1 before 1.0.1m, and 1.0.2 before 1.0.2a might allow remote attackers to cause a denial of service (memory corruption and application crash) or possibly have unspecified other impact via a malformed Elliptic Curve (EC) private-key file that is improperly handled during import.</Note>
+    </Notes>
+    <CVE>CVE-2015-0209</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed">
+        <ProductID>openSUSE Leap 42.1:libopenssl0_9_8-0.9.8zh-14.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libopenssl0_9_8-32bit-0.9.8zh-14.1</ProductID>
+      </Status>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>critical</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>6.8</BaseScoreV2>
+        <VectorV2>AV:N/AC:M/Au:N/C:P/I:P/A:P</VectorV2>
+      </ScoreSetV2>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-security-announce/2016-03/msg00011.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-0209.html</URL>
+        <Description>CVE-2015-0209</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/919648</URL>
+        <Description>SUSE Bug 919648</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/936586</URL>
+        <Description>SUSE Bug 936586</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/937891</URL>
+        <Description>SUSE Bug 937891</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="23">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">The ASN1_TYPE_cmp function in crypto/asn1/a_type.c in OpenSSL before 0.9.8zf, 1.0.0 before 1.0.0r, 1.0.1 before 1.0.1m, and 1.0.2 before 1.0.2a does not properly perform boolean-type comparisons, which allows remote attackers to cause a denial of service (invalid read operation and application crash) via a crafted X.509 certificate to an endpoint that uses the certificate-verification feature.</Note>
+    </Notes>
+    <CVE>CVE-2015-0286</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed">
+        <ProductID>openSUSE Leap 42.1:libopenssl0_9_8-0.9.8zh-14.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libopenssl0_9_8-32bit-0.9.8zh-14.1</ProductID>
+      </Status>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>critical</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>5</BaseScoreV2>
+        <VectorV2>AV:N/AC:L/Au:N/C:N/I:N/A:P</VectorV2>
+      </ScoreSetV2>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-security-announce/2016-03/msg00011.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-0286.html</URL>
+        <Description>CVE-2015-0286</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/919648</URL>
+        <Description>SUSE Bug 919648</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/922496</URL>
+        <Description>SUSE Bug 922496</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/936586</URL>
+        <Description>SUSE Bug 936586</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/937891</URL>
+        <Description>SUSE Bug 937891</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/951391</URL>
+        <Description>SUSE Bug 951391</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="24">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">The ASN1_item_ex_d2i function in crypto/asn1/tasn_dec.c in OpenSSL before 0.9.8zf, 1.0.0 before 1.0.0r, 1.0.1 before 1.0.1m, and 1.0.2 before 1.0.2a does not reinitialize CHOICE and ADB data structures, which might allow attackers to cause a denial of service (invalid write operation and memory corruption) by leveraging an application that relies on ASN.1 structure reuse.</Note>
+    </Notes>
+    <CVE>CVE-2015-0287</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed">
+        <ProductID>openSUSE Leap 42.1:libopenssl0_9_8-0.9.8zh-14.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libopenssl0_9_8-32bit-0.9.8zh-14.1</ProductID>
+      </Status>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>critical</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>5</BaseScoreV2>
+        <VectorV2>AV:N/AC:L/Au:N/C:N/I:N/A:P</VectorV2>
+      </ScoreSetV2>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-security-announce/2016-03/msg00011.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-0287.html</URL>
+        <Description>CVE-2015-0287</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/919648</URL>
+        <Description>SUSE Bug 919648</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/922499</URL>
+        <Description>SUSE Bug 922499</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/936586</URL>
+        <Description>SUSE Bug 936586</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/937492</URL>
+        <Description>SUSE Bug 937492</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/937891</URL>
+        <Description>SUSE Bug 937891</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/940369</URL>
+        <Description>SUSE Bug 940369</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/968888</URL>
+        <Description>SUSE Bug 968888</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/991722</URL>
+        <Description>SUSE Bug 991722</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="25">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">The X509_to_X509_REQ function in crypto/x509/x509_req.c in OpenSSL before 0.9.8zf, 1.0.0 before 1.0.0r, 1.0.1 before 1.0.1m, and 1.0.2 before 1.0.2a might allow attackers to cause a denial of service (NULL pointer dereference and application crash) via an invalid certificate key.</Note>
+    </Notes>
+    <CVE>CVE-2015-0288</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed">
+        <ProductID>openSUSE Leap 42.1:libopenssl0_9_8-0.9.8zh-14.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libopenssl0_9_8-32bit-0.9.8zh-14.1</ProductID>
+      </Status>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>critical</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>5</BaseScoreV2>
+        <VectorV2>AV:N/AC:L/Au:N/C:N/I:N/A:P</VectorV2>
+      </ScoreSetV2>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-security-announce/2016-03/msg00011.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-0288.html</URL>
+        <Description>CVE-2015-0288</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/919648</URL>
+        <Description>SUSE Bug 919648</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/920236</URL>
+        <Description>SUSE Bug 920236</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/936586</URL>
+        <Description>SUSE Bug 936586</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/937891</URL>
+        <Description>SUSE Bug 937891</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/951391</URL>
+        <Description>SUSE Bug 951391</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="26">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">The PKCS#7 implementation in OpenSSL before 0.9.8zf, 1.0.0 before 1.0.0r, 1.0.1 before 1.0.1m, and 1.0.2 before 1.0.2a does not properly handle a lack of outer ContentInfo, which allows attackers to cause a denial of service (NULL pointer dereference and application crash) by leveraging an application that processes arbitrary PKCS#7 data and providing malformed data with ASN.1 encoding, related to crypto/pkcs7/pk7_doit.c and crypto/pkcs7/pk7_lib.c.</Note>
+    </Notes>
+    <CVE>CVE-2015-0289</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed">
+        <ProductID>openSUSE Leap 42.1:libopenssl0_9_8-0.9.8zh-14.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libopenssl0_9_8-32bit-0.9.8zh-14.1</ProductID>
+      </Status>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>critical</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>5</BaseScoreV2>
+        <VectorV2>AV:N/AC:L/Au:N/C:N/I:N/A:P</VectorV2>
+      </ScoreSetV2>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-security-announce/2016-03/msg00011.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-0289.html</URL>
+        <Description>CVE-2015-0289</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/919648</URL>
+        <Description>SUSE Bug 919648</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/922500</URL>
+        <Description>SUSE Bug 922500</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/936586</URL>
+        <Description>SUSE Bug 936586</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/937891</URL>
+        <Description>SUSE Bug 937891</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="27">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">The SSLv2 implementation in OpenSSL before 0.9.8zf, 1.0.0 before 1.0.0r, 1.0.1 before 1.0.1m, and 1.0.2 before 1.0.2a allows remote attackers to cause a denial of service (s2_lib.c assertion failure and daemon exit) via a crafted CLIENT-MASTER-KEY message.</Note>
+    </Notes>
+    <CVE>CVE-2015-0293</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed">
+        <ProductID>openSUSE Leap 42.1:libopenssl0_9_8-0.9.8zh-14.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libopenssl0_9_8-32bit-0.9.8zh-14.1</ProductID>
+      </Status>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>critical</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>5</BaseScoreV2>
+        <VectorV2>AV:N/AC:L/Au:N/C:N/I:N/A:P</VectorV2>
+      </ScoreSetV2>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-security-announce/2016-03/msg00011.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-0293.html</URL>
+        <Description>CVE-2015-0293</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/919648</URL>
+        <Description>SUSE Bug 919648</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/922488</URL>
+        <Description>SUSE Bug 922488</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/936586</URL>
+        <Description>SUSE Bug 936586</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/968044</URL>
+        <Description>SUSE Bug 968044</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/968051</URL>
+        <Description>SUSE Bug 968051</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/968053</URL>
+        <Description>SUSE Bug 968053</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/986238</URL>
+        <Description>SUSE Bug 986238</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="28">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">The BN_GF2m_mod_inv function in crypto/bn/bn_gf2m.c in OpenSSL before 0.9.8s, 1.0.0 before 1.0.0e, 1.0.1 before 1.0.1n, and 1.0.2 before 1.0.2b does not properly handle ECParameters structures in which the curve is over a malformed binary polynomial field, which allows remote attackers to cause a denial of service (infinite loop) via a session that uses an Elliptic Curve algorithm, as demonstrated by an attack against a server that supports client authentication.</Note>
+    </Notes>
+    <CVE>CVE-2015-1788</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed">
+        <ProductID>openSUSE Leap 42.1:libopenssl0_9_8-0.9.8zh-14.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libopenssl0_9_8-32bit-0.9.8zh-14.1</ProductID>
+      </Status>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>4.3</BaseScoreV2>
+        <VectorV2>AV:N/AC:M/Au:N/C:N/I:N/A:P</VectorV2>
+      </ScoreSetV2>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-security-announce/2016-03/msg00011.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-1788.html</URL>
+        <Description>CVE-2015-1788</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/934487</URL>
+        <Description>SUSE Bug 934487</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/936586</URL>
+        <Description>SUSE Bug 936586</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/937891</URL>
+        <Description>SUSE Bug 937891</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/938432</URL>
+        <Description>SUSE Bug 938432</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="29">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">The X509_cmp_time function in crypto/x509/x509_vfy.c in OpenSSL before 0.9.8zg, 1.0.0 before 1.0.0s, 1.0.1 before 1.0.1n, and 1.0.2 before 1.0.2b allows remote attackers to cause a denial of service (out-of-bounds read and application crash) via a crafted length field in ASN1_TIME data, as demonstrated by an attack against a server that supports client authentication with a custom verification callback.</Note>
+    </Notes>
+    <CVE>CVE-2015-1789</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed">
+        <ProductID>openSUSE Leap 42.1:libopenssl0_9_8-0.9.8zh-14.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libopenssl0_9_8-32bit-0.9.8zh-14.1</ProductID>
+      </Status>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>4.3</BaseScoreV2>
+        <VectorV2>AV:N/AC:M/Au:N/C:N/I:N/A:P</VectorV2>
+      </ScoreSetV2>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-security-announce/2016-03/msg00011.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-1789.html</URL>
+        <Description>CVE-2015-1789</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/934489</URL>
+        <Description>SUSE Bug 934489</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/936586</URL>
+        <Description>SUSE Bug 936586</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/937891</URL>
+        <Description>SUSE Bug 937891</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/938432</URL>
+        <Description>SUSE Bug 938432</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/951391</URL>
+        <Description>SUSE Bug 951391</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="30">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">The PKCS7_dataDecodefunction in crypto/pkcs7/pk7_doit.c in OpenSSL before 0.9.8zg, 1.0.0 before 1.0.0s, 1.0.1 before 1.0.1n, and 1.0.2 before 1.0.2b allows remote attackers to cause a denial of service (NULL pointer dereference and application crash) via a PKCS#7 blob that uses ASN.1 encoding and lacks inner EncryptedContent data.</Note>
+    </Notes>
+    <CVE>CVE-2015-1790</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed">
+        <ProductID>openSUSE Leap 42.1:libopenssl0_9_8-0.9.8zh-14.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libopenssl0_9_8-32bit-0.9.8zh-14.1</ProductID>
+      </Status>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>5</BaseScoreV2>
+        <VectorV2>AV:N/AC:L/Au:N/C:N/I:N/A:P</VectorV2>
+      </ScoreSetV2>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-security-announce/2016-03/msg00011.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-1790.html</URL>
+        <Description>CVE-2015-1790</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/934491</URL>
+        <Description>SUSE Bug 934491</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/936586</URL>
+        <Description>SUSE Bug 936586</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/938432</URL>
+        <Description>SUSE Bug 938432</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="31">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">Race condition in the ssl3_get_new_session_ticket function in ssl/s3_clnt.c in OpenSSL before 0.9.8zg, 1.0.0 before 1.0.0s, 1.0.1 before 1.0.1n, and 1.0.2 before 1.0.2b, when used for a multi-threaded client, allows remote attackers to cause a denial of service (double free and application crash) or possibly have unspecified other impact by providing a NewSessionTicket during an attempt to reuse a ticket that had been obtained earlier.</Note>
+    </Notes>
+    <CVE>CVE-2015-1791</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed">
+        <ProductID>openSUSE Leap 42.1:libopenssl0_9_8-0.9.8zh-14.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libopenssl0_9_8-32bit-0.9.8zh-14.1</ProductID>
+      </Status>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>6.8</BaseScoreV2>
+        <VectorV2>AV:N/AC:M/Au:N/C:P/I:P/A:P</VectorV2>
+      </ScoreSetV2>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-security-announce/2016-03/msg00011.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-1791.html</URL>
+        <Description>CVE-2015-1791</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/933911</URL>
+        <Description>SUSE Bug 933911</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/986238</URL>
+        <Description>SUSE Bug 986238</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/989464</URL>
+        <Description>SUSE Bug 989464</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="32">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">The do_free_upto function in crypto/cms/cms_smime.c in OpenSSL before 0.9.8zg, 1.0.0 before 1.0.0s, 1.0.1 before 1.0.1n, and 1.0.2 before 1.0.2b allows remote attackers to cause a denial of service (infinite loop) via vectors that trigger a NULL value of a BIO data structure, as demonstrated by an unrecognized X.660 OID for a hash function.</Note>
+    </Notes>
+    <CVE>CVE-2015-1792</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed">
+        <ProductID>openSUSE Leap 42.1:libopenssl0_9_8-0.9.8zh-14.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libopenssl0_9_8-32bit-0.9.8zh-14.1</ProductID>
+      </Status>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>5</BaseScoreV2>
+        <VectorV2>AV:N/AC:L/Au:N/C:N/I:N/A:P</VectorV2>
+      </ScoreSetV2>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-security-announce/2016-03/msg00011.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-1792.html</URL>
+        <Description>CVE-2015-1792</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/934493</URL>
+        <Description>SUSE Bug 934493</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/937891</URL>
+        <Description>SUSE Bug 937891</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/986238</URL>
+        <Description>SUSE Bug 986238</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="33">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">The ASN1_TFLG_COMBINE implementation in crypto/asn1/tasn_dec.c in OpenSSL before 0.9.8zh, 1.0.0 before 1.0.0t, 1.0.1 before 1.0.1q, and 1.0.2 before 1.0.2e mishandles errors caused by malformed X509_ATTRIBUTE data, which allows remote attackers to obtain sensitive information from process memory by triggering a decoding failure in a PKCS#7 or CMS application.</Note>
+    </Notes>
+    <CVE>CVE-2015-3195</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed">
+        <ProductID>openSUSE Leap 42.1:libopenssl0_9_8-0.9.8zh-14.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libopenssl0_9_8-32bit-0.9.8zh-14.1</ProductID>
+      </Status>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>5</BaseScoreV2>
+        <VectorV2>AV:N/AC:L/Au:N/C:N/I:N/A:P</VectorV2>
+      </ScoreSetV2>
+      <ScoreSetV3>
+        <BaseScoreV3>5.3</BaseScoreV3>
+        <VectorV3>CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L</VectorV3>
+      </ScoreSetV3>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-security-announce/2016-03/msg00011.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-3195.html</URL>
+        <Description>CVE-2015-3195</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/923755</URL>
+        <Description>SUSE Bug 923755</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/957812</URL>
+        <Description>SUSE Bug 957812</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/957815</URL>
+        <Description>SUSE Bug 957815</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/958768</URL>
+        <Description>SUSE Bug 958768</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/963977</URL>
+        <Description>SUSE Bug 963977</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/986238</URL>
+        <Description>SUSE Bug 986238</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="34">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">ssl/s2_srvr.c in OpenSSL 1.0.1 before 1.0.1r and 1.0.2 before 1.0.2f does not prevent use of disabled ciphers, which makes it easier for man-in-the-middle attackers to defeat cryptographic protection mechanisms by performing computations on SSLv2 traffic, related to the get_client_master_key and get_client_hello functions.</Note>
+    </Notes>
+    <CVE>CVE-2015-3197</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed">
+        <ProductID>openSUSE Leap 42.1:libopenssl0_9_8-0.9.8zh-14.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libopenssl0_9_8-32bit-0.9.8zh-14.1</ProductID>
+      </Status>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>low</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>4.3</BaseScoreV2>
+        <VectorV2>AV:N/AC:M/Au:N/C:P/I:N/A:N</VectorV2>
+      </ScoreSetV2>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-security-announce/2016-03/msg00011.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-3197.html</URL>
+        <Description>CVE-2015-3197</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/963410</URL>
+        <Description>SUSE Bug 963410</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/963415</URL>
+        <Description>SUSE Bug 963415</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/968044</URL>
+        <Description>SUSE Bug 968044</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/968046</URL>
+        <Description>SUSE Bug 968046</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="35">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">Multiple integer overflows in OpenSSL 1.0.1 before 1.0.1s and 1.0.2 before 1.0.2g allow remote attackers to cause a denial of service (heap memory corruption or NULL pointer dereference) or possibly have unspecified other impact via a long digit string that is mishandled by the (1) BN_dec2bn or (2) BN_hex2bn function, related to crypto/bn/bn.h and crypto/bn/bn_print.c.</Note>
+    </Notes>
+    <CVE>CVE-2016-0797</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed">
+        <ProductID>openSUSE Leap 42.1:libopenssl0_9_8-0.9.8zh-14.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libopenssl0_9_8-32bit-0.9.8zh-14.1</ProductID>
+      </Status>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>5</BaseScoreV2>
+        <VectorV2>AV:N/AC:L/Au:N/C:N/I:N/A:P</VectorV2>
+      </ScoreSetV2>
+      <ScoreSetV3>
+        <BaseScoreV3>7.5</BaseScoreV3>
+        <VectorV3>CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H</VectorV3>
+      </ScoreSetV3>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-security-announce/2016-03/msg00011.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2016-0797.html</URL>
+        <Description>CVE-2016-0797</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/968044</URL>
+        <Description>SUSE Bug 968044</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/968048</URL>
+        <Description>SUSE Bug 968048</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/990370</URL>
+        <Description>SUSE Bug 990370</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="36">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">The fmtstr function in crypto/bio/b_print.c in OpenSSL 1.0.1 before 1.0.1s and 1.0.2 before 1.0.2g improperly calculates string lengths, which allows remote attackers to cause a denial of service (overflow and out-of-bounds read) or possibly have unspecified other impact via a long string, as demonstrated by a large amount of ASN.1 data, a different vulnerability than CVE-2016-2842.</Note>
+    </Notes>
+    <CVE>CVE-2016-0799</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed">
+        <ProductID>openSUSE Leap 42.1:libopenssl0_9_8-0.9.8zh-14.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libopenssl0_9_8-32bit-0.9.8zh-14.1</ProductID>
+      </Status>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>2.6</BaseScoreV2>
+        <VectorV2>AV:N/AC:H/Au:N/C:N/I:N/A:P</VectorV2>
+      </ScoreSetV2>
+      <ScoreSetV3>
+        <BaseScoreV3>9.8</BaseScoreV3>
+        <VectorV3>CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H</VectorV3>
+      </ScoreSetV3>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-security-announce/2016-03/msg00011.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2016-0799.html</URL>
+        <Description>CVE-2016-0799</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/968044</URL>
+        <Description>SUSE Bug 968044</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/968374</URL>
+        <Description>SUSE Bug 968374</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/969517</URL>
+        <Description>SUSE Bug 969517</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/989345</URL>
+        <Description>SUSE Bug 989345</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/990370</URL>
+        <Description>SUSE Bug 990370</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/991722</URL>
+        <Description>SUSE Bug 991722</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="37">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">The SSLv2 protocol, as used in OpenSSL before 1.0.1s and 1.0.2 before 1.0.2g and other products, requires a server to send a ServerVerify message before establishing that a client possesses certain plaintext RSA data, which makes it easier for remote attackers to decrypt TLS ciphertext data by leveraging a Bleichenbacher RSA padding oracle, aka a "DROWN" attack.</Note>
+    </Notes>
+    <CVE>CVE-2016-0800</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed">
+        <ProductID>openSUSE Leap 42.1:libopenssl0_9_8-0.9.8zh-14.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:libopenssl0_9_8-32bit-0.9.8zh-14.1</ProductID>
+      </Status>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>4.3</BaseScoreV2>
+        <VectorV2>AV:N/AC:M/Au:N/C:P/I:N/A:N</VectorV2>
+      </ScoreSetV2>
+      <ScoreSetV3>
+        <BaseScoreV3>5.9</BaseScoreV3>
+        <VectorV3>CVSS:3.0/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:N/A:N</VectorV3>
+      </ScoreSetV3>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-security-announce/2016-03/msg00011.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2016-0800.html</URL>
+        <Description>CVE-2016-0800</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/1106871</URL>
+        <Description>SUSE Bug 1106871</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/961377</URL>
+        <Description>SUSE Bug 961377</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/968044</URL>
+        <Description>SUSE Bug 968044</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/968046</URL>
+        <Description>SUSE Bug 968046</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/968888</URL>
+        <Description>SUSE Bug 968888</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/979060</URL>
+        <Description>SUSE Bug 979060</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+</cvrfdoc>

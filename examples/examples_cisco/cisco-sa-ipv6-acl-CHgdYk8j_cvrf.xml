@@ -1,0 +1,459 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cvrf:cvrfdoc xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:cvrf-common="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/common" xmlns:cvrf="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/cvrf">
+  <cvrf:DocumentTitle>Cisco IOS XR and Cisco NX-OS Software IPv6 Access Control List Bypass Vulnerability</cvrf:DocumentTitle>
+  <cvrf:DocumentType>Cisco Security Advisory</cvrf:DocumentType>
+  <cvrf:DocumentPublisher Type="Vendor">
+    <cvrf:ContactDetails>Emergency Support:
++1 877 228 7302 (toll-free within North America)
++1 408 525 6532 (International direct-dial)
+Non-emergency Support:
+Email: psirt@cisco.com
+Support requests that are received via e-mail are typically acknowledged within 48 hours.</cvrf:ContactDetails>
+    <cvrf:IssuingAuthority>Cisco product security incident response is the responsibility of the Cisco Product Security Incident Response Team (PSIRT). The Cisco PSIRT is a dedicated, global team that manages the receipt, investigation, and public reporting of security vulnerability information that is related to Cisco products and networks. The on-call Cisco PSIRT works 24x7 with Cisco customers, independent security researchers, consultants, industry organizations, and other vendors to identify possible security issues with Cisco products and networks.
+More information can be found in Cisco Security Vulnerability Policy available at http://www.cisco.com/web/about/security/psirt/security_vulnerability_policy.html</cvrf:IssuingAuthority>
+  </cvrf:DocumentPublisher>
+  <cvrf:DocumentTracking>
+    <cvrf:Identification>
+      <cvrf:ID>cisco-sa-ipv6-acl-CHgdYk8j</cvrf:ID>
+    </cvrf:Identification>
+    <cvrf:Status>Final</cvrf:Status>
+    <cvrf:Version>1.0</cvrf:Version>
+    <cvrf:RevisionHistory>
+      <cvrf:Revision>
+        <cvrf:Number>1.0</cvrf:Number>
+        <cvrf:Date>2021-01-27T20:18:58</cvrf:Date>
+        <cvrf:Description>Initial public release.</cvrf:Description>
+      </cvrf:Revision>
+    </cvrf:RevisionHistory>
+    <cvrf:InitialReleaseDate>2021-02-03T16:00:00</cvrf:InitialReleaseDate>
+    <cvrf:CurrentReleaseDate>2021-02-03T16:00:00</cvrf:CurrentReleaseDate>
+    <cvrf:Generator>
+      <cvrf:Engine>TVCE</cvrf:Engine>
+    </cvrf:Generator>
+  </cvrf:DocumentTracking>
+  <cvrf:DocumentNotes>
+    <cvrf:Note Title="Summary" Type="Summary" Ordinal="1">A vulnerability in the IPv6 traffic processing of Cisco IOS XR Software and Cisco NX-OS Software for certain Cisco devices could allow an unauthenticated, remote attacker to bypass an IPv6 access control list (ACL) that is configured for an interface of an affected device.
+
+The vulnerability is due to improper processing of IPv6 traffic that is sent through an affected device. An attacker could exploit this vulnerability by sending crafted IPv6 packets that traverse the affected device. A successful exploit could allow the attacker to access resources that would typically be protected by the interface ACL.
+
+Cisco has released software updates that address this vulnerability. There are no workarounds that address this vulnerability.
+
+This advisory is available at the following link:
+https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-ipv6-acl-CHgdYk8j ["https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-ipv6-acl-CHgdYk8j"]</cvrf:Note>
+    <cvrf:Note Title="Vulnerable Products" Type="General" Ordinal="2">At the time of publication, this vulnerability affected the following Cisco devices if they were running a vulnerable release of Cisco IOS XR Software or Cisco NX-OS Software and had IPv6 ACL configured:
+
+Network Convergence System (NCS) 540 Series Routers
+NCS 560 Series Routers
+NCS 5500 Series
+Nexus 3600 Platform Switches
+Nexus 9500 R-Series Switching Platforms
+
+For information about which Cisco software releases are vulnerable, see the Fixed Software ["#fs"] section of this advisory.
+
+Determine the Configuration for Cisco IOS XR Software
+
+Use the show running-config | include ipv6 access-list command to view the configured ACLs for IPv6. If this command produces an output, the device should be considered vulnerable. The following example shows the output on a device that has the IPv6 ACL configured:
+
+
+Router# show running-config  | include ipv6 access-list
+ipv6 access-list &lt;acl_name&gt;
+
+This does not apply to IPv4 ACLs.
+
+Determine the Configuration for Cisco NX-OS Software
+
+Use the show ipv6 access-lists command to view the configured ACLs for IPv6. If this command produces an output, the device should be considered vulnerable. The following example shows the output on a device that has the IPv6 ACL configured:
+
+
+Nexus# show ipv6 access-lists
+IPv6 access list &lt;acl_name&gt;
+
+This does not apply to IPv4 ACLs.</cvrf:Note>
+    <cvrf:Note Title="Products Confirmed Not Vulnerable" Type="General" Ordinal="3">Only products listed in the Vulnerable Products ["#vp"] section of this advisory are known to be affected by this vulnerability.
+
+Cisco has confirmed that this vulnerability does not affect the following Cisco products:
+
+NCS 520 Series Routers
+NCS 5000 Series Switches
+NCS 6000 Series Routers
+IOS XR SW-only
+IOS XRv 9000 Routers
+ASR 9000 Series Aggregation Services Routers
+Carrier Routing System (CRS)
+Firepower 1000 Series
+Firepower 2100 Series
+Firepower 4100 Series
+Firepower 9300 Security Appliances
+MDS 9000 Series Multilayer Switches
+Nexus 1000 Virtual Edge for VMware vSphere
+Nexus 1000V Switch for Microsoft Hyper-V
+Nexus 1000V Switch for VMware vSphere
+Nexus 3000 Series Switches
+Nexus 5500 Platform Switches
+Nexus 5600 Platform Switches
+Nexus 6000 Series Switches
+Nexus 7000 Series Switches
+Nexus 9000 Series Switches in standalone NX-OS mode
+Nexus 9000 Series Fabric Switches in Application Centric Infrastructure (ACI) mode
+UCS 6200 Series Fabric Interconnects
+UCS 6300 Series Fabric Interconnects
+UCS 6400 Series Fabric Interconnects</cvrf:Note>
+    <cvrf:Note Title="Details" Type="General" Ordinal="4">Cisco IOS XR Software
+
+After being upgraded to a fixed release of Cisco IOS XR Software, the device is able to detect IPv6 packets that may be improperly processed. Once detected, the device sends these packets to the main CPU for further processing. This activity may result in reduced performance in forwarding IPv6 packets that match specific network traffic patterns.
+
+If the device is not configured to perform IPv6 packets classification, administrators can disable the CPU-based inspection for IPv6 packets. The feature can be disabled by using the CLI command hw-module profile acl ipv6 ext-header permit in global configuration mode. Customers should be aware that this action will expose the device to the vulnerability that is described in the advisory, even if the device is running a fixed Cisco IOS XR Software release.
+
+The vulnerability described in this advisory only applies to IPv6 packets that traverse an affected device. It does not apply to IPv4 traffic or to IPv6 traffic that is destined for an affected device.
+
+Cisco NX-OS Software
+
+To protect a device from this vulnerability, administrators must install a fixed release of Cisco NX-OS Software and apply the rule extension-header deny-all to any IPv6 ACL that is configured on the device. A device should be considered vulnerable until the rule extension-header deny-all has been applied to all IPv6 ACLs that are configured on the device, even if it is running a fixed Cisco NX-OS Software release.
+
+Beginning with Cisco NX-OS Release 9.3(7), Cisco Nexus 3600 Platform Switches and Cisco Nexus 9500 R-Series Switching Platforms include the rule extension-header {permit-all | deny-all} for the disposition of IPv6 packets that include extension headers. The rule is not enabled by default. With the rule extension-header deny-all configured, the device will drop any IPv6 packet with at least one extension header, regardless of any other IPv6 ACL rules that match other fields of the packet.
+
+If the rule extension-header permit-all is configured, then the device is vulnerable.
+
+For detailed information about configuring extension-header {permit-all | deny-all}, see the Cisco Nexus 3600 NX-OS Unicast Routing Configuration Guide ["https://www.cisco.com/c/en/us/td/docs/switches/datacenter/nexus3600/sw/93x/unicast/configuration/guide/b-cisco-nexus-3600-nx-os-unicast-routing-configuration-guide-93x/b-cisco-nexus-3600-nx-os-unicast-routing-configuration-guide-93x_chapter_010010.html"] or the Cisco Nexus 9000 Series NX-OS Unicast Routing Configuration Guide ["https://www.cisco.com/c/en/us/td/docs/switches/datacenter/nexus9000/sw/93x/unicast/configuration/guide/b-cisco-nexus-9000-series-nx-os-unicast-routing-configuration-guide-93x.html"].
+
+For detailed information about configuring ACLs, see the Cisco Nexus 3600 NX-OS Security Configuration Guide ["https://www.cisco.com/c/en/us/td/docs/switches/datacenter/nexus3600/sw/93x/security/configuration/guide/b-cisco-nexus-3600-nx-os-security-configuration-guide-93x/b-cisco-nexus-3600-nx-os-security-configuration-guide-93x_chapter_01.html"] or the Cisco Nexus 9000 Series NX-OS Security Configuration Guide ["https://www.cisco.com/c/en/us/td/docs/switches/datacenter/nexus9000/sw/7-x/security/configuration/guide/b_Cisco_Nexus_9000_Series_NX-OS_Security_Configuration_Guide_7x.html"].</cvrf:Note>
+    <cvrf:Note Title="Workarounds" Type="General" Ordinal="5">There are no workarounds that address this vulnerability.</cvrf:Note>
+    <cvrf:Note Title="Fixed Software" Type="General" Ordinal="6">When considering software upgrades ["https://tools.cisco.com/security/center/resources/security_vulnerability_policy.html#fixes"], customers are advised to regularly consult the advisories for Cisco products, which are available from the Cisco Security Advisories page ["https://www.cisco.com/go/psirt"], to determine exposure and a complete upgrade solution.
+
+In all cases, customers should ensure that the devices to be upgraded contain sufficient memory and confirm that current hardware and software configurations will continue to be supported properly by the new release. If the information is not clear, customers are advised to contact the Cisco Technical Assistance Center (TAC) or their contracted maintenance providers.
+      Fixed Releases
+Cisco IOS XR Software
+
+At the time of publication, Cisco IOS XR Software releases 6.6.3, 6.7.1, 7.1.1, 7.2.1, and later contained the fix for this vulnerability.
+
+See the Details section in the bug ID(s) at the top of this advisory for the most complete and current information.
+
+Cisco NX-OS Software
+
+After upgrading a device to a fixed release of Cisco NX-OS Software, customers must apply the rule extension-header deny-all to any IPv6 ACL that is configured on the device. The rule is not enabled by default. A device should be considered vulnerable until the rule extension-header deny-all has been applied to all IPv6 ACLs that are configured on the device, even if it is running a fixed Cisco NX-OS Software release.
+
+For detailed information about configuring the extension-header deny-all rule, see the Cisco Nexus 3600 NX-OS Unicast Routing Configuration Guide ["https://www.cisco.com/c/en/us/td/docs/switches/datacenter/nexus3600/sw/93x/unicast/configuration/guide/b-cisco-nexus-3600-nx-os-unicast-routing-configuration-guide-93x/b-cisco-nexus-3600-nx-os-unicast-routing-configuration-guide-93x_chapter_010010.html"] or the Cisco Nexus 9000 Series NX-OS Unicast Routing Configuration Guide ["https://www.cisco.com/c/en/us/td/docs/switches/datacenter/nexus9000/sw/93x/unicast/configuration/guide/b-cisco-nexus-9000-series-nx-os-unicast-routing-configuration-guide-93x.html"].
+
+To help customers determine their exposure to vulnerabilities in Cisco NX-OS Software, Cisco provides the Cisco Software Checker ["https://tools.cisco.com/security/center/softwarechecker.x"] to identify any Cisco Security Advisories that impact a specific Cisco NX-OS Software release and the earliest release that fixes the vulnerabilities that are described in each advisory (“First Fixed”). If applicable, the tool also returns the earliest release that fixes all the vulnerabilities described in all the advisories identified (“Combined First Fixed”).
+
+Customers can use the Cisco Software Checker ["https://tools.cisco.com/security/center/softwarechecker.x"] to search advisories in the following ways:
+
+Choose the software, platform, and one or more releases
+Upload a .txt file that includes a list of specific releases
+Enter the output of the show version command
+
+After initiating a search, customers can customize the search to include all Cisco Security Advisories or one or more specific advisories.
+
+Customers can also use the following form to determine whether a release is affected by any Cisco Security Advisory by choosing the Cisco NX-OS Software and platform and then entering a release—for example, 7.0(3)I7(5) for Cisco Nexus 3000 Series Switches or 14.0(1h) for Cisco NX-OS Software in ACI mode:
+    Cisco NX-OS Software  Cisco NX-OS Software in ACI Mode    MDS 9000 Series Multilayer Switches  Nexus 1000V Series Switches  Nexus 3000 Series Switches  Nexus 5000 Series Switches  Nexus 6000 Series Switches  Nexus 7000 Series Switches  Nexus 9000 Series Switches
+
+
+
+
+By default, the Cisco Software Checker ["https://tools.cisco.com/security/center/softwarechecker.x"] includes results only for vulnerabilities that have a Critical or High Security Impact Rating (SIR). To include results for Medium SIR vulnerabilities, customers can use the Cisco Software Checker and check the Medium check box in the drop-down list under Impact Rating when customizing a search.</cvrf:Note>
+    <cvrf:Note Title="Vulnerability Policy" Type="General" Ordinal="7">To learn about Cisco security vulnerability disclosure policies and publications, see the Security Vulnerability Policy ["http://www.cisco.com/web/about/security/psirt/security_vulnerability_policy.html"]. This document also contains instructions for obtaining fixed software and receiving security vulnerability information from Cisco.</cvrf:Note>
+    <cvrf:Note Title="Exploitation and Public Announcements" Type="General" Ordinal="8">The Cisco Product Security Incident Response Team (PSIRT) is not aware of any public announcements or malicious use of the vulnerability that is described in this advisory.</cvrf:Note>
+    <cvrf:Note Title="Source" Type="General" Ordinal="9">This vulnerability was found during the resolution of a Cisco TAC support case.</cvrf:Note>
+    <cvrf:Note Title="Legal Disclaimer" Type="Legal Disclaimer" Ordinal="10">THIS DOCUMENT IS PROVIDED ON AN "AS IS" BASIS AND DOES NOT IMPLY ANY KIND OF GUARANTEE OR WARRANTY, INCLUDING THE WARRANTIES OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR USE. YOUR USE OF THE INFORMATION ON THE DOCUMENT OR MATERIALS LINKED FROM THE DOCUMENT IS AT YOUR OWN RISK. CISCO RESERVES THE RIGHT TO CHANGE OR UPDATE THIS DOCUMENT AT ANY TIME.
+
+A standalone copy or paraphrase of the text of this document that omits the distribution URL is an uncontrolled copy and may lack important information or contain factual errors. The information in this document is intended for end users of Cisco products.</cvrf:Note>
+  </cvrf:DocumentNotes>
+  <cvrf:DocumentReferences>
+    <cvrf:Reference Type="Self">
+      <cvrf:URL>https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-ipv6-acl-CHgdYk8j</cvrf:URL>
+      <cvrf:Description>Cisco IOS XR and Cisco NX-OS Software IPv6 Access Control List Bypass Vulnerability</cvrf:Description>
+    </cvrf:Reference>
+  </cvrf:DocumentReferences>
+  <ProductTree xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/prod">
+    <Branch Name="Cisco" Type="Vendor">
+      <Branch Name="Cisco IOS XR Software" Type="Product Name">
+        <FullProductName ProductID="CVRFPID-5834">Cisco IOS XR Software </FullProductName>
+      </Branch>
+      <Branch Name="Cisco NX-OS Software" Type="Product Name">
+        <Branch Name="7.0(3)F1" Type="Product Version">
+          <Branch Name="7.0(3)F1(1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-239805">Cisco NX-OS Software 7.0(3)F1(1)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="7.0(3)F2" Type="Product Version">
+          <Branch Name="7.0(3)F2(1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-239806">Cisco NX-OS Software 7.0(3)F2(1)</FullProductName>
+          </Branch>
+          <Branch Name="7.0(3)F2(2)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-239807">Cisco NX-OS Software 7.0(3)F2(2)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="7.0(3)F3" Type="Product Version">
+          <Branch Name="7.0(3)F3(1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-239632">Cisco NX-OS Software 7.0(3)F3(1)</FullProductName>
+          </Branch>
+          <Branch Name="7.0(3)F3(2)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-239633">Cisco NX-OS Software 7.0(3)F3(2)</FullProductName>
+          </Branch>
+          <Branch Name="7.0(3)F3(3)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-239634">Cisco NX-OS Software 7.0(3)F3(3)</FullProductName>
+          </Branch>
+          <Branch Name="7.0(3)F3(3a)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-239635">Cisco NX-OS Software 7.0(3)F3(3a)</FullProductName>
+          </Branch>
+          <Branch Name="7.0(3)F3(4)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-239636">Cisco NX-OS Software 7.0(3)F3(4)</FullProductName>
+          </Branch>
+          <Branch Name="7.0(3)F3(3c)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-248790">Cisco NX-OS Software 7.0(3)F3(3c)</FullProductName>
+          </Branch>
+          <Branch Name="7.0(3)F3(5)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-256529">Cisco NX-OS Software 7.0(3)F3(5)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="9.2" Type="Product Version">
+          <Branch Name="9.2(1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-248793">Cisco NX-OS Software 9.2(1)</FullProductName>
+          </Branch>
+          <Branch Name="9.2(2)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-265141">Cisco NX-OS Software 9.2(2)</FullProductName>
+          </Branch>
+          <Branch Name="9.2(2t)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-265142">Cisco NX-OS Software 9.2(2t)</FullProductName>
+          </Branch>
+          <Branch Name="9.2(3)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-265143">Cisco NX-OS Software 9.2(3)</FullProductName>
+          </Branch>
+          <Branch Name="9.2(3y)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-265144">Cisco NX-OS Software 9.2(3y)</FullProductName>
+          </Branch>
+          <Branch Name="9.2(4)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-267105">Cisco NX-OS Software 9.2(4)</FullProductName>
+          </Branch>
+          <Branch Name="9.2(2v)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-268971">Cisco NX-OS Software 9.2(2v)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="9.3" Type="Product Version">
+          <Branch Name="9.3(1)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-265568">Cisco NX-OS Software 9.3(1)</FullProductName>
+          </Branch>
+          <Branch Name="9.3(2)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-271405">Cisco NX-OS Software 9.3(2)</FullProductName>
+          </Branch>
+          <Branch Name="9.3(3)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-274557">Cisco NX-OS Software 9.3(3)</FullProductName>
+          </Branch>
+          <Branch Name="9.3(1z)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-276381">Cisco NX-OS Software 9.3(1z)</FullProductName>
+          </Branch>
+          <Branch Name="9.3(4)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-277347">Cisco NX-OS Software 9.3(4)</FullProductName>
+          </Branch>
+          <Branch Name="9.3(5)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-278882">Cisco NX-OS Software 9.3(5)</FullProductName>
+          </Branch>
+          <Branch Name="9.3(5w)" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-280940">Cisco NX-OS Software 9.3(5w)</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="Cisco Nexus 3000 Series Switches" Type="Product Name">
+          <FullProductName ProductID="CVRFPID-265091">Cisco NX-OS Software Platform Cisco Nexus 3000 Series Switches</FullProductName>
+        </Branch>
+        <Branch Name="Cisco Nexus 9000 Series Switches" Type="Product Name">
+          <FullProductName ProductID="CVRFPID-265096">Cisco NX-OS Software Platform Cisco Nexus 9000 Series Switches</FullProductName>
+        </Branch>
+      </Branch>
+    </Branch>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-239805">
+      <FullProductName ProductID="CVRFPID-239805:265096">Cisco NX-OS Software 7.0(3)F1(1) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-239806">
+      <FullProductName ProductID="CVRFPID-239806:265096">Cisco NX-OS Software 7.0(3)F2(1) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-239807">
+      <FullProductName ProductID="CVRFPID-239807:265096">Cisco NX-OS Software 7.0(3)F2(2) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265091" RelationType="Installed On" ProductReference="CVRFPID-239632">
+      <FullProductName ProductID="CVRFPID-239632:265091">Cisco NX-OS Software 7.0(3)F3(1) when installed on Cisco Nexus 3000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-239632">
+      <FullProductName ProductID="CVRFPID-239632:265096">Cisco NX-OS Software 7.0(3)F3(1) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265091" RelationType="Installed On" ProductReference="CVRFPID-239633">
+      <FullProductName ProductID="CVRFPID-239633:265091">Cisco NX-OS Software 7.0(3)F3(2) when installed on Cisco Nexus 3000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265091" RelationType="Installed On" ProductReference="CVRFPID-239634">
+      <FullProductName ProductID="CVRFPID-239634:265091">Cisco NX-OS Software 7.0(3)F3(3) when installed on Cisco Nexus 3000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-239634">
+      <FullProductName ProductID="CVRFPID-239634:265096">Cisco NX-OS Software 7.0(3)F3(3) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265091" RelationType="Installed On" ProductReference="CVRFPID-239635">
+      <FullProductName ProductID="CVRFPID-239635:265091">Cisco NX-OS Software 7.0(3)F3(3a) when installed on Cisco Nexus 3000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-239635">
+      <FullProductName ProductID="CVRFPID-239635:265096">Cisco NX-OS Software 7.0(3)F3(3a) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265091" RelationType="Installed On" ProductReference="CVRFPID-239636">
+      <FullProductName ProductID="CVRFPID-239636:265091">Cisco NX-OS Software 7.0(3)F3(4) when installed on Cisco Nexus 3000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-239636">
+      <FullProductName ProductID="CVRFPID-239636:265096">Cisco NX-OS Software 7.0(3)F3(4) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265091" RelationType="Installed On" ProductReference="CVRFPID-248790">
+      <FullProductName ProductID="CVRFPID-248790:265091">Cisco NX-OS Software 7.0(3)F3(3c) when installed on Cisco Nexus 3000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-248790">
+      <FullProductName ProductID="CVRFPID-248790:265096">Cisco NX-OS Software 7.0(3)F3(3c) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265091" RelationType="Installed On" ProductReference="CVRFPID-256529">
+      <FullProductName ProductID="CVRFPID-256529:265091">Cisco NX-OS Software 7.0(3)F3(5) when installed on Cisco Nexus 3000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-256529">
+      <FullProductName ProductID="CVRFPID-256529:265096">Cisco NX-OS Software 7.0(3)F3(5) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265091" RelationType="Installed On" ProductReference="CVRFPID-248793">
+      <FullProductName ProductID="CVRFPID-248793:265091">Cisco NX-OS Software 9.2(1) when installed on Cisco Nexus 3000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-248793">
+      <FullProductName ProductID="CVRFPID-248793:265096">Cisco NX-OS Software 9.2(1) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265091" RelationType="Installed On" ProductReference="CVRFPID-265141">
+      <FullProductName ProductID="CVRFPID-265141:265091">Cisco NX-OS Software 9.2(2) when installed on Cisco Nexus 3000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-265141">
+      <FullProductName ProductID="CVRFPID-265141:265096">Cisco NX-OS Software 9.2(2) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265091" RelationType="Installed On" ProductReference="CVRFPID-265142">
+      <FullProductName ProductID="CVRFPID-265142:265091">Cisco NX-OS Software 9.2(2t) when installed on Cisco Nexus 3000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265091" RelationType="Installed On" ProductReference="CVRFPID-265143">
+      <FullProductName ProductID="CVRFPID-265143:265091">Cisco NX-OS Software 9.2(3) when installed on Cisco Nexus 3000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-265143">
+      <FullProductName ProductID="CVRFPID-265143:265096">Cisco NX-OS Software 9.2(3) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265091" RelationType="Installed On" ProductReference="CVRFPID-265144">
+      <FullProductName ProductID="CVRFPID-265144:265091">Cisco NX-OS Software 9.2(3y) when installed on Cisco Nexus 3000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-265144">
+      <FullProductName ProductID="CVRFPID-265144:265096">Cisco NX-OS Software 9.2(3y) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265091" RelationType="Installed On" ProductReference="CVRFPID-267105">
+      <FullProductName ProductID="CVRFPID-267105:265091">Cisco NX-OS Software 9.2(4) when installed on Cisco Nexus 3000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-267105">
+      <FullProductName ProductID="CVRFPID-267105:265096">Cisco NX-OS Software 9.2(4) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265091" RelationType="Installed On" ProductReference="CVRFPID-268971">
+      <FullProductName ProductID="CVRFPID-268971:265091">Cisco NX-OS Software 9.2(2v) when installed on Cisco Nexus 3000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265091" RelationType="Installed On" ProductReference="CVRFPID-265568">
+      <FullProductName ProductID="CVRFPID-265568:265091">Cisco NX-OS Software 9.3(1) when installed on Cisco Nexus 3000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-265568">
+      <FullProductName ProductID="CVRFPID-265568:265096">Cisco NX-OS Software 9.3(1) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265091" RelationType="Installed On" ProductReference="CVRFPID-271405">
+      <FullProductName ProductID="CVRFPID-271405:265091">Cisco NX-OS Software 9.3(2) when installed on Cisco Nexus 3000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-271405">
+      <FullProductName ProductID="CVRFPID-271405:265096">Cisco NX-OS Software 9.3(2) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265091" RelationType="Installed On" ProductReference="CVRFPID-274557">
+      <FullProductName ProductID="CVRFPID-274557:265091">Cisco NX-OS Software 9.3(3) when installed on Cisco Nexus 3000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-274557">
+      <FullProductName ProductID="CVRFPID-274557:265096">Cisco NX-OS Software 9.3(3) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-276381">
+      <FullProductName ProductID="CVRFPID-276381:265096">Cisco NX-OS Software 9.3(1z) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265091" RelationType="Installed On" ProductReference="CVRFPID-277347">
+      <FullProductName ProductID="CVRFPID-277347:265091">Cisco NX-OS Software 9.3(4) when installed on Cisco Nexus 3000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-277347">
+      <FullProductName ProductID="CVRFPID-277347:265096">Cisco NX-OS Software 9.3(4) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265091" RelationType="Installed On" ProductReference="CVRFPID-278882">
+      <FullProductName ProductID="CVRFPID-278882:265091">Cisco NX-OS Software 9.3(5) when installed on Cisco Nexus 3000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-278882">
+      <FullProductName ProductID="CVRFPID-278882:265096">Cisco NX-OS Software 9.3(5) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265091" RelationType="Installed On" ProductReference="CVRFPID-280940">
+      <FullProductName ProductID="CVRFPID-280940:265091">Cisco NX-OS Software 9.3(5w) when installed on Cisco Nexus 3000 Series Switches</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-265096" RelationType="Installed On" ProductReference="CVRFPID-280940">
+      <FullProductName ProductID="CVRFPID-280940:265096">Cisco NX-OS Software 9.3(5w) when installed on Cisco Nexus 9000 Series Switches</FullProductName>
+    </Relationship>
+  </ProductTree>
+  <Vulnerability Ordinal="1" xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln">
+    <Title>vuln-CVE-2021-1389</Title>
+    <ID SystemName="Cisco Bug ID">CSCvm55638</ID>
+    <Notes>
+      <Note Title="Cisco Bug IDs" Type="Other" Ordinal="1">CSCvm55638,CSCvv45698</Note>
+      <Note Title="Affected Product Comprehensiveness" Type="Other" Ordinal="2">Complete.</Note>
+    </Notes>
+    <CVE>CVE-2021-1389</CVE>
+    <ProductStatuses>
+      <Status Type="Known Affected">
+        <ProductID>CVRFPID-5834</ProductID>
+        <ProductID>CVRFPID-239632:265091</ProductID>
+        <ProductID>CVRFPID-239632:265096</ProductID>
+        <ProductID>CVRFPID-239633:265091</ProductID>
+        <ProductID>CVRFPID-239634:265091</ProductID>
+        <ProductID>CVRFPID-239634:265096</ProductID>
+        <ProductID>CVRFPID-239635:265091</ProductID>
+        <ProductID>CVRFPID-239635:265096</ProductID>
+        <ProductID>CVRFPID-239636:265091</ProductID>
+        <ProductID>CVRFPID-239636:265096</ProductID>
+        <ProductID>CVRFPID-239805:265096</ProductID>
+        <ProductID>CVRFPID-239806:265096</ProductID>
+        <ProductID>CVRFPID-239807:265096</ProductID>
+        <ProductID>CVRFPID-248790:265091</ProductID>
+        <ProductID>CVRFPID-248790:265096</ProductID>
+        <ProductID>CVRFPID-248793:265091</ProductID>
+        <ProductID>CVRFPID-248793:265096</ProductID>
+        <ProductID>CVRFPID-256529:265091</ProductID>
+        <ProductID>CVRFPID-256529:265096</ProductID>
+        <ProductID>CVRFPID-265141:265091</ProductID>
+        <ProductID>CVRFPID-265141:265096</ProductID>
+        <ProductID>CVRFPID-265142:265091</ProductID>
+        <ProductID>CVRFPID-265143:265091</ProductID>
+        <ProductID>CVRFPID-265143:265096</ProductID>
+        <ProductID>CVRFPID-265144:265091</ProductID>
+        <ProductID>CVRFPID-265144:265096</ProductID>
+        <ProductID>CVRFPID-265568:265091</ProductID>
+        <ProductID>CVRFPID-265568:265096</ProductID>
+        <ProductID>CVRFPID-267105:265091</ProductID>
+        <ProductID>CVRFPID-267105:265096</ProductID>
+        <ProductID>CVRFPID-268971:265091</ProductID>
+        <ProductID>CVRFPID-271405:265091</ProductID>
+        <ProductID>CVRFPID-271405:265096</ProductID>
+        <ProductID>CVRFPID-274557:265091</ProductID>
+        <ProductID>CVRFPID-274557:265096</ProductID>
+        <ProductID>CVRFPID-276381:265096</ProductID>
+        <ProductID>CVRFPID-277347:265091</ProductID>
+        <ProductID>CVRFPID-277347:265096</ProductID>
+        <ProductID>CVRFPID-278882:265091</ProductID>
+        <ProductID>CVRFPID-278882:265096</ProductID>
+        <ProductID>CVRFPID-280940:265091</ProductID>
+        <ProductID>CVRFPID-280940:265096</ProductID>
+      </Status>
+    </ProductStatuses>
+    <CVSSScoreSets>
+      <ScoreSetV3>
+        <BaseScoreV3>5.8</BaseScoreV3>
+        <VectorV3>CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:N/I:L/A:N</VectorV3>
+      </ScoreSetV3>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Workaround">
+        <Description>There are no workarounds that address this vulnerability.</Description>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference Type="Self">
+        <URL>https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-ipv6-acl-CHgdYk8j</URL>
+        <Description>Cisco IOS XR and Cisco NX-OS Software IPv6 Access Control List Bypass Vulnerability</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+</cvrf:cvrfdoc>

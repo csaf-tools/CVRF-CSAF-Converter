@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cvrf:cvrfdoc xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:cvrf-common="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/common" xmlns:cvrf="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/cvrf">
+  <cvrf:DocumentTitle>Cisco IOS XR Software Enhanced Preboot eXecution Environment Unsigned Code Execution Vulnerability</cvrf:DocumentTitle>
+  <cvrf:DocumentType>Cisco Security Advisory</cvrf:DocumentType>
+  <cvrf:DocumentPublisher Type="Vendor">
+    <cvrf:ContactDetails>Emergency Support:
++1 877 228 7302 (toll-free within North America)
++1 408 525 6532 (International direct-dial)
+Non-emergency Support:
+Email: psirt@cisco.com
+Support requests that are received via e-mail are typically acknowledged within 48 hours.</cvrf:ContactDetails>
+    <cvrf:IssuingAuthority>Cisco product security incident response is the responsibility of the Cisco Product Security Incident Response Team (PSIRT). The Cisco PSIRT is a dedicated, global team that manages the receipt, investigation, and public reporting of security vulnerability information that is related to Cisco products and networks. The on-call Cisco PSIRT works 24x7 with Cisco customers, independent security researchers, consultants, industry organizations, and other vendors to identify possible security issues with Cisco products and networks.
+More information can be found in Cisco Security Vulnerability Policy available at http://www.cisco.com/web/about/security/psirt/security_vulnerability_policy.html</cvrf:IssuingAuthority>
+  </cvrf:DocumentPublisher>
+  <cvrf:DocumentTracking>
+    <cvrf:Identification>
+      <cvrf:ID>cisco-sa-iosxr-pxe-unsign-code-exec-qAa78fD2</cvrf:ID>
+    </cvrf:Identification>
+    <cvrf:Status>Final</cvrf:Status>
+    <cvrf:Version>1.3</cvrf:Version>
+    <cvrf:RevisionHistory>
+      <cvrf:Revision>
+        <cvrf:Number>1.0</cvrf:Number>
+        <cvrf:Date>2020-10-30T17:25:26</cvrf:Date>
+        <cvrf:Description>Initial public release.</cvrf:Description>
+      </cvrf:Revision>
+      <cvrf:Revision>
+        <cvrf:Number>1.1</cvrf:Number>
+        <cvrf:Date>2020-11-04T22:00:41</cvrf:Date>
+        <cvrf:Description>Clarified the first vulnerable release and added the show fpd package command to determine the BIOS version.</cvrf:Description>
+      </cvrf:Revision>
+      <cvrf:Revision>
+        <cvrf:Number>1.2</cvrf:Number>
+        <cvrf:Date>2020-11-17T20:46:21</cvrf:Date>
+        <cvrf:Description>Removed 6.6.25 as a fixed release.</cvrf:Description>
+      </cvrf:Revision>
+      <cvrf:Revision>
+        <cvrf:Number>1.3</cvrf:Number>
+        <cvrf:Date>2020-12-01T17:50:58</cvrf:Date>
+        <cvrf:Description>In the Fixed Software section the Network Convergence System 540 Routers table was modified to accurately reflect the First Fixed Bios version.</cvrf:Description>
+      </cvrf:Revision>
+    </cvrf:RevisionHistory>
+    <cvrf:InitialReleaseDate>2020-11-04T16:00:00</cvrf:InitialReleaseDate>
+    <cvrf:CurrentReleaseDate>2020-12-01T17:50:58</cvrf:CurrentReleaseDate>
+    <cvrf:Generator>
+      <cvrf:Engine>TVCE</cvrf:Engine>
+    </cvrf:Generator>
+  </cvrf:DocumentTracking>
+  <cvrf:DocumentNotes>
+    <cvrf:Note Title="Summary" Type="Summary" Ordinal="1">A vulnerability in the enhanced Preboot eXecution Environment (PXE) boot loader for Cisco IOS XR 64-bit Software could allow an unauthenticated, remote attacker to execute unsigned code during the PXE boot process on an affected device. The PXE boot loader is part of the BIOS and runs over the management interface of hardware platforms that are running Cisco IOS XR Software only.
+
+The vulnerability exists because internal commands that are issued when the PXE network boot process is loading a software image are not properly verified. An attacker could exploit this vulnerability by compromising the PXE boot server and replacing a valid software image with a malicious one. Alternatively, the attacker could impersonate the PXE boot server and send a PXE boot reply with a malicious file. A successful exploit could allow the attacker to execute unsigned code on the affected device.
+
+Note: To fix this vulnerability, both the Cisco IOS XR Software and the BIOS must be upgraded. The BIOS code is included in Cisco IOS XR Software but might require additional installation steps. For further information, see the Fixed Software ["#fs"] section of this advisory.
+
+Cisco has released software updates that address this vulnerability. There are no workarounds that address this vulnerability.
+
+This advisory is available at the following link:
+https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-iosxr-pxe-unsign-code-exec-qAa78fD2 ["https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-iosxr-pxe-unsign-code-exec-qAa78fD2"]</cvrf:Note>
+    <cvrf:Note Title="Vulnerable Products" Type="General" Ordinal="2">This vulnerability affects Cisco devices if they are running a vulnerable release of Cisco IOS XR 64-bit Software and the following conditions are met:
+
+The product ID (PID) of the device matches one of the PIDs listed in the Fixed Software ["#fs"] section of this advisory.
+The device is running a vulnerable BIOS version.
+The device uses PXE for network boot.
+
+For information about which Cisco software releases are vulnerable, see the Fixed Software ["#fs"] section of this advisory.
+  Determine the Product ID
+To check the PID of a device, use the show inventory raw CLI command. The following example shows the output of the command for a device that has the PID NC55-RP:
+
+
+RP/0/RP0/CPU0:router# show inventory raw
+.
+.  .
+
+NAME: "0/RP0", DESCR: "NCS 5500 Route Processor"
+PID: NC55-RP           , VID: V01, SN: SAL1926HRW5
+NAME: "0/1/* - cpu", DESCR: "cpu"
+PID: , VID: V00, SN: SAD093000JR
+
+NAME: "0/1/* - cpu - 1.6V_P0", DESCR: "Voltage Sensor"
+PID: , VID: N/A, SN:
+.
+.  .
+
+If the PID is listed in one of the tables in the Fixed Software ["#fs"] section of this advisory, then the device may be vulnerable if it is running a vulnerable BIOS version and is using PXE for network boot.
+  Determine the BIOS Version
+To determine which BIOS version is running on a device, use the show fpd package CLI command. The following example shows the output for a device that has the PID A9K-RSP880-LT-TR and is running BIOS version 17.16:
+        RP/0/RSP0/CPU0:router# show fpd package
+Wed Nov  4 21:55:45.713 UTC      =======================
+
+  ================================================
+        Field Programmable Device Package
+================================================                Card Type  FPD Description  Type  Subtype  SW
+Version  Min Req
+SW Vers  Min Req
+HW Vers      =======================  ==========================  ====  =======  ===========  ========  =========      ASR-9910-BPID2   Can Bus Ctrl (CBC) BP2
+Can Bus Ctrl (CBC) BP2  bp
+lc  cbc
+cbc  7.105
+7.105  0.00
+0.00  0.1
+0.1      --------------------------------------------------------------------------------------------------------------------
+.
+.
+.
+        A9K-RSP880-LT-TR   Can Bus Ctrl (CBC) RSP4
+MB CPUCtrl
+DBCtrl
+DBCtrl
+DBCtrl
+Fsbl
+LinuxFW
+ROMMONB RSP4L
+lc
+lc
+lc
+lc
+lc
+lc
+lc
+lc
+    cbc
+fpga2
+fpga3
+fpga4
+fpga5
+fsbl
+lnxfw
+rommon  50.01
+  0.13
+  0.05
+  0.04
+  0.04
+  1.103
+  1.103
+17.16  0.00
+0.00
+0.00
+0.00
+0.00
+0.00
+0.00
+0.00  0.0
+0.0
+0.0
+0.0
+0.0
+0.0
+0.0
+0.0      --------------------------------------------------------------------------------------------------------------------      .
+.
+.
+To determine which BIOS version is running on a Network Convergence System 5500 Series Router, use the show hw-module fpd Bootloader CLI command. The following example shows the output for a device that has the PID NC55-RP-E and is running BIOS version 1.20.
+
+
+RP/0/RP0/CPU0:router#show hw-module fpd Bootloader
+Wed Sep 11 18:43:06.989 UTC                                      FPD Versions
+=================
+Location   Card type        HWver FPD device       ATR Status   Running Programd
+------------------------------------------------------------------------------
+0/5       NC55-MOD-A-S      0.201 Bootloader           CURRENT    1.02    1.02
+0/6       NC55-24H12F-SE    0.0   Bootloader           NEED UPGD  1.11    1.11
+0/RP0     NC55-RP-E         1.1   Bootloader           CURRENT    1.20    1.20
+0/RP1     NC55-RP-E         1.1   Bootloader           CURRENT    1.20    1.20
+.
+.  .</cvrf:Note>
+    <cvrf:Note Title="Products Confirmed Not Vulnerable" Type="General" Ordinal="3">Only products listed in the Vulnerable Products ["#vp"] section of this advisory are known to be affected by this vulnerability.
+
+Cisco has confirmed that this vulnerability does not affect the following Cisco products:
+
+8000 Series Routers
+Carrier Routing System (CRS-X)
+IOS Software
+IOS XE Software
+IOS XR 32-bit Software
+IOS XR White box (IOSXRWBD)
+IOS XRv 9000 Router
+Network Convergence System (NCS) 6000 Series Routers
+NX-OS Software
+UCS 6200 Series Fabric Interconnects
+UCS 6300 Series Fabric Interconnects
+UCS 6400 Series Fabric Interconnects
+UCS B-Series Blade Servers
+UCS C-Series M3 Rack Servers - Standalone
+UCS C-Series M4 Rack Servers - Standalone
+UCS C-Series M5 Rack Servers - Managed
+UCS C-Series M5 Rack Servers - Standalone</cvrf:Note>
+    <cvrf:Note Title="Details" Type="General" Ordinal="4">PXE is included in the network card of the management interface of routers that are running Cisco IOS XR Software and is part of the device BIOS. PXE is used to re-image the system and boot the router in case of boot failure or in the absence of a valid, bootable partition. PXE acts as a bootloader and provides the flexibility to choose the image that the system will boot based on the PID, the serial number, or the management interface MAC address. PXE downloads an ISO image, which is specified as part of the PXE reply from a PXE boot server, installs the ISO contents onto the device, and then transfers control to the installed software image.
+
+PXE must be defined in the DHCP server configuration file. For additional information, see Boot using iPXE ["https://www.cisco.com/c/en/us/td/docs/iosxr/ncs5500/system-setup/60x/b-ncs5500-system-setup-guide-60x/b-system-setup-ncs5k_chapter_0111.html#concept_F52D0A35637E4583972405EA4164C229"] and Boot the Router Using iPXE ["https://www.cisco.com/c/en/us/td/docs/routers/asr9000/software/asr9k-r6-5/system-setup/configuration/guide/b-system-setup-cg-asr9000-65x/b-system-setup-cg-asr9000_chapter_010.html#id_89365"].</cvrf:Note>
+    <cvrf:Note Title="Workarounds" Type="General" Ordinal="5">There are no workarounds that address this vulnerability.</cvrf:Note>
+    <cvrf:Note Title="Fixed Software" Type="General" Ordinal="6">Cisco has released free software updates that address the vulnerability described in this advisory. Customers may only install and expect support for software versions and feature sets for which they have purchased a license. By installing, downloading, accessing, or otherwise using such software upgrades, customers agree to follow the terms of the Cisco software license:
+https://www.cisco.com/c/en/us/products/end-user-license-agreement.html ["https://www.cisco.com/c/en/us/products/end-user-license-agreement.html"]
+
+Additionally, customers may only download software for which they have a valid license, procured from Cisco directly, or through a Cisco authorized reseller or partner. In most cases this will be a maintenance upgrade to software that was previously purchased. Free security software updates do not entitle customers to a new software license, additional software feature sets, or major revision upgrades.
+
+When considering software upgrades ["https://tools.cisco.com/security/center/resources/security_vulnerability_policy.html#fixes"], customers are advised to regularly consult the advisories for Cisco products, which are available from the Cisco Security Advisories page ["https://www.cisco.com/go/psirt"], to determine exposure and a complete upgrade solution.
+
+In all cases, customers should ensure that the devices to be upgraded contain sufficient memory and confirm that current hardware and software configurations will continue to be supported properly by the new release. If the information is not clear, customers are advised to contact the Cisco Technical Assistance Center (TAC) or their contracted maintenance providers.
+  Customers Without Service Contracts
+Customers who purchase directly from Cisco but do not hold a Cisco service contract and customers who make purchases through third-party vendors but are unsuccessful in obtaining fixed software through their point of sale should obtain upgrades by contacting the Cisco TAC: https://www.cisco.com/c/en/us/support/web/tsd-cisco-worldwide-contacts.html ["https://www.cisco.com/c/en/us/support/web/tsd-cisco-worldwide-contacts.html"]
+
+Customers should have the product serial number available and be prepared to provide the URL of this advisory as evidence of entitlement to a free upgrade.
+      Fixed Releases
+In the following tables, the left column lists the PIDs of Cisco products that may be affected by this vulnerability. The center column lists the first release of Cisco IOS XR 64-bit Software that includes the fix for this vulnerability. The right column lists the first version of the BIOS that includes the fix for this vulnerability.
+
+PIDs that are not shown in these tables are not known to be affected by this vulnerability. BIOS versions earlier than the first fixed version are affected by this vulnerability.
+
+A fixed BIOS image must be installed on the device in order to fix this vulnerability. The BIOS image is not provided in a standalone package but is embedded in Cisco IOS XR Software. In some cases, the BIOS may not automatically update when Cisco IOS XR Software is upgraded. To check the BIOS version, use the show fpd package or show hw-module fpd Bootloader command, as shown in the Vulnerable Products ["#vp"] section. If the BIOS has not been upgraded to a fixed version, as listed below, see Upgrading Field-Programmable Device ["https://www.cisco.com/c/en/us/td/docs/iosxr/ncs5500/sysman/66x/b-system-management-cg-ncs5500-66x/b-system-management-cg-ncs5500-66x_chapter_01101.html"] and use the upgrade hw-module location command to upgrade the BIOS.
+
+ASR 9000 Series Route Switch Processor
+        Cisco ASR 9000 Series PIDs1  First Fixed Release of Cisco IOS XR Software for This Vulnerability  First Fixed BIOS Version for This Vulnerability          A9K-RSP880-SE
+A9K-RSP880-TR  6.5.2  10.65      A99-RP2-SE
+A99-RP2-TR  6.5.2  14.35      A99-RSP-SE
+A99-RSP-TR  6.5.2  16.14      A9K-RSP880-LT-SE
+A9K-RSP880-LT-TR   6.5.2  17.34      ASR-9901-RP  6.5.2  22.20      A99-RP3-SE
+A99-RP3-TR   6.5.2  30.23      A9K-RSP5-SE
+A9K-RSP5-TR   6.5.2  31.20
+1. Some PIDs may apply to devices that can run both the 32-bit and 64-bit images of Cisco IOS XR Software. Only the 64-bit image is known to be vulnerable.
+Network Convergence System 1000 Series
+        Cisco NCS 1000 Series PIDs1  First Fixed Release of Cisco IOS XR Software for This Vulnerability  First Fixed BIOS Version for This Vulnerability          NCS1001
+NCS1002
+NCS1004  7.1.1  14.60
+1. All PIDs and all permutations of each PID for this device are vulnerable.
+Network Convergence System 540 Routers
+        Cisco NCS 540 PIDs              First Fixed Release of Cisco IOS XR Software for This Vulnerability  First Fixed BIOS Version for This Vulnerability          N540-12Z20G-SYS-A/D
+N540-28Z4C-SYS-A/D
+N540X-16Z4G8Q2C-A/D
+N540X-12Z16G-SYS-A/D  7.2.1  1.17      N540-24Z8Q2C-M
+N540-ACC-SYS  7.2.1  1.13
+Network Convergence System 560 Routers
+        Cisco NCS 560 PIDs  First Fixed Release of Cisco IOS XR Software for This Vulnerability  First Fixed BIOS Version for This Vulnerability          N560-4-SYS1
+N560-7-SYS1  6.6.3 and 7.0.2  0.14
+1. All permutations of this PID are vulnerable.
+Network Convergence System 5000 Series Routers
+        Cisco NCS 5000 Series PIDs1  First Fixed Release of Cisco IOS XR Software for This Vulnerability  First Fixed BIOS Version for This Vulnerability          NCS5001
+NCS5002  7.2.1  1.13      NCS5011  7.2.1  1.14
+1. All PIDs and all permutations of each PID for this device are vulnerable.
+Network Convergence System 5500 Series Routers
+        Cisco NCS 5500 Series PIDs1  First Fixed Release of Cisco IOS XR Software for This Vulnerability  First Fixed BIOS Version for This Vulnerability          NC55-RP  6.6.3  9.30      NC55-RP-E
+NCS-5501
+NCS-5501-SE
+NCS-5502
+NCS-5502-SE  6.6.3  1.21      NCS-55A2-MOD-S
+NCS-55A2-MOD-HD-S
+NCS-55A2-MOD-HX-S
+NCS-55A2-MOD-SE-S
+NCS-55A2-MOD-SE-H-S
+NCS-55A1-36H-SE-S
+NCS-55A1-36H-S
+NCS-55A1-24H
+NCS55-A1-48Q6H
+NCS-55A1-24Q6H-S  6.6.3  1.12
+1. NC55-RP2-E is not vulnerable.</cvrf:Note>
+    <cvrf:Note Title="Vulnerability Policy" Type="General" Ordinal="7">To learn about Cisco security vulnerability disclosure policies and publications, see the Security Vulnerability Policy ["http://www.cisco.com/web/about/security/psirt/security_vulnerability_policy.html"]. This document also contains instructions for obtaining fixed software and receiving security vulnerability information from Cisco.</cvrf:Note>
+    <cvrf:Note Title="Exploitation and Public Announcements" Type="General" Ordinal="8">The Cisco Product Security Incident Response Team (PSIRT) is not aware of any public announcements or malicious use of the vulnerability that is described in this advisory.</cvrf:Note>
+    <cvrf:Note Title="Source" Type="General" Ordinal="9">This vulnerability was found by Martin Ramsdale of Cisco during internal security testing.</cvrf:Note>
+    <cvrf:Note Title="Legal Disclaimer" Type="Legal Disclaimer" Ordinal="10">THIS DOCUMENT IS PROVIDED ON AN "AS IS" BASIS AND DOES NOT IMPLY ANY KIND OF GUARANTEE OR WARRANTY, INCLUDING THE WARRANTIES OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR USE. YOUR USE OF THE INFORMATION ON THE DOCUMENT OR MATERIALS LINKED FROM THE DOCUMENT IS AT YOUR OWN RISK. CISCO RESERVES THE RIGHT TO CHANGE OR UPDATE THIS DOCUMENT AT ANY TIME.
+
+A standalone copy or paraphrase of the text of this document that omits the distribution URL is an uncontrolled copy and may lack important information or contain factual errors. The information in this document is intended for end users of Cisco products.</cvrf:Note>
+  </cvrf:DocumentNotes>
+  <cvrf:DocumentReferences>
+    <cvrf:Reference Type="Self">
+      <cvrf:URL>https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-iosxr-pxe-unsign-code-exec-qAa78fD2</cvrf:URL>
+      <cvrf:Description>Cisco IOS XR Software Enhanced Preboot eXecution Environment Unsigned Code Execution Vulnerability</cvrf:Description>
+    </cvrf:Reference>
+  </cvrf:DocumentReferences>
+  <ProductTree xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/prod">
+    <Branch Name="Cisco" Type="Vendor">
+      <Branch Name="Cisco IOS XR Software" Type="Product Name">
+        <FullProductName ProductID="CVRFPID-5834">Cisco IOS XR Software </FullProductName>
+      </Branch>
+    </Branch>
+  </ProductTree>
+  <Vulnerability Ordinal="1" xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln">
+    <Title>Cisco IOS XR Software Enhanced Preboot eXecution Environment (iPXE) Secure Boot Bypass Vulnerability </Title>
+    <ID SystemName="Cisco Bug ID">CSCvi82550</ID>
+    <Notes>
+      <Note Title="Cisco Bug IDs" Type="Other" Ordinal="1">CSCvi82550,CSCvq23340,CSCvq31064,CSCvu31574</Note>
+    </Notes>
+    <CVE>CVE-2020-3284</CVE>
+    <ProductStatuses>
+      <Status Type="Known Affected">
+        <ProductID>CVRFPID-5834</ProductID>
+      </Status>
+    </ProductStatuses>
+    <CVSSScoreSets>
+      <ScoreSetV3>
+        <BaseScoreV3>8.1</BaseScoreV3>
+        <VectorV3>CVSS:3.0/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:H</VectorV3>
+      </ScoreSetV3>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Workaround">
+        <Description>There are no workarounds that address this vulnerability.</Description>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference Type="Self">
+        <URL>https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-iosxr-pxe-unsign-code-exec-qAa78fD2</URL>
+        <Description>Cisco IOS XR Software Enhanced Preboot eXecution Environment Unsigned Code Execution Vulnerability</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+</cvrf:cvrfdoc>

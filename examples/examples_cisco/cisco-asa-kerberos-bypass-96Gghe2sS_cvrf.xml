@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cvrf:cvrfdoc xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:cvrf-common="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/common" xmlns:cvrf="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/cvrf">
+  <cvrf:DocumentTitle>Cisco Adaptive Security Appliance Software Kerberos Authentication Bypass Vulnerability</cvrf:DocumentTitle>
+  <cvrf:DocumentType>Cisco Security Advisory</cvrf:DocumentType>
+  <cvrf:DocumentPublisher Type="Vendor">
+    <cvrf:ContactDetails>Emergency Support:
++1 877 228 7302 (toll-free within North America)
++1 408 525 6532 (International direct-dial)
+Non-emergency Support:
+Email: psirt@cisco.com
+Support requests that are received via e-mail are typically acknowledged within 48 hours.</cvrf:ContactDetails>
+    <cvrf:IssuingAuthority>Cisco product security incident response is the responsibility of the Cisco Product Security Incident Response Team (PSIRT). The Cisco PSIRT is a dedicated, global team that manages the receipt, investigation, and public reporting of security vulnerability information that is related to Cisco products and networks. The on-call Cisco PSIRT works 24x7 with Cisco customers, independent security researchers, consultants, industry organizations, and other vendors to identify possible security issues with Cisco products and networks.
+More information can be found in Cisco Security Vulnerability Policy available at http://www.cisco.com/web/about/security/psirt/security_vulnerability_policy.html</cvrf:IssuingAuthority>
+  </cvrf:DocumentPublisher>
+  <cvrf:DocumentTracking>
+    <cvrf:Identification>
+      <cvrf:ID>cisco-asa-kerberos-bypass-96Gghe2sS</cvrf:ID>
+    </cvrf:Identification>
+    <cvrf:Status>Final</cvrf:Status>
+    <cvrf:Version>1.1</cvrf:Version>
+    <cvrf:RevisionHistory>
+      <cvrf:Revision>
+        <cvrf:Number>1.0</cvrf:Number>
+        <cvrf:Date>2020-05-03T17:19:55</cvrf:Date>
+        <cvrf:Description>Initial public release.</cvrf:Description>
+      </cvrf:Revision>
+      <cvrf:Revision>
+        <cvrf:Number>1.1</cvrf:Number>
+        <cvrf:Date>2020-05-07T14:39:34</cvrf:Date>
+        <cvrf:Description>Updated ASA Fixed Release table to indicate 9.10.1.40 as the correct fixed release instead of 9.10.1.39.</cvrf:Description>
+      </cvrf:Revision>
+    </cvrf:RevisionHistory>
+    <cvrf:InitialReleaseDate>2020-05-06T16:00:00</cvrf:InitialReleaseDate>
+    <cvrf:CurrentReleaseDate>2020-05-07T14:39:34</cvrf:CurrentReleaseDate>
+    <cvrf:Generator>
+      <cvrf:Engine>TVCE</cvrf:Engine>
+    </cvrf:Generator>
+  </cvrf:DocumentTracking>
+  <cvrf:DocumentNotes>
+    <cvrf:Note Title="Summary" Type="Summary" Ordinal="1">A vulnerability in the Kerberos authentication feature of Cisco Adaptive Security Appliance (ASA) Software could allow an unauthenticated, remote attacker to impersonate the Kerberos key distribution center (KDC) and bypass authentication on an affected device that is configured to perform Kerberos authentication for VPN or local device access.
+
+The vulnerability is due to insufficient identity verification of the KDC when a successful authentication response is received. An attacker could exploit this vulnerability by spoofing the KDC server response to the ASA device. This malicious response would not have been authenticated by the KDC. A successful attack could allow an attacker to bypass Kerberos authentication.
+
+Cisco has released software updates that address this vulnerability. There are no workarounds that address this vulnerability.
+
+Note: Configuration changes after the software upgrade are necessary to address this vulnerability. See the Details ["#details"] section of this advisory for additional information.
+
+This advisory is available at the following link:
+https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-asa-kerberos-bypass-96Gghe2sS ["https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-asa-kerberos-bypass-96Gghe2sS"]
+
+This advisory is part of the May 2020 Cisco ASA, FMC, and FTD Software Security Advisory Bundled Publication, which includes 12 Cisco Security Advisories that describe 12 vulnerabilities. For a complete list of the advisories and links to them, see Cisco Event Response: May 2020 Cisco ASA, FMC, and FTD Software Security Advisory Bundled Publication ["http://tools.cisco.com/security/center/viewErp.x?alertId=ERP-73830"].</cvrf:Note>
+    <cvrf:Note Title="Vulnerable Products" Type="General" Ordinal="2">This vulnerability affects Cisco products if they are running Cisco ASA Software with Kerberos authentication configured for VPN or local device access.
+  Determine Whether Kerberos Authentication Is Configured
+Administrators can use the show running-config aaa-server | include kerberos command to determine whether a Kerberos server is configured. The following example shows the output of the command for a device that has one Kerberos server configured that is named asaKerberosTestServer:
+
+
+device(config)# show running-config aaa-server | include kerberos
+aaa-server asaKerberosTestServer protocol kerberos  kerberos-realm DEV.ASA.TEST
+
+If the Kerberos server name that is returned in the output is referenced elsewhere in the configuration1, that Kerberos server is being used for authentication. Administrators can use the show running-config all | include &lt;kerberos server name&gt; command to verify whether Kerberos authentication is configured. In the following example, the Kerberos server name asaKerberosTestServer is configured for Secure Shell (SSH) console authentication (Kerberos authentication can also be configured for VPN access):
+
+
+device(config)# show running-config all | include asaKerberosTestServer
+aaa-server asaKerberosTestServer protocol kerberos  aaa-server asaKerberosTestServer (inside) host DEV.ASA.TEST  aaa authentication ssh console asaKerberosTestServer
+
+1. The kcd-server &lt;kerberos server name&gt;  CLI command is an exception. If the only instance of the Kerberos server name is this command, the device is not vulnerable.</cvrf:Note>
+    <cvrf:Note Title="Products Confirmed Not Vulnerable" Type="General" Ordinal="3">Only products listed in the Vulnerable Products ["#vp"] section of this advisory are known to be affected by this vulnerability.
+
+Cisco has confirmed that this vulnerability does not affect Cisco Firepower Management Center (FMC) Software or Cisco Firepower Threat Defense (FTD) Software.</cvrf:Note>
+    <cvrf:Note Title="Details" Type="General" Ordinal="4">Configuration changes after the software upgrade are necessary to address this vulnerability. Cisco ASA devices are vulnerable and can still be exploited unless the CLI commands validate-kdc and aaa kerberos import-keytab are configured. These new configuration commands ensure that the ASA validates the KDC during every user authentication transaction, which prevents the vulnerability that is described in this security advisory.
+
+Administrators can configure the new commands by entering the validate-kdc command and then the aaa kerberos import-keytab command in the device CLI.
+
+When the validate-kdc command is enabled, the ASA will validate the Kerberos server (KDC) during every user authentication transaction with that server by requesting a service ticket for the user and verifying the response against a previously stored key table (keytab). The aaa kerberos import-keytab command imports a Kerberos keytab file to the ASA.
+
+The following output shows the configuration of the validate-kdc and aaa kerberos import-keytab commands:
+
+
+
+device(config)# validate-kdc
+device(config)# aaa kerberos import-keytab disk0:mykeytab    device# show aaa kerberos keytab    Principal:   host/testing@DEV.ASA.TEST    Key version: 10    Key type:    arcfour (23)
+
+For more information about the new commands, see the Cisco ASA Series Command Reference, A - H Commands ["https://www.cisco.com/c/en/us/td/docs/security/asa/asa-command-reference/A-H/cmdref1/a1.html#pgfId-1718847"] (aaa kerberos import-keytab command) and the Cisco ASA Series Command Reference, T - Z Commands ["https://www.cisco.com/c/en/us/td/docs/security/asa/asa-command-reference/T-Z/cmdref4/v.html#pgfId-1934978"] (validate-kdc command).</cvrf:Note>
+    <cvrf:Note Title="Workarounds" Type="General" Ordinal="5">There are no workarounds that address this vulnerability.</cvrf:Note>
+    <cvrf:Note Title="Fixed Software" Type="General" Ordinal="6">Cisco has released free software updates that address the vulnerability described in this advisory. Customers may only install and expect support for software versions and feature sets for which they have purchased a license. By installing, downloading, accessing, or otherwise using such software upgrades, customers agree to follow the terms of the Cisco software license: https://www.cisco.com/c/en/us/products/end-user-license-agreement.html ["https://www.cisco.com/c/en/us/products/end-user-license-agreement.html"]
+
+Additionally, customers may only download software for which they have a valid license, procured from Cisco directly, or through a Cisco authorized reseller or partner. In most cases this will be a maintenance upgrade to software that was previously purchased. Free security software updates do not entitle customers to a new software license, additional software feature sets, or major revision upgrades.
+
+When considering software upgrades ["https://tools.cisco.com/security/center/resources/security_vulnerability_policy.html#fixes"], customers are advised to regularly consult the advisories for Cisco products, which are available from the Cisco Security Advisories and Alerts page ["https://www.cisco.com/go/psirt"], to determine exposure and a complete upgrade solution.
+
+In all cases, customers should ensure that the devices to be upgraded contain sufficient memory and confirm that current hardware and software configurations will continue to be supported properly by the new release. If the information is not clear, customers are advised to contact the Cisco Technical Assistance Center (TAC) or their contracted maintenance providers.
+  Customers Without Service Contracts
+Customers who purchase directly from Cisco but do not hold a Cisco service contract and customers who make purchases through third-party vendors but are unsuccessful in obtaining fixed software through their point of sale should obtain upgrades by contacting the Cisco TAC:
+https://www.cisco.com/c/en/us/support/web/tsd-cisco-worldwide-contacts.html ["https://www.cisco.com/c/en/us/support/web/tsd-cisco-worldwide-contacts.html"]
+
+Customers should have the product serial number available and be prepared to provide the URL of this advisory as evidence of entitlement to a free upgrade.
+      Fixed Releases
+In the following table(s), the left column lists Cisco software releases. The center column indicates whether a release is affected by the vulnerability described in this advisory and the first release that includes the fix for this vulnerability. The right column indicates whether a release is affected by any of the vulnerabilities described in this bundle and which release includes fixes for those vulnerabilities.
+
+Cisco ASA Software
+        Cisco ASA Software Release   First Fixed Release for This Vulnerability  First Fixed Release for All Vulnerabilities Described in the Bundle of Advisories          Earlier than 9.61  Migrate to a fixed release.  Migrate to a fixed release.      9.6  Migrate to a fixed release.  Migrate to a fixed release.      9.71  Migrate to a fixed release.  Migrate to a fixed release.      9.8  9.8.4.15  9.8.4.20      9.9  9.9.2.66  9.9.2.67      9.10  9.10.1.37  9.10.1.40      9.12  9.12.3.2  9.12.3.9      9.13  9.13.1.7
+  9.13.1.10      9.14  Not vulnerable.  Not vulnerable.
+1. Cisco ASA Software releases 9.5 and earlier, as well as Release 9.7, have reached end of software maintenance. Customers are advised to migrate to a supported release that includes the fix for this vulnerability.
+
+Note 1: This vulnerability is fixed in Cisco ASA Software releases 9.8 and later through a new set of configuration commands. Cisco ASA devices are vulnerable and can still be exploited unless the CLI commands validate-kdc and aaa kerberos import-keytab are configured. For more information, see the Details ["#details"] section of this advisory.
+
+Note 2: Cisco does not recommend that customers use Kerberos authentication if the Kerberos authentication server is outside of the known, trusted network for any Cisco ASA Software release unless the validate-kdc and aaa kerberos import-keytab commands have been configured.</cvrf:Note>
+    <cvrf:Note Title="Vulnerability Policy" Type="General" Ordinal="7">To learn about Cisco security vulnerability disclosure policies and publications, see the Security Vulnerability Policy ["http://www.cisco.com/web/about/security/psirt/security_vulnerability_policy.html"]. This document also contains instructions for obtaining fixed software and receiving security vulnerability information from Cisco.</cvrf:Note>
+    <cvrf:Note Title="Exploitation and Public Announcements" Type="General" Ordinal="8">The Cisco Product Security Incident Response Team (PSIRT) is not aware of any public announcements or malicious use of the vulnerability that is described in this advisory.</cvrf:Note>
+    <cvrf:Note Title="Source" Type="General" Ordinal="9">Cisco would like to thank Yoav Iellin, Yaron Kassner, Dor Segal, and Rotem Zach of Silverfort for reporting this vulnerability.</cvrf:Note>
+    <cvrf:Note Title="Legal Disclaimer" Type="Legal Disclaimer" Ordinal="10">THIS DOCUMENT IS PROVIDED ON AN "AS IS" BASIS AND DOES NOT IMPLY ANY KIND OF GUARANTEE OR WARRANTY, INCLUDING THE WARRANTIES OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR USE. YOUR USE OF THE INFORMATION ON THE DOCUMENT OR MATERIALS LINKED FROM THE DOCUMENT IS AT YOUR OWN RISK. CISCO RESERVES THE RIGHT TO CHANGE OR UPDATE THIS DOCUMENT AT ANY TIME.
+
+A standalone copy or paraphrase of the text of this document that omits the distribution URL is an uncontrolled copy and may lack important information or contain factual errors. The information in this document is intended for end users of Cisco products.</cvrf:Note>
+  </cvrf:DocumentNotes>
+  <cvrf:DocumentReferences>
+    <cvrf:Reference Type="Self">
+      <cvrf:URL>https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-asa-kerberos-bypass-96Gghe2sS</cvrf:URL>
+      <cvrf:Description>Cisco Adaptive Security Appliance Software Kerberos Authentication Bypass Vulnerability</cvrf:Description>
+    </cvrf:Reference>
+    <cvrf:Reference>
+      <cvrf:URL>http://tools.cisco.com/security/center/viewErp.x?alertId=ERP-73830</cvrf:URL>
+      <cvrf:Description>Cisco Event Response: May 2020 Cisco ASA, FMC, and FTD Software Security Advisory Bundled Publication</cvrf:Description>
+    </cvrf:Reference>
+  </cvrf:DocumentReferences>
+  <ProductTree xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/prod">
+    <Branch Name="Cisco" Type="Vendor">
+      <Branch Name="Cisco Adaptive Security Appliance (ASA) Software" Type="Product Name">
+        <FullProductName ProductID="CVRFPID-6588">Cisco Adaptive Security Appliance (ASA) Software </FullProductName>
+      </Branch>
+    </Branch>
+  </ProductTree>
+  <Vulnerability Ordinal="1" xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln">
+    <Title>Cisco ASA Kerberos KDC Authentication Bypass</Title>
+    <ID SystemName="Cisco Bug ID">CSCvq73534</ID>
+    <Notes>
+      <Note Title="Summary" Type="Summary" Ordinal="1">A vulnerability in the Kerberos Authentication feature for Cisco Adaptive Security Appliance (ASA) Software could allow an unauthenticated, remote attacker to impersonate the Kerberos Key Distribution Center (KDC) such that Kerberos authentication could be bypassed.
+
+The vulnerability is due to insufficient identity verification of the KDC when a successful authentication response is received. An attacker could exploit this vulnerability by spoofing the KDC server response to the ASA. An exploit could allow the attacker to send a malicious Kerberos authentication response to the ASA which would not have actually been authenticated from the KDC. A successful attack could allow an attacker to bypass Kerberos authentication if configured for VPN or local device access.
+</Note>
+      <Note Title="Cisco Bug IDs" Type="Other" Ordinal="2">CSCvq73534</Note>
+    </Notes>
+    <CVE>CVE-2020-3125</CVE>
+    <ProductStatuses>
+      <Status Type="Known Affected">
+        <ProductID>CVRFPID-6588</ProductID>
+      </Status>
+    </ProductStatuses>
+    <CVSSScoreSets>
+      <ScoreSetV3>
+        <BaseScoreV3>8.1</BaseScoreV3>
+        <VectorV3>CVSS:3.0/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:H</VectorV3>
+      </ScoreSetV3>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Workaround">
+        <Description>There are no workarounds that address this vulnerability.</Description>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference Type="Self">
+        <URL>https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-asa-kerberos-bypass-96Gghe2sS</URL>
+        <Description>Cisco Adaptive Security Appliance Software Kerberos Authentication Bypass Vulnerability</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+</cvrf:cvrfdoc>

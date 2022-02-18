@@ -1,0 +1,583 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cvrfdoc xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:cpe="http://cpe.mitre.org/language/2.0" xmlns:cvrf="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/cvrf" xmlns:cvrf-common="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/common" xmlns:cvssv2="http://scap.nist.gov/schema/cvss-v2/1.0" xmlns:cvssv3="https://www.first.org/cvss/cvss-v3.0.xsd" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:ns0="http://purl.org/dc/elements/1.1/" xmlns:prod="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/prod" xmlns:scap-core="http://scap.nist.gov/schema/scap-core/1.0" xmlns:sch="http://purl.oclc.org/dsdl/schematron" xmlns:vuln="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/cvrf">
+  <DocumentTitle xml:lang="en">Security update for glibc</DocumentTitle>
+  <DocumentType>SUSE Patch</DocumentType>
+  <DocumentPublisher Type="Vendor">
+    <ContactDetails>security@suse.de</ContactDetails>
+    <IssuingAuthority>SUSE Security Team</IssuingAuthority>
+  </DocumentPublisher>
+  <DocumentTracking>
+    <Identification>
+      <ID>openSUSE-SU-2016:0490-1</ID>
+    </Identification>
+    <Status>Final</Status>
+    <Version>1</Version>
+    <RevisionHistory>
+      <Revision>
+        <Number>1</Number>
+        <Date>2016-02-17T07:08:59Z</Date>
+        <Description>current</Description>
+      </Revision>
+    </RevisionHistory>
+    <InitialReleaseDate>2016-02-17T07:08:59Z</InitialReleaseDate>
+    <CurrentReleaseDate>2016-02-17T07:08:59Z</CurrentReleaseDate>
+    <Generator>
+      <Engine>cve-database/bin/generate-cvrf.pl</Engine>
+      <Date>2017-02-24T01:00:00Z</Date>
+    </Generator>
+  </DocumentTracking>
+  <DocumentNotes>
+    <Note Title="Topic" Type="Summary" Ordinal="1" xml:lang="en">Security update for glibc</Note>
+    <Note Title="Details" Type="General" Ordinal="2" xml:lang="en">
+This update for glibc fixes the following security issues:
+
+- CVE-2015-7547: A stack-based buffer overflow in getaddrinfo allowed remote attackers to cause a crash or execute arbitrary code via crafted and timed DNS responses (bsc#961721)
+- CVE-2015-8777: Insufficient checking of LD_POINTER_GUARD environment variable allowed local attackers to bypass the pointer guarding protection of the dynamic loader on set-user-ID and set-group-ID programs (bsc#950944)
+- CVE-2015-8776: Out-of-range time values passed to the strftime function may cause it to crash, leading to a denial of service, or potentially disclosure information (bsc#962736)
+- CVE-2015-8778: Integer overflow in hcreate and hcreate_r could have caused an out-of-bound memory access. leading to application crashes or, potentially, arbitrary code execution (bsc#962737)
+- CVE-2014-9761: A stack overflow (unbounded alloca) could have caused applications which process long strings with the nan function to crash or, potentially, execute arbitrary code. (bsc#962738)
+- CVE-2015-8779: A stack overflow (unbounded alloca) in the catopen function could have caused applications which pass long strings to the catopen function to crash or, potentially execute arbitrary code. (bsc#962739)
+
+The following non-security bugs were fixed:
+
+- bsc#955647: Resource leak in resolver
+- bsc#956716: Don't do lock elision on an error checking mutex
+- bsc#958315: Reinitialize dl_load_write_lock on fork
+
+This update was imported from the SUSE:SLE-12-SP1:Update update project.
+</Note>
+    <Note Title="Terms of Use" Type="Legal Disclaimer" Ordinal="3" xml:lang="en">The CVRF data is provided by SUSE under the Creative Commons License 4.0 with Attribution for Non-Commercial usage (CC-BY-NC-4.0).</Note>
+  </DocumentNotes>
+  <DocumentDistribution xml:lang="en">Copyright SUSE LLC under the Creative Commons License 4.0 with Attribution for Non-Commercial usage (CC-BY-NC-4.0)</DocumentDistribution>
+  <DocumentReferences>
+    <Reference Type="Self">
+      <URL>https://lists.opensuse.org/opensuse-security-announce/2016-02/msg00041.html</URL>
+      <Description>E-Mail link for openSUSE-SU-2016:0490-1</Description>
+    </Reference>
+    <Reference Type="Self">
+      <URL>https://www.suse.com/support/security/rating/</URL>
+      <Description>SUSE Security Ratings</Description>
+    </Reference>
+  </DocumentReferences>
+  <ProductTree xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/prod">
+    <Branch Type="Product Family" Name="openSUSE Leap 42.1">
+      <Branch Type="Product Name" Name="openSUSE Leap 42.1">
+        <FullProductName ProductID="openSUSE Leap 42.1">openSUSE Leap 42.1</FullProductName>
+      </Branch>
+    </Branch>
+    <Branch Type="Product Version" Name="glibc-2.19-19.1">
+      <FullProductName ProductID="glibc-2.19-19.1">glibc-2.19-19.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="glibc-32bit-2.19-19.1">
+      <FullProductName ProductID="glibc-32bit-2.19-19.1">glibc-32bit-2.19-19.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="glibc-devel-2.19-19.1">
+      <FullProductName ProductID="glibc-devel-2.19-19.1">glibc-devel-2.19-19.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="glibc-devel-32bit-2.19-19.1">
+      <FullProductName ProductID="glibc-devel-32bit-2.19-19.1">glibc-devel-32bit-2.19-19.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="glibc-devel-static-2.19-19.1">
+      <FullProductName ProductID="glibc-devel-static-2.19-19.1">glibc-devel-static-2.19-19.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="glibc-devel-static-32bit-2.19-19.1">
+      <FullProductName ProductID="glibc-devel-static-32bit-2.19-19.1">glibc-devel-static-32bit-2.19-19.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="glibc-extra-2.19-19.1">
+      <FullProductName ProductID="glibc-extra-2.19-19.1">glibc-extra-2.19-19.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="glibc-html-2.19-19.1">
+      <FullProductName ProductID="glibc-html-2.19-19.1">glibc-html-2.19-19.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="glibc-i18ndata-2.19-19.1">
+      <FullProductName ProductID="glibc-i18ndata-2.19-19.1">glibc-i18ndata-2.19-19.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="glibc-info-2.19-19.1">
+      <FullProductName ProductID="glibc-info-2.19-19.1">glibc-info-2.19-19.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="glibc-locale-2.19-19.1">
+      <FullProductName ProductID="glibc-locale-2.19-19.1">glibc-locale-2.19-19.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="glibc-locale-32bit-2.19-19.1">
+      <FullProductName ProductID="glibc-locale-32bit-2.19-19.1">glibc-locale-32bit-2.19-19.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="glibc-obsolete-2.19-19.1">
+      <FullProductName ProductID="glibc-obsolete-2.19-19.1">glibc-obsolete-2.19-19.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="glibc-profile-2.19-19.1">
+      <FullProductName ProductID="glibc-profile-2.19-19.1">glibc-profile-2.19-19.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="glibc-profile-32bit-2.19-19.1">
+      <FullProductName ProductID="glibc-profile-32bit-2.19-19.1">glibc-profile-32bit-2.19-19.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="glibc-testsuite-2.19-19.2">
+      <FullProductName ProductID="glibc-testsuite-2.19-19.2">glibc-testsuite-2.19-19.2</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="glibc-utils-2.19-19.1">
+      <FullProductName ProductID="glibc-utils-2.19-19.1">glibc-utils-2.19-19.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="glibc-utils-32bit-2.19-19.1">
+      <FullProductName ProductID="glibc-utils-32bit-2.19-19.1">glibc-utils-32bit-2.19-19.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="nscd-2.19-19.1">
+      <FullProductName ProductID="nscd-2.19-19.1">nscd-2.19-19.1</FullProductName>
+    </Branch>
+    <Relationship ProductReference="glibc-2.19-19.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:glibc-2.19-19.1">glibc-2.19-19.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="glibc-32bit-2.19-19.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:glibc-32bit-2.19-19.1">glibc-32bit-2.19-19.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="glibc-devel-2.19-19.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:glibc-devel-2.19-19.1">glibc-devel-2.19-19.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="glibc-devel-32bit-2.19-19.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:glibc-devel-32bit-2.19-19.1">glibc-devel-32bit-2.19-19.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="glibc-devel-static-2.19-19.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:glibc-devel-static-2.19-19.1">glibc-devel-static-2.19-19.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="glibc-devel-static-32bit-2.19-19.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:glibc-devel-static-32bit-2.19-19.1">glibc-devel-static-32bit-2.19-19.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="glibc-extra-2.19-19.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:glibc-extra-2.19-19.1">glibc-extra-2.19-19.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="glibc-html-2.19-19.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:glibc-html-2.19-19.1">glibc-html-2.19-19.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="glibc-i18ndata-2.19-19.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:glibc-i18ndata-2.19-19.1">glibc-i18ndata-2.19-19.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="glibc-info-2.19-19.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:glibc-info-2.19-19.1">glibc-info-2.19-19.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="glibc-locale-2.19-19.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:glibc-locale-2.19-19.1">glibc-locale-2.19-19.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="glibc-locale-32bit-2.19-19.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:glibc-locale-32bit-2.19-19.1">glibc-locale-32bit-2.19-19.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="glibc-obsolete-2.19-19.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:glibc-obsolete-2.19-19.1">glibc-obsolete-2.19-19.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="glibc-profile-2.19-19.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:glibc-profile-2.19-19.1">glibc-profile-2.19-19.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="glibc-profile-32bit-2.19-19.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:glibc-profile-32bit-2.19-19.1">glibc-profile-32bit-2.19-19.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="glibc-testsuite-2.19-19.2" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:glibc-testsuite-2.19-19.2">glibc-testsuite-2.19-19.2 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="glibc-utils-2.19-19.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:glibc-utils-2.19-19.1">glibc-utils-2.19-19.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="glibc-utils-32bit-2.19-19.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:glibc-utils-32bit-2.19-19.1">glibc-utils-32bit-2.19-19.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="nscd-2.19-19.1" RelationType="Default Component Of" RelatesToProductReference="openSUSE Leap 42.1">
+      <FullProductName ProductID="openSUSE Leap 42.1:nscd-2.19-19.1">nscd-2.19-19.1 as a component of openSUSE Leap 42.1</FullProductName>
+    </Relationship>
+  </ProductTree>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="1">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">Multiple stack-based buffer overflows in the GNU C Library (aka glibc or libc6) before 2.23 allow context-dependent attackers to cause a denial of service (application crash) or possibly execute arbitrary code via a long argument to the (1) nan, (2) nanf, or (3) nanl function.</Note>
+    </Notes>
+    <CVE>CVE-2014-9761</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed">
+        <ProductID>openSUSE Leap 42.1:glibc-2.19-19.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:glibc-32bit-2.19-19.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:glibc-devel-2.19-19.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:glibc-devel-32bit-2.19-19.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:glibc-devel-static-2.19-19.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:glibc-devel-static-32bit-2.19-19.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:glibc-extra-2.19-19.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:glibc-html-2.19-19.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:glibc-i18ndata-2.19-19.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:glibc-info-2.19-19.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:glibc-locale-2.19-19.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:glibc-locale-32bit-2.19-19.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:glibc-obsolete-2.19-19.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:glibc-profile-2.19-19.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:glibc-profile-32bit-2.19-19.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:glibc-testsuite-2.19-19.2</ProductID>
+        <ProductID>openSUSE Leap 42.1:glibc-utils-2.19-19.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:glibc-utils-32bit-2.19-19.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:nscd-2.19-19.1</ProductID>
+      </Status>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>7.5</BaseScoreV2>
+        <VectorV2>AV:N/AC:L/Au:N/C:P/I:P/A:P</VectorV2>
+      </ScoreSetV2>
+      <ScoreSetV3>
+        <BaseScoreV3>9.8</BaseScoreV3>
+        <VectorV3>CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H</VectorV3>
+      </ScoreSetV3>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-security-announce/2016-02/msg00041.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2014-9761.html</URL>
+        <Description>CVE-2014-9761</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/962738</URL>
+        <Description>SUSE Bug 962738</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/986086</URL>
+        <Description>SUSE Bug 986086</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="2">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">Multiple stack-based buffer overflows in the (1) send_dg and (2) send_vc functions in the libresolv library in the GNU C Library (aka glibc or libc6) before 2.23 allow remote attackers to cause a denial of service (crash) or possibly execute arbitrary code via a crafted DNS response that triggers a call to the getaddrinfo function with the AF_UNSPEC or AF_INET6 address family, related to performing "dual A/AAAA DNS queries" and the libnss_dns.so.2 NSS module.</Note>
+    </Notes>
+    <CVE>CVE-2015-7547</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed">
+        <ProductID>openSUSE Leap 42.1:glibc-2.19-19.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:glibc-32bit-2.19-19.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:glibc-devel-2.19-19.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:glibc-devel-32bit-2.19-19.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:glibc-devel-static-2.19-19.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:glibc-devel-static-32bit-2.19-19.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:glibc-extra-2.19-19.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:glibc-html-2.19-19.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:glibc-i18ndata-2.19-19.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:glibc-info-2.19-19.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:glibc-locale-2.19-19.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:glibc-locale-32bit-2.19-19.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:glibc-obsolete-2.19-19.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:glibc-profile-2.19-19.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:glibc-profile-32bit-2.19-19.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:glibc-testsuite-2.19-19.2</ProductID>
+        <ProductID>openSUSE Leap 42.1:glibc-utils-2.19-19.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:glibc-utils-32bit-2.19-19.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:nscd-2.19-19.1</ProductID>
+      </Status>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>important</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>6.8</BaseScoreV2>
+        <VectorV2>AV:N/AC:M/Au:N/C:P/I:P/A:P</VectorV2>
+      </ScoreSetV2>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-security-announce/2016-02/msg00041.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-7547.html</URL>
+        <Description>CVE-2015-7547</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/1077097</URL>
+        <Description>SUSE Bug 1077097</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/847227</URL>
+        <Description>SUSE Bug 847227</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/961721</URL>
+        <Description>SUSE Bug 961721</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/967023</URL>
+        <Description>SUSE Bug 967023</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/967061</URL>
+        <Description>SUSE Bug 967061</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/967072</URL>
+        <Description>SUSE Bug 967072</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/967496</URL>
+        <Description>SUSE Bug 967496</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/969216</URL>
+        <Description>SUSE Bug 969216</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/969241</URL>
+        <Description>SUSE Bug 969241</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/986086</URL>
+        <Description>SUSE Bug 986086</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="3">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">The strftime function in the GNU C Library (aka glibc or libc6) before 2.23 allows context-dependent attackers to cause a denial of service (application crash) or possibly obtain sensitive information via an out-of-range time value.</Note>
+    </Notes>
+    <CVE>CVE-2015-8776</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed">
+        <ProductID>openSUSE Leap 42.1:glibc-2.19-19.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:glibc-32bit-2.19-19.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:glibc-devel-2.19-19.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:glibc-devel-32bit-2.19-19.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:glibc-devel-static-2.19-19.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:glibc-devel-static-32bit-2.19-19.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:glibc-extra-2.19-19.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:glibc-html-2.19-19.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:glibc-i18ndata-2.19-19.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:glibc-info-2.19-19.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:glibc-locale-2.19-19.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:glibc-locale-32bit-2.19-19.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:glibc-obsolete-2.19-19.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:glibc-profile-2.19-19.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:glibc-profile-32bit-2.19-19.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:glibc-testsuite-2.19-19.2</ProductID>
+        <ProductID>openSUSE Leap 42.1:glibc-utils-2.19-19.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:glibc-utils-32bit-2.19-19.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:nscd-2.19-19.1</ProductID>
+      </Status>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>low</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>6.4</BaseScoreV2>
+        <VectorV2>AV:N/AC:L/Au:N/C:P/I:N/A:P</VectorV2>
+      </ScoreSetV2>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-security-announce/2016-02/msg00041.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-8776.html</URL>
+        <Description>CVE-2015-8776</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/962736</URL>
+        <Description>SUSE Bug 962736</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/986086</URL>
+        <Description>SUSE Bug 986086</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="4">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">The process_envvars function in elf/rtld.c in the GNU C Library (aka glibc or libc6) before 2.23 allows local users to bypass a pointer-guarding protection mechanism via a zero value of the LD_POINTER_GUARD environment variable.</Note>
+    </Notes>
+    <CVE>CVE-2015-8777</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed">
+        <ProductID>openSUSE Leap 42.1:glibc-2.19-19.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:glibc-32bit-2.19-19.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:glibc-devel-2.19-19.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:glibc-devel-32bit-2.19-19.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:glibc-devel-static-2.19-19.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:glibc-devel-static-32bit-2.19-19.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:glibc-extra-2.19-19.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:glibc-html-2.19-19.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:glibc-i18ndata-2.19-19.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:glibc-info-2.19-19.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:glibc-locale-2.19-19.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:glibc-locale-32bit-2.19-19.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:glibc-obsolete-2.19-19.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:glibc-profile-2.19-19.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:glibc-profile-32bit-2.19-19.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:glibc-testsuite-2.19-19.2</ProductID>
+        <ProductID>openSUSE Leap 42.1:glibc-utils-2.19-19.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:glibc-utils-32bit-2.19-19.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:nscd-2.19-19.1</ProductID>
+      </Status>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>low</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>3.5</BaseScoreV2>
+        <VectorV2>AV:L/AC:H/Au:S/C:P/I:P/A:P</VectorV2>
+      </ScoreSetV2>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-security-announce/2016-02/msg00041.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-8777.html</URL>
+        <Description>CVE-2015-8777</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/950944</URL>
+        <Description>SUSE Bug 950944</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/962735</URL>
+        <Description>SUSE Bug 962735</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="5">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">Integer overflow in the GNU C Library (aka glibc or libc6) before 2.23 allows context-dependent attackers to cause a denial of service (application crash) or possibly execute arbitrary code via the size argument to the __hcreate_r function, which triggers out-of-bounds heap-memory access.</Note>
+    </Notes>
+    <CVE>CVE-2015-8778</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed">
+        <ProductID>openSUSE Leap 42.1:glibc-2.19-19.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:glibc-32bit-2.19-19.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:glibc-devel-2.19-19.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:glibc-devel-32bit-2.19-19.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:glibc-devel-static-2.19-19.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:glibc-devel-static-32bit-2.19-19.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:glibc-extra-2.19-19.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:glibc-html-2.19-19.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:glibc-i18ndata-2.19-19.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:glibc-info-2.19-19.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:glibc-locale-2.19-19.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:glibc-locale-32bit-2.19-19.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:glibc-obsolete-2.19-19.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:glibc-profile-2.19-19.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:glibc-profile-32bit-2.19-19.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:glibc-testsuite-2.19-19.2</ProductID>
+        <ProductID>openSUSE Leap 42.1:glibc-utils-2.19-19.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:glibc-utils-32bit-2.19-19.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:nscd-2.19-19.1</ProductID>
+      </Status>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>low</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>7.5</BaseScoreV2>
+        <VectorV2>AV:N/AC:L/Au:N/C:P/I:P/A:P</VectorV2>
+      </ScoreSetV2>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-security-announce/2016-02/msg00041.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-8778.html</URL>
+        <Description>CVE-2015-8778</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/962737</URL>
+        <Description>SUSE Bug 962737</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/986086</URL>
+        <Description>SUSE Bug 986086</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="6">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">Stack-based buffer overflow in the catopen function in the GNU C Library (aka glibc or libc6) before 2.23 allows context-dependent attackers to cause a denial of service (application crash) or possibly execute arbitrary code via a long catalog name.</Note>
+    </Notes>
+    <CVE>CVE-2015-8779</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed">
+        <ProductID>openSUSE Leap 42.1:glibc-2.19-19.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:glibc-32bit-2.19-19.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:glibc-devel-2.19-19.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:glibc-devel-32bit-2.19-19.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:glibc-devel-static-2.19-19.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:glibc-devel-static-32bit-2.19-19.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:glibc-extra-2.19-19.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:glibc-html-2.19-19.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:glibc-i18ndata-2.19-19.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:glibc-info-2.19-19.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:glibc-locale-2.19-19.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:glibc-locale-32bit-2.19-19.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:glibc-obsolete-2.19-19.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:glibc-profile-2.19-19.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:glibc-profile-32bit-2.19-19.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:glibc-testsuite-2.19-19.2</ProductID>
+        <ProductID>openSUSE Leap 42.1:glibc-utils-2.19-19.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:glibc-utils-32bit-2.19-19.1</ProductID>
+        <ProductID>openSUSE Leap 42.1:nscd-2.19-19.1</ProductID>
+      </Status>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>moderate</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>7.5</BaseScoreV2>
+        <VectorV2>AV:N/AC:L/Au:N/C:P/I:P/A:P</VectorV2>
+      </ScoreSetV2>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-security-announce/2016-02/msg00041.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-8779.html</URL>
+        <Description>CVE-2015-8779</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/962739</URL>
+        <Description>SUSE Bug 962739</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/965453</URL>
+        <Description>SUSE Bug 965453</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/986086</URL>
+        <Description>SUSE Bug 986086</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+</cvrfdoc>

@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cvrf:cvrfdoc xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:cvrf-common="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/common" xmlns:cvrf="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/cvrf">
+  <cvrf:DocumentTitle>Cisco IOS XE SD-WAN Software Privilege Escalation Vulnerability</cvrf:DocumentTitle>
+  <cvrf:DocumentType>Cisco Security Advisory</cvrf:DocumentType>
+  <cvrf:DocumentPublisher Type="Vendor">
+    <cvrf:ContactDetails>Emergency Support:
++1 877 228 7302 (toll-free within North America)
++1 408 525 6532 (International direct-dial)
+Non-emergency Support:
+Email: psirt@cisco.com
+Support requests that are received via e-mail are typically acknowledged within 48 hours.</cvrf:ContactDetails>
+    <cvrf:IssuingAuthority>Cisco product security incident response is the responsibility of the Cisco Product Security Incident Response Team (PSIRT). The Cisco PSIRT is a dedicated, global team that manages the receipt, investigation, and public reporting of security vulnerability information that is related to Cisco products and networks. The on-call Cisco PSIRT works 24x7 with Cisco customers, independent security researchers, consultants, industry organizations, and other vendors to identify possible security issues with Cisco products and networks.
+More information can be found in Cisco Security Vulnerability Policy available at http://www.cisco.com/web/about/security/psirt/security_vulnerability_policy.html</cvrf:IssuingAuthority>
+  </cvrf:DocumentPublisher>
+  <cvrf:DocumentTracking>
+    <cvrf:Identification>
+      <cvrf:ID>cisco-sa-iosxesdwan-privesc-VP4FG3jD</cvrf:ID>
+    </cvrf:Identification>
+    <cvrf:Status>Final</cvrf:Status>
+    <cvrf:Version>1.0</cvrf:Version>
+    <cvrf:RevisionHistory>
+      <cvrf:Revision>
+        <cvrf:Number>1.0</cvrf:Number>
+        <cvrf:Date>2021-09-22T15:48:35</cvrf:Date>
+        <cvrf:Description>Initial public release.</cvrf:Description>
+      </cvrf:Revision>
+    </cvrf:RevisionHistory>
+    <cvrf:InitialReleaseDate>2021-09-22T16:00:00</cvrf:InitialReleaseDate>
+    <cvrf:CurrentReleaseDate>2021-09-22T16:00:00</cvrf:CurrentReleaseDate>
+    <cvrf:Generator>
+      <cvrf:Engine>TVCE</cvrf:Engine>
+    </cvrf:Generator>
+  </cvrf:DocumentTracking>
+  <cvrf:DocumentNotes>
+    <cvrf:Note Title="Summary" Type="Summary" Ordinal="1">A vulnerability in the Cisco IOS XE SD-WAN Software CLI could allow an authenticated, local attacker to elevate privileges and execute arbitrary code on the underlying operating system as the root user. An attacker must be authenticated on an affected device as a PRIV15 user.
+
+This vulnerability is due to insufficient file system protection and the presence of a sensitive file in the bootflash directory on an affected device. An attacker could exploit this vulnerability by overwriting an installer file stored in the bootflash directory with arbitrary commands that can be executed with root-level privileges. A successful exploit could allow the attacker to read and write changes to the configuration database on the affected device.
+
+Cisco has released software updates that address this vulnerability. There are no workarounds that address this vulnerability.
+
+This advisory is available at the following link:
+https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-iosxesdwan-privesc-VP4FG3jD ["https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-iosxesdwan-privesc-VP4FG3jD"]
+
+This advisory is part of the September 2021 release of the Cisco IOS and IOS XE Software Security Advisory Bundled Publication. For a complete list of the advisories and links to them, see Cisco Event Response: September 2021 Semiannual Cisco IOS and IOS XE Software Security Advisory Bundled Publication. ["https://tools.cisco.com/security/center/viewErp.x?alertId=ERP-74581"]</cvrf:Note>
+    <cvrf:Note Title="Vulnerable Products" Type="General" Ordinal="2">At the time of publication, this vulnerability affected the following Cisco products if they were running a vulnerable release of Cisco IOS XE SD-WAN Software and had the SD-WAN feature enabled.
+
+1000 Series Integrated Services Routers (ISRs)
+4000 Series ISRs
+ASR 1000 Series Aggregation Services Routers (ASRs)
+Cloud Services Router (CSR) 1000V Series
+
+Note: The SD-WAN feature is not enabled by default.
+
+For information about which Cisco software releases are vulnerable, see the Fixed Software ["#fs"] section of this advisory.
+
+    Determine the Device Configuration
+There are two methods for determining whether the SD-WAN feature is enabled on a device:
+
+Option 1: Use the show running-config | include sdwan Command
+
+
+To determine whether sdwan mode is enabled on a device, use the show running-config | include sdwan command and check the tunnel mode in the output. If the command returns tunnel mode sdwan, the sdwan feature is enabled and the device is vulnerable. If the command returns no output or the command does not exist, the SD-WAN feature is not enabled and the device is not affected by this vulnerability.
+
+The following example shows the output of the show running-config | include sdwan command on a device that has the SD-WAN feature enabled:
+
+
+Router# show running-config | include sdwan
+tunnel mode sdwan
+Router#
+
+Option 2: Use the show version Command
+
+
+Alternatively, use the show version command to determine whether the Cisco IOS XE device is in Controller mode. The end of the output includes the router operating mode, which indicates whether the device is in Controller mode.
+
+The following example shows part of the show version command output on a device that has the SD-WAN feature enabled:
+
+
+Router# show version
+.
+.
+.
+Router operating mode: Controller-Managed
+.
+.
+.</cvrf:Note>
+    <cvrf:Note Title="Products Confirmed Not Vulnerable" Type="General" Ordinal="3">Only products listed in the Vulnerable Products ["#vp"] section of this advisory are known to be affected by this vulnerability.
+
+Cisco has confirmed that this vulnerability does not affect the following Cisco products:
+
+IOS Software
+IOS XR Software
+Meraki products
+NX-OS Software</cvrf:Note>
+    <cvrf:Note Title="Workarounds" Type="General" Ordinal="4">There are no workarounds that address this vulnerability.</cvrf:Note>
+    <cvrf:Note Title="Fixed Software" Type="General" Ordinal="5">When considering software upgrades ["https://tools.cisco.com/security/center/resources/security_vulnerability_policy.html#fixes"], customers are advised to regularly consult the advisories for Cisco products, which are available from the Cisco Security Advisories page ["https://www.cisco.com/go/psirt"], to determine exposure and a complete upgrade solution.
+
+In all cases, customers should ensure that the devices to be upgraded contain sufficient memory and confirm that current hardware and software configurations will continue to be supported properly by the new release. If the information is not clear, customers are advised to contact the Cisco Technical Assistance Center (TAC) or their contracted maintenance providers.
+        Cisco IOS and IOS XE Software
+To help customers determine their exposure to vulnerabilities in Cisco IOS and IOS XE Software, Cisco provides the Cisco Software Checker ["https://tools.cisco.com/security/center/softwarechecker.x"] to identify any Cisco Security Advisories that impact a specific software release and the earliest release that fixes the vulnerabilities described in each advisory (“First Fixed”). If applicable, the tool also returns the earliest release that fixes all the vulnerabilities described in all the advisories identified (“Combined First Fixed”).
+
+Customers can use the Cisco Software Checker ["https://tools.cisco.com/security/center/softwarechecker.x"] to search advisories in the following ways:
+
+Choose the software and one or more releases
+Upload a .txt file that includes a list of specific releases
+Enter the output of the show version command
+
+After initiating a search, customers can customize the search to include all Cisco Security Advisories, a specific advisory, or all advisories in the most recent bundled publication.
+
+Customers can also use the following form to determine whether a release is affected by any Cisco Security Advisory by entering a Cisco IOS or IOS XE Software release—for example, 15.1(4)M2 or 3.13.8S:
+
+
+
+By default, the Cisco Software Checker ["https://tools.cisco.com/security/center/softwarechecker.x"] includes results only for vulnerabilities that have a Critical or High Security Impact Rating (SIR). To include results for Medium SIR vulnerabilities, customers can use the Cisco Software Checker on Cisco.com and check the Medium check box in the drop-down list under Impact Rating when customizing a search.</cvrf:Note>
+    <cvrf:Note Title="Vulnerability Policy" Type="General" Ordinal="6">To learn about Cisco security vulnerability disclosure policies and publications, see the Security Vulnerability Policy ["http://www.cisco.com/web/about/security/psirt/security_vulnerability_policy.html"]. This document also contains instructions for obtaining fixed software and receiving security vulnerability information from Cisco.</cvrf:Note>
+    <cvrf:Note Title="Exploitation and Public Announcements" Type="General" Ordinal="7">The Cisco Product Security Incident Response Team (PSIRT) is not aware of any public announcements or malicious use of the vulnerability that is described in this advisory.</cvrf:Note>
+    <cvrf:Note Title="Source" Type="General" Ordinal="8">This vulnerability was found during internal security testing by James Spadaro of the Cisco Advanced Security Initiatives Group (ASIG).</cvrf:Note>
+    <cvrf:Note Title="Legal Disclaimer" Type="Legal Disclaimer" Ordinal="9">THIS DOCUMENT IS PROVIDED ON AN "AS IS" BASIS AND DOES NOT IMPLY ANY KIND OF GUARANTEE OR WARRANTY, INCLUDING THE WARRANTIES OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR USE. YOUR USE OF THE INFORMATION ON THE DOCUMENT OR MATERIALS LINKED FROM THE DOCUMENT IS AT YOUR OWN RISK. CISCO RESERVES THE RIGHT TO CHANGE OR UPDATE THIS DOCUMENT AT ANY TIME.
+
+A standalone copy or paraphrase of the text of this document that omits the distribution URL is an uncontrolled copy and may lack important information or contain factual errors. The information in this document is intended for end users of Cisco products.</cvrf:Note>
+  </cvrf:DocumentNotes>
+  <cvrf:DocumentReferences>
+    <cvrf:Reference Type="Self">
+      <cvrf:URL>https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-iosxesdwan-privesc-VP4FG3jD</cvrf:URL>
+      <cvrf:Description>Cisco IOS XE SD-WAN Software Privilege Escalation Vulnerability</cvrf:Description>
+    </cvrf:Reference>
+    <cvrf:Reference>
+      <cvrf:URL>http://tools.cisco.com/security/center/viewErp.x?alertId=ERP-74581</cvrf:URL>
+      <cvrf:Description>Cisco Event Response: September 2021 Semiannual Cisco IOS and IOS XE Software Security Advisory Bundled Publication</cvrf:Description>
+    </cvrf:Reference>
+  </cvrf:DocumentReferences>
+  <ProductTree xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/prod">
+    <Branch Name="Cisco" Type="Vendor">
+      <Branch Name="Cisco IOS XE SD-WAN Software" Type="Product Name">
+        <Branch Name="17.4" Type="Product Version">
+          <Branch Name="17.4.1b_CSCVY09777" Type="Service Pack">
+            <FullProductName ProductID="CVRFPID-283771">Cisco IOS XE SD-WAN Software 17.4.1b_CSCVY09777</FullProductName>
+          </Branch>
+        </Branch>
+        <Branch Name="Cisco Cloud Services Router 1000V Series" Type="Product Name">
+          <FullProductName ProductID="CVRFPID-277415">Cisco IOS XE SD-WAN Software Platform Cisco Cloud Services Router 1000V Series</FullProductName>
+        </Branch>
+        <Branch Name="Cisco ASR 1000 Series Aggregation Services Routers" Type="Product Name">
+          <FullProductName ProductID="CVRFPID-277417">Cisco IOS XE SD-WAN Software Platform Cisco ASR 1000 Series Aggregation Services Routers</FullProductName>
+        </Branch>
+        <Branch Name="Cisco 4000 Series Integrated Services Routers" Type="Product Name">
+          <FullProductName ProductID="CVRFPID-277455">Cisco IOS XE SD-WAN Software Platform Cisco 4000 Series Integrated Services Routers</FullProductName>
+        </Branch>
+      </Branch>
+      <Branch Name="Cisco IOS XE SD-WAN Software" Type="Product Name">
+        <FullProductName ProductID="CVRFPID-275036">Cisco IOS XE SD-WAN Software </FullProductName>
+      </Branch>
+    </Branch>
+    <Relationship RelatesToProductReference="CVRFPID-277415" RelationType="Installed On" ProductReference="CVRFPID-283771">
+      <FullProductName ProductID="CVRFPID-283771:277415">Cisco IOS XE SD-WAN Software 17.4.1b_CSCVY09777 when installed on Cisco Cloud Services Router 1000V Series</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277417" RelationType="Installed On" ProductReference="CVRFPID-283771">
+      <FullProductName ProductID="CVRFPID-283771:277417">Cisco IOS XE SD-WAN Software 17.4.1b_CSCVY09777 when installed on Cisco ASR 1000 Series Aggregation Services Routers</FullProductName>
+    </Relationship>
+    <Relationship RelatesToProductReference="CVRFPID-277455" RelationType="Installed On" ProductReference="CVRFPID-283771">
+      <FullProductName ProductID="CVRFPID-283771:277455">Cisco IOS XE SD-WAN Software 17.4.1b_CSCVY09777 when installed on Cisco 4000 Series Integrated Services Routers</FullProductName>
+    </Relationship>
+  </ProductTree>
+  <Vulnerability Ordinal="1" xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln">
+    <Title>vuln-CVE-2021-34724</Title>
+    <ID SystemName="Cisco Bug ID">CSCvw54117</ID>
+    <Notes>
+      <Note Title="Cisco Bug IDs" Type="Other" Ordinal="1">CSCvw54117</Note>
+      <Note Title="Affected Product Comprehensiveness" Type="Other" Ordinal="2">Complete.</Note>
+    </Notes>
+    <CVE>CVE-2021-34724</CVE>
+    <ProductStatuses>
+      <Status Type="Known Affected">
+        <ProductID>CVRFPID-275036</ProductID>
+        <ProductID>CVRFPID-283771:277415</ProductID>
+        <ProductID>CVRFPID-283771:277417</ProductID>
+        <ProductID>CVRFPID-283771:277455</ProductID>
+      </Status>
+    </ProductStatuses>
+    <CVSSScoreSets>
+      <ScoreSetV3>
+        <BaseScoreV3>6.0</BaseScoreV3>
+        <VectorV3>CVSS:3.1/AV:L/AC:L/PR:H/UI:N/S:U/C:H/I:H/A:N</VectorV3>
+      </ScoreSetV3>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Workaround">
+        <Description>There are no workarounds that address this vulnerability.</Description>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference Type="Self">
+        <URL>https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-iosxesdwan-privesc-VP4FG3jD</URL>
+        <Description>Cisco IOS XE SD-WAN Software Privilege Escalation Vulnerability</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+</cvrf:cvrfdoc>

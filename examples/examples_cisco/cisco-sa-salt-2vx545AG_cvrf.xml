@@ -1,0 +1,491 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cvrf:cvrfdoc xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:cvrf-common="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/common" xmlns:cvrf="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/cvrf">
+  <cvrf:DocumentTitle>SaltStack FrameWork Vulnerabilities Affecting Cisco Products</cvrf:DocumentTitle>
+  <cvrf:DocumentType>Cisco Security Advisory</cvrf:DocumentType>
+  <cvrf:DocumentPublisher Type="Vendor">
+    <cvrf:ContactDetails>Emergency Support:
++1 877 228 7302 (toll-free within North America)
++1 408 525 6532 (International direct-dial)
+Non-emergency Support:
+Email: psirt@cisco.com
+Support requests that are received via e-mail are typically acknowledged within 48 hours.</cvrf:ContactDetails>
+    <cvrf:IssuingAuthority>Cisco product security incident response is the responsibility of the Cisco Product Security Incident Response Team (PSIRT). The Cisco PSIRT is a dedicated, global team that manages the receipt, investigation, and public reporting of security vulnerability information that is related to Cisco products and networks. The on-call Cisco PSIRT works 24x7 with Cisco customers, independent security researchers, consultants, industry organizations, and other vendors to identify possible security issues with Cisco products and networks.
+More information can be found in Cisco Security Vulnerability Policy available at http://www.cisco.com/web/about/security/psirt/security_vulnerability_policy.html</cvrf:IssuingAuthority>
+  </cvrf:DocumentPublisher>
+  <cvrf:DocumentTracking>
+    <cvrf:Identification>
+      <cvrf:ID>cisco-sa-salt-2vx545AG</cvrf:ID>
+    </cvrf:Identification>
+    <cvrf:Status>Final</cvrf:Status>
+    <cvrf:Version>2.0</cvrf:Version>
+    <cvrf:RevisionHistory>
+      <cvrf:Revision>
+        <cvrf:Number>1.0</cvrf:Number>
+        <cvrf:Date>2020-05-28T15:55:30</cvrf:Date>
+        <cvrf:Description>Initial public release.</cvrf:Description>
+      </cvrf:Revision>
+      <cvrf:Revision>
+        <cvrf:Number>2.0</cvrf:Number>
+        <cvrf:Date>2020-06-16T15:17:35</cvrf:Date>
+        <cvrf:Description>Added Cisco TelePresence IX5000 Series as a vulnerable product. Added Release 1.6.67 as a fixed release for both Cisco VIRL-PE and Cisco CML.</cvrf:Description>
+      </cvrf:Revision>
+    </cvrf:RevisionHistory>
+    <cvrf:InitialReleaseDate>2020-05-28T16:00:00</cvrf:InitialReleaseDate>
+    <cvrf:CurrentReleaseDate>2020-06-16T15:17:35</cvrf:CurrentReleaseDate>
+    <cvrf:Generator>
+      <cvrf:Engine>TVCE</cvrf:Engine>
+    </cvrf:Generator>
+  </cvrf:DocumentTracking>
+  <cvrf:DocumentNotes>
+    <cvrf:Note Title="Summary" Type="Summary" Ordinal="1">On April 29, 2020, the Salt Open Core team notified their community regarding the following two CVE-IDs:
+
+CVE-2020-11651: Authentication Bypass Vulnerability
+CVE-2020-11652: Directory Traversal Vulnerability
+
+Cisco Modeling Labs Corporate Edition (CML), Cisco TelePresence IX5000 Series, and Cisco Virtual Internet Routing Lab Personal Edition (VIRL-PE) incorporate a version of SaltStack that is running the salt-master service that is affected by these vulnerabilities.
+
+Cisco has released software updates that address these vulnerabilities. There are workarounds that address these vulnerabilities.
+
+This advisory is available at the following link:
+https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-salt-2vx545AG ["https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-salt-2vx545AG"]</cvrf:Note>
+    <cvrf:Note Title="Vulnerable Products" Type="General" Ordinal="2">These vulnerabilities affect the following Cisco products if they are running a vulnerable software release:
+
+Modeling Labs Corporate Edition (CML)
+TelePresence IX5000 Series
+Virtual Internet Routing Lab Personal Edition (VIRL-PE)
+  Cisco CML and Cisco VIRL-PE
+Cisco CML and Cisco VIRL-PE can be deployed either in standalone or cluster configurations. The vulnerabilities will impact each deployment differently. For impact information and recommended actions, see the table in the Details ["#details"] section of this advisory.
+
+Note: Cisco infrastructure maintains the salt-master servers that are used with Cisco VIRL-PE. Those servers were upgraded on May 7, 2020. Cisco identified that the Cisco maintained salt-master servers that are servicing Cisco VIRL-PE releases 1.2 and 1.3 were compromised. The servers were remediated on May 7, 2020. The following servers were compromised:
+
+us-1.virl.info
+us-2.virl.info
+us-3.virl.info
+us-4.virl.info
+vsm-us-1.virl.info
+vsm-us-2.virl.info
+
+Cisco VIRL-PE connects back to Cisco maintained Salt Servers that are running the salt-master service. These servers are configured to communicate with a different Cisco salt-master server, depending on which release of Cisco VIRL-PE software is running. Administrators can check the configured Cisco salt-master server by navigating to VIRL Server &gt; Salt Configuration and Status.
+
+Cisco CML does not connect back to any Cisco maintained Salt Servers.
+  Cisco TelePresence IX5000 Series
+Salt services are enabled by default on Cisco TelePresence IX5000 Series.</cvrf:Note>
+    <cvrf:Note Title="Products Confirmed Not Vulnerable" Type="General" Ordinal="3">Only products listed in the Vulnerable Products ["#vp"] section of this advisory are known to be affected by these vulnerabilities.</cvrf:Note>
+    <cvrf:Note Title="Details" Type="General" Ordinal="4">Cisco CML and Cisco VIRL-PE
+For information about Cisco CML and Cisco VIRL-PE, see Cisco Modeling Labs ["https://developer.cisco.com/modeling-labs/"].
+
+For Cisco CML and Cisco VIRL-PE software releases 1.5 and 1.6, if the salt-master service is enabled, the exploitability of the product depends on how the product has been deployed. To be exploited, the salt-master service must be reachable on TCP ports 4505 and 4506. For any installation that is found with salt-master service running, Cisco would recommend either inspecting the machine for compromise or doing a re-image of the machine and installing the latest version of Cisco CML or Cisco VIRL-PE.
+
+To check the status of the salt-master service on the installation of Cisco CML and Cisco VIRL-PE, log in to the device and execute the command sudo systemctl status salt-master. If the salt-master service is active, as indicated by Active: active (running), the device is vulnerable and Cisco recommends following the actions listed in the table below.
+
+The following example shows a device where the salt-master service is enabled:
+
+
+virl@virl:~$ sudo systemctl status salt-master
+? salt-master.service - The Salt Master Server
+   Loaded: loaded (/lib/systemd/system/salt-master.service; disabled; vendor preset: enabled)
+  Drop-In: /etc/systemd/system/salt-master.service.d
+           +-override.conf
+   Active: active (running) since Thu 2020-05-28 17:55:10 GMT; 1s ago
+     Docs: man:salt-master(1)
+           file:///usr/share/doc/salt/html/contents.html
+           https://docs.saltstack.com/en/latest/contents.html
+ Main PID: 20662 (/usr/bin/python)
+    Tasks: 16
+   Memory: 217.9M
+      CPU: 7.870s
+   CGroup: /system.slice/salt-master.service
+           +-20662 /usr/bin/python /usr/bin/salt-master ProcessManage
+           +-20789 /usr/bin/python /usr/bin/salt-master MultiprocessingLoggingQueu
+           +-20793 /usr/bin/python /usr/bin/salt-master ZeroMQPubServerChanne
+           +-20794 /usr/bin/python /usr/bin/salt-master EventPublishe
+           +-20797 /usr/bin/python /usr/bin/salt-master Maintenanc
+           +-20798 /usr/bin/python /usr/bin/salt-master ReqServer_ProcessManage
+           +-20799 /usr/bin/python /usr/bin/salt-master MWorkerQueu
+           +-20804 /usr/bin/python /usr/bin/salt-master MWorker-
+           +-20805 /usr/bin/python /usr/bin/salt-master MWorker-
+           +-20806 /usr/bin/python /usr/bin/salt-master MWorker-May 28 17:55:08 virl systemd[1]: Starting The Salt Master Server...
+May 28 17:55:10 virl systemd[1]: Started The Salt Master Server.
+virl@virl:~$
+
+The following example shows a device where the salt-master service is not enabled:
+
+
+virl@virl:~$ sudo systemctl status salt-master
+? salt-master.service - The Salt Master Server
+   Loaded: loaded (/lib/systemd/system/salt-master.service; disabled; vendor preset: enabled)
+  Drop-In: /etc/systemd/system/salt-master.service.d
+           +-override.conf
+   Active: inactive (dead)
+     Docs: man:salt-master(1)
+           file:///usr/share/doc/salt/html/contents.html
+           https://docs.saltstack.com/en/latest/contents.html
+
+The following table lists the impact and recommended action for each deployment option for each Cisco software release.
+        Cisco CML and VIRL-PE Software Release  Deployment Option  Impact  Recommended Action          2.0  Standalone  Not affected. Does not run Salt services.  None.      2.0  Cluster Mode  Not affected. Not currently supported.  None.      1.6  Standalone
+For customers who performed a fresh install, there is no impact. An install runs the salt-minion process only when required; it does not run a salt-master service.
+  For customers who upgraded from Release 1.5, a salt-master service is running.
+Check the status of the salt-master service using the sudo systemctl status salt-master command. If the salt-master service is running, do one of the following:
+
+Upgrade to a patched release, which will disable the salt-master service.1
+Disable the salt-master service using the workaround.
+        1.6  Cluster Mode
+For customers who performed a fresh install, there is no impact. The controller runs SaltStack Master and communicates with compute nodes -  SaltStack bound only to private network.
+
+For customers who upgraded from 1.5, a salt-master service is running.
+
+Check the status of the salt-master service using the sudo systemctl status salt-master command. If the salt-master service is running, do one of the following:
+
+Upgrade to patched release, which will disable the salt-master service on all interfaces except the internal (INT) network.1
+        1.5  Standalone
+Salt-minion service running.
+
+Salt-master service running (bound to all interfaces).
+
+Note: Salt services are not running on CML.
+
+Check the status of the salt-master service using the sudo systemctl status salt-master command. If the salt-master service is running, do one of the following:
+
+Upgrade to a patched release, which will disable the salt-master service.1
+Disable the salt-master service using the workaround.
+        1.5  Cluster Mode
+Salt-minion service running.
+  Salt-master service running (bound to all interfaces).
+Upgrade to patched release, which will disable the salt-master service on all interfaces except the internal (INT) network.1
+        1.3  Standalone
+Salt-minion service running.
+  Salt-master service running (bound to all interfaces).
+CML
+
+Do one of the following:
+
+Upgrade to a patched release, which will disable the salt-master service.1
+Disable the salt-master service using the workaround.
+
+VIRL-PE
+
+Re-image the machines and install the VIRL-PE patched release.1
+        1.3  Cluster Mode
+Salt-minion service running.
+  Salt-master service running (bound to all interfaces).
+CML
+
+Migrate to a patched release.1
+
+VIRL-PE
+
+Re-image the machines and install the VIRL-PE patched release.1
+        1.2  Standalone
+Salt-minion service running.
+  Salt-master service running (bound to all interfaces).
+CML
+
+Do one of the following:
+
+Upgrade to a patched release, which will disable the salt-master service.1
+Disable the salt-master service using the workaround.
+
+VIRL-PE
+
+Re-image the machines and install the VIRL-PE patched release.1
+        1.2  Cluster Mode
+Salt-minion service running.
+  Salt-master service running (bound to all interfaces).
+CML
+
+Migrate to a patched release.1
+
+VIRL-PE
+
+Re-image the machines and install the VIRL-PE patched release.1
+
+1. For recommended patched software releases, see the Fixed Software ["#fs"] section of this advisory.
+  Cisco TelePresence IX5000 Series
+Salt services are enabled by default on Cisco TelePresence IX5000 Series, but these services are not required for normal operation. For information about disabling the services, see the Workarounds ["#wk"] section.</cvrf:Note>
+    <cvrf:Note Title="Workarounds" Type="General" Ordinal="5">Cisco CML and Cisco VIRL-PE
+Cisco CML and Cisco VIRL-PE software releases 2.0 and later do not run the salt-master service.
+
+For Cisco CML and Cisco VIRL-PE deployed in standalone mode, administrators can check the status of the salt-master service and disable the service as shown in the following example:
+
+
+virl@virl:~$ sudo systemctl status salt-master
+? salt-master.service - The Salt Master Server
+   Loaded: loaded (/lib/systemd/system/salt-master.service; disabled; vendor preset: enabled)
+  Drop-In: /etc/systemd/system/salt-master.service.d
+           +-override.conf
+   Active: active (running) since Thu 2020-05-28 17:55:10 GMT; 1s ago
+     Docs: man:salt-master(1)
+           file:///usr/share/doc/salt/html/contents.html
+           https://docs.saltstack.com/en/latest/contents.html
+
+--- Output Omitted ---
+
+virl@virl:~$ sudo systemctl stop salt-master
+virl@virl:~$ sudo systemctl disable salt-master
+Synchronizing state of salt-master.service with SysV init with /lib/systemd/systemd-sysv-install...
+Executing /lib/systemd/systemd-sysv-install disable salt-master
+insserv: warning: current start runlevel(s) (empty) of script `salt-master' overrides LSB defaults (2 3 4 5).
+insserv: warning: current stop runlevel(s) (0 1 2 3 4 5 6) of script `salt-master' overrides LSB defaults (0 1 6).
+virl@virl:~$
+
+
+For Cisco CML and Cisco VIRL-PE deployed in cluster mode, administrators can check the status of the salt-master service and disable the service on all compute nodes. Follow the steps shown above for standalone deployments. On the cluster controller node, ensure that the salt-master is listening only on the private network interface for inter-cluster communication, as shown in the following example:
+
+
+virl@virl:~$ netstat -tulpn | grep 450
+(Not all processes could be identified, non-owned process info
+ will not be shown, you would have to be root to see it all.)
+tcp        0      0 172.16.10.250:4505      0.0.0.0:*               LISTEN      -
+tcp        0      0 172.16.10.250:4506      0.0.0.0:*               LISTEN      -
+virl@virl:~$
+
+
+If the salt-master is listening on all interfaces as shown in the following example, customers will need to upgrade to a patched release:
+
+
+virl@virl:~$ netstat -tulpn | grep 450
+(Not all processes could be identified, non-owned process info
+ will not be shown, you would have to be root to see it all.)
+tcp        0      0 0.0.0.0:4505      0.0.0.0:*               LISTEN      -
+tcp        0      0 0.0.0.0:4506      0.0.0.0:*               LISTEN      -
+virl@virl:~$
+
+    Cisco TelePresence IX5000 Series
+To disable Salt services permanently on Cisco TelePresence IX5000 Series, modifications must be made to the startup script files, which requires root access on the device. For assistance, contact the Cisco TAC through your support organization.</cvrf:Note>
+    <cvrf:Note Title="Fixed Software" Type="General" Ordinal="6">Cisco has released free software updates that address the vulnerabilities described in this advisory. Customers may only install and expect support for software versions and feature sets for which they have purchased a license. By installing, downloading, accessing, or otherwise using such software upgrades, customers agree to follow the terms of the Cisco software license: https://www.cisco.com/c/en/us/products/end-user-license-agreement.html ["https://www.cisco.com/c/en/us/products/end-user-license-agreement.html"]
+
+Additionally, customers may only download software for which they have a valid license, procured from Cisco directly, or through a Cisco authorized reseller or partner. In most cases this will be a maintenance upgrade to software that was previously purchased. Free security software updates do not entitle customers to a new software license, additional software feature sets, or major revision upgrades.
+
+When considering software upgrades ["https://tools.cisco.com/security/center/resources/security_vulnerability_policy.html#fixes"], customers are advised to regularly consult the advisories for Cisco products, which are available from the Cisco Security Advisories and Alerts page ["https://www.cisco.com/go/psirt"], to determine exposure and a complete upgrade solution.
+
+In all cases, customers should ensure that the devices to be upgraded contain sufficient memory and confirm that current hardware and software configurations will continue to be supported properly by the new release. If the information is not clear, customers are advised to contact the Cisco Technical Assistance Center (TAC) or their contracted maintenance providers.
+  Customers Without Service Contracts
+Customers who purchase directly from Cisco but do not hold a Cisco service contract and customers who make purchases through third-party vendors but are unsuccessful in obtaining fixed software through their point of sale should obtain upgrades by contacting the Cisco TAC: https://www.cisco.com/c/en/us/support/web/tsd-cisco-worldwide-contacts.html ["https://www.cisco.com/c/en/us/support/web/tsd-cisco-worldwide-contacts.html"]
+
+Customers should have the product serial number available and be prepared to provide the URL of this advisory as evidence of entitlement to a free upgrade.
+      Fixed Releases
+Cisco CML
+
+For customers who are running the software in standalone deployments, Cisco recommends migrating to Cisco CML Release 2.0.
+
+To download the software from the Software Center ["https://software.cisco.com/download/navigator.html"] on Cisco.com, do the following:
+
+Click Browse all.
+Choose Cloud and Systems Management &gt; Network Modeling &gt; Modeling Labs.
+Choose a release from left pane.
+
+For customers who cannot migrate to Release 2.0, Cisco recommends migrating to Release 1.6.67.
+
+Cisco CML does not support in-place upgrades for any Cisco CML 1.x releases. Customers are advised to migrate to a new Cisco CML Release 1.6.67 or Release 2.0 installation.
+
+Cisco fixed this vulnerability in Cisco CML Release 1.6.67. This release upgrades the version of SaltStack, which contains the fixes for both vulnerabilities. Customers who are running Cisco CML Release 1.6.65, which has Salt services enabled on only the private interfaces, are also advised to upgrade to Release 1.6.67.
+
+Cisco VIRL-PE
+
+Cisco recommends migrating to Cisco VIRL-PE Release 2.0, which has been rebranded Cisco Modeling Labs - Personal. For upgrade instructions, see HOW-TO: Upgrade your Virtual Internet Routing Lab Instance to Cisco Modeling Labs - Personal v2.0 ["https://learningnetwork.cisco.com/s/question/0D53i00000U2ihwCAB/howto-upgrade-your-virtual-internet-routing-lab-instance-to-cisco-modeling-labs-personal-v20"].
+
+For customers with standalone deployments who cannot migrate to Cisco VIRL-PE Release 2.0, Cisco recommends upgrading to Release 1.6.66 through the UWM interface to ensure that the salt-master service is disabled. Upgrade instructions are available at http://get.virl.info/upgrd.1.3.php ["http://get.virl.info/upgrd.1.3.php"].
+
+For customers with cluster mode deployments who are running Release 1.5 or Release 1.6, Cisco recommends upgrading to Release 1.6.67 through the UWM interface to ensure that the salt-master service is disabled and upgraded to a fixed SaltStack version. Customers who are running Release 1.3 are advised to migrate to the latest 1.6 release.
+
+Cisco fixed this vulnerability in Cisco VIRL-PE Release 1.6.67. This release upgrades the version of SaltStack, which contains the fixes for both vulnerabilities. Customers who are running 1.6.66, which has Salt services disabled, are also advised to upgrade to Release 1.6.67.
+
+Cisco TelePresence IX5000 Series
+
+Cisco will not release fixed software for Cisco TelePresence IX5000 Series, as the product has entered end of life. To disable Salt services permanently on Cisco TelePresence IX5000 Series, modifications must be made to the startup script files, which requires root access on the device. For assistance, contact the Cisco TAC through your support organization.</cvrf:Note>
+    <cvrf:Note Title="Vulnerability Policy" Type="General" Ordinal="7">To learn about Cisco security vulnerability disclosure policies and publications, see the Security Vulnerability Policy ["http://www.cisco.com/web/about/security/psirt/security_vulnerability_policy.html"]. This document also contains instructions for obtaining fixed software and receiving security vulnerability information from Cisco.</cvrf:Note>
+    <cvrf:Note Title="Exploitation and Public Announcements" Type="General" Ordinal="8">The Cisco Product Security Incident Response Team (PSIRT) became aware of additional attempted exploitation of these vulnerabilities in the wild. Cisco continues to strongly recommend that customers upgrade to a fixed software release to remediate these vulnerabilities.</cvrf:Note>
+    <cvrf:Note Title="Source" Type="General" Ordinal="9">These vulnerabilities were made public by the Salt Open Core team on April 29, 2020.</cvrf:Note>
+    <cvrf:Note Title="Legal Disclaimer" Type="Legal Disclaimer" Ordinal="10">THIS DOCUMENT IS PROVIDED ON AN "AS IS" BASIS AND DOES NOT IMPLY ANY KIND OF GUARANTEE OR WARRANTY, INCLUDING THE WARRANTIES OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR USE. YOUR USE OF THE INFORMATION ON THE DOCUMENT OR MATERIALS LINKED FROM THE DOCUMENT IS AT YOUR OWN RISK. CISCO RESERVES THE RIGHT TO CHANGE OR UPDATE THIS DOCUMENT AT ANY TIME.
+
+A standalone copy or paraphrase of the text of this document that omits the distribution URL is an uncontrolled copy and may lack important information or contain factual errors. The information in this document is intended for end users of Cisco products.</cvrf:Note>
+  </cvrf:DocumentNotes>
+  <cvrf:DocumentReferences>
+    <cvrf:Reference Type="Self">
+      <cvrf:URL>https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-salt-2vx545AG</cvrf:URL>
+      <cvrf:Description>SaltStack FrameWork Vulnerabilities Affecting Cisco Products</cvrf:Description>
+    </cvrf:Reference>
+  </cvrf:DocumentReferences>
+  <ProductTree xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/prod">
+    <Branch Name="Cisco" Type="Vendor">
+      <Branch Name="Cisco TelePresence IX5000" Type="Product Name">
+        <FullProductName ProductID="CVRFPID-210082">Cisco TelePresence IX5000 </FullProductName>
+      </Branch>
+      <Branch Name="Cisco Modeling Labs" Type="Product Name">
+        <FullProductName ProductID="CVRFPID-277905">Cisco Modeling Labs </FullProductName>
+      </Branch>
+      <Branch Name="Cisco Virtual Internet Routing Lab" Type="Product Name">
+        <FullProductName ProductID="CVRFPID-277914">Cisco Virtual Internet Routing Lab </FullProductName>
+      </Branch>
+    </Branch>
+  </ProductTree>
+  <Vulnerability Ordinal="1" xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln">
+    <Title>vuln-CVE-2020-11651</Title>
+    <ID SystemName="Cisco Bug ID">CSCvu33581</ID>
+    <Notes>
+      <Note Title="Cisco Bug IDs" Type="Other" Ordinal="1">CSCvu33581,CSCvu43116</Note>
+    </Notes>
+    <CVE>CVE-2020-11651</CVE>
+    <ProductStatuses>
+      <Status Type="Known Affected">
+        <ProductID>CVRFPID-277905</ProductID>
+        <ProductID>CVRFPID-277914</ProductID>
+        <ProductID>CVRFPID-210082</ProductID>
+      </Status>
+    </ProductStatuses>
+    <CVSSScoreSets>
+      <ScoreSetV3>
+        <BaseScoreV3>10.0</BaseScoreV3>
+        <VectorV3>CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:H</VectorV3>
+        <ProductID>CVRFPID-277905</ProductID>
+        <ProductID>CVRFPID-277914</ProductID>
+      </ScoreSetV3>
+      <ScoreSetV3>
+        <BaseScoreV3>9.8</BaseScoreV3>
+        <VectorV3>CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H</VectorV3>
+        <ProductID>CVRFPID-210082</ProductID>
+      </ScoreSetV3>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Workaround">
+        <Description>Cisco CML and Cisco VIRL-PE
+Cisco CML and Cisco VIRL-PE software releases 2.0 and later do not run the salt-master service.
+
+For Cisco CML and Cisco VIRL-PE deployed in standalone mode, administrators can check the status of the salt-master service and disable the service as shown in the following example:
+
+
+virl@virl:~$ sudo systemctl status salt-master
+? salt-master.service - The Salt Master Server
+   Loaded: loaded (/lib/systemd/system/salt-master.service; disabled; vendor preset: enabled)
+  Drop-In: /etc/systemd/system/salt-master.service.d
+           +-override.conf
+   Active: active (running) since Thu 2020-05-28 17:55:10 GMT; 1s ago
+     Docs: man:salt-master(1)
+           file:///usr/share/doc/salt/html/contents.html
+           https://docs.saltstack.com/en/latest/contents.html
+
+--- Output Omitted ---
+
+virl@virl:~$ sudo systemctl stop salt-master
+virl@virl:~$ sudo systemctl disable salt-master
+Synchronizing state of salt-master.service with SysV init with /lib/systemd/systemd-sysv-install...
+Executing /lib/systemd/systemd-sysv-install disable salt-master
+insserv: warning: current start runlevel(s) (empty) of script `salt-master' overrides LSB defaults (2 3 4 5).
+insserv: warning: current stop runlevel(s) (0 1 2 3 4 5 6) of script `salt-master' overrides LSB defaults (0 1 6).
+virl@virl:~$
+
+
+For Cisco CML and Cisco VIRL-PE deployed in cluster mode, administrators can check the status of the salt-master service and disable the service on all compute nodes. Follow the steps shown above for standalone deployments. On the cluster controller node, ensure that the salt-master is listening only on the private network interface for inter-cluster communication, as shown in the following example:
+
+
+virl@virl:~$ netstat -tulpn | grep 450
+(Not all processes could be identified, non-owned process info
+ will not be shown, you would have to be root to see it all.)
+tcp        0      0 172.16.10.250:4505      0.0.0.0:*               LISTEN      -
+tcp        0      0 172.16.10.250:4506      0.0.0.0:*               LISTEN      -
+virl@virl:~$
+
+
+If the salt-master is listening on all interfaces as shown in the following example, customers will need to upgrade to a patched release:
+
+
+virl@virl:~$ netstat -tulpn | grep 450
+(Not all processes could be identified, non-owned process info
+ will not be shown, you would have to be root to see it all.)
+tcp        0      0 0.0.0.0:4505      0.0.0.0:*               LISTEN      -
+tcp        0      0 0.0.0.0:4506      0.0.0.0:*               LISTEN      -
+virl@virl:~$
+
+    Cisco TelePresence IX5000 Series
+To disable Salt services permanently on Cisco TelePresence IX5000 Series, modifications must be made to the startup script files, which requires root access on the device. For assistance, contact the Cisco TAC through your support organization.</Description>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference Type="Self">
+        <URL>https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-salt-2vx545AG</URL>
+        <Description>SaltStack FrameWork Vulnerabilities Affecting Cisco Products</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+  <Vulnerability Ordinal="2" xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln">
+    <Title>vuln-CVE-2020-11652</Title>
+    <ID SystemName="Cisco Bug ID">CSCvu33581</ID>
+    <Notes>
+      <Note Title="Cisco Bug IDs" Type="Other" Ordinal="1">CSCvu33581,CSCvu43116</Note>
+    </Notes>
+    <CVE>CVE-2020-11652</CVE>
+    <ProductStatuses>
+      <Status Type="Known Affected">
+        <ProductID>CVRFPID-277905</ProductID>
+        <ProductID>CVRFPID-277914</ProductID>
+        <ProductID>CVRFPID-210082</ProductID>
+      </Status>
+    </ProductStatuses>
+    <CVSSScoreSets>
+      <ScoreSetV3>
+        <BaseScoreV3>6.5</BaseScoreV3>
+        <VectorV3>CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:N/A:N</VectorV3>
+      </ScoreSetV3>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Workaround">
+        <Description>Cisco CML and Cisco VIRL-PE
+Cisco CML and Cisco VIRL-PE software releases 2.0 and later do not run the salt-master service.
+
+For Cisco CML and Cisco VIRL-PE deployed in standalone mode, administrators can check the status of the salt-master service and disable the service as shown in the following example:
+
+
+virl@virl:~$ sudo systemctl status salt-master
+? salt-master.service - The Salt Master Server
+   Loaded: loaded (/lib/systemd/system/salt-master.service; disabled; vendor preset: enabled)
+  Drop-In: /etc/systemd/system/salt-master.service.d
+           +-override.conf
+   Active: active (running) since Thu 2020-05-28 17:55:10 GMT; 1s ago
+     Docs: man:salt-master(1)
+           file:///usr/share/doc/salt/html/contents.html
+           https://docs.saltstack.com/en/latest/contents.html
+
+--- Output Omitted ---
+
+virl@virl:~$ sudo systemctl stop salt-master
+virl@virl:~$ sudo systemctl disable salt-master
+Synchronizing state of salt-master.service with SysV init with /lib/systemd/systemd-sysv-install...
+Executing /lib/systemd/systemd-sysv-install disable salt-master
+insserv: warning: current start runlevel(s) (empty) of script `salt-master' overrides LSB defaults (2 3 4 5).
+insserv: warning: current stop runlevel(s) (0 1 2 3 4 5 6) of script `salt-master' overrides LSB defaults (0 1 6).
+virl@virl:~$
+
+
+For Cisco CML and Cisco VIRL-PE deployed in cluster mode, administrators can check the status of the salt-master service and disable the service on all compute nodes. Follow the steps shown above for standalone deployments. On the cluster controller node, ensure that the salt-master is listening only on the private network interface for inter-cluster communication, as shown in the following example:
+
+
+virl@virl:~$ netstat -tulpn | grep 450
+(Not all processes could be identified, non-owned process info
+ will not be shown, you would have to be root to see it all.)
+tcp        0      0 172.16.10.250:4505      0.0.0.0:*               LISTEN      -
+tcp        0      0 172.16.10.250:4506      0.0.0.0:*               LISTEN      -
+virl@virl:~$
+
+
+If the salt-master is listening on all interfaces as shown in the following example, customers will need to upgrade to a patched release:
+
+
+virl@virl:~$ netstat -tulpn | grep 450
+(Not all processes could be identified, non-owned process info
+ will not be shown, you would have to be root to see it all.)
+tcp        0      0 0.0.0.0:4505      0.0.0.0:*               LISTEN      -
+tcp        0      0 0.0.0.0:4506      0.0.0.0:*               LISTEN      -
+virl@virl:~$
+
+    Cisco TelePresence IX5000 Series
+To disable Salt services permanently on Cisco TelePresence IX5000 Series, modifications must be made to the startup script files, which requires root access on the device. For assistance, contact the Cisco TAC through your support organization.</Description>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference Type="Self">
+        <URL>https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-salt-2vx545AG</URL>
+        <Description>SaltStack FrameWork Vulnerabilities Affecting Cisco Products</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+</cvrf:cvrfdoc>

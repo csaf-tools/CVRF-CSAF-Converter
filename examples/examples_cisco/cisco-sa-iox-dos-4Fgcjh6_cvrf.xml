@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cvrf:cvrfdoc xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:cvrf-common="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/common" xmlns:cvrf="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/cvrf">
+  <cvrf:DocumentTitle>Cisco IOx Application Framework  Denial of Service Vulnerability</cvrf:DocumentTitle>
+  <cvrf:DocumentType>Cisco Security Advisory</cvrf:DocumentType>
+  <cvrf:DocumentPublisher Type="Vendor">
+    <cvrf:ContactDetails>Emergency Support:
++1 877 228 7302 (toll-free within North America)
++1 408 525 6532 (International direct-dial)
+Non-emergency Support:
+Email: psirt@cisco.com
+Support requests that are received via e-mail are typically acknowledged within 48 hours.</cvrf:ContactDetails>
+    <cvrf:IssuingAuthority>Cisco product security incident response is the responsibility of the Cisco Product Security Incident Response Team (PSIRT). The Cisco PSIRT is a dedicated, global team that manages the receipt, investigation, and public reporting of security vulnerability information that is related to Cisco products and networks. The on-call Cisco PSIRT works 24x7 with Cisco customers, independent security researchers, consultants, industry organizations, and other vendors to identify possible security issues with Cisco products and networks.
+More information can be found in Cisco Security Vulnerability Policy available at http://www.cisco.com/web/about/security/psirt/security_vulnerability_policy.html</cvrf:IssuingAuthority>
+  </cvrf:DocumentPublisher>
+  <cvrf:DocumentTracking>
+    <cvrf:Identification>
+      <cvrf:ID>cisco-sa-iox-dos-4Fgcjh6</cvrf:ID>
+    </cvrf:Identification>
+    <cvrf:Status>Final</cvrf:Status>
+    <cvrf:Version>1.0</cvrf:Version>
+    <cvrf:RevisionHistory>
+      <cvrf:Revision>
+        <cvrf:Number>1.0</cvrf:Number>
+        <cvrf:Date>2021-03-24T15:31:24</cvrf:Date>
+        <cvrf:Description>Initial public release.</cvrf:Description>
+      </cvrf:Revision>
+    </cvrf:RevisionHistory>
+    <cvrf:InitialReleaseDate>2021-03-24T16:00:00</cvrf:InitialReleaseDate>
+    <cvrf:CurrentReleaseDate>2021-03-24T16:00:00</cvrf:CurrentReleaseDate>
+    <cvrf:Generator>
+      <cvrf:Engine>TVCE</cvrf:Engine>
+    </cvrf:Generator>
+  </cvrf:DocumentTracking>
+  <cvrf:DocumentNotes>
+    <cvrf:Note Title="Summary" Type="Summary" Ordinal="1">A vulnerability in the Cisco IOx Application Framework of Cisco 809 Industrial Integrated Services Routers (Industrial ISRs), Cisco 829 Industrial ISRs, Cisco CGR 1000 Compute Module, and Cisco IC3000 Industrial Compute Gateway could allow an unauthenticated, remote attacker to cause a denial of service (DoS) condition on an affected device.
+
+This vulnerability is due to insufficient error handling during packet processing. An attacker could exploit this vulnerability by sending a high and sustained rate of crafted TCP traffic to the IOx web server on an affected device. A successful exploit could allow the attacker to cause the IOx web server to stop processing requests, resulting in a DoS condition.
+
+Cisco has released software updates that address this vulnerability. There are no workarounds that address this vulnerability.
+
+This advisory is available at the following link:
+https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-iox-dos-4Fgcjh6 ["https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-iox-dos-4Fgcjh6"]</cvrf:Note>
+    <cvrf:Note Title="Vulnerable Products" Type="General" Ordinal="2">At the time of publication, this vulnerability affected the following Cisco products if they were running a software release earlier than the first fixed release for that device and were configured with the Cisco IOx application hosting environment:
+
+809 Industrial ISR: Cisco IOS Software earlier than Release 15.9(3)M3
+829 Industrial ISR: Cisco IOS Software earlier than Release 15.9(3)M3
+CGR 1000 Compute Module: CGR 1000 IOx Compute Platform Firmware earlier than Release 1.12.0.3
+IC3000 Industrial Compute Gateway: Industrial Compute Gateway Software earlier than Release 1.3.2
+
+See the Details section in the bug ID(s) at the top of this advisory for the most complete and current information.
+  Assess the IOx Application Framework
+Use the following subsections to determine whether a device is configured with the Cisco IOx application hosting environment:
+
+Cisco 809 and 829 Industrial Integrated Services Routers
+
+For Cisco 809 and 829 Industrial ISRs, to determine whether the Cisco IOx application hosting environment is enabled on a device, use the show iox host list detail | include OS status command at the device CLI.
+
+The following example shows the output of the command for a device that has the Cisco IOx application hosting environment enabled:
+
+
+Router#show iox host list detail | include OS status
+OS status: 		RUNNING
+
+If this command does not exist, or if it produces output that does not show RUNNING in the OS status field, the device is not affected by this vulnerability.
+
+Cisco CGR 1000 Compute Module
+
+For Cisco CGR 1000 Compute Module, to determine the status of IOx functionality, use the show iox host list detail | include IOX Server is running CLI command, as shown in the following example:
+
+
+CGR1000#show iox host list detail | include IOX Server is running
+     IOX Server is running.  Process ID: 305  CGR1000#
+
+Cisco IC3000 Industrial Compute Gateway
+
+On the Cisco IC3000 Industrial Compute Gateway, the Cisco IOx functionality is enabled by default.
+
+To determine the status of the IOx functionality, use the show iox summary CLI command, as shown in the following example:
+
+
+ic3k&gt;show iox summary
+IOx Infrastructure Summary:
+eid: IC3000-2C2F-K9+FOC2227Y2UD
+pfm: IC3000-2C2F-K9
+s/n: FOC2227Y2UD
+images: Lnx: 0.13.31., IOx: 1.12.0:r/1.12.0.0:0c30349
+boot: 2021-02-25 15:06:08
+time: 2021-02-26 20:36:22
+load: 20:36:22 up 1 day, 5:30, 1 user, load average: 0.37, 0.35, 0.43
+memory: ok, used: 2637/7735 (34%)
+disk: warning, used: /:664640/750628 (88%), /software:85834912/87069676 (98%)
+process: ok, running: 5/5
+networking: ok
+logs: warning, errors: caf (6109)
+apps: ok, Cisco_Cyber_Vision (R)</cvrf:Note>
+    <cvrf:Note Title="Products Confirmed Not Vulnerable" Type="General" Ordinal="3">Only products listed in the Vulnerable Products ["#vp"] section of this advisory are known to be affected by this vulnerability.
+
+Cisco has confirmed that this vulnerability does not affect the following Cisco products:
+
+Other platforms that support IOx
+IOX XE Software
+IOS XR Software
+NX-OS Software</cvrf:Note>
+    <cvrf:Note Title="Details" Type="General" Ordinal="4">The Cisco IOx Application Framework is the management interface that administrators can use to manage, administer, monitor, and troubleshoot apps on the host system, and to perform a variety of related activities. Exploitation of this vulnerability could allow an attacker to cause the application management functionality to become unavailable.</cvrf:Note>
+    <cvrf:Note Title="Workarounds" Type="General" Ordinal="5">There are no workarounds that address this vulnerability.</cvrf:Note>
+    <cvrf:Note Title="Fixed Software" Type="General" Ordinal="6">When considering software upgrades ["https://tools.cisco.com/security/center/resources/security_vulnerability_policy.html#fixes"], customers are advised to regularly consult the advisories for Cisco products, which are available from the Cisco Security Advisories page ["https://www.cisco.com/go/psirt"], to determine exposure and a complete upgrade solution.
+
+In all cases, customers should ensure that the devices to be upgraded contain sufficient memory and confirm that current hardware and software configurations will continue to be supported properly by the new release. If the information is not clear, customers are advised to contact the Cisco Technical Assistance Center (TAC) or their contracted maintenance providers.
+      Fixed Releases
+At the time of publication, the following Cisco software releases contained the fix for this vulnerability:
+
+809 Industrial ISRs: Cisco IOS Software Releases 15.9(3)M3 and later
+829 Industrial ISRs: Cisco IOS software Releases 15.9(3)M3 and later
+CGR 1000 Compute Module: CGR 1000 IOx Compute Platform Firmware releases 1.12.0.3 and later
+IC3000 Industrial Compute Gateway: Industrial Compute Gateway Software releases 1.3.2 and later
+
+See the Details section in the bug ID(s) at the top of this advisory for the most complete and current information.</cvrf:Note>
+    <cvrf:Note Title="Vulnerability Policy" Type="General" Ordinal="7">To learn about Cisco security vulnerability disclosure policies and publications, see the Security Vulnerability Policy ["http://www.cisco.com/web/about/security/psirt/security_vulnerability_policy.html"]. This document also contains instructions for obtaining fixed software and receiving security vulnerability information from Cisco.</cvrf:Note>
+    <cvrf:Note Title="Exploitation and Public Announcements" Type="General" Ordinal="8">The Cisco Product Security Incident Response Team (PSIRT) is not aware of any public announcements or malicious use of the vulnerability that is described in this advisory.</cvrf:Note>
+    <cvrf:Note Title="Source" Type="General" Ordinal="9">This vulnerability was found during internal security testing.</cvrf:Note>
+    <cvrf:Note Title="Legal Disclaimer" Type="Legal Disclaimer" Ordinal="10">THIS DOCUMENT IS PROVIDED ON AN "AS IS" BASIS AND DOES NOT IMPLY ANY KIND OF GUARANTEE OR WARRANTY, INCLUDING THE WARRANTIES OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR USE. YOUR USE OF THE INFORMATION ON THE DOCUMENT OR MATERIALS LINKED FROM THE DOCUMENT IS AT YOUR OWN RISK. CISCO RESERVES THE RIGHT TO CHANGE OR UPDATE THIS DOCUMENT AT ANY TIME.
+
+A standalone copy or paraphrase of the text of this document that omits the distribution URL is an uncontrolled copy and may lack important information or contain factual errors. The information in this document is intended for end users of Cisco products.</cvrf:Note>
+  </cvrf:DocumentNotes>
+  <cvrf:DocumentReferences>
+    <cvrf:Reference Type="Self">
+      <cvrf:URL>https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-iox-dos-4Fgcjh6</cvrf:URL>
+      <cvrf:Description>Cisco IOx Application Framework  Denial of Service Vulnerability</cvrf:Description>
+    </cvrf:Reference>
+  </cvrf:DocumentReferences>
+  <ProductTree xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/prod">
+    <Branch Name="Cisco" Type="Vendor">
+      <Branch Name="IOS" Type="Product Name">
+        <FullProductName ProductID="CVRFPID-2097">Cisco IOS </FullProductName>
+      </Branch>
+      <Branch Name="Cisco IC3000 Industrial Compute Gateway" Type="Product Name">
+        <FullProductName ProductID="CVRFPID-261528">Cisco IC3000 Industrial Compute Gateway </FullProductName>
+      </Branch>
+      <Branch Name="Cisco CGR1000 Compute Module" Type="Product Name">
+        <FullProductName ProductID="CVRFPID-281479">Cisco CGR1000 Compute Module </FullProductName>
+      </Branch>
+    </Branch>
+  </ProductTree>
+  <Vulnerability Ordinal="1" xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln">
+    <Title>vuln-CVE-2021-1460</Title>
+    <ID SystemName="Cisco Bug ID">CSCvt74967</ID>
+    <Notes>
+      <Note Title="Cisco Bug IDs" Type="Other" Ordinal="1">CSCvt74967,CSCvv02734,CSCvu19405,CSCvv02834</Note>
+    </Notes>
+    <CVE>CVE-2021-1460</CVE>
+    <ProductStatuses>
+      <Status Type="Known Affected">
+        <ProductID>CVRFPID-2097</ProductID>
+        <ProductID>CVRFPID-281479</ProductID>
+        <ProductID>CVRFPID-261528</ProductID>
+      </Status>
+    </ProductStatuses>
+    <CVSSScoreSets>
+      <ScoreSetV3>
+        <BaseScoreV3>5.3</BaseScoreV3>
+        <VectorV3>CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L</VectorV3>
+      </ScoreSetV3>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Workaround">
+        <Description>There are no workarounds that address this vulnerability.</Description>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference Type="Self">
+        <URL>https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-iox-dos-4Fgcjh6</URL>
+        <Description>Cisco IOx Application Framework  Denial of Service Vulnerability</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+</cvrf:cvrfdoc>

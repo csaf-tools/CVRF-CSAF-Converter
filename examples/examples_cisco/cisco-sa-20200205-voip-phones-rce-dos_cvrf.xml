@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cvrf:cvrfdoc xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:cvrf-common="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/common" xmlns:cvrf="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/cvrf">
+  <cvrf:DocumentTitle>Cisco IP Phone Remote Code Execution and Denial of Service Vulnerability</cvrf:DocumentTitle>
+  <cvrf:DocumentType>Cisco Security Advisory</cvrf:DocumentType>
+  <cvrf:DocumentPublisher Type="Vendor">
+    <cvrf:ContactDetails>Emergency Support:
++1 877 228 7302 (toll-free within North America)
++1 408 525 6532 (International direct-dial)
+Non-emergency Support:
+Email: psirt@cisco.com
+Support requests that are received via e-mail are typically acknowledged within 48 hours.</cvrf:ContactDetails>
+    <cvrf:IssuingAuthority>Cisco product security incident response is the responsibility of the Cisco Product Security Incident Response Team (PSIRT). The Cisco PSIRT is a dedicated, global team that manages the receipt, investigation, and public reporting of security vulnerability information that is related to Cisco products and networks. The on-call Cisco PSIRT works 24x7 with Cisco customers, independent security researchers, consultants, industry organizations, and other vendors to identify possible security issues with Cisco products and networks.
+More information can be found in Cisco Security Vulnerability Policy available at http://www.cisco.com/web/about/security/psirt/security_vulnerability_policy.html</cvrf:IssuingAuthority>
+  </cvrf:DocumentPublisher>
+  <cvrf:DocumentTracking>
+    <cvrf:Identification>
+      <cvrf:ID>cisco-sa-20200205-voip-phones-rce-dos</cvrf:ID>
+    </cvrf:Identification>
+    <cvrf:Status>Final</cvrf:Status>
+    <cvrf:Version>1.4</cvrf:Version>
+    <cvrf:RevisionHistory>
+      <cvrf:Revision>
+        <cvrf:Number>1.0</cvrf:Number>
+        <cvrf:Date>2020-02-05T15:18:33</cvrf:Date>
+        <cvrf:Description>Initial public release.</cvrf:Description>
+      </cvrf:Revision>
+      <cvrf:Revision>
+        <cvrf:Number>1.1</cvrf:Number>
+        <cvrf:Date>2020-02-11T23:57:07</cvrf:Date>
+        <cvrf:Description>Added the Cisco Unified IP Phone 7900 Series as not vulnerable.</cvrf:Description>
+      </cvrf:Revision>
+      <cvrf:Revision>
+        <cvrf:Number>1.2</cvrf:Number>
+        <cvrf:Date>2020-02-14T15:21:51</cvrf:Date>
+        <cvrf:Description>Added the Cisco ATA191 and ATA 192 products as not vulnerable.
+Listed the specific models of the 7900 phones that are confirmed not vulnerable.</cvrf:Description>
+      </cvrf:Revision>
+      <cvrf:Revision>
+        <cvrf:Number>1.3</cvrf:Number>
+        <cvrf:Date>2020-02-20T22:04:40</cvrf:Date>
+        <cvrf:Description>Added the Cisco Unified SIP Phone 3905 and Cisco Unified IP Phone 6901 as confirmed not vulnerable.</cvrf:Description>
+      </cvrf:Revision>
+      <cvrf:Revision>
+        <cvrf:Number>1.4</cvrf:Number>
+        <cvrf:Date>2020-02-25T13:47:32</cvrf:Date>
+        <cvrf:Description>Added the Cisco ATA 190 Analog Telephone Adapter product as not vulnerable.</cvrf:Description>
+      </cvrf:Revision>
+    </cvrf:RevisionHistory>
+    <cvrf:InitialReleaseDate>2020-02-05T16:00:00</cvrf:InitialReleaseDate>
+    <cvrf:CurrentReleaseDate>2020-02-25T13:47:32</cvrf:CurrentReleaseDate>
+    <cvrf:Generator>
+      <cvrf:Engine>TVCE</cvrf:Engine>
+    </cvrf:Generator>
+  </cvrf:DocumentTracking>
+  <cvrf:DocumentNotes>
+    <cvrf:Note Title="Summary" Type="Summary" Ordinal="1">A vulnerability in the Cisco Discovery Protocol implementation for the Cisco IP Phone could allow an unauthenticated, adjacent attacker to remotely execute code with root privileges or cause a reload of an affected IP phone.
+
+The vulnerability is due to missing checks when processing Cisco Discovery Protocol messages. An attacker could exploit this vulnerability by sending a crafted Cisco Discovery Protocol packet to the targeted IP phone. A successful exploit could allow the attacker to remotely execute code with root privileges or cause a reload of an affected IP phone, resulting in a denial of service (DoS) condition.
+
+Note: Cisco Discovery Protocol is a Layer 2 protocol. To exploit this vulnerability, an attacker must be in the same broadcast domain as the affected device (Layer 2 adjacent).
+
+Cisco has released software updates that address this vulnerability. There are no workarounds that address this vulnerability.
+
+This advisory is available at the following link:
+https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20200205-voip-phones-rce-dos ["https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20200205-voip-phones-rce-dos"]</cvrf:Note>
+    <cvrf:Note Title="Vulnerable Products" Type="General" Ordinal="2">This vulnerability affects the following Cisco IP phones with Cisco Discovery Protocol enabled1 and running a vulnerable firmware release:
+
+IP Conference Phone 7832
+IP Conference Phone 7832 with Multiplatform Firmware
+IP Conference Phone 8832
+IP Conference Phone 8832 with Multiplatform Firmware
+IP Phone 6821, 6841, 6851, 6861, 6871 with Multiplatform Firmware
+IP Phone 7811, 7821, 7841, 7861 Desktop Phones
+IP Phone 7811, 7821, 7841, 7861 Desktop Phones with Multiplatform Firmware
+IP Phone 8811, 8841, 8851, 8861, 8845, 8865 Desktop Phones
+IP Phone 8811, 8841, 8851, 8861, 8845, 8865 Desktop Phones with Multiplatform Firmware
+Unified IP Conference Phone 8831
+Unified IP Conference Phone 8831 for Third-Party Call Control
+Wireless IP Phone 8821, 8821-EX
+  1Cisco Discovery Protocol is enabled by default on most IP Phone models.
+For information about which software releases are vulnerable, see the Fixed Software ["#fs"] section of this advisory.</cvrf:Note>
+    <cvrf:Note Title="Products Confirmed Not Vulnerable" Type="General" Ordinal="3">Only products listed in the Vulnerable Products ["#vp"] section of this advisory are known to be affected by this vulnerability.
+
+Cisco has confirmed that this vulnerability does not affect the following Cisco products:
+
+ATA 190 Analog Telephone Adapter
+ATA 191 Analog Telephone Adapter
+ATA 192 Multiplatform Analog Telephone Adapter
+IP DECT 6825 with Multiplatform Firmware
+SPA112 2-Port Phone Adapter
+SPA122 ATA with Router
+SPA2102 Phone Adapter with Router
+SPA232D Multi-Line DECT ATA
+Small Business SPA300 Series IP Phones
+Small Business SPA500 Series IP Phones
+SPA3102 Voice Gateway with Router
+SPA8000 8-port IP Telephony Gateway
+SPA8800 IP Telephony Gateway with 4 FXS and 4 FXO Ports
+Unified IP Phone 6901
+Unified IP Phone 7942
+Unified IP Phone 7945
+Unified IP Phone 7962
+Unified IP Phone 7965
+Unified IP Phone 7975
+Unified SIP Phone 3905</cvrf:Note>
+    <cvrf:Note Title="Workarounds" Type="General" Ordinal="4">There are no workarounds that address this vulnerability.</cvrf:Note>
+    <cvrf:Note Title="Fixed Software" Type="General" Ordinal="5">Cisco has released free software updates that address the vulnerability described in this advisory. Customers may only install and expect support for software versions and feature sets for which they have purchased a license. By installing, downloading, accessing, or otherwise using such software upgrades, customers agree to follow the terms of the Cisco software license:  https://www.cisco.com/c/en/us/products/end-user-license-agreement.html ["https://www.cisco.com/c/en/us/products/end-user-license-agreement.html"]
+
+Additionally, customers may only download software for which they have a valid license, procured from Cisco directly, or through a Cisco authorized reseller or partner. In most cases this will be a maintenance upgrade to software that was previously purchased. Free security software updates do not entitle customers to a new software license, additional software feature sets, or major revision upgrades.
+
+When considering software upgrades ["https://tools.cisco.com/security/center/resources/security_vulnerability_policy.html#fixes"], customers are advised to regularly consult the advisories for Cisco products, which are available from the Cisco Security Advisories and Alerts page ["https://www.cisco.com/go/psirt"], to determine exposure and a complete upgrade solution.
+
+In all cases, customers should ensure that the devices to be upgraded contain sufficient memory and confirm that current hardware and software configurations will continue to be supported properly by the new release. If the information is not clear, customers are advised to contact the Cisco Technical Assistance Center (TAC) or their contracted maintenance providers.
+  Customers Without Service Contracts
+Customers who purchase directly from Cisco but do not hold a Cisco service contract and customers who make purchases through third-party vendors but are unsuccessful in obtaining fixed software through their point of sale should obtain upgrades by contacting the Cisco TAC:
+https://www.cisco.com/c/en/us/support/web/tsd-cisco-worldwide-contacts.html ["https://www.cisco.com/c/en/us/support/web/tsd-cisco-worldwide-contacts.html"]
+
+Customers should have the product serial number available and be prepared to provide the URL of this advisory as evidence of entitlement to a free upgrade.
+  Fixed Releases
+  Customers are advised to upgrade to an appropriate fixed firmware release as indicated in the following table:
+                                Cisco IP Phone Model
+              Cisco Bug ID
+              First Fixed Release                                              IP Conference Phone 7832
+              CSCvr96069 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCvr96069"]              12.7(1)
+                                  IP Conference Phone 7832 with Multiplatform Firmware
+              CSCvr96060 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCvr96060"]
+              11.3(1)SR1                                   IP Conference Phone 8832              CSCvr96071 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCvr96071"]              12.7(1)                                  IP Conference Phone 8832 with Multiplatform Firmware                CSCvr96064  ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCvr96064"]               11.3(1)SR1
+                                  IP Phone 6821, 6841, 6851, 6861, 6871 with Multiplatform Firmware              CSCvr96065 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCvr96065"], CSCvr96067 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCvr96067"]
+              11.3(1)SR1
+                                  IP Phone 7811, 7821, 7841, 7861 Desktop Phones               CSCvr96739 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCvr96739"]              12.7(1)                                  IP Phone 7811, 7821, 7841, 7861 Desktop Phones with Multiplatform Firmware               CSCvr96063 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCvr96063"]
+              11.3(1)SR1                                   IP Phone 8811, 8841, 8851, 8861, 8845, 8865 Desktop Phones              CSCvr96066 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCvr96066"], CSCvr96069 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCvr96069"]              12.7(1)                                  IP Phone 8811, 8841, 8851, 8861, 8845, 8865 Desktop Phones with Multiplatform Firmware              CSCvr96058, ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCvr96058"] CSCvr96059 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCvr96059"]
+              11.3(1)SR1                                   Unified IP Conference Phone 8831               CSCvr96738 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCvr96738"]                10.3(1)SR6 (Targeted for March 2020)
+                                  Unified IP Conference Phone 8831 for Third-Party Call Control               CSCvr96057 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCvr96057"]               There is no fixed firmware available at this time.                                   Wireless IP Phone 8821 and 8821-EX               CSCvr96070 ["https://bst.cloudapps.cisco.com/bugsearch/bug/CSCvr96070"]
+              11.0(5)SR2
+To download the Cisco IP Phone firmware from the Software Center ["https://software.cisco.com/download/navigator.html"] on Cisco.com ["https://www.cisco.com/"], do the following:
+
+Click Browse all.
+Choose Collaboration Endpoints &gt; IP Phones.
+Choose a specific product from the right pane of the product selector.
+Choose a release from the left pane of the product page.</cvrf:Note>
+    <cvrf:Note Title="Vulnerability Policy" Type="General" Ordinal="6">To learn about Cisco security vulnerability disclosure policies and publications, see the Security Vulnerability Policy ["http://www.cisco.com/web/about/security/psirt/security_vulnerability_policy.html"]. This document also contains instructions for obtaining fixed software and receiving security vulnerability information from Cisco.</cvrf:Note>
+    <cvrf:Note Title="Exploitation and Public Announcements" Type="General" Ordinal="7">The Cisco Product Security Incident Response Team (PSIRT) is aware of public announcements about this vulnerability. Cisco PSIRT is not aware of any malicious use of the vulnerability that is described in this advisory.</cvrf:Note>
+    <cvrf:Note Title="Source" Type="General" Ordinal="8">Cisco would like to thank Ben Seri, VP of Research at Armis, for finding and reporting this vulnerability.</cvrf:Note>
+    <cvrf:Note Title="Legal Disclaimer" Type="Legal Disclaimer" Ordinal="9">THIS DOCUMENT IS PROVIDED ON AN "AS IS" BASIS AND DOES NOT IMPLY ANY KIND OF GUARANTEE OR WARRANTY, INCLUDING THE WARRANTIES OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR USE. YOUR USE OF THE INFORMATION ON THE DOCUMENT OR MATERIALS LINKED FROM THE DOCUMENT IS AT YOUR OWN RISK. CISCO RESERVES THE RIGHT TO CHANGE OR UPDATE THIS DOCUMENT AT ANY TIME.
+
+A standalone copy or paraphrase of the text of this document that omits the distribution URL is an uncontrolled copy and may lack important information or contain factual errors. The information in this document is intended for end users of Cisco products.</cvrf:Note>
+  </cvrf:DocumentNotes>
+  <cvrf:DocumentReferences>
+    <cvrf:Reference Type="Self">
+      <cvrf:URL>https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20200205-voip-phones-rce-dos</cvrf:URL>
+      <cvrf:Description>Cisco IP Phone Remote Code Execution and Denial of Service Vulnerability</cvrf:Description>
+    </cvrf:Reference>
+  </cvrf:DocumentReferences>
+  <ProductTree xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/prod">
+    <Branch Name="Cisco" Type="Vendor">
+      <Branch Name="Cisco IP phone" Type="Product Name">
+        <FullProductName ProductID="CVRFPID-4473">Cisco IP phone </FullProductName>
+      </Branch>
+      <Branch Name="Cisco IP Phone 8800 Series Software" Type="Product Name">
+        <FullProductName ProductID="CVRFPID-205455">Cisco IP Phone 8800 Series Software </FullProductName>
+      </Branch>
+      <Branch Name="Cisco IP Phone 7800 Series" Type="Product Name">
+        <FullProductName ProductID="CVRFPID-211541">Cisco IP Phone 7800 Series </FullProductName>
+      </Branch>
+      <Branch Name="Cisco Small Business IP Phones" Type="Product Name">
+        <FullProductName ProductID="CVRFPID-211649">Cisco Small Business IP Phones </FullProductName>
+      </Branch>
+      <Branch Name="Cisco IP Phone 7800 Series with Multiplatform Firmware" Type="Product Name">
+        <FullProductName ProductID="CVRFPID-235374">Cisco IP Phone 7800 Series with Multiplatform Firmware </FullProductName>
+      </Branch>
+      <Branch Name="Cisco IP Phone 6800 Series with Multiplatform Firmware" Type="Product Name">
+        <FullProductName ProductID="CVRFPID-238623">Cisco IP Phone 6800 Series with Multiplatform Firmware </FullProductName>
+      </Branch>
+      <Branch Name="Cisco IP Phone 8800 Series with Multiplatform Firmware" Type="Product Name">
+        <FullProductName ProductID="CVRFPID-238624">Cisco IP Phone 8800 Series with Multiplatform Firmware </FullProductName>
+      </Branch>
+    </Branch>
+  </ProductTree>
+  <Vulnerability Ordinal="1" xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln">
+    <Title>Cisco IP Phone Remote Code Execution and Denial of Service Vulnerability</Title>
+    <ID SystemName="Cisco Bug ID">CSCvr96067</ID>
+    <Notes>
+      <Note Title="Summary" Type="Summary" Ordinal="1">A vulnerability in the Cisco Discovery Protocol implementation for the Cisco IP Phone could allow an unauthenticated, adjacent attacker to remotely execute code with root privileges or cause a reload of an affected IP phone.
+
+The vulnerability is due to missing checks when processing Cisco Discovery Protocol messages. An attacker could exploit this vulnerability by sending a crafted Cisco Discovery Protocol packet to the targeted IP phone. A successful exploit could allow the attacker to remotely execute code with root privileges or cause a reload of an affected IP phone, resulting in a denial of service (DoS) condition.
+
+Note: Cisco Discovery Protocol is a Layer 2 protocol. To exploit this vulnerability, an attacker must be in the same broadcast domain as the affected device (Layer 2 adjacent).
+</Note>
+      <Note Title="Cisco Bug IDs" Type="Other" Ordinal="2">CSCvr96067,CSCvr96060,CSCvr96739,CSCvr96063,CSCvr96738,CSCvr96066,CSCvr96071,CSCvr96070,CSCvr96069,CSCvr96058,CSCvr96059,CSCvr96064,CSCvr96057,CSCvr96065</Note>
+    </Notes>
+    <CVE>CVE-2020-3111</CVE>
+    <ProductStatuses>
+      <Status Type="Known Affected">
+        <ProductID>CVRFPID-238623</ProductID>
+        <ProductID>CVRFPID-211541</ProductID>
+        <ProductID>CVRFPID-235374</ProductID>
+        <ProductID>CVRFPID-205455</ProductID>
+        <ProductID>CVRFPID-238624</ProductID>
+        <ProductID>CVRFPID-211649</ProductID>
+        <ProductID>CVRFPID-4473</ProductID>
+      </Status>
+    </ProductStatuses>
+    <CVSSScoreSets>
+      <ScoreSetV3>
+        <BaseScoreV3>8.8</BaseScoreV3>
+        <VectorV3>CVSS:3.0/AV:A/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H</VectorV3>
+      </ScoreSetV3>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Workaround">
+        <Description>There are no workarounds that address this vulnerability.</Description>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference Type="Self">
+        <URL>https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20200205-voip-phones-rce-dos</URL>
+        <Description>Cisco IP Phone Remote Code Execution and Denial of Service Vulnerability</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+</cvrf:cvrfdoc>

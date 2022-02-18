@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cvrfdoc xmlns="http://www.icasi.org/CVRF/schema/cvrf/1.1" xmlns:cvrf="http://www.icasi.org/CVRF/schema/cvrf/1.1">
+  <DocumentTitle xml:lang="en">Security update for cups</DocumentTitle>
+  <DocumentType>SUSE Patch</DocumentType>
+  <DocumentPublisher Type="Vendor">
+    <ContactDetails>security@suse.de</ContactDetails>
+    <IssuingAuthority>SUSE Security Team</IssuingAuthority>
+  </DocumentPublisher>
+  <DocumentTracking>
+    <Identification>
+      <ID>openSUSE-SU-2015:1056-1</ID>
+    </Identification>
+    <Status>Final</Status>
+    <Version>1</Version>
+    <RevisionHistory>
+      <Revision>
+        <Number>1</Number>
+        <Date>2015-06-10T13:19:50Z</Date>
+        <Description>current</Description>
+      </Revision>
+    </RevisionHistory>
+    <InitialReleaseDate>2015-06-10T13:19:50Z</InitialReleaseDate>
+    <CurrentReleaseDate>2015-06-10T13:19:50Z</CurrentReleaseDate>
+    <Generator>
+      <Engine>cve-database/bin/generate-cvrf.pl</Engine>
+      <Date>2017-02-24T01:00:00Z</Date>
+    </Generator>
+  </DocumentTracking>
+  <DocumentNotes>
+    <Note Title="Topic" Type="Summary" Ordinal="1" xml:lang="en">Security update for cups</Note>
+    <Note Title="Details" Type="General" Ordinal="2" xml:lang="en">
+  This update fixes the following issues:
+
+- CVE-2015-1158 and CVE-2015-1159
+  fixes a possible privilege escalation via cross-site scripting
+  and bad print job submission used to replace cupsd.conf on server
+  (CUPS STR#4609 CERT-VU-810572 CVE-2015-1158 CVE-2015-1159
+   bugzilla.suse.com bsc#924208).
+  In general it is crucial to limit access to CUPS to trustworthy
+  users who do not misuse their permission to submit print jobs
+  which means to upload arbitrary data onto the CUPS server, see
+  https://en.opensuse.org/SDB:CUPS_and_SANE_Firewall_settings
+  and cf. the entries about CVE-2012-5519 below.
+</Note>
+    <Note Title="Terms of Use" Type="Legal Disclaimer" Ordinal="3" xml:lang="en">The CVRF data is provided by SUSE under the Creative Commons License 4.0 with Attribution for Non-Commercial usage (CC-BY-NC-4.0).</Note>
+  </DocumentNotes>
+  <DocumentDistribution xml:lang="en">Copyright SUSE LLC under the Creative Commons License 4.0 with Attribution for Non-Commercial usage (CC-BY-NC-4.0)</DocumentDistribution>
+  <DocumentReferences>
+    <Reference Type="Self">
+      <URL>https://lists.opensuse.org/opensuse-security-announce/2015-06/msg00010.html</URL>
+      <Description>E-Mail link for openSUSE-SU-2015:1056-1</Description>
+    </Reference>
+    <Reference Type="Self">
+      <URL>https://www.suse.com/support/security/rating/</URL>
+      <Description>SUSE Security Ratings</Description>
+    </Reference>
+  </DocumentReferences>
+  <ProductTree xmlns="http://www.icasi.org/CVRF/schema/prod/1.1">
+    <Branch Type="Product Version" Name="cups-1.5.4-12.20.1">
+      <FullProductName ProductID="cups-1.5.4-12.20.1">cups-1.5.4-12.20.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="cups-client-1.5.4-12.20.1">
+      <FullProductName ProductID="cups-client-1.5.4-12.20.1">cups-client-1.5.4-12.20.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="cups-ddk-1.5.4-12.20.1">
+      <FullProductName ProductID="cups-ddk-1.5.4-12.20.1">cups-ddk-1.5.4-12.20.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="cups-devel-1.5.4-12.20.1">
+      <FullProductName ProductID="cups-devel-1.5.4-12.20.1">cups-devel-1.5.4-12.20.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="cups-libs-1.5.4-12.20.1">
+      <FullProductName ProductID="cups-libs-1.5.4-12.20.1">cups-libs-1.5.4-12.20.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="cups-libs-32bit-1.5.4-12.20.1">
+      <FullProductName ProductID="cups-libs-32bit-1.5.4-12.20.1">cups-libs-32bit-1.5.4-12.20.1</FullProductName>
+    </Branch>
+  </ProductTree>
+  <Vulnerability xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1" Ordinal="1">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">CUPS 1.4.4, when running in certain Linux distributions such as Debian GNU/Linux, stores the web interface administrator key in /var/run/cups/certs/0 using certain permissions, which allows local users in the lpadmin group to read or write arbitrary files as root by leveraging the web interface.</Note>
+    </Notes>
+    <CVE>CVE-2012-5519</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed"/>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>important</Description>
+      </Threat>
+    </Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-security-announce/2015-06/msg00010.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2012-5519.html</URL>
+        <Description>CVE-2012-5519</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/1180148</URL>
+        <Description>SUSE Bug 1180148</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/789566</URL>
+        <Description>SUSE Bug 789566</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/882905</URL>
+        <Description>SUSE Bug 882905</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/924208</URL>
+        <Description>SUSE Bug 924208</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+  <Vulnerability xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1" Ordinal="2">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">The add_job function in scheduler/ipp.c in cupsd in CUPS before 2.0.3 performs incorrect free operations for multiple-value job-originating-host-name attributes, which allows remote attackers to trigger data corruption for reference-counted strings via a crafted (1) IPP_CREATE_JOB or (2) IPP_PRINT_JOB request, as demonstrated by replacing the configuration file and consequently executing arbitrary code.</Note>
+    </Notes>
+    <CVE>CVE-2015-1158</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed"/>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>important</Description>
+      </Threat>
+    </Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-security-announce/2015-06/msg00010.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-1158.html</URL>
+        <Description>CVE-2015-1158</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/924208</URL>
+        <Description>SUSE Bug 924208</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/976653</URL>
+        <Description>SUSE Bug 976653</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+  <Vulnerability xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1" Ordinal="3">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">Cross-site scripting (XSS) vulnerability in the cgi_puts function in cgi-bin/template.c in the template engine in CUPS before 2.0.3 allows remote attackers to inject arbitrary web script or HTML via the QUERY parameter to help/.</Note>
+    </Notes>
+    <CVE>CVE-2015-1159</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed"/>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>important</Description>
+      </Threat>
+    </Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-security-announce/2015-06/msg00010.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-1159.html</URL>
+        <Description>CVE-2015-1159</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/924208</URL>
+        <Description>SUSE Bug 924208</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/976653</URL>
+        <Description>SUSE Bug 976653</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+</cvrfdoc>

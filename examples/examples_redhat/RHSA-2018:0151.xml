@@ -1,0 +1,409 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cvrfdoc xmlns="http://www.icasi.org/CVRF/schema/cvrf/1.1" xmlns:cvrf="http://www.icasi.org/CVRF/schema/cvrf/1.1">
+  <DocumentTitle xml:lang="en">Red Hat Security Advisory: kernel security and bug fix update</DocumentTitle>
+  <DocumentType>Security Advisory</DocumentType>
+  <DocumentPublisher Type="Vendor">
+    <ContactDetails>secalert@redhat.com</ContactDetails>
+    <IssuingAuthority>Red Hat Product Security</IssuingAuthority>
+  </DocumentPublisher>
+  <DocumentTracking>
+    <Identification><ID>RHSA-2018:0151</ID></Identification>
+    <Status>Final</Status>
+    <Version>1</Version>
+    <RevisionHistory>
+       <Revision>
+         <Number>1</Number>
+         <Date>2021-07-20T20:29:00Z</Date>
+         <Description>Current version</Description>
+       </Revision>
+    </RevisionHistory>
+    <InitialReleaseDate>2018-01-25T11:17:00Z</InitialReleaseDate>
+    <CurrentReleaseDate>2021-07-20T20:29:00Z</CurrentReleaseDate>
+    <Generator>
+      <Engine>Red Hat SDEngine 3.0.0</Engine>
+      <Date>2021-08-23T04:43:00Z</Date>
+    </Generator>
+  </DocumentTracking>
+  <DocumentNotes>
+    <Note Title="Topic" Type="Summary" Ordinal="1" xml:lang="en">
+An update for kernel is now available for Red Hat Enterprise Linux 7.
+
+Red Hat Product Security has rated this update as having a security impact of Important. A Common Vulnerability Scoring System (CVSS) base score, which gives a detailed severity rating, is available for each vulnerability from the CVE link(s) in the References section.
+    </Note>
+    <Note Title="Details" Type="General" Ordinal="2" xml:lang="en">
+The kernel packages contain the Linux kernel, the core of any Linux operating system.
+
+Security Fix(es):
+
+An industry-wide issue was found in the way many modern microprocessor designs have implemented speculative execution of instructions (a commonly used performance optimization). There are three primary variants of the issue which differ in the way the speculative execution can be exploited.
+
+Note: This issue is present in hardware and cannot be fully fixed via software update. The updated kernel packages provide software mitigation for this hardware issue at a cost of potential performance penalty. Please refer to References section for further information about this issue and the performance impact.
+
+In this update initial mitigations for IBM Power (PowerPC) and IBM zSeries (S390) architectures are provided.
+
+* Variant CVE-2017-5715 triggers the speculative execution by utilizing branch target injection. It relies on the presence of a precisely-defined instruction sequence in the privileged code as well as the fact that memory accesses may cause allocation into the microprocessor's data cache even for speculatively executed instructions that never actually commit (retire). As a result, an unprivileged attacker could use this flaw to cross the syscall and guest/host boundaries and read privileged memory by conducting targeted cache side-channel attacks. This fix specifically addresses S390 processors. (CVE-2017-5715, Important)
+
+* Variant CVE-2017-5753 triggers the speculative execution by performing a bounds-check bypass. It relies on the presence of a precisely-defined instruction sequence in the privileged code as well as the fact that memory accesses may cause allocation into the microprocessor's data cache even for speculatively executed instructions that never actually commit (retire). As a result, an unprivileged attacker could use this flaw to cross the syscall boundary and read privileged memory by conducting targeted cache side-channel attacks. This fix specifically addresses S390 and PowerPC processors. (CVE-2017-5753, Important)
+
+* Variant CVE-2017-5754 relies on the fact that, on impacted microprocessors, during speculative execution of instruction permission faults, exception generation triggered by a faulting access is suppressed until the retirement of the whole instruction block. In a combination with the fact that memory accesses may populate the cache even when the block is being dropped and never committed (executed), an unprivileged local attacker could use this flaw to read privileged (kernel space) memory by conducting targeted cache side-channel attacks. Note: CVE-2017-5754 affects Intel x86-64 microprocessors. AMD x86-64 microprocessors are not affected by this issue. This fix specifically addresses PowerPC processors. (CVE-2017-5754, Important)
+
+Red Hat would like to thank Google Project Zero for reporting CVE-2017-5715, CVE-2017-5753, and CVE-2017-5754.
+
+This update also fixes the following security issues and bugs:
+
+Space precludes documenting all of the bug fixes and enhancements included in this advisory. To see the complete list of bug fixes and enhancements, refer to the following KnowledgeBase article: https://access.redhat.com/articles/3327131.
+    </Note>
+    <Note Title="Terms of Use" Ordinal="3" Type="Legal Disclaimer" xml:lang="en">This content is licensed under the Creative Commons Attribution 4.0 International License (https://creativecommons.org/licenses/by/4.0/). If you distribute this content, or a modified version of it, you must provide attribution to Red Hat Inc. and provide a link to the original.</Note>
+  </DocumentNotes>
+  <DocumentDistribution xml:lang="en">Copyright © 2021 Red Hat, Inc. All rights reserved.</DocumentDistribution>
+  <AggregateSeverity Namespace="https://access.redhat.com/security/updates/classification/">Important</AggregateSeverity>
+  <DocumentReferences>
+    <Reference Type="Self">
+       <URL>https://access.redhat.com/errata/RHSA-2018:0151</URL>
+       <Description>https://access.redhat.com/errata/RHSA-2018:0151</Description>
+    </Reference>
+    <Reference Type="External">
+       <URL>https://access.redhat.com/security/updates/classification/#important</URL>
+       <Description>https://access.redhat.com/security/updates/classification/#important</Description>
+    </Reference>
+    <Reference Type="External">
+       <URL>https://access.redhat.com/security/vulnerabilities/speculativeexecution</URL>
+       <Description>https://access.redhat.com/security/vulnerabilities/speculativeexecution</Description>
+    </Reference>
+    <Reference Type="External">
+       <URL>https://access.redhat.com/security/cve/CVE-2017-5753</URL>
+       <Description>https://access.redhat.com/security/cve/CVE-2017-5753</Description>
+    </Reference>
+    <Reference Type="External">
+       <URL>https://access.redhat.com/security/cve/CVE-2017-5715</URL>
+       <Description>https://access.redhat.com/security/cve/CVE-2017-5715</Description>
+    </Reference>
+    <Reference Type="External">
+       <URL>https://access.redhat.com/security/cve/CVE-2017-5754</URL>
+       <Description>https://access.redhat.com/security/cve/CVE-2017-5754</Description>
+    </Reference>
+    <Reference Type="External">
+       <URL>https://access.redhat.com/articles/3327131</URL>
+       <Description>https://access.redhat.com/articles/3327131</Description>
+    </Reference>
+  </DocumentReferences>
+  <ProductTree xmlns="http://www.icasi.org/CVRF/schema/prod/1.1">
+    <Branch Type="Product Family" Name="Red Hat Enterprise Linux">
+      <Branch Type="Product Name" Name="Red Hat Enterprise Linux Client (v. 7)">
+        <FullProductName ProductID="7Client-7.4.Z" CPE="cpe:/o:redhat:enterprise_linux:7::client">Red Hat Enterprise Linux Client (v. 7)</FullProductName>
+      </Branch>
+      <Branch Type="Product Name" Name="Red Hat Enterprise Linux Client Optional (v. 7)">
+        <FullProductName ProductID="7Client-optional-7.4.Z" CPE="cpe:/o:redhat:enterprise_linux:7::client">Red Hat Enterprise Linux Client Optional (v. 7)</FullProductName>
+      </Branch>
+      <Branch Type="Product Name" Name="Red Hat Enterprise Linux ComputeNode (v. 7)">
+        <FullProductName ProductID="7ComputeNode-7.4.Z" CPE="cpe:/o:redhat:enterprise_linux:7::computenode">Red Hat Enterprise Linux ComputeNode (v. 7)</FullProductName>
+      </Branch>
+      <Branch Type="Product Name" Name="Red Hat Enterprise Linux ComputeNode Optional (v. 7)">
+        <FullProductName ProductID="7ComputeNode-optional-7.4.Z" CPE="cpe:/o:redhat:enterprise_linux:7::computenode">Red Hat Enterprise Linux ComputeNode Optional (v. 7)</FullProductName>
+      </Branch>
+      <Branch Type="Product Name" Name="Red Hat Enterprise Linux Server (v. 7)">
+        <FullProductName ProductID="7Server-7.4.Z" CPE="cpe:/o:redhat:enterprise_linux:7::server">Red Hat Enterprise Linux Server (v. 7)</FullProductName>
+      </Branch>
+      <Branch Type="Product Name" Name="Red Hat Enterprise Linux Server Optional (v. 7)">
+        <FullProductName ProductID="7Server-optional-7.4.Z" CPE="cpe:/o:redhat:enterprise_linux:7::server">Red Hat Enterprise Linux Server Optional (v. 7)</FullProductName>
+      </Branch>
+      <Branch Type="Product Name" Name="Red Hat Enterprise Linux Workstation (v. 7)">
+        <FullProductName ProductID="7Workstation-7.4.Z" CPE="cpe:/o:redhat:enterprise_linux:7::workstation">Red Hat Enterprise Linux Workstation (v. 7)</FullProductName>
+      </Branch>
+      <Branch Type="Product Name" Name="Red Hat Enterprise Linux Workstation Optional (v. 7)">
+        <FullProductName ProductID="7Workstation-optional-7.4.Z" CPE="cpe:/o:redhat:enterprise_linux:7::workstation">Red Hat Enterprise Linux Workstation Optional (v. 7)</FullProductName>
+      </Branch>
+    </Branch>
+    <Branch Type="Product Version" Name="kernel-0:3.10.0-693.17.1.el7">
+      <FullProductName ProductID="kernel-0:3.10.0-693.17.1.el7" CPE="cpe:/o:redhat:enterprise_linux:7::client">kernel-3.10.0-693.17.1.el7.src.rpm</FullProductName>
+    </Branch>
+    <Relationship ProductReference="kernel-0:3.10.0-693.17.1.el7" RelationType="Default Component Of" RelatesToProductReference="7Client-7.4.Z">
+      <FullProductName ProductID="7Client-7.4.Z:kernel-0:3.10.0-693.17.1.el7" CPE="cpe:/o:redhat:enterprise_linux:7::client">kernel-0:3.10.0-693.17.1.el7 as a component of Red Hat Enterprise Linux Client (v. 7)</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="kernel-0:3.10.0-693.17.1.el7" RelationType="Default Component Of" RelatesToProductReference="7Client-optional-7.4.Z">
+      <FullProductName ProductID="7Client-optional-7.4.Z:kernel-0:3.10.0-693.17.1.el7" CPE="cpe:/o:redhat:enterprise_linux:7::client">kernel-0:3.10.0-693.17.1.el7 as a component of Red Hat Enterprise Linux Client Optional (v. 7)</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="kernel-0:3.10.0-693.17.1.el7" RelationType="Default Component Of" RelatesToProductReference="7ComputeNode-7.4.Z">
+      <FullProductName ProductID="7ComputeNode-7.4.Z:kernel-0:3.10.0-693.17.1.el7" CPE="cpe:/o:redhat:enterprise_linux:7::computenode">kernel-0:3.10.0-693.17.1.el7 as a component of Red Hat Enterprise Linux ComputeNode (v. 7)</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="kernel-0:3.10.0-693.17.1.el7" RelationType="Default Component Of" RelatesToProductReference="7ComputeNode-optional-7.4.Z">
+      <FullProductName ProductID="7ComputeNode-optional-7.4.Z:kernel-0:3.10.0-693.17.1.el7" CPE="cpe:/o:redhat:enterprise_linux:7::computenode">kernel-0:3.10.0-693.17.1.el7 as a component of Red Hat Enterprise Linux ComputeNode Optional (v. 7)</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="kernel-0:3.10.0-693.17.1.el7" RelationType="Default Component Of" RelatesToProductReference="7Server-7.4.Z">
+      <FullProductName ProductID="7Server-7.4.Z:kernel-0:3.10.0-693.17.1.el7" CPE="cpe:/o:redhat:enterprise_linux:7::server">kernel-0:3.10.0-693.17.1.el7 as a component of Red Hat Enterprise Linux Server (v. 7)</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="kernel-0:3.10.0-693.17.1.el7" RelationType="Default Component Of" RelatesToProductReference="7Server-optional-7.4.Z">
+      <FullProductName ProductID="7Server-optional-7.4.Z:kernel-0:3.10.0-693.17.1.el7" CPE="cpe:/o:redhat:enterprise_linux:7::server">kernel-0:3.10.0-693.17.1.el7 as a component of Red Hat Enterprise Linux Server Optional (v. 7)</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="kernel-0:3.10.0-693.17.1.el7" RelationType="Default Component Of" RelatesToProductReference="7Workstation-7.4.Z">
+      <FullProductName ProductID="7Workstation-7.4.Z:kernel-0:3.10.0-693.17.1.el7" CPE="cpe:/o:redhat:enterprise_linux:7::workstation">kernel-0:3.10.0-693.17.1.el7 as a component of Red Hat Enterprise Linux Workstation (v. 7)</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="kernel-0:3.10.0-693.17.1.el7" RelationType="Default Component Of" RelatesToProductReference="7Workstation-optional-7.4.Z">
+      <FullProductName ProductID="7Workstation-optional-7.4.Z:kernel-0:3.10.0-693.17.1.el7" CPE="cpe:/o:redhat:enterprise_linux:7::workstation">kernel-0:3.10.0-693.17.1.el7 as a component of Red Hat Enterprise Linux Workstation Optional (v. 7)</FullProductName>
+    </Relationship>
+  </ProductTree>
+
+  <Vulnerability Ordinal="1" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">kernel: local privesc in key management</Note></Notes>
+    <DiscoveryDate>2015-11-20T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2015-12-09T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2015-8539</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>7Client-7.4.Z:kernel-0:3.10.0-693.17.1.el7</ProductID>
+      <ProductID>7Client-optional-7.4.Z:kernel-0:3.10.0-693.17.1.el7</ProductID>
+      <ProductID>7ComputeNode-7.4.Z:kernel-0:3.10.0-693.17.1.el7</ProductID>
+      <ProductID>7ComputeNode-optional-7.4.Z:kernel-0:3.10.0-693.17.1.el7</ProductID>
+      <ProductID>7Server-7.4.Z:kernel-0:3.10.0-693.17.1.el7</ProductID>
+      <ProductID>7Server-optional-7.4.Z:kernel-0:3.10.0-693.17.1.el7</ProductID>
+      <ProductID>7Workstation-7.4.Z:kernel-0:3.10.0-693.17.1.el7</ProductID>
+      <ProductID>7Workstation-optional-7.4.Z:kernel-0:3.10.0-693.17.1.el7</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Important</Description></Threat></Threats>
+    <CVSSScoreSets><ScoreSet>
+      <BaseScore>7.2</BaseScore>
+      <Vector>AV:L/AC:L/Au:N/C:C/I:C/A:C</Vector>
+    </ScoreSet></CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+
+The system must be rebooted for this update to take effect.
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2018:0151</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/commit/?id=096fe9eaea40a17e125569f9e657e34cdb6d73bd</URL>
+        <Description>https://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/commit/?id=096fe9eaea40a17e125569f9e657e34cdb6d73bd</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2015-8539</URL>
+        <Description>CVE-2015-8539</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1284450</URL>
+        <Description>bz#1284450: CVE-2015-8539 kernel: local privesc in key management</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="2" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">hw: cpu: speculative execution bounds-check bypass</Note></Notes>
+    <DiscoveryDate>2017-11-30T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2018-01-03T22:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2017-5753</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>7Client-7.4.Z:kernel-0:3.10.0-693.17.1.el7</ProductID>
+      <ProductID>7Client-optional-7.4.Z:kernel-0:3.10.0-693.17.1.el7</ProductID>
+      <ProductID>7ComputeNode-7.4.Z:kernel-0:3.10.0-693.17.1.el7</ProductID>
+      <ProductID>7ComputeNode-optional-7.4.Z:kernel-0:3.10.0-693.17.1.el7</ProductID>
+      <ProductID>7Server-7.4.Z:kernel-0:3.10.0-693.17.1.el7</ProductID>
+      <ProductID>7Server-optional-7.4.Z:kernel-0:3.10.0-693.17.1.el7</ProductID>
+      <ProductID>7Workstation-7.4.Z:kernel-0:3.10.0-693.17.1.el7</ProductID>
+      <ProductID>7Workstation-optional-7.4.Z:kernel-0:3.10.0-693.17.1.el7</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Important</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+
+The system must be rebooted for this update to take effect.
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2018:0151</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/vulnerabilities/speculativeexecution</URL>
+        <Description>https://access.redhat.com/security/vulnerabilities/speculativeexecution</Description>
+      </Reference>
+      <Reference>
+        <URL>https://googleprojectzero.blogspot.com/2018/01/reading-privileged-memory-with-side.html</URL>
+        <Description>https://googleprojectzero.blogspot.com/2018/01/reading-privileged-memory-with-side.html</Description>
+      </Reference>
+      <Reference>
+        <URL>https://meltdownattack.com</URL>
+        <Description>https://meltdownattack.com</Description>
+      </Reference>
+      <Reference>
+        <URL>https://spectreattack.com/</URL>
+        <Description>https://spectreattack.com/</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2017-5753</URL>
+        <Description>CVE-2017-5753</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1519778</URL>
+        <Description>bz#1519778: CVE-2017-5753 hw: cpu: speculative execution bounds-check bypass</Description>
+      </Reference>
+    </References>
+    <Acknowledgments><Acknowledgment><Description>Red Hat would like to thank Google Project Zero for reporting this issue.</Description></Acknowledgment></Acknowledgments>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="3" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">kernel: keyctl_set_reqkey_keyring() leaks thread keyrings</Note></Notes>
+    <DiscoveryDate>2017-04-12T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2017-04-01T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2017-7472</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>7Client-7.4.Z:kernel-0:3.10.0-693.17.1.el7</ProductID>
+      <ProductID>7Client-optional-7.4.Z:kernel-0:3.10.0-693.17.1.el7</ProductID>
+      <ProductID>7ComputeNode-7.4.Z:kernel-0:3.10.0-693.17.1.el7</ProductID>
+      <ProductID>7ComputeNode-optional-7.4.Z:kernel-0:3.10.0-693.17.1.el7</ProductID>
+      <ProductID>7Server-7.4.Z:kernel-0:3.10.0-693.17.1.el7</ProductID>
+      <ProductID>7Server-optional-7.4.Z:kernel-0:3.10.0-693.17.1.el7</ProductID>
+      <ProductID>7Workstation-7.4.Z:kernel-0:3.10.0-693.17.1.el7</ProductID>
+      <ProductID>7Workstation-optional-7.4.Z:kernel-0:3.10.0-693.17.1.el7</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+
+The system must be rebooted for this update to take effect.
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2018:0151</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2017-7472</URL>
+        <Description>CVE-2017-7472</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1442086</URL>
+        <Description>bz#1442086: CVE-2017-7472 kernel: keyctl_set_reqkey_keyring() leaks thread keyrings</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="4" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">kernel: NULL pointer dereference due to KEYCTL_READ on negative key</Note></Notes>
+    <DiscoveryDate>2017-09-19T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2017-09-18T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2017-12192</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>7Client-7.4.Z:kernel-0:3.10.0-693.17.1.el7</ProductID>
+      <ProductID>7Client-optional-7.4.Z:kernel-0:3.10.0-693.17.1.el7</ProductID>
+      <ProductID>7ComputeNode-7.4.Z:kernel-0:3.10.0-693.17.1.el7</ProductID>
+      <ProductID>7ComputeNode-optional-7.4.Z:kernel-0:3.10.0-693.17.1.el7</ProductID>
+      <ProductID>7Server-7.4.Z:kernel-0:3.10.0-693.17.1.el7</ProductID>
+      <ProductID>7Server-optional-7.4.Z:kernel-0:3.10.0-693.17.1.el7</ProductID>
+      <ProductID>7Workstation-7.4.Z:kernel-0:3.10.0-693.17.1.el7</ProductID>
+      <ProductID>7Workstation-optional-7.4.Z:kernel-0:3.10.0-693.17.1.el7</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+
+The system must be rebooted for this update to take effect.
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2018:0151</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>http://seclists.org/oss-sec/2017/q4/63</URL>
+        <Description>http://seclists.org/oss-sec/2017/q4/63</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2017-12192</URL>
+        <Description>CVE-2017-12192</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1493435</URL>
+        <Description>bz#1493435: CVE-2017-12192 kernel: NULL pointer dereference due to KEYCTL_READ on negative key</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="5" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">kernel: Null pointer dereference due to incorrect node-splitting in assoc_array implementation</Note></Notes>
+    <DiscoveryDate>2017-10-10T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2017-11-02T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2017-12193</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>7Client-7.4.Z:kernel-0:3.10.0-693.17.1.el7</ProductID>
+      <ProductID>7Client-optional-7.4.Z:kernel-0:3.10.0-693.17.1.el7</ProductID>
+      <ProductID>7ComputeNode-7.4.Z:kernel-0:3.10.0-693.17.1.el7</ProductID>
+      <ProductID>7ComputeNode-optional-7.4.Z:kernel-0:3.10.0-693.17.1.el7</ProductID>
+      <ProductID>7Server-7.4.Z:kernel-0:3.10.0-693.17.1.el7</ProductID>
+      <ProductID>7Server-optional-7.4.Z:kernel-0:3.10.0-693.17.1.el7</ProductID>
+      <ProductID>7Workstation-7.4.Z:kernel-0:3.10.0-693.17.1.el7</ProductID>
+      <ProductID>7Workstation-optional-7.4.Z:kernel-0:3.10.0-693.17.1.el7</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+
+The system must be rebooted for this update to take effect.
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2018:0151</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2017-12193</URL>
+        <Description>CVE-2017-12193</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1501215</URL>
+        <Description>bz#1501215: CVE-2017-12193 kernel: Null pointer dereference due to incorrect node-splitting in assoc_array implementation</Description>
+      </Reference>
+    </References>
+    <Acknowledgments><Acknowledgment><Description>Red Hat would like to thank Fan Wu (University of Hong Kong), Haoran Qiu (University of Hong Kong), Heming Cui (University of Hong Kong), and Shixiong Zhao (University of Hong Kong) for reporting this issue.</Description></Acknowledgment></Acknowledgments>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="6" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">kernel: Use-after-free in the af_packet.c</Note></Notes>
+    <DiscoveryDate>2017-10-20T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2017-09-20T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2017-15649</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>7Client-7.4.Z:kernel-0:3.10.0-693.17.1.el7</ProductID>
+      <ProductID>7Client-optional-7.4.Z:kernel-0:3.10.0-693.17.1.el7</ProductID>
+      <ProductID>7ComputeNode-7.4.Z:kernel-0:3.10.0-693.17.1.el7</ProductID>
+      <ProductID>7ComputeNode-optional-7.4.Z:kernel-0:3.10.0-693.17.1.el7</ProductID>
+      <ProductID>7Server-7.4.Z:kernel-0:3.10.0-693.17.1.el7</ProductID>
+      <ProductID>7Server-optional-7.4.Z:kernel-0:3.10.0-693.17.1.el7</ProductID>
+      <ProductID>7Workstation-7.4.Z:kernel-0:3.10.0-693.17.1.el7</ProductID>
+      <ProductID>7Workstation-optional-7.4.Z:kernel-0:3.10.0-693.17.1.el7</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Important</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+
+The system must be rebooted for this update to take effect.
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2018:0151</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2017-15649</URL>
+        <Description>CVE-2017-15649</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1504574</URL>
+        <Description>bz#1504574: CVE-2017-15649 kernel: Use-after-free in the af_packet.c</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+</cvrfdoc>

@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cvrfdoc xmlns="http://www.icasi.org/CVRF/schema/cvrf/1.1" xmlns:cvrf="http://www.icasi.org/CVRF/schema/cvrf/1.1">
+  <DocumentTitle xml:lang="en">Red Hat Security Advisory: Red Hat OpenShift Container Storage 4.8.5 Security and Bug Fix Update</DocumentTitle>
+  <DocumentType>Security Advisory</DocumentType>
+  <DocumentPublisher Type="Vendor">
+    <ContactDetails>secalert@redhat.com</ContactDetails>
+    <IssuingAuthority>Red Hat Product Security</IssuingAuthority>
+  </DocumentPublisher>
+  <DocumentTracking>
+    <Identification><ID>RHSA-2021:4845</ID></Identification>
+    <Status>Final</Status>
+    <Version>1</Version>
+    <RevisionHistory>
+       <Revision>
+         <Number>1</Number>
+         <Date>2021-11-29T13:24:00Z</Date>
+         <Description>Current version</Description>
+       </Revision>
+    </RevisionHistory>
+    <InitialReleaseDate>2021-11-29T13:24:00Z</InitialReleaseDate>
+    <CurrentReleaseDate>2021-11-29T13:24:00Z</CurrentReleaseDate>
+    <Generator>
+      <Engine>Red Hat SDEngine 3.3.0</Engine>
+      <Date>2021-11-29T15:01:00Z</Date>
+    </Generator>
+  </DocumentTracking>
+  <DocumentNotes>
+    <Note Title="Topic" Type="Summary" Ordinal="1" xml:lang="en">
+An update is now available for Red Hat OpenShift Container Storage 4.8.5 on Red Hat Enterprise Linux 8.
+
+Red Hat Product Security has rated this update as having a security impact of Moderate. A Common Vulnerability Scoring System (CVSS) base score, which gives a detailed severity rating, is available for each vulnerability from the CVE link(s) in the References section.
+    </Note>
+    <Note Title="Details" Type="General" Ordinal="2" xml:lang="en">
+Red Hat OpenShift Container Storage is software-defined storage integrated
+with and optimized for the Red Hat OpenShift Container Platform.
+Red Hat OpenShift Container Storage is highly scalable, production-grade
+persistent storage for stateful applications running in the Red Hat
+OpenShift Container Platform. In addition to persistent storage, Red Hat
+OpenShift Container Storage provides a multicloud data management service
+with an S3 compatible API.
+
+Security Fix(es):
+
+* nodejs-ssh2: Command injection by calling vulnerable method with
+untrusted input (CVE-2020-26301)
+
+For more details about the security issue(s), including the impact, a
+CVSS score, acknowledgments, and other related information, refer to
+the CVE page(s) listed in the References section.
+
+Bug Fix(es):
+
+* Previously, when the namespace store target was deleted, no alert was
+sent to the namespace bucket because of an issue in calculating the
+namespace bucket health. With this update, the issue in calculating the
+namespace bucket health is fixed and alerts are triggered as expected.
+(BZ#1993873)
+
+* Previously, the Multicloud Object Gateway (MCG) components performed
+slowly and there was a lot of pressure on the MCG components due to
+non-optimized database queries. With this update the non-optimized
+database queries are fixed which reduces the compute resources and time
+taken for queries. (BZ#2015939)
+
+Red Hat recommends that all users of OpenShift Container Storage apply this update to fix these issues.
+    </Note>
+    <Note Title="Terms of Use" Ordinal="3" Type="Legal Disclaimer" xml:lang="en">This content is licensed under the Creative Commons Attribution 4.0 International License (https://creativecommons.org/licenses/by/4.0/). If you distribute this content, or a modified version of it, you must provide attribution to Red Hat Inc. and provide a link to the original.</Note>
+  </DocumentNotes>
+  <DocumentDistribution xml:lang="en">Copyright © 2021 Red Hat, Inc. All rights reserved.</DocumentDistribution>
+  <AggregateSeverity Namespace="https://access.redhat.com/security/updates/classification/">Moderate</AggregateSeverity>
+  <DocumentReferences>
+    <Reference Type="Self">
+       <URL>https://access.redhat.com/errata/RHSA-2021:4845</URL>
+       <Description>https://access.redhat.com/errata/RHSA-2021:4845</Description>
+    </Reference>
+    <Reference Type="External">
+       <URL>https://access.redhat.com/security/updates/classification/#moderate</URL>
+       <Description>https://access.redhat.com/security/updates/classification/#moderate</Description>
+    </Reference>
+  </DocumentReferences>
+  <ProductTree xmlns="http://www.icasi.org/CVRF/schema/prod/1.1">
+    <Branch Type="Product Family" Name="Red Hat OpenShift Container Storage">
+      <Branch Type="Product Name" Name="Red Hat OpenShift Container Storage 4.8 on RHEL-8">
+        <FullProductName ProductID="8Base-RH-OCS-4.8" CPE="cpe:/a:redhat:openshift_container_storage:4.8::el8">Red Hat OpenShift Container Storage 4.8 on RHEL-8</FullProductName>
+      </Branch>
+    </Branch>
+    <Branch Type="Product Version" Name="cephcsi-container-v4.8.5-1">
+      <FullProductName ProductID="cephcsi-container-v4.8.5-1" CPE="cpe:/a:redhat:openshift_container_storage:4.8::el8">cephcsi-container-v4.8.5-1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="noobaa-core-container-v4.8.5-1">
+      <FullProductName ProductID="noobaa-core-container-v4.8.5-1" CPE="cpe:/a:redhat:openshift_container_storage:4.8::el8">noobaa-core-container-v4.8.5-1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="noobaa-operator-container-v4.8.5-1">
+      <FullProductName ProductID="noobaa-operator-container-v4.8.5-1" CPE="cpe:/a:redhat:openshift_container_storage:4.8::el8">noobaa-operator-container-v4.8.5-1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="ocs-must-gather-container-v4.8.5-1">
+      <FullProductName ProductID="ocs-must-gather-container-v4.8.5-1" CPE="cpe:/a:redhat:openshift_container_storage:4.8::el8">ocs-must-gather-container-v4.8.5-1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="ocs-operator-bundle-container-v4.8.5-2">
+      <FullProductName ProductID="ocs-operator-bundle-container-v4.8.5-2" CPE="cpe:/a:redhat:openshift_container_storage:4.8::el8">ocs-operator-bundle-container-v4.8.5-2</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="ocs-operator-container-v4.8.5-1">
+      <FullProductName ProductID="ocs-operator-container-v4.8.5-1" CPE="cpe:/a:redhat:openshift_container_storage:4.8::el8">ocs-operator-container-v4.8.5-1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="rook-ceph-operator-container-v4.8.5-1">
+      <FullProductName ProductID="rook-ceph-operator-container-v4.8.5-1" CPE="cpe:/a:redhat:openshift_container_storage:4.8::el8">rook-ceph-operator-container-v4.8.5-1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="volume-replication-operator-container-v4.8.5-1">
+      <FullProductName ProductID="volume-replication-operator-container-v4.8.5-1" CPE="cpe:/a:redhat:openshift_container_storage:4.8::el8">volume-replication-operator-container-v4.8.5-1</FullProductName>
+    </Branch>
+    <Relationship ProductReference="cephcsi-container-v4.8.5-1" RelationType="Default Component Of" RelatesToProductReference="8Base-RH-OCS-4.8">
+      <FullProductName ProductID="8Base-RH-OCS-4.8:cephcsi-container-v4.8.5-1" CPE="cpe:/a:redhat:openshift_container_storage:4.8::el8">cephcsi-container-v4.8.5-1 as a component of Red Hat OpenShift Container Storage 4.8 on RHEL-8</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="noobaa-core-container-v4.8.5-1" RelationType="Default Component Of" RelatesToProductReference="8Base-RH-OCS-4.8">
+      <FullProductName ProductID="8Base-RH-OCS-4.8:noobaa-core-container-v4.8.5-1" CPE="cpe:/a:redhat:openshift_container_storage:4.8::el8">noobaa-core-container-v4.8.5-1 as a component of Red Hat OpenShift Container Storage 4.8 on RHEL-8</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="noobaa-operator-container-v4.8.5-1" RelationType="Default Component Of" RelatesToProductReference="8Base-RH-OCS-4.8">
+      <FullProductName ProductID="8Base-RH-OCS-4.8:noobaa-operator-container-v4.8.5-1" CPE="cpe:/a:redhat:openshift_container_storage:4.8::el8">noobaa-operator-container-v4.8.5-1 as a component of Red Hat OpenShift Container Storage 4.8 on RHEL-8</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="ocs-must-gather-container-v4.8.5-1" RelationType="Default Component Of" RelatesToProductReference="8Base-RH-OCS-4.8">
+      <FullProductName ProductID="8Base-RH-OCS-4.8:ocs-must-gather-container-v4.8.5-1" CPE="cpe:/a:redhat:openshift_container_storage:4.8::el8">ocs-must-gather-container-v4.8.5-1 as a component of Red Hat OpenShift Container Storage 4.8 on RHEL-8</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="ocs-operator-bundle-container-v4.8.5-2" RelationType="Default Component Of" RelatesToProductReference="8Base-RH-OCS-4.8">
+      <FullProductName ProductID="8Base-RH-OCS-4.8:ocs-operator-bundle-container-v4.8.5-2" CPE="cpe:/a:redhat:openshift_container_storage:4.8::el8">ocs-operator-bundle-container-v4.8.5-2 as a component of Red Hat OpenShift Container Storage 4.8 on RHEL-8</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="ocs-operator-container-v4.8.5-1" RelationType="Default Component Of" RelatesToProductReference="8Base-RH-OCS-4.8">
+      <FullProductName ProductID="8Base-RH-OCS-4.8:ocs-operator-container-v4.8.5-1" CPE="cpe:/a:redhat:openshift_container_storage:4.8::el8">ocs-operator-container-v4.8.5-1 as a component of Red Hat OpenShift Container Storage 4.8 on RHEL-8</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="rook-ceph-operator-container-v4.8.5-1" RelationType="Default Component Of" RelatesToProductReference="8Base-RH-OCS-4.8">
+      <FullProductName ProductID="8Base-RH-OCS-4.8:rook-ceph-operator-container-v4.8.5-1" CPE="cpe:/a:redhat:openshift_container_storage:4.8::el8">rook-ceph-operator-container-v4.8.5-1 as a component of Red Hat OpenShift Container Storage 4.8 on RHEL-8</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="volume-replication-operator-container-v4.8.5-1" RelationType="Default Component Of" RelatesToProductReference="8Base-RH-OCS-4.8">
+      <FullProductName ProductID="8Base-RH-OCS-4.8:volume-replication-operator-container-v4.8.5-1" CPE="cpe:/a:redhat:openshift_container_storage:4.8::el8">volume-replication-operator-container-v4.8.5-1 as a component of Red Hat OpenShift Container Storage 4.8 on RHEL-8</FullProductName>
+    </Relationship>
+  </ProductTree>
+
+  <Vulnerability Ordinal="1" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">nodejs-ssh2: Command injection by calling vulnerable method with untrusted input</Note></Notes>
+    <DiscoveryDate>2021-09-20T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2021-09-20T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2020-26301</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>8Base-RH-OCS-4.8:cephcsi-container-v4.8.5-1</ProductID>
+      <ProductID>8Base-RH-OCS-4.8:noobaa-core-container-v4.8.5-1</ProductID>
+      <ProductID>8Base-RH-OCS-4.8:noobaa-operator-container-v4.8.5-1</ProductID>
+      <ProductID>8Base-RH-OCS-4.8:ocs-must-gather-container-v4.8.5-1</ProductID>
+      <ProductID>8Base-RH-OCS-4.8:ocs-operator-bundle-container-v4.8.5-2</ProductID>
+      <ProductID>8Base-RH-OCS-4.8:ocs-operator-container-v4.8.5-1</ProductID>
+      <ProductID>8Base-RH-OCS-4.8:rook-ceph-operator-container-v4.8.5-1</ProductID>
+      <ProductID>8Base-RH-OCS-4.8:volume-replication-operator-container-v4.8.5-1</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2021:4845</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://securitylab.github.com/advisories/GHSL-2020-123-mscdex-ssh2/</URL>
+        <Description>https://securitylab.github.com/advisories/GHSL-2020-123-mscdex-ssh2/</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2020-26301</URL>
+        <Description>CVE-2020-26301</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=2006958</URL>
+        <Description>bz#2006958: CVE-2020-26301 nodejs-ssh2: Command injection by calling vulnerable method with untrusted input</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+</cvrfdoc>

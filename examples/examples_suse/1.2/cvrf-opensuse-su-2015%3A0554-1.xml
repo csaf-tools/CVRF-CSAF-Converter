@@ -1,0 +1,413 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cvrfdoc xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:cpe="http://cpe.mitre.org/language/2.0" xmlns:cvrf="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/cvrf" xmlns:cvrf-common="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/common" xmlns:cvssv2="http://scap.nist.gov/schema/cvss-v2/1.0" xmlns:cvssv3="https://www.first.org/cvss/cvss-v3.0.xsd" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:ns0="http://purl.org/dc/elements/1.1/" xmlns:prod="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/prod" xmlns:scap-core="http://scap.nist.gov/schema/scap-core/1.0" xmlns:sch="http://purl.oclc.org/dsdl/schematron" xmlns:vuln="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/cvrf">
+  <DocumentTitle xml:lang="en">Security update for openssl</DocumentTitle>
+  <DocumentType>SUSE Patch</DocumentType>
+  <DocumentPublisher Type="Vendor">
+    <ContactDetails>security@suse.de</ContactDetails>
+    <IssuingAuthority>SUSE Security Team</IssuingAuthority>
+  </DocumentPublisher>
+  <DocumentTracking>
+    <Identification>
+      <ID>openSUSE-SU-2015:0554-1</ID>
+    </Identification>
+    <Status>Final</Status>
+    <Version>1</Version>
+    <RevisionHistory>
+      <Revision>
+        <Number>1</Number>
+        <Date>2015-03-19T15:37:57Z</Date>
+        <Description>current</Description>
+      </Revision>
+    </RevisionHistory>
+    <InitialReleaseDate>2015-03-19T15:37:57Z</InitialReleaseDate>
+    <CurrentReleaseDate>2015-03-19T15:37:57Z</CurrentReleaseDate>
+    <Generator>
+      <Engine>cve-database/bin/generate-cvrf.pl</Engine>
+      <Date>2017-02-24T01:00:00Z</Date>
+    </Generator>
+  </DocumentTracking>
+  <DocumentNotes>
+    <Note Title="Topic" Type="Summary" Ordinal="1" xml:lang="en">Security update for openssl</Note>
+    <Note Title="Details" Type="General" Ordinal="2" xml:lang="en">
+OpenSSL was updated to fix various security issues.
+
+Following security issues were fixed:
+- CVE-2015-0209: A Use After Free following d2i_ECPrivatekey error
+  was fixed which could lead to crashes for attacker supplied Elliptic
+  Curve keys. This could be exploited over SSL connections with client
+  supplied keys.
+
+- CVE-2015-0286: A segmentation fault in ASN1_TYPE_cmp was fixed that
+  could be exploited by attackers when e.g. client authentication is
+  used. This could be exploited over SSL connections.
+
+- CVE-2015-0287: A ASN.1 structure reuse memory corruption was fixed. This
+  problem can not be exploited over regular SSL connections, only if
+  specific client programs use specific ASN.1 routines.
+
+- CVE-2015-0288: A X509_to_X509_REQ NULL pointer dereference was fixed,
+  which could lead to crashes. This function is not commonly used, and
+  not reachable over SSL methods.
+
+- CVE-2015-0289: Several PKCS7 NULL pointer dereferences were fixed,
+  which could lead to crashes of programs using the PKCS7 APIs. The SSL
+  apis do not use those by default.
+
+- CVE-2015-0293: Denial of service via reachable assert in SSLv2 servers,
+  could be used by remote attackers to terminate the server process. Note
+  that this requires SSLv2 being allowed, which is not the default.
+</Note>
+    <Note Title="Terms of Use" Type="Legal Disclaimer" Ordinal="3" xml:lang="en">The CVRF data is provided by SUSE under the Creative Commons License 4.0 with Attribution for Non-Commercial usage (CC-BY-NC-4.0).</Note>
+  </DocumentNotes>
+  <DocumentDistribution xml:lang="en">Copyright SUSE LLC under the Creative Commons License 4.0 with Attribution for Non-Commercial usage (CC-BY-NC-4.0)</DocumentDistribution>
+  <DocumentReferences>
+    <Reference Type="Self">
+      <URL>https://lists.opensuse.org/opensuse-updates/2015-03/msg00062.html</URL>
+      <Description>E-Mail link for openSUSE-SU-2015:0554-1</Description>
+    </Reference>
+    <Reference Type="Self">
+      <URL>https://www.suse.com/support/security/rating/</URL>
+      <Description>SUSE Security Ratings</Description>
+    </Reference>
+  </DocumentReferences>
+  <ProductTree xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/prod">
+    <Branch Type="Product Version" Name="libopenssl-devel-1.0.1k-11.68.1">
+      <FullProductName ProductID="libopenssl-devel-1.0.1k-11.68.1">libopenssl-devel-1.0.1k-11.68.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libopenssl-devel-32bit-1.0.1k-11.68.1">
+      <FullProductName ProductID="libopenssl-devel-32bit-1.0.1k-11.68.1">libopenssl-devel-32bit-1.0.1k-11.68.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libopenssl1_0_0-1.0.1k-11.68.1">
+      <FullProductName ProductID="libopenssl1_0_0-1.0.1k-11.68.1">libopenssl1_0_0-1.0.1k-11.68.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="libopenssl1_0_0-32bit-1.0.1k-11.68.1">
+      <FullProductName ProductID="libopenssl1_0_0-32bit-1.0.1k-11.68.1">libopenssl1_0_0-32bit-1.0.1k-11.68.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="openssl-1.0.1k-11.68.1">
+      <FullProductName ProductID="openssl-1.0.1k-11.68.1">openssl-1.0.1k-11.68.1</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="openssl-doc-1.0.1k-11.68.1">
+      <FullProductName ProductID="openssl-doc-1.0.1k-11.68.1">openssl-doc-1.0.1k-11.68.1</FullProductName>
+    </Branch>
+  </ProductTree>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="1">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">Use-after-free vulnerability in the d2i_ECPrivateKey function in crypto/ec/ec_asn1.c in OpenSSL before 0.9.8zf, 1.0.0 before 1.0.0r, 1.0.1 before 1.0.1m, and 1.0.2 before 1.0.2a might allow remote attackers to cause a denial of service (memory corruption and application crash) or possibly have unspecified other impact via a malformed Elliptic Curve (EC) private-key file that is improperly handled during import.</Note>
+    </Notes>
+    <CVE>CVE-2015-0209</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed"/>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>critical</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>6.8</BaseScoreV2>
+        <VectorV2>AV:N/AC:M/Au:N/C:P/I:P/A:P</VectorV2>
+      </ScoreSetV2>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-updates/2015-03/msg00062.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-0209.html</URL>
+        <Description>CVE-2015-0209</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/919648</URL>
+        <Description>SUSE Bug 919648</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/936586</URL>
+        <Description>SUSE Bug 936586</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/937891</URL>
+        <Description>SUSE Bug 937891</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="2">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">The ASN1_TYPE_cmp function in crypto/asn1/a_type.c in OpenSSL before 0.9.8zf, 1.0.0 before 1.0.0r, 1.0.1 before 1.0.1m, and 1.0.2 before 1.0.2a does not properly perform boolean-type comparisons, which allows remote attackers to cause a denial of service (invalid read operation and application crash) via a crafted X.509 certificate to an endpoint that uses the certificate-verification feature.</Note>
+    </Notes>
+    <CVE>CVE-2015-0286</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed"/>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>critical</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>5</BaseScoreV2>
+        <VectorV2>AV:N/AC:L/Au:N/C:N/I:N/A:P</VectorV2>
+      </ScoreSetV2>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-updates/2015-03/msg00062.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-0286.html</URL>
+        <Description>CVE-2015-0286</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/919648</URL>
+        <Description>SUSE Bug 919648</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/922496</URL>
+        <Description>SUSE Bug 922496</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/936586</URL>
+        <Description>SUSE Bug 936586</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/937891</URL>
+        <Description>SUSE Bug 937891</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/951391</URL>
+        <Description>SUSE Bug 951391</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="3">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">The ASN1_item_ex_d2i function in crypto/asn1/tasn_dec.c in OpenSSL before 0.9.8zf, 1.0.0 before 1.0.0r, 1.0.1 before 1.0.1m, and 1.0.2 before 1.0.2a does not reinitialize CHOICE and ADB data structures, which might allow attackers to cause a denial of service (invalid write operation and memory corruption) by leveraging an application that relies on ASN.1 structure reuse.</Note>
+    </Notes>
+    <CVE>CVE-2015-0287</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed"/>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>critical</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>5</BaseScoreV2>
+        <VectorV2>AV:N/AC:L/Au:N/C:N/I:N/A:P</VectorV2>
+      </ScoreSetV2>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-updates/2015-03/msg00062.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-0287.html</URL>
+        <Description>CVE-2015-0287</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/919648</URL>
+        <Description>SUSE Bug 919648</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/922499</URL>
+        <Description>SUSE Bug 922499</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/936586</URL>
+        <Description>SUSE Bug 936586</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/937492</URL>
+        <Description>SUSE Bug 937492</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/937891</URL>
+        <Description>SUSE Bug 937891</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/940369</URL>
+        <Description>SUSE Bug 940369</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/968888</URL>
+        <Description>SUSE Bug 968888</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/991722</URL>
+        <Description>SUSE Bug 991722</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="4">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">The X509_to_X509_REQ function in crypto/x509/x509_req.c in OpenSSL before 0.9.8zf, 1.0.0 before 1.0.0r, 1.0.1 before 1.0.1m, and 1.0.2 before 1.0.2a might allow attackers to cause a denial of service (NULL pointer dereference and application crash) via an invalid certificate key.</Note>
+    </Notes>
+    <CVE>CVE-2015-0288</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed"/>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>critical</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>5</BaseScoreV2>
+        <VectorV2>AV:N/AC:L/Au:N/C:N/I:N/A:P</VectorV2>
+      </ScoreSetV2>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-updates/2015-03/msg00062.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-0288.html</URL>
+        <Description>CVE-2015-0288</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/919648</URL>
+        <Description>SUSE Bug 919648</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/920236</URL>
+        <Description>SUSE Bug 920236</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/936586</URL>
+        <Description>SUSE Bug 936586</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/937891</URL>
+        <Description>SUSE Bug 937891</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/951391</URL>
+        <Description>SUSE Bug 951391</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="5">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">The PKCS#7 implementation in OpenSSL before 0.9.8zf, 1.0.0 before 1.0.0r, 1.0.1 before 1.0.1m, and 1.0.2 before 1.0.2a does not properly handle a lack of outer ContentInfo, which allows attackers to cause a denial of service (NULL pointer dereference and application crash) by leveraging an application that processes arbitrary PKCS#7 data and providing malformed data with ASN.1 encoding, related to crypto/pkcs7/pk7_doit.c and crypto/pkcs7/pk7_lib.c.</Note>
+    </Notes>
+    <CVE>CVE-2015-0289</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed"/>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>critical</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>5</BaseScoreV2>
+        <VectorV2>AV:N/AC:L/Au:N/C:N/I:N/A:P</VectorV2>
+      </ScoreSetV2>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-updates/2015-03/msg00062.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-0289.html</URL>
+        <Description>CVE-2015-0289</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/919648</URL>
+        <Description>SUSE Bug 919648</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/922500</URL>
+        <Description>SUSE Bug 922500</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/936586</URL>
+        <Description>SUSE Bug 936586</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/937891</URL>
+        <Description>SUSE Bug 937891</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+  <vuln:Vulnerability xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln" Ordinal="6">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">The SSLv2 implementation in OpenSSL before 0.9.8zf, 1.0.0 before 1.0.0r, 1.0.1 before 1.0.1m, and 1.0.2 before 1.0.2a allows remote attackers to cause a denial of service (s2_lib.c assertion failure and daemon exit) via a crafted CLIENT-MASTER-KEY message.</Note>
+    </Notes>
+    <CVE>CVE-2015-0293</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed"/>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>critical</Description>
+      </Threat>
+    </Threats>
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>5</BaseScoreV2>
+        <VectorV2>AV:N/AC:L/Au:N/C:N/I:N/A:P</VectorV2>
+      </ScoreSetV2>
+    </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">Please Install the update.</Description>
+        <URL>https://lists.opensuse.org/opensuse-updates/2015-03/msg00062.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://www.suse.com/security/cve/CVE-2015-0293.html</URL>
+        <Description>CVE-2015-0293</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/919648</URL>
+        <Description>SUSE Bug 919648</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/922488</URL>
+        <Description>SUSE Bug 922488</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/936586</URL>
+        <Description>SUSE Bug 936586</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/968044</URL>
+        <Description>SUSE Bug 968044</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/968051</URL>
+        <Description>SUSE Bug 968051</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/968053</URL>
+        <Description>SUSE Bug 968053</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.suse.com/986238</URL>
+        <Description>SUSE Bug 986238</Description>
+      </Reference>
+    </References>
+  </vuln:Vulnerability>
+</cvrfdoc>
