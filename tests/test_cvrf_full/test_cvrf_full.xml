@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cvrfdoc
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  xmlns:cpe="http://cpe.mitre.org/language/2.0"
+  xmlns:cvrf="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/cvrf"
+  xmlns:cvrf-common="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/common"
+  xmlns:cvssv2="http://scap.nist.gov/schema/cvss-v2/1.0"
+  xmlns:cvssv3="https://www.first.org/cvss/cvss-v3.0.xsd"
+  xmlns:dc="http://purl.org/dc/elements/1.1/"
+  xmlns:ns0="http://purl.org/dc/elements/1.1/"
+  xmlns:prod="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/prod"
+  xmlns:scap-core="http://scap.nist.gov/schema/scap-core/1.0"
+  xmlns:sch="http://purl.oclc.org/dsdl/schematron"
+  xmlns:vuln="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/cvrf"
+  >
+  <!-- Document wide context information -->
+  <DocumentTitle>Full-CVRF Testing</DocumentTitle>
+  <DocumentType>TEST Security Advisory</DocumentType>
+  <DocumentPublisher Type="Vendor" VendorID="123">
+      <ContactDetails>Emergency Support: ...</ContactDetails>
+      <IssuingAuthority>... Team (PSIRT)....</IssuingAuthority>
+  </DocumentPublisher>
+  <DocumentTracking>
+    <Identification>
+      <ID>vendorix-sa-20170301-abc</ID>
+      <Alias>Alias 1</Alias>
+      <Alias>Alias 2</Alias>
+    </Identification>
+    <Status>Final</Status>
+    <Version>1.2.0</Version>
+    <RevisionHistory>
+      <Revision>
+        <Number>1.2.0</Number>
+        <Date>2017-03-01T14:58:48</Date>
+        <Description>Another release</Description>
+      </Revision>
+      <Revision>
+        <Number>1.1.0</Number>
+        <Date>2017-03-01T14:58:48</Date>
+        <Description>Initial public release 1</Description>
+      </Revision>
+    </RevisionHistory>
+    <InitialReleaseDate>2017-03-01T16:00:00</InitialReleaseDate>
+    <CurrentReleaseDate>2017-03-01T14:58:48</CurrentReleaseDate>
+    <Generator>
+      <Engine>TVCE</Engine>
+      <Date>2017-03-01T14:58:48</Date>
+    </Generator>
+  </DocumentTracking>
+  <DocumentNotes>
+    <Note Title="Summary" Type="General" Ordinal="1" Audience="Heavy metal crowd">A vulnerability...</Note>
+    <Note Title="CVSS 3.0 Notice" Type="Other" Ordinal="2" Audience="Punk crowd"> ... </Note>
+  </DocumentNotes>
+  <DocumentDistribution>
+    You shall not distribute
+  </DocumentDistribution>
+
+  <AggregateSeverity Namespace="https://dummy.com">
+    Very severe
+  </AggregateSeverity>
+
+  <DocumentReferences>
+    <Reference Type="Self">
+      <URL>https://example.com/sec/vendorix-sa-20170301-abc</URL>
+      <Description>Vendorix Foo AppY...</Description>
+    </Reference>
+    <Reference>
+      <URL>https://dunno.com</URL>
+      <Description>Dunno</Description>
+    </Reference>
+  </DocumentReferences>
+
+  <Acknowledgments>
+    <Acknowledgment>
+      <Name>Some name 2</Name>
+      <Organization>Organ Freeman</Organization>
+      <Description>Desc</Description>
+      <URL>https://dunno.com</URL>
+    </Acknowledgment>
+    <Acknowledgment>
+      <Name>ACK 1</Name>
+      <Name>ACK 2</Name>
+    </Acknowledgment>
+  </Acknowledgments>
+
+  <!-- Product tree section -->
+  <ProductTree xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/prod">
+    <Branch Name="Vendorix" Type="Vendor">
+      <Branch Name="... Appliances" Type="Product Name">
+        <Branch Name="1.0" Type="Product Version">
+          <FullProductName ProductID="CVRFPID-223152">test</FullProductName>
+        </Branch>
+        <Branch Name="1.1" Type="Architecture">
+          <FullProductName ProductID="CVRFPID-223153">test</FullProductName>
+        </Branch>
+      </Branch>
+    </Branch>
+
+    <Branch Type="Legacy" Name="Vendorex">
+      <FullProductName ProductID="CVRFPID-223155" CPE="cpe:/a:%240.99_kindle_books_project:%240.99_kindle_books:6::~~~android~~">PN</FullProductName>
+    </Branch>
+
+    <FullProductName ProductID="123" CPE="cpe:/a:%240.99_kindle_books_project:%240.99_kindle_books:6::~~~android~~">Hoj</FullProductName>
+    <FullProductName ProductID="CVRFPID-223156">Hoj</FullProductName>
+
+    <Relationship ProductReference="123" RelationType="Default Component Of" RelatesToProductReference="123">
+      <FullProductName ProductID="1235">Ahoj</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="10" RelationType="Installed On" RelatesToProductReference="10">
+      <FullProductName ProductID="10">Ahoj</FullProductName>
+    </Relationship>
+
+    <ProductGroups>
+      <Group GroupID="1">
+        <ProductID>123</ProductID>
+        <ProductID>10</ProductID>
+      </Group>
+    </ProductGroups>
+
+  </ProductTree>
+
+  <!-- Vulnerability section -->
+  <Vulnerability Ordinal="1"
+   xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln">
+    <Title>... Transmission Protocol  ...</Title>
+    <ID SystemName="Vendorix Bug ID">VDXvc83320</ID>
+    <Notes>
+      <Note Title="Summary" Type="Summary" Ordinal="1">A vuln ...</Note>
+      <Note Title="Vendorix Bug IDs" Type="Other" Ordinal="3">
+        VDXvc83320</Note>
+    </Notes>
+    <CVE>CVE-2017-3826</CVE>
+    <ProductStatuses>
+      <Status Type="Known Affected">
+        <ProductID>CVRFPID-223152</ProductID>
+        <ProductID>CVRFPID-223153</ProductID>
+        <ProductID>CVRFPID-223155</ProductID>
+        <ProductID>CVRFPID-223156</ProductID>
+      </Status>
+    </ProductStatuses>
+    <CVSSScoreSets>
+      <ScoreSetV3>
+        <BaseScoreV3>7.5</BaseScoreV3>
+        <VectorV3>CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H</VectorV3>
+      </ScoreSetV3>
+      </CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Workaround">
+        <Description>There are no workarounds that ...</Description>
+          </Remediation>
+        </Remediations>
+    <References>
+      <Reference Type="Self">
+        <URL>https://example.com/sec/vendorix-sa-20170301-abc</URL>
+        <Description>... AppY Stream ...</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="2" xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln">
+    <Title>Vultitle</Title>
+    <ID SystemName="SN">1</ID>
+    <Notes>
+      <Note Type="Details" Ordinal="1" Audience="Crowd" Title="X" >note 1</Note>
+      <Note Type="FAQ" Ordinal="2" Audience="Crowdstrike" Title="Y">note 2</Note>
+    </Notes>
+    <DiscoveryDate>2017-03-01T14:58:48</DiscoveryDate>
+    <ReleaseDate>2018-03-01T14:58:48</ReleaseDate>
+    <Involvements>
+      <Involvement Party="Discoverer" Status="Disputed">
+        <Description>Descccc</Description>
+      </Involvement>
+      <Involvement Party="Vendor" Status="Completed"></Involvement>
+    </Involvements>
+
+    <CVE>CVE-0000-0001</CVE>
+
+    <CWE ID="CWE-102">aaa</CWE>
+    <CWE ID="CWE-1024">bbb</CWE>
+
+    <ProductStatuses>
+      <Status Type="First Fixed">
+        <ProductID>123</ProductID>
+        <ProductID>10</ProductID>
+      </Status>
+      <Status Type="Known Affected">
+        <ProductID>1235</ProductID>
+      </Status>
+    </ProductStatuses>
+
+    <Threats>
+      <Threat Type="Exploit Status" Date="2018-03-01T14:58:48">
+        <Description>Test</Description>
+        <ProductID>10</ProductID>
+      </Threat>
+      <Threat Type="Impact">
+        <Description>Test</Description>
+        <GroupID>1</GroupID>
+      </Threat>
+    </Threats>
+
+    <CVSSScoreSets>
+      <ScoreSetV2>
+        <BaseScoreV2>5.4</BaseScoreV2>
+        <EnvironmentalScoreV2>1.4</EnvironmentalScoreV2>
+        <VectorV2>CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H</VectorV2>
+        <ProductID>10</ProductID>
+      </ScoreSetV2>
+      <ScoreSetV3>
+        <BaseScoreV3>1.2</BaseScoreV3>
+        <TemporalScoreV3>5.0</TemporalScoreV3>
+        <VectorV3>CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H</VectorV3>
+        <ProductID>123</ProductID>
+      </ScoreSetV3>
+      <ScoreSetV3>
+        <BaseScoreV3>7.5</BaseScoreV3>
+        <VectorV3>CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H</VectorV3>
+      </ScoreSetV3>
+    </CVSSScoreSets>
+
+    <Remediations>
+      <Remediation Type="Workaround">
+        <Description>There are no workarounds that ...</Description>
+      </Remediation>
+      <Remediation Type="Mitigation" Date="2000-03-01T14:58:48">
+        <Description>Mitig</Description>
+        <Entitlement>aaa</Entitlement>
+        <URL>http://koko.be</URL>
+        <ProductID>10</ProductID>
+        <GroupID>1</GroupID>
+      </Remediation>
+    </Remediations>
+
+    <References>
+      <Reference Type="Self">
+        <URL>http://koko.be</URL>
+        <Description>huh</Description>
+      </Reference>
+    </References>
+
+    <Acknowledgments>
+      <Acknowledgment>
+        <Name>Name ack</Name>
+      </Acknowledgment>
+    </Acknowledgments>
+
+  </Vulnerability>
+  <!-- No more elements to follow -->
+</cvrfdoc>
