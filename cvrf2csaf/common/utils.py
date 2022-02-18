@@ -52,7 +52,6 @@ def get_config_from_file() -> dict:
 
 
 def store_json(js, fpath):
-
     try:
 
         path = Path(fpath)
@@ -75,12 +74,7 @@ def store_json(js, fpath):
         critical_exit(f"Writing output file {fpath} failed. {e}")
 
 
-def get_utc_timestamp():
-    return datetime.now(timezone.utc).isoformat(timespec='milliseconds')
-
-
-def convert_to_utc_timestamp(time_stamp='now'):
-
+def get_utc_timestamp(time_stamp='now'):
     if time_stamp == 'now':
         dt = datetime.now(timezone.utc)
 
@@ -97,4 +91,3 @@ def convert_to_utc_timestamp(time_stamp='now'):
         dt = dt.replace(tzinfo=timezone.utc)
 
     return dt.isoformat(timespec='milliseconds')
-
