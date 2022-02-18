@@ -1,9 +1,9 @@
-import pkg_resources
-import logging
 import json
-import yaml
+import logging
 import os
+import pkg_resources
 import re
+import yaml
 
 from pathlib import Path
 from datetime import datetime, timezone
@@ -81,7 +81,7 @@ def store_json(js, fpath):
             logging.warning(f"Given output file {fpath} does not contain valid .json suffix.")
 
         with open(fpath, 'w', encoding='utf-8') as f:
-            json.dump(js, f, ensure_ascii=False, indent=4)
+            json.dump(js, f, ensure_ascii=False, indent=2)
             logging.info(f"Successfully wrote {fpath}.")
     except Exception as e:
         critical_exit(f"Writing output file {fpath} failed. {e}")

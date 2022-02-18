@@ -233,7 +233,7 @@ def main():
     file_path = str(os.path.join(config.get('output_dir'), file_name))
     store_json(js=final_csaf, fpath=file_path)
     if config.get('print', False):
-        print(json.dumps(final_csaf, indent=1))
+        print(json.dumps(final_csaf, indent=2))
 
 
 if __name__ == '__main__':
