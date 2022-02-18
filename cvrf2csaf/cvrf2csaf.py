@@ -218,7 +218,7 @@ def main():
     final_csaf = h.convert_file(path=config.get('input_file'))
 
     valid_output = True
-    if not h.validate_output_against_schema(config.get('output_file')) or SectionHandler.error_occurred:
+    if not h.validate_output_against_schema(final_csaf) or SectionHandler.error_occurred:
         valid_output = False
 
         if not config.get('force', False):
