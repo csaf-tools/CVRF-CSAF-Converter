@@ -1,7 +1,9 @@
 import logging
 import argparse
-import os
 import json
+import os
+import re
+
 from lxml import etree
 from lxml import objectify
 from jsonschema import Draft202012Validator, ValidationError, SchemaError, draft202012_format_checker
@@ -17,6 +19,7 @@ from .section_handlers.references import References
 from .section_handlers.document_tracking import DocumentTracking
 from .section_handlers.product_tree import ProductTree
 from .section_handlers.vulnerability import Vulnerability
+from .common.common import SectionHandler
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(module)s - %(levelname)s - %(message)s')
 
@@ -57,7 +60,35 @@ class DocumentHandler:
             'Vulnerability': self.vulnerability,
         }
 
+
+    def _update_CVSSv3_version_from_schema(self, root_element):
+        """ Tries to update CVSS 3.x version from schema."""
+        cvss_3_regex = '.*cvss-v(3\.[01]).*'
+
+        potential_cvss3 = None
+
+        # iterate over  namespaces
+        for ns in root_element.nsmap.values():
+            match = re.match(cvss_3_regex, ns)
+            if match:
+                cvss_version_matched = match.groups()[0]
+                # no potential cvss version found yet -> store it
+                if not potential_cvss3:
+                    potential_cvss3 = cvss_version_matched
+                # already have some version, but it's the same as currently matched -> ok, continue
+                elif potential_cvss3 == cvss_version_matched:
+                    continue
+                # else we have two different potential cvss versions -> skip this step comletely
+                else:
+                    return
+
+        if potential_cvss3:
+            logging.info(f'Default CVSS v3.x version set to {potential_cvss3} based on document XML schemas.')
+            self.vulnerability.default_CVSS3_version = potential_cvss3
+
     def _parse(self, root):
+        self._update_CVSSv3_version_from_schema(root)
+
         # Document leaf elements are handled on the root itself
         self.document_leaf_elements.create_csaf(root)
 
@@ -69,7 +100,6 @@ class DocumentHandler:
 
             if tag_handler:
                 tag_handler.create_csaf(root_element=elem)
-
 
     def _compose_final_csaf(self) -> dict:
         # Merges first level leaves into final CSAF document.
@@ -155,8 +185,6 @@ def main():
                         help="If used, the converter produces output that is invalid "
                              "(use case: convert to JSON, fix the errors manual, e.g. in Secvisogram.")
 
-
-
     # Document Publisher args
     parser.add_argument('--publisher-name', dest='publisher_name', type=str, help="Name of the publisher.")
     parser.add_argument('--publisher-namespace', dest='publisher_namespace', type=str,
@@ -190,9 +218,14 @@ def main():
     h = DocumentHandler(config, pkg_version)
     final_csaf = h.convert_file(path=config.get('input_file'))
 
-    if not h.validate_output_against_schema(final_csaf):
-        # TODO: If --force given, the output should not be written when CSAF not valid according to schema
-        pass
+    if not h.validate_output_against_schema(final_csaf) or SectionHandler.error_occurred:
+        if not config.get('force', False):
+            critical_exit("Some error occurred during conversion, can't produce output."
+                          " To override this, use --force.")
+        else:
+            logging.warning('Some errors occurred during conversion,'
+                            ' but producing output as --force option is used.')
+
 
     # Output / Store results
     if final_csaf:
