@@ -1,5 +1,4 @@
 import logging
-from .utils import critical_exit
 
 
 class SectionHandler:
@@ -33,6 +32,3 @@ class SectionHandler:
         except Exception as e:
             logging.error(f'Something went wrong when processing optional elements for {root_element.tag}. Reason: {e}')
 
-    def _critical_exit(self, msg, status_code=1):
-        """ A wrapper around generic critical_exit function, just adding the class name to the message """
-        critical_exit(f'{self.__class__.__name__}: {msg}', status_code)

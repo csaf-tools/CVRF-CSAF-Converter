@@ -79,13 +79,22 @@ def get_utc_timestamp():
     return datetime.now(timezone.utc).isoformat(timespec='milliseconds')
 
 
-def convert_to_utc_timestamp(time_stamp):
+def convert_to_utc_timestamp(time_stamp='now'):
 
-    ts = time_stamp.replace('Z', '+00:00')
-    try:
-        dt = datetime.fromisoformat(ts)
-        return dt.isoformat(timespec='milliseconds')
-    except Exception as e:
-        logging.error(f'invalid time stamp provided {time_stamp}.')
-        SectionHandler.error_occurred = True
-        return None
+    if time_stamp == 'now':
+        dt = datetime.now(timezone.utc)
+
+    else:
+        ts = time_stamp.replace('Z', '+00:00')
+        try:
+            dt = datetime.fromisoformat(ts)
+        except Exception as e:
+            logging.error(f'invalid time stamp provided {time_stamp}: {e}.')
+            SectionHandler.error_occurred = True
+            return None
+
+    if dt.tzinfo is None:
+        dt = dt.replace(tzinfo=timezone.utc)
+
+    return dt.isoformat(timespec='milliseconds')
+
