@@ -3,6 +3,7 @@ import argparse
 import json
 import os
 import re
+import turvallisuusneuvonta as mandatory_tests
 
 from lxml import etree
 from lxml import objectify
@@ -218,14 +219,24 @@ def main():
     h = DocumentHandler(config, pkg_version)
     final_csaf = h.convert_file(path=config.get('input_file'))
 
-    if not h.validate_output_against_schema(final_csaf) or SectionHandler.error_occurred:
+    # TODO: After the turvallisuusneuvonta package is complete and part of the csaf package, replace the implementation
+    # For now we fetch the tests like this to see which failed
+    mandatory_tests_failed = False
+    for m_test_str in mandatory_tests.__all__:
+        if m_test_str == 'is_valid':  # Skip is_valid which calls all the tests (but doesnt produce any output)
+            continue
+        m_test_call = getattr(mandatory_tests, m_test_str)
+        if not m_test_call(final_csaf):
+            mandatory_tests_failed = True
+            logging.error(f'Mandatory test {m_test_str} failed.')
+
+    if not h.validate_output_against_schema(final_csaf) or SectionHandler.error_occurred or mandatory_tests_failed:
         if not config.get('force', False):
             critical_exit("Some error occurred during conversion, can't produce output."
                           " To override this, use --force.")
         else:
             logging.warning('Some errors occurred during conversion,'
                             ' but producing output as --force option is used.')
-
 
     # Output / Store results
     if final_csaf:
