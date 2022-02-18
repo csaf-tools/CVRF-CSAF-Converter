@@ -100,7 +100,6 @@ class DocumentHandler:
             if tag_handler:
                 tag_handler.create_csaf(root_element=elem)
 
-
     def _compose_final_csaf(self) -> dict:
         # Merges first level leaves into final CSAF document.
         # [mapping table](https://github.com/tschmidtb51/csaf/blob/csaf-2.0-what-is-new-table/notes/whats-new-csaf-v2.0-cn01.md#e4-mapped-elements)
@@ -184,8 +183,6 @@ def main():
     parser.add_argument('--force', action='store_true', dest='force',
                         help="If used, the converter produces output that is invalid "
                              "(use case: convert to JSON, fix the errors manual, e.g. in Secvisogram.")
-
-
 
     # Document Publisher args
     parser.add_argument('--publisher-name', dest='publisher_name', type=str, help="Name of the publisher.")
