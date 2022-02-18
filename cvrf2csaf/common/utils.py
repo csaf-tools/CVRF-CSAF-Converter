@@ -54,7 +54,7 @@ def get_config_from_file() -> dict:
 
 def create_file_name(document_tracking_id, valid_output):
     if document_tracking_id is not None:
-        file_name = re.sub(r"([^+,_a-zA-Z0-9])", '_', document_tracking_id.lower())
+        file_name = re.sub(r"([^+\-_a-z0-9]+)", '_', document_tracking_id.lower())
     else:
         file_name = 'out'
 
