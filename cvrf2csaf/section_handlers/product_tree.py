@@ -132,8 +132,9 @@ class ProductTree(SectionHandler):
             # The ProductTree section doesn't contain Branches at all
             return None
 
-        if hasattr(root_element, 'FullProductName'):
-            # root_element is the leaf branch
+        if 'Branch' in root_element.tag and hasattr(root_element, 'FullProductName'):
+            # Make sure we are inside a Branch (and not in the top ProductTree element, where FullProductName can occur)
+            # then root_element is the leaf branch
 
             leaf_branch = {
                 'name': root_element.attrib['Name'],

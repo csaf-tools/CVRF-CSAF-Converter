@@ -7,6 +7,7 @@ import yaml
 
 from pathlib import Path
 from datetime import datetime, timezone
+from .common import SectionHandler
 
 
 def critical_exit(msg, status_code=1):
@@ -87,5 +88,20 @@ def store_json(js, fpath):
         critical_exit(f"Writing output file {fpath} failed. {e}")
 
 
-def get_utc_timestamp():
-    return datetime.now(timezone.utc).isoformat(timespec='milliseconds')
+def get_utc_timestamp(time_stamp='now'):
+    if time_stamp == 'now':
+        dt = datetime.now(timezone.utc)
+
+    else:
+        ts = time_stamp.replace('Z', '+00:00')
+        try:
+            dt = datetime.fromisoformat(ts)
+        except Exception as e:
+            logging.error(f'invalid time stamp provided {time_stamp}: {e}.')
+            SectionHandler.error_occurred = True
+            return None
+
+    if dt.tzinfo is None:
+        dt = dt.replace(tzinfo=timezone.utc)
+
+    return dt.isoformat(timespec='milliseconds')
