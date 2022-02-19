@@ -1,8 +1,10 @@
-import argparse
-import yaml
-import os, logging, json
-import inspect
+import json
+import logging
+import os
 import pkg_resources
+import re
+import yaml
+
 from pathlib import Path
 from datetime import datetime, timezone
 from .common import SectionHandler
@@ -51,6 +53,18 @@ def get_config_from_file() -> dict:
         return config
 
 
+def create_file_name(document_tracking_id, valid_output):
+    if document_tracking_id is not None:
+        file_name = re.sub(r"([^+\-_a-z0-9]+)", '_', document_tracking_id.lower())
+    else:
+        file_name = 'out'
+
+    if not valid_output:
+        file_name = f'{file_name}_invalid'
+    file_name = f'{file_name}.json'
+    return file_name
+
+
 def store_json(js, fpath):
     try:
 
@@ -68,7 +82,7 @@ def store_json(js, fpath):
             logging.warning(f"Given output file {fpath} does not contain valid .json suffix.")
 
         with open(fpath, 'w', encoding='utf-8') as f:
-            json.dump(js, f, ensure_ascii=False, indent=4)
+            json.dump(js, f, ensure_ascii=False, indent=2)
             logging.info(f"Successfully wrote {fpath}.")
     except Exception as e:
         critical_exit(f"Writing output file {fpath} failed. {e}")

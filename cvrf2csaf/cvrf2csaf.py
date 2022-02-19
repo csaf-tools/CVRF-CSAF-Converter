@@ -9,7 +9,7 @@ from lxml import objectify
 from jsonschema import Draft202012Validator, ValidationError, SchemaError, draft202012_format_checker
 from pkg_resources import get_distribution
 
-from .common.utils import get_config_from_file, store_json, critical_exit
+from .common.utils import get_config_from_file, store_json, critical_exit, create_file_name
 
 from .section_handlers.document_leaf_elements import DocumentLeafElements
 from .section_handlers.document_acknowledgments import Acknowledgments
@@ -59,7 +59,6 @@ class DocumentHandler:
             'ProductTree': self.product_tree,
             'Vulnerability': self.vulnerability,
         }
-
 
     def _update_CVSSv3_version_from_schema(self, root_element):
         """ Tries to update CVSS 3.x version from schema."""
@@ -177,8 +176,8 @@ def main():
     parser.add_argument('-v', '--version', action='version', version='{}'.format(get_distribution('cvrf2csaf').version))
     parser.add_argument('--input-file', dest='input_file', type=str, required=True,
                         help="CVRF XML input file to parse", metavar='PATH')
-    parser.add_argument('--output-file', dest='output_file', type=str, required=True,
-                        help="CVRF JSON output file to write to.", metavar='PATH')
+    parser.add_argument('--output-dir', dest='output_dir', type=str, required=True,
+                        help="CVRF JSON output dir to write to. Filename is derived from /document/tracking/id.", metavar='PATH')
     parser.add_argument('--print', dest='print', action='store_true', default=False,
                         help="Additionally prints JSON output on command line.")
     parser.add_argument('--force', action='store_true', dest='force',
@@ -218,7 +217,10 @@ def main():
     h = DocumentHandler(config, pkg_version)
     final_csaf = h.convert_file(path=config.get('input_file'))
 
+    valid_output = True
     if not h.validate_output_against_schema(final_csaf) or SectionHandler.error_occurred:
+        valid_output = False
+
         if not config.get('force', False):
             critical_exit("Some error occurred during conversion, can't produce output."
                           " To override this, use --force.")
@@ -226,12 +228,12 @@ def main():
             logging.warning('Some errors occurred during conversion,'
                             ' but producing output as --force option is used.')
 
-
     # Output / Store results
-    if final_csaf:
-        store_json(js=final_csaf, fpath=config.get('output_file'))
-        if config.get('print', False):
-            print(json.dumps(final_csaf, indent=1))
+    file_name = create_file_name(final_csaf['document'].get('tracking', {}).get('id', None), valid_output)
+    file_path = str(os.path.join(config.get('output_dir'), file_name))
+    store_json(js=final_csaf, fpath=file_path)
+    if config.get('print', False):
+        print(json.dumps(final_csaf, indent=2))
 
 
 if __name__ == '__main__':
