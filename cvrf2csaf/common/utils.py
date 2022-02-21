@@ -1,10 +1,13 @@
-import argparse
-import yaml
-import os, logging, json
-import inspect
+import json
+import logging
+import os
 import pkg_resources
+import re
+import yaml
+
 from pathlib import Path
 from datetime import datetime, timezone
+from .common import SectionHandler
 
 
 def critical_exit(msg, status_code=1):
@@ -50,8 +53,19 @@ def get_config_from_file() -> dict:
         return config
 
 
-def store_json(js, fpath):
+def create_file_name(document_tracking_id, valid_output):
+    if document_tracking_id is not None:
+        file_name = re.sub(r"([^+\-_a-z0-9]+)", '_', document_tracking_id.lower())
+    else:
+        file_name = 'out'
 
+    if not valid_output:
+        file_name = f'{file_name}_invalid'
+    file_name = f'{file_name}.json'
+    return file_name
+
+
+def store_json(js, fpath):
     try:
 
         path = Path(fpath)
@@ -68,11 +82,26 @@ def store_json(js, fpath):
             logging.warning(f"Given output file {fpath} does not contain valid .json suffix.")
 
         with open(fpath, 'w', encoding='utf-8') as f:
-            json.dump(js, f, ensure_ascii=False, indent=4)
+            json.dump(js, f, ensure_ascii=False, indent=2)
             logging.info(f"Successfully wrote {fpath}.")
     except Exception as e:
         critical_exit(f"Writing output file {fpath} failed. {e}")
 
 
-def get_utc_timestamp():
-    return datetime.now(timezone.utc).isoformat(timespec='milliseconds')
+def get_utc_timestamp(time_stamp='now'):
+    if time_stamp == 'now':
+        dt = datetime.now(timezone.utc)
+
+    else:
+        ts = time_stamp.replace('Z', '+00:00')
+        try:
+            dt = datetime.fromisoformat(ts)
+        except Exception as e:
+            logging.error(f'invalid time stamp provided {time_stamp}: {e}.')
+            SectionHandler.error_occurred = True
+            return None
+
+    if dt.tzinfo is None:
+        dt = dt.replace(tzinfo=timezone.utc)
+
+    return dt.isoformat(timespec='milliseconds')

@@ -22,8 +22,8 @@ class DocumentTracking(SectionHandler):
 
     def _process_mandatory_elements(self, root_element):
         self.csaf['id'] = root_element.Identification.ID.text
-        self.csaf['current_release_date'] = root_element.CurrentReleaseDate.text
-        self.csaf['initial_release_date'] = root_element.InitialReleaseDate.text
+        self.csaf['current_release_date'] = get_utc_timestamp(root_element.CurrentReleaseDate.text)
+        self.csaf['initial_release_date'] = get_utc_timestamp(root_element.InitialReleaseDate.text)
         self.csaf['status'] = self.tracking_status_mapping[root_element.Status.text]
 
         revision_history, version = self._process_revision_history_and_version(root_element)
@@ -32,7 +32,7 @@ class DocumentTracking(SectionHandler):
 
         # Generator is set by this Converter
         self.csaf['generator'] = {}
-        self.csaf['generator']['date'] = get_utc_timestamp()
+        self.csaf['generator']['date'] = get_utc_timestamp(time_stamp='now')
         self.csaf['generator']['engine'] = {}
         self.csaf['generator']['engine']['name'] = self.cvrf2csaf_name
         self.csaf['generator']['engine']['version'] = self.cvrf2csaf_version
@@ -88,19 +88,21 @@ class DocumentTracking(SectionHandler):
                 logging.warning('Forcing update of the revision history and adding the current version. '
                                 'This may lead to inconsistent history.')
             else:
-                self._critical_exit('Too big difference between the current version and the last revision in history. '
+                SectionHandler.error_occurred = True
+                logging.error('Too big difference between the current version and the last revision in history. '
                                     'This can be fixed by using --force-update-revision-history')
 
         elif current_version[-1] - latest_history_revision[-1] == 1:
             logging.warning('Adding the current version to the revision history (difference is only 1 version).')
 
         else:
-            self._critical_exit('Unexpected case occured when trying to fix the revision history.')
+            SectionHandler.error_occurred = True
+            logging.error('Unexpected case occured when trying to fix the revision history.')
 
         # All the conditions were met, now add the actual revision to the history
         revision_history.append(
             {
-                'date': root_element.CurrentReleaseDate.text,
+                'date': get_utc_timestamp(root_element.CurrentReleaseDate.text),
                 'number': root_element.Version.text,
                 'summary': f'Added by {self.cvrf2csaf_name} as the value was missing in the original CVRF.',
                 # Extra vars
@@ -132,7 +134,7 @@ class DocumentTracking(SectionHandler):
             # number: this value might be overwritten later if some version numbers doesn't match semantic versioning
             revision_history.append(
                 {
-                    'date': revision.Date.text,
+                    'date': get_utc_timestamp(revision.Date.text),
                     'number': revision.Number.text,
                     'summary': revision.Description.text,
                     # Extra vars
