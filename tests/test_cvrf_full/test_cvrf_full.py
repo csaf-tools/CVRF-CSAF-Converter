@@ -19,6 +19,7 @@ def assert_object(path, length=None):
 
     except KeyError:
         print(f'FAILED. Missing CSAF path: /{path}')
+        raise AssertionError
 
     else:
         if length:
@@ -206,8 +207,25 @@ def test_full_input_cvrf():
     assert_object('vulnerabilities/1/remediations/1/group_ids', 1)
     assert_object('vulnerabilities/1/remediations/1/date')
 
-    # TODO: After everything implemented
-    assert_object('vulnerabilities/1/scores')
+    assert_object('vulnerabilities/1/scores', 3)
+    assert_object('vulnerabilities/1/scores/0/cvss_v2/baseScore')
+    assert_object('vulnerabilities/1/scores/0/cvss_v2/environmentalScore')
+    assert_object('vulnerabilities/1/scores/0/cvss_v2/vectorString')
+    assert_object('vulnerabilities/1/scores/0/cvss_v2/version')
+    assert_object('vulnerabilities/1/scores/0/products', 1)
+
+    assert_object('vulnerabilities/1/scores/1/cvss_v3/baseScore')
+    assert_object('vulnerabilities/1/scores/1/cvss_v3/temporalScore')
+    assert_object('vulnerabilities/1/scores/1/cvss_v3/vectorString')
+    assert_object('vulnerabilities/1/scores/1/cvss_v3/version')
+    assert_object('vulnerabilities/1/scores/1/cvss_v3/baseSeverity')
+    assert_object('vulnerabilities/1/scores/1/products', 1)
+
+    assert_object('vulnerabilities/1/scores/2/cvss_v3/baseScore')
+    assert_object('vulnerabilities/1/scores/2/cvss_v3/vectorString')
+    assert_object('vulnerabilities/1/scores/2/cvss_v3/version')
+    assert_object('vulnerabilities/1/scores/2/cvss_v3/baseSeverity')
+    assert_object('vulnerabilities/1/scores/2/products', 1)
 
     assert_object('vulnerabilities/1/threats', 2)
     assert_object('vulnerabilities/1/threats/0/details')
