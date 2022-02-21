@@ -124,23 +124,47 @@ class DocumentHandler:
         return final_csaf
 
     @classmethod
-    def _validate_and_open_file(cls, file_path):
-        """Read CVRF XML from $path"""
+    def _tolerate_errors(cls, error_list):
+        for error in error_list:
+            pass
+        return True
+
+
+    @classmethod
+    def _validate_input_against_schema(cls, file_path):
         with open(cls.SCHEMA_FILE) as f:
             os.environ.update(XML_CATALOG_FILES=cls.CATALOG_FILE)
             schema = etree.XMLSchema(file=f)
 
-        parser = objectify.makeparser(schema=schema)
-
         try:
-            xml_objectified = objectify.parse(file_path, parser).getroot()
-            return xml_objectified
-        except etree.ParseError as e:
-            critical_exit(f'Input document not valid: {e}.')
+            schema.assertValid(file_path)
+            logging.info('Input XSD validation OK.')
+            return True
+        except etree.DocumentInvalid as e:
+            errors = list(schema.error_log)
+
+        if not DocumentHandler._tolerate_errors(errors):
+            logging.error(f'Errors during input validation occurred, reason(s): {errors}.')
+            return False
+        else:
+            return True
+
+    @classmethod
+    def _open_and_validate_file(cls, file_path):
+        try:
+            xml_objectified = objectify.parse(file_path)
+        except Exception as e:
+            critical_exit(f'Failed to open input file {file_path}: {e}.')
+
+        if not DocumentHandler._validate_input_against_schema(xml_objectified):
+            critical_exit(f'Input document not valid, reason(s).')
+
+        return xml_objectified.getroot()
+
 
     def convert_file(self, path) -> dict:
         """Wrapper to read/parse CVRF and parse it to CSAF JSON structure"""
-        root = DocumentHandler._validate_and_open_file(path)
+        root = DocumentHandler._open_and_validate_file(path)
 
         self._parse(root)
 
@@ -166,7 +190,7 @@ class DocumentHandler:
             logging.error(f'CSAF schema validation error. Path: {e.json_path}. Message: {e.message}.')
             return False
         else:
-            logging.info('CSAF schema validation OK')
+            logging.info('CSAF schema validation OK.')
             return True
 
 
