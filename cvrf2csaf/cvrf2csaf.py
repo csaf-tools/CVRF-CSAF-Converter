@@ -3,6 +3,7 @@ import argparse
 import json
 import os
 import re
+import turvallisuusneuvonta as mandatory_tests
 
 from lxml import etree
 from lxml import objectify
@@ -169,6 +170,21 @@ class DocumentHandler:
             logging.info('CSAF schema validation OK')
             return True
 
+    @staticmethod
+    def validate_mandatory_tests(final_csaf):
+        # TODO: After the turvallisuusneuvonta package is complete and part of the csaf package, replace the implementation
+        # For now we fetch the tests like this to see which failed
+        passed = True
+        for m_test_str in mandatory_tests.__all__:
+            if m_test_str == 'is_valid':  # Skip is_valid which calls all the tests (but doesnt produce any output)
+                continue
+            m_test_call = getattr(mandatory_tests, m_test_str)
+            if not m_test_call(final_csaf):
+                passed = False
+                logging.error(f'Mandatory test {m_test_str} failed.')
+
+        return passed
+
 
 def main():
     # General args
@@ -218,7 +234,9 @@ def main():
     final_csaf = h.convert_file(path=config.get('input_file'))
 
     valid_output = True
-    if not h.validate_output_against_schema(final_csaf) or SectionHandler.error_occurred:
+    if not h.validate_output_against_schema(final_csaf) \
+            or not h.validate_mandatory_tests(final_csaf) \
+            or SectionHandler.error_occurred:
         valid_output = False
 
         if not config.get('force', False):
