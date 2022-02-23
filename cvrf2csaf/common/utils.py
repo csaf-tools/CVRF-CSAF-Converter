@@ -43,7 +43,7 @@ def get_config_from_file() -> dict:
         with open(path_to_conf, 'r') as f:
             config = yaml.safe_load(f)
 
-        for key in ['force', 'force_insert_current_version_into_revision_history']:
+        for key in ['force', 'fix_insert_current_version_into_revision_history']:
             if key in config.keys():
                 config[key] = handle_boolean_config_values(key=key, val=config[key])
 

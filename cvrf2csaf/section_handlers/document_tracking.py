@@ -18,8 +18,8 @@ class DocumentTracking(SectionHandler):
         super().__init__()
         self.cvrf2csaf_name = config.get('cvrf2csaf_name')
         self.cvrf2csaf_version = pkg_version
-        self.force_insert_current_version_into_revision_history \
-            = config.get('force_insert_current_version_into_revision_history')
+        self.fix_insert_current_version_into_revision_history \
+            = config.get('fix_insert_current_version_into_revision_history')
 
     def _process_mandatory_elements(self, root_element):
         self.csaf['id'] = root_element.Identification.ID.text
@@ -71,7 +71,7 @@ class DocumentTracking(SectionHandler):
 
     def _add_current_revision_to_history(self, root_element, revision_history) -> None:
         """
-        If the current version is missing in Revision history and --force-insert-current-version-into-revision-history is True,
+        If the current version is missing in Revision history and --fix-insert-current-version-into-revision-history is True,
         the current version is added to the history.
         """
 
@@ -124,14 +124,14 @@ class DocumentTracking(SectionHandler):
         missing_latest_version_in_history = False
         # Do we miss the current version in the revision history?
         if not [rev for rev in revision_history if rev['number'] == version]:
-            if self.force_insert_current_version_into_revision_history:
-                logging.warning('Forcing update of the revision history and adding the current version. '
+            if self.fix_insert_current_version_into_revision_history:
+                logging.warning('Trying to fix the revision history by adding the current version. '
                                 'This may lead to inconsistent history. This happens because '
-                                '--force-insert-current-version-into-revision-history is used. ')
+                                '--fix-insert-current-version-into-revision-history is used. ')
                 self._add_current_revision_to_history(root_element, revision_history)
             else:
                 logging.error('Current version is missing in revision history. '
-                              'This can be fixed by using --force-insert-current-version-into-revision-history')
+                              'This can be fixed by using --fix-insert-current-version-into-revision-history')
                 missing_latest_version_in_history = True
                 self.error_occurred = True
 
@@ -142,7 +142,7 @@ class DocumentTracking(SectionHandler):
                 revision_history, version = self._reindex_versions_to_integers(root_element, revision_history)
             else:
                 logging.error('Can not reindex revision history to integers because of missing the current version. '
-                              'This can be fixed with --force-insert-current-version-into-revision-history')
+                              'This can be fixed with --fix-insert-current-version-into-revision-history')
                 self.error_occurred = True
 
         # cleanup extra vars

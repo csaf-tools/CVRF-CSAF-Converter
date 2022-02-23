@@ -206,7 +206,7 @@ def main():
                         help="Namespace of the publisher.")
 
     # Document Tracking args
-    parser.add_argument('--force-insert-current-version-into-revision-history', action='store_const', const='cmd-arg-entered',
+    parser.add_argument('--fix-insert-current-version-into-revision-history', action='store_const', const='cmd-arg-entered',
                         help="If the current version is not present in the revision history "
                              "the current version is added to the revision history. Also warning is produced. By default, "
                              "an error is produced.")
@@ -219,8 +219,8 @@ def main():
     config.update(args)
 
     # Boolean optional arguments that are also present in config need special treatment
-    if config['force_insert_current_version_into_revision_history'] == 'cmd-arg-entered':
-        config['force_insert_current_version_into_revision_history'] = True
+    if config['fix_insert_current_version_into_revision_history'] == 'cmd-arg-entered':
+        config['fix_insert_current_version_into_revision_history'] = True
     if config['force'] == 'cmd-arg-entered':
         config['force'] = True
 
