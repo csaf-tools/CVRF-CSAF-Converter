@@ -196,7 +196,7 @@ def main():
                         help="CVRF JSON output dir to write to. Filename is derived from /document/tracking/id.", metavar='PATH')
     parser.add_argument('--print', dest='print', action='store_true', default=False,
                         help="Additionally prints JSON output on command line.")
-    parser.add_argument('--force', action='store_true', dest='force',
+    parser.add_argument('--force', action='store_const', const='cmd-arg-entered',
                         help="If used, the converter produces output that is invalid "
                              "(use case: convert to JSON, fix the errors manual, e.g. in Secvisogram.")
 
@@ -206,11 +206,10 @@ def main():
                         help="Namespace of the publisher.")
 
     # Document Tracking args
-    parser.add_argument('--force-update-revision-history', action='store_const', const='cmd-arg-entered',
-                        help="If the current version is not present in the revision history AND the difference "
-                             "between the current version and the most recent revision is more than one version, "
+    parser.add_argument('--fix-insert-current-version-into-revision-history', action='store_const', const='cmd-arg-entered',
+                        help="If the current version is not present in the revision history "
                              "the current version is added to the revision history. Also warning is produced. By default, "
-                             "the current version is added only if the difference is one version.")
+                             "an error is produced.")
 
     args = {k: v for k, v in vars(parser.parse_args()).items() if v is not None}
 
@@ -219,9 +218,11 @@ def main():
     # Update & rewrite config file values with the ones from command line arguments
     config.update(args)
 
-    # Boolean optional argument need special treatment
-    if config['force_update_revision_history'] == 'cmd-arg-entered':
-        config['force_update_revision_history'] = True
+    # Boolean optional arguments that are also present in config need special treatment
+    if config['fix_insert_current_version_into_revision_history'] == 'cmd-arg-entered':
+        config['fix_insert_current_version_into_revision_history'] = True
+    if config['force'] == 'cmd-arg-entered':
+        config['force'] = True
 
     if not os.path.isfile(config.get('input_file')):
         critical_exit(f'Input file not found, check the path: {config.get("input_file")}')
