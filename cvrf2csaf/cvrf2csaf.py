@@ -34,6 +34,9 @@ class DocumentHandler:
     5. Combining it to the final JSON and writing the result to a file
     """
 
+    TOLERATED_ERRORS_SUBSTR = ["}ScoreSetV3': This element is not expected. Expected is one of ( {http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln}ScoreSetV2, {http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln}ScoreSetV3 ).",
+                        "ScoreSetV3': This element is not expected. Expected is ( {http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln}ScoreSetV3 )."]
+
     SCHEMA_FILE = 'schemata/cvrf/1.2/cvrf.xsd'
     CATALOG_FILE = 'schemata/catalog_1_2.xml'
 
@@ -93,7 +96,7 @@ class DocumentHandler:
 
         # For children of the root element with a deeper structure, dedicated section handlers are used
         for elem in root.iterchildren():
-            # get tag name without it's namespace, don't use elem.tag here
+            # get tag name without its namespace, don't use elem.tag here
             tag = etree.QName(elem).localname
             tag_handler = self.sections_handlers.get(tag)
 
@@ -125,9 +128,11 @@ class DocumentHandler:
 
     @classmethod
     def _tolerate_errors(cls, error_list):
-        for error in error_list:
-            pass
-        return True
+        tolerated_errors = [error for error in error_list if any(error_substr in error.message for error_substr in DocumentHandler.TOLERATED_ERRORS_SUBSTR)]
+        if set(tolerated_errors) == set(error_list):
+            logging.warning(f'Some errors during input validation happened, but can be tolerated: {tolerated_errors}.')
+            return True
+        return False
 
 
     @classmethod
