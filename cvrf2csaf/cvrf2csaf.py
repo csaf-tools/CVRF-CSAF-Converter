@@ -35,6 +35,9 @@ class DocumentHandler:
     5. Combining it to the final JSON and writing the result to a file
     """
 
+    TOLERATED_ERRORS_SUBSTR = ["}ScoreSetV3': This element is not expected. Expected is one of ( {http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln}ScoreSetV2, {http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln}ScoreSetV3 ).",
+                        "}ScoreSetV3': This element is not expected. Expected is ( {http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln}ScoreSetV3 )."]
+
     SCHEMA_FILE = 'schemata/cvrf/1.2/cvrf.xsd'
     CATALOG_FILE = 'schemata/catalog_1_2.xml'
 
@@ -94,7 +97,7 @@ class DocumentHandler:
 
         # For children of the root element with a deeper structure, dedicated section handlers are used
         for elem in root.iterchildren():
-            # get tag name without it's namespace, don't use elem.tag here
+            # get tag name without its namespace, don't use elem.tag here
             tag = etree.QName(elem).localname
             tag_handler = self.sections_handlers.get(tag)
 
@@ -125,23 +128,49 @@ class DocumentHandler:
         return final_csaf
 
     @classmethod
-    def _validate_and_open_file(cls, file_path):
-        """Read CVRF XML from $path"""
+    def _tolerate_errors(cls, error_list):
+        tolerated_errors = [error for error in error_list if any(error_substr in error.message for error_substr in DocumentHandler.TOLERATED_ERRORS_SUBSTR)]
+        if set(tolerated_errors) == set(error_list):
+            logging.warning(f'Some errors during input validation happened, but can be tolerated: {tolerated_errors}.')
+            return True
+        return False
+
+
+    @classmethod
+    def _validate_input_against_schema(cls, file_path):
         with open(cls.SCHEMA_FILE) as f:
             os.environ.update(XML_CATALOG_FILES=cls.CATALOG_FILE)
             schema = etree.XMLSchema(file=f)
 
-        parser = objectify.makeparser(schema=schema)
-
         try:
-            xml_objectified = objectify.parse(file_path, parser).getroot()
-            return xml_objectified
-        except etree.ParseError as e:
-            critical_exit(f'Input document not valid: {e}.')
+            schema.assertValid(file_path)
+            logging.info('Input XSD validation OK.')
+            return True
+        except etree.DocumentInvalid as e:
+            errors = list(schema.error_log)
+
+        if not DocumentHandler._tolerate_errors(errors):
+            logging.error(f'Errors during input validation occurred, reason(s): {errors}.')
+            return False
+        else:
+            return True
+
+    @classmethod
+    def _open_and_validate_file(cls, file_path):
+        try:
+            xml_objectified = objectify.parse(file_path)
+        except Exception as e:
+            critical_exit(f'Failed to open input file {file_path}: {e}.')
+
+        if not DocumentHandler._validate_input_against_schema(xml_objectified):
+            critical_exit(f'Input document not valid, reason(s).')
+
+        return xml_objectified.getroot()
+
 
     def convert_file(self, path) -> dict:
         """Wrapper to read/parse CVRF and parse it to CSAF JSON structure"""
-        root = DocumentHandler._validate_and_open_file(path)
+        root = DocumentHandler._open_and_validate_file(path)
 
         self._parse(root)
 
@@ -167,7 +196,7 @@ class DocumentHandler:
             logging.error(f'CSAF schema validation error. Path: {e.json_path}. Message: {e.message}.')
             return False
         else:
-            logging.info('CSAF schema validation OK')
+            logging.info('CSAF schema validation OK.')
             return True
 
     @staticmethod
@@ -196,7 +225,7 @@ def main():
                         help="CVRF JSON output dir to write to. Filename is derived from /document/tracking/id.", metavar='PATH')
     parser.add_argument('--print', dest='print', action='store_true', default=False,
                         help="Additionally prints JSON output on command line.")
-    parser.add_argument('--force', action='store_true', dest='force',
+    parser.add_argument('--force', action='store_const', const='cmd-arg-entered',
                         help="If used, the converter produces output that is invalid "
                              "(use case: convert to JSON, fix the errors manual, e.g. in Secvisogram.")
 
@@ -206,11 +235,10 @@ def main():
                         help="Namespace of the publisher.")
 
     # Document Tracking args
-    parser.add_argument('--force-update-revision-history', action='store_const', const='cmd-arg-entered',
-                        help="If the current version is not present in the revision history AND the difference "
-                             "between the current version and the most recent revision is more than one version, "
+    parser.add_argument('--fix-insert-current-version-into-revision-history', action='store_const', const='cmd-arg-entered',
+                        help="If the current version is not present in the revision history "
                              "the current version is added to the revision history. Also warning is produced. By default, "
-                             "the current version is added only if the difference is one version.")
+                             "an error is produced.")
 
     args = {k: v for k, v in vars(parser.parse_args()).items() if v is not None}
 
@@ -219,9 +247,11 @@ def main():
     # Update & rewrite config file values with the ones from command line arguments
     config.update(args)
 
-    # Boolean optional argument need special treatment
-    if config['force_update_revision_history'] == 'cmd-arg-entered':
-        config['force_update_revision_history'] = True
+    # Boolean optional arguments that are also present in config need special treatment
+    if config['fix_insert_current_version_into_revision_history'] == 'cmd-arg-entered':
+        config['fix_insert_current_version_into_revision_history'] = True
+    if config['force'] == 'cmd-arg-entered':
+        config['force'] = True
 
     if not os.path.isfile(config.get('input_file')):
         critical_exit(f'Input file not found, check the path: {config.get("input_file")}')
