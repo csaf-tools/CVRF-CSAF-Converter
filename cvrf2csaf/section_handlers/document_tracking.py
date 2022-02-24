@@ -18,7 +18,8 @@ class DocumentTracking(SectionHandler):
         super().__init__()
         self.cvrf2csaf_name = config.get('cvrf2csaf_name')
         self.cvrf2csaf_version = pkg_version
-        self.force_update_revision_history = config.get('force_update_revision_history')
+        self.fix_insert_current_version_into_revision_history \
+            = config.get('fix_insert_current_version_into_revision_history')
 
     def _process_mandatory_elements(self, root_element):
         self.csaf['id'] = root_element.Identification.ID.text
@@ -26,7 +27,7 @@ class DocumentTracking(SectionHandler):
         self.csaf['initial_release_date'] = get_utc_timestamp(root_element.InitialReleaseDate.text)
         self.csaf['status'] = self.tracking_status_mapping[root_element.Status.text]
 
-        revision_history, version = self._process_revision_history_and_version(root_element)
+        revision_history, version = self._handle_revision_history_and_version(root_element)
         self.csaf['revision_history'] = revision_history
         self.csaf['version'] = version
 
@@ -70,36 +71,10 @@ class DocumentTracking(SectionHandler):
 
     def _add_current_revision_to_history(self, root_element, revision_history) -> None:
         """
-        If the current version is missing in Revision history, the current version is tried to be added
-        to the history. The result also depends on the force_update_revision_history attribute
-
-        Calls critical_exit if could not be handled
+        If the current version is missing in Revision history and --fix-insert-current-version-into-revision-history is True,
+        the current version is added to the history.
         """
 
-        current_version = self._as_int_tuple(root_element.Version.text)
-        latest_history_revision = self._as_int_tuple(revision_history[-1]['number'])
-
-        if len(current_version) != len(latest_history_revision):
-            log_msg = 'Mixed formats for the current version and the last revision from history.'
-            logging.error(log_msg)  # Todo: handle force parameter here
-
-        if current_version[-1] - latest_history_revision[-1] > 1:
-            if self.force_update_revision_history is True:
-                logging.warning('Forcing update of the revision history and adding the current version. '
-                                'This may lead to inconsistent history.')
-            else:
-                SectionHandler.error_occurred = True
-                logging.error('Too big difference between the current version and the last revision in history. '
-                                    'This can be fixed by using --force-update-revision-history')
-
-        elif current_version[-1] - latest_history_revision[-1] == 1:
-            logging.warning('Adding the current version to the revision history (difference is only 1 version).')
-
-        else:
-            SectionHandler.error_occurred = True
-            logging.error('Unexpected case occured when trying to fix the revision history.')
-
-        # All the conditions were met, now add the actual revision to the history
         revision_history.append(
             {
                 'date': get_utc_timestamp(root_element.CurrentReleaseDate.text),
@@ -126,7 +101,7 @@ class DocumentTracking(SectionHandler):
 
         return revision_history_sorted, version
 
-    def _process_revision_history_and_version(self, root_element):
+    def _handle_revision_history_and_version(self, root_element):
         # preprocess the data
         revision_history = []
         for revision in root_element.RevisionHistory.Revision:
@@ -143,17 +118,32 @@ class DocumentTracking(SectionHandler):
                 }
             )
 
+        # Just copy over the version
+        version = root_element.Version.text
+
+        missing_latest_version_in_history = False
         # Do we miss the current version in the revision history?
-        if not [rev for rev in revision_history if rev['number'] == root_element.Version.text]:
-            self._add_current_revision_to_history(root_element, revision_history)
+        if not [rev for rev in revision_history if rev['number'] == version]:
+            if self.fix_insert_current_version_into_revision_history:
+                logging.warning('Trying to fix the revision history by adding the current version. '
+                                'This may lead to inconsistent history. This happens because '
+                                '--fix-insert-current-version-into-revision-history is used. ')
+                self._add_current_revision_to_history(root_element, revision_history)
+            else:
+                logging.error('Current version is missing in revision history. '
+                              'This can be fixed by using --fix-insert-current-version-into-revision-history')
+                missing_latest_version_in_history = True
+                self.error_occurred = True
 
         # handle corresponding part of Conformance Clause 5: CVRF CSAF converter
         # that is: some version numbers in revision_history don't match semantic versioning
         if not self.check_for_version_t(revision_history):
-            revision_history, version = self._reindex_versions_to_integers(root_element, revision_history)
-        else:
-            # Just copy over the version
-            version = root_element.Version.text
+            if not missing_latest_version_in_history:
+                revision_history, version = self._reindex_versions_to_integers(root_element, revision_history)
+            else:
+                logging.error('Can not reindex revision history to integers because of missing the current version. '
+                              'This can be fixed with --fix-insert-current-version-into-revision-history')
+                self.error_occurred = True
 
         # cleanup extra vars
         for revision in revision_history:
