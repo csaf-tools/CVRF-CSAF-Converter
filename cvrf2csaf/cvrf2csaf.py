@@ -8,7 +8,7 @@ import turvallisuusneuvonta as mandatory_tests
 from lxml import etree
 from lxml import objectify
 from jsonschema import Draft202012Validator, ValidationError, SchemaError, draft202012_format_checker
-from pkg_resources import get_distribution
+from pkg_resources import get_distribution, Requirement, resource_filename
 
 from .common.utils import get_config_from_file, store_json, critical_exit, create_file_name
 
@@ -38,11 +38,13 @@ class DocumentHandler:
     TOLERATED_ERRORS_SUBSTR = ["}ScoreSetV3': This element is not expected. Expected is one of ( {http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln}ScoreSetV2, {http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln}ScoreSetV3 ).",
                         "}ScoreSetV3': This element is not expected. Expected is ( {http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln}ScoreSetV3 )."]
 
-    SCHEMA_FILE = 'schemata/cvrf/1.2/cvrf.xsd'
-    CATALOG_FILE = 'schemata/catalog_1_2.xml'
+    PACKAGE_NAME = 'cvrf2csaf'
+
+    SCHEMA_FILE = resource_filename(Requirement.parse(PACKAGE_NAME), f'{PACKAGE_NAME}/schemata/cvrf/1.2/cvrf.xsd')
+    CATALOG_FILE = resource_filename(Requirement.parse(PACKAGE_NAME), f'{PACKAGE_NAME}/schemata/catalog_1_2.xml')
 
     # Content copied from https://github.com/secvisogram/secvisogram/blob/main/app/lib/shared/Core/csaf_2.0_strict.json
-    CSAF_SCHEMA_FILE = 'schemata/csaf/2.0/csaf_json_schema_strict.json'
+    CSAF_SCHEMA_FILE = resource_filename(Requirement.parse(PACKAGE_NAME), f'{PACKAGE_NAME}/schemata/csaf/2.0/csaf_json_schema_strict.json')
 
     def __init__(self, config, pkg_version):
         self.document_leaf_elements = DocumentLeafElements(config)
