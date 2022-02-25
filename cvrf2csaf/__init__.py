@@ -1,10 +1,6 @@
 from .cvrf2csaf import main
-from pkg_resources import get_distribution, DistributionNotFound
 
-try:
-    __version__ = get_distribution(__name__).version
-except DistributionNotFound:
-    # package is not installed
-    pass
+# When building the dist, bump the version with git describe --always
+__version__ = '1.0.0.dev1'
 
 __all__ = ['main']
