@@ -36,7 +36,8 @@ class DocumentHandler:
     """
 
     TOLERATED_ERRORS_SUBSTR = ["}ScoreSetV3': This element is not expected. Expected is one of ( {http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln}ScoreSetV2, {http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln}ScoreSetV3 ).",
-                        "}ScoreSetV3': This element is not expected. Expected is ( {http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln}ScoreSetV3 )."]
+                        "}ScoreSetV3': This element is not expected. Expected is ( {http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln}ScoreSetV3 ).",
+                        "is not accepted by the pattern '[c][pP][eE]:/[AHOaho]?(:[A-Za-z0-9\._\-~%]*){0,6}'."]
 
     PACKAGE_NAME = 'cvrf2csaf'
 
