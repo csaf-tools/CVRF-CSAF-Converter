@@ -224,8 +224,8 @@ def main():
     parser.add_argument('-v', '--version', action='version', version='{}'.format(get_distribution('cvrf2csaf').version))
     parser.add_argument('--input-file', dest='input_file', type=str, required=True,
                         help="CVRF XML input file to parse", metavar='PATH')
-    parser.add_argument('--output-dir', dest='output_dir', type=str, required=True,
-                        help="CVRF JSON output dir to write to. Filename is derived from /document/tracking/id.", metavar='PATH')
+    parser.add_argument('--output-dir', dest='output_dir', type=str, default='./', metavar='PATH',
+                        help="CVRF JSON output dir to write to. Filename is derived from /document/tracking/id.")
     parser.add_argument('--print', dest='print', action='store_true', default=False,
                         help="Additionally prints JSON output on command line.")
     parser.add_argument('--force', action='store_const', const='cmd-arg-entered',
