@@ -223,28 +223,47 @@ class DocumentHandler:
 
 def main():
     # General args
-    parser = argparse.ArgumentParser(description='Converts CVRF XML input into CSAF 2.0 JSON output.')
+    parser = argparse.ArgumentParser(description='Converts CVRF 1.2 XML input into CSAF 2.0 JSON output.')
     parser.add_argument('-v', '--version', action='version', version='{}'.format(get_distribution('cvrf2csaf').version))
     parser.add_argument('--input-file', dest='input_file', type=str, required=True,
                         help="CVRF XML input file to parse", metavar='PATH')
     parser.add_argument('--output-dir', dest='output_dir', type=str, default='./', metavar='PATH',
-                        help="CVRF JSON output dir to write to. Filename is derived from /document/tracking/id.")
+                        help="CSAF output dir to write to. Filename is derived from /document/tracking/id.")
     parser.add_argument('--print', dest='print', action='store_true', default=False,
-                        help="Additionally prints JSON output on command line.")
+                        help="Additionally prints CSAF JSON output on stdout.")
     parser.add_argument('--force', action='store_const', const='cmd-arg-entered',
-                        help="If used, the converter produces output that is invalid "
-                             "(use case: convert to JSON, fix the errors manual, e.g. in Secvisogram.")
+                        help="If used, the converter produces output even if it is invalid "
+                             "(errors occured during conversion). "
+                             "Target use case: best-effort conversion to JSON, "
+                             "fix the errors manually, e.g. in Secvisogram.")
 
     # Document Publisher args
     parser.add_argument('--publisher-name', dest='publisher_name', type=str, help="Name of the publisher.")
     parser.add_argument('--publisher-namespace', dest='publisher_namespace', type=str,
-                        help="Namespace of the publisher.")
+                        help="Namespace of the publisher. Must be a valid URI")
 
     # Document Tracking args
     parser.add_argument('--fix-insert-current-version-into-revision-history', action='store_const',
                         const='cmd-arg-entered', help="If the current version is not present in the revision history "
                               "the current version is added to the revision history. Also warning is produced. "
                               "By default, an error is produced.")
+
+    # Document References args
+    parser.add_argument('--force-insert-default-reference-category', action='store_const',
+                        const='cmd-arg-entered',
+                        help='When "Type" attribute not present in "Reference" element, '
+                             'then force using default value "external".')
+
+    # Vulnerabilities args
+    parser.add_argument('--remove-CVSS-values-without-vector', action='store_const',
+                        const='cmd-arg-entered',
+                        help="If vector is not present in CVSS ScoreSet, the convertor removes the whole ScoreSet "
+                             "instead of producing an error. ")
+
+    parser.add_argument('--default-CVSS3-version', dest='default_CVSS3_version',
+                        help="Default version used for CVSS version 3, when the version cannot be derived from other "
+                             "sources. Default value is '3.0'")
+
 
     args = {k: v for k, v in vars(parser.parse_args()).items() if v is not None}
 
@@ -256,6 +275,10 @@ def main():
     # Boolean optional arguments that are also present in config need special treatment
     if config['fix_insert_current_version_into_revision_history'] == 'cmd-arg-entered':
         config['fix_insert_current_version_into_revision_history'] = True
+    if config['force_insert_default_reference_category'] == 'cmd-arg-entered':
+        config['force_insert_default_reference_category'] = True
+    if config['remove_CVSS_values_without_vector'] == 'cmd-arg-entered':
+        config['remove_CVSS_values_without_vector'] = True
     if config['force'] == 'cmd-arg-entered':
         config['force'] = True
 
