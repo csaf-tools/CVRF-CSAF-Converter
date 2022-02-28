@@ -151,5 +151,3 @@ class DocumentTracking(SectionHandler):
             revision.pop('version_as_int_tuple')
 
         return revision_history, version
-
-

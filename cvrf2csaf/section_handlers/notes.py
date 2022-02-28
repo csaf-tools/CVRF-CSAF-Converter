@@ -1,6 +1,6 @@
 import logging
 from ..common.common import SectionHandler
-from ..common.utils import critical_exit
+
 
 class Notes(SectionHandler):
     def __init__(self):
@@ -31,7 +31,8 @@ class Notes(SectionHandler):
                 log_msg = f'Invalid document notes category ' \
                           f'{new_note["category"]}. ' \
                           f'Should be one of: {",".join(str(x) for x in sorted(self.enum_categories))}!'
-                logging.error(log_msg)  # Todo: handle force parameter here
+                logging.error(log_msg)
+                SectionHandler.error_occurred = True
 
             # optional
             if elem_note.get('Audience'):
@@ -48,4 +49,5 @@ class Notes(SectionHandler):
         return self._process_mandatory_and_optional(root_element=root_element)
 
     def _process_optional_elements(self, root_element):
-        pass # Not used anymore.
+        # No optional elements
+        pass

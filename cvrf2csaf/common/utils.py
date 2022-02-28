@@ -1,9 +1,9 @@
 import json
 import logging
 import os
-import pkg_resources
 import re
 import yaml
+import pkg_resources
 
 from pathlib import Path
 from datetime import datetime, timezone

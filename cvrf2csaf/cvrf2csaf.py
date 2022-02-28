@@ -45,7 +45,8 @@ class DocumentHandler:
     CATALOG_FILE = resource_filename(Requirement.parse(PACKAGE_NAME), f'{PACKAGE_NAME}/schemata/catalog_1_2.xml')
 
     # Content copied from https://github.com/secvisogram/secvisogram/blob/main/app/lib/shared/Core/csaf_2.0_strict.json
-    CSAF_SCHEMA_FILE = resource_filename(Requirement.parse(PACKAGE_NAME), f'{PACKAGE_NAME}/schemata/csaf/2.0/csaf_json_schema_strict.json')
+    CSAF_SCHEMA_FILE = resource_filename(Requirement.parse(PACKAGE_NAME),
+                                         f'{PACKAGE_NAME}/schemata/csaf/2.0/csaf_json_schema_strict.json')
 
     def __init__(self, config, pkg_version):
         self.document_leaf_elements = DocumentLeafElements(config)
@@ -208,7 +209,8 @@ class DocumentHandler:
         # For now we fetch the tests like this to see which failed
         passed = True
         for m_test_str in mandatory_tests.__all__:
-            if m_test_str == 'is_valid':  # Skip is_valid which calls all the tests (but doesnt produce any output)
+            # Skip is_valid which calls all the tests (but doesnt produce any output)
+            if m_test_str == 'is_valid':
                 continue
             m_test_call = getattr(mandatory_tests, m_test_str)
             if not m_test_call(final_csaf):
@@ -238,10 +240,10 @@ def main():
                         help="Namespace of the publisher.")
 
     # Document Tracking args
-    parser.add_argument('--fix-insert-current-version-into-revision-history', action='store_const', const='cmd-arg-entered',
-                        help="If the current version is not present in the revision history "
-                             "the current version is added to the revision history. Also warning is produced. By default, "
-                             "an error is produced.")
+    parser.add_argument('--fix-insert-current-version-into-revision-history', action='store_const',
+                        const='cmd-arg-entered', help="If the current version is not present in the revision history "
+                              "the current version is added to the revision history. Also warning is produced. "
+                              "By default, an error is produced.")
 
     args = {k: v for k, v in vars(parser.parse_args()).items() if v is not None}
 
