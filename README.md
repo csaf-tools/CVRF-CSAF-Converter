@@ -69,7 +69,7 @@ The rest of the options can be shown with:
 
 ### Config
 
-``` To Be Published ```
+The [config file](https://github.com/csaf-tools/CVRF-CSAF-Converter/blob/main/cvrf2csaf/config/config.yaml) is installed inside the Python package (`.../site-packages/cvrf2csaf/config/config.yaml`).
 
 ## Specifications
 
