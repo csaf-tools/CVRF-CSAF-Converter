@@ -209,8 +209,9 @@ class DocumentHandler:
         # For now we fetch the tests like this to see which failed
         passed = True
         for m_test_str in mandatory_tests.__all__:
+            # Skip translator function since translator value cannot appear on the input
             # Skip is_valid which calls all the tests (but doesnt produce any output)
-            if m_test_str == 'is_valid':
+            if m_test_str in ['is_valid', 'is_valid_translator']:
                 continue
             m_test_call = getattr(mandatory_tests, m_test_str)
             if not m_test_call(final_csaf):
