@@ -1,4 +1,4 @@
-# Third Party Libaries
+# Third Party Libraries
 
 ## click 8.0.3
 _BSD License_
