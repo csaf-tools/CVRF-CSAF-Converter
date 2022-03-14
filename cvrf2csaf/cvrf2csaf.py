@@ -141,13 +141,13 @@ class DocumentHandler:
 
 
     @classmethod
-    def _validate_input_against_schema(cls, file_path):
+    def _validate_input_against_schema(cls, xml_objectified):
         with open(cls.SCHEMA_FILE) as f:
             os.environ.update(XML_CATALOG_FILES=cls.CATALOG_FILE)
             schema = etree.XMLSchema(file=f)
 
         try:
-            schema.assertValid(file_path)
+            schema.assertValid(xml_objectified)
             logging.info('Input XSD validation OK.')
             return True
         except etree.DocumentInvalid as e:
@@ -162,7 +162,8 @@ class DocumentHandler:
     @classmethod
     def _open_and_validate_file(cls, file_path):
         try:
-            xml_objectified = objectify.parse(file_path)
+            parser = objectify.makeparser(resolve_entities=False)
+            xml_objectified = objectify.parse(file_path, parser)
         except Exception as e:
             critical_exit(f'Failed to open input file {file_path}: {e}.')
 
