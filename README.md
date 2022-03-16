@@ -24,7 +24,7 @@
 
 ## Getting started
 
-Assure that you have **Python 3** installed.
+Ensure that you have **Python 3** installed.
 
 Assume your current directory is also avaliable at the environment variable `$ROOT_DIR`.
 

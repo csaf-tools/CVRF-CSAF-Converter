@@ -25,10 +25,9 @@ def handle_boolean_config_values(key, val):
         if val.strip().lower() in {'false', 'no', '0', 'n'}:
             return False
 
-        critical_exit(f"Reading config.yaml failed. "
-                      f"Invalid value for config key {key}: {val}. {e}.")
+        raise ValueError("unexpected value")
 
-    except Exception as e:
+    except (AttributeError, ValueError) as e:
         critical_exit(f"Reading config.yaml failed. "
                       f"Invalid value for config key {key}: {val} {e}.")
 
