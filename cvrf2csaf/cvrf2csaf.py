@@ -13,7 +13,7 @@ from pkg_resources import get_distribution, Requirement, resource_filename
 from .common.utils import get_config_from_file, store_json, critical_exit, create_file_name
 
 from .section_handlers.document_leaf_elements import DocumentLeafElements
-from .section_handlers.document_acknowledgments import Acknowledgments
+from .section_handlers.acknowledgments import Acknowledgments
 from .section_handlers.notes import Notes
 from .section_handlers.document_publisher import DocumentPublisher
 from .section_handlers.references import References
@@ -37,7 +37,7 @@ class DocumentHandler:
 
     TOLERATED_ERRORS_SUBSTR = ["}ScoreSetV3': This element is not expected. Expected is one of ( {http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln}ScoreSetV2, {http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln}ScoreSetV3 ).",
                         "}ScoreSetV3': This element is not expected. Expected is ( {http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln}ScoreSetV3 ).",
-                        "is not accepted by the pattern '[c][pP][eE]:/[AHOaho]?(:[A-Za-z0-9\._\-~%]*){0,6}'."]
+                        r"is not accepted by the pattern '[c][pP][eE]:/[AHOaho]?(:[A-Za-z0-9\._\-~%]*){0,6}'."]
 
     PACKAGE_NAME = 'cvrf2csaf'
 
@@ -70,7 +70,7 @@ class DocumentHandler:
 
     def _update_CVSSv3_version_from_schema(self, root_element):
         """ Tries to update CVSS 3.x version from schema."""
-        cvss_3_regex = '.*cvss-v(3\.[01]).*'
+        cvss_3_regex = r'.*cvss-v(3\.[01]).*'
 
         potential_cvss3 = None
 
@@ -150,7 +150,7 @@ class DocumentHandler:
             schema.assertValid(xml_objectified)
             logging.info('Input XSD validation OK.')
             return True
-        except etree.DocumentInvalid as e:
+        except etree.DocumentInvalid:
             errors = list(schema.error_log)
 
         if not DocumentHandler._tolerate_errors(errors):
@@ -168,7 +168,7 @@ class DocumentHandler:
             critical_exit(f'Failed to open input file {file_path}: {e}.')
 
         if not DocumentHandler._validate_input_against_schema(xml_objectified):
-            critical_exit(f'Input document not valid, reason(s).')
+            critical_exit('Input document not valid.')
 
         return xml_objectified.getroot()
 
