@@ -162,7 +162,7 @@ class DocumentHandler:
     @classmethod
     def _open_and_validate_file(cls, file_path):
         try:
-            parser = objectify.makeparser(resolve_entities=False)
+            parser = objectify.makeparser(resolve_entities=False, no_network=True)
             xml_objectified = objectify.parse(file_path, parser)
         except Exception as e:
             critical_exit(f'Failed to open input file {file_path}: {e}.')
