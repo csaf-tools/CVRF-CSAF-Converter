@@ -106,6 +106,11 @@ However, there is a known issue for inserting HTML with code/script, which could
 An automated SAST scanning tool like Github Dependabot can be used to scan the libraries for vulnerabilities.
 Especially the `lxml` library can be susceptible.
 
+#### [A4:2017 - XML External Entities (XXE)](https://owasp.org/www-project-top-ten/2017/A4_2017-XML_External_Entities_(XXE))
+XXE vulnerability present in releases <1.0.0rc2 was fixed in [this commit](https://github.com/csaf-tools/CVRF-CSAF-Converter/commit/ff20a6c00245b064ceb6840dab0cd95a82fbec49)
+
+CVE report: https://nvd.nist.gov/vuln/detail/CVE-2022-27193
+
 
 ## Contributing
 
