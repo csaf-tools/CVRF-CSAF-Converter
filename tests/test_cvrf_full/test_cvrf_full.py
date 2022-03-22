@@ -29,8 +29,8 @@ def assert_object(path, length=None):
 def test_full_input_cvrf():
     """
     Tests that all expected objects are present in the input.
-    Full input means that all possible (mandatory and optional) CVRF elements are present in the input,
-    And are asserted in the output
+    Full input means that all possible (mandatory and optional) CVRF elements are
+     present in the input and are asserted in the output.
     """
     assert_object('document')
     assert_object('document/title')

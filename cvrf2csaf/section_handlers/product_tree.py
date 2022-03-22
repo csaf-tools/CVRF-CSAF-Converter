@@ -125,16 +125,16 @@ class ProductTree(SectionHandler):
         self.csaf['product_groups'] = product_groups
 
     def _handle_branches_recursive(self, root_element):
-        """ Recursive method for handling the branches, branch can have either list of another branches,
-        or a single FullProductName inside
+        """ Recursive method for handling the branches,
+         branch can have either list of another branches, or a single FullProductName inside
         """
         if not hasattr(root_element, 'Branch') and not hasattr(root_element, 'FullProductName'):
             # The ProductTree section doesn't contain Branches at all
             return None
 
         if 'Branch' in root_element.tag and hasattr(root_element, 'FullProductName'):
-            # Make sure we are inside a Branch (and not in the top ProductTree element, where FullProductName can occur)
-            # then root_element is the leaf branch
+            # Make sure we are inside a Branch (and not in the top ProductTree element,
+            # where FullProductName can occur) then root_element is the leaf branch
 
             leaf_branch = {
                 'name': root_element.attrib['Name'],

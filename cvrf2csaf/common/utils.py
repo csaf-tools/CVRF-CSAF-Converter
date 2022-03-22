@@ -11,7 +11,8 @@ from .common import SectionHandler
 
 
 def critical_exit(msg, status_code=1):
-    """ A critical error encountered, converter is not able to proceed and exits with a status code (default 1) """
+    """ A critical error encountered, converter is not able to proceed and exits
+     with a status code (default 1) """
     logging.critical(msg)
     exit(status_code)
 

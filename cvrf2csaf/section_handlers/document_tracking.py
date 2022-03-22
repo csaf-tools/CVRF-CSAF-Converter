@@ -49,15 +49,17 @@ class DocumentTracking(SectionHandler):
     @staticmethod
     def check_for_version_t(revision_history):
         """
-        Checks whether all version numbers in /document/tracking/revision_history match semantic versioning.
-        semantic version is defined in version_t definition
-        see: https://docs.oasis-open.org/csaf/csaf/v2.0/csd01/csaf-v2.0-csd01.html#3111-version-type and
-        section 9.1.5 Conformance Clause 5: CVRF CSAF converter
+        Checks whether all version numbers in /document/tracking/revision_history match
+        semantic versioning. Semantic version is defined in version_t definition.
+        see: https://docs.oasis-open.org/csaf/csaf/v2.0/csd01/csaf-v2.0-csd01.html#3111-version-type
+        and section 9.1.5 Conformance Clause 5: CVRF CSAF converter
         """
 
         pattern = (
-            r'^((0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)'
-            r'(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\+([0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?)$'
+            r'^((0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)'
+            r'(?:-((?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)'
+            r'(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))'
+            r'?(?:\+([0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?)$'
         )
         return all(re.match(pattern, revision['number']) for revision in revision_history)
 
@@ -67,11 +69,12 @@ class DocumentTracking(SectionHandler):
         try:
             return tuple(int(part) for part in text.split('.'))
         except ValueError:
-            return (sys.maxsize, )
+            return (sys.maxsize,)
 
     def _add_current_revision_to_history(self, root_element, revision_history) -> None:
         """
-        If the current version is missing in Revision history and --fix-insert-current-version-into-revision-history is True,
+        If the current version is missing in Revision history and
+        --fix-insert-current-version-into-revision-history is True,
         the current version is added to the history.
         """
 
@@ -79,7 +82,8 @@ class DocumentTracking(SectionHandler):
             {
                 'date': get_utc_timestamp(root_element.CurrentReleaseDate.text),
                 'number': root_element.Version.text,
-                'summary': f'Added by {self.cvrf2csaf_name} as the value was missing in the original CVRF.',
+                'summary': f'Added by {self.cvrf2csaf_name} as the value was missing in the '
+                           f'original CVRF.',
                 # Extra vars
                 'number_cvrf': root_element.Version.text,
                 'version_as_int_tuple': self._as_int_tuple(root_element.Version.text),
@@ -88,8 +92,9 @@ class DocumentTracking(SectionHandler):
 
     @staticmethod
     def _reindex_versions_to_integers(root_element, revision_history):
-        logging.warning('Some version numbers in revision_history do not match semantic versioning. '
-                        'Reindexing to integers.')
+        logging.warning(
+            'Some version numbers in revision_history do not match semantic versioning. '
+            'Reindexing to integers.')
 
         revision_history_sorted = sorted(revision_history, key=itemgetter('version_as_int_tuple'))
 
@@ -97,7 +102,8 @@ class DocumentTracking(SectionHandler):
             revision['number'] = str(rev_number)
 
         # after reindexing, match document version to corresponding one in revision history
-        version = next(rev for rev in revision_history_sorted if rev['number_cvrf'] == root_element.Version.text)['number']
+        version = next(rev for rev in revision_history_sorted if
+                       rev['number_cvrf'] == root_element.Version.text)['number']
 
         return revision_history_sorted, version
 
@@ -106,7 +112,8 @@ class DocumentTracking(SectionHandler):
         revision_history = []
         for revision in root_element.RevisionHistory.Revision:
             # number_cvrf: keep original value in this variable for matching later
-            # number: this value might be overwritten later if some version numbers doesn't match semantic versioning
+            # number: this value might be overwritten later if some version numbers doesn't match
+            # semantic versioning
             revision_history.append(
                 {
                     'date': get_utc_timestamp(revision.Date.text),
@@ -130,8 +137,8 @@ class DocumentTracking(SectionHandler):
                                 '--fix-insert-current-version-into-revision-history is used. ')
                 self._add_current_revision_to_history(root_element, revision_history)
             else:
-                logging.error('Current version is missing in revision history. '
-                              'This can be fixed by using --fix-insert-current-version-into-revision-history')
+                logging.error('Current version is missing in revision history. This can be fixed by'
+                              ' using --fix-insert-current-version-into-revision-history.')
                 missing_latest_version_in_history = True
                 self.error_occurred = True
 
@@ -139,10 +146,12 @@ class DocumentTracking(SectionHandler):
         # that is: some version numbers in revision_history don't match semantic versioning
         if not self.check_for_version_t(revision_history):
             if not missing_latest_version_in_history:
-                revision_history, version = self._reindex_versions_to_integers(root_element, revision_history)
+                revision_history, version = self._reindex_versions_to_integers(root_element,
+                                                                               revision_history)
             else:
-                logging.error('Can not reindex revision history to integers because of missing the current version. '
-                              'This can be fixed with --fix-insert-current-version-into-revision-history')
+                logging.error('Can not reindex revision history to integers because of missing'
+                              ' the current version. This can be fixed with'
+                              ' --fix-insert-current-version-into-revision-history')
                 self.error_occurred = True
 
         # cleanup extra vars
