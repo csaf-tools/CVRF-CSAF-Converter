@@ -22,7 +22,7 @@ class Acknowledgments(SectionHandler):
                         hasattr(ack, 'Organization'),
                         hasattr(ack, 'Description'),
                         hasattr(ack, 'URL')]):
-                logging.warning(f'Skipping empty Acknowledgment entry, input line: {ack.sourceline}')
+                logging.warning('Skipping empty Acknowledgment entry, input line: %s', ack.sourceline)
                 continue
 
             ack_elem = {}
@@ -33,8 +33,8 @@ class Acknowledgments(SectionHandler):
                     # the CVRF CSAF converter converts the first one into the organization.
                     # In addition the converter outputs a warning that information might be lost during conversion
                     # of document or vulnerability acknowledgment.
-                    logging.warning(f'CSAF 2.0 allows only one organization inside Acknowledgments. '
-                                    f'Taking the first occurence, ignoring: {ack.Organization[1:]}.')
+                    logging.warning('CSAF 2.0 allows only one organization inside Acknowledgments. '
+                                    'Taking the first occurence, ignoring: %s.', ack.Organization[1:])
 
                 ack_elem['organization'] = ack.Organization[0].text
 

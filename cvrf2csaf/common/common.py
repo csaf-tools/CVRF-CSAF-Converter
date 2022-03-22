@@ -7,7 +7,8 @@ class SectionHandler:
     After conversion, it holds the JSON structure of its whole subtree.
 
     Attributes:
-        csaf     The CSAF interpretation of the data, to be converted to JSON in the final composition step
+        csaf     The CSAF interpretation of the data,
+         to be converted to JSON in the final composition step
     """
 
     error_occurred = False
@@ -25,10 +26,13 @@ class SectionHandler:
         try:
             self._process_mandatory_elements(root_element)
         except Exception as e:
-            logging.error(f'Something went wrong when processing mandatory elements for {root_element.tag}. Reason: {e}')
+            logging.error(
+                'Something went wrong when processing mandatory elements for %s. Reason: %s',
+                root_element.tag, e)
 
         try:
             self._process_optional_elements(root_element)
         except Exception as e:
-            logging.error(f'Something went wrong when processing optional elements for {root_element.tag}. Reason: {e}')
-
+            logging.error(
+                'Something went wrong when processing optional elements for %s. Reason: %s',
+                root_element.tag, e)

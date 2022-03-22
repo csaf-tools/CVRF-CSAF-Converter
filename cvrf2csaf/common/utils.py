@@ -39,7 +39,7 @@ def get_config_from_file() -> dict:
         # TODO: Workaround for now, config file placement is to be discussed
         req = pkg_resources.Requirement.parse('cvrf2csaf')
         path_to_conf = pkg_resources.resource_filename(req, 'cvrf2csaf/config/config.yaml')
-        with open(path_to_conf, 'r') as f:
+        with open(path_to_conf, 'r', encoding='utf-8') as f:
             config = yaml.safe_load(f)
 
         for key in ['force', 'fix_insert_current_version_into_revision_history']:
@@ -48,8 +48,7 @@ def get_config_from_file() -> dict:
 
     except Exception as e:
         critical_exit(f"Reading config.yaml failed: {e}.")
-    finally:
-        return config
+    return config
 
 
 def create_file_name(document_tracking_id, valid_output):
@@ -75,14 +74,14 @@ def store_json(js, fpath):
             print(f"Created output folder {base_dir}.")
 
         if os.path.exists(fpath):
-            logging.warning(f"Output {fpath} already exists. Overwriting it.")
+            logging.warning("Output %s already exists. Overwriting it.", fpath)
 
         if not fpath.lower().endswith('.json'):
-            logging.warning(f"Given output file {fpath} does not contain valid .json suffix.")
+            logging.warning("Given output file %s does not contain valid .json suffix.", fpath)
 
         with open(fpath, 'w', encoding='utf-8') as f:
             json.dump(js, f, ensure_ascii=False, indent=2)
-            logging.info(f"Successfully wrote {fpath}.")
+            logging.info("Successfully wrote %s.", fpath)
     except Exception as e:
         critical_exit(f"Writing output file {fpath} failed. {e}")
 
@@ -96,7 +95,7 @@ def get_utc_timestamp(time_stamp='now'):
         try:
             dt = datetime.fromisoformat(ts)
         except Exception as e:
-            logging.error(f'invalid time stamp provided {time_stamp}: {e}.')
+            logging.error('invalid time stamp provided %s: %s.', time_stamp, e)
             SectionHandler.error_occurred = True
             return None
 

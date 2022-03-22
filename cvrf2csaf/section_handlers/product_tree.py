@@ -63,8 +63,8 @@ class ProductTree(SectionHandler):
     @classmethod
     def _get_branch_type(cls, branch_type: str):
         if branch_type in ['Realm', 'Resource']:
-            logging.warning(f'Input branch type {branch_type} is no longer supported in CSAF. '
-                            'Converting to product_name')
+            logging.warning('Input branch type %s is no longer supported in CSAF. '
+                            'Converting to product_name', branch_type)
 
         return cls.branch_type_mapping[branch_type]
 
@@ -90,9 +90,9 @@ class ProductTree(SectionHandler):
             if len(rel_elem.FullProductName) > 1:
                 # To be compliant with 9.1.5 Conformance Clause 5: CVRF CSAF converter
                 # https://docs.oasis-open.org/csaf/csaf/v2.0/csaf-v2.0.html
-                logging.warning(f'Input line {rel_elem.sourceline}: Relationship contains more '
+                logging.warning('Input line %s: Relationship contains more '
                                 'FullProductNames. Taking only the first one, since CSAF expects '
-                                'only 1 value here')
+                                'only 1 value here', rel_elem.sourceline)
 
             rel_to_add = {
                 'category': self.relation_type_mapping[rel_elem.attrib['RelationType']],

@@ -90,7 +90,7 @@ class DocumentHandler:
                     return
 
         if potential_cvss3:
-            logging.info(f'Default CVSS v3.x version set to {potential_cvss3} based on document XML schemas.')
+            logging.info('Default CVSS v3.x version set to %s based on document XML schemas.', potential_cvss3)
             self.vulnerability.default_CVSS3_version = potential_cvss3
 
     def _parse(self, root):
@@ -135,14 +135,14 @@ class DocumentHandler:
     def _tolerate_errors(cls, error_list):
         tolerated_errors = [error for error in error_list if any(error_substr in error.message for error_substr in DocumentHandler.TOLERATED_ERRORS_SUBSTR)]
         if set(tolerated_errors) == set(error_list):
-            logging.warning(f'Some errors during input validation happened, but can be tolerated: {tolerated_errors}.')
+            logging.warning('Some errors during input validation happened, but can be tolerated: %s.', tolerated_errors)
             return True
         return False
 
 
     @classmethod
     def _validate_input_against_schema(cls, xml_objectified):
-        with open(cls.SCHEMA_FILE) as f:
+        with open(cls.SCHEMA_FILE, encoding='utf-8') as f:
             os.environ.update(XML_CATALOG_FILES=cls.CATALOG_FILE)
             schema = etree.XMLSchema(file=f)
 
@@ -154,7 +154,7 @@ class DocumentHandler:
             errors = list(schema.error_log)
 
         if not DocumentHandler._tolerate_errors(errors):
-            logging.error(f'Errors during input validation occurred, reason(s): {errors}.')
+            logging.error('Errors during input validation occurred, reason(s): %s.', errors)
             return False
         else:
             return True
@@ -187,7 +187,7 @@ class DocumentHandler:
         Validates the CSAF output against the CSAF JSON schema
         return: True if valid, False if invalid
         """
-        with open(self.CSAF_SCHEMA_FILE) as f:
+        with open(self.CSAF_SCHEMA_FILE, encoding='utf-8') as f:
             csaf_schema_content = json.loads(f.read())
 
         try:
@@ -195,10 +195,10 @@ class DocumentHandler:
             v = Draft202012Validator(csaf_schema_content, format_checker=draft202012_format_checker)
             v.validate(final_csaf)
         except SchemaError as e:
-            logging.error(f'CSAF schema validation error. Provided CSAF schema is invalid. Message: {e.message}')
+            logging.error('CSAF schema validation error. Provided CSAF schema is invalid. Message: %s', e.message)
             return False
         except ValidationError as e:
-            logging.error(f'CSAF schema validation error. Path: {e.json_path}. Message: {e.message}.')
+            logging.error('CSAF schema validation error. Path: %s. Message: %s.', e.json_path,  e.message)
             return False
         else:
             logging.info('CSAF schema validation OK.')
@@ -217,7 +217,7 @@ class DocumentHandler:
             m_test_call = getattr(mandatory_tests, m_test_str)
             if not m_test_call(final_csaf):
                 passed = False
-                logging.error(f'Mandatory test {m_test_str} failed.')
+                logging.error('Mandatory test %s failed.', m_test_str)
 
         return passed
 
