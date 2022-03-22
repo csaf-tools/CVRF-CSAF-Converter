@@ -79,15 +79,15 @@ class DocumentHandler:
             'Vulnerability': self.vulnerability,
         }
 
-    def _update_CVSSv3_version_from_schema(self, root_element):
+    def _update_cvssv3_version_from_schema(self, root_element):
         """ Tries to update CVSS 3.x version from schema."""
         cvss_3_regex = r'.*cvss-v(3\.[01]).*'
 
         potential_cvss3 = None
 
         # iterate over  namespaces
-        for ns in root_element.nsmap.values():
-            match = re.match(cvss_3_regex, ns)
+        for name_space in root_element.nsmap.values():
+            match = re.match(cvss_3_regex, name_space)
             if match:
                 cvss_version_matched = match.groups()[0]
                 # no potential cvss version found yet -> store it
@@ -103,10 +103,10 @@ class DocumentHandler:
         if potential_cvss3:
             logging.info('Default CVSS v3.x version set to %s based on document XML schemas.',
                          potential_cvss3)
-            self.vulnerability.default_CVSS3_version = potential_cvss3
+            self.vulnerability.default_cvss_version = potential_cvss3
 
     def _parse(self, root):
-        self._update_CVSSv3_version_from_schema(root)
+        self._update_cvssv3_version_from_schema(root)
 
         # Document leaf elements are handled on the root itself
         self.document_leaf_elements.create_csaf(root)
@@ -159,6 +159,7 @@ class DocumentHandler:
 
     @classmethod
     def _validate_input_against_schema(cls, xml_objectified):
+        # pylint: disable=C0103
         with open(cls.SCHEMA_FILE, encoding='utf-8') as f:
             os.environ.update(XML_CATALOG_FILES=cls.CATALOG_FILE)
             schema = etree.XMLSchema(file=f)
@@ -181,6 +182,7 @@ class DocumentHandler:
         try:
             parser = objectify.makeparser(resolve_entities=False)
             xml_objectified = objectify.parse(file_path, parser)
+        # pylint: disable=C0103
         except Exception as e:
             critical_exit(f'Failed to open input file {file_path}: {e}.')
 
@@ -202,18 +204,22 @@ class DocumentHandler:
         Validates the CSAF output against the CSAF JSON schema
         return: True if valid, False if invalid
         """
+        # pylint: disable=C0103
         with open(self.CSAF_SCHEMA_FILE, encoding='utf-8') as f:
             csaf_schema_content = json.loads(f.read())
 
         try:
             Draft202012Validator.check_schema(csaf_schema_content)
-            v = Draft202012Validator(csaf_schema_content, format_checker=draft202012_format_checker)
-            v.validate(final_csaf)
+            validator = Draft202012Validator(csaf_schema_content,
+                                             format_checker=draft202012_format_checker)
+            validator.validate(final_csaf)
+        # pylint: disable=C0103
         except SchemaError as e:
             logging.error(
                 'CSAF schema validation error. Provided CSAF schema is invalid. Message: %s',
                 e.message)
             return False
+        # pylint: disable=C0103
         except ValidationError as e:
             logging.error('CSAF schema validation error. Path: %s. Message: %s.', e.json_path,
                           e.message)
@@ -314,12 +320,12 @@ def main():
 
     # DocumentHandler is iterating over each XML element within convert_file and
     # return CSAF 2.0 JSON
-    h = DocumentHandler(config, pkg_version)
-    final_csaf = h.convert_file(path=config.get('input_file'))
+    handler = DocumentHandler(config, pkg_version)
+    final_csaf = handler.convert_file(path=config.get('input_file'))
 
     valid_output = True
-    if not h.validate_output_against_schema(final_csaf) \
-            or not h.validate_mandatory_tests(final_csaf) \
+    if not handler.validate_output_against_schema(final_csaf) \
+            or not handler.validate_mandatory_tests(final_csaf) \
             or SectionHandler.error_occurred:
         valid_output = False
 
@@ -334,7 +340,7 @@ def main():
     file_name = create_file_name(final_csaf['document'].get('tracking', {}).get('id', None),
                                  valid_output)
     file_path = str(os.path.join(config.get('output_dir'), file_name))
-    store_json(js=final_csaf, fpath=file_path)
+    store_json(json_dict=final_csaf, fpath=file_path)
     if config.get('print', False):
         print(json.dumps(final_csaf, indent=2))
 

@@ -11,11 +11,11 @@ def assert_object(path, length=None):
 
     try:
         next_ = csaf
-        for p in parts:
+        for part in parts:
             with suppress(ValueError):
-                p = int(p)
+                part = int(part)
 
-            next_ = next_[p]
+            next_ = next_[part]
 
     except KeyError:
         print(f'FAILED. Missing CSAF path: /{path}')
