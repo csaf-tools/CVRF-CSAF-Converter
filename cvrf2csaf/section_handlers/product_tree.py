@@ -1,3 +1,4 @@
+# pylint: disable=too-few-public-methods,useless-super-delegation
 import logging
 from ..common.common import SectionHandler
 
@@ -36,7 +37,6 @@ class ProductTree(SectionHandler):
 
     def _process_mandatory_elements(self, root_element):
         """ There are no mandatory elements in the ProductTree section """
-        pass
 
     def _process_optional_elements(self, root_element):
         self._handle_full_product_names(root_element)

@@ -1,3 +1,4 @@
+# pylint: disable=too-few-public-methods
 import logging
 from ..common.common import SectionHandler
 

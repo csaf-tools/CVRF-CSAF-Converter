@@ -1,3 +1,4 @@
+# pylint: disable=invalid-name, too-few-public-methods, broad-except
 import logging
 
 
@@ -25,7 +26,6 @@ class SectionHandler:
     def create_csaf(self, root_element):
         try:
             self._process_mandatory_elements(root_element)
-        # pylint: disable=C0103, W0703
         except Exception as e:
             logging.error(
                 'Something went wrong when processing mandatory elements for %s. Reason: %s',
@@ -33,7 +33,6 @@ class SectionHandler:
 
         try:
             self._process_optional_elements(root_element)
-        # pylint: disable=C0103, W0703
         except Exception as e:
             logging.error(
                 'Something went wrong when processing optional elements for %s. Reason: %s',

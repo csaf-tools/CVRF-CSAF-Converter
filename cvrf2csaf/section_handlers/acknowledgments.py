@@ -1,3 +1,4 @@
+# pylint: disable=too-few-public-methods,useless-super-delegation
 import logging
 from ..common.common import SectionHandler
 

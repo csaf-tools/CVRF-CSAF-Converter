@@ -2,7 +2,7 @@ import json
 from contextlib import suppress
 
 
-with open('./test_cvrf_full.json') as f:
+with open('./test_cvrf_full.json', encoding='utf-8') as f:
     csaf = json.loads(f.read())
 
 
@@ -17,15 +17,15 @@ def assert_object(path, length=None):
 
             next_ = next_[part]
 
-    except KeyError:
+    except KeyError as err:
         print(f'FAILED. Missing CSAF path: /{path}')
-        raise AssertionError
+        raise AssertionError from err
 
     else:
         if length:
             assert len(next_) == length
 
-
+# pylint: disable=too-many-statements
 def test_full_input_cvrf():
     """
     Tests that all expected objects are present in the input.

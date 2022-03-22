@@ -1,3 +1,4 @@
+# pylint: disable=invalid-name,broad-except,c-extension-no-member
 import logging
 import argparse
 import json
@@ -27,6 +28,7 @@ logging.basicConfig(level=logging.INFO,
                     format='%(asctime)s - %(module)s - %(levelname)s - %(message)s')
 
 
+# pylint: disable=too-many-instance-attributes
 class DocumentHandler:
     """
     Main Handler of the conversion:
@@ -159,7 +161,6 @@ class DocumentHandler:
 
     @classmethod
     def _validate_input_against_schema(cls, xml_objectified):
-        # pylint: disable=C0103
         with open(cls.SCHEMA_FILE, encoding='utf-8') as f:
             os.environ.update(XML_CATALOG_FILES=cls.CATALOG_FILE)
             schema = etree.XMLSchema(file=f)
@@ -174,15 +175,14 @@ class DocumentHandler:
         if not DocumentHandler._tolerate_errors(errors):
             logging.error('Errors during input validation occurred, reason(s): %s.', errors)
             return False
-        else:
-            return True
+
+        return True
 
     @classmethod
     def _open_and_validate_file(cls, file_path):
         try:
             parser = objectify.makeparser(resolve_entities=False)
             xml_objectified = objectify.parse(file_path, parser)
-        # pylint: disable=C0103
         except Exception as e:
             critical_exit(f'Failed to open input file {file_path}: {e}.')
 
@@ -204,7 +204,6 @@ class DocumentHandler:
         Validates the CSAF output against the CSAF JSON schema
         return: True if valid, False if invalid
         """
-        # pylint: disable=C0103
         with open(self.CSAF_SCHEMA_FILE, encoding='utf-8') as f:
             csaf_schema_content = json.loads(f.read())
 
@@ -213,13 +212,11 @@ class DocumentHandler:
             validator = Draft202012Validator(csaf_schema_content,
                                              format_checker=draft202012_format_checker)
             validator.validate(final_csaf)
-        # pylint: disable=C0103
         except SchemaError as e:
             logging.error(
                 'CSAF schema validation error. Provided CSAF schema is invalid. Message: %s',
                 e.message)
             return False
-        # pylint: disable=C0103
         except ValidationError as e:
             logging.error('CSAF schema validation error. Path: %s. Message: %s.', e.json_path,
                           e.message)
@@ -252,7 +249,7 @@ def main():
     parser = argparse.ArgumentParser(
         description='Converts CVRF 1.2 XML input into CSAF 2.0 JSON output.')
     parser.add_argument('-v', '--version', action='version',
-                        version='{}'.format(get_distribution('cvrf2csaf').version))
+                        version=str(get_distribution('cvrf2csaf').version))
     parser.add_argument('--input-file', dest='input_file', type=str, required=True,
                         help="CVRF XML input file to parse", metavar='PATH')
     parser.add_argument('--output-dir', dest='output_dir', type=str, default='./', metavar='PATH',

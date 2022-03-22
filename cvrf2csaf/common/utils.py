@@ -1,12 +1,16 @@
+# pylint: disable=invalid-name,broad-except
 import json
 import logging
 import os
 import re
-import yaml
-import pkg_resources
+import sys
 
 from pathlib import Path
 from datetime import datetime, timezone
+
+import yaml
+import pkg_resources
+
 from .common import SectionHandler
 
 
@@ -14,8 +18,7 @@ def critical_exit(msg, status_code=1):
     """ A critical error encountered, converter is not able to proceed and exits
      with a status code (default 1) """
     logging.critical(msg)
-    exit(status_code)
-
+    sys.exit(status_code)
 
 def handle_boolean_config_values(key, val):
     try:
@@ -28,7 +31,6 @@ def handle_boolean_config_values(key, val):
 
         raise ValueError("unexpected value")
 
-    # pylint: disable=C0103
     except (AttributeError, ValueError) as e:
         critical_exit(f"Reading config.yaml failed. "
                       f"Invalid value for config key {key}: {val} {e}.")
@@ -36,12 +38,11 @@ def handle_boolean_config_values(key, val):
 
 def get_config_from_file() -> dict:
     """ Loads configuration file. Parts of it can be overwritten by CLI arguments. """
-    config = dict()
+    config = {}
     try:
         # TODO: Workaround for now, config file placement is to be discussed
         req = pkg_resources.Requirement.parse('cvrf2csaf')
         path_to_conf = pkg_resources.resource_filename(req, 'cvrf2csaf/config/config.yaml')
-        # pylint: disable=C0103
         with open(path_to_conf, 'r', encoding='utf-8') as f:
             config = yaml.safe_load(f)
 
@@ -49,7 +50,6 @@ def get_config_from_file() -> dict:
             if key in config.keys():
                 config[key] = handle_boolean_config_values(key=key, val=config[key])
 
-    # pylint: disable=C0103, W0703
     except Exception as e:
         critical_exit(f"Reading config.yaml failed: {e}.")
     return config
@@ -83,12 +83,10 @@ def store_json(json_dict, fpath):
         if not fpath.lower().endswith('.json'):
             logging.warning("Given output file %s does not contain valid .json suffix.", fpath)
 
-        # pylint: disable=C0103
         with open(fpath, 'w', encoding='utf-8') as f:
             json.dump(json_dict, f, ensure_ascii=False, indent=2)
             logging.info("Successfully wrote %s.", fpath)
 
-    # pylint: disable=C0103, W0703
     except Exception as e:
         critical_exit(f"Writing output file {fpath} failed. {e}")
 
@@ -101,7 +99,6 @@ def get_utc_timestamp(time_stamp='now'):
         time_stamp = time_stamp.replace('Z', '+00:00')
         try:
             now = datetime.fromisoformat(time_stamp)
-        # pylint: disable=C0103
         except (ValueError, TypeError) as e:
             logging.error('invalid time stamp provided %s: %s.', time_stamp, e)
             SectionHandler.error_occurred = True

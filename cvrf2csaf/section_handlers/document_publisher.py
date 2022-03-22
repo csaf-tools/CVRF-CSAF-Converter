@@ -1,4 +1,4 @@
-
+# pylint: disable=too-few-public-methods
 from ..common.common import SectionHandler
 
 
@@ -27,4 +27,3 @@ class DocumentPublisher(SectionHandler):
             self.csaf['contact_details'] = root_element.ContactDetails.text
         if hasattr(root_element, 'IssuingAuthority'):
             self.csaf['issuing_authority'] = root_element.IssuingAuthority.text
-
