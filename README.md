@@ -93,6 +93,20 @@ We follow the official OASIS specifications in order to provide as much acceptan
 
 ### Security Considerations
 
+These are the TOP OWASP categories of vulnerabilities which potentially affect the CVRF-CSAF-Converter.
+We are omitting those which do not apply (most of them), since it's a plain command-line tool (e.g. authentication failures)
+
+#### [A03:2021 – Injection](https://owasp.org/Top10/A03_2021-Injection/)
+The XML input for the converter is strictly validated for CVRF. The converter rejects invalid inputs.
+
+However, there is a known issue for inserting HTML with code/script, which could be executed by a CSAF consumer: 
+[Encode HTML in JSON output](https://github.com/csaf-tools/CVRF-CSAF-Converter/issues/5)
+
+#### [A06:2021 - Vulnerable and Outdated Components](https://owasp.org/Top10/A06_2021-Vulnerable_and_Outdated_Components/)
+An automated SAST scanning tool like Github Dependabot can be used to scan the libraries for vulnerabilities.
+Especially the `lxml` library can be susceptible.
+
+
 ## Contributing
 
 Please refer to [`CONTRIBUTING.md`](CONTRIBUTING.md) for details about how to contribute to the development of [CVRF-CSAF-converter](https://github.com/csaf-tools/CVRF-CSAF-converter).
