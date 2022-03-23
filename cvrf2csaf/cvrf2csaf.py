@@ -1,4 +1,4 @@
-# pylint: disable=invalid-name,broad-except,c-extension-no-member
+# pylint: disable=invalid-name,c-extension-no-member
 import logging
 import argparse
 import json
@@ -183,7 +183,7 @@ class DocumentHandler:
         try:
             parser = objectify.makeparser(resolve_entities=False)
             xml_objectified = objectify.parse(file_path, parser)
-        except Exception as e:
+        except (OSError, etree.LxmlError) as e:
             critical_exit(f'Failed to open input file {file_path}: {e}.')
 
         if not DocumentHandler._validate_input_against_schema(xml_objectified):
