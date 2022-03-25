@@ -1,7 +1,7 @@
-# pylint: disable=too-few-public-methods
 from ..common.common import SectionHandler
 
 
+# pylint: disable=too-few-public-methods
 class DocumentLeafElements(SectionHandler):
     """
     A handler for the document leaf elements which do not have any further children elements

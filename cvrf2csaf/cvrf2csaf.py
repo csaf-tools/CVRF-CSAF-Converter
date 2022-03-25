@@ -1,4 +1,4 @@
-# pylint: disable=invalid-name,c-extension-no-member
+# pylint: disable=c-extension-no-member
 import logging
 import argparse
 import json
@@ -227,6 +227,7 @@ class DocumentHandler:
 
     @staticmethod
     def validate_mandatory_tests(final_csaf):
+        # pylint: disable=fixme
         # TODO: After the turvallisuusneuvonta package is complete and part of the csaf package,
         #  replace the implementation
         # For now we fetch the tests like this to see which failed

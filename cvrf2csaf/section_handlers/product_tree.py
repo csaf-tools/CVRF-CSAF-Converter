@@ -1,8 +1,8 @@
-# pylint: disable=too-few-public-methods,useless-super-delegation
 import logging
 from ..common.common import SectionHandler
 
 
+# pylint: disable=too-few-public-methods
 class ProductTree(SectionHandler):
     """ Responsible for converting the ProductTree section """
     branch_type_mapping = {
@@ -32,6 +32,7 @@ class ProductTree(SectionHandler):
         'Installed With': 'installed_with',
     }
 
+    # pylint: disable=useless-super-delegation
     def __init__(self):
         super().__init__()
 
@@ -59,7 +60,6 @@ class ProductTree(SectionHandler):
 
         return fpn
 
-
     @classmethod
     def _get_branch_type(cls, branch_type: str):
         if branch_type in ['Realm', 'Resource']:
@@ -67,7 +67,6 @@ class ProductTree(SectionHandler):
                             'Converting to product_name', branch_type)
 
         return cls.branch_type_mapping[branch_type]
-
 
     def _handle_full_product_names(self, root_element):
         if not hasattr(root_element, 'FullProductName'):

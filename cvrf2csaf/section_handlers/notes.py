@@ -1,8 +1,8 @@
-# pylint: disable=too-few-public-methods
 import logging
 from ..common.common import SectionHandler
 
 
+# pylint: disable=too-few-public-methods
 class Notes(SectionHandler):
     def __init__(self):
         super().__init__()

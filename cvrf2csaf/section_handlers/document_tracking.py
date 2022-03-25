@@ -1,4 +1,3 @@
-# pylint: disable=too-few-public-methods
 import logging
 import re
 import sys
@@ -8,6 +7,7 @@ from ..common.common import SectionHandler
 from ..common.utils import get_utc_timestamp
 
 
+# pylint: disable=too-few-public-methods
 class DocumentTracking(SectionHandler):
     tracking_status_mapping = {
         'Final': 'final',

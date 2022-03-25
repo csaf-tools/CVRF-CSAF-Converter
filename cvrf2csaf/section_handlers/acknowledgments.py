@@ -1,9 +1,10 @@
-# pylint: disable=too-few-public-methods,useless-super-delegation
 import logging
 from ..common.common import SectionHandler
 
 
+# pylint: disable=too-few-public-methods
 class Acknowledgments(SectionHandler):
+    # pylint: disable=useless-super-delegation
     def __init__(self):
         super().__init__()
 

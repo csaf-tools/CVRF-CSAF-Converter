@@ -1,4 +1,3 @@
-# pylint: disable=invalid-name,broad-except
 import json
 import logging
 import os
@@ -20,6 +19,7 @@ def critical_exit(msg, status_code=1):
     logging.critical(msg)
     sys.exit(status_code)
 
+
 def handle_boolean_config_values(key, val):
     try:
         if isinstance(val, bool):
@@ -40,6 +40,7 @@ def get_config_from_file() -> dict:
     """ Loads configuration file. Parts of it can be overwritten by CLI arguments. """
     config = {}
     try:
+        # pylint: disable=fixme
         # TODO: Workaround for now, config file placement is to be discussed
         req = pkg_resources.Requirement.parse('cvrf2csaf')
         path_to_conf = pkg_resources.resource_filename(req, 'cvrf2csaf/config/config.yaml')
@@ -50,6 +51,7 @@ def get_config_from_file() -> dict:
             if key in config.keys():
                 config[key] = handle_boolean_config_values(key=key, val=config[key])
 
+    # pylint: disable=broad-except
     except Exception as e:
         critical_exit(f"Reading config.yaml failed: {e}.")
     return config
@@ -87,6 +89,7 @@ def store_json(json_dict, fpath):
             json.dump(json_dict, f, ensure_ascii=False, indent=2)
             logging.info("Successfully wrote %s.", fpath)
 
+    # pylint: disable=broad-except
     except Exception as e:
         critical_exit(f"Writing output file {fpath} failed. {e}")
 
