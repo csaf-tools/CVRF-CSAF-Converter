@@ -1,3 +1,4 @@
+""" Module containing DocumentTracking class """
 import logging
 import re
 import sys
@@ -9,6 +10,9 @@ from ..common.utils import get_utc_timestamp
 
 # pylint: disable=too-few-public-methods
 class DocumentTracking(SectionHandler):
+    """ Responsible for converting the DocumentTracking section:
+      - /cvrf:cvrfdoc/cvrf:DocumentTracking
+    """
     tracking_status_mapping = {
         'Final': 'final',
         'Draft': 'draft',

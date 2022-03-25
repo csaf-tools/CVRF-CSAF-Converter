@@ -1,10 +1,13 @@
+""" Module containing ProductTree class """
 import logging
 from ..common.common import SectionHandler
 
 
 # pylint: disable=too-few-public-methods
 class ProductTree(SectionHandler):
-    """ Responsible for converting the ProductTree section """
+    """ Responsible for converting the ProductTree section:
+     - /cvrf:cvrfdoc/prod:ProductTree
+    """
     branch_type_mapping = {
         "Vendor": 'vendor',
         "Product Family": 'product_family',
@@ -156,3 +159,5 @@ class ProductTree(SectionHandler):
                     })
 
             return branches
+
+        return None

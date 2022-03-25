@@ -1,3 +1,4 @@
+""" Module containing DocumentLeafElements class """
 from ..common.common import SectionHandler
 
 

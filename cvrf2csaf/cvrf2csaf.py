@@ -1,3 +1,6 @@
+""" Module containing DocumentHandler class taking care of conversion.
+    Program's top-level logic is done in main() function.
+"""
 # pylint: disable=c-extension-no-member
 import logging
 import argparse

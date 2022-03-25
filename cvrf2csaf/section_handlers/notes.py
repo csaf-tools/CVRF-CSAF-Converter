@@ -1,9 +1,15 @@
+""" Module containing Notes class """
 import logging
 from ..common.common import SectionHandler
 
 
 # pylint: disable=too-few-public-methods
 class Notes(SectionHandler):
+    """ Responsible for converting the Notes sections:
+      - /cvrf:cvrfdoc/cvrf:DocumentNotes
+      - /cvrf:cvrfdoc/vuln:Vulnerability[i+1]/vuln:Notes
+    """
+
     def __init__(self):
         super().__init__()
 

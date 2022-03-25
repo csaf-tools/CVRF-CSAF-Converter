@@ -1,9 +1,14 @@
+""" Module containing Acknowledgments class """
 import logging
 from ..common.common import SectionHandler
 
 
 # pylint: disable=too-few-public-methods
 class Acknowledgments(SectionHandler):
+    """ Responsible for converting the Acknowledgments sections:
+      - /cvrf:cvrfdoc/cvrf:Acknowledgments
+      - /cvrf:cvrfdoc/vuln:Vulnerability[i+1]/vuln:Acknowledgments
+    """
     # pylint: disable=useless-super-delegation
     def __init__(self):
         super().__init__()

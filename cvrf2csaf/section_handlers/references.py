@@ -1,9 +1,15 @@
+""" Module containing References class """
 import logging
 from ..common.common import SectionHandler
 
 
 # pylint: disable=too-few-public-methods
 class References(SectionHandler):
+    """ Responsible for converting the References sections:
+     - /cvrf:cvrfdoc/cvrf:DocumentReferences
+     - /cvrf:cvrfdoc/vuln:Vulnerability[i+1]/vuln:References
+    """
+
     def __init__(self, config):
         super().__init__()
         self.force_default_category = config.get('force_insert_default_reference_category')

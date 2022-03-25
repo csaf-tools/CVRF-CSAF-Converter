@@ -1,3 +1,4 @@
+"""Module containing SectionHandler parent class."""
 import logging
 
 
