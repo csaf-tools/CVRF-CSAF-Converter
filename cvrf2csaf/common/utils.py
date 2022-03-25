@@ -1,3 +1,4 @@
+"""Module containing various helper functions."""
 import json
 import logging
 import os
@@ -19,7 +20,7 @@ def critical_exit(msg, status_code=1):
     logging.critical(msg)
     sys.exit(status_code)
 
-
+# pylint: disable=inconsistent-return-statements
 def handle_boolean_config_values(key, val):
     try:
         if isinstance(val, bool):

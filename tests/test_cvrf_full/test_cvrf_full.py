@@ -1,3 +1,4 @@
+"""File containing full CVRF test."""
 import json
 from contextlib import suppress
 
