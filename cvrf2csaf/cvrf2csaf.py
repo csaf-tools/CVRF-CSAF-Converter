@@ -230,6 +230,10 @@ class DocumentHandler:
 
     @staticmethod
     def validate_mandatory_tests(final_csaf):
+        """
+        Validates output against mandatory tests:
+        https://docs.oasis-open.org/csaf/csaf/v2.0/csd01/csaf-v2.0-csd01.html#61-mandatory-tests
+        """
         # pylint: disable=fixme
         # TODO: After the turvallisuusneuvonta package is complete and part of the csaf package,
         #  replace the implementation
@@ -248,6 +252,7 @@ class DocumentHandler:
         return passed
 
 
+# pylint: disable=missing-function-docstring
 def main():
     # General args
     parser = argparse.ArgumentParser(

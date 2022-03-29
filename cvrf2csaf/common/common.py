@@ -25,6 +25,9 @@ class SectionHandler:
         raise NotImplementedError('Subclasses must implement.')
 
     def create_csaf(self, root_element):
+        """
+        Parses XML element and stores in JSON structure (self.csaf variable).
+        """
         try:
             self._process_mandatory_elements(root_element)
         # pylint: disable=broad-except

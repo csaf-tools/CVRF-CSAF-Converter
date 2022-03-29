@@ -7,6 +7,7 @@ with open('./test_cvrf_full.json', encoding='utf-8') as f:
     csaf = json.loads(f.read())
 
 
+# pylint: disable=missing-function-docstring
 def assert_object(path, length=None):
     parts = path.split('/')
 

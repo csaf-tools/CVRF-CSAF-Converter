@@ -20,8 +20,12 @@ def critical_exit(msg, status_code=1):
     logging.critical(msg)
     sys.exit(status_code)
 
+
 # pylint: disable=inconsistent-return-statements
 def handle_boolean_config_values(key, val):
+    """
+    Converts string representation of boolean value to boolean.
+    """
     try:
         if isinstance(val, bool):
             return val
@@ -59,6 +63,11 @@ def get_config_from_file() -> dict:
 
 
 def create_file_name(document_tracking_id, valid_output):
+    """
+    Returns filename according to standard:
+    https://docs.oasis-open.org/csaf/csaf/v2.0/csd01/csaf-v2.0-csd01.html#51-filename
+    if valid_input is false, `_invalid ` is appended to filename.
+    """
     if document_tracking_id is not None:
         file_name = re.sub(r"([^+\-_a-z0-9]+)", '_', document_tracking_id.lower())
     else:
@@ -71,6 +80,7 @@ def create_file_name(document_tracking_id, valid_output):
 
 
 def store_json(json_dict, fpath):
+    """ Saves json to file, creates directory if needed."""
     try:
 
         path = Path(fpath)
@@ -96,6 +106,10 @@ def store_json(json_dict, fpath):
 
 
 def get_utc_timestamp(time_stamp='now'):
+    """
+    Returns timestamp in UTC format.
+    In case `now` is provided, generates current timestamp.
+    """
     if time_stamp == 'now':
         now = datetime.now(timezone.utc)
 
