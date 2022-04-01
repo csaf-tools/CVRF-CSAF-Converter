@@ -1,22 +1,31 @@
+"""Module containing various helper functions."""
 import json
 import logging
 import os
 import re
-import yaml
-import pkg_resources
+import sys
 
 from pathlib import Path
 from datetime import datetime, timezone
+
+import yaml
+import pkg_resources
+
 from .common import SectionHandler
 
 
 def critical_exit(msg, status_code=1):
-    """ A critical error encountered, converter is not able to proceed and exits with a status code (default 1) """
+    """ A critical error encountered, converter is not able to proceed and exits
+     with a status code (default 1) """
     logging.critical(msg)
-    exit(status_code)
+    sys.exit(status_code)
 
 
+# pylint: disable=inconsistent-return-statements
 def handle_boolean_config_values(key, val):
+    """
+    Converts string representation of boolean value to boolean.
+    """
     try:
         if isinstance(val, bool):
             return val
@@ -34,25 +43,31 @@ def handle_boolean_config_values(key, val):
 
 def get_config_from_file() -> dict:
     """ Loads configuration file. Parts of it can be overwritten by CLI arguments. """
-    config = dict()
+    config = {}
     try:
+        # pylint: disable=fixme
         # TODO: Workaround for now, config file placement is to be discussed
         req = pkg_resources.Requirement.parse('cvrf2csaf')
         path_to_conf = pkg_resources.resource_filename(req, 'cvrf2csaf/config/config.yaml')
-        with open(path_to_conf, 'r') as f:
+        with open(path_to_conf, 'r', encoding='utf-8') as f:
             config = yaml.safe_load(f)
 
         for key in ['force', 'fix_insert_current_version_into_revision_history']:
             if key in config.keys():
                 config[key] = handle_boolean_config_values(key=key, val=config[key])
 
+    # pylint: disable=broad-except
     except Exception as e:
         critical_exit(f"Reading config.yaml failed: {e}.")
-    finally:
-        return config
+    return config
 
 
 def create_file_name(document_tracking_id, valid_output):
+    """
+    Returns filename according to standard:
+    https://docs.oasis-open.org/csaf/csaf/v2.0/csd01/csaf-v2.0-csd01.html#51-filename
+    if valid_input is false, `_invalid ` is appended to filename.
+    """
     if document_tracking_id is not None:
         file_name = re.sub(r"([^+\-_a-z0-9]+)", '_', document_tracking_id.lower())
     else:
@@ -64,7 +79,8 @@ def create_file_name(document_tracking_id, valid_output):
     return file_name
 
 
-def store_json(js, fpath):
+def store_json(json_dict, fpath):
+    """ Saves json to file, creates directory if needed."""
     try:
 
         path = Path(fpath)
@@ -75,32 +91,38 @@ def store_json(js, fpath):
             print(f"Created output folder {base_dir}.")
 
         if os.path.exists(fpath):
-            logging.warning(f"Output {fpath} already exists. Overwriting it.")
+            logging.warning("Output %s already exists. Overwriting it.", fpath)
 
         if not fpath.lower().endswith('.json'):
-            logging.warning(f"Given output file {fpath} does not contain valid .json suffix.")
+            logging.warning("Given output file %s does not contain valid .json suffix.", fpath)
 
         with open(fpath, 'w', encoding='utf-8') as f:
-            json.dump(js, f, ensure_ascii=False, indent=2)
-            logging.info(f"Successfully wrote {fpath}.")
+            json.dump(json_dict, f, ensure_ascii=False, indent=2)
+            logging.info("Successfully wrote %s.", fpath)
+
+    # pylint: disable=broad-except
     except Exception as e:
         critical_exit(f"Writing output file {fpath} failed. {e}")
 
 
 def get_utc_timestamp(time_stamp='now'):
+    """
+    Returns timestamp in UTC format.
+    In case `now` is provided, generates current timestamp.
+    """
     if time_stamp == 'now':
-        dt = datetime.now(timezone.utc)
+        now = datetime.now(timezone.utc)
 
     else:
-        ts = time_stamp.replace('Z', '+00:00')
+        time_stamp = time_stamp.replace('Z', '+00:00')
         try:
-            dt = datetime.fromisoformat(ts)
-        except Exception as e:
-            logging.error(f'invalid time stamp provided {time_stamp}: {e}.')
+            now = datetime.fromisoformat(time_stamp)
+        except (ValueError, TypeError) as e:
+            logging.error('invalid time stamp provided %s: %s.', time_stamp, e)
             SectionHandler.error_occurred = True
             return None
 
-    if dt.tzinfo is None:
-        dt = dt.replace(tzinfo=timezone.utc)
+    if now.tzinfo is None:
+        now = now.replace(tzinfo=timezone.utc)
 
-    return dt.isoformat(timespec='milliseconds')
+    return now.isoformat(timespec='milliseconds')

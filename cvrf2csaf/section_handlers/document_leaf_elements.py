@@ -1,11 +1,14 @@
+""" Module containing DocumentLeafElements class """
 from ..common.common import SectionHandler
 
 
+# pylint: disable=too-few-public-methods
 class DocumentLeafElements(SectionHandler):
     """
     A handler for the document leaf elements which do not have any further children elements
     handling CSAF path: /document
     """
+
     def __init__(self, config):
         super().__init__()
         self.csaf_version = config.get('csaf_version')
@@ -28,4 +31,5 @@ class DocumentLeafElements(SectionHandler):
                 'text': root_element.AggregateSeverity.text
             }
             if root_element.AggregateSeverity.attrib.get('Namespace'):
-                self.csaf['aggregate_severity']['namespace'] = root_element.AggregateSeverity.attrib['Namespace']
+                self.csaf['aggregate_severity']['namespace'] = \
+                    root_element.AggregateSeverity.attrib['Namespace']

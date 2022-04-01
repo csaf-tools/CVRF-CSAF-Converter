@@ -1,9 +1,13 @@
+""" Module containing ProductTree class """
 import logging
 from ..common.common import SectionHandler
 
 
+# pylint: disable=too-few-public-methods
 class ProductTree(SectionHandler):
-    """ Responsible for converting the ProductTree section """
+    """ Responsible for converting the ProductTree section:
+     - /cvrf:cvrfdoc/prod:ProductTree
+    """
     branch_type_mapping = {
         "Vendor": 'vendor',
         "Product Family": 'product_family',
@@ -31,12 +35,12 @@ class ProductTree(SectionHandler):
         'Installed With': 'installed_with',
     }
 
+    # pylint: disable=useless-super-delegation
     def __init__(self):
         super().__init__()
 
     def _process_mandatory_elements(self, root_element):
         """ There are no mandatory elements in the ProductTree section """
-        pass
 
     def _process_optional_elements(self, root_element):
         self._handle_full_product_names(root_element)
@@ -59,15 +63,13 @@ class ProductTree(SectionHandler):
 
         return fpn
 
-
     @classmethod
     def _get_branch_type(cls, branch_type: str):
         if branch_type in ['Realm', 'Resource']:
-            logging.warning(f'Input branch type {branch_type} is no longer supported in CSAF. '
-                            'Converting to product_name')
+            logging.warning('Input branch type %s is no longer supported in CSAF. '
+                            'Converting to product_name', branch_type)
 
         return cls.branch_type_mapping[branch_type]
-
 
     def _handle_full_product_names(self, root_element):
         if not hasattr(root_element, 'FullProductName'):
@@ -90,9 +92,9 @@ class ProductTree(SectionHandler):
             if len(rel_elem.FullProductName) > 1:
                 # To be compliant with 9.1.5 Conformance Clause 5: CVRF CSAF converter
                 # https://docs.oasis-open.org/csaf/csaf/v2.0/csaf-v2.0.html
-                logging.warning(f'Input line {rel_elem.sourceline}: Relationship contains more '
+                logging.warning('Input line %s: Relationship contains more '
                                 'FullProductNames. Taking only the first one, since CSAF expects '
-                                'only 1 value here')
+                                'only 1 value here', rel_elem.sourceline)
 
             rel_to_add = {
                 'category': self.relation_type_mapping[rel_elem.attrib['RelationType']],
@@ -125,16 +127,16 @@ class ProductTree(SectionHandler):
         self.csaf['product_groups'] = product_groups
 
     def _handle_branches_recursive(self, root_element):
-        """ Recursive method for handling the branches, branch can have either list of another branches,
-        or a single FullProductName inside
+        """ Recursive method for handling the branches,
+         branch can have either list of another branches, or a single FullProductName inside
         """
         if not hasattr(root_element, 'Branch') and not hasattr(root_element, 'FullProductName'):
             # The ProductTree section doesn't contain Branches at all
             return None
 
         if 'Branch' in root_element.tag and hasattr(root_element, 'FullProductName'):
-            # Make sure we are inside a Branch (and not in the top ProductTree element, where FullProductName can occur)
-            # then root_element is the leaf branch
+            # Make sure we are inside a Branch (and not in the top ProductTree element,
+            # where FullProductName can occur) then root_element is the leaf branch
 
             leaf_branch = {
                 'name': root_element.attrib['Name'],
@@ -157,3 +159,5 @@ class ProductTree(SectionHandler):
                     })
 
             return branches
+
+        return None

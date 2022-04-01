@@ -1,8 +1,15 @@
+""" Module containing Notes class """
 import logging
 from ..common.common import SectionHandler
 
 
+# pylint: disable=too-few-public-methods
 class Notes(SectionHandler):
+    """ Responsible for converting the Notes sections:
+      - /cvrf:cvrfdoc/cvrf:DocumentNotes
+      - /cvrf:cvrfdoc/vuln:Vulnerability[i+1]/vuln:Notes
+    """
+
     def __init__(self):
         super().__init__()
 
@@ -28,9 +35,8 @@ class Notes(SectionHandler):
             )
 
             if new_note['category'] not in self.enum_categories:
-                log_msg = f'Invalid document notes category ' \
-                          f'{new_note["category"]}. ' \
-                          f'Should be one of: {",".join(str(x) for x in sorted(self.enum_categories))}!'
+                log_msg = f'Invalid document notes category {new_note["category"]}. Should be' \
+                          f' one of: {",".join(str(x) for x in sorted(self.enum_categories))}!'
                 logging.error(log_msg)
                 SectionHandler.error_occurred = True
 

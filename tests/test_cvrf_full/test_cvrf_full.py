@@ -1,36 +1,38 @@
+"""File containing full CVRF test."""
 import json
 from contextlib import suppress
 
 
-with open('./test_cvrf_full.json') as f:
+with open('./test_cvrf_full.json', encoding='utf-8') as f:
     csaf = json.loads(f.read())
 
 
+# pylint: disable=missing-function-docstring
 def assert_object(path, length=None):
     parts = path.split('/')
 
     try:
         next_ = csaf
-        for p in parts:
+        for part in parts:
             with suppress(ValueError):
-                p = int(p)
+                part = int(part)
 
-            next_ = next_[p]
+            next_ = next_[part]
 
-    except KeyError:
+    except KeyError as err:
         print(f'FAILED. Missing CSAF path: /{path}')
-        raise AssertionError
+        raise AssertionError from err
 
     else:
         if length:
             assert len(next_) == length
 
-
+# pylint: disable=too-many-statements
 def test_full_input_cvrf():
     """
     Tests that all expected objects are present in the input.
-    Full input means that all possible (mandatory and optional) CVRF elements are present in the input,
-    And are asserted in the output
+    Full input means that all possible (mandatory and optional) CVRF elements are
+     present in the input and are asserted in the output.
     """
     assert_object('document')
     assert_object('document/title')

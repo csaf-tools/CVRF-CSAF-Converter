@@ -1,13 +1,16 @@
+"""Module containing SectionHandler parent class."""
 import logging
 
 
+# pylint: disable=too-few-public-methods
 class SectionHandler:
     """
     A class encapsulating arbitrary XML element in the tree.
     After conversion, it holds the JSON structure of its whole subtree.
 
     Attributes:
-        csaf     The CSAF interpretation of the data, to be converted to JSON in the final composition step
+        csaf     The CSAF interpretation of the data,
+         to be converted to JSON in the final composition step
     """
 
     error_occurred = False
@@ -22,13 +25,21 @@ class SectionHandler:
         raise NotImplementedError('Subclasses must implement.')
 
     def create_csaf(self, root_element):
+        """
+        Parses XML element and stores in JSON structure (self.csaf variable).
+        """
         try:
             self._process_mandatory_elements(root_element)
+        # pylint: disable=broad-except
         except Exception as e:
-            logging.error(f'Something went wrong when processing mandatory elements for {root_element.tag}. Reason: {e}')
+            logging.error(
+                'Something went wrong when processing mandatory elements for %s. Reason: %s',
+                root_element.tag, e)
 
         try:
             self._process_optional_elements(root_element)
+        # pylint: disable=broad-except
         except Exception as e:
-            logging.error(f'Something went wrong when processing optional elements for {root_element.tag}. Reason: {e}')
-
+            logging.error(
+                'Something went wrong when processing optional elements for %s. Reason: %s',
+                root_element.tag, e)

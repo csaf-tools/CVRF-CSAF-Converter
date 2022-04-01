@@ -1,3 +1,4 @@
+# pylint: disable=missing-module-docstring
 from .cvrf2csaf import main
 
 # When building the dist, bump the version with git describe --always

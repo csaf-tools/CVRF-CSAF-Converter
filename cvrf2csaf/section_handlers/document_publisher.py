@@ -1,8 +1,12 @@
-
+""" Module containing DocumentPublisher class """
 from ..common.common import SectionHandler
 
 
+# pylint: disable=too-few-public-methods
 class DocumentPublisher(SectionHandler):
+    """ Responsible for converting the DocumentPublisher section:
+      - /cvrf:cvrfdoc/cvrf:DocumentPublisher
+     """
     type_category_mapping = {
         'Vendor': 'vendor',
         'Coordinator': 'coordinator',
@@ -27,4 +31,3 @@ class DocumentPublisher(SectionHandler):
             self.csaf['contact_details'] = root_element.ContactDetails.text
         if hasattr(root_element, 'IssuingAuthority'):
             self.csaf['issuing_authority'] = root_element.IssuingAuthority.text
-
