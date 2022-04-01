@@ -103,7 +103,7 @@ However, there is a known issue for inserting HTML with code/script, which could
 [Encode HTML in JSON output](https://github.com/csaf-tools/CVRF-CSAF-Converter/issues/5)
 
 #### [A06:2021 - Vulnerable and Outdated Components](https://owasp.org/Top10/A06_2021-Vulnerable_and_Outdated_Components/)
-An automated SAST scanning tool like Github Dependabot can be used to scan the libraries for vulnerabilities.
+A [CodeQL action](https://github.com/csaf-tools/CVRF-CSAF-Converter/blob/main/.github/workflows/codeql-analysis.yml) is set in this project to spot vulnerabilities in 3rd party libraries.
 Especially the `lxml` library can be susceptible.
 
 #### [A4:2017 - XML External Entities (XXE)](https://owasp.org/www-project-top-ten/2017/A4_2017-XML_External_Entities_(XXE))
