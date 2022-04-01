@@ -97,7 +97,7 @@ These are the TOP OWASP categories of vulnerabilities which potentially affect t
 We are omitting those which do not apply (most of them), since it's a plain command-line tool (e.g. authentication failures)
 
 #### [A03:2021 – Injection](https://owasp.org/Top10/A03_2021-Injection/)
-The XML input for the converter is strictly validated for CVRF. The converter rejects invalid inputs.
+The XML input for the converter is strictly validated for [CSAF CVRF 1.2](https://docs.oasis-open.org/csaf/csaf-cvrf/v1.2/cs01/csaf-cvrf-v1.2-cs01.html). The converter rejects invalid inputs.
 
 However, there is a known issue for inserting HTML with code/script, which could be executed by a CSAF consumer: 
 [Encode HTML in JSON output](https://github.com/csaf-tools/CVRF-CSAF-Converter/issues/5)
