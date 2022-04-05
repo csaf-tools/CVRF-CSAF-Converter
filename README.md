@@ -93,6 +93,25 @@ We follow the official OASIS specifications in order to provide as much acceptan
 
 ### Security Considerations
 
+These are the TOP OWASP categories of vulnerabilities which potentially affect the CVRF-CSAF-Converter.
+We are omitting those which do not apply (most of them), since it's a plain command-line tool (e.g. authentication failures)
+
+#### [A03:2021 – Injection](https://owasp.org/Top10/A03_2021-Injection/)
+The XML input for the converter is strictly validated for [CSAF CVRF 1.2](https://docs.oasis-open.org/csaf/csaf-cvrf/v1.2/cs01/csaf-cvrf-v1.2-cs01.html). The converter rejects invalid inputs.
+
+However, there is a known issue for inserting HTML with code/script, which could be executed by a CSAF consumer: 
+[Encode HTML in JSON output](https://github.com/csaf-tools/CVRF-CSAF-Converter/issues/5)
+
+#### [A06:2021 - Vulnerable and Outdated Components](https://owasp.org/Top10/A06_2021-Vulnerable_and_Outdated_Components/)
+A [CodeQL action](https://github.com/csaf-tools/CVRF-CSAF-Converter/blob/main/.github/workflows/codeql-analysis.yml) is set in this project to spot vulnerabilities in 3rd party libraries.
+Especially the `lxml` library can be susceptible.
+
+#### [A4:2017 - XML External Entities (XXE)](https://owasp.org/www-project-top-ten/2017/A4_2017-XML_External_Entities_(XXE))
+XXE vulnerability present in releases <1.0.0rc2 was fixed in [this commit](https://github.com/csaf-tools/CVRF-CSAF-Converter/commit/ff20a6c00245b064ceb6840dab0cd95a82fbec49)
+
+CVE report: https://nvd.nist.gov/vuln/detail/CVE-2022-27193
+
+
 ## Contributing
 
 Please refer to [`CONTRIBUTING.md`](CONTRIBUTING.md) for details about how to contribute to the development of [CVRF-CSAF-converter](https://github.com/csaf-tools/CVRF-CSAF-converter).
