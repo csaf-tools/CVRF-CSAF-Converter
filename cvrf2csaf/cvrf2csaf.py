@@ -155,12 +155,9 @@ class DocumentHandler:
         tolerated_errors = [error for error in error_list if any(
             error_substr in error.message for error_substr in
             DocumentHandler.TOLERATED_ERRORS_SUBSTR)]
-        if set(tolerated_errors) == set(error_list):
-            logging.warning(
-                'Some errors during input validation happened, but can be tolerated: %s.',
-                tolerated_errors)
-            return True
-        return False
+        if len(tolerated_errors) > 0:
+            logging.warning('Tolerating errors: %s.', tolerated_errors)
+        return set(tolerated_errors) == set(error_list)
 
     @classmethod
     def _validate_input_against_schema(cls, xml_objectified):
