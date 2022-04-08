@@ -69,8 +69,10 @@ The rest of the options can be shown with:
 
 ### Config
 
-The [config file](https://github.com/csaf-tools/CVRF-CSAF-Converter/blob/main/cvrf2csaf/config/config.yaml) is installed inside the Python package (`.../site-packages/cvrf2csaf/config/config.yaml`).
-Convertor options can be changed there, or overridden by command line arguments/options.
+The [config file](https://github.com/csaf-tools/CVRF-CSAF-Converter/blob/main/cvrf2csaf/config/config.yaml) is installed inside the Python package.
+For the installation using `venv`, the config file is located in `$PATH_TO_THE_VENV/lib/python3.X/site-packages/cvrf2csaf/config/config.yaml`.
+When installing the PyPI package with pip (--user), the config file is located in `$HOME/.local/lib/python3.X/site-packages/cvrf2csaf/config/config.yaml`
+Converter options can be changed there, or overridden by command line arguments/options.
 
 ## Specifications
 
