@@ -91,7 +91,32 @@ We follow the official OASIS specifications in order to provide as much acceptan
 
 ### Developer Guide, Architecture and Technical Design
 
-``` To Be Published ```
+### Architecture and Technical Design
+
+Program uses lxml.objectify to parse whole input document.
+
+Parsing and conversion of  following XML elements are handled by separate section handlers:
+ - Acknowledgments
+ - DocumentNotes
+ - DocumentPublisher
+ - DocumentReferences
+ - DocumentTracking
+ - ProductTree
+ - Vulnerability
+
+The rest of XML elements (`DocumentType, DocumentTitle, DocumentDistribution, AggregateSeverity`)
+are handled by `DocumentLeafElements` handler.
+
+`Vulnerability` handler is reusing `Acknowledgments, References` and `Notes` handlers for its child elements.
+
+Each of these section handlers is implemented by own class inheriting from `SectionHandler` class.
+This base class contains `_process_mandatory_elements` and `_process_optional_elements` methods 
+which are parsing and converting mandatory/optional elements/attributes. Each subclass must implement these methods.
+
+`SectionHandler` class holds `error_occurred` class variable. This variable is overwritten by any children class in case 
+some error resulting in invalid output json happened. Depending on `--force` commandline parameter, the program
+either quits with error log message without producing output or produce invalid output and warning log message.
+
 
 ### Security Considerations
 
