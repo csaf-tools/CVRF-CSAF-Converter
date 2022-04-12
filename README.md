@@ -24,7 +24,7 @@
 
 ## Getting started
 
-Ensure that you have **Python 3** installed.
+Ensure that you have installed `python3` (version >= 3.6), `python3-pip` and `python3-venv`.
 
 Assume your current directory is also avaliable at the environment variable `$ROOT_DIR`.
 
