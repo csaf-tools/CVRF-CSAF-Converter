@@ -93,17 +93,15 @@ We follow the official OASIS specifications in order to provide as much acceptan
 
 Program uses lxml.objectify to parse whole input document.
 
-Parsing and conversion of  following XML elements are handled by separate section handlers:
- - Acknowledgments
- - DocumentNotes
- - DocumentPublisher
- - DocumentReferences
- - DocumentTracking
- - ProductTree
- - Vulnerability
-
-The rest of XML elements and attributes (`DocumentType, DocumentTitle, DocumentDistribution, AggregateSeverity`)
-are handled by `DocumentLeafElements` handler.
+Parsing and conversion of following CVRF XML root-1 elements are handled by separate section handlers:
+ - Acknowledgments -> `Acknowledgments` handler
+ - DocumentNotes -> `Notes` handler
+ - DocumentPublisher -> `DocumentPublisher` handler
+ - DocumentReferences -> `References` handler
+ - DocumentTracking -> `DocumentTracking` handler
+ - ProductTree -> `ProductTree` handler
+ - Vulnerability -> `Vulnerability` handler
+ - DocumentType, DocumentTitle, DocumentDistribution, AggregateSeverity -> `DocumentLeafElements` handler
 
 `Vulnerability` handler is reusing `Acknowledgments, References` and `Notes` handlers for its child elements.
 
