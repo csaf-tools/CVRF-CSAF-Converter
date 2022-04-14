@@ -91,9 +91,9 @@ We follow the official OASIS specifications in order to provide as much acceptan
 
 ### Developer Guide, Architecture and Technical Design
 
-Program uses lxml.objectify to parse whole input document.
+The converter uses lxml.objectify to parse the whole input document.
 
-Parsing and conversion of following CVRF XML root-1 elements are handled by separate section handlers:
+Parsing and conversion of the following CVRF XML elements are handled by separate section handlers. These section handlers process the elements recursively (converting also all their sub-elements). These elements are the direct children of the root XML element (`<cvrfdoc>`).
  - Acknowledgments -> `Acknowledgments` handler
  - DocumentNotes -> `Notes` handler
  - DocumentPublisher -> `DocumentPublisher` handler
@@ -113,7 +113,7 @@ which are parsing and converting mandatory/optional elements/attributes. Each su
 some error resulting in invalid output json happened. Depending on `--force` commandline parameter, the program
 either quits with error log message without producing output or produce invalid output and warning log message.
 
-Complete conversion together with input and output validation against schemata is handled by `DocumentHandler` class. 
+Complete conversion together with input and output validation against schemata is handled by the `DocumentHandler` class. 
 
 
 ### Security Considerations
