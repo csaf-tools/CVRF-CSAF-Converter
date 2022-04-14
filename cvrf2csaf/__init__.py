@@ -1,7 +1,8 @@
 # pylint: disable=missing-module-docstring
 from .cvrf2csaf import main
+# pylint: disable=import-error
+from ._version import version
 
-# When building the dist, bump the version with git describe --always
-__version__ = '1.0.0-rc1'
+__version__ = version
 
 __all__ = ['main']
