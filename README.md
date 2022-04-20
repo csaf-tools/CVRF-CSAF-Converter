@@ -103,7 +103,7 @@ Parsing and conversion of the following [CSAF CVRF 1.2](https://docs.oasis-open.
  - ProductTree -> `ProductTree` handler
  - Vulnerability -> `Vulnerability` handler
 
-`Vulnerability` handler is reusing `Acknowledgments, References` and `Notes` handlers for its child elements.
+`Vulnerability` handler is reusing `Acknowledgments`, `References` and `Notes` handlers for its child elements.
 
 Each of these section handlers is implemented by own class inheriting from `SectionHandler` class.
 This base class contains `_process_mandatory_elements` and `_process_optional_elements` methods 
