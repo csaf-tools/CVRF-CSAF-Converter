@@ -95,13 +95,13 @@ The converter uses lxml.objectify to parse the whole input document.
 
 Parsing and conversion of the following [CSAF CVRF 1.2](https://docs.oasis-open.org/csaf/csaf-cvrf/v1.2/cs01/csaf-cvrf-v1.2-cs01.html) XML elements are handled by separate section handlers. These section handlers process the elements recursively (converting also all their sub-elements). These elements are the direct children of the root XML element (`<cvrfdoc>`).
  - DocumentTitle, DocumentType, DocumentDistribution, AggregateSeverity -> [`DocumentLeafElements`](blob/main/cvrf2csaf/section_handlers/document_leaf_elements.py) handler
- - DocumentPublisher -> `DocumentPublisher` handler
- - DocumentTracking -> `DocumentTracking` handler
- - DocumentNotes -> `Notes` handler
- - DocumentReferences -> `References` handler
- - Acknowledgments -> `Acknowledgments` handler
- - ProductTree -> `ProductTree` handler
- - Vulnerability -> `Vulnerability` handler
+ - DocumentPublisher -> [`DocumentPublisher`](blob/main/cvrf2csaf/section_handlers/document_leaf_elements.py) handler
+ - DocumentTracking -> [`DocumentTracking`](blob/main/cvrf2csaf/section_handlers/document_tracking.py) handler
+ - DocumentNotes -> [`Notes`](blob/main/cvrf2csaf/section_handlers/notes.py) handler
+ - DocumentReferences -> [`References`](blob/main/cvrf2csaf/section_handlers/references.py) handler
+ - Acknowledgments -> [`Acknowledgments`](blob/main/cvrf2csaf/section_handlers/acknowledgments.py) handler
+ - ProductTree -> [`ProductTree`](blob/main/cvrf2csaf/section_handlers/product_tree.py) handler
+ - Vulnerability -> [`Vulnerability`](blob/main/cvrf2csaf/section_handlers/vulnerability.py) handler
 
 `Vulnerability` handler is reusing `Acknowledgments`, `References` and `Notes` handlers for its child elements.
 
