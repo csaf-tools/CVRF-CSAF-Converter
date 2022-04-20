@@ -91,7 +91,30 @@ We follow the official OASIS specifications in order to provide as much acceptan
 
 ### Developer Guide, Architecture and Technical Design
 
-``` To Be Published ```
+The converter uses lxml.objectify to parse the whole input document.
+
+Parsing and conversion of the following [CSAF CVRF 1.2](https://docs.oasis-open.org/csaf/csaf-cvrf/v1.2/cs01/csaf-cvrf-v1.2-cs01.html) XML elements are handled by separate section handlers. These section handlers process the elements recursively (converting also all their sub-elements). These elements are the direct children of the root XML element (`<cvrfdoc>`).
+ - DocumentTitle, DocumentType, DocumentDistribution, AggregateSeverity -> [`DocumentLeafElements`](blob/main/cvrf2csaf/section_handlers/document_leaf_elements.py) handler
+ - DocumentPublisher -> [`DocumentPublisher`](blob/main/cvrf2csaf/section_handlers/document_leaf_elements.py) handler
+ - DocumentTracking -> [`DocumentTracking`](blob/main/cvrf2csaf/section_handlers/document_tracking.py) handler
+ - DocumentNotes -> [`Notes`](blob/main/cvrf2csaf/section_handlers/notes.py) handler
+ - DocumentReferences -> [`References`](blob/main/cvrf2csaf/section_handlers/references.py) handler
+ - Acknowledgments -> [`Acknowledgments`](blob/main/cvrf2csaf/section_handlers/acknowledgments.py) handler
+ - ProductTree -> [`ProductTree`](blob/main/cvrf2csaf/section_handlers/product_tree.py) handler
+ - Vulnerability -> [`Vulnerability`](blob/main/cvrf2csaf/section_handlers/vulnerability.py) handler
+
+`Vulnerability` handler is reusing `Acknowledgments`, `References` and `Notes` handlers for its child elements.
+
+Each of these section handlers is implemented by own class inheriting from `SectionHandler` class.
+This base class contains `_process_mandatory_elements` and `_process_optional_elements` methods 
+which are parsing and converting mandatory/optional elements/attributes. Each subclass must implement these methods.
+
+`SectionHandler` class holds `error_occurred` class variable. This variable is overwritten by any children class in case 
+some error resulting in invalid output json happened. Depending on `--force` commandline parameter, the program
+either quits with error log message without producing output or produce invalid output and warning log message.
+
+Complete conversion together with input and output validation against schemata is handled by the `DocumentHandler` class. 
+
 
 ### Security Considerations
 
