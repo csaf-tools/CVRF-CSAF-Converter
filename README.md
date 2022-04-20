@@ -94,8 +94,8 @@ We follow the official OASIS specifications in order to provide as much acceptan
 The converter uses lxml.objectify to parse the whole input document.
 
 Parsing and conversion of the following [CSAF CVRF 1.2](https://docs.oasis-open.org/csaf/csaf-cvrf/v1.2/cs01/csaf-cvrf-v1.2-cs01.html) XML elements are handled by separate section handlers. These section handlers process the elements recursively (converting also all their sub-elements). These elements are the direct children of the root XML element (`<cvrfdoc>`).
- - DocumentTitle, DocumentType, DocumentDistribution, AggregateSeverity -> [`DocumentLeafElements`](blob/main/cvrf2csaf/section_handlers/document_leaf_elements.py) handler
- - DocumentPublisher -> [`DocumentPublisher`](cvrf2csaf/section_handlers/document_leaf_elements.py) handler
+ - DocumentTitle, DocumentType, DocumentDistribution, AggregateSeverity -> [`DocumentLeafElements`](cvrf2csaf/section_handlers/document_leaf_elements.py) handler
+ - DocumentPublisher -> [`DocumentPublisher`](cvrf2csaf/section_handlers/document_publisher.py) handler
  - DocumentTracking -> [`DocumentTracking`](cvrf2csaf/section_handlers/document_tracking.py) handler
  - DocumentNotes -> [`Notes`](cvrf2csaf/section_handlers/notes.py) handler
  - DocumentReferences -> [`References`](cvrf2csaf/section_handlers/references.py) handler
