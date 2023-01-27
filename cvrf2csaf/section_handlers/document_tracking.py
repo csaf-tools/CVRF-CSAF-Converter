@@ -69,7 +69,7 @@ class DocumentTracking(SectionHandler):
         """
         Checks whether all version numbers in /document/tracking/revision_history match
         semantic versioning. Semantic version is defined in version_t definition.
-        see: https://docs.oasis-open.org/csaf/csaf/v2.0/csd01/csaf-v2.0-csd01.html#3111-version-type
+        see: https://docs.oasis-open.org/csaf/csaf/v2.0/cs02/csaf-v2.0-cs02.html#3111-version-type
         and section 9.1.5 Conformance Clause 5: CVRF CSAF converter
         """
 
@@ -118,6 +118,8 @@ class DocumentTracking(SectionHandler):
 
         for rev_number, revision in enumerate(revision_history_sorted, start=1):
             revision['number'] = str(rev_number)
+            # add property legacy_version with the original version number for each reindexed version
+            revision['legacy_version'] = revision['number_cvrf']
 
         # after reindexing, match document version to corresponding one in revision history
         version = next(rev for rev in revision_history_sorted if
