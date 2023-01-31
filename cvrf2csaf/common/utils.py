@@ -65,7 +65,7 @@ def get_config_from_file() -> dict:
 def create_file_name(document_tracking_id, valid_output):
     """
     Returns filename according to standard:
-    https://docs.oasis-open.org/csaf/csaf/v2.0/cs02/csaf-v2.0-cs02.html#51-filename
+    https://docs.oasis-open.org/csaf/csaf/v2.0/csaf-v2.0.html#51-filename
     if valid_input is false, `_invalid ` is appended to filename.
     """
     if document_tracking_id is not None:

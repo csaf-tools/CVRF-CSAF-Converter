@@ -69,7 +69,7 @@ class DocumentTracking(SectionHandler):
         """
         Checks whether all version numbers in /document/tracking/revision_history match
         semantic versioning. Semantic version is defined in version_t definition.
-        see: https://docs.oasis-open.org/csaf/csaf/v2.0/cs02/csaf-v2.0-cs02.html#3111-version-type
+        see: https://docs.oasis-open.org/csaf/csaf/v2.0/csaf-v2.0.html#3111-version-type
         and section 9.1.5 Conformance Clause 5: CVRF CSAF converter
         """
 
