@@ -12,7 +12,7 @@ import turvallisuusneuvonta as mandatory_tests
 from lxml import etree
 from lxml import objectify
 from jsonschema import Draft202012Validator, ValidationError, SchemaError, \
-    draft202012_format_checker
+    Draft202012Validator.FORMAT_CHECKER
 from pkg_resources import get_distribution, Requirement, resource_filename
 
 from .common.utils import get_config_from_file, store_json, critical_exit, create_file_name
@@ -210,7 +210,7 @@ class DocumentHandler:
         try:
             Draft202012Validator.check_schema(csaf_schema_content)
             validator = Draft202012Validator(csaf_schema_content,
-                                             format_checker=draft202012_format_checker)
+                                             format_checker=Draft202012Validator.FORMAT_CHECKER)
             validator.validate(final_csaf)
         except SchemaError as e:
             logging.error(
