@@ -65,11 +65,11 @@ def get_config_from_file() -> dict:
 def create_file_name(document_tracking_id, valid_output):
     """
     Returns filename according to standard:
-    https://docs.oasis-open.org/csaf/csaf/v2.0/csd01/csaf-v2.0-csd01.html#51-filename
+    https://docs.oasis-open.org/csaf/csaf/v2.0/csaf-v2.0.html#51-filename
     if valid_input is false, `_invalid ` is appended to filename.
     """
     if document_tracking_id is not None:
-        file_name = re.sub(r"([^+\-_a-z0-9]+)", '_', document_tracking_id.lower())
+        file_name = re.sub(r"(_+)", '_', re.sub(r"([^+\-a-z0-9]+)", '_', document_tracking_id.lower()))
     else:
         file_name = 'out'
 

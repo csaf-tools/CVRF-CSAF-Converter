@@ -85,7 +85,7 @@ We follow the official OASIS specifications in order to provide as much acceptan
   - [xsd vuln](http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln)
 
 - [Specification CSAF 2.0](https://docs.oasis-open.org/csaf/csaf/v2.0/csaf-v2.0.html)
-  - [JSON spec](https://docs.oasis-open.org/csaf/csaf/v2.0/schemas/csaf_json_schema.json)
+  - [JSON spec](https://docs.oasis-open.org/csaf/csaf/v2.0/csaf_json_schema.json)
 
 ## Developing CVRF-CSAF-converter
 

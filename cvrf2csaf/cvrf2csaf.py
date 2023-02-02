@@ -59,7 +59,7 @@ class DocumentHandler:
                                      f'{PACKAGE_NAME}/schemata/catalog_1_2.xml')
 
     # Content copied from
-    # https://github.com/secvisogram/secvisogram/blob/main/app/lib/shared/Core/csaf_2.0_strict.json
+    # https://github.com/secvisogram/secvisogram/blob/main/app/lib/app/shared/Core/csaf_2.0_strict.json
     CSAF_SCHEMA_FILE = resource_filename(Requirement.parse(PACKAGE_NAME),
                                          f'{PACKAGE_NAME}'
                                          f'/schemata/csaf/2.0/csaf_json_schema_strict.json')
@@ -229,7 +229,7 @@ class DocumentHandler:
     def validate_mandatory_tests(final_csaf):
         """
         Validates output against mandatory tests:
-        https://docs.oasis-open.org/csaf/csaf/v2.0/csd01/csaf-v2.0-csd01.html#61-mandatory-tests
+        https://docs.oasis-open.org/csaf/csaf/v2.0/csaf-v2.0.html#61-mandatory-tests
         """
         # pylint: disable=fixme
         # TODO: After the turvallisuusneuvonta package is complete and part of the csaf package,

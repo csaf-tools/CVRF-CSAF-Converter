@@ -27,7 +27,7 @@ class DocumentTracking(SectionHandler):
             = config.get('fix_insert_current_version_into_revision_history')
 
     def _process_mandatory_elements(self, root_element):
-        self.csaf['id'] = root_element.Identification.ID.text
+        self.csaf['id'] = self._remove_id_whitespace(root_element.Identification.ID.text)
         self.csaf['current_release_date'] = get_utc_timestamp(root_element.CurrentReleaseDate.text)
         self.csaf['initial_release_date'] = get_utc_timestamp(root_element.InitialReleaseDate.text)
         self.csaf['status'] = self.tracking_status_mapping[root_element.Status.text]
@@ -50,13 +50,26 @@ class DocumentTracking(SectionHandler):
                 aliases.append(alias.text)
 
             self.csaf['aliases'] = aliases
+            
+    @staticmethod
+    def _remove_id_whitespace(id_string: str) -> str:
+        """
+        Removes leading/trailing whitespace and linebreaks from the ID string and outputs a warning if the ID string was changed.
+        """
+        id_string_clean = id_string.strip().replace("\r", "").replace("\n", "")
+        if id_string_clean != id_string:
+            logging.warning(
+                'The ID string contained leading/trailing whitespace or linebreaks. '
+                'These were removed.'
+            )
+        return id_string_clean
 
     @staticmethod
     def check_for_version_t(revision_history):
         """
         Checks whether all version numbers in /document/tracking/revision_history match
         semantic versioning. Semantic version is defined in version_t definition.
-        see: https://docs.oasis-open.org/csaf/csaf/v2.0/csd01/csaf-v2.0-csd01.html#3111-version-type
+        see: https://docs.oasis-open.org/csaf/csaf/v2.0/csaf-v2.0.html#3111-version-type
         and section 9.1.5 Conformance Clause 5: CVRF CSAF converter
         """
 
@@ -105,6 +118,8 @@ class DocumentTracking(SectionHandler):
 
         for rev_number, revision in enumerate(revision_history_sorted, start=1):
             revision['number'] = str(rev_number)
+            # add property legacy_version with the original version number for each reindexed version
+            revision['legacy_version'] = revision['number_cvrf']
 
         # after reindexing, match document version to corresponding one in revision history
         version = next(rev for rev in revision_history_sorted if
