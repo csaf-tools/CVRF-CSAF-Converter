@@ -23,9 +23,8 @@ def assert_object(path, length=None):
         print(f'FAILED. Missing CSAF path: /{path}')
         raise AssertionError from err
 
-    else:
-        if length:
-            assert len(next_) == length
+    if length:
+        assert len(next_) == length
 
 # pylint: disable=too-many-statements
 def test_full_input_cvrf():

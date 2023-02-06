@@ -50,11 +50,12 @@ class DocumentTracking(SectionHandler):
                 aliases.append(alias.text)
 
             self.csaf['aliases'] = aliases
-            
+
     @staticmethod
     def _remove_id_whitespace(id_string: str) -> str:
         """
-        Removes leading/trailing whitespace and linebreaks from the ID string and outputs a warning if the ID string was changed.
+        Removes leading/trailing whitespace and linebreaks from the ID string and 
+        outputs a warning if the ID string was changed.
         """
         id_string_clean = id_string.strip().replace("\r", "").replace("\n", "")
         if id_string_clean != id_string:
@@ -118,7 +119,8 @@ class DocumentTracking(SectionHandler):
 
         for rev_number, revision in enumerate(revision_history_sorted, start=1):
             revision['number'] = str(rev_number)
-            # add property legacy_version with the original version number for each reindexed version
+            # add property legacy_version with the original version number
+            # for each reindexed version
             revision['legacy_version'] = revision['number_cvrf']
 
         # after reindexing, match document version to corresponding one in revision history
