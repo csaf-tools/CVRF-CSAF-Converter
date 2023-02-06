@@ -69,7 +69,7 @@ def create_file_name(document_tracking_id, valid_output):
     if valid_input is false, `_invalid ` is appended to filename.
     """
     if document_tracking_id is not None:
-        file_name = re.sub(r"(_+)", '_', re.sub(r"([^+\-a-z0-9]+)", '_', document_tracking_id.lower()))
+        file_name = re.sub(r"([^+\-a-z0-9]+)", '_', document_tracking_id.lower())
     else:
         file_name = 'out'
 
