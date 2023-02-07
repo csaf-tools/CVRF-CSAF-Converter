@@ -11,8 +11,7 @@ import turvallisuusneuvonta as mandatory_tests
 
 from lxml import etree
 from lxml import objectify
-from jsonschema import Draft202012Validator, ValidationError, SchemaError, \
-    Draft202012Validator.FORMAT_CHECKER
+from jsonschema import Draft202012Validator, ValidationError, SchemaError
 from pkg_resources import get_distribution, Requirement, resource_filename
 
 from .common.utils import get_config_from_file, store_json, critical_exit, create_file_name
@@ -221,9 +220,9 @@ class DocumentHandler:
             logging.error('CSAF schema validation error. Path: %s. Message: %s.', e.json_path,
                           e.message)
             return False
-        else:
-            logging.info('CSAF schema validation OK.')
-            return True
+
+        logging.info('CSAF schema validation OK.')
+        return True
 
     @staticmethod
     def validate_mandatory_tests(final_csaf):

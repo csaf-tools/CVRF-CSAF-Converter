@@ -29,10 +29,10 @@ class Notes(SectionHandler):
         for elem_note in root_element.Note:
 
             # mandatory
-            new_note = dict(
-                text=elem_note.text,
-                category=elem_note.get('Type').lower().replace(' ', '_'),
-            )
+            new_note = {
+                "text": elem_note.text,
+                "category": elem_note.get('Type').lower().replace(' ', '_'),
+            }
 
             if new_note['category'] not in self.enum_categories:
                 log_msg = f'Invalid document notes category {new_note["category"]}. Should be' \
