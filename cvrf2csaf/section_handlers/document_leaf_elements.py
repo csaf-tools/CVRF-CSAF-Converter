@@ -1,4 +1,6 @@
 """ Module containing DocumentLeafElements class """
+import logging
+
 from ..common.common import SectionHandler
 
 
@@ -33,3 +35,18 @@ class DocumentLeafElements(SectionHandler):
             if root_element.AggregateSeverity.attrib.get('Namespace'):
                 self.csaf['aggregate_severity']['namespace'] = \
                     root_element.AggregateSeverity.attrib['Namespace']
+
+        self._process_xml_lang(root_element)
+
+    def _process_xml_lang(self, root_element):
+        langs = list(set(root_element.xpath("//@xml:lang")))
+        if len(langs) == 1:
+            self.csaf['lang'] = langs[0]
+            return
+
+        if len(langs) > 1:
+            reason = (f'multiple languages specified in XML: {", ".join(langs)}.'
+                      ' A document with multiple languages might have been produced')
+        else:
+            reason = "no language specified in XML"
+        logging.warning("could not determine value for 'lang': %s", reason)
