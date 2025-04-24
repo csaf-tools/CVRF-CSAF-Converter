@@ -141,8 +141,13 @@ CVE report: https://nvd.nist.gov/vuln/detail/CVE-2022-27193
 
 Please refer to [`CONTRIBUTING.md`](CONTRIBUTING.md) for details about how to contribute to the development of [CVRF-CSAF-converter](https://github.com/csaf-tools/CVRF-CSAF-converter).
 
-## Project
+## License
 
-CVRF-CSAF-Converter is a project between Deutsche Telekom Security GmbH and the Federal Office for Information Security. It aims to provide a CVRF 1.x to CSAF 2.0 converter.
+CVRF-CSAF-Converter is Free Software (aka _Open Source_),
+see `LICENSE` and `LICENSE.md` for details.
 
-Realization is taking place 100% Open Source. The final delivery will be in Q1/2022.
+## Credits
+
+Initial development, up to and including version 1.0.0 (2022-05-22)
+was done by Deutsche Telekom Security GmbH,
+contracted by the German Federal Office for Information Security (BSI).
