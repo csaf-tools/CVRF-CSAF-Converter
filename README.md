@@ -74,6 +74,23 @@ For the installation using `venv`, the config file is located in `$PATH_TO_THE_V
 When installing the PyPI package with pip (--user), the config file is located in `$HOME/.local/lib/python3.X/site-packages/cvrf2csaf/config/config.yaml`
 Converter options can be changed there, or overridden by command line arguments/options.
 
+### Validate using a validation service
+
+To validate the document using a validation service such as the [secvisogram/csaf-validator-service](https://github.com/secvisogram/csaf-validator-service),
+call the application with `--validate`:
+```bash
+cvrf2csaf --validate --input-file ...
+```
+
+It shows you the validation result:
+```bash
+2025-05-29 09:25:11,415 - cvrf2csaf - INFO - Valdidation successful.
+# or
+2025-05-29 09:24:10,594 - cvrf2csaf - WARNING - Some errors were found at validation: [...]
+```
+
+Use `--validator-endpoint` and `--validator-mode` to specify the URL of the validator service and the type of service (currently implemented: secvisogram).
+
 ## Specifications
 
 We follow the official OASIS specifications in order to provide as much acceptance on the user base as possible.

@@ -1,3 +1,6 @@
+"""
+The module providing validation functionality
+"""
 from ssl import SSLContext
 from typing import Any, Optional, Union, Tuple
 
@@ -19,33 +22,51 @@ SECVISOGRAM_TEMPLATE = {
   }
 }
 
+DEFAULT_MODE = 'secvisogram'
+DEFAULT_ENDPOINT = 'http://localhost:8082/api/v1/validate'
+SUPPORTED_MODES = [DEFAULT_MODE]
+
 
 @define
 class Validator:
-    endpoint: str = field(default='http://localhost:8082/api/v1/validate')
-    mode: str = field(default='secvisogram')
+    """
+    Calling the validation services.
+    Also accepts parameters for authentication (headers, cookies).
+    """
+    endpoint: str = field(default=DEFAULT_ENDPOINT)
+    mode: str = field(default=DEFAULT_MODE)
     _headers: dict[str, str] = field(factory=dict, kw_only=True, alias="headers")
     _timeout: Optional[Timeout] = field(default=None, kw_only=True, alias="timeout")
-    _verify_ssl: Union[str, bool, SSLContext] = field(default=True, kw_only=True, alias="verify_ssl")
-    _follow_redirects: bool = field(default=False, kw_only=True, alias="follow_redirects")
+    _verify_ssl: Union[str, bool, SSLContext] = field(default=True, kw_only=True,
+                                                      alias="verify_ssl")
     _httpx_args: dict[str, Any] = field(factory=dict, kw_only=True, alias="httpx_args")
     _cookies: Optional[dict] = field(default=None, init=False)
 
     @property
     def client(self):
+        """
+        Create a httpx Client object
+        """
         return Client(
                 cookies=self._cookies,
                 headers=self._headers,
                 timeout=self._timeout,
                 verify=self._verify_ssl,
-                follow_redirects=self._follow_redirects,
                 **self._httpx_args,
             )
 
     def validate(self, document: dict) -> Tuple[bool, dict]:
+        """
+        Call the validation enpoint and return the result
+
+        Return values:
+            validity: True, if the document is valid, False if it's not
+            errors: List of errors
+        """
         if self.mode == 'secvisogram':
-            result = self.client.post(self.endpoint, json=SECVISOGRAM_TEMPLATE | {'document': document}).json()
+            result = self.client.post(self.endpoint,
+                                      json=SECVISOGRAM_TEMPLATE | {'document': document}).json()
             errors = [test for test in result['tests'] if test['errors']]
             return result['isValid'], errors
-        else:
-            return NotImplementedError()
+
+        raise NotImplementedError(f"Mode {self.mode} is not supported.")
