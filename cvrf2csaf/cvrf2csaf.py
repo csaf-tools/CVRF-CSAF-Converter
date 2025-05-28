@@ -27,6 +27,8 @@ from .section_handlers.product_tree import ProductTree
 from .section_handlers.vulnerability import Vulnerability
 from .common.common import SectionHandler
 
+from .validate import Validator, DEFAULT_ENDPOINT, DEFAULT_MODE, SUPPORTED_MODES
+
 logging.basicConfig(level=logging.INFO,
                     format='%(asctime)s - %(module)s - %(levelname)s - %(message)s')
 
@@ -300,6 +302,19 @@ def main():
                         help="Default version used for CVSS version 3, when the version cannot be"
                              " derived from other sources. Default value is '3.0'.")
 
+    # Validation
+    parser.add_argument('--no-validate', action='store_true',
+                        help="Deactivate validation by a validator service")
+    parser.add_argument('--validator-endpoint',
+                        default=DEFAULT_ENDPOINT,
+                        help="The URL where the validator service is reachable. "
+                             f"Default: {DEFAULT_ENDPOINT!r}.")
+    parser.add_argument('--validator-mode',
+                        default=DEFAULT_MODE,
+                        help=f"The Validator mode, currently supported: "
+                             f"{','.join(SUPPORTED_MODES)}. Default: {DEFAULT_MODE!r}.")
+
+
     args = {k: v for k, v in vars(parser.parse_args()).items() if v is not None}
 
     config = get_config_from_file()
@@ -340,6 +355,15 @@ def main():
         else:
             logging.warning('Some errors occurred during conversion,'
                             ' but producing output as --force option is used.')
+
+    if not args['no_validate']:
+        validator = Validator(endpoint=args['validator_endpoint'], mode=args['validator_mode'])
+        validation_result = validator.validate(final_csaf)
+        if not validation_result[0]:
+            valid_output = False
+            logging.warning("Some errors were found at validation: %s", validation_result[1])
+        else:
+            logging.info("CSAF validation successful.")
 
     # Output / Store results
     file_name = create_file_name(final_csaf['document'].get('tracking', {}).get('id', None),

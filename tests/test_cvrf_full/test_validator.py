@@ -1,3 +1,6 @@
+"""
+Minimal test for the Validator class
+"""
 from json import load
 from pathlib import Path
 
@@ -33,7 +36,9 @@ MINIMAL_DOCUMENT = {
 
 
 def test_validator_empty():
-    # a minimal, basically empty document that validates
+    """
+    a minimal, basically empty document that validates
+    """
     validator = Validator()
     result = validator.validate(MINIMAL_DOCUMENT)
     assert result[0] is True
@@ -41,8 +46,11 @@ def test_validator_empty():
 
 
 def test_validator_cvrf_full():
-    # invalid document
-    document = load((Path(__file__).parent / "../../tests/test_cvrf_full/test_cvrf_full.json").open())
+    """
+    invalid document
+    """
+    document = load((Path(__file__).parent /
+                     "../../tests/test_cvrf_full/test_cvrf_full.json").open())
     validator = Validator()
     result = validator.validate(document)
     assert result[0] is False
