@@ -26,7 +26,7 @@
 
 Ensure that you have installed `python3` (version >= 3.6), `python3-pip` and `python3-venv`.
 
-Assume your current directory is also avaliable at the environment variable `$ROOT_DIR`.
+Assume your current directory is also available at the environment variable `$ROOT_DIR`.
 
 Check out the repository and navigate to the working directory.
 

@@ -3,7 +3,7 @@
 When contributing to this repository, please first discuss the change you wish to make via issue, email, or any other method with the owners of this repository before making a change.
 Please note we have a code of conduct, please follow it in all your interactions with the project.
 
-The active development takes place at [csaf-tools/CVRF-CSAF-converter](https://github.com/csaf-tools/CVRF-CSAF-converter). Please sumbit all contributions and issues there.
+The active development takes place at [csaf-tools/CVRF-CSAF-converter](https://github.com/csaf-tools/CVRF-CSAF-converter). Please submit all contributions and issues there.
 
 ## Pull Request Process
 

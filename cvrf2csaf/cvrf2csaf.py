@@ -100,7 +100,7 @@ class DocumentHandler:
                 # already have some version, but it's the same as currently matched -> ok, continue
                 elif potential_cvss3 == cvss_version_matched:
                     continue
-                # else we have two different potential cvss versions -> skip this step comletely
+                # else we have two different potential cvss versions -> skip this step completely
                 else:
                     return
 
@@ -237,7 +237,7 @@ class DocumentHandler:
         passed = True
         for m_test_str in mandatory_tests.__all__:
             # Skip translator function since translator value cannot appear on the input
-            # Skip is_valid which calls all the tests (but doesnt produce any output)
+            # Skip is_valid which calls all the tests (but doesn't produce any output)
             if m_test_str in ['is_valid', 'is_valid_translator']:
                 continue
             m_test_call = getattr(mandatory_tests, m_test_str)
@@ -264,7 +264,7 @@ def main():
                         help="Additionally prints CSAF JSON output on stdout.")
     parser.add_argument('--force', action='store_const', const='cmd-arg-entered',
                         help="If used, the converter produces output even if it is invalid "
-                             "(errors occured during conversion). "
+                             "(errors occurred during conversion). "
                              "Target use case: best-effort conversion to JSON, "
                              "fix the errors manually, e.g. in Secvisogram.")
 
@@ -290,7 +290,7 @@ def main():
     # Vulnerabilities args
     parser.add_argument('--remove-CVSS-values-without-vector', action='store_const',
                         const='cmd-arg-entered',
-                        help="If vector is not present in CVSS ScoreSet, the convertor removes"
+                        help="If vector is not present in CVSS ScoreSet, the converter removes"
                              " the whole ScoreSet instead of producing an error.")
 
     parser.add_argument('--default-CVSS3-version', dest='default_CVSS3_version',
