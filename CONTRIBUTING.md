@@ -9,10 +9,10 @@ The active development takes place at [csaf-tools/CVRF-CSAF-converter](https://g
 
 The process described here has several goals:
 
-    Maintain CVRF-CSAF-converter's quality 
-    Fix problems that are important to users 
+    Maintain CVRF-CSAF-converter's quality
+    Fix problems that are important to users
     Engage the community in working toward the best possible CVRF-CSAF-converter
-    Enable a sustainable system for CVRF-CSAF-converter's maintainers to review contributions 
+    Enable a sustainable system for CVRF-CSAF-converter's maintainers to review contributions
 
 The following rules apply:
 

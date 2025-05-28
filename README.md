@@ -55,7 +55,7 @@ To convert the CVRF CSAF 1.2 document `$ROOT_DIR/CVRF-CSAF-Converter/examples/1.
    cvrf2csaf --input-file $ROOT_DIR/CVRF-CSAF-Converter/examples/1.2/cvrf_example_a.xml
 ```
 
-The default output directory is `./`, it can be set using `--output-dir`. 
+The default output directory is `./`, it can be set using `--output-dir`.
 
 The output filename is derived from the CSAF field `/document/tracking/id`.
 
@@ -106,14 +106,14 @@ Parsing and conversion of the following [CSAF CVRF 1.2](https://docs.oasis-open.
 `Vulnerability` handler is reusing `Acknowledgments`, `References` and `Notes` handlers for its child elements.
 
 Each of these section handlers is implemented by own class inheriting from `SectionHandler` class.
-This base class contains `_process_mandatory_elements` and `_process_optional_elements` methods 
+This base class contains `_process_mandatory_elements` and `_process_optional_elements` methods
 which are parsing and converting mandatory/optional elements/attributes. Each subclass must implement these methods.
 
-`SectionHandler` class holds `error_occurred` class variable. This variable is overwritten by any children class in case 
+`SectionHandler` class holds `error_occurred` class variable. This variable is overwritten by any children class in case
 some error resulting in invalid output json happened. Depending on `--force` commandline parameter, the program
 either quits with error log message without producing output or produce invalid output and warning log message.
 
-Complete conversion together with input and output validation against schemata is handled by the `DocumentHandler` class. 
+Complete conversion together with input and output validation against schemata is handled by the `DocumentHandler` class.
 
 
 ### Security Considerations
@@ -124,7 +124,7 @@ We are omitting those which do not apply (most of them), since it's a plain comm
 #### [A03:2021 – Injection](https://owasp.org/Top10/A03_2021-Injection/)
 The XML input for the converter is strictly validated for [CSAF CVRF 1.2](https://docs.oasis-open.org/csaf/csaf-cvrf/v1.2/cs01/csaf-cvrf-v1.2-cs01.html). The converter rejects invalid inputs.
 
-However, there is a known issue for inserting HTML with code/script, which could be executed by a CSAF consumer: 
+However, there is a known issue for inserting HTML with code/script, which could be executed by a CSAF consumer:
 [Encode HTML in JSON output](https://github.com/csaf-tools/CVRF-CSAF-Converter/issues/5)
 
 #### [A06:2021 - Vulnerable and Outdated Components](https://owasp.org/Top10/A06_2021-Vulnerable_and_Outdated_Components/)
