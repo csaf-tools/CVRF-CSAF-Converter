@@ -54,7 +54,7 @@ class DocumentTracking(SectionHandler):
     @staticmethod
     def _remove_id_whitespace(id_string: str) -> str:
         """
-        Removes leading/trailing whitespace and linebreaks from the ID string and 
+        Removes leading/trailing whitespace and linebreaks from the ID string and
         outputs a warning if the ID string was changed.
         """
         id_string_clean = id_string.strip().replace("\r", "").replace("\n", "")

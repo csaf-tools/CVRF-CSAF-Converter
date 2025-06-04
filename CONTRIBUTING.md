@@ -3,16 +3,16 @@
 When contributing to this repository, please first discuss the change you wish to make via issue, email, or any other method with the owners of this repository before making a change.
 Please note we have a code of conduct, please follow it in all your interactions with the project.
 
-The active development takes place at [csaf-tools/CVRF-CSAF-converter](https://github.com/csaf-tools/CVRF-CSAF-converter). Please sumbit all contributions and issues there.
+The active development takes place at [csaf-tools/CVRF-CSAF-converter](https://github.com/csaf-tools/CVRF-CSAF-converter). Please submit all contributions and issues there.
 
 ## Pull Request Process
 
 The process described here has several goals:
 
-    Maintain CVRF-CSAF-converter's quality 
-    Fix problems that are important to users 
+    Maintain CVRF-CSAF-converter's quality
+    Fix problems that are important to users
     Engage the community in working toward the best possible CVRF-CSAF-converter
-    Enable a sustainable system for CVRF-CSAF-converter's maintainers to review contributions 
+    Enable a sustainable system for CVRF-CSAF-converter's maintainers to review contributions
 
 The following rules apply:
 

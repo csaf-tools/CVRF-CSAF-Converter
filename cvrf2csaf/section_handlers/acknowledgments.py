@@ -41,7 +41,7 @@ class Acknowledgments(SectionHandler):
                     # In addition, the converter outputs a warning that information might be lost
                     # during conversion of document or vulnerability acknowledgment.
                     logging.warning('CSAF 2.0 allows only one organization inside Acknowledgments. '
-                                    'Taking the first occurence, ignoring: %s.',
+                                    'Taking the first occurrence, ignoring: %s.',
                                     ack.Organization[1:])
 
                 ack_elem['organization'] = ack.Organization[0].text
