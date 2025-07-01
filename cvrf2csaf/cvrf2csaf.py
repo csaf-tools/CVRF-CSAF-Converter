@@ -254,7 +254,7 @@ class DocumentHandler:
 
 
 # pylint: disable=missing-function-docstring
-def main():
+def parse_arguments() -> dict:
     # General args
     parser = argparse.ArgumentParser(
         description='Converts CVRF 1.2 XML input into CSAF 2.0 JSON output.')
@@ -316,7 +316,12 @@ def main():
 
 
     args = {k: v for k, v in vars(parser.parse_args()).items() if v is not None}
+    return args
 
+
+# pylint: disable=missing-function-docstring
+def main():
+    args = parse_arguments()
     config = get_config_from_file()
 
     # Update & rewrite config file values with the ones from command line arguments
