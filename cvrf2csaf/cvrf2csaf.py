@@ -303,7 +303,7 @@ def parse_arguments() -> dict:
                              " derived from other sources. Default value is '3.0'.")
 
     # Validation
-    parser.add_argument('--no-validate', action='store_true',
+    parser.add_argument('--no-validation', action='store_true',
                         help="Deactivate validation by a validator service")
     parser.add_argument('--validator-endpoint',
                         default=DEFAULT_ENDPOINT,
@@ -319,6 +319,21 @@ def parse_arguments() -> dict:
     return args
 
 
+_BOOL_CMD_ARGS = [
+    'fix_insert_current_version_into_revision_history',
+    'force_insert_default_reference_category',
+    'remove_CVSS_values_without_vector',
+    'force',
+]
+
+
+def _normalize_bool_args(config):
+    # Convert optional boolean arguments to True
+    for key in _BOOL_CMD_ARGS:
+        if config[key] == 'cmd-arg-entered':
+            config[key] = True
+
+
 # pylint: disable=missing-function-docstring
 def main():
     args = parse_arguments()
@@ -326,16 +341,7 @@ def main():
 
     # Update & rewrite config file values with the ones from command line arguments
     config.update(args)
-
-    # Boolean optional arguments that are also present in config need special treatment
-    if config['fix_insert_current_version_into_revision_history'] == 'cmd-arg-entered':
-        config['fix_insert_current_version_into_revision_history'] = True
-    if config['force_insert_default_reference_category'] == 'cmd-arg-entered':
-        config['force_insert_default_reference_category'] = True
-    if config['remove_CVSS_values_without_vector'] == 'cmd-arg-entered':
-        config['remove_CVSS_values_without_vector'] = True
-    if config['force'] == 'cmd-arg-entered':
-        config['force'] = True
+    _normalize_bool_args(config)
 
     if not os.path.isfile(config.get('input_file')):
         critical_exit(f'Input file not found, check the path: {config.get("input_file")}')
@@ -361,7 +367,7 @@ def main():
             logging.warning('Some errors occurred during conversion,'
                             ' but producing output as --force option is used.')
 
-    if not args['no_validate']:
+    if not args['no_validation']:
         validator = Validator(endpoint=args['validator_endpoint'], mode=args['validator_mode'])
         validation_result = validator.validate(final_csaf)
         if not validation_result[0]:
@@ -369,6 +375,8 @@ def main():
             logging.warning("Some errors were found at validation: %s", validation_result[1])
         else:
             logging.info("CSAF validation successful.")
+    else:
+        logging.info("CSAF validation skipped at user's request.")
 
     # Output / Store results
     file_name = create_file_name(final_csaf['document'].get('tracking', {}).get('id', None),

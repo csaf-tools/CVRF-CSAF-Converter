@@ -91,7 +91,7 @@ The output of the tool includes the validation result:
 
 Use `--validator-endpoint` and `--validator-mode` to specify the URL of the validator service and the type of service (currently implemented: secvisogram).
 
-To disable the validation by an external validator, use `--no-validate`.
+To disable the validation by an external validator, use `--no-validation`.
 
 ## Specifications
 
