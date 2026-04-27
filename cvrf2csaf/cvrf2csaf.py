@@ -7,12 +7,13 @@ import argparse
 import json
 import os
 import re
+from importlib.metadata import version
+from importlib.resources import files
 import turvallisuusneuvonta as mandatory_tests
 
 from lxml import etree
 from lxml import objectify
 from jsonschema import Draft202012Validator, ValidationError, SchemaError
-from pkg_resources import get_distribution, Requirement, resource_filename
 
 from .common.utils import get_config_from_file, store_json, critical_exit, create_file_name
 
@@ -52,16 +53,13 @@ class DocumentHandler:
 
     PACKAGE_NAME = 'cvrf2csaf'
 
-    SCHEMA_FILE = resource_filename(Requirement.parse(PACKAGE_NAME),
-                                    f'{PACKAGE_NAME}/schemata/cvrf/1.2/cvrf.xsd')
-    CATALOG_FILE = resource_filename(Requirement.parse(PACKAGE_NAME),
-                                     f'{PACKAGE_NAME}/schemata/catalog_1_2.xml')
+    SCHEMA_FILE = str(files(PACKAGE_NAME).joinpath('schemata/cvrf/1.2/cvrf.xsd'))
+    CATALOG_FILE = str(files(PACKAGE_NAME).joinpath('schemata/catalog_1_2.xml'))
 
     # Content copied from
     # https://github.com/secvisogram/secvisogram/blob/main/app/lib/app/shared/Core/csaf_2.0_strict.json
-    CSAF_SCHEMA_FILE = resource_filename(Requirement.parse(PACKAGE_NAME),
-                                         f'{PACKAGE_NAME}'
-                                         f'/schemata/csaf/2.0/csaf_json_schema_strict.json')
+    CSAF_SCHEMA_FILE = str(files(PACKAGE_NAME).joinpath(
+        'schemata/csaf/2.0/csaf_json_schema_strict.json'))
 
     def __init__(self, config, pkg_version):
         self.document_leaf_elements = DocumentLeafElements(config)
@@ -254,7 +252,7 @@ def main():
     parser = argparse.ArgumentParser(
         description='Converts CVRF 1.2 XML input into CSAF 2.0 JSON output.')
     parser.add_argument('-v', '--version', action='version',
-                        version=str(get_distribution('cvrf2csaf').version))
+                        version=version('cvrf2csaf'))
     parser.add_argument('--input-file', dest='input_file', type=str, required=True,
                         help="CVRF XML input file to parse", metavar='PATH')
     parser.add_argument('--output-dir', dest='output_dir', type=str, default='./', metavar='PATH',
@@ -318,7 +316,7 @@ def main():
         critical_exit(f'Input file not found, check the path: {config.get("input_file")}')
 
     # Get the version of the installed package
-    pkg_version = get_distribution('cvrf2csaf').version
+    pkg_version = version('cvrf2csaf')
 
     # DocumentHandler is iterating over each XML element within convert_file and
     # return CSAF 2.0 JSON

@@ -7,9 +7,9 @@ import sys
 
 from pathlib import Path
 from datetime import datetime, timezone
+from importlib.resources import files
 
 import yaml
-import pkg_resources
 
 from .common import SectionHandler
 
@@ -47,8 +47,7 @@ def get_config_from_file() -> dict:
     try:
         # pylint: disable=fixme
         # TODO: Workaround for now, config file placement is to be discussed
-        req = pkg_resources.Requirement.parse('cvrf2csaf')
-        path_to_conf = pkg_resources.resource_filename(req, 'cvrf2csaf/config/config.yaml')
+        path_to_conf = str(files('cvrf2csaf').joinpath('config/config.yaml'))
         with open(path_to_conf, 'r', encoding='utf-8') as f:
             config = yaml.safe_load(f)
 
