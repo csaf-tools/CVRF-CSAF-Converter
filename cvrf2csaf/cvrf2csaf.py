@@ -53,12 +53,15 @@ class DocumentHandler:
 
     PACKAGE_NAME = 'cvrf2csaf'
 
-    SCHEMA_FILE = files(PACKAGE_NAME).joinpath('schemata/cvrf/1.2/cvrf.xsd')
+    # an importlib_resources.abc.Traversable which has open()
+    SCHEMA_TRAV = files(PACKAGE_NAME).joinpath('schemata/cvrf/1.2/cvrf.xsd')
+
     CATALOG_FILE = str(files(PACKAGE_NAME).joinpath('schemata/catalog_1_2.xml'))
 
     # Content copied from
     # https://github.com/secvisogram/secvisogram/blob/main/app/lib/app/shared/Core/csaf_2.0_strict.json
-    CSAF_SCHEMA_FILE = files(PACKAGE_NAME).joinpath(
+    # an importlib_resources.abc.Traversable which has open()
+    CSAF_SCHEMA_TRAV = files(PACKAGE_NAME).joinpath(
         'schemata/csaf/2.0/csaf_json_schema_strict.json')
 
     def __init__(self, config, pkg_version):
@@ -158,7 +161,7 @@ class DocumentHandler:
 
     @classmethod
     def _validate_input_against_schema(cls, xml_objectified):
-        with open(cls.SCHEMA_FILE, encoding='utf-8') as f:
+        with open(cls.SCHEMA_TRAV, encoding='utf-8') as f:
             os.environ.update(XML_CATALOG_FILES=cls.CATALOG_FILE)
             schema = etree.XMLSchema(file=f)
 
@@ -201,7 +204,7 @@ class DocumentHandler:
         Validates the CSAF output against the CSAF JSON schema
         return: True if valid, False if invalid
         """
-        with open(self.CSAF_SCHEMA_FILE, encoding='utf-8') as f:
+        with open(self.CSAF_SCHEMA_TRAV, encoding='utf-8') as f:
             csaf_schema_content = json.loads(f.read())
 
         try:
