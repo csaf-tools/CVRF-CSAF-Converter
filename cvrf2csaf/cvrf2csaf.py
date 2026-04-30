@@ -53,13 +53,13 @@ class DocumentHandler:
 
     PACKAGE_NAME = 'cvrf2csaf'
 
-    SCHEMA_FILE = str(files(PACKAGE_NAME).joinpath('schemata/cvrf/1.2/cvrf.xsd'))
+    SCHEMA_FILE = files(PACKAGE_NAME).joinpath('schemata/cvrf/1.2/cvrf.xsd')
     CATALOG_FILE = str(files(PACKAGE_NAME).joinpath('schemata/catalog_1_2.xml'))
 
     # Content copied from
     # https://github.com/secvisogram/secvisogram/blob/main/app/lib/app/shared/Core/csaf_2.0_strict.json
-    CSAF_SCHEMA_FILE = str(files(PACKAGE_NAME).joinpath(
-        'schemata/csaf/2.0/csaf_json_schema_strict.json'))
+    CSAF_SCHEMA_FILE = files(PACKAGE_NAME).joinpath(
+        'schemata/csaf/2.0/csaf_json_schema_strict.json')
 
     def __init__(self, config, pkg_version):
         self.document_leaf_elements = DocumentLeafElements(config)
