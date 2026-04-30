@@ -47,9 +47,8 @@ def get_config_from_file() -> dict:
     try:
         # pylint: disable=fixme
         # TODO: Workaround for now, config file placement is to be discussed
-        path_to_conf = str(files('cvrf2csaf').joinpath('config/config.yaml'))
-        with open(path_to_conf, 'r', encoding='utf-8') as f:
-            config = yaml.safe_load(f)
+        config_str = files('cvrf2csaf').joinpath('config/config.yaml').read_text()
+        config = yaml.safe_load(config_str)
 
         for key in ['force', 'fix_insert_current_version_into_revision_history']:
             if key in config.keys():
