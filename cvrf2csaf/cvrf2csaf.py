@@ -7,12 +7,13 @@ import argparse
 import json
 import os
 import re
+from importlib.metadata import version
+from importlib.resources import files, as_file
 import turvallisuusneuvonta as mandatory_tests
 
 from lxml import etree
 from lxml import objectify
 from jsonschema import Draft202012Validator, ValidationError, SchemaError
-from pkg_resources import get_distribution, Requirement, resource_filename
 
 from .common.utils import get_config_from_file, store_json, critical_exit, create_file_name
 
@@ -52,16 +53,16 @@ class DocumentHandler:
 
     PACKAGE_NAME = 'cvrf2csaf'
 
-    SCHEMA_FILE = resource_filename(Requirement.parse(PACKAGE_NAME),
-                                    f'{PACKAGE_NAME}/schemata/cvrf/1.2/cvrf.xsd')
-    CATALOG_FILE = resource_filename(Requirement.parse(PACKAGE_NAME),
-                                     f'{PACKAGE_NAME}/schemata/catalog_1_2.xml')
+    # an importlib_resources.abc.Traversable which has open()
+    SCHEMA_TRAV = files(PACKAGE_NAME).joinpath('schemata/cvrf/1.2/cvrf.xsd')
+
+    CATALOG_TRAV = files(PACKAGE_NAME).joinpath('schemata/catalog_1_2.xml')
 
     # Content copied from
     # https://github.com/secvisogram/secvisogram/blob/main/app/lib/app/shared/Core/csaf_2.0_strict.json
-    CSAF_SCHEMA_FILE = resource_filename(Requirement.parse(PACKAGE_NAME),
-                                         f'{PACKAGE_NAME}'
-                                         f'/schemata/csaf/2.0/csaf_json_schema_strict.json')
+    # an importlib_resources.abc.Traversable which has open()
+    CSAF_SCHEMA_TRAV = files(PACKAGE_NAME).joinpath(
+        'schemata/csaf/2.0/csaf_json_schema_strict.json')
 
     def __init__(self, config, pkg_version):
         self.document_leaf_elements = DocumentLeafElements(config)
@@ -160,9 +161,11 @@ class DocumentHandler:
 
     @classmethod
     def _validate_input_against_schema(cls, xml_objectified):
-        with open(cls.SCHEMA_FILE, encoding='utf-8') as f:
-            os.environ.update(XML_CATALOG_FILES=cls.CATALOG_FILE)
-            schema = etree.XMLSchema(file=f)
+        with open(cls.SCHEMA_TRAV, encoding='utf-8') as f:
+            # convert the Traversable to a Path. if package is a zip, this is a tempfile
+            with as_file(cls.CATALOG_TRAV) as catalogue_path:
+                os.environ.update(XML_CATALOG_FILES=str(catalogue_path))
+                schema = etree.XMLSchema(file=f)
 
         try:
             schema.assertValid(xml_objectified)
@@ -203,7 +206,7 @@ class DocumentHandler:
         Validates the CSAF output against the CSAF JSON schema
         return: True if valid, False if invalid
         """
-        with open(self.CSAF_SCHEMA_FILE, encoding='utf-8') as f:
+        with open(self.CSAF_SCHEMA_TRAV, encoding='utf-8') as f:
             csaf_schema_content = json.loads(f.read())
 
         try:
@@ -254,7 +257,7 @@ def main():
     parser = argparse.ArgumentParser(
         description='Converts CVRF 1.2 XML input into CSAF 2.0 JSON output.')
     parser.add_argument('-v', '--version', action='version',
-                        version=str(get_distribution('cvrf2csaf').version))
+                        version=version('cvrf2csaf'))
     parser.add_argument('--input-file', dest='input_file', type=str, required=True,
                         help="CVRF XML input file to parse", metavar='PATH')
     parser.add_argument('--output-dir', dest='output_dir', type=str, default='./', metavar='PATH',
@@ -318,7 +321,7 @@ def main():
         critical_exit(f'Input file not found, check the path: {config.get("input_file")}')
 
     # Get the version of the installed package
-    pkg_version = get_distribution('cvrf2csaf').version
+    pkg_version = version('cvrf2csaf')
 
     # DocumentHandler is iterating over each XML element within convert_file and
     # return CSAF 2.0 JSON
