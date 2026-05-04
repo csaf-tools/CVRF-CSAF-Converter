@@ -56,7 +56,7 @@ class DocumentHandler:
     # an importlib_resources.abc.Traversable which has open()
     SCHEMA_TRAV = files(PACKAGE_NAME).joinpath('schemata/cvrf/1.2/cvrf.xsd')
 
-    CATALOG_FILE = files(PACKAGE_NAME).joinpath('schemata/catalog_1_2.xml')
+    CATALOG_TRAV = files(PACKAGE_NAME).joinpath('schemata/catalog_1_2.xml')
 
     # Content copied from
     # https://github.com/secvisogram/secvisogram/blob/main/app/lib/app/shared/Core/csaf_2.0_strict.json
@@ -163,7 +163,7 @@ class DocumentHandler:
     def _validate_input_against_schema(cls, xml_objectified):
         with open(cls.SCHEMA_TRAV, encoding='utf-8') as f:
             # convert the Traversable to a Path. if package is a zip, this is a tempfile
-            with as_file(cls.CATALOG_FILE) as catalogue_path:
+            with as_file(cls.CATALOG_TRAV) as catalogue_path:
                 os.environ.update(XML_CATALOG_FILES=str(catalogue_path))
                 schema = etree.XMLSchema(file=f)
 
