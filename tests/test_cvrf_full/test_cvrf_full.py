@@ -1,9 +1,10 @@
 """File containing full CVRF test."""
 import json
 from contextlib import suppress
+from pathlib import Path
 
 
-with open('./test_cvrf_full.json', encoding='utf-8') as f:
+with open(Path(__file__).parent / 'test_cvrf_full.json', encoding='utf-8') as f:
     csaf = json.loads(f.read())
 
 
