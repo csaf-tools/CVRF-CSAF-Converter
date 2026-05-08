@@ -17,6 +17,16 @@ DEFAULT_PRESETS = ['mandatory']
 getLogger('httpx').setLevel('WARNING')
 
 
+@define
+class HttpConfig:
+    """HTTP client configuration passed through to httpx."""
+    headers: dict[str, str] = field(factory=dict)
+    timeout: Optional[Timeout] = field(default=None)
+    verify_ssl: Union[str, bool, SSLContext] = field(default=True)
+    httpx_args: dict[str, Any] = field(factory=dict)
+    cookies: Optional[dict] = field(default=None, init=False)
+
+
 @define  # creates a constructor
 class Validator:
     """
@@ -26,12 +36,7 @@ class Validator:
     endpoint: str = field(default=DEFAULT_ENDPOINT)
     mode: str = field(default=DEFAULT_MODE)
     presets: List = field(default=DEFAULT_PRESETS)
-    _headers: dict[str, str] = field(factory=dict, kw_only=True, alias="headers")
-    _timeout: Optional[Timeout] = field(default=None, kw_only=True, alias="timeout")
-    _verify_ssl: Union[str, bool, SSLContext] = field(default=True, kw_only=True,
-                                                      alias="verify_ssl")
-    _httpx_args: dict[str, Any] = field(factory=dict, kw_only=True, alias="httpx_args")
-    _cookies: Optional[dict] = field(default=None, init=False)
+    _http: HttpConfig = field(factory=HttpConfig)
 
     @property
     def client(self):
@@ -39,11 +44,11 @@ class Validator:
         Create an httpx Client object
         """
         return Client(
-                cookies=self._cookies,
-                headers=self._headers,
-                timeout=self._timeout,
-                verify=self._verify_ssl,
-                **self._httpx_args,
+                cookies=self._http.cookies,
+                headers=self._http.headers,
+                timeout=self._http.timeout,
+                verify=self._http.verify_ssl,
+                **self._http.httpx_args,
             )
 
     def validate(self, document: dict) -> Tuple[bool, dict]:
