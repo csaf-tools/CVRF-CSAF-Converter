@@ -27,7 +27,7 @@ from .section_handlers.product_tree import ProductTree
 from .section_handlers.vulnerability import Vulnerability
 from .common.common import SectionHandler
 
-from .validate import Validator, DEFAULT_ENDPOINT, DEFAULT_MODE, SUPPORTED_MODES
+from .validate import Validator, DEFAULT_ENDPOINT, DEFAULT_MODE, SUPPORTED_MODES, DEFAULT_PRESETS
 
 logging.basicConfig(level=logging.INFO,
                     format='%(asctime)s - %(module)s - %(levelname)s - %(message)s')
@@ -313,6 +313,12 @@ def parse_arguments() -> dict:
                         default=DEFAULT_MODE,
                         help=f"The Validator mode, currently supported: "
                              f"{','.join(SUPPORTED_MODES)}. Default: {DEFAULT_MODE!r}.")
+    parser.add_argument('--validator-preset',
+                        default=DEFAULT_PRESETS,
+                        help="One or more presets to validate remotely, currently supported: "
+                             "'schema', 'mandatory', 'optional', 'informative', 'basic', "
+                             "'extended', 'full'. Default: 'mandatory'.",
+                             nargs='+')
 
 
     args = {k: v for k, v in vars(parser.parse_args()).items() if v is not None}
@@ -368,13 +374,16 @@ def main():
                             ' but producing output as --force option is used.')
 
     if not args['no_validation']:
-        validator = Validator(endpoint=args['validator_endpoint'], mode=args['validator_mode'])
+        validator = Validator(endpoint=args['validator_endpoint'], mode=args['validator_mode'],
+                              presets=args['validator_preset'])
         validation_result = validator.validate(final_csaf)
         if not validation_result[0]:
             valid_output = False
+            validator.log_result(validation_result[1], logging)
             if config.get('force', False):
                 logging.warning("Some errors were found at validation: %r,"
-                                " but producing output as --force option is used.", validation_result[1])
+                                " but producing output as --force option is used.",
+                                validation_result[1])
             else:
                 critical_exit("Some errors were found at validation, can't produce output."
                             " To override this, use --force.")
