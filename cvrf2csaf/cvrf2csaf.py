@@ -381,11 +381,10 @@ def main():
             valid_output = False
             validator.log_result(validation_result[1], logging)
             if config.get('force', False):
-                logging.warning("Some errors were found at validation: %r,"
-                                " but producing output as --force option is used.",
-                                validation_result[1])
+                logging.warning("Some error occurred during validation,"
+                                " but producing output as --force option is used.")
             else:
-                critical_exit("Some errors were found at validation, can't produce output."
+                critical_exit("Some error occurred during validation, can't produce output."
                             " To override this, use --force.")
         else:
             logging.info("CSAF validation successful.")

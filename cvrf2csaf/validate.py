@@ -84,6 +84,9 @@ class Validator:
             logger
         """
         for test in validation_result:
+            if isinstance(validation_result, str):  # handling exceptions
+                logger.error('Validation service error: %r', (validation_result, ))
+                return
             for log_t in ('info', 'warning', 'error'):
                 for message in test[f"{log_t}s"]:
                     getattr(logger, log_t)(f"Test {test['name']!r}: "
