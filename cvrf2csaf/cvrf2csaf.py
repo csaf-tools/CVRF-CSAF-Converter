@@ -250,13 +250,13 @@ class DocumentHandler:
                 # https://github.com/csaf-tools/CVRF-CSAF-Converter/issues/138
                 # https://todo.sr.ht/~sthagen/turvallisuusneuvonta/3
                 if not logged_warning:
-                    logging.warning('Due to a bug in the library turvallisuusneuvonta, all '
+                    logging.warning('Due to a defect in the library turvallisuusneuvonta, all '
                                     'reported errors will be treated as warnings instead. See '
                                     'https://github.com/csaf-tools/CVRF-CSAF-Converter/issues/138'
                                     ' for more information.')
                     logged_warning = True
                 # passed = False
-                logging.warning('Mandatory test %s failed.', m_test_str)
+                logging.warning("turvallisuusneuvonta's mandatory test '%s' failed.", m_test_str)
 
         return passed
 
