@@ -11,7 +11,7 @@ from httpx import Client, Timeout, RequestError
 DEFAULT_MODE = 'secvisogram'
 DEFAULT_ENDPOINT = 'http://localhost:8082/api/v1/validate'
 SUPPORTED_MODES = [DEFAULT_MODE]
-DEFAULT_PRESETS = ['mandatory']
+DEFAULT_PRESETS = ['basic']
 
 # Don't show debug and info logs from httpx
 getLogger('httpx').setLevel('WARNING')
