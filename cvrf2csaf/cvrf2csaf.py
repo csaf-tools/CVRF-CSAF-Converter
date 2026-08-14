@@ -240,6 +240,7 @@ class DocumentHandler:
         #  replace the implementation
         # For now we fetch the tests like this to see which failed
         passed = True
+        logged_warning = False
         for m_test_str in mandatory_tests.__all__:
             # Skip translator function since translator value cannot appear on the input
             # Skip is_valid which calls all the tests (but doesn't produce any output)
@@ -247,8 +248,17 @@ class DocumentHandler:
                 continue
             m_test_call = getattr(mandatory_tests, m_test_str)
             if not m_test_call(final_csaf):
-                passed = False
-                logging.error('Mandatory test %s failed.', m_test_str)
+                # turvallisuusneuvonta is broken and any fails are now only warnings
+                # https://github.com/csaf-tools/CVRF-CSAF-Converter/issues/138
+                # https://todo.sr.ht/~sthagen/turvallisuusneuvonta/3
+                if not logged_warning:
+                    logging.warning('Due to a defect in the library turvallisuusneuvonta, all '
+                                    'reported errors will be treated as warnings instead. See '
+                                    'https://github.com/csaf-tools/CVRF-CSAF-Converter/issues/138'
+                                    ' for more information.')
+                    logged_warning = True
+                # passed = False
+                logging.warning("turvallisuusneuvonta's mandatory test '%s' failed.", m_test_str)
 
         return passed
 
