@@ -327,7 +327,8 @@ def parse_arguments() -> dict:
                         default=DEFAULT_PRESETS,
                         help="One or more presets to validate remotely, currently supported: "
                              "'schema', 'mandatory', 'optional', 'informative', 'basic', "
-                             "'extended', 'full'. Default: 'mandatory'.",
+                             "'extended', 'full'. "
+                             f"Default: '{'.'.join(DEFAULT_PRESETS)}'.",
                              nargs='+')
 
 
