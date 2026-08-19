@@ -45,6 +45,10 @@ Afterwards, create a virtual environment and install the package there:
 
 _Hint: If you would like to get the debugger running, try to install the code as follows: `pip install -e .`_
 
+You also need an instance of [secvisogram/csaf-validator-service](https://github.com/secvisogram/csaf-validator-service) for CSAF document validation.
+If you don't have access to one, first install it.
+This step can be skipped for testing purposes.
+
 ## How to use CVRF-CSAF-converter
 
 ### Usage as CLI tool
@@ -73,6 +77,23 @@ The [config file](https://github.com/csaf-tools/CVRF-CSAF-Converter/blob/main/cv
 For the installation using `venv`, the config file is located in `$PATH_TO_THE_VENV/lib/python3.X/site-packages/cvrf2csaf/config/config.yaml`.
 When installing the PyPI package with pip (--user), the config file is located in `$HOME/.local/lib/python3.X/site-packages/cvrf2csaf/config/config.yaml`
 Converter options can be changed there, or overridden by command line arguments/options.
+
+### Validate using a validation service
+
+The tool by default validates the document using a validation service such as the [secvisogram/csaf-validator-service](https://github.com/secvisogram/csaf-validator-service).
+
+The output of the tool includes the validation result:
+```bash
+2025-05-29 09:25:11,415 - cvrf2csaf - INFO - CSAF validation successful.
+# or
+2025-05-29 09:24:10,594 - cvrf2csaf - WARNING - Some errors were found at validation: [...]
+```
+
+Use `--validator-endpoint` and `--validator-mode` to specify the URL of the validator service and the type of service (currently implemented: secvisogram).
+`--validator-preset` allows to change the set of validation tests that
+are requested from the service.
+
+To disable the validation by an external validator, use `--no-validation`.
 
 ## Specifications
 

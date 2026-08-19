@@ -27,6 +27,8 @@ from .section_handlers.product_tree import ProductTree
 from .section_handlers.vulnerability import Vulnerability
 from .common.common import SectionHandler
 
+from .validate import Validator, DEFAULT_ENDPOINT, DEFAULT_MODE, SUPPORTED_MODES, DEFAULT_PRESETS
+
 logging.basicConfig(level=logging.INFO,
                     format='%(asctime)s - %(module)s - %(levelname)s - %(message)s')
 
@@ -262,7 +264,7 @@ class DocumentHandler:
 
 
 # pylint: disable=missing-function-docstring
-def main():
+def parse_arguments() -> dict:
     # General args
     parser = argparse.ArgumentParser(
         description='Converts CVRF 1.2 XML input into CSAF 2.0 JSON output.')
@@ -310,22 +312,53 @@ def main():
                         help="Default version used for CVSS version 3, when the version cannot be"
                              " derived from other sources. Default value is '3.0'.")
 
-    args = {k: v for k, v in vars(parser.parse_args()).items() if v is not None}
+    # Validation
+    parser.add_argument('--no-validation', action='store_true',
+                        help="Deactivate validation by a validator service")
+    parser.add_argument('--validator-endpoint',
+                        default=DEFAULT_ENDPOINT,
+                        help="The URL where the validator service is reachable. "
+                             f"Default: {DEFAULT_ENDPOINT!r}.")
+    parser.add_argument('--validator-mode',
+                        default=DEFAULT_MODE,
+                        help=f"The Validator mode, currently supported: "
+                             f"{','.join(SUPPORTED_MODES)}. Default: {DEFAULT_MODE!r}.")
+    parser.add_argument('--validator-preset',
+                        default=DEFAULT_PRESETS,
+                        help="One or more presets to validate remotely, currently supported: "
+                             "'schema', 'mandatory', 'optional', 'informative', 'basic', "
+                             "'extended', 'full'. "
+                             f"Default: '{'.'.join(DEFAULT_PRESETS)}'.",
+                             nargs='+')
 
+
+    args = {k: v for k, v in vars(parser.parse_args()).items() if v is not None}
+    return args
+
+
+_BOOL_CMD_ARGS = [
+    'fix_insert_current_version_into_revision_history',
+    'force_insert_default_reference_category',
+    'remove_CVSS_values_without_vector',
+    'force',
+]
+
+
+def _normalize_bool_args(config):
+    # Convert optional boolean arguments to True
+    for key in _BOOL_CMD_ARGS:
+        if config[key] == 'cmd-arg-entered':
+            config[key] = True
+
+
+# pylint: disable=missing-function-docstring
+def main():
+    args = parse_arguments()
     config = get_config_from_file()
 
     # Update & rewrite config file values with the ones from command line arguments
     config.update(args)
-
-    # Boolean optional arguments that are also present in config need special treatment
-    if config['fix_insert_current_version_into_revision_history'] == 'cmd-arg-entered':
-        config['fix_insert_current_version_into_revision_history'] = True
-    if config['force_insert_default_reference_category'] == 'cmd-arg-entered':
-        config['force_insert_default_reference_category'] = True
-    if config['remove_CVSS_values_without_vector'] == 'cmd-arg-entered':
-        config['remove_CVSS_values_without_vector'] = True
-    if config['force'] == 'cmd-arg-entered':
-        config['force'] = True
+    _normalize_bool_args(config)
 
     if not os.path.isfile(config.get('input_file')):
         critical_exit(f'Input file not found, check the path: {config.get("input_file")}')
@@ -350,6 +383,24 @@ def main():
         else:
             logging.warning('Some errors occurred during conversion,'
                             ' but producing output as --force option is used.')
+
+    if not args['no_validation']:
+        validator = Validator(endpoint=args['validator_endpoint'], mode=args['validator_mode'],
+                              presets=args['validator_preset'])
+        validation_result = validator.validate(final_csaf)
+        if not validation_result[0]:
+            valid_output = False
+            validator.log_result(validation_result[1], logging)
+            if config.get('force', False):
+                logging.warning("Some error occurred during validation,"
+                                " but producing output as --force option is used.")
+            else:
+                critical_exit("Some error occurred during validation, can't produce output."
+                            " To override this, use --force.")
+        else:
+            logging.info("CSAF validation successful.")
+    else:
+        logging.info("CSAF validation skipped at user's request.")
 
     # Output / Store results
     file_name = create_file_name(final_csaf['document'].get('tracking', {}).get('id', None),
